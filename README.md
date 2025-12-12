@@ -184,13 +184,3 @@ theorem-proving-research/
 ├── miniF2F/          ← external repo or submodule
 └── PutnamBench/      ← external repo or submodule
 ```
-
----
-
-## 9. Credits
-
-- **DeepSeek-Prover-V2** – [DeepSeek AI](https://github.com/deepseek-ai)
-- **MiniF2F** – [OpenAI](https://github.com/openai/miniF2F)
-- **PutnamBench** – [Trishul Labs](https://github.com/trishullab/PutnamBench)
-- **Evaluation framework engineering** by Zachary Zusin
-
