@@ -1,0 +1,15 @@
+============================================================
+WARNING: Model not found in cache!
+============================================================
+The model needs to be downloaded first (this takes 10-30 minutes).
+You can either:
+  1. Run: python3 download_model.py  (recommended)
+  2. Continue anyway (will download now, but may appear to hang)
+============================================================
+
+Continue with download now? (y/N): Traceback (most recent call last):
+  File "/local/rcs/zwz2000/ProofResearch/deepseek_prover_eval/src/eval_minif2f.py", line 409, in <module>
+    evaluate_minif2f(args.mode)
+  File "/local/rcs/zwz2000/ProofResearch/deepseek_prover_eval/src/eval_minif2f.py", line 278, in evaluate_minif2f
+    response = input("\nContinue with download now? (y/N): ")
+EOFError: EOF when reading a line

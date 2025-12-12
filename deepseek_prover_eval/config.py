@@ -30,18 +30,18 @@ PUTNAM_SRC_GLOB = "/local/rcs/zwz2000/ProofResearch/PutnamBench/lean4/src/*.lean
 # Prompt files
 #############################################
 
-PROMPT_NONCOT = Path("prompts/noncot.txt")
-PROMPT_COT = Path("prompts/cot.txt")
-
 
 #############################################
 # Model generation parameters
 #############################################
 
-MAX_NEW_TOKENS = 512
-TEMPERATURE = 0.8
-TOP_P = 0.95
-NUM_SAMPLES = 32
+# Different max tokens for CoT vs non-CoT (CoT needs more for reasoning)
+MAX_NEW_TOKENS_NONCOT = 2048  # Reasonable for non-CoT proofs
+MAX_NEW_TOKENS_COT = 32768    # Paper specifies 32k for CoT mode
+
+TEMPERATURE = 0.7  # Typical range 0.6-0.8
+TOP_P = 0.95       # Typical range 0.9-1.0
+NUM_SAMPLES = 32   # For Pass@32 evaluation
 
 
 #############################################

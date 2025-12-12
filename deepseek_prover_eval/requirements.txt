@@ -5,4 +5,4 @@ sentencepiece
 tqdm
 rich
 pyyaml
-accelerate
+psutil>=5.9.0  # Add for process tree management
