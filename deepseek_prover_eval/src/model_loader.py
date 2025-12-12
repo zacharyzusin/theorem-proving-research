@@ -1,8 +1,34 @@
+"""
+Model loading utilities for DeepSeek-Prover-V2-7B.
+
+Handles model and tokenizer loading with 4-bit quantization support
+for efficient GPU memory usage.
+"""
+import sys
+from pathlib import Path
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+# Add parent directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from config import MODEL_ID, LOAD_IN_4BIT, DEVICE_MAP
 
+
 def load_model_and_tokenizer():
+    """
+    Load the DeepSeek-Prover-V2-7B model and tokenizer.
+    
+    Uses 4-bit quantization by default to fit on 24GB GPUs.
+    Supports resuming interrupted downloads.
+    
+    Returns:
+        tuple: (model, tokenizer) - The loaded model and tokenizer
+        
+    Raises:
+        KeyboardInterrupt: If loading is interrupted by user
+        Exception: If model or tokenizer loading fails
+    """
     print(f"Loading model: {MODEL_ID}")
     print("Note: First-time download can take 10+ minutes. Press Ctrl+C to cancel.")
     print("Loading tokenizer...", flush=True)

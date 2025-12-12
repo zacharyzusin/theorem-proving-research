@@ -1,9 +1,20 @@
+"""
+Extract individual problem files from MiniF2F dataset.
+
+This script reads the consolidated MiniF2F Lean files (test.lean and valid.lean)
+and extracts each theorem/lemma into a separate file for easier evaluation.
+"""
+import sys
 from pathlib import Path
 from tqdm import tqdm
 
+# Add parent directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from config import MINIF2F_FORMAL_TEST, MINIF2F_FORMAL_VALID, MINIF2F_EXTRACTED_DIR
 
-MINIF2F_EXTRACTED_DIR.mkdir(exist_ok=True)
+# Ensure output directory exists
+MINIF2F_EXTRACTED_DIR.mkdir(parents=True, exist_ok=True)
 
 LEAN4_HEADER = """\
 import Mathlib

@@ -1,3 +1,19 @@
+"""
+MiniF2F evaluation script for DeepSeek-Prover-V2-7B.
+
+This module provides the main evaluation loop for the MiniF2F benchmark,
+supporting both Chain-of-Thought (CoT) and non-CoT generation modes.
+
+The evaluation process:
+1. Loads the DeepSeek-Prover-V2-7B model
+2. For each problem, generates multiple proof attempts
+3. Extracts and verifies proofs using Lean 4
+4. Computes Pass@K metrics (Pass@1, Pass@8, Pass@32)
+
+Usage:
+    python src/eval_minif2f.py --mode noncot
+    python src/eval_minif2f.py --mode cot
+"""
 import argparse
 import glob
 import re
@@ -362,9 +378,11 @@ def evaluate_minif2f(mode: str):
         return
 
     files = sorted(glob.glob(MINIF2F_EXTRACTED_GLOB))
-    # For testing: filter to a single simple problem
-    files = [f for f in files if "problem_0073" in f]  # 54 % 6 = 0 (simple test)
-    # files = files[:2]  # Remove this when ready for full evaluation
+    
+    # Optional: Filter to specific problems for testing
+    # Uncomment and modify as needed:
+    # files = [f for f in files if "problem_0073" in f]  # Test single problem (54 % 6 = 0)
+    # files = files[:10]  # Test first 10 problems
 
     total = len(files)
     
@@ -390,9 +408,7 @@ def evaluate_minif2f(mode: str):
 
         problem_results = []  # Track successes for this problem
 
-        # For quick testing, use fewer samples
-        max_attempts = min(3, NUM_SAMPLES)  # Test with 3 samples instead of 32
-        for attempt in range(max_attempts):
+        for attempt in range(NUM_SAMPLES):
             if is_shutdown_requested():
                 break
                 

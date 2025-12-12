@@ -1,5 +1,19 @@
-# src/eval_putnam.py
+"""
+PutnamBench evaluation script for DeepSeek-Prover-V2-7B.
 
+This module provides the main evaluation loop for the PutnamBench benchmark,
+supporting both Chain-of-Thought (CoT) and non-CoT generation modes.
+
+The evaluation process:
+1. Loads the DeepSeek-Prover-V2-7B model
+2. For each problem, generates multiple proof attempts
+3. Extracts and verifies proofs using Lean 4
+4. Computes Pass@K metrics (Pass@1, Pass@8, Pass@32)
+
+Usage:
+    python src/eval_putnam.py --mode noncot
+    python src/eval_putnam.py --mode cot
+"""
 import argparse
 import glob
 import re
@@ -301,16 +315,10 @@ def evaluate_putnam(mode: str):
     putnam_src_glob = str(Path(PUTNAM_DIR) / "lean4" / "src" / "putnam_*.lean")
     files = sorted(glob.glob(putnam_src_glob))
 
-    # TEMP: for debugging/testing, restrict to a single problem
-    files = [
-        f
-        for f in files
-        if Path(f).name in {
-            "putnam_1962_a1.lean",
-            # "putnam_2004_a1.lean",
-            # "putnam_2002_a1.lean",
-        }
-    ]
+    # Optional: Filter to specific problems for testing
+    # Uncomment and modify as needed:
+    # files = [f for f in files if Path(f).name == "putnam_1962_a1.lean"]  # Test single problem
+    # files = files[:10]  # Test first 10 problems
 
     total = len(files)
     
@@ -332,9 +340,7 @@ def evaluate_putnam(mode: str):
         theorem_name = Path(f).stem
         problem_results = []  # Track successes for this problem
 
-        # For quick testing, use fewer samples
-        max_attempts = min(3, NUM_SAMPLES)  # Test with 3 samples instead of 32
-        for attempt in range(max_attempts):
+        for attempt in range(NUM_SAMPLES):
             if is_shutdown_requested():
                 break
             print(f"--- Sample {attempt + 1}/{NUM_SAMPLES} ---", flush=True)

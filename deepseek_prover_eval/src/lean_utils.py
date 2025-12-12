@@ -1,13 +1,18 @@
-# src/lean_utils.py
+"""
+Lean 4 verification utilities.
 
+Provides safe Lean file checking with timeouts, process tree killing,
+and proper resource cleanup to prevent hanging processes.
+"""
 import os
 import re
 import subprocess
 import tempfile
 import signal
 import time
-import psutil  # Add to requirements.txt
+import psutil
 
+# Timeout constants
 LEAN_TIMEOUT = 60   # seconds – increased for complex proofs and first-time Mathlib loads
 MODEL_GENERATION_TIMEOUT = 300  # 5 minutes for model generation
 
