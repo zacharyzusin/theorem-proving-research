@@ -12,7 +12,8 @@ def signal_handler(signum, frame):
     global _shutdown_requested
     _shutdown_requested = True
     print(f"\n[INFO] Received signal {signum}, shutting down gracefully...", flush=True)
-    sys.exit(1)
+    # Don't call sys.exit() immediately - let the main loop check is_shutdown_requested()
+    # and clean up properly. The program will exit naturally when the loop breaks.
 
 def setup_signal_handlers():
     """Set up signal handlers for SIGINT and SIGTERM."""

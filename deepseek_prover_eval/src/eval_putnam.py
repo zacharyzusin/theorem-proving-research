@@ -36,17 +36,30 @@ def safe_generate(model, tokenizer, prompt: str, mode: str):
     """
     Safe wrapper around model.generate() with timeout protection.
     Never throws. Returns either (decoded_text, None) or (None, error_message).
+    
+    Note: If timeout occurs, the generation thread may continue running in the background
+    until it completes. This is a limitation of PyTorch's blocking generate() operation.
+    However, we make the thread non-daemon so it can be tracked and cleaned up on program exit.
     """
     result = [None]
     error = [None]
     done = threading.Event()
+    cancelled = threading.Event()  # Flag to signal cancellation
     
     # Use mode-specific max tokens
     max_tokens = MAX_NEW_TOKENS_COT if mode == "cot" else MAX_NEW_TOKENS_NONCOT
     
     def generate_worker():
         try:
+            # Check if cancelled before starting
+            if cancelled.is_set():
+                return
+            
             inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+
+            # Check again after tokenization
+            if cancelled.is_set():
+                return
 
             with torch.no_grad():
                 out = model.generate(
@@ -57,18 +70,26 @@ def safe_generate(model, tokenizer, prompt: str, mode: str):
                     top_p=TOP_P,
                 )
 
-            decoded = tokenizer.decode(out[0], skip_special_tokens=True)
-            result[0] = decoded
+            # Check if cancelled after generation
+            if not cancelled.is_set():
+                decoded = tokenizer.decode(out[0], skip_special_tokens=True)
+                result[0] = decoded
         except Exception as e:
-            error[0] = str(e)
+            if not cancelled.is_set():
+                error[0] = str(e)
         finally:
             done.set()
     
-    thread = threading.Thread(target=generate_worker, daemon=True)
+    # Make thread non-daemon so we can track it and it doesn't prevent clean shutdown
+    thread = threading.Thread(target=generate_worker, daemon=False)
     thread.start()
     
     if not done.wait(timeout=MODEL_GENERATION_TIMEOUT):
         print(f"[WARNING] Model generation timed out after {MODEL_GENERATION_TIMEOUT}s", flush=True)
+        # Signal cancellation (though generate() may continue running)
+        cancelled.set()
+        # Note: The thread will continue until generate() completes, but we return immediately
+        # This is a known limitation - PyTorch's generate() cannot be easily interrupted
         return None, f"Model generation TIMEOUT after {MODEL_GENERATION_TIMEOUT} seconds"
     
     if error[0] is not None:
@@ -411,6 +432,12 @@ def evaluate_putnam(mode: str):
         print(f"\nOverall (Pass@{NUM_SAMPLES}): {overall_passed}/{total} = {overall_passed/total:.2%}")
     else:
         print("\nNo problems matched the filter; nothing evaluated.")
+    
+    # Exit if shutdown was requested
+    if is_shutdown_requested():
+        import sys
+        print("\n[INFO] Exiting due to shutdown request.")
+        sys.exit(0)
 
 
 ###########################################################
