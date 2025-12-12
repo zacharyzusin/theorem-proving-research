@@ -113,7 +113,7 @@ This ensures Mathlib is available, and avoids the "unknown module Mathlib" error
 
 ---
 
-## ▶ 5. Running PutnamBench
+## 5. Running PutnamBench
 
 Run:
 
