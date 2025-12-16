@@ -1,4 +1,4 @@
-# ProofResearch: Automated Theorem Proving with Lean + DeepSeek Prover
+# Automated Theorem Proving with Lean + DeepSeek Prover
 
 This repository contains a complete evaluation framework for running **DeepSeek-Prover-V2** models on formal mathematics benchmarks, including:
 
