@@ -19,7 +19,10 @@ env/
 *~
 
 # Data and outputs
+# Extracted MiniF2F problems
 data/minif2f_extracted/
+# Evaluation result artifacts (metrics + per-problem JSON)
+data/results/
 *.log
 eval_output.log
 *.lean.tmp
@@ -37,4 +40,3 @@ Thumbs.db
 # Temporary files
 /tmp/
 *.tmp
-

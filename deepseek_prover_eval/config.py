@@ -75,3 +75,17 @@ LOAD_IN_4BIT = True
 
 # Let transformers/accelerate handle device placement
 DEVICE_MAP = "auto"
+
+#############################################
+# Lean verification timeout configuration
+#############################################
+
+# Lean verification timeout (in seconds)
+# Complex proofs may require more time, especially for:
+# - First-time Mathlib dependency compilation
+# - Complex proof tactics that take time to verify
+# - Large proof terms
+# 
+# Default: 120 seconds (2 minutes) - increased from 60s to handle more complex proofs
+# You can increase this further if you notice many timeouts on valid proofs
+LEAN_TIMEOUT = int(os.environ.get("LEAN_TIMEOUT", 120))  # 2 minutes default

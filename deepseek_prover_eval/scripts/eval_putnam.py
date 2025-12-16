@@ -19,7 +19,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate DeepSeek-Prover-V2-7B on PutnamBench")
     parser.add_argument("--mode", choices=["cot", "noncot"], default="noncot",
                        help="Generation mode: 'cot' for Chain-of-Thought, 'noncot' for direct proof")
+    parser.add_argument("--output-dir", type=str, default=None,
+                       help="Directory to save metrics and results (default: data/results/putnam)")
+    verbosity_group = parser.add_mutually_exclusive_group()
+    verbosity_group.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Reduce logging; show only high-level progress and summary",
+    )
+    verbosity_group.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Enable verbose logging (default behavior)",
+    )
     args = parser.parse_args()
     
-    evaluate_putnam(args.mode)
+    evaluate_putnam(args.mode, args.output_dir, quiet=args.quiet, verbose=args.verbose)
 

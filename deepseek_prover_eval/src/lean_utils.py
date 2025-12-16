@@ -11,9 +11,19 @@ import tempfile
 import signal
 import time
 import psutil
+import sys
+from pathlib import Path
 
-# Timeout constants
-LEAN_TIMEOUT = 60   # seconds – increased for complex proofs and first-time Mathlib loads
+# Add parent directory to path so we can import config
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+# Import timeout from config (with fallback for backward compatibility)
+try:
+    from config import LEAN_TIMEOUT
+except ImportError:
+    # Fallback if config not available
+    LEAN_TIMEOUT = int(os.environ.get("LEAN_TIMEOUT", 120))  # Default: 2 minutes
+
 MODEL_GENERATION_TIMEOUT = 300  # 5 minutes for model generation
 
 
@@ -101,7 +111,7 @@ def kill_process_tree(pid, timeout=5):
 # Run Lean checker (kill-safe with enhanced protection)
 ###########################################################
 
-def check_lean_file(lean_code: str, project_root: str):
+def check_lean_file(lean_code: str, project_root: str, timeout: int = None):
     """
     Run Lean inside the Lean project root with Mathlib, with:
       • hard timeout
@@ -109,8 +119,16 @@ def check_lean_file(lean_code: str, project_root: str):
       • safe cleanup
       • resource limits
 
-    Returns: (success, stdout, stderr)
+    Args:
+        lean_code: Lean code to check
+        project_root: Root directory of the Lean project
+        timeout: Timeout in seconds (defaults to LEAN_TIMEOUT from config)
+
+    Returns: (success, stdout, stderr, timeout_occurred)
+             where timeout_occurred is True if the check timed out
     """
+    if timeout is None:
+        timeout = LEAN_TIMEOUT
     # --- Write temporary Lean file ---
     # Use system temp directory instead of /dev/shm (more portable)
     try:
@@ -147,11 +165,13 @@ def check_lean_file(lean_code: str, project_root: str):
             start_new_session=True,  # Creates new process group for safe killing
         )
 
+        timeout_occurred = False
         try:
-            stdout, stderr = proc.communicate(timeout=LEAN_TIMEOUT)
+            stdout, stderr = proc.communicate(timeout=timeout)
         except subprocess.TimeoutExpired:
+            timeout_occurred = True
             # Kill the ENTIRE process tree
-            print(f"[WARNING] Lean process timed out after {LEAN_TIMEOUT}s, killing process tree...", flush=True)
+            print(f"[WARNING] Lean process timed out after {timeout}s, killing process tree...", flush=True)
             
             # With start_new_session=True, the PID is the process group leader
             # So we can kill the process group directly
@@ -181,14 +201,14 @@ def check_lean_file(lean_code: str, project_root: str):
             except (subprocess.TimeoutExpired, ProcessLookupError):
                 pass
             
-            return False, "", f"Lean check TIMEOUT after {LEAN_TIMEOUT} seconds"
+            return False, "", f"Lean check TIMEOUT after {timeout} seconds", True
 
         success = (proc.returncode == 0)
-        return success, stdout, stderr
+        return success, stdout, stderr, timeout_occurred
 
     except FileNotFoundError as e:
         # e.g. "lake" not found
-        return False, "", f"Failed to run Lean: {e}"
+        return False, "", f"Failed to run Lean: {e}", False
     except Exception as e:
         # Catch any other unexpected errors
         if proc is not None:
@@ -196,7 +216,7 @@ def check_lean_file(lean_code: str, project_root: str):
                 kill_process_tree(proc.pid)
             except:
                 pass
-        return False, "", f"Unexpected error running Lean: {e}"
+        return False, "", f"Unexpected error running Lean: {e}", False
 
     finally:
         # Always clean up temp file
