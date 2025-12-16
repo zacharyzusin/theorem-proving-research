@@ -148,7 +148,131 @@ MiniF2F works similarly by extracting Lean code and checking inside the MiniF2F 
 
 ---
 
-## 7. Submodules (Optional)
+## 7. Timeout Configuration
+
+The Lean verification timeout is configurable to handle proofs of varying complexity:
+
+- **Default timeout**: 120 seconds (2 minutes) - increased from 60s to handle more complex proofs
+- **Configurable via**: `LEAN_TIMEOUT` in `config.py` or `LEAN_TIMEOUT` environment variable
+
+### Adjusting Timeouts
+
+If you notice many proofs timing out:
+
+1. **Increase the timeout in config.py:**
+   ```python
+   LEAN_TIMEOUT = 180  # 3 minutes
+   ```
+
+2. **Or set via environment variable:**
+   ```bash
+   export LEAN_TIMEOUT=180
+   python3 -m src.eval_minif2f --mode noncot
+   ```
+
+### Understanding Timeouts
+
+Complex proofs may require more time for:
+- First-time Mathlib dependency compilation
+- Complex proof tactics that take time to verify  
+- Large proof terms
+- Type checking complex expressions
+
+The metrics system tracks timeouts separately from other failures, so you can:
+- Identify which problems are timing out
+- Analyze whether timeouts are due to valid but slow proofs vs. infinite loops
+- Adjust timeout settings based on actual timeout patterns
+
+Use the inspection tool to analyze timeout patterns:
+```bash
+python3 -m src.inspect_results data/results/minif2f --patterns
+python3 -m src.inspect_results data/results/minif2f --list --timeouts-only
+```
+
+---
+
+## 8. Metrics and Performance Tracking
+
+The evaluation framework now includes comprehensive metrics tracking:
+
+### Metrics Collected
+
+- **Timing Metrics:**
+  - Proof generation time per attempt
+  - Lean verification time per attempt
+  - Total time per problem
+  - Average and median times across all attempts
+
+- **Accuracy Metrics:**
+  - Pass@1, Pass@8, Pass@32 scores
+  - Success rate per problem
+  - First successful attempt number
+
+- **Detailed Results:**
+  - Raw model outputs
+  - Extracted solution blocks
+  - Final Lean code checked
+  - Error messages (generation errors, Lean errors)
+
+### Running Evaluations with Metrics
+
+Results are automatically saved to `data/results/{dataset}/`:
+
+```bash
+# Run evaluation (results saved automatically)
+python3 -m src.eval_minif2f --mode noncot --output-dir data/results/minif2f
+python3 -m src.eval_putnam --mode cot --output-dir data/results/putnam
+```
+
+Results are organized as:
+```
+data/results/{dataset}/
+├── metrics/
+│   └── {dataset}_{mode}_{timestamp}.json  # Complete metrics summary
+└── proofs/
+    └── {problem_id}.json  # Individual problem results
+```
+
+### Inspecting Results
+
+Use the inspection tool to review generated proofs and analyze performance:
+
+```bash
+# Show overview of latest evaluation
+python3 -m src.inspect_results data/results/minif2f --overview
+
+# List all problems
+python3 -m src.inspect_results data/results/minif2f --list
+
+# Show only passed problems
+python3 -m src.inspect_results data/results/minif2f --list --passed-only
+
+# Show only failed problems
+python3 -m src.inspect_results data/results/minif2f --list --failed-only
+
+# Inspect a specific problem
+python3 -m src.inspect_results data/results/minif2f --inspect problem_0073
+
+# Show all attempts (including failures) for a problem
+python3 -m src.inspect_results data/results/minif2f --inspect problem_0073 --show-all
+
+# Analyze failure patterns
+python3 -m src.inspect_results data/results/minif2f --patterns
+
+# Compare all attempts for a problem
+python3 -m src.inspect_results data/results/minif2f --compare problem_0073
+```
+
+The inspection tool provides:
+- Overview statistics (accuracy, timing)
+- Problem listings with filtering
+- Detailed problem inspection (all attempts, errors, generated code)
+- Pattern analysis (common error types, timing differences)
+- Side-by-side attempt comparison
+
+---
+
+## 9. Submodules (Optional)
 
 If you want your repository to include the benchmark repos as submodules:
 
@@ -165,7 +289,7 @@ git clone --recursive https://github.com/zacharyzusin/theorem-proving-research.g
 
 ---
 
-## 8. Folder Structure
+## 10. Folder Structure
 
 ```
 theorem-proving-research/
@@ -175,7 +299,17 @@ theorem-proving-research/
 │   ├── eval_minif2f.py
 │   ├── lean_utils.py
 │   ├── model_loader.py
+│   ├── metrics.py          # Metrics tracking and reporting
+│   ├── inspect_results.py  # Qualitative inspection tool
 │   └── ...
+├── data/
+│   └── results/
+│       ├── minif2f/        # MiniF2F evaluation results
+│       │   ├── metrics/    # Summary metrics JSON files
+│       │   └── proofs/     # Individual problem results
+│       └── putnam/         # PutnamBench evaluation results
+│           ├── metrics/
+│           └── proofs/
 │
 ├── config.py
 ├── requirements.txt
