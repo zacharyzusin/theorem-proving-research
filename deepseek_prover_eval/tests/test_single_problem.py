@@ -60,9 +60,9 @@ def test_single_problem():
     for attempt in range(2):
         print(f"\n--- Sample {attempt+1}/2 ---")
         
-        decoded, gen_error = eval_minif2f.safe_generate(model, tokenizer, prompt, mode)
+        decoded, gen_error, gen_time = eval_minif2f.safe_generate(model, tokenizer, prompt, mode)
         if gen_error is not None:
-            print(f"[GENERATION ERROR] {gen_error}")
+            print(f"[GENERATION ERROR] {gen_error} (gen_time={gen_time:.2f}s)")
             continue
         
         print("\n=== RAW MODEL OUTPUT (first 500 chars) ===")
@@ -82,9 +82,11 @@ def test_single_problem():
         print(final_lean)
         
         from src.lean_utils import check_lean_file
-        ok, out, err = check_lean_file(final_lean, str(MINIF2F_PROJECT_ROOT))
+        ok, out, err, timeout_occurred = check_lean_file(final_lean, str(MINIF2F_PROJECT_ROOT))
         
         print(f"\nLEAN CHECK RESULT = {ok}")
+        if timeout_occurred:
+            print("[lean timeout] True")
         if err:
             print("[lean stderr]")
             print(err[:500] if len(err) > 500 else err)

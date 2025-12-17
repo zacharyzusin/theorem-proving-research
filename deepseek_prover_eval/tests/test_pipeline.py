@@ -22,10 +22,13 @@ import Mathlib
 theorem test : 1 + 1 = 2 := by norm_num
 """
     
-    ok, out, err = check_lean_file(simple_proof, str(MINIF2F_PROJECT_ROOT))
+    ok, out, err, timeout_occurred = check_lean_file(simple_proof, str(MINIF2F_PROJECT_ROOT))
     print(f"Result: {ok}")
     if not ok:
         print(f"Error: {err}")
+        return False
+    if timeout_occurred:
+        print("WARNING: timeout occurred unexpectedly for simple proof")
         return False
     
     print("✓ Simple proof check passed")
