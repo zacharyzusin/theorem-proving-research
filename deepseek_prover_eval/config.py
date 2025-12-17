@@ -24,11 +24,32 @@ MINIF2F_ROOT = Path(
 ).resolve()
 
 # Lake project root (contains lakefile.lean)
-MINIF2F_PROJECT_ROOT = MINIF2F_ROOT
+# Check if lean/ subdirectory exists (newer miniF2F structure)
+# Otherwise use root (older structure)
+# The code uses lake env lean which will find it automatically
+if (MINIF2F_ROOT / "lean" / "lakefile.lean").exists():
+    MINIF2F_PROJECT_ROOT = MINIF2F_ROOT / "lean"
+elif (MINIF2F_ROOT / "lakefile.lean").exists():
+    MINIF2F_PROJECT_ROOT = MINIF2F_ROOT
+else:
+    # Default: try lean/ first, fallback to root
+    # lake env lean will search up the directory tree anyway
+    MINIF2F_PROJECT_ROOT = MINIF2F_ROOT / "lean" if (MINIF2F_ROOT / "lean").exists() else MINIF2F_ROOT
 
 # Lean4 formal problem sources
-MINIF2F_FORMAL_TEST = MINIF2F_ROOT / "formal" / "test.lean"
-MINIF2F_FORMAL_VALID = MINIF2F_ROOT / "formal" / "valid.lean"
+# Support both directory structures:
+# - Standard: formal/test.lean, formal/valid.lean
+# - Alternative: lean/src/test.lean, lean/src/valid.lean
+if (MINIF2F_ROOT / "formal" / "test.lean").exists():
+    MINIF2F_FORMAL_TEST = MINIF2F_ROOT / "formal" / "test.lean"
+    MINIF2F_FORMAL_VALID = MINIF2F_ROOT / "formal" / "valid.lean"
+elif (MINIF2F_ROOT / "lean" / "src" / "test.lean").exists():
+    MINIF2F_FORMAL_TEST = MINIF2F_ROOT / "lean" / "src" / "test.lean"
+    MINIF2F_FORMAL_VALID = MINIF2F_ROOT / "lean" / "src" / "valid.lean"
+else:
+    # Default to standard structure
+    MINIF2F_FORMAL_TEST = MINIF2F_ROOT / "formal" / "test.lean"
+    MINIF2F_FORMAL_VALID = MINIF2F_ROOT / "formal" / "valid.lean"
 
 # Directory for extracted per-problem Lean files (relative to project root)
 MINIF2F_EXTRACTED_DIR = PROJECT_ROOT / "data" / "minif2f_extracted"
