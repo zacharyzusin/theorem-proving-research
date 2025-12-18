@@ -24,7 +24,9 @@ except ImportError:
     # Fallback if config not available
     LEAN_TIMEOUT = int(os.environ.get("LEAN_TIMEOUT", 120))  # Default: 2 minutes
 
-MODEL_GENERATION_TIMEOUT = 300  # 5 minutes for model generation
+# Model generation timeout (seconds). This is used by safe_generate() in eval scripts.
+# Override via env var to tune for different hardware/queues.
+MODEL_GENERATION_TIMEOUT = int(os.environ.get("MODEL_GENERATION_TIMEOUT", 300))  # default: 5 minutes
 
 
 ###########################################################
