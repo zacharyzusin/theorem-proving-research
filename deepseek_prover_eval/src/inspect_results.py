@@ -131,7 +131,17 @@ class ResultsInspector:
         print(f"  Failed: {metrics.get('problems_failed', 0)}")
         print(f"  Pass@1:  {metrics.get('pass_at_1', 0):.2%}")
         print(f"  Pass@8:  {metrics.get('pass_at_8', 0):.2%}")
-        print(f"  Pass@32: {metrics.get('pass_at_32', 0):.2%}")
+        
+        # Only show Pass@32 if it's actually meaningful (we ran 32 samples)
+        pass_at_32 = metrics.get('pass_at_32')
+        if pass_at_32 is not None:
+            print(f"  Pass@32: {pass_at_32:.2%}")
+        else:
+            # Show Pass@N where N is the actual number of samples
+            num_samples = metrics.get('num_samples', 8)
+            pass_at_all = metrics.get('pass_at_all', 0)
+            if num_samples > 8:
+                print(f"  Pass@{num_samples}: {pass_at_all:.2%}")
         print()
         print("TIMING:")
         print(f"  Avg Generation Time: {metrics.get('avg_generation_time', 0):.2f}s")

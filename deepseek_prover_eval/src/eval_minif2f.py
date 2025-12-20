@@ -352,7 +352,14 @@ def check_model_available():
     
     return False
 
-def evaluate_minif2f(mode: str, output_dir: str = None, quiet: bool = False, verbose: bool = False):
+def evaluate_minif2f(
+    mode: str,
+    output_dir: str = None,
+    quiet: bool = False,
+    verbose: bool = False,
+    num_shards: int | None = None,
+    shard_id: int | None = None,
+):
     """
     Evaluate model on MiniF2F dataset.
     
@@ -417,7 +424,37 @@ def evaluate_minif2f(mode: str, output_dir: str = None, quiet: bool = False, ver
         print("If download was interrupted, try running: python3 download_model.py")
         return
 
+    # --- Quick Lean environment sanity check (once) ---
+    # If Mathlib isn't built/available, Lean checks will all fail and you'll burn GPU time.
+    if not quiet:
+        print("Checking Lean/Mathlib environment (MiniF2F)...")
+    test_ok, _, test_err, _ = check_lean_file(
+        "import Mathlib\n#check Nat",
+        MINIF2F_PROJECT_ROOT,
+    )
+    if not test_ok:
+        print("WARNING: Lean sanity check failed.")
+        print("This usually means Mathlib isn't built (or Lake/Lean isn't set up on this node).")
+        print("Fix (one-time), from the miniF2F directory:")
+        print("  lake exe cache get")
+        print("  lake build")
+        print("Lean error:\n", test_err)
+        print("Continuing anyway - individual proof checks will show if there are issues...")
+
     files = sorted(glob.glob(MINIF2F_EXTRACTED_GLOB))
+
+    # Optional sharding: split problems across multiple independent jobs.
+    # This is the recommended way to scale across multiple GPUs.
+    if (num_shards is None) ^ (shard_id is None):
+        raise ValueError("Use --num-shards and --shard-id together (or neither).")
+    if num_shards is not None and shard_id is not None:
+        if num_shards <= 0:
+            raise ValueError("--num-shards must be > 0")
+        if shard_id < 0 or shard_id >= num_shards:
+            raise ValueError("--shard-id must satisfy 0 <= shard-id < num-shards")
+        files = [f for i, f in enumerate(files) if (i % num_shards) == shard_id]
+        if not quiet:
+            print(f"Sharding enabled: shard {shard_id}/{num_shards} → {len(files)} problems")
     
     # Optional: Filter to specific problems for testing
     # Uncomment and modify as needed:
@@ -648,6 +685,18 @@ if __name__ == "__main__":
     parser.add_argument("--mode", choices=["cot", "noncot"], default="noncot")
     parser.add_argument("--output-dir", type=str, default=None,
                        help="Directory to save metrics and results (default: data/results/minif2f)")
+    parser.add_argument(
+        "--num-shards",
+        type=int,
+        default=None,
+        help="Split problems into N shards (use with --shard-id). Recommended for multi-GPU job arrays.",
+    )
+    parser.add_argument(
+        "--shard-id",
+        type=int,
+        default=None,
+        help="Which shard to run (0-indexed). Use with --num-shards.",
+    )
     verbosity_group = parser.add_mutually_exclusive_group()
     verbosity_group.add_argument(
         "--quiet",
@@ -661,4 +710,11 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    evaluate_minif2f(args.mode, args.output_dir, quiet=args.quiet, verbose=args.verbose)
+    evaluate_minif2f(
+        args.mode,
+        args.output_dir,
+        quiet=args.quiet,
+        verbose=args.verbose,
+        num_shards=args.num_shards,
+        shard_id=args.shard_id,
+    )

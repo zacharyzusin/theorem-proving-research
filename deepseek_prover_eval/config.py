@@ -82,7 +82,7 @@ MAX_NEW_TOKENS_COT = 32768    # Paper specifies 32k for CoT mode
 
 TEMPERATURE = 0.7  # Typical range 0.6-0.8
 TOP_P = 0.95       # Typical range 0.9-1.0
-NUM_SAMPLES = 32   # For Pass@32 evaluation
+NUM_SAMPLES = 8    # Reduced from 32 to 8 for faster evaluation (will compute Pass@8 instead of Pass@32)
 
 
 #############################################
@@ -107,6 +107,6 @@ DEVICE_MAP = "auto"
 # - Complex proof tactics that take time to verify
 # - Large proof terms
 # 
-# Default: 120 seconds (2 minutes) - increased from 60s to handle more complex proofs
-# You can increase this further if you notice many timeouts on valid proofs
-LEAN_TIMEOUT = int(os.environ.get("LEAN_TIMEOUT", 120))  # 2 minutes default
+# Default: 600 seconds (10 minutes).
+# You can override per-run with: export LEAN_TIMEOUT=...
+LEAN_TIMEOUT = int(os.environ.get("LEAN_TIMEOUT", 600))

@@ -14,6 +14,12 @@ __pycache__/
 
 # Temporary Lean files
 tmp_lean_*.lean
+.tmp_lean_*.lean
+
+# Slurm job logs
+*.out
+*.err
+logs/
 
 # Virtual environment folders
 venv/

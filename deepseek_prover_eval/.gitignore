@@ -27,6 +27,15 @@ data/results/
 eval_output.log
 *.lean.tmp
 
+# Slurm job logs
+logs/
+*.out
+*.err
+
+# Temporary Lean files (created during evaluation)
+.tmp_lean_*.lean
+tmp_lean_*.lean
+
 # Model cache (large files)
 *.safetensors
 *.bin

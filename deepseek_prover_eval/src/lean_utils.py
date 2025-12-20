@@ -132,13 +132,23 @@ def check_lean_file(lean_code: str, project_root: str, timeout: int = None):
     if timeout is None:
         timeout = LEAN_TIMEOUT
     # --- Write temporary Lean file ---
-    # Use system temp directory instead of /dev/shm (more portable)
+    # IMPORTANT: The temp file MUST live inside the Lake project directory.
+    #
+    # We invoke Lean via `lake env lean <file>`. Empirically, when <file> is outside
+    # the project (e.g. under /tmp), Lean can fail to resolve `import Mathlib` and
+    # reports "unknown package 'Mathlib'". Writing the temp file inside the project
+    # root ensures Lake/Lean resolves Mathlib and other dependencies correctly.
+    project_root_path = Path(project_root).resolve()
     try:
-        fd, path = tempfile.mkstemp(suffix=".lean", prefix="tmp_lean_")
+        fd, path = tempfile.mkstemp(
+            suffix=".lean",
+            prefix=".tmp_lean_",
+            dir=str(project_root_path),
+        )
     except (OSError, PermissionError):
-        # Fallback to current directory if temp fails
+        # Fallback to a deterministic temp path inside the project root
         import uuid
-        path = f"/tmp/tmp_lean_{uuid.uuid4().hex}.lean"
+        path = str(project_root_path / f".tmp_lean_{uuid.uuid4().hex}.lean")
         fd = os.open(path, os.O_CREAT | os.O_WRONLY | os.O_TRUNC, 0o644)
     
     try:
