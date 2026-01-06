@@ -1,0 +1,126 @@
+Problem: putnam_1978_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 29.67808246612549 / 14.4723219871521 / 44.15040445327759
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 26.266925573349 / 12.350937366485596 / 38.617862939834595
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 57.363465785980225 / 15.186476469039917 / 72.54994225502014
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 48.279250383377075 / 13.866519927978516 / 62.14577031135559
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.146574020385742 / 13.15158724784851 / 42.29816126823425
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 32.52091097831726 / 13.129518508911133 / 45.650429487228394
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 47.691803216934204 / 13.426286220550537 / 61.11808943748474
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 42.382081270217896 / 16.882405042648315 / 59.26448631286621
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b5
+(S : Set (Polynomial ℝ))
+(hS : S = {p : Polynomial ℝ | p.degree = 4 ∧ ∀ x ∈ Icc (-1) 1, p.eval x ∈ Icc 0 1})
+: (putnam_1978_b5_solution ∈ S ∧ (∀ p ∈ S, p.coeff 4 ≤ putnam_1978_b5_solution.coeff 4)) :=
+sorry

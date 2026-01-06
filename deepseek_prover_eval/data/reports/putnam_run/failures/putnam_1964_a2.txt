@@ -1,0 +1,118 @@
+Problem: putnam_1964_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.871510028839111 / 18.52797818183899 / 28.3994882106781
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.27895450592041 / 14.738385915756226 / 23.017340421676636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.340250253677368 / 20.754887342453003 / 29.09513759613037
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.449870109558105 / 51.331531286239624 / 63.78140139579773
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.103347301483154 / 40.57473540306091 / 48.67808270454407
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.39826488494873 / 38.85164546966553 / 48.24991035461426
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.523271083831787 / 46.29916071891785 / 55.822431802749634
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.385515928268433 / 21.506267309188843 / 41.891783237457275
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a2
+(α : ℝ)
+: (putnam_1964_a2_solution α = {f : ℝ → ℝ | (∀ x ∈ Icc 0 1, f x > 0) ∧ ContinuousOn f (Icc 0 1) ∧ ∫ x in (0)..1, f x = 1 ∧ ∫ x in (0)..1, x * f x = α ∧ ∫ x in (0)..1, x^2 * f x = α^2}) :=
+sorry

@@ -1,0 +1,25 @@
+Problem: putnam_1965_a6
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 89.66122627258301
+Lean check time (s): 75.59382700920105
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a6
+    (u v m : ℝ)
+    (hu : 0 < u)
+    (hv : 0 < v)
+    (hm : 1 < m) :
+    (∃ᵉ (x > 0) (y > 0),
+      u * x + v * y = 1 ∧
+      x ^ m + y ^ m = 1 ∧
+      u = x ^ (m - 1) ∧
+      v = y ^ (m - 1)) ↔
+    ∃ n, u ^ n + v ^ n = 1 ∧ m⁻¹ + n⁻¹ = 1 :=
+  sorry

@@ -1,0 +1,283 @@
+Problem: putnam_1981_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.49617838859558 / 66.8035454750061 / 91.29972386360168
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₀ : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4) := by rw [hf]
+  rw [h₀]
+  have h₁ : Tendsto (fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4)) atTop (𝓝 putnam_1981_b1_solution) := by
+    have h₂ : putnam_1981_b1_solution = -1 := by
+      rfl
+    rw [h₂]
+    apply tendsto_const_nhds.congr' _
+    filter_upwards [eventually_ge_atTop 1] with n hn
+    simp [hf, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [hf, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow]
+    <;> norm_num
+    <;> linarith
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 26.530146837234497 / 38.58486247062683 / 65.11500930786133
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₁ : f = fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by
+    rw [hf]
+  rw [h₁]
+  have h₂ : ∀ n : ℕ, ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) = ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by
+    intro n
+    rfl
+  simp_all
+  <;>
+  apply tendsto_const_nhds.congr' _
+  <;>
+  filter_upwards [eventually_gt_atTop 0] with n hn
+  <;>
+  field_simp [hf]
+  <;>
+  norm_cast
+  <;>
+  simp_all [Finset.sum_mul, Finset.mul_sum, Finset.sum_sub_distrib, Finset.sum_add_distrib]
+  <;>
+  ring_nf
+  <;>
+  norm_cast
+  <;>
+  simp_all [Finset.sum_mul, Finset.mul_sum, Finset.sum_sub_distrib, Finset.sum_add_distrib]
+  <;>
+  norm_cast
+  <;>
+  linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 26.72793674468994 / 54.71302604675293 / 81.44096279144287
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₀ : f = fun n : ℕ => ((1 : ℝ) / n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4) := by
+    rw [hf]
+  rw [h₀]
+  have h₁ : ∀ n : ℕ, ((1 : ℝ) / n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4) = ((1 : ℝ) / n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4) := by
+    intro n
+    rfl
+  simp_all
+  <;>
+  apply tendsto_const_nhds.congr' _
+  <;>
+  filter_upwards [eventually_gt_atTop 0] with n hn
+  <;>
+  field_simp [hf, h₁, hn]
+  <;>
+  ring_nf
+  <;>
+  norm_cast
+  <;>
+  simp_all [Finset.sum_range_succ, Finset.sum_range_zero, Finset.sum_range_one, Nat.cast_zero, Nat.cast_one, Nat.cast_add, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow]
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  field_simp [hf, h₁, hn]
+  <;>
+  norm_cast
+  <;>
+  linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 25.403105974197388 / 24.233495473861694 / 49.63660144805908
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₀ : f = fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by
+    rw [hf]
+  rw [h₀]
+  have h₁ : ∀ n : ℕ, ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) = ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by
+    intro n
+    rfl
+  simp_all
+  <;>
+  apply tendsto_const_nhds.congr' _
+  <;>
+  filter_upwards [eventually_gt_atTop 0] with n hn
+  <;>
+  field_simp [hf]
+  <;>
+  norm_cast
+  <;>
+  simp_all [Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top]
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  field_simp [hf]
+  <;>
+  norm_cast
+  <;>
+  linarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.711471557617188 / 35.93683362007141 / 56.6483051776886
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₀ : f = fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by
+    rw [hf]
+  rw [h₀]
+  have h₁ : Tendsto (fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4)) atTop (𝓝 (-1)) := by
+    apply tendsto_const_nhds.congr' _
+    filter_upwards [eventually_ge_atTop 1] with n hn
+    cases n with
+    | zero => simp_all
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow]
+      <;> field_simp
+      <;> ring_nf
+      <;> norm_cast
+      <;> omega
+  exact h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 43.76477575302124 / 20.61996579170227 / 64.38474154472351
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  rw [hf]
+  have h : Tendsto (fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4)) atTop (𝓝 (-1)) := by
+    have h₁ : ∀ n : ℕ, ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4) = (-1 : ℝ) + (1 : ℝ) / n ^ 5 * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4) := by
+      intro n
+      ring
+    rw [tendsto_congr' (fun n => by rw [h₁ n])]
+    have h₂ : Tendsto (fun n : ℕ => (-1 : ℝ) + (1 : ℝ) / n ^ 5 * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4)) atTop (𝓝 (-1)) := by
+      have h₃ : Tendsto (fun n : ℕ => (1 : ℝ) / n ^ 5 * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4)) atTop (𝓝 0) := by
+        apply tendsto_const_nhds.mul _
+        have h₄ : Tendsto (fun n : ℕ => ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4)) atTop (𝓝 (∑ h ∈ Finset.Icc 1 (⊤ : ℕ), ∑ k ∈ Finset.Icc 1 (⊤ : ℕ), (5 * (h : ℝ)^4 - 18 * h^2 * k^2 + 5 * k^4))) := by
+          apply tendsto_sum_nat_of_bounded
+          <;> simp_all [Finset.sum_range_succ, Finset
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.25567626953125 / 20.498070001602173 / 44.75374627113342
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₀ : f = fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by rw [hf]
+  rw [h₀]
+  have h₁ : Tendsto (fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4)) atTop (𝓝 (-1)) := by
+    apply tendsto_const_nhds.congr' _
+    filter_upwards [eventually_gt_atTop 0] with n hn
+    cases n with
+    | zero => simp_all
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow]
+      <;> norm_num
+      <;> ring_nf
+      <;> field_simp [hn]
+      <;> norm_cast
+      <;> simp [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow]
+      <;> ring_nf
+      <;> field_simp [hn]
+      <;> norm_cast
+      <;> linarith
+  exact h₁
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.59517216682434 / 29.747266054153442 / 56.34243822097778
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b1
+(f : ℕ → ℝ)
+(hf : f = fun n : ℕ => ((1 : ℝ)/n^5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5*(h : ℝ)^4 - 18*h^2*k^2 + 5*k^4))
+: Tendsto f atTop (𝓝 putnam_1981_b1_solution) := by
+  have h₀ : f = fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4) := by
+    rw [hf]
+  rw [h₀]
+  have h₁ : Tendsto (fun n : ℕ => ((1 : ℝ) / n ^ 5) * ∑ h ∈ Finset.Icc 1 n, ∑ k ∈ Finset.Icc 1 n, (5 * (h : ℝ) ^ 4 - 18 * h ^ 2 * k ^ 2 + 5 * k ^ 4)) atTop (𝓝 (-1)) := by
+    apply tendsto_const_nhds.congr' _
+    filter_upwards [eventually_ge_atTop 1] with n hn
+    cases n with
+    | zero => simp_all
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top]
+      <;> norm_num
+      <;> ring_nf
+      <;> field_simp
+      <;> norm_cast
+      <;> simp_all [Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top, Finset.sum_Icc_succ_top]
+      <;> norm_num
+      <;> ring_nf
+      <;> field_simp
+      <;> norm_cast
+  exact h₁

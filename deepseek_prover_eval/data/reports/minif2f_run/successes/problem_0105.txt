@@ -1,0 +1,29 @@
+Problem: problem_0105
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.25782322883606
+Lean check time (s): 5.706036806106567
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p4
+  (m a : ℕ)
+  (h₀ : 0 < m ∧ 0 < a)
+  (h₁ : ↑m / ↑a = (3:ℝ) / 4) :
+  (84 * ↑m + 70 * ↑a) / (↑m + ↑a) = (76:ℝ) := by
+  have h₂ : 0 < m := by linarith
+  have h₃ : 0 < a := by linarith
+  have h₄ : (m : ℝ) / a = 3 / 4 := by exact_mod_cast h₁
+  have h₅ : (m : ℝ) = (3 : ℝ) / 4 * a := by
+    have h₅ : (a : ℝ) ≠ 0 := by positivity
+    field_simp at h₄ ⊢
+    linarith
+  field_simp [h₂, h₃]
+  ring_nf
+  field_simp [h₂, h₃] at h₅ ⊢
+  nlinarith

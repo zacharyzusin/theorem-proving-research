@@ -1,0 +1,425 @@
+Problem: problem_0168
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 48.310951709747314 / 8.39743423461914 / 56.708385944366455
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₄₅ : a^3 - 8 = 0 := h₀
+        have h₄₆ : a^3 = 8 := by linear_combination h₄₅
+        have h₄₇ : a = 2 := by
+          rw [← sub_eq_zero] at h₄₆
+          have h₄₈ : (a - 2) * (a^2 + 2 * a + 4) = 0 := by linear_combination h₄₆
+          have h₄₉ : a - 2 = 0 ∨ a^2 + 2 * a + 4 = 0 := eq_zero_or_eq_zero_of_mul_eq_zero h₄₈
+          cases h₄₉ with
+          | inl h₄₉ =>
+            exact eq_of_sub_eq_zero h₄₉
+          | inr h₄₉ =>
+            have h₅₀ : a^2 + 2 * a + 4 = 0 := h₄₉
+            nlinarith [sq_nonneg (a + 1)]
+        exact h₄₇
+      exact h₄₄
+    exact h₄₂
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₆₂ : b = 4 := by
+      have h₆₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₆₄ : b = 4 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₆₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+        have h₆₆ : (b - 4) * (b^2 - 4 * b - 16) = 0 := b
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 44.38550615310669 / 11.004342555999756 / 55.389848709106445
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₄₅ : a^3 - 8 = 0 := h₀
+        have h₄₆ : a^3 = 8 := by linear_combination h₄₅
+        have h₄₇ : a = 2 := by
+          have h₄₈ : a^3 = 8 := h₄₆
+          have h₄₉ : a = 2 := by
+            rw [eq_comm]
+            apply mul_left_cancel₀ (show (2 : ℂ) - 1 ≠ 0 by norm_num)
+            ring_nf at h₄₈ ⊢
+            simp_all [Complex.ext_iff, pow_two, pow_three]
+            <;> norm_num
+            <;> nlinarith
+          exact h₄₉
+        simp_all
+      exact h₄₄
+    exact h₄₂
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₆₂ : b = 4 := by
+      have h₆₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₆₄ : b = 4 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₆₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+        have h₆₆ : b = 4 := by
+          have h₆₇ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+          have h₆₈ : b = 4 := by
+            rw [eq_comm]
+  
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 37.20260262489319 / 6.360305547714233 / 43.56290817260742
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₄₅ : a^3 - 8 = 0 := h₀
+        have h₄₆ : (a - 2) * (a^2 + 2 * a + 4) = 0 := by
+          linear_combination h₄₅
+        simp [sub_eq_zero] at h₄₆
+        aesop
+      exact h₄₄
+    exact h₄₂
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₆₂ : b = 4 := by
+      have h₆₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₆₄ : (b - 4) * (b^2 - 4 * b + 16) = 0 := by
+        linear_combination h₆₃
+      have h₆₅ : b - 4 = 0 ∨ b^2 - 4 * b + 16 = 0 := by
+        apply eq_zero_or_eq_zero_of_mul_eq_zero h₆₄
+      cases h₆₅ with
+      | inl h₆₅ =>
+        have h₆₆ : b = 4 := by linear_combination h₆₅
+        exact h₆₆
+      | inr h₆₅ =>
+        have h₆₇ : b^2 - 4 * b + 16 = 0 := h₆₅
+        have h₆₈ : b = 4 := by
+          nlinarith [sq_nonneg (b - 4)]
+        exact h₆₈
+    exact h₆₂
+  have h₇ : Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+    simp_all [Complex.abs, Complex.normSq, Comple
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 32.22886371612549 / 10.021699905395508 / 42.250563621520996
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        have h₄₅ : a^3 = 8 := h₂
+        have h₄₆ : a = 2 := by
+          apply Eq.symm
+          apply eq_of_sub_eq_zero
+          rw [← sub_eq_zero]
+          ring_nf at h₄₅ ⊢
+          norm_num at h₄₅ ⊢
+          <;> simp_all [Complex.ext_iff, pow_two, pow_three]
+          <;> ring_nf at * <;> nlinarith
+        exact h₄₆
+      exact h₄₄
+    exact h₄₂
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₆₂ : b = 4 := by
+      have h₆₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₆₄ : b = 4 := by
+        apply Eq.symm
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        ring_nf at h₆₃ ⊢
+        norm_num at h₆₃ ⊢
+        <;> simp_all [Complex.ext_iff, pow_two, pow_three]
+        <;> ring_nf at * <;> nlinarith
+      exact h₆₄
+    exact h₆₂
+  have h₇ : Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+    simp_all [Complex.abs, Complex.normSq, pow_two, pow_three, mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> nlinarith [sq_sqrt (show (0 :
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 71.20653057098389 / 3.793069839477539 / 74.99960041046143
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        apply eq_of_sub_eq_zero
+        have h₄₅ : a^3 - 8 = 0 := h₀
+        have h₄₆ : (a - 2) * (a^2 + 2 * a + 4) = 0 := by
+          linear_combination h₄₅
+        have h₄₇ : a - 2 = 0 ∨ a^2 + 2 * a + 4 = 0 := eq_zero_or_eq_zero_of_mul_eq_zero h₄₆
+        cases h₄₇ with
+        | inl h₄₈ =>
+          simp_all
+        | inr h₄₉ =>
+          have h₅₀ : a = -1 + Complex.I * √3 ∨ a = -1 - Complex.I * √3 := by
+            apply or_iff_not_imp_left.mpr
+            intro h₅₁
+            apply mul_left_cancel₀ (sub_ne_zero.mpr h₅₁)
+            rw [← sub_eq_zero]
+            ring_nf at h₄₉ ⊢
+            norm_num at h₄₉ ⊢
+            simp_all [Complex.ext_iff, pow_two, pow_three]
+            <;> norm_num
+            <;> ring_nf at h₄₉ ⊢
+            <;> norm_num at h₄₉ ⊢
+            <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+          cases h₅₀ with
+          | inl h₅₁ =>
+            simp_all [Complex.ext_iff, pow_two, pow_three]
+            <;> norm_num
+            <;> nlinarith [Real.sqrt_nonneg 3, Real.sq
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 33.47393202781677 / 10.760167121887207 / 44.23409914970398
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄ : a^3 = 8 := h₂
+    have h₅ : a = 2 := by
+      have h₆ : a^3 = 8 := h₂
+      have h₇ : a = 2 := by
+        apply Eq.symm
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        rw [← sub_eq_zero] at h₆
+        ring_nf at h₆ ⊢
+        norm_num at h₆ ⊢
+        simp_all [Complex.ext_iff, pow_two, pow_three]
+        <;> nlinarith [sq_nonneg (a.re - 2), sq_nonneg (a.im), sq_nonneg (a.re + 2), sq_nonneg (a.im)]
+      exact h₇
+    exact h₅
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₇ : b = 4 := by
+      have h₈ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₉ : b = 4 := by
+        apply Eq.symm
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        rw [← sub_eq_zero] at h₈
+        ring_nf at h₈ ⊢
+        norm_num at h₈ ⊢
+        simp_all [Complex.ext_iff, pow_two, pow_three]
+        <;> nlinarith [sq_nonneg (b.re - 4), sq_nonneg (b.im), sq_nonneg (b.re + 4), sq_nonneg (b.im)]
+      exact h₉
+    exact h₇
+  simp_all [Complex.abs, Complex.normSq, Complex.ext_iff, pow_two, pow_three]
+  <;> nlinarith [sq_nonneg (a.re - b.re), sq_nonn
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.30208444595337 / 7.19887900352478 / 46.50096344947815
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₄₅ : a^3 - 8 = 0 := h₀
+        have h₄₆ : (a - 2) * (a^2 + 2 * a + 4) = 0 := by
+          linear_combination h₄₅
+        simp [sub_eq_zero] at h₄₆ ⊢
+        simp_all [add_comm, add_left_comm, add_assoc]
+        <;> nlinarith
+      exact h₄₄
+    exact h₄₂
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₆₂ : b = 4 := by
+      have h₆₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₆₄ : (b - 4) * (b^2 - 4 * b + 16) = 0 := by
+        linear_combination h₆₃
+      have h₆₅ : b - 4 = 0 ∨ b^2 - 4 * b + 16 = 0 := by
+        simp [sub_eq_zero] at h₆₄ ⊢
+        aesop
+      cases h₆₅ with
+      | inl h₆₅ =>
+        have h₆₆ : b = 4 := by
+          linear_combination h₆₅
+        exact h₆₆
+      | inr h₆₅ =>
+        have h₆₆ : b^2 - 4 * b + 16 = 0 := h₆₅
+        have h₆₇ : b = 4 := by
+          nlinarith [sq_nonneg (b - 4)]
+        exact h₆₇
+    exact h₆₂
+  have h₇ : Complex.abs (a - b) ≤ 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 37.505327224731445 / 5.51098895072937 / 43.016316175460815
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p15
+  (a b : ℂ)
+  (h₀ : a^3 - 8 = 0)
+  (h₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0) :
+  Complex.abs (a - b) ≤ 2 * Real.sqrt 21 := by
+  have h₂ : a^3 = 8 := by linear_combination h₀
+  have h₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₄ : a = 2 := by
+    have h₄₁ : a^3 = 8 := h₂
+    have h₄₂ : a = 2 := by
+      have h₄₃ : a^3 = 8 := h₂
+      have h₄₄ : a = 2 := by
+        apply eq_of_sub_eq_zero
+        rw [← sub_eq_zero]
+        have h₄₅ : a^3 - 8 = 0 := h₀
+        have h₄₆ : (a - 2) * (a^2 + 2 * a + 4) = 0 := by linear_combination h₄₅
+        simp [mul_assoc] at h₄₆
+        aesop
+      exact h₄₄
+    exact h₄₂
+  have h₅ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+  have h₆ : b = 4 := by
+    have h₆₁ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+    have h₆₂ : b = 4 := by
+      have h₆₃ : b^3 - 8 * b^2 - 8 * b + 64 = 0 := h₁
+      have h₆₄ : (b - 4) * (b^2 - 4 * b + 16) = 0 := by
+        linear_combination h₆₃
+      have h₆₅ : b - 4 = 0 ∨ b^2 - 4 * b + 16 = 0 := by
+        simpa [sub_eq_zero, mul_comm] using h₆₄
+      cases' h₆₅ with h₆₅ h₆₅
+      · have h₆₆ : b = 4 := by linear_combination h₆₅
+        exact h₆₆
+      · have h₆₆ : b = 4 := by
+          apply eq_of_sub_eq_zero
+          have h₆₇ : b^2 - 4 * b + 16 = 0 := h₆₅
+          nlinarith [sq_nonneg (b - 4)]
+        exact h₆₆
+    exact h₆₂
+  simp_all only [h₄, h₆, sub_eq_add_neg, neg_mul, neg_neg, neg_add_rev]
+  norm_num
+  <;> simp_all [Complex.abs, Com
+... [truncated] ...

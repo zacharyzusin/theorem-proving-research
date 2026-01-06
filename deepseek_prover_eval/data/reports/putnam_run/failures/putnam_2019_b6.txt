@@ -1,0 +1,150 @@
+Problem: putnam_2019_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.039722919464111 / 18.90941023826599 / 30.949133157730103
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.60293436050415 / 19.404105186462402 / 33.00703954696655
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.543017148971558 / 18.302573919296265 / 29.845591068267822
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.59572172164917 / 18.653053283691406 / 36.248775005340576
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 38.852845668792725 / 20.58769416809082 / 59.440539836883545
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.907520771026611 / 18.783167600631714 / 30.690688371658325
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 23.707754611968994 / 18.906229496002197 / 42.61398410797119
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.995025396347046 / 18.462279319763184 / 38.45730471611023
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b6
+  (n : ℕ)
+  (neighbors : (Fin n → ℤ) → (Fin n → ℤ) → Prop)
+  (neighbors_def : ∀ p q, neighbors p q ↔ (∃ i : Fin n, abs (p i - q i) = 1 ∧ ∀ j ≠ i, p j = q j)) :
+  (1 ≤ n ∧ ∃ S : Set (Fin n → ℤ),
+    (∀ p ∈ S, ∀ q, neighbors p q → q ∉ S) ∧ (∀ p ∉ S, {q ∈ S | neighbors p q}.encard = 1))
+  ↔ n ∈ putnam_2019_b6_solution :=
+sorry

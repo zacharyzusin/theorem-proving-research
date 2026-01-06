@@ -1,0 +1,394 @@
+Problem: problem_0455
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.207539558410645 / 14.849149227142334 / 38.05668878555298
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 4 := by
+    by_contra! h
+    have : n ≥ 5 := by linarith
+    have : n^2 ∣ 2^n + 1 := h₁
+    have : 2^n % n^2 = 1 := by
+      have : n^2 ∣ 2^n + 1 := h₁
+      have : n^2 ∣ 2^n + 1 := h₁
+      have : 2^n % n^2 = 1 := by
+        have : n^2 ∣ 2^n + 1 := h₁
+        have : 2^n % n^2 = 1 := by
+          simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_mod]
+          <;> omega
+        exact this
+      exact this
+    have : n ≤ 4 := by
+      by_contra! h'
+      have : n ≥ 5 := by linarith
+      have : 2^n % n^2 = 1 := by
+        simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_mod]
+        <;> omega
+      have : n^2 ∣ 2^n + 1 := h₁
+      have : n^2 ≤ 2^n + 1 := by
+        exact Nat.le_of_dvd (by positivity) this
+      have : n ≤ 4 := by
+        contrapose! h'
+        have : n ≥ 5 := by linarith
+        have : 2^n + 1 ≥ n^2 := by
+          nlinarith [pow_pos (by norm_num : (0 : ℕ) < 2) n]
+        nlinarith
+      linarith
+    linarith
+  interval_cases n <;> norm_num at h₁ ⊢
+  <;> try contradiction
+  <;> try linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 23.644667387008667 / 6.895960092544556 / 30.540627479553223
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 4 := by
+    by_contra! h
+    have h₃ : n ≥ 5 := by linarith
+    have h₄ : n^2 ∣ 2^n + 1 := h₁
+    have h₅ : n^2 ≤ 2^n + 1 := Nat.le_of_dvd (by positivity) h₄
+    have h₆ : 2^n + 1 < n^2 := by
+      have h₇ : n ≥ 5 := by linarith
+      have h₈ : 2^n + 1 < n^2 := by
+        have h₉ : 2^n > n^2 - 1 := by
+          have h₁₀ : 2^n ≥ 2^5 := by
+            apply Nat.pow_le_pow_of_le_right
+            linarith
+            linarith
+          have h₁₁ : 2^5 = 32 := by norm_num
+          have h₁₂ : 32 > 5^2 - 1 := by norm_num
+          have h₁₃ : 2^n ≥ 32 := by linarith
+          have h₁₄ : n^2 - 1 < 2^n := by
+            have h₁₅ : n^2 - 1 < 2^n := by
+              have h₁₆ : n^2 ≤ 2^n := by
+                have h₁₇ : n ≤ 2^n := by
+                  exact Nat.le_of_lt (Nat.lt_pow_self (by linarith) n)
+                nlinarith
+              have h₁₈ : n^2 - 1 < 2^n := by
+                omega
+              exact h₁₈
+            exact h₁₅
+          omega
+        omega
+      omega
+    omega
+  interval_cases n <;> norm_num at h₁ ⊢
+  <;> try contradiction
+  <;> try linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.146402597427368 / 5.223182201385498 / 23.369584798812866
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 11 := by
+    by_contra! h
+    have h₃ : n ≥ 12 := by linarith
+    have h₄ : n^2 ∣ 2^n + 1 := h₁
+    have h₅ : n^2 ≤ 2^n + 1 := by
+      exact Nat.le_of_dvd (by positivity) h₄
+    have h₆ : 2^n ≥ n^2 := by
+      have h₇ : n^2 ≤ 2^n := by
+        induction' h₃ with n h₃ IH
+        · norm_num
+        · cases n with
+          | zero => contradiction
+          | succ n =>
+            cases n with
+            | zero => contradiction
+            | succ n =>
+              simp_all [Nat.pow_succ, Nat.mul_assoc]
+              nlinarith [pow_pos (by norm_num : (0 : ℕ) < 2) n]
+      linarith
+    nlinarith
+  interval_cases n <;> norm_num at h₁ ⊢
+  <;> try contradiction
+  <;> try linarith
+  <;> try
+    (
+      norm_num at h₁
+      <;>
+      omega
+    )
+  <;> try
+    (
+      norm_num at h₁
+      <;>
+      ring_nf at h₁
+      <;>
+      omega
+    )
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.385969161987305 / 5.4419121742248535 / 26.827881336212158
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 16 := by
+    by_contra! h
+    have h₃ : n^2 ∣ 2^n + 1 := h₁
+    have h₄ : n ≥ 17 := by linarith
+    have h₅ : 2^n + 1 > 0 := by positivity
+    have h₆ : n^2 ∣ 2^n + 1 := h₁
+    have h₇ : n^2 ≤ 2^n + 1 := Nat.le_of_dvd (by positivity) h₆
+    have h₈ : 2^n ≥ n^2 := by
+      have h₉ : n^2 ≤ 2^n := by
+        have h₁₀ : n ≤ 2^n := by
+          exact Nat.le_of_lt (Nat.lt_pow_self (by norm_num) n)
+        nlinarith [pow_pos (by norm_num : (0 : ℕ) < 2) n]
+      nlinarith
+    nlinarith [pow_pos (by norm_num : (0 : ℕ) < 2) n]
+  interval_cases n <;> norm_num at h₁ ⊢
+  <;> try contradiction
+  <;> try linarith
+  <;> try
+    (
+      simp_all [Nat.pow_succ]
+      <;> norm_num
+      <;> omega
+    )
+  <;> try
+    (
+      simp_all [Nat.pow_succ]
+      <;> norm_num
+      <;> omega
+    )
+  <;> try
+    (
+      simp_all [Nat.pow_succ]
+      <;> norm_num
+      <;> omega
+    )
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.94491457939148 / 6.400905609130859 / 27.34582018852234
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 15 := by
+    by_contra! h
+    have h' : n ≥ 16 := by linarith
+    have : n^2 ∣ 2^n + 1 := h₁
+    have : n^2 ≤ 2^n + 1 := Nat.le_of_dvd (by positivity) this
+    have : n ≤ 2^n := by
+      have : n ≤ 2^n := by
+        exact Nat.le_of_lt (Nat.lt_pow_self (by norm_num) n)
+      linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    have : n ≤ 2^n := by linarith
+    nlinarith
+  interval_cases n <;> norm_num at h₁ ⊢
+  <;> try contradiction
+  <;> try linarith
+  <;> try
+    (
+      norm_num at h₁
+      <;> omega
+    )
+  <;> try
+    (
+      norm_num at h₁
+      <;> ring_nf at h₁
+      <;> omega
+    )
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.69926142692566 / 5.222569227218628 / 25.921830654144287
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 12 := by
+    by_contra! h
+    have h₃ : n ≥ 13 := by linarith
+    have h₄ : n^2 ∣ 2^n + 1 := h₁
+    have h₅ : 2^n + 1 ≠ 0 := by positivity
+    have h₆ : n^2 ≤ 2^n + 1 := by
+      apply Nat.le_of_dvd
+      · positivity
+      · exact h₄
+    have h₇ : n ≤ 12 := by
+      contrapose! h
+      have h₈ : 2^n + 1 > n^2 := by
+        have h₉ : n ≥ 13 := by linarith
+        have h₁₀ : 2^n > n^2 := by
+          have h₁₁ : 2^n > n^2 := by
+            clear h₁ h₄ h₅ h₆
+            induction' h₉ with n h₉ ih
+            · norm_num
+            · cases n with
+              | zero => contradiction
+              | succ n =>
+                cases n with
+                | zero => contradiction
+                | succ n =>
+                  simp_all [Nat.pow_succ, Nat.mul_assoc]
+                  ring_nf at *
+                  nlinarith
+          exact h₁₁
+        linarith
+      linarith
+    linarith
+  interval_cases n <;> norm_num at h₁ ⊢ <;> try contradiction
+  <;> try simp_all [Nat.pow_succ, Nat.mul_assoc]
+  <;> ring_nf at *
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 34.68927979469299 / 6.220741033554077 / 40.91002082824707
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 4 := by
+    by_contra! h
+    have h₃ : n ≥ 5 := by linarith
+    have h₄ : n^2 ∣ 2^n + 1 := h₁
+    have h₅ : n^2 ≤ 2^n + 1 := by
+      exact Nat.le_of_dvd (by positivity) h₄
+    have h₆ : 2^n + 1 < n^2 := by
+      have h₇ : n ≥ 5 := by linarith
+      have h₈ : 2^n < n^2 := by
+        calc
+          2^n < 4^n := by
+            exact Nat.pow_lt_pow_of_lt_left (by norm_num) (by linarith)
+          _ ≤ n^2 := by
+            have h₉ : 4^n ≤ n^2 := by
+              have h₁₀ : n ≥ 5 := by linarith
+              have h₁₁ : 4^n ≤ n^2 := by
+                calc
+                  4^n = 2^(2 * n) := by
+                    rw [pow_mul]
+                    <;> ring_nf
+                  _ ≤ 2^n := by
+                    apply Nat.pow_le_pow_of_le_right (by norm_num)
+                    linarith
+                  _ ≤ n^2 := by
+                    have h₁₂ : 2^n ≤ n^2 := by
+                      have h₁₃ : n ≥ 5 := by linarith
+                      have h₁₄ : 2^n ≤ n^2 := by
+                        calc
+                          2^n ≤ n^2 := by
+                            have h₁₅ : n ≥ 5 := by linarith
+                            have h₁₆ : 2^n ≤ n^2 := by
+                              calc
+                                2^n ≤ n^2 := by
+                                  have h₁₇ : n ≥ 5 := by linarith
+                            
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.361480712890625 / 4.606484651565552 / 19.967965364456177
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1990_p3
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : n^2 ∣ 2^n + 1) :
+  n = 3 := by
+  have h₂ : n ≤ 12 := by
+    by_contra! h
+    have h₃ : n ≥ 13 := by linarith
+    have h₄ : n^2 ∣ 2^n + 1 := h₁
+    have h₅ : n^2 ≤ 2^n + 1 := by
+      exact Nat.le_of_dvd (by positivity) h₄
+    have h₆ : n ≤ 2^n := by
+      exact Nat.le_of_lt (Nat.lt_pow_self (by norm_num) n)
+    have h₇ : n^2 ≤ 2^n + 1 := by linarith
+    have h₈ : n^2 > 2^n + 1 := by
+      have h₉ : n ≥ 13 := by linarith
+      have h₁₀ : 2^n ≥ n^2 := by
+        exact Nat.le_of_lt (Nat.lt_pow_self (by norm_num) n)
+      nlinarith
+    linarith
+  interval_cases n <;> norm_num at h₁ ⊢
+  <;> omega
+

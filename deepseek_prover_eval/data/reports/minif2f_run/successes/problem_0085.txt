@@ -1,0 +1,25 @@
+Problem: problem_0085
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.971326112747192
+Lean check time (s): 4.30236554145813
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_412
+  (x y : ℝ)
+  (h₀ : x + y = 25)
+  (h₁ : x - y = 11) :
+  x = 18 := by
+  have h₂ : x = 18 := by
+    -- Add the two equations to eliminate y and solve for x
+    have h₃ : 2 * x = 36 := by
+      linarith [h₀, h₁]
+    -- Solve for x
+    linarith
+  exact h₂

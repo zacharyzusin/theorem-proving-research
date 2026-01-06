@@ -1,0 +1,23 @@
+Problem: problem_0008
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.095451831817627
+Lean check time (s): 138.97147011756897
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_44
+  (s t : ℝ)
+  (h₀ : s = 9 - 2 * t)
+  (h₁ : t = 3 * s + 1) :
+  s = 1 ∧ t = 4 := by
+  refine' ⟨_, _⟩
+  · -- Substitute t from h₁ into h₀ and solve for s
+    nlinarith [h₀, h₁]
+  · -- Substitute s = 1 into h₁ to find t
+    nlinarith [h₀, h₁]

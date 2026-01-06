@@ -1,0 +1,20 @@
+Problem: problem_0239
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.720488548278809
+Lean check time (s): 4.491089105606079
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_400
+  (x : ℝ)
+  (h₀ : 5 + 500 / 100 * 10 = 110 / 100 * x) :
+  x = 50 := by
+  norm_num at h₀ ⊢
+  <;> ring_nf at h₀ ⊢
+  <;> nlinarith

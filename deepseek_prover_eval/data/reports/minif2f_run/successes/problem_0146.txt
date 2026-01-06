@@ -1,0 +1,19 @@
+Problem: problem_0146
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.4916155338287354
+Lean check time (s): 2.5400595664978027
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_551 :
+  1529 % 6 = 5 := by
+  norm_num
+  <;> rfl
+  <;> norm_num
+  <;> rfl

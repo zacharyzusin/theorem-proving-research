@@ -1,0 +1,19 @@
+Problem: problem_0078
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.954356908798218
+Lean check time (s): 4.012128591537476
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_296 :
+  abs (((3491 - 60) * (3491 + 60) - 3491^2):ℤ) = 3600 := by
+  norm_num [abs_eq_max_neg, max_eq_iff, sub_eq_add_neg, neg_mul, neg_neg]
+  <;> ring_nf
+  <;> norm_num
+  <;> omega

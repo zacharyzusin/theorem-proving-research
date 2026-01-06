@@ -1,0 +1,26 @@
+Problem: problem_0433
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.755452394485474
+Lean check time (s): 2.6990175247192383
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_divisibility_9div10tonm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  9 ∣ (10^n - 1) := by
+  induction' h₀ with n h₀ IH
+  -- Base case: n = 1
+  norm_num
+  -- Inductive step: Assume 9 divides 10^n - 1, prove 9 divides 10^(n+1) - 1
+  rw [Nat.pow_succ]
+  -- Use the fact that 10^(n+1) = 10 * 10^n
+  norm_num [Nat.mul_mod, Nat.pow_mod, Nat.mod_eq_of_lt] at IH ⊢
+  -- Simplify the expression using properties of modular arithmetic
+  omega

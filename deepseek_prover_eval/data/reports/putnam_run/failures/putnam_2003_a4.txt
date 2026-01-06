@@ -1,0 +1,213 @@
+Problem: putnam_2003_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.103662490844727 / 18.75750708580017 / 32.8611695766449
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' le_total 0 (b ^ 2 - 4 * a * c) with h6 h6 <;>
+    cases' le_total 0 (B ^ 2 - 4 * A * C) with h7 h7 <;>
+      simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.45028591156006 / 29.502503156661987 / 46.952789068222046
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' abs_cases (b ^ 2 - 4 * a * c) with h6 h6 <;> cases' abs_cases (B ^ 2 - 4 * A * C) with h7 h7 <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith [sq_nonneg (a - A), sq_nonneg (b - B), sq_nonneg (c - C), sq_nonneg (a + A), sq_nonneg (b + B), sq_nonneg (c + C),
+      sq_nonneg (a - A + b - B), sq_nonneg (a - A - b + B), sq_nonneg (a - A + b + B), sq_nonneg (a - A - b - B)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.958179235458374 / 18.02944588661194 / 30.987625122070312
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' le_total 0 (b ^ 2 - 4 * a * c) with h h <;>
+    cases' le_total 0 (B ^ 2 - 4 * A * C) with h' h' <;>
+      simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.006860256195068 / 22.24674892425537 / 36.25360918045044
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  have h6 := hle 2
+  have h7 := hle (-2)
+  simp [abs_le] at h1 h2 h3 h4 h5 h6 h7
+  cases' le_total 0 (b ^ 2 - 4 * a * c) with h8 h8 <;>
+    cases' le_total 0 (B ^ 2 - 4 * A * C) with h9 h9 <;>
+      simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.052838563919067 / 14.215779304504395 / 27.268617868423462
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' le_total 0 (b ^ 2 - 4 * a * c) with h6 h6 <;>
+    cases' le_total 0 (B ^ 2 - 4 * A * C) with h7 h7 <;>
+      simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.843862533569336 / 19.262547492980957 / 32.10641002655029
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' le_total 0 (b ^ 2 - 4 * a * c) with h h <;>
+    cases' le_total 0 (B ^ 2 - 4 * A * C) with h6 h6 <;>
+      simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 18.259501457214355 / 24.71913719177246 / 42.978638648986816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' le_total 0 (b ^ 2 - 4 * a * c) with h h <;>
+    cases' le_total 0 (B ^ 2 - 4 * A * C) with h6 h6 <;>
+      simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith [sq_nonneg (b + 2 * a), sq_nonneg (b - 2 * a), sq_nonneg (B + 2 * A), sq_nonneg (B - 2 * A),
+          sq_nonneg (b + 2 * a - B - 2 * A), sq_nonneg (b - 2 * a - B + 2 * A),
+          sq_nonneg (b + 2 * a + B - 2 * A), sq_nonneg (b - 2 * a + B + 2 * A)]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.8064227104187 / 27.248751401901245 / 44.055174112319946
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a4
+(a b c A B C : ℝ)
+(aAne0 : a ≠ 0 ∧ A ≠ 0)
+(hle : ∀ x : ℝ, |a * x ^ 2 + b * x + c| ≤ |A * x ^ 2 + B * x + C|)
+: |b ^ 2 - 4 * a * c| ≤ |B ^ 2 - 4 * A * C| := by
+  have h1 := hle 0
+  have h2 := hle 1
+  have h3 := hle (-1)
+  have h4 := hle (1 / 2)
+  have h5 := hle (-1 / 2)
+  simp [abs_le] at h1 h2 h3 h4 h5
+  cases' abs_cases (b ^ 2 - 4 * a * c) with h6 h6 <;>
+    cases' abs_cases (B ^ 2 - 4 * A * C) with h7 h7 <;>
+      simp_all [abs_le] <;>
+        nlinarith [sq_nonneg (a - A), sq_nonneg (b - B), sq_nonneg (c - C),
+          sq_nonneg (a + A), sq_nonneg (b + B), sq_nonneg (c + C),
+          sq_nonneg (a - A + b - B), sq_nonneg (a - A - b + B),
+          sq_nonneg (a - A + b + B), sq_nonneg (a - A - b - B)]

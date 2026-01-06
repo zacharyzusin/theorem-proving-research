@@ -1,0 +1,309 @@
+Problem: putnam_1997_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 34.625924825668335 / 6.761638402938843 / 41.38756322860718
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≥ 0 := by
+    -- Use the fact that the sum is of non-negative terms
+    apply Finset.sum_nonneg
+    intro i hi
+    simp_all [ha, coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, Finset.sum_range_succ',
+      Finset.sum_range_zero]
+    <;> norm_num
+    <;> omega
+  have h₂ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≤ 1 := by
+    -- Use the fact that the sum is bounded by 1
+    have h₃ : ∀ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i ≤ 1 := by
+      intro i hi
+      simp_all [ha, coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, Finset.sum_range_succ',
+        Finset.sum_range_zero]
+      <;> norm_num
+      <;> omega
+    -- Use the fact that the sum is bounded by the number of terms
+    calc
+      (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≤ ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, 1 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, 1 := by rfl
+      _ = ⌊2 * (k : ℚ) / 3⌋₊ + 1 := by
+        simp [Finset.sum_const, Finset.card_range]
+        <;> ring_nf
+        <;> norm_num
+        <;> omega
+      _ ≤ 1 := by
+        have h₄ : ⌊2 * (k : ℚ) / 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.69263005256653 / 4.34084153175354 / 25.03347158432007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+    have h₂ : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n := ha
+    have h₃ : ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i = ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * coeff ((1 + X + X ^ 2) ^ (k - i)) i := by
+      simp [h₂]
+    rw [h₃]
+    have h₄ : ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * coeff ((1 + X + X ^ 2) ^ (k - i)) i ∈ Icc 0 1 := by
+      have h₅ : ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * coeff ((1 + X + X ^ 2) ^ (k - i)) i ∈ Icc 0 1 := by
+        exact?
+      exact h₅
+    exact h₄
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.85143208503723 / 5.5253026485443115 / 23.376734733581543
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ := ha 0 0
+  have h₂ := ha 1 0
+  have h₃ := ha 1 1
+  have h₄ := ha 2 0
+  have h₅ := ha 2 1
+  have h₆ := ha 2 2
+  have h₇ := ha 3 0
+  have h₈ := ha 3 1
+  have h₉ := ha 3 2
+  have h₁₀ := ha 3 3
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀
+  <;> simp_all [coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, Finset.sum_range_succ,
+    Finset.sum_range_one, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_cast
+  <;> simp_all [Finset.sum_range_succ, Finset.sum_range_one, Nat.cast_add, Nat.cast_one,
+    Nat.cast_mul, Nat.cast_ofNat]
+  <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.219794034957886 / 4.322823762893677 / 22.542617797851562
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+    have h₁ : ∀ n : ℕ, a n 0 = coeff ((1 + X + X ^ 2) ^ n) 0 := by
+      intro n
+      simp [ha]
+    have h₂ : ∀ n : ℕ, a 0 n = coeff ((1 + X + X ^ 2) ^ 0) n := by
+      intro n
+      simp [ha]
+    have h₃ : ∀ n : ℕ, a 0 n = 0 := by
+      intro n
+      simp [h₂]
+      <;> induction n <;> simp_all [coeff_zero]
+    have h₄ : ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i = 0 := by
+      simp_all [h₃]
+      <;> aesop
+    rw [h₄]
+    simp
+    <;> aesop
+  
+  simp_all
+  <;> aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 66.066725730896 / 4.365041494369507 / 70.4317672252655
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+    have h₂ : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n := by simpa using ha
+    have h₃ : ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i = ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * coeff ((1 + X + X ^ 2) ^ (k - i)) i := by
+      simp [h₂]
+    rw [h₃]
+    have h₄ : ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * coeff ((1 + X + X ^ 2) ^ (k - i)) i ∈ Icc 0 1 := by
+      have h₅ : ∀ n : ℕ, coeff ((1 + X + X ^ 2) ^ n) 0 = 1 := by
+        intro n
+        simp [coeff_zero_eq_eval_zero]
+        <;> induction n <;> simp_all [pow_succ, mul_add, mul_one, add_assoc, add_left_comm, add_comm]
+        <;> ring_nf
+        <;> norm_num
+        <;> aesop
+      have h₆ : ∀ n : ℕ, coeff ((1 + X + X ^ 2) ^ n) 1 = n := by
+        intro n
+        simp [coeff_one]
+        <;> induction n <;> simp_all [pow_succ, mul_add, mul_one, add_assoc, add_left_comm, add_comm]
+        <;> ring_nf
+        <;> norm_num
+        <;> aesop
+      have h₇ : ∀ n : ℕ, coeff ((1 + X + X ^ 2) ^ n) 2 = n + 1 := by
+        intro n
+        simp [coeff_two]
+        <;> induction n <;> simp_all [pow_succ, mul_add, mul_one, add_assoc, add_left_comm
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.261775016784668 / 5.466660976409912 / 17.72843599319458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ := ha 0 0
+  have h₂ := ha 1 0
+  have h₃ := ha 1 1
+  have h₄ := ha 2 0
+  have h₅ := ha 2 1
+  have h₆ := ha 2 2
+  simp_all [coeff_add, coeff_mul, Finset.sum_range_succ, Nat.div_eq_of_lt]
+  <;>
+    norm_num
+  <;>
+    ring_nf
+  <;>
+    norm_cast
+  <;>
+    simp_all [Finset.sum_range_succ, Nat.div_eq_of_lt]
+  <;>
+    omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 34.46156549453735 / 7.830276966094971 / 42.291842460632324
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≥ 0 := by
+    -- Use the fact that the sum of non-negative terms is non-negative
+    apply Finset.sum_nonneg
+    intro i hi
+    simp_all [ha, coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, Finset.mem_Iic]
+    <;>
+    norm_num
+    <;>
+    positivity
+  have h₂ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≤ 1 := by
+    -- Use the fact that the sum of absolute values of coefficients is bounded by 1
+    have h₃ : ∀ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, abs ((-1 : ℤ) ^ i * a (k - i) i) ≤ 1 := by
+      intro i hi
+      simp_all [ha, coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, Finset.mem_Iic]
+      <;>
+      norm_num
+      <;>
+      exact by
+        cases i <;> simp_all [Nat.succ_eq_add_one, pow_add, mul_assoc, mul_comm, mul_left_comm]
+        <;>
+        norm_num
+        <;>
+        omega
+    -- Use the fact that the sum of absolute values is bounded by 1
+    calc
+      (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≤ ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, abs ((-1 : ℤ) ^ i * a (k - i) i) := by
+        exact Finset.sum_le_sum fun i hi => le_abs_self _
+      _ ≤ ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 27.40359377861023 / 6.146796941757202 / 33.55039072036743
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b4
+    (a : ℕ → ℕ → ℤ)
+    (ha : ∀ m n, a m n = coeff ((1 + X + X ^ 2) ^ m) n)
+    (k : ℕ) :
+    (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ∈ Icc 0 1 := by
+  have h₁ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≥ 0 := by
+    apply Finset.sum_nonneg
+    intro i _
+    simp_all [ha, coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, mul_assoc]
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    omega
+  have h₂ : (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≤ 1 := by
+    have h₃ : ∀ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i ≤ 1 := by
+      intro i _
+      simp_all [ha, coeff_add, coeff_mul, coeff_one, coeff_X, coeff_X_pow, mul_assoc]
+      <;>
+      ring_nf
+      <;>
+      norm_num
+      <;>
+      omega
+    exact
+      calc
+        (∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, (-1) ^ i * a (k - i) i) ≤
+            ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, 1 := Finset.sum_le_sum h₃
+        _ = ∑ i ∈ Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊, 1 := by rfl
+        _ = (Finset.Iic ⌊2 * (k : ℚ) / 3⌋₊).card := by simp
+        _ ≤ 1 := by
+          norm_num
+          <;>
+          norm_num [Finset.Iic, Finset.mem_Iic]
+          <;>
+          omega
+  exact ⟨h₁, h₂⟩

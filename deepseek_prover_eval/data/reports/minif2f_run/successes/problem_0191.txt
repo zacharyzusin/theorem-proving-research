@@ -1,0 +1,23 @@
+Problem: problem_0191
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.716783285140991
+Lean check time (s): 3.4538228511810303
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_517 :
+  (121 * 122 * 123) % 4 = 2 := by
+  norm_num [Nat.mul_mod, Nat.mod_eq_of_lt, Nat.succ_pos]
+  -- Use the fact that the product of the numbers modulo 4 is equal to the product of their remainders when divided by 4.
+  -- This is achieved by breaking down the product into individual remainders and simplifying.
+  <;> rfl
+  -- The result of the modulo operation is confirmed to be 2.
+  <;> simp_all
+  <;> norm_num
+  <;> rfl

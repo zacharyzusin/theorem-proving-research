@@ -1,0 +1,126 @@
+Problem: putnam_1992_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.56383466720581 / 10.693548202514648 / 19.25738286972046
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.210653305053711 / 26.531120538711548 / 39.74177384376526
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.64761710166931 / 19.705974102020264 / 36.353591203689575
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.87796926498413 / 24.08048152923584 / 51.95845079421997
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.501037836074829 / 19.357879400253296 / 29.858917236328125
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 27.31317710876465 / 14.874372720718384 / 42.18754982948303
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.765781879425049 / 11.433747053146362 / 20.19952893257141
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.565873384475708 / 26.9882869720459 / 35.554160356521606
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b3
+  (a : (Fin 2 → ℝ) → (ℕ → ℝ))
+  (ha : ∀ p, (a p) 0 = p 0 ∧ (∀ n, (a p) (n + 1) = (((a p) n) ^ 2 + (p 1) ^ 2) / 2)) :
+  putnam_1992_b3_solution = (MeasureTheory.volume {p | ∃ L, Tendsto (a p) atTop (𝓝 L)}).toReal :=
+sorry

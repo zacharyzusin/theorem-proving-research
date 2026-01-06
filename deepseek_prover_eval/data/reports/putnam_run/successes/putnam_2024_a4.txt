@@ -1,0 +1,20 @@
+Problem: putnam_2024_a4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.375769138336182
+Lean check time (s): 8.856168985366821
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2024_a4 :
+    {p : ℕ | p.Prime ∧ 5 < p ∧ ∃ a r : ℤ, 1 ≤ r ∧ r ≤ p - 1 ∧
+      ∃ e : ℕ → ℕ, Set.BijOn e (Set.Icc 0 (p - 5 : ℕ)) (Set.Icc 0 (p - 5 : ℕ)) ∧
+        ∀ n, 1 ≤ n ∧ n ≤ (p - 5 : ℕ) →
+          (p : ℤ) ∣ a ^ (e n : ℕ) - a ^ (e (n - 1) : ℕ) - r} =
+    putnam_2024_a4_solution :=
+  sorry

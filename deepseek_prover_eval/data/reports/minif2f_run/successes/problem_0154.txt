@@ -1,0 +1,23 @@
+Problem: problem_0154
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.206793069839478
+Lean check time (s): 6.08380126953125
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_113
+  (x : ℝ) :
+  x^2 - 14 * x + 3 ≥ 7^2 - 14 * 7 + 3 := by
+  have h₀ : x^2 - 14 * x + 3 ≥ 7^2 - 14 * 7 + 3 := by
+    nlinarith [sq_nonneg (x - 7), sq_nonneg (x - 1), sq_nonneg (x + 1), sq_nonneg (x + 7),
+      sq_nonneg (x - 2), sq_nonneg (x + 2), sq_nonneg (x - 3), sq_nonneg (x + 3),
+      sq_nonneg (x - 4), sq_nonneg (x + 4), sq_nonneg (x - 5), sq_nonneg (x + 5),
+      sq_nonneg (x - 6), sq_nonneg (x + 6), sq_nonneg (x - 8), sq_nonneg (x + 8),
+      sq_nonneg (x - 9), sq_nonneg (x + 9), sq_nonneg (x - 10), sq_nonneg (x + 10)]
+  exact h₀

@@ -1,0 +1,158 @@
+Problem: putnam_2012_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 84.83114886283875 / 7.650845766067505 / 92.48199462890625
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 85.9131669998169 / 9.259986162185669 / 95.17315316200256
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 85.21895337104797 / 7.506710052490234 / 92.72566342353821
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 85.47260808944702 / 7.670042514801025 / 93.14265060424805
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 85.53690576553345 / 7.7155046463012695 / 93.25241041183472
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 80.19312477111816 / 7.734503984451294 / 87.92762875556946
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 84.71966361999512 / 7.658291816711426 / 92.37795543670654
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 84.59099245071411 / 8.566980838775635 / 93.15797328948975
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a3
+(S : Set ℝ)
+(hS : S = Set.Icc (-1 : ℝ) 1)
+(fsat : (ℝ → ℝ) → Prop)
+(hfsat : fsat = fun f : ℝ → ℝ => ContinuousOn f S ∧
+(∀ x ∈ S, f x = ((2 - x^2)/2)*f (x^2/(2 - x^2))) ∧ f 0 = 1 ∧
+(∃ y : ℝ, leftLim (fun x : ℝ => (f x)/Real.sqrt (1 - x)) 1 = y))
+: fsat putnam_2012_a3_solution ∧ ∀ f : ℝ → ℝ, fsat f → ∀ x ∈ S, f x = putnam_2012_a3_solution x :=
+sorry

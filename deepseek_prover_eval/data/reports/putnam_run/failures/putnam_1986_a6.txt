@@ -1,0 +1,174 @@
+Problem: putnam_1986_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.273875713348389 / 51.64097023010254 / 66.91484594345093
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.922935724258423 / 27.861543655395508 / 41.78447937965393
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.80392074584961 / 14.967751502990723 / 32.77167224884033
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.65418791770935 / 13.665743589401245 / 26.319931507110596
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.38906168937683 / 45.01447677612305 / 62.40353846549988
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.335786819458008 / 14.856067180633545 / 33.19185400009155
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.551114082336426 / 15.546226263046265 / 36.09734034538269
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.062523365020752 / 27.77293848991394 / 42.83546185493469
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a6
+(n : ℕ)
+(npos : n > 0)
+(a : ℕ → ℝ)
+(b : ℕ → ℕ)
+(bpos : ∀ i ∈ Finset.Icc 1 n, b i > 0)
+(binj : ∀ i ∈ Finset.Icc 1 n, ∀ j ∈ Finset.Icc 1 n, b i = b j → i = j)
+(f : Polynomial ℝ)
+(hf : ∀ x : ℝ, (1 - x) ^ n * f.eval x = 1 + ∑ i : Finset.Icc 1 n, (a i) * x ^ (b i))
+: (f.eval 1 = putnam_1986_a6_solution b n) :=
+sorry

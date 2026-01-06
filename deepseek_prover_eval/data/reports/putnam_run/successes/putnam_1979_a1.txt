@@ -1,0 +1,18 @@
+Problem: putnam_1979_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 43.406503677368164
+Lean check time (s): 16.956458806991577
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a1
+    (P : Multiset ℕ → Prop)
+    (hP : ∀ a, P a ↔ Multiset.card a > 0 ∧ (∀ i ∈ a, i > 0) ∧ a.sum = 1979) :
+    P putnam_1979_a1_solution ∧ ∀ a : Multiset ℕ, P a → putnam_1979_a1_solution.prod ≥ a.prod :=
+  sorry

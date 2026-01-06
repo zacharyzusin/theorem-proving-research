@@ -1,0 +1,20 @@
+Problem: problem_0341
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.19449782371521
+Lean check time (s): 4.779917001724243
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_211 :
+  Finset.card (Finset.filter (λ n => 6 ∣ (4 * ↑n - (2 : ℤ))) (Finset.range 60)) = 20 := by
+  simp only [Finset.card_filter, Finset.card_range, Finset.sum_range_succ, Finset.sum_range_zero]
+  rfl
+  <;> decide
+  <;> decide
+  <;> decide

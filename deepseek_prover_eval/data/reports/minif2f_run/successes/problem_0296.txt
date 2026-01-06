@@ -1,0 +1,20 @@
+Problem: problem_0296
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.863788604736328
+Lean check time (s): 3.4790844917297363
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_200 :
+  139 % 11 = 7 := by
+  norm_num
+  <;> rfl
+  <;> simp_all
+  <;> rfl
+  <;> rfl

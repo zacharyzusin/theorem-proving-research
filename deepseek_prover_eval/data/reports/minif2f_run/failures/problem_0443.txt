@@ -1,0 +1,198 @@
+Problem: problem_0443
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 7
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.865965127944946 / 600.0809803009033 / 609.9469454288483
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - (-3)), sq_nonneg (y - (-4)), sq_nonneg (x + (-3)), sq_nonneg (y + (-4)),
+    sq_nonneg (x - (-5)), sq_nonneg (y - (-5)), sq_nonneg (x + (-5)), sq_nonneg (y + (-5)),
+    sq_nonneg (x - (-4)), sq_nonneg (y - (-4)), sq_nonneg (x + (-4)), sq_nonneg (y + (-4))]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.670961618423462 / 600.1474297046661 / 608.8183913230896
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x - 3), sq_nonneg (y + 3), sq_nonneg (x + 4), sq_nonneg (y - 4), sq_nonneg (x - (-4)), sq_nonneg (y - (-4)), sq_nonneg (x + (-4)), sq_nonneg (y + 4)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.304387092590332 / 600.1596195697784 / 613.4640066623688
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - (-3)), sq_nonneg (y - (-4)), sq_nonneg (x + 3), sq_nonneg (y + 4),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x + y - 1), sq_nonneg (x + y + 1),
+    sq_nonneg (x - y + 1), sq_nonneg (x - y - 1), sq_nonneg (x + 3 - y), sq_nonneg (x + 3 + y),
+    sq_nonneg (x - 3 - y), sq_nonneg (x - 3 + y), sq_nonneg (x - 4 - y), sq_nonneg (x - 4 + y),
+    sq_nonneg (x + 4 - y), sq_nonneg (x + 4 + y)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.868431806564331 / 600.1072759628296 / 609.9757077693939
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - (-3)), sq_nonneg (y - (-4)), sq_nonneg (x + (-3)), sq_nonneg (y + (-4)),
+    sq_nonneg (x - (-5)), sq_nonneg (y - (-5)), sq_nonneg (x + (-5)), sq_nonneg (y + (-5)),
+    sq_nonneg (x - (-4)), sq_nonneg (y - (-4)), sq_nonneg (x + (-4)), sq_nonneg (y + (-4))]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.538087606430054 / 600.1602334976196 / 610.6983211040497
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - n), sq_nonneg (y - n), sq_nonneg (x + n), sq_nonneg (y + n),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x - 3), sq_nonneg (x + 3),
+    sq_nonneg (y - 3), sq_nonneg (y + 3), sq_nonneg (x - (-4)), sq_nonneg (x + (-4)),
+    sq_nonneg (y - (-4)), sq_nonneg (y + (-4))]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.696695804595947 / 5.464370489120483 / 15.16106629371643
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - (-3)), sq_nonneg (y - (-3)), sq_nonneg (x + 3), sq_nonneg (y + 3), sq_nonneg (x - (-4)), sq_nonneg (y - (-4)), sq_nonneg (x + 4), sq_nonneg (y + 4), sq_nonneg (x - (-5)), sq_nonneg (y - (-5)), sq_nonneg (x + 5), sq_nonneg (y + 5)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.077439069747925 / 600.1546959877014 / 610.2321350574493
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x - 3), sq_nonneg (x + 3), sq_nonneg (y - 3), sq_nonneg (y + 3), sq_nonneg (x - (-3)), sq_nonneg (y - (-3)), sq_nonneg (x + (-3)), sq_nonneg (y + (-3)), sq_nonneg (x - (-4)), sq_nonneg (y - (-4)), sq_nonneg (x + (-4)), sq_nonneg (y + (-4))]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.537940263748169 / 600.0936236381531 / 609.6315639019012
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_437
+  (x y : ℝ)
+  (n : ℤ)
+  (h₀ : x^3 = -45)
+  (h₁ : y^3 = -101)
+  (h₂ : x < n)
+  (h₃ : ↑n < y) :
+  n = -4 := by
+  nlinarith [sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x + y - 2), sq_nonneg (x + y + 2), sq_nonneg (x - y + 2), sq_nonneg (x - y - 2), sq_nonneg (x + 3), sq_nonneg (x - 3), sq_nonneg (y + 3), sq_nonneg (y - 3), sq_nonneg (n + 4), sq_nonneg (n - 4)]
+

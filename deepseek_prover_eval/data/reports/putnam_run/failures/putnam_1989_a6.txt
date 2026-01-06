@@ -1,0 +1,142 @@
+Problem: putnam_1989_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.133047580718994 / 28.07306146621704 / 43.206109046936035
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.083410501480103 / 24.856287240982056 / 39.93969774246216
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.746129751205444 / 34.09594798088074 / 50.84207773208618
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.614447355270386 / 34.51341795921326 / 53.12786531448364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.82711148262024 / 32.7606999874115 / 50.58781147003174
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 35.78740072250366 / 37.57939338684082 / 73.36679410934448
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 60.832987546920776 / 17.49021625518799 / 78.32320380210876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 29.227669715881348 / 15.885259628295898 / 45.112929344177246
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a6
+(F : Type*) [Field F] [Fintype F]
+(hF : Fintype.card F = 2)
+(α : PowerSeries F)
+(hα : ∀ n : ℕ, let bin := [1] ++ (digits 2 n) ++ [1]; PowerSeries.coeff F n α = ite (∀ i j : Fin bin.length, i < j → bin.get i = 1 → bin.get j = 1 → (∀ k, i < k → k < j → bin.get k = 0) → Even ((j : ℕ) - (i : ℕ) - 1)) 1 0)
+: (α ^ 3 + PowerSeries.X * α + 1 = 0) :=
+sorry

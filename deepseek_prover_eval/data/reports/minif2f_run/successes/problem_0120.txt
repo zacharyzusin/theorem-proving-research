@@ -1,0 +1,27 @@
+Problem: problem_0120
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.186575412750244
+Lean check time (s): 4.131663799285889
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_76
+  (f : ℤ → ℤ)
+  (h₀ : ∀n, Odd n → f n = n^2)
+  (h₁ : ∀ n, Even n → f n = n^2 - 4*n -1) :
+  f 4 = -1 := by
+  have h₂ := h₁ 0
+  have h₃ := h₁ 2
+  have h₄ := h₁ 4
+  have h₅ := h₀ 1
+  have h₆ := h₀ 3
+  have h₇ := h₀ 5
+  norm_num at h₂ h₃ h₄ h₅ h₆ h₇
+  <;> simp_all [Int.even_iff, Int.odd_iff]
+  <;> omega

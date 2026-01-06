@@ -1,0 +1,19 @@
+Problem: putnam_1969_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 22.44346809387207
+Lean check time (s): 126.81697416305542
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_b2
+    (P : ℕ → Prop)
+    (P_def : ∀ n, P n ↔ ∀ (G : Type) [Group G] [Finite G],
+      ∀ H : Fin n → Subgroup G, (∀ i, H i < ⊤) → ⋃ i, (H i : Set G) < ⊤) :
+    P 2 ∧ (P 3 ↔ putnam_1969_b2_solution) :=
+  sorry

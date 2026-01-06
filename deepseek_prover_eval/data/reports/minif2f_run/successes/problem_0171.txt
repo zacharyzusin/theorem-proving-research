@@ -1,0 +1,34 @@
+Problem: problem_0171
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 21.694176197052002
+Lean check time (s): 6.419243097305298
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_293
+  (x : NNReal) :
+  Real.sqrt (60 * x) * Real.sqrt (12 * x) * Real.sqrt (63 * x) = 36 * x * Real.sqrt (35 * x) := by
+  have h₀ : 0 ≤ (60 * x : ℝ) := by positivity
+  have h₁ : 0 ≤ (12 * x : ℝ) := by positivity
+  have h₂ : 0 ≤ (63 * x : ℝ) := by positivity
+  have h₃ : 0 ≤ (35 * x : ℝ) := by positivity
+  have h₄ : Real.sqrt (60 * x) * Real.sqrt (12 * x) * Real.sqrt (63 * x) = Real.sqrt (60 * x * (12 * x) * (63 * x)) := by
+    rw [← Real.sqrt_mul, ← Real.sqrt_mul] <;> positivity
+  rw [h₄]
+  have h₅ : Real.sqrt (60 * x * (12 * x) * (63 * x)) = Real.sqrt (60 * 12 * 63 * (x * x * x)) := by
+    ring_nf
+    <;> simp [mul_assoc]
+  rw [h₅]
+  have h₆ : Real.sqrt (60 * 12 * 63 * (x * x * x)) = 36 * x * Real.sqrt (35 * x) := by
+    rw [Real.sqrt_eq_iff_sq_eq (by positivity) (by positivity)]
+    nlinarith [Real.sq_sqrt (show 0 ≤ (35 * x : ℝ) by positivity),
+      Real.sq_sqrt (show 0 ≤ (x : ℝ) by positivity),
+      sq_nonneg (36 * x), sq_nonneg (Real.sqrt (35 * x)),
+      sq_nonneg (Real.sqrt (35 * x) - 6 * x)]
+  rw [h₆]

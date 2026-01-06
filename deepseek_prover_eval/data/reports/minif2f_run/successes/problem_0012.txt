@@ -1,0 +1,21 @@
+Problem: problem_0012
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.326475381851196
+Lean check time (s): 4.168126821517944
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_237 :
+  (∑ k in (Finset.range 101), k) % 6 = 4 := by
+  apply Eq.symm
+  rfl
+  <;> simp [Finset.sum_range_id, Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> decide
+  <;> rfl

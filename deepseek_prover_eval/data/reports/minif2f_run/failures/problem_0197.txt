@@ -1,0 +1,292 @@
+Problem: problem_0197
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 5
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.240010738372803 / 600.1629076004028 / 621.4029183387756
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : abs (a - 1 / a) = 1 := h₂
+  have h₉ : abs (b - 1 / b) = 1 := h₃
+  have h₁₀ : a - 1 / a = 1 ∨ a - 1 / a = -1 := by
+    apply eq_or_eq_neg_of_abs_eq
+    exact h₈
+  have h₁₁ : b - 1 / b = 1 ∨ b - 1 / b = -1 := by
+    apply eq_or_eq_neg_of_abs_eq
+    exact h₉
+  rcases h₁₀ with (h₁₀ | h₁₀) <;> rcases h₁₁ with (h₁₁ | h₁₁) <;>
+    field_simp [h₆, h₇] at h₁₀ h₁₁ ⊢ <;>
+    ring_nf at h₁₀ h₁₁ ⊢ <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+      Real.sqrt_nonneg 5, Real.sq_sqrt (show 0 ≤ 5 by norm_num)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.864486932754517 / 600.068372964859 / 616.9328598976135
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := h₀.1
+  have h₅ : 0 < b := h₀.2
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : a * a = a ^ 2 := by ring
+  have h₉ : b * b = b ^ 2 := by ring
+  cases' le_total 0 (a - 1 / a) with h h <;>
+    cases' le_total 0 (b - 1 / b) with h' h' <;>
+    simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    field_simp at h₂ h₃ ⊢ <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - 1), sq_nonneg (b - 1),
+      Real.sqrt_nonneg 5, Real.sq_sqrt (show (0 : ℝ) ≤ 5 by norm_num)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.45972228050232 / 4.802495002746582 / 21.2622172832489
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : a * b > 0 := mul_pos h₄ h₅
+  cases' abs_cases (a - 1 / a) with h₉ h₉ <;>
+    cases' abs_cases (b - 1 / b) with h₁₀ h₁₀ <;>
+    field_simp [h₆, h₇] at h₂ h₃ h₉ h₁₀ <;>
+    nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₁), Real.sq_sqrt (show 0 ≤ 5 by norm_num),
+      Real.sqrt_nonneg 5, sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+      sq_nonneg (a * b + 1)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.747896432876587 / 600.0688591003418 / 616.8167555332184
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : a * a = a ^ 2 := by ring
+  have h₉ : b * b = b ^ 2 := by ring
+  cases' le_total 0 (a - 1 / a) with h h <;>
+    cases' le_total 0 (b - 1 / b) with h' h' <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    field_simp at h₂ h₃ ⊢ <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - 1), sq_nonneg (b - 1),
+      Real.sqrt_nonneg 5, Real.sq_sqrt (show (0 : ℝ) ≤ 5 by norm_num)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.55248737335205 / 600.1771626472473 / 617.7296500205994
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : a * a = a ^ 2 := by ring
+  have h₉ : b * b = b ^ 2 := by ring
+  cases' le_total 0 (a - 1 / a) with h h <;>
+    cases' le_total 0 (b - 1 / b) with h' h' <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    field_simp at h₂ h₃ ⊢ <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), Real.sq_sqrt (show (0 : ℝ) ≤ 5 by norm_num),
+      Real.sqrt_nonneg 5, sq_nonneg (a - 1), sq_nonneg (b - 1), sq_nonneg (a + 1), sq_nonneg (b + 1)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 32.24528098106384 / 600.1608254909515 / 632.4061064720154
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : a * b > 0 := mul_pos h₄ h₅
+  have h₉ : abs (a - 1 / a) = 1 := h₂
+  have h₁₀ : abs (b - 1 / b) = 1 := h₃
+  have h₁₁ : a - 1 / a = 1 ∨ a - 1 / a = -1 := by
+    apply eq_or_eq_neg_of_abs_eq
+    exact h₉
+  have h₁₂ : b - 1 / b = 1 ∨ b - 1 / b = -1 := by
+    apply eq_or_eq_neg_of_abs_eq
+    exact h₁₀
+  cases h₁₁ with
+  | inl h₁₁ =>
+    cases h₁₂ with
+    | inl h₁₂ =>
+      field_simp at h₁₁ h₁₂
+      nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+        Real.sq_sqrt (show 0 ≤ 5 by norm_num), Real.sqrt_nonneg 5]
+    | inr h₁₂ =>
+      field_simp at h₁₁ h₁₂
+      nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+        Real.sq_sqrt (show 0 ≤ 5 by norm_num), Real.sqrt_nonneg 5]
+  | inr h₁₁ =>
+    cases h₁₂ with
+    | inl h₁₂ =>
+      field_simp at h₁₁ h₁₂
+      nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+        Real.sq_sqrt (show 0 ≤ 5 by norm_num), Real.sqrt_nonneg 5]
+    | inr h₁₂ =>
+      field_simp at h₁₁ h₁₂
+      nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+        Real.sq_sqrt (show 0 ≤ 5 by norm_num), Real.sqrt_n
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.963053703308105 / 4.187978267669678 / 26.151031970977783
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : abs (a - 1/a) = 1 := h₂
+  have h₉ : abs (b - 1/b) = 1 := h₃
+  have h₁₀ : a - 1/a = 1 ∨ a - 1/a = -1 := by
+    apply eq_or_eq_neg_of_abs_eq
+    exact h₈
+  have h₁₁ : b - 1/b = 1 ∨ b - 1/b = -1 := by
+    apply eq_or_eq_neg_of_abs_eq
+    exact h₉
+  rcases h₁₀ with (h₁₀ | h₁₀) <;> rcases h₁₁ with (h₁₁ | h₁₁) <;>
+    field_simp [h₆, h₇] at h₁₀ h₁₁ ⊢ <;>
+    nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₁),
+      Real.sqrt_nonneg 5, Real.sq_sqrt (show 0 ≤ 5 by norm_num),
+      sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a * b - 1),
+      sq_nonneg (a * b + 1)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.175508737564087 / 11.838579893112183 / 28.01408863067627
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p13
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a ≠ b)
+  (h₂ : abs (a - 1/a) = 1)
+  (h₃ : abs (b - 1/b) = 1) :
+  a + b = Real.sqrt 5 := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : a ≠ 0 := by linarith
+  have h₇ : b ≠ 0 := by linarith
+  have h₈ : a * a = a ^ 2 := by ring
+  have h₉ : b * b = b ^ 2 := by ring
+  cases' abs_cases (a - 1 / a) with h₁₀ h₁₀ <;>
+    cases' abs_cases (b - 1 / b) with h₁₁ h₁₁ <;>
+    field_simp [h₆, h₇] at h₁₀ h₁₁ <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - 1 / a), sq_nonneg (b - 1 / b),
+      Real.sq_sqrt (show 0 ≤ 5 by norm_num), Real.sqrt_nonneg 5]
+

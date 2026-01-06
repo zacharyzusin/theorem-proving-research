@@ -1,0 +1,35 @@
+Problem: problem_0265
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.808407306671143
+Lean check time (s): 204.40630507469177
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_221
+  (S : Finset ℕ)
+  (h₀ : ∀ (x : ℕ), x ∈ S ↔ 0 < x ∧ x < 1000 ∧ x.divisors.card = 3) :
+  S.card = 11 := by
+  have h₁ : S = Finset.filter (fun x => x.divisors.card = 3) (Finset.Icc 1 999) := by
+    ext x
+    simp [h₀, Nat.lt_succ_iff]
+    <;> omega
+  rw [h₁]
+  rfl
+  <;> decide
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl

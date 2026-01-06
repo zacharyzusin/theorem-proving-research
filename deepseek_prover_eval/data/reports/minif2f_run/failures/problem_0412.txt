@@ -1,0 +1,353 @@
+Problem: problem_0412
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 2
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.124964237213135 / 5.167793273925781 / 23.292757511138916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := by positivity
+  field_simp [h₂, h₃, h₄] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : 5 * k < n := by linarith
+  have h₆ : n < 6 * k := by linarith
+  have h₇ : n = 5 * k + m := by omega
+  have h₈ : n = 5 * k + m := by omega
+  have h₉ : m < k := by omega
+  have h₁₀ : Nat.gcd n k = k := by
+    rw [h₇]
+    simp [Nat.gcd_comm, Nat.gcd_mul_left, Nat.gcd_comm]
+  have h₁₁ : Nat.lcm n k = n * k / k := by
+    rw [Nat.lcm]
+    simp [h₁₀]
+  rw [h₁₀, h₁₁]
+  norm_num
+  ring_nf
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.946832180023193 / 6.083366394042969 / 35.03019857406616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  norm_num at h₀ h₁ ⊢
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := by positivity
+  field_simp [h₂.ne', h₃.ne'] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : n < 6 * k := by linarith
+  have h₆ : 5 * k < n := by linarith
+  have h₇ : n ≥ 5 * k := by linarith
+  have h₈ : k ≤ n := by linarith
+  have h₉ : Nat.gcd n k ∣ n := Nat.gcd_dvd_left n k
+  have h₁₀ : Nat.gcd n k ∣ k := Nat.gcd_dvd_right n k
+  have h₁₁ : Nat.gcd n k ≤ k := Nat.le_of_dvd (by linarith) h₁₀
+  have h₁₂ : Nat.gcd n k ≤ n := Nat.le_of_dvd (by linarith) h₉
+  have h₁₃ : (Nat.lcm n k) / (Nat.gcd n k) ≥ 22 := by
+    apply Nat.le_div_iff_mul_le (by positivity) |>.mpr
+    have h₁₄ : Nat.lcm n k = n * k / Nat.gcd n k := by
+      rw [Nat.lcm]
+    rw [h₁₄]
+    have h₁₅ : n * k / Nat.gcd n k ≥ 22 * Nat.gcd n k := by
+      have h₁₆ : n * k ≥ 22 * Nat.gcd n k := by
+        nlinarith [Nat.mul_div_le n k, Nat.mul_div_le k n]
+      have h₁₇ : n * k / Nat.gcd n k ≥ 22 * Nat.gcd n k := by
+        exact Nat.le_div_iff_mul_le (by positivity) |>.mpr h₁₆
+      exact h₁₇
+    nlinarith
+  exact h₁₃
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.23328471183777 / 5.5135276317596436 / 23.746812343597412
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := mul_pos h₂ h₃
+  field_simp [Nat.cast_pos] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : 5 * k < n := by linarith
+  have h₆ : n < 6 * k := by linarith
+  have h₇ : n = 5 * k + m := by omega
+  have h₈ : n = 5 * k + m := by omega
+  have h₉ : m < k := by omega
+  have h₁₀ : Nat.gcd n k = k := by
+    rw [h₈]
+    simp [Nat.gcd_comm, Nat.gcd_mul_left, Nat.gcd_comm]
+  have h₁₁ : Nat.lcm n k = n * k / k := by
+    rw [Nat.lcm]
+    simp [h₁₀]
+  rw [h₁₀, h₁₁]
+  norm_num
+  ring_nf
+  omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.134132385253906 / 5.656300067901611 / 26.790432453155518
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := by positivity
+  field_simp [h₂.ne', h₃.ne'] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : 5 * k < n := by linarith
+  have h₆ : n < 6 * k := by linarith
+  have h₇ : n = 5 * k + t := by omega
+  have h₈ : n = 5 * k + t := by omega
+  have h₉ : t < k := by omega
+  have h₁₀ : Nat.gcd n k = k := by
+    rw [h₈]
+    simp [Nat.gcd_comm, Nat.gcd_eq_right]
+    <;> omega
+  have h₁₁ : Nat.lcm n k = n * k / k := by
+    rw [Nat.lcm]
+    simp [h₁₀]
+    <;> omega
+  rw [h₁₀, h₁₁]
+  norm_num
+  have h₁₂ : k ≠ 0 := by linarith
+  have h₁₃ : n * k / k = n := by
+    rw [mul_comm]
+    field_simp [h₁₂]
+  rw [h₁₃]
+  norm_num
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 25.9507417678833 / 600.1625380516052 / 626.1132798194885
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := mul_pos h₂ h₃
+  field_simp [h₂.ne', h₃.ne'] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : n < 6 * k := by linarith
+  have h₆ : 5 * k < n := by linarith
+  have h₇ : n ≥ 5 * k := by linarith
+  have h₈ : n < 6 * k := by linarith
+  have h₉ : Nat.gcd n k ≤ k := by
+    apply Nat.le_of_dvd
+    linarith
+    apply Nat.gcd_dvd_right
+  have h₁₀ : Nat.gcd n k ≤ n := by
+    apply Nat.le_of_dvd
+    linarith
+    apply Nat.gcd_dvd_left
+  have h₁₁ : (Nat.lcm n k) / (Nat.gcd n k) ≥ 22 := by
+    apply Nat.le_div_iff_mul_le (Nat.gcd_pos_of_pos_left k h₂) |>.mpr
+    have h₁₂ : Nat.gcd n k ≤ n := by linarith
+    have h₁₃ : Nat.gcd n k ≤ k := by linarith
+    have h₁₄ : Nat.lcm n k = n * k / Nat.gcd n k := by
+      rw [Nat.lcm]
+    rw [h₁₄]
+    have h₁₅ : n * k / Nat.gcd n k ≥ 22 * Nat.gcd n k := by
+      apply Nat.le_div_iff_mul_le (Nat.gcd_pos_of_pos_left k h₂) |>.mpr
+      nlinarith
+    nlinarith
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.945096254348755 / 4.727841377258301 / 16.672937631607056
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := mul_pos h₂ h₃
+  field_simp [h₂.ne', h₃.ne'] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [← sub_pos] at h₁
+  field_simp [h₂.ne', h₃.ne'] at h₁
+  norm_cast at h₀ h₁ ⊢
+  rw [Nat.lcm]
+  simp_all [Nat.gcd_mul_lcm]
+  <;>
+  omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.508262634277344 / 6.144364595413208 / 28.65262722969055
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := by positivity
+  field_simp [h₂.ne', h₃.ne'] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : n < 6 * k := by linarith
+  have h₆ : 5 * k < n := by linarith
+  have h₇ : n ≥ 5 * k := by linarith
+  have h₈ : n < 6 * k := by linarith
+  have h₉ : Nat.gcd n k ∣ n := by apply Nat.gcd_dvd_left
+  have h₁₀ : Nat.gcd n k ∣ k := by apply Nat.gcd_dvd_right
+  have h₁₁ : Nat.gcd n k ≤ k := by
+    apply Nat.le_of_dvd
+    linarith
+    exact h₁₀
+  have h₁₂ : Nat.gcd n k ≤ n := by
+    apply Nat.le_of_dvd
+    linarith
+    exact h₉
+  have h₁₃ : (Nat.lcm n k) / (Nat.gcd n k) ≥ 22 := by
+    rw [Nat.lcm]
+    norm_num
+    apply Nat.le_of_sub_pos
+    field_simp [Nat.gcd_eq_zero_iff, h₂.ne', h₃.ne']
+    ring_nf
+    norm_num
+    nlinarith
+  linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 28.225179195404053 / 600.1405096054077 / 628.3656888008118
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_530
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₀ : (n : ℝ) / k < 6)
+  (h₁ : (5 : ℝ) < n / k) :
+  22 ≤ (Nat.lcm n k) / (Nat.gcd n k) := by
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < k := by linarith
+  have h₄ : 0 < n * k := by positivity
+  field_simp [h₂.ne', h₃.ne', h₄.ne'] at h₀ h₁ ⊢
+  rw [div_lt_iff (by positivity)] at h₀
+  rw [lt_div_iff (by positivity)] at h₁
+  norm_cast at h₀ h₁ ⊢
+  have h₅ : n < 6 * k := by linarith
+  have h₆ : 5 * k < n := by linarith
+  have h₇ : n ≥ 5 * k := by linarith
+  have h₈ : k ≤ n := by linarith
+  have h₉ : n < 6 * k := by linarith
+  have h₁₀ : n ≥ 5 * k := by linarith
+  have h₁₁ : (Nat.lcm n k) / (Nat.gcd n k) ≥ 22 := by
+    apply Nat.le_div_iff_mul_le (Nat.gcd_pos_of_pos_left k (by linarith)) |>.mpr
+    have h₁₂ : Nat.lcm n k ≥ 22 * Nat.gcd n k := by
+      have h₁₃ : Nat.lcm n k = n * k / Nat.gcd n k := by
+        rw [Nat.lcm]
+        <;> simp_all [Nat.gcd_mul_lcm]
+      rw [h₁₃]
+      have h₁₄ : n * k / Nat.gcd n k ≥ 22 * Nat.gcd n k := by
+        have h₁₅ : n * k ≥ 22 * Nat.gcd n k * Nat.gcd n k := by
+          nlinarith [Nat.gcd_mul_lcm n k]
+        have h₁₆ : n * k / Nat.gcd n k ≥ 22 * Nat.gcd n k := by
+          apply Nat.le_div_iff_mul_le (Nat.gcd_pos_of_pos_left k (by linarith)) |>.mpr
+          nlinarith
+        exact h₁₆
+      exact h₁₄
+    nlinarith
+  exact h₁₁
+

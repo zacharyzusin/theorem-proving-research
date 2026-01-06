@@ -1,0 +1,23 @@
+Problem: problem_0187
+Dataset: minif2f
+Mode: noncot
+First success attempt: 3
+Generation time (s): 7.557843923568726
+Lean check time (s): 3.3844542503356934
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_239 :
+  (∑ k in Finset.Icc 1 12, k) % 4 = 2 := by
+  apply Eq.symm
+  rfl
+  <;> simp [Finset.sum_Icc_succ_top, Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt, Nat.succ_pos]
+  <;> norm_num
+  <;> rfl
+  <;> simp [Finset.sum_Icc_succ_top, Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt, Nat.succ_pos]
+  <;> norm_num
+  <;> rfl

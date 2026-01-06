@@ -1,0 +1,28 @@
+Problem: problem_0381
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.733062982559204
+Lean check time (s): 6.067768573760986
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_149
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x < -5, f x = x^2 + 5)
+  (h₁ : ∀ x ≥ -5, f x = 3 * x -8)
+  (h₂ : Fintype (f⁻¹' {10})) :
+  ∑ k in (f⁻¹' {10}).toFinset, k = 6 := by
+  have h₃ : f⁻¹' {10} = {6} := by
+    ext x
+    simp only [Set.mem_preimage, Set.mem_singleton_iff, Set.mem_setOf_eq] at *
+    constructor <;> intro h <;>
+    by_cases h₄ : x ≥ -5 <;>
+    by_cases h₅ : x < -5 <;>
+    simp_all [h₀, h₁] <;>
+    nlinarith
+  simp [h₃]

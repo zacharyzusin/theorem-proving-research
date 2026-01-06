@@ -1,0 +1,23 @@
+Problem: problem_0141
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.417698860168457
+Lean check time (s): 3.680562734603882
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p6
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∃ m, (m > n ∧ ∃ p, m * p ≤ m + p) := by
+  use n + 1
+  constructor
+  linarith
+  use 1
+  <;> simp [mul_comm, mul_one, add_comm, add_left_comm, add_assoc]
+  <;> nlinarith

@@ -1,0 +1,326 @@
+Problem: putnam_2006_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 72.67913866043091 / 22.686691761016846 / 95.36583042144775
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  norm_num at h₁ h₂ h₃ h₄
+  have h₅ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      simp_all [ha]
+      positivity
+  have h₆ : ∀ n : ℕ, a n ≥ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      have h₇ : a 0 > 0 := by linarith [ha0]
+      have h₈ : a 0 ≥ 1 := by
+        by_contra h
+        have h₉ : a 0 < 1 := by linarith
+        have h₁₀ : a 1 = a 0 + 1 / (a 0 ^ (1 / k : ℝ)) := by simp [ha]
+        have h₁₁ : 1 / (a 0 ^ (1 / k : ℝ)) > 0 := by positivity
+        have h₁₂ : a 1 > a 0 := by linarith
+        have h₁₃ : a 1 ≥ 1 := by
+          have h₁₄ : a 0 ≥ 0 := by linarith
+          have h₁₅ : a 0 < 1 := by linarith
+          have h₁₆ : a 1 = a 0 + 1 / (a 0 ^ (1 / k : ℝ)) := by simp [ha]
+          have h₁₇ : 1 / (a 0 ^ (1 / k : ℝ)) ≥ 1 := by
+            have h₁₈ : a 0 > 0 := by linarith
+            have h₁₉ : a 0 ^ (1 / k : ℝ) ≤ 1 := by
+              apply Real.rpow_le_one
+              linarith
+              linarith
+              norm_num
+              <;> nlinarith
+            have h₂₀ : 1 / (a 0 ^ (1 / k : ℝ)) ≥ 1 := by
+              rw [ge_if
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 52.42363619804382 / 20.932193517684937 / 73.35582971572876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  simp at h₁ h₂ h₃ h₄
+  norm_num at h₁ h₂ h₃ h₄
+  have h₅ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      simp_all [ha]
+      positivity
+  have h₆ : ∀ n : ℕ, a n ≥ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      have h₁ := h₅ 0
+      have h₂ := h₁
+      field_simp [ha0] at h₁ h₂ ⊢
+      nlinarith
+    | succ n ih =>
+      simp_all [ha]
+      have h₁ := h₅ n
+      have h₂ := h₅ (n + 1)
+      field_simp [h₅ n] at *
+      rw [le_div_iff (by positivity)]
+      ring_nf
+      nlinarith [sq_nonneg (a n - 1), sq_nonneg (a n ^ (1 / k) - 1)]
+  have h₇ : ∀ n : ℕ, (a n)^(k+1) ≥ n^k := by
+    intro n
+    have h₁ := h₆ n
+    have h₂ : (a n)^(k+1) ≥ n^k := by
+      calc
+        (a n)^(k+1) ≥ 1^(k+1) := by gcongr <;> nlinarith [h₁]
+        _ = 1 := by norm_num
+        _ ≥ n^0 := by simp
+        _ ≥ n^k := by
+          cases n with
+          | zero => simp_all
+          | succ n =>
+            exact pow_le_pow_right (by linarith) (by linarith)
+    exact h₂
+  have h₈ : Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (1 : ℝ)) := by
+    have h₉ : ∀ n : ℕ, (a n)^(k
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.835046529769897 / 19.026920557022095 / 30.861967086791992
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  norm_num [pow_one, div_eq_mul_inv, mul_assoc] at h₁ h₂ h₃ h₄
+  norm_num [pow_one, div_eq_mul_inv, mul_assoc] at *
+  <;> field_simp [ha0] at *
+  <;> norm_num at *
+  <;> linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.601074934005737 / 19.31527829170227 / 32.91635322570801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  norm_num at h₁ h₂ h₃ h₄
+  simp_all [Nat.div_eq_of_lt]
+  <;>
+  field_simp [pow_add, pow_one, mul_comm] at *
+  <;>
+  ring_nf at *
+  <;>
+  norm_num at *
+  <;>
+  nlinarith [ha0, sq_nonneg (a 0), sq_nonneg (a 1), sq_nonneg (a 2), sq_nonneg (a 3)]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 49.15328550338745 / 22.07399606704712 / 71.22728157043457
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  simp at h₁ h₂ h₃ h₄
+  norm_num at h₁ h₂ h₃ h₄
+  have h₅ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith
+    | succ n ih =>
+      simp_all [ha]
+      positivity
+  have h₆ : ∀ n : ℕ, a n ≥ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      have h₁ := h₅ 0
+      have h₂ := h₁
+      field_simp [ha0] at h₁ h₂ ⊢
+      nlinarith
+    | succ n ih =>
+      simp_all [ha]
+      have h₁ : 0 < a n := h₅ n
+      have h₂ : 0 < (a n) ^ ((1 : ℝ) / k) := by positivity
+      field_simp [h₁, h₂]
+      rw [le_div_iff (by positivity)]
+      have h₃ : (1 : ℝ) ≤ a n := by
+        exact_mod_cast ih
+      have h₄ : (1 : ℝ) ≤ (a n) ^ ((1 : ℝ) / k) := by
+        exact_mod_cast Real.one_le_rpow (by linarith) (by positivity)
+      nlinarith
+  have h₇ : ∀ n : ℕ, a n ≥ 1 := by
+    intro n
+    exact h₆ n
+  have h₈ : ∀ n : ℕ, (a n)^(k+1) ≥ (a n)^k := by
+    intro n
+    exact pow_le_pow_right (by linarith [h₇ n]) (by linarith)
+  have h₉ : ∀ n : ℕ, (a n)^(k+1) / (n ^ k : ℝ) ≥ (a n)^k / (n ^ k : ℝ) := by
+    intro n
+    exact div_le_div_of_le (by positivity) (by exact_mod_cast h₈ n)
+  have h₁₀ : Tendsto (fun n =
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.096829891204834 / 18.22306799888611 / 33.31989789009094
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  unfold putnam_2006_b6_solution
+  -- We need to show that the limit of (a_n)^(k+1)/(n^k) as n approaches infinity is (k+1)/k.
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  norm_num at h₁ h₂ h₃ h₄
+  simp_all [pow_add, pow_mul, mul_assoc]
+  <;> field_simp [ha0] at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> nlinarith [sq_nonneg (a 0), sq_nonneg (a 1), sq_nonneg (a 2), sq_nonneg (a 3)]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.572091102600098 / 20.357782125473022 / 31.92987322807312
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  have h1 := ha 0
+  have h2 := ha 1
+  have h3 := ha 2
+  have h4 := ha 3
+  norm_num at h1 h2 h3 h4
+  simp_all [putnam_2006_b6_solution]
+  <;> field_simp [ha0] at *
+  <;> norm_num at *
+  <;> ring_nf at *
+  <;> norm_num [ha0] at *
+  <;> linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.407495498657227 / 18.2253839969635 / 29.632879495620728
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_b6
+(k : ℕ)
+(hk : k > 1)
+(a : ℕ → ℝ)
+(ha0 : a 0 > 0)
+(ha : ∀ n : ℕ, a (n + 1) = a n + 1/((a n)^((1 : ℝ)/k)))
+: Tendsto (fun n => (a n)^(k+1)/(n ^ k)) atTop (𝓝 (putnam_2006_b6_solution k)) := by
+  unfold putnam_2006_b6_solution
+  have h₁ := ha 0
+  have h₂ := ha 1
+  have h₃ := ha 2
+  have h₄ := ha 3
+  norm_num at h₁ h₂ h₃ h₄
+  simp_all [ha0]
+  <;> field_simp [ha0] at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> linarith

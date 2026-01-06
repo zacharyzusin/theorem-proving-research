@@ -1,0 +1,31 @@
+Problem: problem_0092
+Dataset: minif2f
+Mode: noncot
+First success attempt: 4
+Generation time (s): 11.444425106048584
+Lean check time (s): 39.52337026596069
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p7
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : b = a + 1)
+  (h₂ : c = b + 1)
+  (h₃ : a * b * c = 8 * (a + b + c)) :
+  a^2 + (b^2 + c^2) = 77 := by
+  subst_vars
+  rcases h₀ with ⟨ha, hb, hc⟩
+  have : a ≤ 7 := by
+    nlinarith [mul_pos ha hb, mul_pos hb hc, mul_pos ha hc]
+  interval_cases a <;> norm_num at h₃ ⊢ <;>
+  (try omega) <;>
+  (try nlinarith) <;>
+  (try linarith) <;>
+  (try nlinarith)
+  <;>
+  nlinarith

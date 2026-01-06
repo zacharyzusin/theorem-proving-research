@@ -1,0 +1,382 @@
+Problem: problem_0467
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 48.34803652763367 / 5.422544002532959 / 53.770580530166626
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    have h₆ : b > 0 := h₀
+    have h₇ : x = Real.logb b (7^7) := h₂
+    have h₈ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₉ : Real.logb b (7^7) = Real.logb b (7^7) := rfl
+    have h₁₀ : x = Real.logb b (7^7) := h₂
+    have h₁₁ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    -- We use the properties of logarithms and exponents to solve for b
+    have h₁₂ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    have h₁₃ : x = Real.log (7^7) / Real.log b := by
+      rw [h₁₂] at h₇
+      exact h₇
+    have h₁₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₁₅ : Real.log ((7 : ℝ)^(x + 7)) = Real.log (8^x) := by
+      rw [h₁₄]
+    have h₁₆ : (x + 7) * Real.log 7 = x * Real.log 8 := by
+      rw [Real.log_rpow (by norm_num : (0 : ℝ) < 7), Real.log_rpow (by norm_num : (0 : ℝ) < 8)] at h₁₅
+      exact h₁₅
+    have h₁₇ : x * Real.log 7 + 7 * Real.log 7 = x * Real.log 8 := by
+      linarith
+    have h₁₈ : x * (Real.log 8 - Real.log 7) = 7 * Real.log 7 := by
+      linarith
+    have h₁₉ : x = 7 * Real.log 7 / (Real.log 8 - Real.log 7) := by
+      have h₂₀ : Real.log 8 - Real.log 7 ≠ 0 := by
+        intro h
+        have h₂₁ : Real.log 8 = Real.log 7 := by linarith
+        have h₂₂ : (8 : ℝ) = 7
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 45.26752805709839 / 54.31452131271362 / 99.58204936981201
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    have h₆ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₇ : x = Real.logb b (7^7) := h₂
+    have h₈ : b > 0 := by linarith
+    have h₉ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    rw [h₉] at h₇
+    have h₁₀ : x = Real.log (7^7) / Real.log b := by linarith
+    have h₁₁ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₁₂ : Real.log ((7 : ℝ)^(x + 7)) = Real.log (8^x) := by rw [h₁₁]
+    have h₁₃ : (x + 7) * Real.log 7 = x * Real.log 8 := by
+      rw [Real.log_rpow (by linarith : (7 : ℝ) > 0), Real.log_rpow (by linarith : (8 : ℝ) > 0)] at h₁₂
+      linarith
+    have h₁₄ : x * (Real.log 8 - Real.log 7) = 7 * Real.log 7 := by linarith
+    have h₁₅ : Real.log 8 - Real.log 7 = Real.log (8 / 7) := by
+      rw [Real.log_div (by linarith) (by linarith)]
+      <;> ring
+    rw [h₁₅] at h₁₄
+    have h₁₆ : x * Real.log (8 / 7) = 7 * Real.log 7 := by linarith
+    have h₁₇ : x = 7 * Real.log 7 / Real.log (8 / 7) := by
+      have h₁₈ : Real.log (8 / 7) ≠ 0 := by
+        apply Real.log_ne_zero_of_pos_of_ne_one
+        <;> norm_num
+      field_simp [h₁₈] at h₁₆ ⊢
+      linarith
+    have h₁₈ : b = 8 / 7 := by
+      have h₁₉ : Real.log b = Real.log (8 / 7) := by
+        have h₂₀ 
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.87617540359497 / 3.6460742950439453 / 34.522249698638916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    rw [h₃] at h₄
+    have h₆ : (7 : ℝ)^(Real.logb b (7^7) + 7) = 8^(Real.logb b (7^7)) := h₄
+    have h₇ : b > 0 := by linarith
+    have h₈ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    rw [h₈] at h₆
+    have h₉ : (7 : ℝ)^(Real.log (7^7) / Real.log b + 7) = 8^(Real.log (7^7) / Real.log b) := h₆
+    have h₁₀ : Real.log b ≠ 0 := by
+      intro h
+      rw [h] at h₆
+      norm_num at h₆
+      <;> simp_all [Real.log_one]
+    have h₁₁ : Real.log (7^7) = 7 * Real.log 7 := by
+      rw [Real.log_pow]
+      <;> ring
+    rw [h₁₁] at h₉
+    have h₁₂ : (7 : ℝ)^(7 * Real.log 7 / Real.log b + 7) = 8^(7 * Real.log 7 / Real.log b) := h₉
+    have h₁₃ : Real.log b = Real.log 8 / 7 := by
+      field_simp [Real.log_rpow] at h₁₂ ⊢
+      <;> ring_nf at h₁₂ ⊢ <;>
+      nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 8),
+        Real.log_pos (by norm_num : (1 : ℝ) < 7)]
+    have h₁₄ : b = 8/7 := by
+      rw [← Real.exp_log h₀, ← Real.exp_log (by positivity : (0 : ℝ) < 8/7)]
+      field_simp [h₁₃]
+      <;> ring_nf
+      <;> norm_num
+    exact h₁₄
+  exact h₅
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 30.357983827590942 / 4.8552117347717285 / 35.21319556236267
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    have h₆ : b > 0 := by linarith
+    have h₇ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₈ : x = Real.logb b (7^7) := h₂
+    have h₉ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    rw [h₉] at h₈
+    have h₁₀ : x = Real.log (7^7) / Real.log b := by linarith
+    rw [h₁₀] at h₇
+    have h₁₁ : (7 : ℝ)^(Real.log (7^7) / Real.log b + 7) = 8^(Real.log (7^7) / Real.log b) := h₇
+    have h₁₂ : Real.log b ≠ 0 := by
+      intro h
+      rw [h] at h₁₁
+      norm_num at h₁₁
+      <;> simp_all [Real.rpow_def_of_pos]
+      <;> norm_num at *
+      <;> linarith
+    have h₁₃ : Real.log b = Real.log (8 / 7) := by
+      field_simp [Real.log_mul, Real.log_div, Real.log_rpow, Real.log_pow] at h₁₁ ⊢
+      ring_nf at h₁₁ ⊢
+      <;> norm_num at h₁₁ ⊢ <;> nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 8), Real.log_pos (by norm_num : (1 : ℝ) < 7)]
+    have h₁₄ : b = 8 / 7 := by
+      rw [← Real.exp_log (show 0 < b by linarith)]
+      rw [← Real.exp_log (show 0 < 8 / 7 by norm_num)]
+      simp_all [h₁₃]
+    exact h₁₄
+  exact h₅
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 48.5177321434021 / 5.6716814041137695 / 54.18941354751587
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    rw [h₃] at h₄
+    have h₆ : (7 : ℝ)^(Real.logb b (7^7) + 7) = 8^(Real.logb b (7^7)) := h₄
+    have h₇ : b > 0 := by linarith
+    have h₈ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    rw [h₈] at h₆
+    have h₉ : (7 : ℝ)^(Real.log (7^7) / Real.log b + 7) = 8^(Real.log (7^7) / Real.log b) := h₆
+    have h₁₀ : Real.log b ≠ 0 := by
+      intro h
+      rw [h] at h₆
+      norm_num at h₆
+      <;> simp_all [Real.log_one]
+    have h₁₁ : Real.log (7^7) = 7 * Real.log 7 := by
+      rw [Real.log_pow]
+      <;> ring
+    rw [h₁₁] at h₉
+    have h₁₂ : (7 : ℝ)^(7 * Real.log 7 / Real.log b + 7) = 8^(7 * Real.log 7 / Real.log b) := h₉
+    have h₁₃ : (7 : ℝ)^7 > 0 := by positivity
+    have h₁₄ : (8 : ℝ)^(7 * Real.log 7 / Real.log b) > 0 := by positivity
+    have h₁₅ : (7 : ℝ)^(7 * Real.log 7 / Real.log b + 7) = (7 : ℝ)^(7 * Real.log 7 / Real.log b) * (7 : ℝ)^7 := by
+      rw [← Real.rpow_add (by positivity)]
+      <;> field_simp
+    rw [h₁₅] at h₁₂
+    have h₁₆ : (7 : ℝ)^(7 * Real.log 7 / Real.log b) * (7 : ℝ)^7 = 8^(7 * Real.log 7 / Real.log b) := by
+      linarith
+    have h₁₇ : (7 : ℝ)^7 = 7^7 := by norm_num
+    rw [h₁₇] at h₁₆
+    have h₁₈ : (7 : ℝ)^(7 * R
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.151925086975098 / 3.38198184967041 / 29.533906936645508
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    have h₆ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₇ : x = Real.logb b (7^7) := h₂
+    have h₈ : b > 0 := by linarith
+    have h₉ : Real.logb b (7^7) = x := by linarith
+    have h₁₀ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    have h₁₁ : Real.log (7^7) = 7 * Real.log 7 := by
+      rw [Real.log_pow]
+      <;> ring
+    have h₁₂ : Real.log b ≠ 0 := by
+      intro h
+      rw [h] at h₉
+      simp_all
+    have h₁₃ : Real.log b = Real.log 8 / 7 := by
+      field_simp [h₉, h₁₀, h₁₁] at *
+      <;> ring_nf at * <;>
+      nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 8),
+        Real.log_pos (by norm_num : (1 : ℝ) < 7)]
+    have h₁₄ : b = 8/7 := by
+      rw [← Real.exp_log h₈]
+      rw [← Real.exp_log (by positivity : (0 : ℝ) < 8/7)]
+      field_simp [h₁₃]
+      <;> ring_nf
+      <;> norm_num
+      <;> field_simp [h₁₃] at *
+      <;> linarith
+    exact h₁₄
+  exact h₅
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 28.339462757110596 / 3.95164155960083 / 32.291104316711426
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    have h₆ : b > 0 := by linarith
+    have h₇ : x = Real.logb b (7^7) := h₂
+    have h₈ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₉ : Real.logb b (7^7) = x := by rw [h₇]
+    have h₁₀ : b ^ (Real.logb b (7^7)) = 7^7 := by
+      rw [Real.rpow_logb] <;> norm_num <;> linarith
+    have h₁₁ : b ^ x = 7^7 := by simpa [h₉] using h₁₀
+    have h₁₂ : (8 : ℝ)^x = 8^x := by norm_num
+    have h₁₃ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₁₄ : (7 : ℝ)^(x + 7) = 7^x * 7^7 := by
+      rw [← Real.rpow_nat_cast]
+      simp [Real.rpow_add, h₁]
+    have h₁₅ : 8^x = 7^x * 7^7 := by
+      linarith
+    have h₁₆ : (8 : ℝ) = 7 * (8 / 7) := by ring
+    have h₁₇ : (8 : ℝ)^x = 7^x * 7^7 := by linarith
+    have h₁₈ : b = 8 / 7 := by
+      apply Eq.symm
+      field_simp [h₁₁, h₁₇] at h₁₁ h₁₇ ⊢
+      <;> ring_nf at h₁₁ h₁₇ ⊢ <;> nlinarith [sq_nonneg (b - 8 / 7)]
+    exact h₁₈
+  exact h₅
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 34.5937340259552 / 3.895514726638794 / 38.489248752593994
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p11
+  (x b : ℝ)
+  (h₀ : 0 < b)
+  (h₁ : (7 : ℝ)^(x + 7) = 8^x)
+  (h₂ : x = Real.logb b (7^7)) :
+  b = 8/7 := by
+  have h₃ : x = Real.logb b (7^7) := h₂
+  have h₄ : (7 : ℝ)^(x + 7) = 8^x := h₁
+  have h₅ : b = 8/7 := by
+    have h₆ : b > 0 := h₀
+    have h₇ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₈ : x = Real.logb b (7^7) := h₂
+    have h₉ : Real.logb b (7^7) = Real.log (7^7) / Real.log b := by
+      rw [Real.logb]
+    have h₁₀ : x = Real.log (7^7) / Real.log b := by linarith
+    have h₁₁ : (7 : ℝ)^(x + 7) = 8^x := h₁
+    have h₁₂ : Real.log ((7 : ℝ)^(x + 7)) = Real.log (8^x) := by rw [h₁₁]
+    have h₁₃ : (x + 7) * Real.log 7 = x * Real.log 8 := by
+      rw [Real.log_rpow (by positivity), Real.log_rpow (by positivity)] at h₁₂
+      linarith
+    have h₁₄ : x * (Real.log 8 - Real.log 7) = 7 * Real.log 7 := by linarith
+    have h₁₅ : Real.log 8 - Real.log 7 = Real.log (8 / 7) := by
+      rw [Real.log_div (by positivity) (by positivity)]
+      <;> ring
+    have h₁₆ : x * Real.log (8 / 7) = 7 * Real.log 7 := by
+      rw [h₁₅] at h₁₄
+      linarith
+    have h₁₇ : Real.log b ≠ 0 := by
+      intro h
+      rw [h] at h₁₆
+      norm_num at h₁₆
+      <;> simp_all [Real.log_one]
+    have h₁₈ : b = 8 / 7 := by
+      have h₁₉ : Real.log b = Real.log (8 / 7) := by
+        field_simp [Real.log_mul, Real.log_div, h₁₇] at h₁₆ ⊢
+        <;> nlinarith
+      have h₂₀ : b = 8 / 7 := by
+        apply Real.log_injOn_pos
+... [truncated] ...

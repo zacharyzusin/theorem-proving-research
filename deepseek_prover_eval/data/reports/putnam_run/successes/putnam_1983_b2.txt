@@ -1,0 +1,23 @@
+Problem: putnam_1983_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 19.378416299819946
+Lean check time (s): 25.403498649597168
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b2
+    (f : ℕ+ → ℕ)
+    (hf : f = fun (n : ℕ+) ↦
+      Set.ncard {M : Multiset ℕ |
+        (∀ m ∈ M, ∃ k : ℕ, m = (2 ^ k : ℤ)) ∧
+        (∀ m ∈ M, M.count m ≤ 3) ∧
+        (M.sum : ℤ) = n}) :
+    putnam_1983_b2_solution ↔
+      (∃ p : Polynomial ℝ, ∀ n : ℕ+, ⌊p.eval (n : ℝ)⌋ = f n) :=
+  sorry

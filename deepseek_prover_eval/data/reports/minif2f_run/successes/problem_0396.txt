@@ -1,0 +1,21 @@
+Problem: problem_0396
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.190705060958862
+Lean check time (s): 4.29881477355957
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta
+  (b c d a : ℂ) :
+  (a - d) * (a - c) * (a - b) = -(((a^2 - (b + c) * a) + c * b) * d) + (a^2 - (b + c) * a + c * b) * a := by
+  ring_nf
+  <;> simp only [mul_comm, mul_assoc, mul_left_comm]
+  <;> ring
+  <;> simp only [add_comm, add_left_comm, add_assoc]
+  <;> ring

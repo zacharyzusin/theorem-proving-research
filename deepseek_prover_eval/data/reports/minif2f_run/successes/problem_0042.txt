@@ -1,0 +1,21 @@
+Problem: problem_0042
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.876951456069946
+Lean check time (s): 2.8146753311157227
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_12 :
+  Finset.card (Finset.filter (λ x => 20∣x) (Finset.Icc 15 85)) = 4 := by
+  rfl
+  <;> decide
+  <;> simp [Finset.card, Finset.filter_eq]
+  <;> decide
+  <;> rfl
+  <;> decide

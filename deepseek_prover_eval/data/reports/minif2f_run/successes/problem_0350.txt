@@ -1,0 +1,23 @@
+Problem: problem_0350
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.5863871574401855
+Lean check time (s): 4.107447385787964
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_55
+  (q p : ℝ)
+  (h₀ : q = 2 - 4 + 6 - 8 + 10 - 12 + 14)
+  (h₁ : p = 3 - 6 + 9 - 12 + 15 - 18 + 21) :
+  q / p = 2 / 3 := by
+  norm_num [h₀, h₁]
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith

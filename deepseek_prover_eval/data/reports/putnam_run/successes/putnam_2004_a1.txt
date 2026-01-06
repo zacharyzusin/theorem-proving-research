@@ -1,0 +1,21 @@
+Problem: putnam_2004_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 14.188267946243286
+Lean check time (s): 7.220696926116943
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_a1
+  (S : (ℕ → Fin 2) → ℕ → ℝ)
+  (hS : ∀ attempts, ∀ N ≥ 1, S attempts N = (∑ i : Fin N, (attempts i).1) / N) :
+  (∀ attempts a b,
+    (1 ≤ a ∧ a < b ∧ S attempts a < 0.8 ∧ S attempts b > 0.8) →
+      (∃ c : ℕ, a < c ∧ c < b ∧ S attempts c = 0.8))
+  ↔ putnam_2004_a1_solution :=
+sorry

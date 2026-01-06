@@ -1,0 +1,19 @@
+Problem: problem_0062
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.118180990219116
+Lean check time (s): 3.7583506107330322
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_728 :
+  (29^13 - 5^13) % 7 = 3 := by
+  norm_num [Nat.pow_mod, Nat.mod_eq_of_lt, Nat.succ_pos, Nat.zero_lt_one]
+  <;> rfl
+  <;> norm_num
+  <;> rfl

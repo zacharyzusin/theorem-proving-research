@@ -1,0 +1,21 @@
+Problem: problem_0188
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.486181974411011
+Lean check time (s): 3.5151402950286865
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p2
+  (x : ℤ)
+  (h₀ : x = 4) :
+  (3 * x - 2) * (4 * x + 1) - (3 * x - 2) * (4 * x) + 1 = 11 := by
+  subst h₀
+  norm_num
+  <;> ring
+  <;> omega

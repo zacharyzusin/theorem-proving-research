@@ -1,0 +1,28 @@
+Problem: problem_0124
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 16.29248309135437
+Lean check time (s): 6.814120292663574
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_absapbon1pabsapbleqsumabsaon1pabsa
+  (a b : ℝ) :
+  abs (a + b) / (1 + abs (a + b)) ≤ abs a / (1 + abs a) + abs b / (1 + abs b) := by
+  have h₁ : 0 ≤ abs a := abs_nonneg a
+  have h₂ : 0 ≤ abs b := abs_nonneg b
+  have h₃ : 0 ≤ abs (a + b) := abs_nonneg (a + b)
+  have h₄ : 0 ≤ abs a * abs b := mul_nonneg h₁ h₂
+  have h₅ : 0 ≤ abs a * abs (a + b) := mul_nonneg h₁ h₃
+  have h₆ : 0 ≤ abs b * abs (a + b) := mul_nonneg h₂ h₃
+  have h₇ : 0 ≤ abs a * abs b * abs (a + b) := mul_nonneg h₄ h₃
+  field_simp [add_comm]
+  rw [div_le_div_iff] <;>
+    nlinarith [abs_add a b, abs_mul a b, abs_mul a (a + b), abs_mul b (a + b),
+      mul_nonneg h₁ h₂, mul_nonneg h₁ h₃, mul_nonneg h₂ h₃,
+      mul_nonneg (abs_nonneg (a - b)) (abs_nonneg (a + b))]

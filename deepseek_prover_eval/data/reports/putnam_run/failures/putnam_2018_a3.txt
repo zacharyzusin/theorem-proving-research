@@ -1,0 +1,311 @@
+Problem: putnam_2018_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 31.269558906555176 / 13.1514413356781 / 44.421000242233276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      (480 / 49) := by
+  have step₁ : IsGreatest {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)} (480 / 49) := by
+    have h : IsGreatest {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)} (480 / 49) := by
+      constructor
+      · -- Show that 480 / 49 is in the set
+        use fun i => Real.pi / 2 + (2 * Real.pi * ↑i) / 10
+        simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_two_mul, Real.sin_two_mul, mul_assoc]
+        <;> ring_nf
+        <;> norm_num
+        <;> field_simp <;> ring_nf <;> norm_num
+        <;> simp_all [Real.cos_add, Real.cos_two_mul, Real.sin_two_mul, mul_assoc]
+        <;> norm_num
+        <;> rfl
+      · -- Show that 480 / 49 is the greatest element in the set
+        intro y hy
+        rcases hy with ⟨x, hx⟩
+        have h1 : ∑ i : Fin 10, Real.cos (3 * x i) ≤ 480 / 49 := by
+          simp_all [Fin.sum_univ_succ]
+          have h2 : ∑ i : Fin 10, Real.cos (x i) = 0 := by simp_all
+          have h3 : ∑ i : Fin 10, Real.cos (3 * x i) ≤ 480 / 49 := by
+            simp_all [Fin.sum_univ_succ, Real.cos_le_one]
+            have h4 : ∀ i : Fin 10, Real.cos (3 * x i) ≤ 1 := by
+              intro i
+              exact Real.cos_le_one (3 * x i)
+            have h5 : ∑ i : Fin 10, Real.cos (3 * x i) ≤ ∑ i : Fi
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.012696027755737 / 12.248454093933105 / 33.26115012168884
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      putnam_2018_a3_solution := by
+  refine' ⟨_, _⟩
+  · -- Show that 480/49 is achievable
+    use fun i => Real.pi / 2 + (Real.pi / 10) * (2 * i + 1)
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_two_mul, Real.sin_two_mul, mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_pi_div_two]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0]
+  · -- Show that 480/49 is the greatest value
+    intro y hy
+    rcases hy with ⟨x, hx⟩
+    simp_all [Fin.sum_univ_succ, Real.cos_add, Real.cos_two_mul, Real.sin_two_mul, mul_assoc]
+    <;>
+    nlinarith [Real.cos_le_one 0, Real.cos_le_one (3 * x 0), Real.cos_le_one (3 * x 1),
+      Real.cos_le_one (3 * x 2), Real.cos_le_one (3 * x 3), Real.cos_le_one (3 * x 4),
+      Real.cos_le_one (3 * x 5), Real.cos_le_one (3 * x 6), Real.cos_le_one (3 * x 7),
+      Real.cos_le_one (3 * x 8), Real.cos_le_one (3 * x 9)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.255672216415405 / 13.062746286392212 / 36.31841850280762
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      (480 / 49) := by
+  refine' ⟨_, _⟩
+  · -- Show that 480/49 is achievable
+    use fun i => Real.pi / 2 + Real.pi * (i : ℕ) / 5
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_pi_div_two, Real.sin_pi_div_two,
+      Real.cos_pi, Real.sin_pi, mul_add, mul_sub, mul_one, mul_neg, sub_neg_eq_add]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_three_mul, Real.sin_three_mul]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 2), Real.cos_le_one Real.pi]
+  · -- Show that 480/49 is the greatest possible value
+    intro y hy
+    rcases hy with ⟨x, hx⟩
+    simp only [Set.mem_setOf_eq] at hx
+    have h1 : ∑ i : Fin 10, Real.cos (3 * x i) ≤ 480 / 49 := by
+      -- Use the fact that the sum of cosines is bounded by 10
+      have h2 : ∀ i : Fin 10, Real.cos (3 * x i) ≤ 1 := by
+        intro i
+        exact Real.cos_le_one (3 * x i)
+      have h3 : ∑ i : Fin 10, Real.cos (3 * x i) ≤ ∑ i : Fin 10, 1 := by
+        exact Finset.sum_le_sum fun i _ => h2 i
+      simp at h3
+      linarith
+    exact h1
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 49.84990310668945 / 12.480450630187988 / 62.33035373687744
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      putnam_2018_a3_solution := by
+  refine' ⟨_, _⟩
+  · -- Show that 480/49 is achievable
+    use fun i => Real.pi / 2 + (Real.pi / 10) * (2 * (↑i + 1))
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_two_mul, Real.sin_two_mul, mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_sq, Real.sin_sq]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 10), Real.cos_le_one (Real.pi / 5),
+      Real.cos_le_one (Real.pi / 2), Real.cos_le_one (3 * Real.pi / 10), Real.cos_le_one (Real.pi / 2 + Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + 3 * Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 2 * Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + 4 * Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 5 * Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + 6 * Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 7 * Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + 8 * Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 9 * Real.pi / 10)]
+  · -- Show that 480/49 is the greatest possible value
+    intro y hy
+    rcases hy with ⟨x, hx⟩
+    simp_all only [Set.mem_setOf_eq, Fin.sum_univ_succ]
+    have h₁ : ∑ i : Fin 10, Real.cos (3 * x i) ≤ 480 / 49 := by
+      -- Use the fact that the sum of cosines is zero to bound the sum of 3 times t
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 28.67867159843445 / 11.610344886779785 / 40.28901648521423
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      putnam_2018_a3_solution := by
+  refine' ⟨_, _⟩
+  · -- Show that the value 480/49 is achievable.
+    use fun i => Real.pi / 2 + (Real.pi / 10) * (2 * (↑i : ℕ) + 1)
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_pi_div_two, Real.sin_pi_div_two,
+      mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_three_mul]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 3), Real.cos_le_one (2 * Real.pi / 3),
+      Real.cos_le_one (Real.pi), Real.cos_le_one (7 * Real.pi / 6), Real.cos_le_one (5 * Real.pi / 6),
+      Real.cos_le_one (3 * Real.pi / 2), Real.cos_le_one (7 * Real.pi / 6), Real.cos_le_one (5 * Real.pi / 6),
+      Real.cos_le_one (3 * Real.pi / 2)]
+  · -- Show that the value 480/49 is the greatest possible value.
+    intro y hy
+    rcases hy with ⟨x, hx⟩
+    simp_all [Fin.sum_univ_succ, Real.cos_add, Real.cos_pi_div_two, Real.sin_pi_div_two,
+      mul_assoc]
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 3), Real.cos_le_one (2 * Real.pi / 3),
+      Real.cos_le_one (Real.pi), Real.cos_le_one (7 * Real.pi / 6), Real.cos_le_one (5 * Real.pi / 6),
+      Real.cos_le_one (3 * Real.pi / 2), Real.cos_le_one (7 * Real.pi / 6), Real.cos_le_one (5 * Real.pi / 6),
+      Real.cos_l
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 29.893277883529663 / 11.713011026382446 / 41.60628890991211
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      putnam_2018_a3_solution := by
+  refine' ⟨_, _⟩
+  · -- Show that 480/49 is achievable
+    use fun i => Real.pi / 2 + (Real.pi / 10) * (2 * (↑i + 1))
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_two_mul, Real.sin_two_mul, mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_sq, Real.sin_sq]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 5), Real.cos_le_one (Real.pi / 5 * 2),
+      Real.cos_le_one (Real.pi / 5 * 3), Real.cos_le_one (Real.pi / 5 * 4), Real.cos_le_one (Real.pi / 5 * 5),
+      Real.cos_le_one (Real.pi / 5 * 6), Real.cos_le_one (Real.pi / 5 * 7), Real.cos_le_one (Real.pi / 5 * 8),
+      Real.cos_le_one (Real.pi / 5 * 9)]
+  · -- Show that 480/49 is the greatest possible value
+    intro x hx
+    simp only [Set.mem_setOf_eq] at hx ⊢
+    have h₁ : ∑ i : Fin 10, Real.cos (x i) = 0 := hx
+    have h₂ : ∑ i : Fin 10, Real.cos (3 * x i) ≤ 480 / 49 := by
+      -- Use the fact that cos(3x) is bounded by 1 and the sum of cos(x_i) is 0 to bound the sum of cos(3x_i)
+      have h₃ : ∀ i : Fin 10, Real.cos (3 * x i) ≤ 1 := by
+        intro i
+        exact Real.cos_le_one (3 * x i)
+      have h₄ : ∑ i : Fin 10, Real.cos (3 * x i) ≤ ∑ i : Fin 10, 1 := by
+        exact Finset.sum_le_sum fun i _ => h₃ i
+   
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.223206758499146 / 10.75382375717163 / 31.977030515670776
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      (480 / 49) := by
+  refine' ⟨_, _⟩
+  · -- Show that 480/49 is achievable
+    use fun i => Real.pi / 2 + (Real.pi / 2) * (2 * (↑i : ℝ) - 1)
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_sub, Real.cos_two_mul, Real.sin_two_mul,
+      mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_sq, Real.sin_sq]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 2)]
+  · -- Show that 480/49 is the greatest possible value
+    intro y hy
+    rcases hy with ⟨x, hx⟩
+    simp_all [Fin.sum_univ_succ, Real.cos_add, Real.cos_sub, Real.cos_two_mul, Real.sin_two_mul,
+      mul_assoc]
+    have h1 : ∀ i : Fin 10, Real.cos (3 * x i) ≤ 1 := fun i => by
+      exact Real.cos_le_one (3 * x i)
+    have h2 : ∑ i : Fin 10, Real.cos (3 * x i) ≤ ∑ i : Fin 10, 1 := by
+      exact Finset.sum_le_sum fun i _ => h1 i
+    simp at h2
+    norm_num at h2
+    linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 43.29259753227234 / 11.77304720878601 / 55.06564474105835
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a3 :
+    IsGreatest
+      {∑ i, Real.cos (3 * x i) | (x : Fin 10 → ℝ) (hx : ∑ i, Real.cos (x i) = 0)}
+      putnam_2018_a3_solution := by
+  refine' ⟨_, _⟩
+  · -- Show that 480/49 is achievable
+    use fun i => Real.pi / 2 + (Real.pi / 10) * (2 * (↑i + 1))
+    simp [Fin.sum_univ_succ, Real.cos_add, Real.cos_pi_div_two, Real.sin_pi_div_two,
+      mul_assoc]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.cos_three_mul, Real.sin_three_mul]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2), Real.cos_le_one (3 * Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 3 * Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + 5 * Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 7 * Real.pi / 10),
+      Real.cos_le_one (Real.pi / 2 + 9 * Real.pi / 10)]
+  · -- Show that 480/49 is the greatest possible value
+    intro y hy
+    obtain ⟨x, hx⟩ := hy
+    simp_all [Fin.sum_univ_succ, Real.cos_add, Real.cos_pi_div_two, Real.sin_pi_div_two,
+      mul_assoc]
+    <;> norm_num at *
+    <;>
+    (try
+      linarith [Real.cos_le_one 0, Real.cos_le_one (Real.pi / 10),
+        Real.cos_le_one (Real.pi / 2), Real.cos_le_one (3 * Real.pi / 10),
+        Real.cos_le_one (Real.pi / 2 + Real.pi / 10), Real.cos_le_one (Real.pi / 2 + 3 * Real.pi / 10),
+        Real.cos_le_one (
+... [truncated] ...

@@ -1,0 +1,350 @@
+Problem: putnam_1968_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.70240020751953 / 40.11392903327942 / 65.81632924079895
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i : Fin n, ∀ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ 1 := by
+    intro i j
+    split_ifs with h
+    · have h₂ : i < j := h
+      have h₃ : dist (S i) (S j) ≤ 2 := by
+        have h₄ : dist 0 (S i) = 1 := hS i
+        have h₅ : dist 0 (S j) = 1 := hS j
+        have h₆ : dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+          apply dist_triangle_left
+        simp_all [dist_comm]
+        <;> linarith
+      have h₄ : (dist (S i) (S j))^2 ≤ 1 := by
+        have h₅ : dist (S i) (S j) ≥ 0 := by apply dist_nonneg
+        nlinarith [sq_nonneg (dist (S i) (S j)), h₃]
+      exact h₄
+    · exact by norm_num
+  calc
+    (∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ))) ≤
+      ∑ i : Fin n, ∑ j : Fin n, (1 : ℝ) := by
+        apply Finset.sum_le_sum
+        intro i _
+        apply Finset.sum_le_sum
+        intro j _
+        exact h₁ i j
+    _ = ∑ i : Fin n, ∑ j : Fin n, (1 : ℝ) := by rfl
+    _ = ∑ i : Fin n, n := by simp [Finset.sum_const, Finset.card_fin]
+    _ = n * n := by simp [Finset.sum_const, Finset.card_fin]
+    _ = n ^ 2 := by ring
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.67321252822876 / 41.90168356895447 / 66.57489609718323
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ 1 := by
+    intro i j
+    split_ifs with h
+    · -- Case: i < j
+      have h₁ : dist 0 (S i) = 1 := hS i
+      have h₂ : dist 0 (S j) = 1 := hS j
+      have h₃ : dist (S i) (S j) ≤ 2 := by
+        calc
+          dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+            apply dist_triangle_left
+          _ = 1 + 1 := by rw [h₁, h₂]
+          _ = 2 := by ring
+      have h₄ : (dist (S i) (S j))^2 ≤ 1 := by
+        have h₅ : 0 ≤ dist (S i) (S j) := by apply dist_nonneg
+        have h₆ : dist (S i) (S j) ≤ 2 := h₃
+        nlinarith [sq_nonneg (dist (S i) (S j)), sq_nonneg (2 - dist (S i) (S j))]
+      exact h₄
+    · -- Case: i ≥ j
+      simp
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤
+      ∑ i : Fin n, ∑ j : Fin n, 1 := by
+      apply Finset.sum_le_sum
+      intro i _
+      apply Finset.sum_le_sum
+      intro j _
+      exact h₁ i j
+    _ = n * n := by simp [Finset.sum_const, Finset.card_fin]
+    _ = n^2 := by ring
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.671359062194824 / 50.70736503601074 / 75.37872409820557
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ 1 := by
+    intro i j
+    split_ifs with h
+    · -- Case: i < j
+      have h₂ : dist 0 (S i) = 1 := hS i
+      have h₃ : dist 0 (S j) = 1 := hS j
+      have h₄ : dist (S i) (S j) ≤ 2 := by
+        calc
+          dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+            apply dist_triangle_left
+          _ = 1 + 1 := by rw [h₂, h₃]
+          _ = 2 := by ring
+      have h₅ : (dist (S i) (S j))^2 ≤ 1 := by
+        have h₆ : 0 ≤ dist (S i) (S j) := by apply dist_nonneg
+        have h₇ : dist (S i) (S j) ≤ 2 := h₄
+        nlinarith [sq_nonneg (dist (S i) (S j)), sq_nonneg (2 - dist (S i) (S j))]
+      exact h₅
+    · -- Case: i ≥ j
+      simp
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ ∑ i : Fin n, ∑ j : Fin n, 1 := by
+      apply Finset.sum_le_sum
+      intro i _
+      apply Finset.sum_le_sum
+      intro j _
+      exact h₁ i j
+    _ = n * n := by
+      simp [Finset.sum_const, Finset.card_fin]
+    _ = n^2 := by ring
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.742921113967896 / 16.679147481918335 / 44.42206859588623
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i : Fin n, i ∈ Finset.univ → ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n := by
+    intro i _
+    have h₂ : ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n := by
+      calc
+        ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ ∑ j : Fin n, (1 : ℝ) := by
+          exact Finset.sum_le_sum fun j _ => by
+            split_ifs
+            · exact by
+                have h₃ : dist 0 (S i) = 1 := hS i
+                have h₄ : dist 0 (S j) = 1 := hS j
+                have h₅ : dist (S i) (S j) ≤ 2 := by
+                  calc
+                    dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+                      apply dist_triangle_left
+                    _ = 1 + 1 := by rw [hS i, hS j]
+                    _ = 2 := by ring
+                have h₆ : (dist (S i) (S j))^2 ≤ 2^2 := by
+                  exact pow_le_pow_of_le_left (by
+                    exact dist_nonneg) h₅ 2
+                simp_all [sq]
+                <;> nlinarith
+            · exact by
+                simp_all
+        _ = n := by simp [Finset.sum_const, Finset.card_fin]
+    exact h₂
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 23.97889757156372 / 50.97166657447815 / 74.95056414604187
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h1 : ∀ i : Fin n, ∀ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ 1 := by
+    intro i j
+    split_ifs
+    · have h2 : dist (S i) (S j) ≤ 2 := by
+        have h3 : dist 0 (S i) = 1 := hS i
+        have h4 : dist 0 (S j) = 1 := hS j
+        have h5 : dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+          apply dist_triangle_left
+        simp_all
+        <;> linarith
+      have h6 : (dist (S i) (S j))^2 ≤ 1 := by
+        have h7 : 0 ≤ dist (S i) (S j) := by
+          apply dist_nonneg
+        nlinarith [sq_nonneg (dist (S i) (S j)), sq_nonneg (2 - dist (S i) (S j))]
+      exact h6
+    · simp
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ ∑ i : Fin n, ∑ j : Fin n, 1 := by
+      apply Finset.sum_le_sum
+      intro i _
+      apply Finset.sum_le_sum
+      intro j _
+      exact h1 i j
+    _ = ∑ i : Fin n, n := by
+      simp [Finset.sum_const]
+    _ = n * n := by
+      simp [Finset.sum_const, Finset.card_fin]
+    _ = n ^ 2 := by
+      ring
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.128681421279907 / 48.48314881324768 / 72.61183023452759
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ 1 := by
+    intro i j
+    split_ifs with h
+    · have h₁ : i < j := h
+      have h₂ : dist 0 (S i) = 1 := hS i
+      have h₃ : dist 0 (S j) = 1 := hS j
+      have h₄ : dist (S i) (S j) ≤ 2 := by
+        calc
+          dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := dist_triangle_left 0 (S i) (S j)
+          _ = 1 + 1 := by rw [h₂, h₃]
+          _ = 2 := by ring
+      have h₅ : (dist (S i) (S j))^2 ≤ 1 := by
+        have h₆ : 0 ≤ dist (S i) (S j) := dist_nonneg
+        nlinarith [sq_nonneg (dist (S i) (S j)), sq_nonneg (2 - dist (S i) (S j))]
+      exact h₅
+    · simp
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤
+        ∑ i : Fin n, ∑ j : Fin n, 1 := by
+      exact Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ => h₁ i j
+    _ = ∑ i : Fin n, n := by
+      simp [Finset.sum_const, Finset.card_fin]
+    _ = n * n := by simp [mul_comm]
+    _ = n ^ 2 := by ring
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.62945818901062 / 22.378670930862427 / 47.00812911987305
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i : Fin n, ∀ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ 1 := by
+    intro i j
+    split_ifs with h
+    · have h₁ : dist (S i) (S j) ≤ 2 := by
+        have h₂ : dist 0 (S i) = 1 := hS i
+        have h₃ : dist 0 (S j) = 1 := hS j
+        have h₄ : dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+          apply dist_triangle_left
+        simp_all [dist_comm]
+        <;> linarith
+      have h₂ : (dist (S i) (S j))^2 ≤ 1 := by
+        have h₃ : 0 ≤ dist (S i) (S j) := by
+          apply dist_nonneg
+        nlinarith [sq_nonneg (dist (S i) (S j)), h₁]
+      exact h₂
+    · simp
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤
+      ∑ i : Fin n, ∑ j : Fin n, 1 := by
+      apply Finset.sum_le_sum
+      intro i _
+      apply Finset.sum_le_sum
+      intro j _
+      exact h₁ i j
+    _ = ∑ i : Fin n, ∑ j : Fin n, 1 := by rfl
+    _ = ∑ i : Fin n, n := by simp [Finset.sum_const, Finset.card_fin]
+    _ = n * n := by simp [Finset.sum_const, Finset.card_fin]
+    _ = n ^ 2 := by ring
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.11279010772705 / 38.20592260360718 / 64.31871271133423
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a4
+(n : ℕ)
+(S : Fin n → (EuclideanSpace ℝ (Fin 3)))
+(hS : ∀ i : Fin n, dist 0 (S i) = 1)
+: ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n^2 := by
+  have h₁ : ∀ i : Fin n, i ∈ Finset.univ → ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ n := by
+    intro i _
+    have h₂ : ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ ∑ j : Fin n, (1 : ℝ) := by
+      apply Finset.sum_le_sum
+      intro j _
+      split_ifs
+      · have h₃ : dist 0 (S i) = 1 := hS i
+        have h₄ : dist 0 (S j) = 1 := hS j
+        have h₅ : dist (S i) (S j) ≤ 2 := by
+          calc
+            dist (S i) (S j) ≤ dist 0 (S i) + dist 0 (S j) := by
+              apply dist_triangle_left
+            _ = 1 + 1 := by rw [h₃, h₄]
+            _ = 2 := by ring
+        have h₆ : (dist (S i) (S j))^2 ≤ 2^2 := by
+          gcongr
+          <;> linarith [sq_nonneg (dist (S i) (S j))]
+        norm_num at h₆ ⊢
+        linarith
+      · norm_num
+    simp_all [Finset.sum_const]
+    <;> linarith
+  calc
+    ∑ i : Fin n, ∑ j : Fin n, (if i < j then (dist (S i) (S j))^2 else (0 : ℝ)) ≤ ∑ i : Fin n, (n : ℝ) := by
+      apply Finset.sum_le_sum
+      intro i _
+      exact h₁ i (Finset.mem_univ i)
+    _ = n * n := by simp [Finset.sum_const, Finset.card_fin]
+    _ = n^2 := by ring

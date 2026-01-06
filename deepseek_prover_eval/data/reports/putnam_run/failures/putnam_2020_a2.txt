@@ -1,0 +1,282 @@
+Problem: putnam_2020_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.31929349899292 / 9.449463605880737 / 37.76875710487366
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h₂ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by
+        apply Finset.sum_bij' (fun j hj => k - j) (fun j hj => k - j) <;>
+          simp_all [Finset.mem_Icc, Nat.sub_le_iff_le_add, Nat.le_of_lt_succ, Nat.succ_le_iff] <;>
+          omega
+      rw [h₂]
+      have h₃ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+        have h₄ : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+          intro k
+          have h₅ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := rfl
+          rw [h₅]
+          have h₆ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+            induction k with
+            | zero => simp
+            | succ k ih =>
+              simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_comm, Nat.add_left_comm, Nat.add_assoc]
+              all_goals
+                ring_nf
+                <;> omega
+          exact h₆
+        exact h₄ k
+      exact h₃
+    exact h₁
+  have h₂ : putnam_2020_a2
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 34.30759930610657 / 8.36002492904663 / 42.6676242351532
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h₂ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k := by
+        apply Finset.sum_bij' (fun j _ => k - j) (fun j _ => k - j) <;> simp_all [Finset.mem_Icc, Nat.choose_symm_of_eq_add] <;> omega
+      rw [h₂]
+      have h₃ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k := rfl
+      rw [h₃]
+      have h₄ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = 4 ^ k := by
+        have h₅ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k := rfl
+        rw [h₅]
+        have h₆ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = 4 ^ k := by
+          have h₇ : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = 4 ^ k := by
+            intro k
+            have h₈ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k := rfl
+            rw [h₈]
+            have h₉ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) k = 4 ^ k := by
+              induction k with
+            
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 33.72309875488281 / 7.007425546646118 / 40.73052430152893
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h₁ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h₂ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j := rfl
+      rw [h₂]
+      have h₃ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+        have h₄ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j := rfl
+        rw [h₄]
+        have h₅ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+          have h₆ : ∀ k : ℕ, ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+            intro k
+            have h₇ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+              have h₈ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j := rfl
+              rw [h₈]
+              have h₉ : ∑ j in Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+                induction k with
+                | zero => simp
+                | succ k ih =>
+                  simp_all [Finset.sum_Icc_succ_top, Nat.
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 35.912487506866455 / 8.456629514694214 / 44.36911702156067
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by
+        apply Finset.sum_bij' (fun j hj => k - j) (fun j hj => k - j) <;>
+          simp_all [Finset.mem_Icc, Nat.choose_symm_of_eq_add, Nat.choose_succ_succ] <;>
+          omega
+      rw [h₁]
+      have h₂ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+        have h₂ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by rfl
+        have h₃ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+          have h₃ : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+            intro k
+            have h₄ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+              have h₅ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by rfl
+              have h₆ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+                induction k with
+                | zero => simp
+              
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 33.59926462173462 / 9.120774507522583 / 42.7200391292572
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by
+        apply Finset.sum_bij' (fun j _ => k - j) (fun j _ => k - j) <;> simp_all [Finset.mem_Icc, Nat.sub_le] <;> omega
+      rw [h₁]
+      have h₂ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+        have h₃ : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+          intro k
+          have h₄ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by rfl
+          have h₅ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+            have h₆ : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+              intro k
+              have h₇ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by rfl
+              have h₈ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+                induction k with
+                | zero => simp
+                | succ k ih =>
+           
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 28.655285596847534 / 8.987414836883545 / 37.64270043373108
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h1 : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h2 : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by
+        apply Finset.sum_bij' (fun j hj => k - j) (fun j hj => k - j) <;>
+        simp_all [Finset.mem_Icc, Nat.sub_le_iff_le_add, Nat.le_of_lt_succ, Nat.succ_le_iff] <;>
+        omega
+      rw [h2]
+      have h3 : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+        have h4 : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+          intro k
+          have h5 : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := rfl
+          rw [h5]
+          have h6 : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+            induction k with
+            | zero => simp
+            | succ k ih =>
+              simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, pow_succ, mul_add, mul_one, add_mul,
+                Nat.add_comm, Nat.add_left_comm, Nat.add_assoc]
+              <;> ring_nf at *
+              <;> omega
+          exact h6
+        exact h4 k
+      exact h3
+    exact
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 28.60411047935486 / 8.910001277923584 / 37.51411175727844
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    intro k
+    have h1 : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h2 : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by
+        apply Finset.sum_bij' (fun j hj => k - j) (fun j hj => k - j) <;>
+          simp_all [Finset.mem_Icc, Nat.sub_le_iff_le_add, Nat.le_sub_iff_add_le] <;>
+          omega
+      rw [h2]
+      have h3 : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := rfl
+      rw [h3]
+      have h4 : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+        have h5 : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+          intro k
+          have h6 : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+            induction k with
+            | zero => simp
+            | succ k ih =>
+              rw [Finset.sum_Icc_succ_top (by simp : 0 ≤ k + 1)]
+              simp_all [Nat.choose_succ_succ, pow_add, mul_add, mul_one, add_mul, mul_comm, mul_left_comm]
+              <;> ring_nf at *
+              <;> omega
+          exact h6
+        exact h5 k
+      exact h4
+    e
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 32.01734209060669 / 9.526029348373413 / 41.5433714389801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a2
+(k : ℕ)
+: (∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = putnam_2020_a2_solution k) := by
+  have h : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+    have h₁ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = 4 ^ k := by
+      have h₂ : ∑ j ∈ Finset.Icc 0 k, 2 ^ (k - j) * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by
+        apply Finset.sum_bij' (fun j _ => k - j) (fun j _ => k - j)
+        <;> simp_all [Finset.mem_Icc, Nat.choose_symm_of_eq_add]
+        <;> omega
+      rw [h₂]
+      have h₃ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+        have h₄ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by rfl
+        have h₅ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+          have h₆ : ∀ k : ℕ, ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+            intro k
+            have h₇ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j := by rfl
+            have h₈ : ∑ j ∈ Finset.Icc 0 k, 2 ^ j * Nat.choose (k + j) j = 4 ^ k := by
+              induction k with
+              | zero => simp
+              | succ k ih =>
+                simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, pow_succ, mul_add, mul_comm, mul_lef
+... [truncated] ...

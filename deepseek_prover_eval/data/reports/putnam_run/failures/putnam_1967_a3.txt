@@ -1,0 +1,150 @@
+Problem: putnam_1967_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 86.15353846549988 / 39.73170328140259 / 125.88524174690247
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 86.92276763916016 / 45.50383257865906 / 132.4266002178192
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 33.53578329086304 / 41.9664249420166 / 75.50220823287964
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 57.73430299758911 / 61.251856327056885 / 118.986159324646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 34.67009472846985 / 26.825223922729492 / 61.49531865119934
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 66.08377885818481 / 55.632888078689575 / 121.71666693687439
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 66.24489045143127 / 52.378440380096436 / 118.62333083152771
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 44.77687478065491 / 18.403328895568848 / 63.180203676223755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a3 :
+    IsLeast
+      {a | ∃ P : Polynomial ℤ,
+        P.degree = 2 ∧
+        (∃ z1 z2 : Set.Ioo (0 : ℝ) 1, z1 ≠ z2 ∧ aeval (z1 : ℝ) P = 0 ∧ aeval (z2 : ℝ) P = 0) ∧
+        P.coeff 2 = a ∧ a > 0}
+      putnam_1967_a3_solution :=
+  sorry

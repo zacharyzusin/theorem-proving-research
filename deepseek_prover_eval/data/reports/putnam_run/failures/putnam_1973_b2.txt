@@ -1,0 +1,247 @@
+Problem: putnam_1973_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.19485092163086 / 37.89862418174744 / 52.093475103378296
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hz1, hz2⟩ := hzrat
+  norm_cast at hz1 hz2 ⊢
+  simp_all [Complex.abs, Complex.normSq, Complex.ext_iff, pow_mul, mul_assoc]
+  <;> norm_cast
+  <;> field_simp [hz1, hz2, mul_comm]
+  <;> ring_nf
+  <;> norm_cast
+  <;> simp_all [Complex.abs, Complex.normSq, Complex.ext_iff, pow_mul, mul_assoc]
+  <;> norm_cast
+  <;> field_simp [hz1, hz2, mul_comm]
+  <;> ring_nf
+  <;> norm_cast
+  <;> simp_all [Complex.abs, Complex.normSq, Complex.ext_iff, pow_mul, mul_assoc]
+  <;> norm_cast
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.132526874542236 / 34.07012963294983 / 56.202656507492065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hz1, hz2⟩ := hzrat
+  have hz3 : z.re = q1 := by simp_all
+  have hz4 : z.im = q2 := by simp_all
+  have hz5 : ‖z‖ ^ 2 = 1 := by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  have hz6 : q1 ^ 2 + q2 ^ 2 = 1 := by
+    simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq, pow_two]
+    <;> ring_nf at * <;> nlinarith
+  have hz7 : z ^ (2 * n) = (q1 + q2 * Complex.I) ^ (2 * n) := by
+    rw [← Complex.abs_mul_exp_arg_mul_I z]
+    simp_all [Complex.abs_eq_abs, Complex.exp_re, Complex.exp_im, Complex.ofReal_re, Complex.ofReal_im]
+    <;> ring_nf
+    <;> simp_all [Complex.ext_iff, pow_two, mul_assoc]
+    <;> norm_num
+    <;> linarith
+  use ‖z ^ (2 * n) - 1‖.num
+  simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  <;> field_simp [hz6]
+  <;> norm_cast
+  <;> simp_all [Complex.ext_iff, pow_two, mul_assoc]
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.711379289627075 / 41.42638301849365 / 55.13776230812073
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hz1, hz2⟩ := hzrat
+  have hz3 : ‖z‖ ^ 2 = 1 := by simp [hznorm]
+  have hz4 : z.re = q1 := by simp_all
+  have hz5 : z.im = q2 := by simp_all
+  have hz6 : ‖z^(2*n) - 1‖ = ‖z^(2*n) - 1‖ := rfl
+  -- Use the fact that z is on the unit circle and has rational real and imaginary parts to show that the norm of z^(2n) - 1 is rational.
+  exact ⟨‖z^(2*n) - 1‖.num, by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq, pow_mul, mul_assoc]⟩
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.0456600189209 / 23.602656841278076 / 42.648316860198975
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hz1, hz2⟩ := hzrat
+  have hz3 : z.re = q1 := by simp_all
+  have hz4 : z.im = q2 := by simp_all
+  have hz5 : ‖z‖^2 = 1 := by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  have hz6 : q1^2 + q2^2 = 1 := by
+    simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+    <;> ring_nf
+    <;> nlinarith
+  have hz7 : ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+    intro n
+    have hz8 : ‖z^(2*n) - 1‖ = ‖z^(2*n) - 1‖ := rfl
+    have hz9 : ‖z^(2*n) - 1‖ = ‖z^(2*n) - 1‖ := rfl
+    norm_cast
+    <;> simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+    <;> ring_nf
+    <;> norm_cast
+    <;> nlinarith
+  exact hz7 n
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.019010543823242 / 13.807984352111816 / 33.82699489593506
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hz1, hz2⟩ := hzrat
+  have hz3 : z.re = q1 := by simp_all
+  have hz4 : z.im = q2 := by simp_all
+  have hz5 : ‖z‖ ^ 2 = 1 := by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  have hz6 : q1 ^ 2 + q2 ^ 2 = 1 := by
+    simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+    <;> ring_nf
+    <;> nlinarith
+  have hz7 : ‖z^(2*n) - 1‖ = ‖z^(2*n) - 1‖ := rfl
+  -- We need to show that ‖z^(2*n) - 1‖ is rational.
+  -- Since z is on the unit circle, z^(2*n) can be expressed in terms of cos and sin of multiples of the angle θ corresponding to z.
+  -- The expression z^(2*n) - 1 can be factored and simplified, leading to a rational result.
+  use ‖z^(2*n) - 1‖.num
+  <;> norm_cast
+  <;> simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  <;> ring_nf
+  <;> field_simp [hz6]
+  <;> nlinarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.423169136047363 / 13.894975662231445 / 26.31814479827881
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hz1, hz2⟩ := hzrat
+  have hz3 : ‖z‖ ^ 2 = 1 := by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  have hz4 : z.re = q1 := by simp_all
+  have hz5 : z.im = q2 := by simp_all
+  have hz6 : ‖z^(2*n) - 1‖ = ‖z^(2*n) - 1‖ := rfl
+  exact ⟨‖z^(2*n) - 1‖, by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]⟩
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.15178394317627 / 12.405172348022461 / 32.55695629119873
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  rcases hzrat with ⟨q1, q2, hz1, hz2⟩
+  have hz3 : z.re = q1 := by simp_all
+  have hz4 : z.im = q2 := by simp_all
+  have hz5 : ‖z‖ ^ 2 = 1 := by simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  have hz6 : q1 ^ 2 + q2 ^ 2 = 1 := by
+    simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+    <;> ring_nf
+    <;> nlinarith
+  have hz7 : z ^ (2 * n) = (q1 + q2 * Complex.I) ^ (2 * n) := by
+    rw [← Complex.abs_eq_one_iff] at hznorm
+    simp_all [Complex.ext_iff, pow_mul, Complex.abs, Complex.normSq, mul_comm]
+    <;> ring_nf
+    <;> simp_all [Complex.ext_iff, pow_mul, Complex.abs, Complex.normSq, mul_comm]
+    <;> nlinarith
+  use ‖z ^ (2 * n) - 1‖.num
+  norm_cast
+  <;> simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq]
+  <;> ring_nf
+  <;> field_simp [hz6]
+  <;> nlinarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.687406063079834 / 21.396758794784546 / 34.08416485786438
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_b2
+(z : ℂ)
+(hzrat : ∃ q1 q2 : ℚ, z.re = q1 ∧ z.im = q2)
+(hznorm : ‖z‖ = 1)
+: ∀ n : ℤ, ∃ q : ℚ, ‖z^(2*n) - 1‖ = q := by
+  intro n
+  obtain ⟨q1, q2, hzre, hzim⟩ := hzrat
+  norm_cast at hzre hzim
+  norm_cast
+  field_simp [Complex.abs, Complex.normSq, Complex.ext_iff, hzre, hzim, pow_two] at hznorm ⊢
+  <;> ring_nf at hznorm ⊢
+  <;> norm_cast at hznorm ⊢
+  <;> simp_all [Complex.abs, Complex.normSq, Complex.ext_iff]
+  <;> nlinarith [sq_nonneg (q1 ^ 2 + q2 ^ 2), sq_nonneg (q1 ^ 2 - q2 ^ 2), sq_nonneg (2 * q1 * q2)]

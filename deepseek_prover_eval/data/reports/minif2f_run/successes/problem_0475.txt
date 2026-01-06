@@ -1,0 +1,26 @@
+Problem: problem_0475
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 6.3694682121276855
+Lean check time (s): 4.303379774093628
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_251
+  (x : ℝ)
+  (h₀ : x ≠ 0)
+  (h₁ : 3 + 1 / x = 7 / x) :
+  x = 2 := by
+  have h₂ : x ≠ 0 := h₀
+  field_simp [h₂] at h₁
+  -- Eliminate the denominators by multiplying both sides by x
+  ring_nf at h₁
+  -- Simplify the equation to isolate x
+  apply Eq.symm
+  -- Use linear arithmetic to solve for x
+  nlinarith

@@ -1,0 +1,24 @@
+Problem: problem_0251
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.222510814666748
+Lean check time (s): 4.437884569168091
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_116
+  (k x: ℝ)
+  (h₀ : x = (13 - Real.sqrt 131) / 4)
+  (h₁ : 2 * x^2 - 13 * x + k = 0) :
+  k = 19/4 := by
+  rw [h₀] at h₁
+  ring_nf at h₁
+  field_simp at h₁
+  norm_num at h₁
+  nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 131 by norm_num),
+    Real.sqrt_nonneg 131]

@@ -1,0 +1,182 @@
+Problem: putnam_2017_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 63.46149182319641 / 4.525874137878418 / 67.98736596107483
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 78.3607087135315 / 4.304133176803589 / 82.66484189033508
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 46.169978618621826 / 4.322236061096191 / 50.49221467971802
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 49.17015719413757 / 4.23349404335022 / 53.40365123748779
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 81.17515301704407 / 4.544299364089966 / 85.71945238113403
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 81.2512514591217 / 4.517960786819458 / 85.76921224594116
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 81.07537579536438 / 4.503182411193848 / 85.57855820655823
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 60.073867321014404 / 4.536450147628784 / 64.61031746864319
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a3
+(a b : ℝ)
+(f g : ℝ → ℝ)
+(I : ℕ → ℝ)
+(altb : a < b)
+(fgcont : ContinuousOn f (Set.Icc a b) ∧ ContinuousOn g (Set.Icc a b))
+(fgimg : f '' (Set.Icc a b) ⊆ Set.Ioi 0 ∧ g '' (Set.Icc a b) ⊆ Set.Ioi 0)
+(fgint : ∫ x in Set.Ioo a b, f x = ∫ x in Set.Ioo a b, g x)
+(fneg : ∃ x : Set.Icc a b, f x ≠ g x)
+(hI : ∀ n > 0, I n = ∫ x in Set.Ioo a b, ((f x) ^ (n + 1)) / ((g x) ^ n))
+: (∀ n > 0, I (n + 1) > I n) ∧ Tendsto I atTop atTop :=
+sorry

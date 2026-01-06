@@ -1,0 +1,158 @@
+Problem: putnam_2003_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.234102249145508 / 12.27671504020691 / 36.51081728935242
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.60606050491333 / 13.643195390701294 / 50.249255895614624
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.768890857696533 / 13.192794799804688 / 43.96168565750122
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 24.224780082702637 / 12.552546739578247 / 36.777326822280884
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.031022548675537 / 14.044807434082031 / 43.07582998275757
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 35.14328193664551 / 12.910902738571167 / 48.054184675216675
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 65.51172184944153 / 11.453975915908813 / 76.96569776535034
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 51.264092445373535 / 15.182401657104492 / 66.44649410247803
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_a1
+(n : ℕ) (hn : n > 0)
+: Set.encard {a : ℕ → ℤ |
+  ∃ k > 0, (∑ i : Fin k, a i = n) ∧
+    (∀ i : Fin k, a i > 0) ∧
+    (∀ i : Fin (k - 1), a i ≤ a (i + 1)) ∧
+    a (k - 1) ≤ a 0 + 1 ∧ (∀ i ≥ k, a i = 0)}
+  = putnam_2003_a1_solution n :=
+sorry

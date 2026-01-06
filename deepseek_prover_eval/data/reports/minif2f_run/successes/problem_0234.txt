@@ -1,0 +1,24 @@
+Problem: problem_0234
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.621744155883789
+Lean check time (s): 3.031585216522217
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_150
+  (n : ℕ)
+  (h₀ : ¬ Nat.Prime (7 + 30 * n)) :
+  6 ≤ n := by
+  by_contra! h
+  have h₁ : n ≤ 5 := by linarith
+  interval_cases n <;> norm_num [Nat.Prime] at h₀ ⊢
+  <;> try contradiction
+  <;> try linarith
+  <;> try omega
+  <;> try nlinarith

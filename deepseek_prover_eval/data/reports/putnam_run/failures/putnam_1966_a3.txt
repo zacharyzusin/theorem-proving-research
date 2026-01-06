@@ -1,0 +1,429 @@
+Problem: putnam_1966_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 62.620652198791504 / 42.25664496421814 / 104.87729716300964
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, 0 < x n := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.1
+    · have h₁ := hxi n hn
+      nlinarith
+  have h₂ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    exact le_of_lt (h₁ n hn)
+  have h₃ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.2.le
+    · have h₁ := hxi n hn
+      nlinarith
+  have h₄ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+    intro n hn
+    induction' hn with n hn
+    · simp [hxi, hx1.1]
+    · simp_all [Finset.prod_range_succ, hxi, mul_sub, mul_one, sub_mul, mul_assoc]
+      <;> ring_nf
+      <;> nlinarith [h₁ n hn, h₃ n hn, h₂ n hn, h₁ 1 (by norm_num)]
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : x 1 > 0 := hx1.1
+    have h₇ : x 1 < 1 := hx1.2
+    have h₈ : ∏ i in Finset.range 1, (1 - x 1) = 1 - x 1 := by simp
+    have h₉ : ∏ i in Finset.range 1, (1 - x 1) > 0 := by
+      nlinarith
+    have h₁₀ : ∀ n : ℕ, n ≥ 1 → x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+      intro n hn
+      exact h₄ n hn
+    have h₁₁ : ∀ n : ℕ, n ≥ 1 → n * (x n) = n * (x 1 * ∏ i in Finset.range n, (1 - x 1)) := by
+      intro n hn
+      rw [h₁₀ n hn]
+    have h₁₂ : Tendsto (fun n : ℕ => n * (x 1 * ∏ i in Finset.
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 76.08831906318665 / 23.72884178161621 / 99.81716084480286
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, x n > 0 := by
+    intro n hn
+    induction' hn with n hn
+    · exact hx1.1
+    · have h := hxi n hn
+      nlinarith [h, ‹x n > 0›]
+  have h₂ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≤ 1›]
+  have h₃ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≥ 0›]
+  have h₄ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+    intro n hn
+    induction' hn with n hn ih
+    · simp [hxi, hx1.1]
+    · rw [Finset.prod_range_succ, ← ih]
+      simp_all [hxi]
+      <;> ring
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : x 1 * ∏ i in Finset.range 1, (1 - x 1) = x 1 := by simp
+    have h₇ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+      intro n hn
+      exact h₄ n hn
+    have h₈ : ∏ i in Finset.range 1, (1 - x 1) = 1 - x 1 := by simp
+    have h₉ : ∏ i in Finset.range 1, (1 - x 1) = 1 - x 1 := by simp
+    have h₁₀ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+      have h₁₁ : ∀ n ≥ 1, x n = x 1 * (1 - x 1) ^ n := by
+        intro n hn
+        rw [h₇ n hn]
+        simp [Finset.prod_cons
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 59.310325145721436 / 48.09588408470154 / 107.40620923042297
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, 0 < x n := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.1
+    · have h := hxi n hn
+      nlinarith [h, ‹0 < x n›]
+  have h₂ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.1.le
+    · have h := hxi n hn
+      nlinarith [h, ‹0 < x n›]
+  have h₃ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.2.le
+    · have h := hxi n hn
+      nlinarith [h, ‹0 < x n›]
+  have h₄ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+    intro n hn
+    induction' hn with n hn IH
+    · simp_all [Finset.prod_range_one]
+    · rw [Finset.prod_range_succ, hxi n hn, IH]
+      ring
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : x 1 > 0 := hx1.1
+    have h₇ : x 1 < 1 := hx1.2
+    have h₈ : ∏ i in Finset.range 1, (1 - x 1) = 1 - x 1 := by simp
+    have h₉ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+      intro n hn
+      exact h₄ n hn
+    have h₁₀ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+      have h₁₁ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+        intro n hn
+        exact h₄ n hn
+      have h₁₂ : ∀ n ≥ 1, n * (x n) = n * (x 1 * ∏ i in Finset.range n, (1
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 78.69633054733276 / 60.37045764923096 / 139.06678819656372
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, x n > 0 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n > 0›]
+  have h₂ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≤ 1›]
+  have h₃ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≥ 0›]
+  have h₄ : ∀ n ≥ 1, x n = x 1 * (1 - x 1) ^ (n - 1) := by
+    intro n hn
+    induction' hn with n hn
+    · simp_all [pow_zero, mul_one]
+    · cases n with
+      | zero => simp_all [pow_zero, mul_one]
+      | succ n =>
+        simp_all [pow_succ, mul_sub, mul_one, mul_comm, mul_assoc, mul_left_comm]
+        <;> field_simp [h₁, h₂, h₃] at *
+        <;> ring_nf at *
+        <;> nlinarith
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : x 1 * (1 - x 1) > 0 := by
+      nlinarith [hx1.1, hx1.2]
+    have h₇ : ∀ n ≥ 1, x n = x 1 * (1 - x 1) ^ (n - 1) := by
+      intro n hn
+      exact h₄ n hn
+    have h₈ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+      have h₉ : ∀ n ≥ 1, x n = x 1 * (1 - x 1) ^ (n - 1) := by
+        intro n h
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 49.94648504257202 / 68.66132664680481 / 118.60781168937683
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, x n > 0 := by
+    intro n hn
+    induction' hn with n hn
+    · simp_all
+    · have h₁ : 0 < x n := by simp_all
+      have h₂ : x (n + 1) = x n * (1 - x n) := by simp_all
+      nlinarith
+  have h₂ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · simp_all
+    · have h₁ : 0 < x n := by simp_all
+      have h₂ : x (n + 1) = x n * (1 - x n) := by simp_all
+      nlinarith
+  have h₃ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · simp_all
+    · have h₁ : 0 < x n := by simp_all
+      have h₂ : x (n + 1) = x n * (1 - x n) := by simp_all
+      nlinarith
+  have h₄ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x (i + 1)) := by
+    intro n hn
+    induction' hn with n hn IH
+    · simp_all [Finset.prod_range_one]
+    · rw [Finset.prod_range_succ, mul_comm]
+      simp_all [hxi, mul_assoc]
+      <;> field_simp
+      <;> ring
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x (i + 1)) := by
+      intro n hn
+      exact h₄ n hn
+    have h₇ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x (i + 1)) := by
+      intro n hn
+      exact h₄ n hn
+    have h₈ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 86.72616124153137 / 43.43356943130493 / 130.1597306728363
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, 0 < x n := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.1
+    · have h₁ : 0 < x n := by simpa using ‹_›
+      have h₂ : x (n + 1) = x n * (1 - x n) := hxi n hn
+      nlinarith
+  have h₂ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.1.le
+    · have h₁ : 0 < x n := by simpa using ‹_›
+      have h₂ : x (n + 1) = x n * (1 - x n) := hxi n hn
+      nlinarith
+  have h₃ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · simpa using hx1.2.le
+    · have h₁ : 0 < x n := by simpa using ‹_›
+      have h₂ : x (n + 1) = x n * (1 - x n) := hxi n hn
+      nlinarith
+  have h₄ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+    intro n hn
+    induction' hn with n hn IH
+    · simp [hxi, hx1.1]
+    · rw [Finset.prod_range_succ, ← IH]
+      simp_all [hxi, mul_sub, mul_comm]
+      <;> ring
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : x 1 > 0 := hx1.1
+    have h₇ : x 1 < 1 := hx1.2
+    have h₈ : ∏ i in Finset.range 1, (1 - x 1) = 1 - x 1 := by simp
+    have h₉ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := h₄
+    have h₁₀ : ∀ n ≥ 1, x n ≤ x 1 := by
+      intro n hn
+      rw [h₉ n hn]
+      exact 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 53.38396167755127 / 53.81204080581665 / 107.19600248336792
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, x n > 0 := by
+    intro n hn
+    induction' hn with n hn
+    · exact hx1.1
+    · have h := hxi n hn
+      nlinarith [h, ‹x n > 0›]
+  have h₂ : ∀ n ≥ 1, x n < 1 := by
+    intro n hn
+    induction' hn with n hn
+    · exact hx1.2
+    · have h := hxi n hn
+      nlinarith [h, ‹x n < 1›, h₁ n hn]
+  have h₃ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · nlinarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≥ 0›, h₁ n hn, h₂ n hn]
+  have h₄ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · nlinarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≤ 1›, h₁ n hn, h₂ n hn]
+  have h₅ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+    intro n hn
+    induction' hn with n hn
+    · simp_all
+    · rw [Finset.prod_range_succ, hxi n hn]
+      ring_nf
+      <;> simp_all [mul_sub, mul_one, mul_comm]
+      <;> field_simp [h₁ 1 (by norm_num)]
+      <;> nlinarith
+  have h₆ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₇ : x 1 * ∏ i in Finset.range 1, (1 - x 1) = x 1 := by simp
+    have h₈ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+      intro n hn
+      exact h₅ n hn
+    have h₉ : Tendsto (fun n : ℕ => n
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 56.36415433883667 / 24.420939207077026 / 80.7850935459137
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_a3
+(x : ℕ → ℝ)
+(hx1 : 0 < x 1 ∧ x 1 < 1)
+(hxi : ∀ n ≥ 1, x (n + 1) = (x n) * (1 - (x n)))
+: Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+  have h₁ : ∀ n ≥ 1, x n > 0 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n > 0›]
+  have h₂ : ∀ n ≥ 1, x n ≤ 1 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≤ 1›]
+  have h₃ : ∀ n ≥ 1, x n ≥ 0 := by
+    intro n hn
+    induction' hn with n hn
+    · linarith [hx1.1, hx1.2]
+    · have h := hxi n hn
+      nlinarith [h, ‹x n ≥ 0›]
+  have h₄ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+    intro n hn
+    induction' hn with n hn IH
+    · simp_all [Finset.prod_range_one]
+    · simp_all [Finset.prod_range_succ, hxi, mul_sub, mul_one, sub_mul, mul_assoc]
+      <;> ring_nf
+      <;> field_simp [h₁, h₂, h₃]
+      <;> nlinarith
+  have h₅ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+    have h₆ : x 1 * ∏ i in Finset.range 1, (1 - x 1) = x 1 := by simp
+    have h₇ : Tendsto (fun n : ℕ => n * (x n)) atTop (𝓝 1) := by
+      have h₈ : ∀ n ≥ 1, x n = x 1 * ∏ i in Finset.range n, (1 - x 1) := by
+        intro n hn
+        exact h₄ n hn
+      have h₉ : ∀ n ≥ 1, n * (x n) = n * (x 1 * ∏ i in Finset.range n, (1 - x 1)) := by
+        intro n hn
+        rw [h₈ n hn]
+      have 
+... [truncated] ...

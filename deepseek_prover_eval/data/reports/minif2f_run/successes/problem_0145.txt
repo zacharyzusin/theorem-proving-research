@@ -1,0 +1,25 @@
+Problem: problem_0145
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.906253337860107
+Lean check time (s): 2.47847580909729
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_484 :
+  Real.log 27 / Real.log 3 = 3 := by
+  have h₁ : Real.log 27 = Real.log (3 ^ 3) := by norm_num
+  rw [h₁]
+  have h₂ : Real.log (3 ^ 3) = 3 * Real.log 3 := by rw [Real.log_pow] <;> norm_num
+  rw [h₂]
+  field_simp
+  <;> ring
+  <;> norm_num
+  <;> field_simp
+  <;> ring
+  <;> norm_num

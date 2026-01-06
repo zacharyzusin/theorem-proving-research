@@ -1,0 +1,142 @@
+Problem: putnam_2011_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.983109474182129 / 15.107834339141846 / 31.090943813323975
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.524690866470337 / 14.922765731811523 / 30.44745659828186
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.976700067520142 / 16.515267372131348 / 26.49196743965149
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.065400123596191 / 12.450915098190308 / 22.5163152217865
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.647433042526245 / 12.950468063354492 / 22.597901105880737
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.968213081359863 / 12.091801404953003 / 23.060014486312866
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.932175397872925 / 14.122258424758911 / 25.054433822631836
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.869636058807373 / 14.059108018875122 / 24.928744077682495
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b2
+  (S : Set (Fin 3 → ℕ))
+  (t : ℕ)
+  (hS : S = {s : Fin 3 → ℕ | (s 0).Prime ∧ (s 1).Prime ∧ (s 2).Prime ∧ ∃ x : ℚ, (s 0) * x ^ 2 + (s 1) * x + (s 2) = 0}) :
+  (t.Prime ∧ ({s ∈ S | ∃ i : Fin 3, s i = t}.encard ≥ 7))
+  ↔ t ∈ putnam_2011_b2_solution :=
+sorry

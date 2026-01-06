@@ -1,0 +1,104 @@
+Problem: problem_0430
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 26.733691215515137
+Lean check time (s): 4.186768531799316
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_188 :
+  Nat.gcd 180 168 = 12 := by
+  apply Nat.gcd_rec
+  <;> norm_num
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl

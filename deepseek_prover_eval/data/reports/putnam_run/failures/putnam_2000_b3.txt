@@ -1,0 +1,182 @@
+Problem: putnam_2000_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.278470516204834 / 8.961052894592285 / 29.23952341079712
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.561424732208252 / 10.020342350006104 / 29.581767082214355
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.268691301345825 / 8.296525955200195 / 32.56521725654602
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.602946519851685 / 7.544943809509277 / 27.147890329360962
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.609341382980347 / 7.972840070724487 / 27.582181453704834
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.693365573883057 / 9.841681957244873 / 29.53504753112793
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.36877703666687 / 7.750287055969238 / 27.11906409263611
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.72788119316101 / 8.568020820617676 / 28.295902013778687
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b3
+  (N : ℕ) (hN : N > 0)
+  (a : Icc 1 N → ℝ)
+  (f : ℝ → ℝ)
+  (mult : (ℝ → ℝ) → ℝ → ℕ)
+  (M : ℕ → ℕ)
+  (haN : a ⟨N, by simp; omega⟩ ≠ 0)
+  (hf : ∀ t, f t = ∑ j : Icc 1 N, a j * Real.sin (2 * Real.pi * j * t))
+  (hmult : ∀ g : ℝ → ℝ, ∀ t : ℝ, (∃ c : ℕ, iteratedDeriv c g t ≠ 0) → (iteratedDeriv (mult g t) g t ≠ 0 ∧ ∀ k < (mult g t), iteratedDeriv k g t = 0))
+  (hM : ∀ k, M k = ∑' t : Ico (0 : ℝ) 1, mult (iteratedDeriv k f) t) :
+  ((∀ i j : ℕ, i ≤ j → M i ≤ M j) ∧ Tendsto M atTop (𝓝 (2 * N))) :=
+sorry

@@ -1,0 +1,29 @@
+Problem: problem_0351
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.14304780960083
+Lean check time (s): 5.014475345611572
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_2at2pclta2c2p41pc
+  (a c : ℝ) :
+  2 * a * (2 + c) ≤ a^2 + c^2 + 4 * (1 + c) := by
+  have h : 0 ≤ (a - c - 2) ^ 2 := sq_nonneg (a - c - 2)
+  nlinarith [sq_nonneg (a - c - 2), sq_nonneg (a - 2), sq_nonneg (c - 2), sq_nonneg (a - c)]
+  <;> linarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith

@@ -1,0 +1,197 @@
+Problem: putnam_1994_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.148282527923584 / 13.840896129608154 / 28.98917865753174
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  have h₁ : ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+    rintro a b c d h
+    simp only [Set.ext_iff, Set.mem_insert_iff, Set.mem_singleton_iff] at *
+    have ha := hn 0
+    have hb := hn 1
+    have hc := hn 0
+    have hd := hn 1
+    simp [ha, hb, hc, hd, Int.ModEq, Int.emod_eq_of_lt] at h ⊢
+    <;> omega
+  
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.267038583755493 / 14.006440877914429 / 23.273479461669922
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  rintro a b c d h
+  simp_all [Set.ext_iff, Set.mem_insert_iff, Set.mem_singleton_iff, hn, Int.ModEq, Int.emod_eq_emod_iff_emod_sub_eq_zero]
+  <;> omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.768213748931885 / 13.030953645706177 / 28.79916739463806
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  intro a b c d h
+  simp_all [Set.ext_iff, Finset.mem_insert, Finset.mem_singleton, Set.mem_Icc]
+  have h₁ := h
+  simp [Int.ModEq, Int.emod_eq_of_lt] at h₁
+  norm_num at h₁
+  rcases a with ⟨a, ha⟩
+  rcases b with ⟨b, hb⟩
+  rcases c with ⟨c, hc⟩
+  rcases d with ⟨d, hd⟩
+  interval_cases a <;> interval_cases b <;> interval_cases c <;> interval_cases d <;> norm_num [hn] at h₁ ⊢ <;> simp_all (config := {decide := true})
+  <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.640411615371704 / 13.774173021316528 / 22.414584636688232
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  intro a b c d h
+  simp_all [Set.ext_iff, Set.Icc, hn, Int.ModEq, Int.emod_eq_of_lt]
+  <;> norm_num
+  <;> omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.996326446533203 / 13.580378770828247 / 22.57670521736145
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  intro a b c d h
+  simp_all [Set.ext_iff, Set.mem_insert_iff, Set.mem_singleton_iff, Set.Icc, Nat.mod_eq_of_lt]
+  <;> norm_num [hn, Int.ModEq] at h ⊢
+  <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 25.9394690990448 / 358.78797936439514 / 384.72744846343994
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  have step₁ : ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+    rintro a b c d h
+    simp only [Set.ext_iff, Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_setOf_eq] at *
+    have h₁ := h
+    simp [hn, Int.ModEq] at h₁ ⊢
+    rcases a with ⟨a, ha⟩
+    rcases b with ⟨b, hb⟩
+    rcases c with ⟨c, hc⟩
+    rcases d with ⟨d, hd⟩
+    simp at ha hb hc hd h₁ ⊢
+    interval_cases a <;> interval_cases b <;> interval_cases c <;> interval_cases d <;> norm_num at * <;>
+    (try omega) <;>
+    (try simp_all (config := {decide := true})) <;>
+    (try aesop) <;>
+    (try omega) <;>
+    (try nlinarith [pow_pos (by norm_num : (0 : ℤ) < 2) a, pow_pos (by norm_num : (0 : ℤ) < 2) b, pow_pos (by norm_num : (0 : ℤ) < 2) c, pow_pos (by norm_num : (0 : ℤ) < 2) d]) <;>
+    (try ring_nf at h₁ ⊢) <;>
+    (try omega)
+  
+  exact step₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.071712017059326 / 16.581200122833252 / 29.652912139892578
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  intro a b c d h
+  have h₁ := h
+  simp only [hn, Set.ext_iff, Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_setOf_eq] at h₁ ⊢
+  have h₂ := h₁ 0
+  have h₃ := h₁ 1
+  have h₄ := h₁ 99
+  have h₅ := h₁ 100
+  norm_num [Int.ModEq, Int.emod_eq_of_lt] at h₂ h₃ h₄ h₅
+  <;> omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.88937735557556 / 15.842380285263062 / 32.73175764083862
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_b6
+(n : ℕ → ℤ)
+(hn : ∀ a : ℕ, n a = 101 * a - 100 * 2 ^ a)
+: ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+  have step₁ : ∀ a b c d : Set.Icc 0 99, (n a + n b ≡ n c + n d [ZMOD 10100]) → (({a, b} : Set (Set.Icc 0 99)) = {c, d}) := by
+    rintro a b c d h
+    simp_all [Set.ext_iff, Set.Icc, hn, Int.ModEq, Int.emod_eq_emod_iff_emod_sub_eq_zero]
+    <;>
+    rcases a with ⟨a, ha⟩
+    <;>
+    rcases b with ⟨b, hb⟩
+    <;>
+    rcases c with ⟨c, hc⟩
+    <;>
+    rcases d with ⟨d, hd⟩
+    <;>
+    simp_all [Finset.mem_insert, Finset.mem_singleton]
+    <;>
+    omega
+  
+  exact step₁

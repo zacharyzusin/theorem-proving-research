@@ -1,0 +1,26 @@
+Problem: problem_0365
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.876024961471558
+Lean check time (s): 5.017847061157227
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_234
+  (d : ℝ)
+  (h₀ : 27 / 125 * d = 9 / 25) :
+  3 / 5 * d^3 = 25 / 9 := by
+  have h₁ : d = (9 / 25) * (125 / 27) := by
+    field_simp at h₀ ⊢
+    ring_nf at h₀ ⊢
+    linarith
+  rw [h₁]
+  field_simp
+  ring_nf
+  <;> norm_num
+  <;> nlinarith

@@ -1,0 +1,21 @@
+Problem: problem_0218
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.181656122207642
+Lean check time (s): 3.358549118041992
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_127 :
+  (∑ k in (Finset.range 101), 2^k) % 7 = 3 := by
+  apply Eq.symm
+  rfl
+  <;> simp [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> rfl
+  <;> rfl

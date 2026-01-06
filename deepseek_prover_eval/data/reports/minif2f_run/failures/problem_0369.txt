@@ -1,0 +1,326 @@
+Problem: problem_0369
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.908174753189087 / 600.1461188793182 / 616.0542936325073
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by linarith [h₀ a]
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by linarith [h₀ b]
+  have h₆ : a ≠ b := h₃
+  have h₇ : a + b = 7 / 2 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+    nlinarith
+  have h₈ : a * b = 1 := by
+    nlinarith
+  have h₉ : (a - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  have h₁₀ : (b - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  field_simp [h₉, h₁₀]
+  nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.580329418182373 / 600.1562979221344 / 616.7366273403168
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by simp_all [h₀]
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by simp_all [h₀]
+  have h₆ : a ≠ b := h₃
+  have h₇ : a - 1 ≠ 0 := by
+    intro h
+    have : a = 1 := by linarith
+    rw [this] at h₄
+    nlinarith
+  have h₈ : b - 1 ≠ 0 := by
+    intro h
+    have : b = 1 := by linarith
+    rw [this] at h₅
+    nlinarith
+  field_simp [h₇, h₈]
+  ring_nf
+  apply mul_left_cancel₀ (sub_ne_zero.mpr h₃)
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a - 1), sq_nonneg (b - 1)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.253627061843872 / 600.1344709396362 / 616.3880980014801
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by
+    rw [h₀] at h₁
+    linarith
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by
+    rw [h₀] at h₂
+    linarith
+  have h₆ : a ≠ b := h₃
+  have h₇ : a - 1 ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  have h₈ : b - 1 ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  field_simp [h₇, h₈]
+  ring_nf
+  apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - 1), sq_nonneg (b - 1)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.874435901641846 / 600.1425635814667 / 616.0169994831085
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by linarith [h₀ a]
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by linarith [h₀ b]
+  have h₆ : a ≠ b := h₃
+  have h₇ : a + b = 7 / 2 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+    nlinarith
+  have h₈ : a * b = 1 := by
+    nlinarith
+  have h₉ : (a - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  have h₁₀ : (b - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  field_simp [h₉, h₁₀]
+  nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.816314458847046 / 600.1452264785767 / 616.9615409374237
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by simpa [h₀] using h₁
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by simpa [h₀] using h₂
+  have h₆ : a ≠ b := h₃
+  have h₇ : a + b = 7 / 2 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+    nlinarith
+  have h₈ : a * b = 1 := by
+    nlinarith
+  have h₉ : (a - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  have h₁₀ : (b - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  field_simp [h₉, h₁₀]
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.74214792251587 / 600.1373126506805 / 616.8794605731964
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by linarith [h₀ a]
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by linarith [h₀ b]
+  have h₆ : a ≠ b := h₃
+  have h₇ : a + b = 7 / 2 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+    nlinarith
+  have h₈ : a * b = 1 := by
+    nlinarith
+  have h₉ : (a - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  have h₁₀ : (b - 1) ≠ 0 := by
+    intro h
+    apply h₆
+    nlinarith
+  field_simp [h₉, h₁₀]
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.337312698364258 / 600.1474621295929 / 617.4847748279572
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by linarith [h₀ a]
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by linarith [h₀ b]
+  have h₆ : a ≠ b := h₃
+  have h₇ : a + b = 7 / 2 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+    nlinarith
+  have h₈ : a * b = 1 := by
+    nlinarith
+  have h₉ : (a - 1) ≠ 0 := by
+    intro h
+    have : a = 1 := by linarith
+    nlinarith [h₀ a]
+  have h₁₀ : (b - 1) ≠ 0 := by
+    intro h
+    have : b = 1 := by linarith
+    nlinarith [h₀ b]
+  field_simp [h₉, h₁₀]
+  nlinarith [sq_nonneg (a - b)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.615960597991943 / 600.1408746242523 / 617.7568352222443
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_131
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 - 7 * x + 2)
+  (h₁ : f a = 0)
+  (h₂ : f b = 0)
+  (h₃ : a ≠ b) :
+  1 / (a - 1) + 1 / (b - 1) = -1 := by
+  have h₄ : 2 * a ^ 2 - 7 * a + 2 = 0 := by linarith [h₀ a]
+  have h₅ : 2 * b ^ 2 - 7 * b + 2 = 0 := by linarith [h₀ b]
+  have h₆ : a ≠ b := h₃
+  have h₇ : a + b = 7 / 2 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₆)
+    nlinarith
+  have h₈ : a * b = 1 := by
+    nlinarith
+  have h₉ : a - 1 ≠ 0 := by
+    intro h
+    have : a = 1 := by linarith
+    nlinarith [h₀ a]
+  have h₁₀ : b - 1 ≠ 0 := by
+    intro h
+    have : b = 1 := by linarith
+    nlinarith [h₀ b]
+  field_simp [h₉, h₁₀]
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
+

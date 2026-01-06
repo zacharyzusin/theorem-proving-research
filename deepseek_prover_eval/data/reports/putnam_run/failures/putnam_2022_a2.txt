@@ -1,0 +1,158 @@
+Problem: putnam_2022_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 39.36151099205017 / 12.899859428405762 / 52.26137042045593
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.727412700653076 / 14.274195671081543 / 51.00160837173462
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 38.90672302246094 / 14.16059398651123 / 53.06731700897217
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 64.21723198890686 / 13.467652559280396 / 77.68488454818726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 46.122244358062744 / 12.76510739326477 / 58.887351751327515
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 45.933361291885376 / 10.91102647781372 / 56.8443877696991
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 36.002416372299194 / 14.160218000411987 / 50.16263437271118
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.811349630355835 / 12.990329027175903 / 31.80167865753174
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a2
+(n : ℕ)
+(hn : n ≥ 2)
+(S : Set ℝ[X])
+(hS : S = {P | natDegree P = n})
+(negs : ℝ[X] → ℕ)
+(hnegs : ∀ P : ℝ[X], negs P = ∑ i ∈ Finset.range (P.natDegree + 1), if P.coeff i < 0 then 1 else 0)
+: sSup {negs (P^2) | P ∈ S} = putnam_2022_a2_solution n :=
+sorry

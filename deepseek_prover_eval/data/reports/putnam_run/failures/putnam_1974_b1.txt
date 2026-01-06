@@ -1,0 +1,142 @@
+Problem: putnam_1974_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.133724212646484 / 55.867491006851196 / 67.00121521949768
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.01424241065979 / 23.503464460372925 / 39.517706871032715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.171424865722656 / 43.01978278160095 / 53.19120764732361
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.109012842178345 / 28.564607620239258 / 39.6736204624176
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.733860731124878 / 60.68400239944458 / 75.41786313056946
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.157400131225586 / 36.939417123794556 / 55.09681725502014
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.133864164352417 / 37.32242131233215 / 48.45628547668457
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.904438734054565 / 35.97333097457886 / 48.87776970863342
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b1
+    (d : (Fin 5 → EuclideanSpace ℝ (Fin 2)) → ℝ)
+    (d_def : ∀ p, d p = ∑ ⟨i, j⟩ : Fin 5 × Fin 5, if i < j then dist (p i) (p j) else 0)
+    (p : Fin 5 → EuclideanSpace ℝ (Fin 2))
+    (hp : ∀ i, ‖p i‖ = 1) :
+    d p = sSup {d q | (q) (hq : ∀ i, ‖q i‖ = 1)} ↔ putnam_1974_b1_solution p :=
+  sorry

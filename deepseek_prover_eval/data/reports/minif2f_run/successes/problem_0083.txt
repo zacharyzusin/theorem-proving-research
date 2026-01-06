@@ -1,0 +1,20 @@
+Problem: problem_0083
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.77235746383667
+Lean check time (s): 4.1797194480896
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_107
+  (x y : ℝ)
+  (h₀ : x^2 + 8 * x + y^2 - 6 * y = 0) :
+  (x + 4)^2 + (y-3)^2 = 5^2 := by
+  rw [← sub_eq_zero] at h₀ ⊢
+  ring_nf at h₀ ⊢
+  nlinarith [sq_nonneg (x + 4 + (y - 3)), sq_nonneg (x + 4 - (y - 3))]

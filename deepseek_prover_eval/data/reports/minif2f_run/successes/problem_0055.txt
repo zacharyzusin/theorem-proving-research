@@ -1,0 +1,21 @@
+Problem: problem_0055
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 4.15351676940918
+Lean check time (s): 2.798306465148926
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_175 :
+  (2^2010) % 10 = 4 := by
+  rw [show 2^2010 % 10 = 4 by norm_num]
+  <;> rfl
+  <;> simp
+  <;> decide
+  <;> simp
+  <;> decide

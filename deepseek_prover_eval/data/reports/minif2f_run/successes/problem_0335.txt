@@ -1,0 +1,22 @@
+Problem: problem_0335
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 8.545093774795532
+Lean check time (s): 4.678313255310059
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_393
+  (σ : Equiv ℝ ℝ)
+  (h₀ : ∀ x, σ.1 x = 4 * x^3 + 1) :
+  σ.2 33 = 2 := by
+  simp [Equiv.symm_apply_eq] at *
+  norm_num [h₀]
+  <;> ring_nf
+  <;> norm_num
+  <;> nlinarith [sq_nonneg (2 - 1), sq_nonneg (2 + 1), sq_nonneg (2 ^ 2 - 1), sq_nonneg (2 ^ 2 + 1), sq_nonneg (2 ^ 3 - 1), sq_nonneg (2 ^ 3 + 1)]

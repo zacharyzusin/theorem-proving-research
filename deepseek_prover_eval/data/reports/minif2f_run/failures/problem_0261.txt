@@ -1,0 +1,219 @@
+Problem: problem_0261
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.939335823059082 / 3.6172683238983154 / 17.556604146957397
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h₀ : ∀ n : ℕ, n ≥ 1 → (∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k)) = (n + 1 : ℝ) := by
+    intro n hn
+    induction' n with n ih
+    · norm_num
+    · simp_all [Finset.prod_Icc_succ_top, Nat.cast_add, Nat.cast_mul, Nat.cast_one]
+      field_simp
+      ring
+      <;>
+      field_simp at *
+      <;>
+      ring_nf at *
+      <;>
+      nlinarith
+  have h₁ : ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = (501 + 1 : ℝ) := by
+    apply h₀
+    norm_num
+  rw [h₁]
+  norm_num
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.190418481826782 / 4.318006277084351 / 15.508424758911133
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, n ≥ 1 → ∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k) = n + 1 := by
+    intro n hn
+    induction' hn with n hn
+    · norm_num
+    · cases n with
+      | zero =>
+        norm_num
+      | succ n =>
+        simp_all [Finset.prod_Icc_succ_top, Nat.cast_add, Nat.cast_one, mul_add, add_mul, mul_comm]
+        field_simp
+        ring
+        <;> field_simp
+        <;> ring
+  rw [h 501 (by norm_num)]
+  norm_num
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.25359296798706 / 4.164303302764893 / 16.417896270751953
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, n ≥ 1 → ∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k) = (n + 1 : ℝ) := by
+    intro n hn
+    induction' n with n ih
+    · norm_num
+    · simp_all [Finset.prod_Icc_succ_top, Nat.cast_add, Nat.cast_mul, Nat.cast_one]
+      field_simp
+      ring
+  have h₁ : ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = (501 + 1 : ℝ) := by
+    apply h
+    norm_num
+  rw [h₁]
+  norm_num
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.80184817314148 / 3.4359195232391357 / 14.237767696380615
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, (∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k)) = (n + 1 : ℝ) := by
+    intro n
+    induction n with
+    | zero => norm_num
+    | succ n ih =>
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1), ih]
+      field_simp [Finset.prod_range_succ', mul_comm]
+      <;> ring_nf
+      <;> norm_num
+      <;> field_simp [mul_comm]
+      <;> ring
+  rw [h]
+  norm_num
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.502917528152466 / 3.7039217948913574 / 17.206839323043823
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, (n : ℝ) ≥ 1 → ∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k) = n + 1:= by
+    intro n hn
+    induction' n with n ih
+    · norm_num
+    · simp_all [Finset.prod_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_succ]
+      field_simp
+      ring
+  have h₁ : ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+    have h₂ : (501 : ℝ) ≥ 1 := by norm_num
+    specialize h 501 h₂
+    norm_num at h
+    linarith
+  exact h₁
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.457313776016235 / 3.5225322246551514 / 14.979846000671387
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, (∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k)) = (n + 1 : ℝ) := by
+    intro n
+    induction n with
+    | zero => norm_num
+    | succ n ih =>
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+      simp_all [Nat.cast_add, Nat.cast_one, mul_add, mul_one, add_mul, one_mul, mul_comm]
+      field_simp
+      ring_nf
+      <;> field_simp at *
+      <;> linarith
+  rw [h 501]
+  norm_num
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.107053756713867 / 3.886479139328003 / 15.99353289604187
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, (∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k)) = (n + 1 : ℝ) := by
+    intro n
+    induction n with
+    | zero => norm_num
+    | succ n ih =>
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+      rw [ih]
+      field_simp [Finset.prod_range_succ, mul_comm]
+      <;> ring_nf
+      <;> norm_num
+      <;> field_simp [Finset.prod_range_succ, mul_comm]
+      <;> ring_nf
+      <;> norm_num
+      <;> linarith
+  rw [h]
+  norm_num
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.687527179718018 / 4.227041959762573 / 12.91456913948059
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p4 :
+  ∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k) = 502 := by
+  have h : ∀ n : ℕ, (∏ k in Finset.Icc (1 : ℕ) n, ((4 : ℝ) * k + 4) / (4 * k)) = (n + 1 : ℝ) := by
+    intro n
+    induction' n with n IH
+    · norm_num
+    · rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1), IH]
+      field_simp
+      ring
+  rw [h]
+  norm_num
+

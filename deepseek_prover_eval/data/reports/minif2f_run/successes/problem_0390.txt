@@ -1,0 +1,18 @@
+Problem: problem_0390
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.5351033210754395
+Lean check time (s): 2.6319549083709717
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_36azm9asqle36zsq
+  (z a : ℝ) :
+  36 * (a * z) - 9 * a^2 ≤ 36 * z^2 := by
+  have h1 : 0 ≤ (a - 2 * z)^2 := sq_nonneg (a - 2 * z)
+  linarith [sq_nonneg (a - 2 * z), sq_nonneg (a + 2 * z), sq_nonneg (2 * z - a)]

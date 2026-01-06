@@ -1,0 +1,28 @@
+Problem: problem_0487
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.867057800292969
+Lean check time (s): 3.743000030517578
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_51
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a + b = 35)
+  (h₂ : a = (2/5) * b) :
+  b - a = 15 := by
+  norm_num at h₀
+  have h₃ : b = 25 := by
+    field_simp [h₀.2.ne'] at h₂
+    linarith
+  have h₄ : a = 10 := by
+    field_simp [h₀.2.ne'] at h₂
+    linarith
+  subst_vars
+  linarith

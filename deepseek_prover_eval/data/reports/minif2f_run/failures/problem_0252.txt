@@ -1,0 +1,453 @@
+Problem: problem_0252
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.765774488449097 / 4.913807392120361 / 26.679581880569458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₃₁ : 94 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₃₂ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn ⊢
+      omega
+    have h₃₃ : u ≥ 94 := by
+      apply h₃₂
+      exact h₁.1
+    have h₃₄ : u ≤ 94 := by
+      apply h₁.2
+      exact h₃₁
+    linarith
+  have h₄ : v = 19 := by
+    have h₄₁ : 19 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      norm_num [h₃]
+      <;> aesop
+    have h₄₂ : ∀ n ∈ S \ {u}, n ≥ 19 := by
+      intro n hn
+      rw [Set.mem_diff, h₀] at hn
+      norm_num [h₃] at hn ⊢
+      omega
+    have h₄₃ : v ≥ 19 := by
+      apply h₄₂
+      exact h₂.1
+    have h₄₄ : v ≤ 19 := by
+      apply h₂.2
+      exact h₄₁
+    linarith
+  norm_num [h₃, h₄]
+  <;> ring_nf
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.402344465255737 / 4.656639337539673 / 27.05898380279541
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₃₁ : 94 ∈ S := by
+      rw [h₀]
+      constructor
+      · norm_num
+      · norm_num
+    have h₃₂ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₃₃ : u = 94 := by
+      apply h₁.unique
+      exact ⟨h₃₁, by
+        intro n hn
+        simp_all
+        <;> omega⟩
+    exact h₃₃
+  have h₄ : v = 74 := by
+    have h₄₁ : 74 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      constructor
+      · constructor
+        · norm_num
+        · norm_num
+      · simp_all
+    have h₄₂ : ∀ n ∈ S \ {u}, n ≥ 74 := by
+      intro n hn
+      rw [Set.mem_diff, h₀] at hn
+      norm_num at hn
+      omega
+    have h₄₃ : v = 74 := by
+      apply h₂.unique
+      exact ⟨h₄₁, by
+        intro n hn
+        simp_all
+        <;> omega⟩
+    exact h₄₃
+  norm_num [h₃, h₄]
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.678226947784424 / 4.7779974937438965 / 26.45622444152832
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₃₁ : 94 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₃₂ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₃₃ : u ≥ 94 := by
+      apply h₃₂
+      exact h₁.1
+    have h₃₄ : u ≤ 94 := by
+      apply h₁.2
+      exact h₃₁
+    linarith
+  have h₄ : v = 194 := by
+    have h₄₁ : 194 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      norm_num
+      <;> aesop
+    have h₄₂ : ∀ n ∈ S \ {u}, n ≥ 194 := by
+      intro n hn
+      rw [Set.mem_diff, h₀] at hn
+      norm_num at hn
+      omega
+    have h₄₃ : v ≥ 194 := by
+      apply h₄₂
+      exact h₂.1
+    have h₄₄ : v ≤ 194 := by
+      apply h₂.2
+      exact h₄₁
+    linarith
+  norm_num [h₃, h₄]
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.8830726146698 / 5.092832803726196 / 26.975905418395996
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₃₁ : 94 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₃₂ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₃₃ : u ≥ 94 := by
+      apply h₃₂
+      exact h₁.1
+    have h₃₄ : u ≤ 94 := by
+      apply h₁.2
+      exact h₃₁
+    linarith
+  have h₄ : v = 174 := by
+    have h₄₁ : 174 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      norm_num [h₃]
+    have h₄₂ : ∀ n ∈ S \ {u}, n ≥ 174 := by
+      intro n hn
+      rw [Set.mem_diff, h₀] at hn
+      norm_num [h₃] at hn ⊢
+      omega
+    have h₄₃ : v ≥ 174 := by
+      apply h₄₂
+      exact h₂.1
+    have h₄₄ : v ≤ 174 := by
+      apply h₂.2
+      exact h₄₁
+    linarith
+  norm_num [h₃, h₄]
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.261144161224365 / 5.268320798873901 / 26.529464960098267
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₄ : 94 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₅ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₆ : u ≥ 94 := by
+      apply h₅
+      exact h₁.1
+    have h₇ : u ≤ 94 := by
+      apply h₁.2
+      exact h₄
+    linarith
+  have h₄ : v = 19 := by
+    have h₅ : 19 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      norm_num [h₃]
+      <;> aesop
+    have h₆ : ∀ n ∈ S \ {u}, n ≥ 19 := by
+      intro n hn
+      rw [Set.mem_diff, h₀] at hn
+      norm_num [h₃] at hn ⊢
+      omega
+    have h₇ : v ≥ 19 := by
+      apply h₆
+      exact h₂.1
+    have h₈ : v ≤ 19 := by
+      apply h₂.2
+      exact h₅
+    linarith
+  field_simp [h₃, h₄]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.88596773147583 / 5.160473346710205 / 27.046441078186035
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₃₁ : 94 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₃₂ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₃₃ : u ≥ 94 := by
+      apply h₃₂
+      exact h₁.1
+    have h₃₄ : u ≤ 94 := by
+      apply h₁.2
+      exact h₃₁
+    linarith
+  have h₄ : v = 174 := by
+    have h₄₁ : 174 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₄₂ : ∀ n ∈ S \ {u}, n ≥ 174 := by
+      intro n hn
+      rw [Set.mem_diff, Set.mem_singleton_iff] at hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₄₃ : v ≥ 174 := by
+      apply h₄₂
+      exact ⟨h₄₁, by aesop⟩
+    have h₄₄ : v ≤ 174 := by
+      apply h₂.2
+      aesop
+    linarith
+  norm_num [h₃, h₄]
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.497062921524048 / 5.0444276332855225 / 25.54149055480957
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₄ : 94 ∈ S := by
+      rw [h₀]
+      constructor
+      norm_num
+      norm_num
+    have h₅ : ∀ n ∈ S, n ≥ 94 := by
+      intro n hn
+      rw [h₀] at hn
+      norm_num at hn
+      omega
+    have h₆ : u ≥ 94 := by
+      apply h₅
+      exact h₁.1
+    have h₇ : u ≤ 94 := by
+      apply h₁.2
+      exact h₄
+    linarith
+  have h₄ : v = 74 := by
+    have h₅ : 74 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      constructor
+      norm_num
+      norm_num [h₃]
+    have h₆ : ∀ n ∈ S \ {u}, n ≥ 74 := by
+      intro n hn
+      rw [Set.mem_diff, h₀] at hn
+      norm_num at hn
+      omega
+    have h₇ : v ≥ 74 := by
+      apply h₆
+      exact h₂.1
+    have h₈ : v ≤ 74 := by
+      apply h₂.2
+      exact h₅
+    linarith
+  norm_num [h₃, h₄]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.18454074859619 / 4.872211694717407 / 27.0567524433136
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_13
+  (u v : ℕ)
+  (S : Set ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (14 * n) % 100 = 46)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  ((u + v) : ℚ) / 2 = 64 := by
+  have h₃ : u = 94 := by
+    have h₃₁ : 94 ∈ S := by
+      rw [h₀]
+      norm_num
+    have h₃₂ : ∀ a : ℕ, a ∈ S → a ≥ 94 := by
+      intro a ha
+      rw [h₀] at ha
+      norm_num at ha
+      omega
+    have h₃₃ : u ≥ 94 := by
+      apply h₃₂
+      exact h₁.1
+    have h₃₄ : u ≤ 94 := by
+      apply h₁.2
+      exact h₃₁
+    linarith
+  have h₄ : v = 174 := by
+    have h₄₁ : 174 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      norm_num [h₃]
+    have h₄₂ : ∀ a : ℕ, a ∈ S \ {u} → a ≥ 174 := by
+      intro a ha
+      rw [Set.mem_diff, h₀] at ha
+      norm_num [h₃] at ha
+      omega
+    have h₄₃ : v ≥ 174 := by
+      apply h₄₂
+      exact h₂.1
+    have h₄₄ : v ≤ 174 := by
+      apply h₂.2
+      exact h₄₁
+    linarith
+  field_simp [h₃, h₄]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> rfl
+

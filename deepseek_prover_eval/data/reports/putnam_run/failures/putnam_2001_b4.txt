@@ -1,0 +1,254 @@
+Problem: putnam_2001_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.38212013244629 / 9.575595378875732 / 26.95771551132202
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step1 : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1, by norm_num [hS]⟩
+    have h3 := hf ⟨0, by norm_num [hS]⟩
+    have h4 := hf ⟨-1, by norm_num [hS]⟩
+    have h5 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h6 := hf ⟨-1 / 2, by norm_num [hS]⟩
+    norm_num [hS, Function.iterate_fixed] at h1 h2 h3 h4 h5 h6 ⊢
+    <;> simp_all [Set.ext_iff, Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_compl_iff, Set.mem_singleton_iff]
+    <;> aesop
+  
+  exact step1
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.119619607925415 / 8.284606456756592 / 26.404226064682007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step₁ : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h3 := hf ⟨0, by norm_num [hS]⟩
+    have h4 := hf ⟨-2, by norm_num [hS]⟩
+    have h5 := hf ⟨-1 / 2, by norm_num [hS]⟩
+    have h6 := hf ⟨3, by norm_num [hS]⟩
+    have h7 := hf ⟨-3, by norm_num [hS]⟩
+    norm_num [Function.iterate_fixed] at h1 h2 h3 h4 h5 h6 h7
+    <;> simp_all [Set.ext_iff, Set.mem_iInter, Set.mem_image, Set.mem_diff, Set.mem_singleton_iff]
+    <;> aesop
+  
+  exact step₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.235763549804688 / 8.646687269210815 / 22.882450819015503
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step1 : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h3 := hf ⟨0, by norm_num [hS]⟩
+    have h4 := hf ⟨-2, by norm_num [hS]⟩
+    have h5 := hf ⟨-1 / 2, by norm_num [hS]⟩
+    norm_num [Set.ext_iff, hS] at h1 h2 h3 h4 h5 ⊢
+    <;> aesop
+  exact step1
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.436254024505615 / 7.742431879043579 / 27.178685903549194
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step₁ : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1, by norm_num [hS]⟩
+    have h3 := hf ⟨0, by norm_num [hS]⟩
+    have h4 := hf ⟨-1, by norm_num [hS]⟩
+    have h5 := hf ⟨3, by norm_num [hS]⟩
+    have h6 := hf ⟨-2, by norm_num [hS]⟩
+    have h7 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h8 := hf ⟨-1 / 2, by norm_num [hS]⟩
+    norm_num [hf, hS] at h1 h2 h3 h4 h5 h6 h7 h8 ⊢
+    <;> simp_all [Set.ext_iff, Set.mem_iInter, Set.mem_image, Set.mem_Ici]
+    <;> norm_num
+    <;> aesop
+  
+  exact step₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 25.565500020980835 / 9.006126642227173 / 34.57162666320801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step1 : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h2 := hf ⟨1, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h3 := hf ⟨0, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h4 := hf ⟨1 / 2, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h5 := hf ⟨-1 / 2, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h6 := hf ⟨-2, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h7 := hf ⟨2 / 3, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h8 := hf ⟨-3 / 2, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h9 := hf ⟨3, by
+      norm_num [hS]
+      <;> aesop⟩
+    have h10 := hf ⟨-4, by
+      norm_num [hS]
+      <;> aesop⟩
+    norm_num [Set.ext_iff, Set.mem_iInter, Set.mem_image, Set.mem_compl, Set.mem_singleton_iff, hS] at h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 ⊢
+    <;> aesop
+  simp_all
+  <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.480254888534546 / 8.422968626022339 / 26.903223514556885
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step₁ : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1, by norm_num [hS]⟩
+    have h3 := hf ⟨0, by norm_num [hS]⟩
+    have h4 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h5 := hf ⟨-1 / 2, by norm_num [hS]⟩
+    have h6 := hf ⟨-1, by norm_num [hS]⟩
+    have h7 := hf ⟨2 / 3, by norm_num [hS]⟩
+    have h8 := hf ⟨-2 / 3, by norm_num [hS]⟩
+    norm_num [Set.ext_iff, hS, Function.iterate_fixed] at h1 h2 h3 h4 h5 h6 h7 h8 ⊢
+    <;> aesop
+  
+  exact step₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.108989000320435 / 9.72837495803833 / 28.837363958358765
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step1 : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1, by norm_num [hS]⟩
+    have h3 := hf ⟨0, by norm_num [hS]⟩
+    have h4 := hf ⟨-1, by norm_num [hS]⟩
+    have h5 := hf ⟨-2, by norm_num [hS]⟩
+    have h6 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h7 := hf ⟨2 / 3, by norm_num [hS]⟩
+    norm_num [Set.ext_iff, Function.iterate_fixed] at h1 h2 h3 h4 h5 h6 h7 ⊢
+    <;> simp_all [Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_compl_iff, Set.mem_singleton_iff, Set.mem_diff, Set.mem_univ]
+    <;> aesop
+  
+  exact step1
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.36481499671936 / 8.876477003097534 / 24.241291999816895
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b4
+(S : Set ℚ)
+(hS : S = univ \ {-1, 0, 1})
+(f : S → S)
+(hf : ∀ x : S, f x = x - 1 / (x : ℚ))
+: ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+  have step1 : ⋂ n ∈ Ici 1, f^[n] '' univ = ∅ ↔ putnam_2001_b4_solution := by
+    have h1 := hf ⟨2, by norm_num [hS]⟩
+    have h2 := hf ⟨1 / 2, by norm_num [hS]⟩
+    have h3 := hf ⟨3, by norm_num [hS]⟩
+    have h4 := hf ⟨-2, by norm_num [hS]⟩
+    have h5 := hf ⟨-1 / 2, by norm_num [hS]⟩
+    norm_num [Set.ext_iff, Set.mem_iInter, Set.mem_image, Set.mem_diff, Set.mem_singleton_iff] at h1 h2 h3 h4 h5 ⊢
+    <;> aesop
+  
+  exact step1

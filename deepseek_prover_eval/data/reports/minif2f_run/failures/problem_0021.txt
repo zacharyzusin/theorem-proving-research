@@ -1,0 +1,381 @@
+Problem: problem_0021
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 5
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 43.57101583480835 / 600.1935510635376 / 643.764566898346
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := by linarith
+  have h₄ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg _
+  have h₅ : Real.sqrt (1 + 2 * x) ≥ 0 := by linarith
+  have h₆ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≠ 0 := h₁
+  have h₇ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₂
+  have h₈ : 1 - Real.sqrt (1 + 2 * x) ≠ 0 := by
+    intro h
+    have h₉ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 = 0 := by simp [h]
+    simp_all
+  have h₉ : -(1 / 2) ≤ x := by
+    by_contra! h
+    have h₁₀ : x < -(1 / 2) := by linarith
+    have h₁₁ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 2 * x + 9 := by
+      rw [ge_iff_le]
+      rw [le_div_iff (by nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith), sq_pos_of_ne_zero h₈])]
+      nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith), sq_nonneg (x + 1 / 2), sq_nonneg (x - 1 / 2),
+        sq_nonneg (Real.sqrt (1 + 2 * x) - 1), sq_nonneg (Real.sqrt (1 + 2 * x) + 1)]
+    nlinarith
+  have h₁₀ : x < 45 / 8 := by
+    by_contra! h
+    have h₁₁ : x ≥ 45 / 8 := by linarith
+    have h₁₂ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 2 * x + 9 := by
+      rw [ge_iff_le]
+      rw [le_div_iff (by nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith), sq_pos_of_ne_zero h₈])]
+      nlinarith [Re
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 34.84007239341736 / 8.205907583236694 / 43.04597997665405
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := h₀
+  have h₄ : 1 - Real.sqrt (1 + 2 * x) ≠ 0 := by
+    intro h
+    have h₅ : 1 - Real.sqrt (1 + 2 * x) = 0 := h
+    have h₆ : Real.sqrt (1 + 2 * x) = 1 := by linarith
+    have h₇ : (Real.sqrt (1 + 2 * x)) ^ 2 = 1 ^ 2 := by rw [h₆]
+    rw [Real.sq_sqrt (by linarith)] at h₇
+    nlinarith
+  have h₅ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₂
+  have h₆ : -(1 / 2) ≤ x := by
+    by_contra h
+    have h₇ : x < -(1 / 2) := by linarith
+    have h₈ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 2 * x + 9 := by
+      have h₉ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≤ 0 := by
+        nlinarith [Real.sqrt_nonneg (1 + 2 * x), Real.sq_sqrt (by nlinarith : 0 ≤ 1 + 2 * x)]
+      have h₁₀ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 0 := by positivity
+      nlinarith
+    linarith
+  have h₇ : x < 45 / 8 := by
+    by_contra h
+    have h₈ : x ≥ 45 / 8 := by linarith
+    have h₉ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 2 * x + 9 := by
+      have h₁₀ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≤ 0 := by
+        nlinarith [Real.sqrt_nonneg (1 + 2 * x), Real.sq_sqrt (by nlinarith : 0 ≤ 1 + 2 * x)]
+      have h₁₁ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 0 := by positivity
+      nlinarith
+    
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 41.29511499404907 / 600.2521545886993 / 641.5472695827484
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := h₀
+  have h₄ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg _
+  have h₅ : Real.sqrt (1 + 2 * x) ≥ 0 := by linarith
+  have h₆ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≠ 0 := h₁
+  have h₇ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₂
+  have h₈ : 1 - Real.sqrt (1 + 2 * x) ≠ 0 := by
+    intro h
+    have h₉ : Real.sqrt (1 + 2 * x) = 1 := by linarith
+    have h₁₀ : (Real.sqrt (1 + 2 * x)) ^ 2 = 1 := by
+      nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith)]
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith)]
+  have h₉ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₂
+  have h₁₀ : 0 < (1 - Real.sqrt (1 + 2 * x)) ^ 2 := by
+    apply sq_pos_of_ne_zero
+    intro h
+    apply h₈
+    nlinarith
+  have h₁₁ : 0 < 1 - Real.sqrt (1 + 2 * x) := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith)]
+  have h₁₂ : -(1 / 2) ≤ x := by
+    rw [le_iff_exists_nonneg_add]
+    use x + 1 / 2
+    field_simp at h₉ ⊢
+    rw [div_lt_iff (by nlinarith)] at h₉
+    nlinarith [sq_nonneg (x + 1 / 2), sq_nonneg (x - 1 / 2),
+      Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+      sq_nonneg (Real.sqrt (1 + 2 * x) - 1),
+      sq_nonneg (Real.sqrt (1 + 2 * x) + 1)]
+  have h₁₃ : x
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 42.28636932373047 / 14.220493793487549 / 56.50686311721802
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := by linarith
+  have h₄ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg _
+  have h₅ : 1 - Real.sqrt (1 + 2 * x) ≠ 0 := by
+    intro h
+    have h₆ : Real.sqrt (1 + 2 * x) = 1 := by linarith
+    have h₇ : 1 + 2 * x = 1 := by
+      nlinarith [Real.sq_sqrt (by linarith : (0 : ℝ) ≤ 1 + 2 * x)]
+    have h₈ : x = 0 := by linarith
+    simp_all
+  have h₆ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 < 2 * x + 9 := by linarith
+  constructor
+  case left =>
+    have h₇ : -(1 / 2) ≤ x := by
+      by_contra! h
+      have h₈ : x < -(1 / 2) := by linarith
+      have h₉ : Real.sqrt (1 + 2 * x) ≤ 0 := by
+        apply Real.sqrt_le_iff.mpr
+        constructor <;> nlinarith
+      have h₁₀ : 1 - Real.sqrt (1 + 2 * x) > 0 := by nlinarith
+      have h₁₁ : (1 - Real.sqrt (1 + 2 * x))^2 > 0 := by nlinarith
+      have h₁₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 ≥ 0 := by positivity
+      nlinarith
+    exact h₇
+  case right =>
+    have h₇ : x < 45 / 8 := by
+      by_contra! h
+      have h₈ : x ≥ 45 / 8 := by linarith
+      have h₉ : Real.sqrt (1 + 2 * x) ≥ 9 / 2 := by
+        apply Real.le_sqrt_of_sq_le
+        nlinarith
+      have h₁₀ : 1 - Real.sqrt (1 + 2 * x) ≤ -5 / 2 := by
+        nlinarith
+      have h₁₁ : (1 - Real.
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 32.89762091636658 / 600.1670253276825 / 633.0646462440491
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := h₀
+  have h₄ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg (1 + 2 * x)
+  have h₅ : Real.sqrt (1 + 2 * x) ≥ 0 := by linarith
+  have h₆ : (Real.sqrt (1 + 2 * x))^2 = 1 + 2 * x := Real.sq_sqrt (by linarith)
+  have h₇ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0 := h₁
+  have h₈ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 < 2 * x + 9 := h₂
+  constructor
+  case left =>
+    -- We need to show that -1/2 ≤ x
+    have h₉ : 0 ≤ (1 - Real.sqrt (1 + 2 * x))^2 := by nlinarith
+    have h₁₀ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 < 2 * x + 9 := h₂
+    rw [div_lt_iff] at h₁₀ <;> nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1 / 2), sq_nonneg (x - 45 / 8),
+      sq_nonneg (x + 45 / 8), sq_nonneg (Real.sqrt (1 + 2 * x) - 3), sq_nonneg (Real.sqrt (1 + 2 * x) - 9 / 2)]
+  case right =>
+    -- We need to show that x < 45 / 8
+    have h₉ : 0 ≤ (1 - Real.sqrt (1 + 2 * x))^2 := by nlinarith
+    have h₁₀ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 < 2 * x + 9 := h₂
+    rw [div_lt_iff] at h₁₀ <;> nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1 / 2), sq_nonneg (x - 45 / 8),
+      sq_nonneg (x + 45 / 8), sq_nonneg (Real.sqrt (1 + 2 * x) - 3), sq_nonneg (Real.sqrt (1 + 2 * x) - 9 / 2)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 34.265949010849 / 12.733399629592896 / 46.999348640441895
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := h₀
+  have h₄ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≠ 0 := h₁
+  have h₅ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₂
+  have h₆ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg _
+  have h₇ : Real.sqrt (1 + 2 * x) ≥ 0 := by linarith
+  have h₈ : 1 - Real.sqrt (1 + 2 * x) ≤ 0 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+      sq_nonneg (1 - Real.sqrt (1 + 2 * x))]
+  have h₉ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 > 0 := by
+    nlinarith [sq_pos_of_ne_zero h₄]
+  have h₁₀ : 0 ≤ x := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+      sq_nonneg (1 - Real.sqrt (1 + 2 * x))]
+  have h₁₁ : -(1 / 2) ≤ x := by
+    rw [le_iff_eq_or_lt]
+    cases' le_or_lt 0 x with h h <;> simp_all [div_eq_mul_inv]
+    <;>
+    field_simp at h₅ ⊢ <;>
+    rw [div_lt_iff] at h₅ <;>
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+      sq_nonneg (1 - Real.sqrt (1 + 2 * x)),
+      sq_nonneg (Real.sqrt (1 + 2 * x) - 1)]
+  have h₁₂ : x < 45 / 8 := by
+    rw [← sub_pos]
+    field_simp at h₅ ⊢
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+      sq_nonneg (1 - Real.sqrt (1 + 2 * x)),
+      sq_nonneg (Real.sqrt (1 + 2 * x) - 1)]
+  exact ⟨h₁₁, h₁₂⟩
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.60827660560608 / 600.1745853424072 / 638.7828619480133
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := h₀
+  have h₄ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≠ 0 := h₁
+  have h₅ : (4 * x ^ 2) / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₂
+  have h₆ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg (1 + 2 * x)
+  have h₇ : Real.sqrt (1 + 2 * x) ≥ 0 := h₆
+  have h₈ : 1 - Real.sqrt (1 + 2 * x) ≤ 0 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+      sq_nonneg (Real.sqrt (1 + 2 * x) - 1)]
+  have h₉ : (1 - Real.sqrt (1 + 2 * x)) ^ 2 > 0 := by
+    apply sq_pos_of_ne_zero
+    intro h
+    apply h₄
+    simp_all
+  have h₁₀ : 4 * x ^ 2 / (1 - Real.sqrt (1 + 2 * x)) ^ 2 < 2 * x + 9 := h₅
+  have h₁₁ : -(1 / 2) ≤ x := by
+    by_contra! h
+    have h₁₂ : x < -(1 / 2) := by linarith
+    have h₁₃ : 4 * x ^ 2 / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 2 * x + 9 := by
+      rw [ge_iff_le]
+      rw [le_div_iff (by nlinarith)]
+      nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+        sq_nonneg (Real.sqrt (1 + 2 * x) - 1), sq_nonneg (x + 1 / 2),
+        sq_nonneg (x - 45 / 8), sq_nonneg (x + 45 / 8)]
+    linarith
+  have h₁₂ : x < 45 / 8 := by
+    by_contra! h
+    have h₁₃ : x ≥ 45 / 8 := by linarith
+    have h₁₄ : 4 * x ^ 2 / (1 - Real.sqrt (1 + 2 * x)) ^ 2 ≥ 2 * x + 9 := by
+      rw [ge_iff_le]
+  
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 40.921435594558716 / 600.0833692550659 / 641.0048048496246
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1960_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 1 + 2 * x)
+  (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  -(1 / 2) ≤ x ∧ x < 45 / 8 := by
+  have h₃ : 0 ≤ 1 + 2 * x := h₀
+  have h₄ : 0 ≤ Real.sqrt (1 + 2 * x) := Real.sqrt_nonneg _
+  have h₅ : 1 - Real.sqrt (1 + 2 * x) ≠ 0 := by
+    intro h
+    have h₆ : Real.sqrt (1 + 2 * x) = 1 := by linarith
+    have h₇ : 1 + 2 * x = 1 := by
+      nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith)]
+    have h₈ : x = 0 := by linarith
+    simp_all
+  have h₆ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 < 2 * x + 9 := h₂
+  have h₇ : -(1 / 2) ≤ x := by
+    by_contra! h
+    have h₈ : x < -(1 / 2) := by linarith
+    have h₉ : (1 - Real.sqrt (1 + 2 * x))^2 > 0 := by
+      apply sq_pos_of_ne_zero
+      intro h₁₀
+      apply h₅
+      nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith)]
+    have h₁₀ : (4 * x^2) / (1 - Real.sqrt (1 + 2 * x))^2 ≥ 2 * x + 9 := by
+      rw [ge_iff_le]
+      rw [le_div_iff (by positivity)]
+      nlinarith [Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith),
+        sq_nonneg (x + 1 / 2), sq_nonneg (x - 1 / 2),
+        sq_nonneg (Real.sqrt (1 + 2 * x) - 1),
+        Real.sq_sqrt (show 0 ≤ 1 + 2 * x by linarith)]
+    linarith
+  have h₈ : x < 45 / 8 := by
+    by_contra! h
+    have h₉ : x ≥ 45 / 8 := by linarith
+    have h₁₀ : (1 - Real.sqrt (1 + 2 * x))^2 > 0 := by
+      apply sq_pos_of_ne_zero
+      intro 
+... [truncated] ...

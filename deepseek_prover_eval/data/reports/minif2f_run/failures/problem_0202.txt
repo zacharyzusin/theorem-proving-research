@@ -1,0 +1,281 @@
+Problem: problem_0202
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.684711694717407 / 600.1339223384857 / 621.8186340332031
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ : a ^ 2 + b ^ 2 + c ^ 2 = 4 - 2 * (a * b + b * c + c * a) := by
+    nlinarith
+  have h₄ : 0 ≤ a := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₅ : a ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₆ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₇ : b ≤ 1 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₈ : 1 ≤ c := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₉ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  exact ⟨h₄, h₅, h₆, h₇, h₈, h₉⟩
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.158116817474365 / 600.1617574691772 / 621.3198742866516
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ := sq_nonneg (a - b)
+  have h₄ := sq_nonneg (b - c)
+  have h₅ := sq_nonneg (c - a)
+  have h₆ : a ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₇ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₈ : b ≤ 1 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₉ : 1 ≤ c := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₁₀ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  exact ⟨by nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)], h₆, h₇, h₈, h₉, h₁₀⟩
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.792588233947754 / 600.1485171318054 / 624.9411053657532
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ : a ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      sq_nonneg (a + b + c), sq_nonneg (a + b + c - 2)]
+  have h₄ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      sq_nonneg (a + b + c), sq_nonneg (a + b + c - 2)]
+  have h₅ : b ≤ 1 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      sq_nonneg (a + b + c), sq_nonneg (a + b + c - 2)]
+  have h₆ : 1 ≤ c := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      sq_nonneg (a + b + c), sq_nonneg (a + b + c - 2)]
+  have h₇ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      sq_nonneg (a + b + c), sq_nonneg (a + b + c - 2)]
+  exact ⟨by nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)], h₃, h₄, h₅, h₆, h₇⟩
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.904747009277344 / 600.152181148529 / 614.0569281578064
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  refine' ⟨_, _, _, _, _, _⟩
+  all_goals
+    nlinarith [sq_nonneg (a + b + c), sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      mul_nonneg (sub_nonneg.mpr h₀.1) (sub_nonneg.mpr h₀.2), mul_nonneg (sub_nonneg.mpr h₀.1)
+        (sub_nonneg.mpr h₀.2), mul_nonneg (sub_nonneg.mpr h₀.1) (sub_nonneg.mpr h₀.2)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.790870904922485 / 600.1629638671875 / 622.95383477211
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ : a ^ 2 + b ^ 2 + c ^ 2 = (a + b + c) ^ 2 - 2 * (a * b + b * c + c * a) := by ring
+  rw [h₁, h₂] at h₃
+  have h₄ : 0 ≤ a := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+  have h₅ : a ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+  have h₆ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+  have h₇ : b ≤ 1 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+  have h₈ : 1 ≤ c := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+  have h₉ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+  exact ⟨h₄, h₅, h₆, h₇, h₈, h₉⟩
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.385177850723267 / 600.1625521183014 / 623.5477299690247
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ : a ^ 2 + b ^ 2 + c ^ 2 = 4 - 2 * (a * b + b * c + c * a) := by
+    nlinarith
+  have h₄ : a ^ 2 + b ^ 2 + c ^ 2 = 2 := by nlinarith
+  have h₅ : 0 ≤ a := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₆ : a ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₇ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₈ : b ≤ 1 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₉ : 1 ≤ c := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  have h₁₀ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+  exact ⟨h₅, h₆, h₇, h₈, h₉, h₁₀⟩
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.55823040008545 / 600.1498079299927 / 624.7080383300781
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ := mul_self_nonneg (a - b)
+  have h₄ := mul_self_nonneg (b - c)
+  have h₅ := mul_self_nonneg (c - a)
+  have h₆ : a = 2 - b - c := by linarith
+  subst h₆
+  have h₇ : 0 ≤ (2 - b - c) := by nlinarith
+  have h₈ : (2 - b - c) ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 1 / 3), sq_nonneg (b - c)]
+  have h₉ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 1 / 3), sq_nonneg (b - c)]
+  have h₁₀ : b ≤ 1 := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 1 / 3), sq_nonneg (b - c)]
+  have h₁₁ : 1 ≤ c := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 1 / 3), sq_nonneg (b - c)]
+  have h₁₂ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 1 / 3), sq_nonneg (b - c)]
+  exact ⟨by nlinarith, by nlinarith, by nlinarith, by nlinarith, by nlinarith, by nlinarith⟩
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.67757534980774 / 600.1454956531525 / 624.8230710029602
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3
+  (a b c : ℝ)
+  (h₀ : a ≤ b ∧ b ≤ c)
+  (h₁ : a + b + c = 2)
+  (h₂ : a * b + b * c + c * a = 1) :
+  0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by
+  have h₃ := mul_self_nonneg (a - b)
+  have h₄ := mul_self_nonneg (b - c)
+  have h₅ := mul_self_nonneg (c - a)
+  have h₆ : a = 2 - b - c := by linarith
+  subst h₆
+  have h₇ : 0 ≤ 2 - b - c := by nlinarith
+  have h₈ : 2 - b - c ≤ 1 / 3 := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 4 / 3), sq_nonneg (b - c)]
+  have h₉ : 1 / 3 ≤ b := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 4 / 3), sq_nonneg (b - c)]
+  have h₁₀ : b ≤ 1 := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 4 / 3), sq_nonneg (b - c)]
+  have h₁₁ : 1 ≤ c := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 4 / 3), sq_nonneg (b - c)]
+  have h₁₂ : c ≤ 4 / 3 := by
+    nlinarith [sq_nonneg (b - 1 / 3), sq_nonneg (c - 4 / 3), sq_nonneg (b - c)]
+  exact ⟨by nlinarith, by nlinarith, by nlinarith, by nlinarith, by nlinarith, by nlinarith⟩
+

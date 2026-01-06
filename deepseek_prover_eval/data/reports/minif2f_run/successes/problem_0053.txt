@@ -1,0 +1,23 @@
+Problem: problem_0053
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.4582273960113525
+Lean check time (s): 3.583791971206665
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_765
+  (x : ℤ)
+  (h₀ : x < 0)
+  (h₁ : (24 * x) % 1199 = 15) :
+  x ≤ -449 := by
+  have h₂ := h₁
+  rw [← Int.emod_add_ediv (24 * x) 1199] at h₂
+  ring_nf at h₂
+  norm_num at h₂
+  omega

@@ -1,0 +1,142 @@
+Problem: putnam_1985_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 29.37921929359436 / 4.381520986557007 / 33.76074028015137
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 29.7961483001709 / 4.9567999839782715 / 34.75294828414917
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.946474313735962 / 4.39154839515686 / 21.338022708892822
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 26.68211054801941 / 4.312417268753052 / 30.99452781677246
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 33.04141807556152 / 5.994893312454224 / 39.03631138801575
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 25.25421643257141 / 4.520334243774414 / 29.774550676345825
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 26.048261642456055 / 4.342688322067261 / 30.390949964523315
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 25.440935373306274 / 4.373169660568237 / 29.81410503387451
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1985_b1
+(p : (Fin 5 → ℤ) → (Polynomial ℝ))
+(hp : p = fun m ↦ ∏ i : Fin 5, ((X : Polynomial ℝ) - m i))
+(numnzcoeff : Polynomial ℝ → ℕ)
+(hnumnzcoeff : numnzcoeff = fun p ↦ {j ∈ Finset.range (p.natDegree + 1) | coeff p j ≠ 0}.card)
+: (Injective putnam_1985_b1_solution ∧ ∀ m : Fin 5 → ℤ, Injective m → numnzcoeff (p putnam_1985_b1_solution) ≤ numnzcoeff (p m)) :=
+sorry

@@ -1,0 +1,312 @@
+Problem: putnam_2000_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.45774221420288 / 4.562901258468628 / 21.02064347267151
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h₁ := hf 0
+  have h₂ := hf 1
+  have h₃ := hf (-1)
+  have h₄ := hf 2
+  have h₅ := hf (-2)
+  have h₆ := hf (1 / 2)
+  have h₇ := hf (-1 / 2)
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇
+  have h₈ := hf x
+  have h₉ := hf (-x)
+  norm_num at h₈ h₉
+  have h₁₀ : x ∈ Icc (-1) 1 := hx
+  have h₁₁ : -x ∈ Icc (-1) 1 := by
+    constructor <;> nlinarith [h₁₀.1, h₁₀.2]
+  have h₁₂ : f x = 0 := by
+    cases' le_total 0 x with hx' hx' <;>
+    cases' le_total 0 (-x) with hx'' hx'' <;>
+    simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith
+  exact h₁₂
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.60336446762085 / 4.462772607803345 / 27.066137075424194
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h1 := hf 0
+  have h2 := hf 1
+  have h3 := hf (-1)
+  have h4 := hf 2
+  have h5 := hf (-2)
+  have h6 := hf (1 / 2)
+  have h7 := hf (-1 / 2)
+  norm_num at h1 h2 h3 h4 h5 h6 h7
+  have h8 : f x = 0 := by
+    have h9 : x ∈ Icc (-1) 1 := hx
+    have h10 : -1 ≤ x := h9.1
+    have h11 : x ≤ 1 := h9.2
+    have h12 : f x = 0 := by
+      have h13 : f (2 * x ^ 2 - 1) = 2 * x * f x := hf x
+      have h14 : f (2 * 1 ^ 2 - 1) = 2 * 1 * f 1 := hf 1
+      have h15 : f (2 * (-1) ^ 2 - 1) = 2 * (-1) * f (-1) := hf (-1)
+      have h16 : f (2 * (1 / 2) ^ 2 - 1) = 2 * (1 / 2) * f (1 / 2) := hf (1 / 2)
+      have h17 : f (2 * (-1 / 2) ^ 2 - 1) = 2 * (-1 / 2) * f (-1 / 2) := hf (-1 / 2)
+      norm_num at h13 h14 h15 h16 h17
+      nlinarith [sq_nonneg (x + 1), sq_nonneg (x - 1), sq_nonneg (x + 1 / 2), sq_nonneg (x - 1 / 2)]
+    exact h12
+  exact h8
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.624403715133667 / 4.570894241333008 / 18.195297956466675
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h1 := hf 0
+  have h2 := hf 1
+  have h3 := hf (-1)
+  have h4 := hf 2
+  have h5 := hf (-2)
+  have h6 := hf (1 / 2)
+  have h7 := hf (-1 / 2)
+  norm_num at h1 h2 h3 h4 h5 h6 h7
+  have h8 := hf x
+  have h9 := hf (-x)
+  norm_num at h8 h9
+  have h10 : x ∈ Icc (-1) 1 := hx
+  norm_num at h10
+  cases' abs_cases x with h11 h11 <;>
+    cases' abs_cases (x + 1) with h12 h12 <;>
+    cases' abs_cases (x - 1) with h13 h13 <;>
+    nlinarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.199385166168213 / 5.362268686294556 / 23.56165385246277
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h₁ := hf 0
+  have h₂ := hf 1
+  have h₃ := hf (-1)
+  have h₄ := hf 2
+  have h₅ := hf (-2)
+  have h₆ := hf (1 / 2)
+  have h₇ := hf (-1 / 2)
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇
+  have h₈ := hf 3
+  have h₉ := hf (-3)
+  norm_num at h₈ h₉
+  have h₁₀ := hf 1
+  have h₁₁ := hf (-1)
+  norm_num at h₁₀ h₁₁
+  have h₁₂ := hf (1 / 2)
+  have h₁₃ := hf (-1 / 2)
+  norm_num at h₁₂ h₁₃
+  have h₁₄ := hf 2
+  have h₁₅ := hf (-2)
+  norm_num at h₁₄ h₁₅
+  have h₁₆ := hf 3
+  have h₁₇ := hf (-3)
+  norm_num at h₁₆ h₁₇
+  norm_num [hx] at *
+  <;> nlinarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.7905752658844 / 4.8661627769470215 / 22.65673804283142
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h₁ := hf 0
+  have h₂ := hf 1
+  have h₃ := hf (-1)
+  have h₄ := hf 2
+  have h₅ := hf (-2)
+  have h₆ := hf (1 / 2)
+  have h₇ := hf (-1 / 2)
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇
+  have h₈ := hf x
+  have h₉ := hf (-x)
+  norm_num at h₈ h₉
+  cases' hx with hx₁ hx₂
+  have h₁₀ : x ≤ 1 := by linarith
+  have h₁₁ : -1 ≤ x := by linarith
+  have h₁₂ : f x = 0 := by
+    nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1), sq_nonneg (x - 1 / 2), sq_nonneg (x + 1 / 2),
+      mul_nonneg (sub_nonneg.mpr h₁₁) (sub_nonneg.mpr h₁₀),
+      mul_nonneg (sub_nonneg.mpr h₁₁) (sub_nonneg.mpr h₁₀)]
+  exact h₁₂
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.994380950927734 / 4.865659236907959 / 28.860040187835693
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h1 := hf 0
+  have h2 := hf 1
+  have h3 := hf (-1)
+  have h4 := hf 2
+  have h5 := hf (-2)
+  have h6 := hf (1 / 2)
+  have h7 := hf (-1 / 2)
+  norm_num at h1 h2 h3 h4 h5 h6 h7
+  have h8 : f x = 0 := by
+    have h9 : x ∈ Icc (-1) 1 := hx
+    have h10 : -1 ≤ x := h9.1
+    have h11 : x ≤ 1 := h9.2
+    have h12 : f x = 0 := by
+      -- Use the given functional equation and properties to show f(x) = 0
+      have h13 : f (2 * x ^ 2 - 1) = 2 * x * f x := hf x
+      have h14 : f (2 * 1 ^ 2 - 1) = 2 * 1 * f 1 := hf 1
+      have h15 : f (2 * (-1) ^ 2 - 1) = 2 * (-1) * f (-1) := hf (-1)
+      have h16 : f (2 * (1 / 2) ^ 2 - 1) = 2 * (1 / 2) * f (1 / 2) := hf (1 / 2)
+      have h17 : f (2 * (-1 / 2) ^ 2 - 1) = 2 * (-1 / 2) * f (-1 / 2) := hf (-1 / 2)
+      norm_num at h13 h14 h15 h16 h17
+      nlinarith [sq_nonneg (x + 1), sq_nonneg (x - 1), sq_nonneg (x + 1 / 2), sq_nonneg (x - 1 / 2)]
+    exact h12
+  exact h8
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.905410528182983 / 4.7516491413116455 / 27.65705966949463
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h1 := hf 0
+  have h2 := hf 1
+  have h3 := hf (-1)
+  have h4 := hf 2
+  have h5 := hf (-2)
+  have h6 := hf (1 / 2)
+  have h7 := hf (-1 / 2)
+  norm_num at h1 h2 h3 h4 h5 h6 h7
+  have h8 : f x = 0 := by
+    have h9 : x ∈ Icc (-1) 1 := hx
+    have h10 : -1 ≤ x := by exact h9.1
+    have h11 : x ≤ 1 := by exact h9.2
+    have h12 : f x = 0 := by
+      have h13 : f (2 * x ^ 2 - 1) = 2 * x * f x := hf x
+      have h14 : f (2 * 1 ^ 2 - 1) = 2 * 1 * f 1 := hf 1
+      have h15 : f (2 * (-1) ^ 2 - 1) = 2 * (-1) * f (-1) := hf (-1)
+      have h16 : f (2 * (1 / 2) ^ 2 - 1) = 2 * (1 / 2) * f (1 / 2) := hf (1 / 2)
+      have h17 : f (2 * (-1 / 2) ^ 2 - 1) = 2 * (-1 / 2) * f (-1 / 2) := hf (-1 / 2)
+      norm_num at h13 h14 h15 h16 h17
+      nlinarith [sq_nonneg (x + 1), sq_nonneg (x - 1), sq_nonneg (x + 1 / 2), sq_nonneg (x - 1 / 2)]
+    exact h12
+  exact h8
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 52.9402379989624 / 4.709141969680786 / 57.64937996864319
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b4
+(f : ℝ → ℝ)
+(hfcont : Continuous f)
+(hf : ∀ x, f (2 * x ^ 2 - 1) = 2 * x * f x)
+: ∀ x, x ∈ Icc (-1) 1 → f x = 0 := by
+  intro x hx
+  have h1 := hf 0
+  have h2 := hf 1
+  have h3 := hf (-1)
+  have h4 := hf (1 / 2)
+  have h5 := hf (-1 / 2)
+  have h6 := hf 2
+  have h7 := hf (-2)
+  have h8 := hf (1 / 2 + 1 / 2)
+  have h9 := hf (-1 / 2 + 1 / 2)
+  norm_num at h1 h2 h3 h4 h5 h6 h7 h8 h9
+  have h10 : x ∈ Icc (-1) 1 := hx
+  have h11 : -1 ≤ x := by exact h10.1
+  have h12 : x ≤ 1 := by exact h10.2
+  have h13 : f x = 0 := by
+    have h14 : f x = 0 := by
+      have h15 : f (2 * x ^ 2 - 1) = 2 * x * f x := hf x
+      have h16 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h17 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h18 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h19 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h20 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h21 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h22 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h23 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h24 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h25 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h26 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h27 : f (2 * x ^ 2 - 1) = 2 * x * f x := by linarith
+      have h28 : f (2 * x 
+... [truncated] ...

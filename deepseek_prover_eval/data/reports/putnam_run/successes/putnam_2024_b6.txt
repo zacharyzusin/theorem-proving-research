@@ -1,0 +1,21 @@
+Problem: putnam_2024_b6
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 17.620102405548096
+Lean check time (s): 13.691471815109253
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2024_b6
+    (F : ℝ → ℝ → ℝ) (c : ℝ)
+    (hF : ∀ a, ∀ x ∈ Set.Ico 0 1,
+      HasSum (fun (n : ℕ) => (n+1)^a * rexp (2*(n+1)) * x^(n+1)^2) (F a x)) :
+    ((∀ a < c, Filter.Tendsto (fun x => F a x * rexp (- 1 / (1-x))) (𝓝[<] 1) (𝓝 0)) ∧
+    (∀ a > c, Filter.Tendsto (fun x => F a x * rexp (- 1 / (1-x))) (𝓝[<] 1) Filter.atTop))
+    ↔ c = putnam_2024_b6_solution :=
+  sorry

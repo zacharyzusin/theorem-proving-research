@@ -1,0 +1,21 @@
+Problem: problem_0241
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.777304172515869
+Lean check time (s): 2.5502772331237793
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_185
+  (n : ℕ)
+  (h₀ : n % 5 = 3) :
+  (2 * n) % 5 = 1 := by
+  rw [← Nat.mod_add_div n 5]
+  simp [h₀, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt, show 3 < 5 by norm_num,
+    show 2 * 5 = 10 by norm_num]
+  <;> omega

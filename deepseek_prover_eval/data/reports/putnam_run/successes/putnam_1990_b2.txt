@@ -1,0 +1,21 @@
+Problem: putnam_1990_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.053860664367676
+Lean check time (s): 28.733177661895752
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b2
+(x z : ℝ)
+(P : ℕ → ℝ)
+(xlt1 : |x| < 1)
+(zgt1 : |z| > 1)
+(hP : ∀ j ≥ 1, P j = (∏ i : Fin j, (1 - z * x ^ (i : ℕ))) / (∏ i : Set.Icc 1 j, (z - x ^ (i : ℕ))))
+: 1 + (∑' j : Set.Ici 1, (1 + x ^ (j : ℕ)) * P j) = 0 :=
+sorry

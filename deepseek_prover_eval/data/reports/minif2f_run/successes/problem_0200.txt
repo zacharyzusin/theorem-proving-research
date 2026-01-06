@@ -1,0 +1,28 @@
+Problem: problem_0200
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.077107906341553
+Lean check time (s): 3.8124887943267822
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p3
+  (x y : ℕ)
+  (h₀ : x + y = 17402)
+  (h₁ : 10∣x)
+  (h₂ : x / 10 = y) :
+  ↑x - ↑y = (14238:ℤ) := by
+  have h₃ : x ≥ 10 * y := by omega
+  have h₄ : x = 10 * y := by omega
+  rw [h₄] at h₀
+  have h₅ : y = 17402 / 11 := by omega
+  have h₆ : y = 1582 := by omega
+  have h₇ : x = 10 * 1582 := by omega
+  have h₈ : x = 15820 := by omega
+  have h₉ : ↑x - ↑y = (14238:ℤ) := by omega
+  exact h₉

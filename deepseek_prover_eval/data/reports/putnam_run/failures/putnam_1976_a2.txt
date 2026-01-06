@@ -1,0 +1,190 @@
+Problem: putnam_1976_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.658704280853271 / 39.91165733337402 / 55.570361614227295
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.03801941871643 / 30.45609188079834 / 48.49411129951477
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.229843616485596 / 34.59698748588562 / 48.826831102371216
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.874169111251831 / 55.48399066925049 / 69.35815978050232
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.718135833740234 / 36.93497347831726 / 51.653109312057495
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.953014373779297 / 38.77854299545288 / 53.73155736923218
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.498963356018066 / 59.84493613243103 / 73.3438994884491
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.56095242500305 / 38.180423736572266 / 54.74137616157532
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a2
+    (P Q : MvPolynomial (Fin 2) ℤ)
+    (hP : P = X 0 ^ 2 * X 1 + X 0 * X 1 ^ 2)
+    (hQ : Q = X 0 ^ 2 + X 0 * X 1 + X 1 ^ 2)
+    (F G : ℕ → MvPolynomial (Fin 2) ℤ)
+    (hF : ∀ n, F n = (X 0 + X 1) ^ n - X 0 ^ n - X 1 ^ n)
+    (hG : ∀ n, G n = (X 0 + X 1) ^ n + X 0 ^ n + X 1 ^ n)
+    (n : ℕ)
+    (hn : 0 < n) :
+    ∃ A : MvPolynomial (Fin 2) ℤ,
+      F n = aeval ![P, Q] A ∨
+      G n = aeval ![P, Q] A :=
+  sorry

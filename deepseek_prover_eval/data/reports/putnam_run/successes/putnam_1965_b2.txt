@@ -1,0 +1,24 @@
+Problem: putnam_1965_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 28.002614736557007
+Lean check time (s): 13.921550989151001
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b2
+(n : ℕ)
+(hn : n > 1)
+(won : Fin n → Fin n → Bool)
+(hirrefl : ∀ i : Fin n, won i i = false)
+(hantisymm : ∀ i j : Fin n, i ≠ j → won i j = ¬won j i)
+(w l : Fin n → ℤ)
+(hw : w = fun r : Fin n => ∑ j : Fin n, (if won r j then 1 else 0))
+(hl : l = fun r : Fin n => n - 1 - w r)
+: ∑ r : Fin n, (w r)^2 = ∑ r : Fin n, (l r)^2 :=
+sorry

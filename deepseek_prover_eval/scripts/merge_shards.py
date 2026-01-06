@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
-"""Merge sharded MiniF2F results into a single unified directory.
+"""Merge sharded evaluation results into a single unified directory.
 
-This script:
+This script works with both MiniF2F and PutnamBench results:
 1. Copies all problem JSON files from all shards into one proofs/ directory
 2. Merges all metrics into a single aggregated metrics file
 3. Creates a unified results directory structure
 
 Usage:
-  python scripts/merge_shards.py data/results/minif2f_sharded_16 data/results/minif2f_merged
+  # For MiniF2F:
+  python scripts/merge_shards.py data/results/minif2f_sharded_16 data/results/minif2f_merged --mode noncot
+  
+  # For PutnamBench:
+  python scripts/merge_shards.py data/results/putnam_sharded_16 data/results/putnam_merged --mode noncot
 """
 
 from __future__ import annotations
@@ -131,8 +135,11 @@ def merge_shards(sharded_root: Path, output_dir: Path, mode: str | None = None) 
     # Determine actual number of samples (max attempts)
     num_samples = max_attempts if max_attempts > 0 else 8
     
+    # Infer dataset from problem results (default to "minif2f" for backward compatibility)
+    dataset = all_problem_results[0].get("dataset", "minif2f") if all_problem_results else "minif2f"
+    
     merged_metrics = {
-        "dataset": "minif2f",
+        "dataset": dataset,
         "mode": all_problem_results[0].get("mode", "noncot") if all_problem_results else "noncot",
         "total_problems": total_problems,
         "problems_passed": total_passed,
@@ -158,7 +165,7 @@ def merge_shards(sharded_root: Path, output_dir: Path, mode: str | None = None) 
     
     # Save merged metrics
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    metrics_filename = f"minif2f_{merged_metrics['mode']}_merged_{timestamp}.json"
+    metrics_filename = f"{dataset}_{merged_metrics['mode']}_merged_{timestamp}.json"
     metrics_filepath = metrics_dir / metrics_filename
     
     with metrics_filepath.open("w") as f:

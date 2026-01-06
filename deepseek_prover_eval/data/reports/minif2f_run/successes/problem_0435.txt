@@ -1,0 +1,23 @@
+Problem: problem_0435
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 7.56009840965271
+Lean check time (s): 2.918264389038086
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_323
+  (σ : Equiv ℝ ℝ)
+  (h : ∀ x, σ.1 x = x^3 - 8) :
+  σ.2 (σ.1 (σ.2 19)) = 3 := by
+  simp [Equiv.symm_apply_eq] at *
+  simp_all [h, pow_three]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> nlinarith [sq_nonneg (3 - 2), sq_nonneg (3 + 2), sq_nonneg (3 - 1), sq_nonneg (3 + 1)]

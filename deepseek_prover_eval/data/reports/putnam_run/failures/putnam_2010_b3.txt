@@ -1,0 +1,166 @@
+Problem: putnam_2010_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 19.11298394203186 / 8.562106847763062 / 27.675090789794922
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.23332381248474 / 7.251194715499878 / 31.48451852798462
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 32.94515514373779 / 8.15254807472229 / 41.09770321846008
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 29.393624782562256 / 8.364146709442139 / 37.757771492004395
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 28.772488594055176 / 7.603255033493042 / 36.37574362754822
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 30.0268771648407 / 7.0931220054626465 / 37.119999170303345
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.7645263671875 / 7.819177150726318 / 46.58370351791382
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 35.36569547653198 / 7.688317060470581 / 43.05401253700256
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2010_b3
+      (n : ℕ) (hn : n > 0)
+      (trans : (ℕ → Fin 2010 → ℕ) → ℕ → Prop)
+      (htrans : ∀ P T, trans P T ↔ ∀ t : ℕ, t < T → ∃ i j,
+            i ≠ j ∧
+            P t i ≥ i.1 + 1 ∧ P (t + 1) i = P t i - (i.1 + 1) ∧ P (t + 1) j = P t j + (i.1 + 1) ∧
+            ∀ k : Fin 2010, k ≠ i → k ≠ j → P (t + 1) k = P t k) :
+      (∀ B, ∑ i, B i = 2010 * n → ∃ᵉ (P) (T), P 0 = B ∧ trans P T ∧ ∀ i, P T i = n)
+      ↔ n ∈ putnam_2010_b3_solution :=
+sorry

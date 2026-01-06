@@ -1,0 +1,57 @@
+Problem: problem_0330
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 20.15538740158081
+Lean check time (s): 4.238426208496094
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_42
+  (S : Set ℕ)
+  (u v : ℕ)
+  (h₀ : ∀ (a : ℕ), a ∈ S ↔ 0 < a ∧ 27 * a % 40 = 17)
+  (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) :
+  u + v = 62 := by
+  have h₃ : u = 11 := by
+    have h₃₁ : 11 ∈ S := by
+      rw [h₀]
+      constructor
+      norm_num
+      norm_num
+    have h₃₂ : ∀ a : ℕ, a ∈ S → a ≥ 11 := by
+      intro a ha
+      rw [h₀] at ha
+      norm_num at ha
+      omega
+    have h₃₃ : u ≥ 11 := by
+      apply h₃₂
+      exact h₁.1
+    have h₃₄ : u ≤ 11 := by
+      apply h₁.2
+      exact h₃₁
+    omega
+  have h₄ : v = 51 := by
+    have h₄₁ : 51 ∈ S \ {u} := by
+      rw [Set.mem_diff, h₀]
+      constructor
+      norm_num
+      norm_num [h₃]
+    have h₄₂ : ∀ a : ℕ, a ∈ S \ {u} → a ≥ 51 := by
+      intro a ha
+      rw [Set.mem_diff, h₀] at ha
+      norm_num at ha
+      omega
+    have h₄₃ : v ≥ 51 := by
+      apply h₄₂
+      exact h₂.1
+    have h₄₄ : v ≤ 51 := by
+      apply h₂.2
+      exact h₄₁
+    omega
+  omega

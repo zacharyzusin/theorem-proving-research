@@ -1,0 +1,412 @@
+Problem: problem_0375
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 43.5930061340332 / 15.861999750137329 / 59.45500588417053
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨_, fun n hn => _⟩
+  · -- Show that 112 satisfies the condition
+    norm_num [div_lt_div_iff, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
+    use 97
+    norm_num
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    intro k hk
+    <;>
+    by_contra! h
+    <;>
+    norm_num at hk
+    <;>
+    nlinarith
+  · -- Show that no larger number satisfies the condition
+    norm_num [div_lt_div_iff, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat] at hn
+    rcases hn with ⟨hn₁, k, hk₁, hk₂⟩
+    norm_cast at hk₁ hk₂
+    have : n ≤ 112 := by
+      contrapose! hk₂
+      have h₁ : (n : ℝ) > 112 := by exact_mod_cast hk₂
+      have h₂ : (n : ℝ) / (n + k) ≥ 7 / 13 := by
+        rw [ge_iff_le]
+        rw [div_le_div_iff] <;> norm_cast <;> nlinarith
+      nlinarith
+    interval_cases n <;> norm_num [div_lt_div_iff, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat] at hk₁ hk₂ ⊢ <;>
+      (try omega) <;>
+      (try {
+        have h₁ : k ≤ 160 := by
+          by_contra! hk
+          have h₂ : (113 : ℝ) / (113 + k) < 7 / 13 := by
+            rw [div_lt_div_iff] <;> norm_cast <;> nlinarith
+          nlinarith
+        interval_cases k <;> norm_num at hk₁ hk₂ ⊢ <;> omega }) <;>
+      (try {
+        have h₁ : k ≤ 160 := by
+          by_contra! hk
+          have h₂ : (113 : ℝ) / (113 + k) < 7 / 13 := by
+            rw
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 52.5981171131134 / 5.880231142044067 / 58.47834825515747
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨_, fun n hn => _⟩
+  · -- Show that 112 satisfies the conditions
+    constructor
+    · norm_num
+    · /-
+        We need to find the unique k such that:
+        8 / 15 < 112 / (112 + k) ∧ 112 / (112 + k) < 7 / 13
+        Cross-multiplying the first inequality:
+        8 / 15 < 112 / (112 + k) ⇒ 8 * (112 + k) < 15 * 112
+        8 * (112 + k) < 1680 ⇒ 896 + 8k < 1680 ⇒ 8k < 784 ⇒ k < 98
+        Cross-multiplying the second inequality:
+        112 / (112 + k) < 7 / 13 ⇒ 13 * 112 < 7 * (112 + k)
+        1456 < 784 + 7k ⇒ 672 < 7k ⇒ k > 96
+        Thus, the unique k is 97.
+      -/
+      use 97
+      constructor
+      · norm_num [div_lt_div_iff, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat]
+        <;> ring_nf
+        <;> norm_num
+        <;> omega
+      · intro k hk
+        have h₁ := hk.1
+        have h₂ := hk.2
+        have h₃ : k = 97 := by
+          norm_num [div_lt_div_iff, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat] at h₁ h₂
+          <;> ring_nf at h₁ h₂ ⊢
+          <;> norm_num at h₁ h₂ ⊢
+          <;> omega
+        simp_all
+  · -- Show that any n satisfying the conditions must be less than or equal to 112
+    have h₁ := hn.1
+    have h₂ := hn.2
+    rcases h₂ with ⟨k, hk, hk'⟩
+    have h₃ := hk'
+    have h₄ : n ≤ 112 := by
+      by_contra h
+      push_neg at h
+      have h
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 25.981532335281372 / 11.94174313545227 / 37.92327547073364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨_, _⟩
+  · -- Show that 112 satisfies the condition
+    norm_num [Nat.div_eq_of_lt]
+    use 97
+    norm_num
+    <;> field_simp [Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+    <;> rw [div_lt_div_iff] <;> norm_cast <;> ring_nf <;> norm_num <;> omega
+  · -- Show that 112 is the greatest such number
+    rintro n ⟨hn, k, hk, hk'⟩
+    by_contra! h
+    norm_num [Nat.div_eq_of_lt] at hk hk'
+    <;> norm_num [Nat.div_eq_of_lt] at h
+    <;> interval_cases n <;> norm_num [Nat.div_eq_of_lt] at hk hk' <;>
+      (try omega) <;>
+      (try
+        {
+          norm_num [Nat.div_eq_of_lt] at hk hk'
+          <;>
+            rcases k with (_ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _) <;>
+              norm_num [Nat.div_eq_of_lt] at hk hk' <;>
+                omega
+        }) <;>
+      (try
+        {
+          norm_num [Nat.div_eq_of_lt] at hk hk'
+          <;>
+            rcases k with (_ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _) <;>
+              norm_num [Nat.div_eq_of_lt] at hk hk' <;>
+                omega
+        }) <;>
+      (try omega)
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 61.47730302810669 / 600.1603741645813 / 661.637677192688
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨_, _⟩
+  · -- Show that 112 satisfies the condition
+    constructor
+    · norm_num
+    · /- Find the unique k such that 8/15 < 112 / (112 + k) < 7/13
+       Solve the inequalities step by step:
+       1. 8/15 < 112 / (112 + k)
+          (8/15) * (112 + k) < 112
+          8 * (112 + k) < 15 * 112
+          896 + 8k < 1680
+          8k < 784
+          k < 98
+       2. 112 / (112 + k) < 7/13
+          (112 / (112 + k)) * 13 < 7
+          112 * 13 < 7 * (112 + k)
+          1456 < 784 + 7k
+          672 < 7k
+          96 < k
+       Thus, k is the integer value between 96 and 98, which is 97.
+    -/
+      use 97
+      constructor
+      · norm_num [div_lt_div_iff, mul_comm]
+        <;> ring_nf
+        <;> norm_num
+        <;> omega
+      · intro k hk
+        have h₁ := hk.1
+        have h₂ := hk.2
+        have h₃ : k = 97 := by
+          field_simp [div_lt_div_iff, mul_comm] at h₁ h₂
+          ring_nf at h₁ h₂
+          norm_cast at h₁ h₂
+          omega
+        simp_all
+  · -- Show that 112 is the greatest such n
+    intro n hn
+    have h₁ := hn.1
+    have h₂ := hn.2
+    have h₃ : n ≤ 112 := by
+      by_contra h
+      have h₄ : n > 112 := by linarith
+      have h₅ : ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13 := hn.2
+      obtain ⟨k, hk, hk'⟩ := h₅
+      have
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 31.156883478164673 / 11.059770107269287 / 42.21665358543396
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨⟨by norm_num, ⟨127, _⟩⟩, _⟩
+  · norm_num
+    <;> field_simp [mul_comm]
+    <;> norm_num
+    <;> ring_nf
+    <;> norm_cast
+    <;> omega
+  · rintro n ⟨hn, k, hk, hk'⟩
+    by_contra! h
+    have h₁ := hk'
+    have h₂ := hk
+    norm_num at h₁ h₂
+    have h₃ := h₁
+    have h₄ := h₂
+    field_simp [mul_comm] at h₁ h₂ h₃ h₄
+    norm_num at h₁ h₂ h₃ h₄
+    have h₅ : n ≤ 112 := by
+      by_contra! h₆
+      have h₇ : n ≥ 113 := by linarith
+      have h₈ : ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13 := by
+        use 127
+        have h₉ : (8 : ℝ) / 15 < n / (n + 127) ∧ (n : ℝ) / (n + 127) < 7 / 13 := by
+          constructor
+          · have : (n : ℝ) > 112 := by exact_mod_cast (by linarith)
+            have : (n : ℝ) / (n + 127) > 8 / 15 := by
+              rw [gt_iff_lt]
+              rw [div_eq_mul_inv]
+              apply lt_of_sub_pos
+              field_simp
+              nlinarith
+            exact this
+          · have : (n : ℝ) > 112 := by exact_mod_cast (by linarith)
+            have : (n : ℝ) / (n + 127) < 7 / 13 := by
+              rw [div_lt_iff (by positivity)]
+              nlinarith
+            exact this
+        exact h₉
+      simp_all
+    interval_cases n <;> norm_num at h₁ h₂ h₃ h₄ ⊢
+    <;> simp_all (config := {decide := true})
+    <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.005948305130005 / 4.743799448013306 / 30.74974775314331
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨_, _⟩
+  · -- Show that 112 is a member of the set
+    norm_num [div_eq_mul_inv]
+    use 97
+    constructor
+    · norm_num
+    · intro y hy
+      have h₁ := hy.1
+      have h₂ := hy.2
+      field_simp at h₁ h₂
+      ring_nf at h₁ h₂
+      norm_cast at h₁ h₂
+      omega
+  · -- Show that 112 is the greatest element in the set
+    intro n hn
+    have h₁ := hn.1
+    have h₂ := hn.2
+    norm_num [div_eq_mul_inv] at h₁ h₂
+    rcases h₂ with ⟨k, hk, hk'⟩
+    have h₃ := hk' 112
+    have h₄ := hk' 0
+    have h₅ : n ≤ 112 := by
+      by_contra! h
+      have h₆ := hk' (n)
+      norm_num [div_eq_mul_inv] at h₆
+      have h₇ : n > 112 := by linarith
+      have h₈ : k ≥ 0 := by linarith
+      have h₉ : (n : ℝ) > 112 := by exact_mod_cast h₇
+      have h₁₀ : (n : ℝ) / (n + k) < 7 / 13 := by linarith
+      have h₁₁ : (8 : ℝ) / 15 < (n : ℝ) / (n + k) := by linarith
+      field_simp at h₁₀ h₁₁
+      rw [div_lt_div_iff (by positivity) (by positivity)] at h₁₁
+      rw [div_lt_div_iff (by positivity) (by positivity)] at h₁₀
+      norm_cast at h₁₁ h₁₀
+      nlinarith
+    exact h₅
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.979092836380005 / 9.40355372428894 / 30.382646560668945
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨_, fun n h => _⟩
+  · -- Show that 112 is a member of the set
+    norm_num [div_eq_mul_inv]
+    use 97
+    norm_num
+    <;> field_simp [mul_comm]
+    <;> norm_cast
+    <;> ring_nf
+    <;> norm_num
+    <;> intro k hk
+    <;> field_simp [mul_comm] at hk
+    <;> norm_cast at hk
+    <;> ring_nf at hk
+    <;> norm_num at hk
+    <;> omega
+  · -- Show that any n in the set is less than or equal to 112
+    have h₁ := h.1
+    have h₂ := h.2
+    norm_num [div_eq_mul_inv] at h₁ h₂
+    rcases h₂ with ⟨k, hk, hk'⟩
+    norm_num [mul_comm] at hk hk'
+    field_simp [mul_comm] at hk hk'
+    norm_cast at hk hk'
+    ring_nf at hk hk'
+    norm_num at hk hk'
+    have : n ≤ 112 := by
+      by_contra! hn
+      have hk'' := hk' n
+      have hk''' := hk' 0
+      norm_num at hk'' hk'''
+      <;> simp_all [Nat.div_eq_of_lt]
+      <;> omega
+    exact this
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 55.458500146865845 / 16.985803842544556 / 72.4443039894104
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p8 :
+  IsGreatest {n : ℕ | 0 < n ∧ ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13} 112 := by
+  refine' ⟨⟨by norm_num, _⟩, fun n hn => _⟩
+  · use 97
+    norm_num [div_eq_mul_inv]
+    <;> field_simp [mul_comm]
+    <;> norm_num
+    <;> ring_nf
+    <;> norm_num
+    <;> intro k hk <;> field_simp [mul_comm] at hk <;> norm_cast at hk <;> omega
+  · rcases hn with ⟨hn₁, k, hk, hk'⟩
+    norm_num [div_eq_mul_inv] at hk hk'
+    have h₂ : n ≤ 112 := by
+      by_contra! h
+      have h₃ : n ≥ 113 := by linarith
+      have h₄ : ∃! k : ℕ, (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13 := by
+        exact hk'
+      rcases h₄ with ⟨k, hk, hk'⟩
+      have h₅ : k = 97 := by
+        have h₅ : (8 : ℝ) / 15 < n / (n + k) ∧ (n : ℝ) / (n + k) < 7 / 13 := by
+          exact_mod_cast hk
+        have h₆ : (8 : ℝ) / 15 < n / (n + k) := by exact_mod_cast h₅.1
+        have h₇ : (n : ℝ) / (n + k) < 7 / 13 := by exact_mod_cast h₅.2
+        have h₈ : (n : ℝ) > 0 := by exact_mod_cast hn₁
+        have h₉ : (n : ℝ) + k > 0 := by linarith
+        field_simp at h₆ h₇
+        rw [div_lt_div_iff (by positivity) (by positivity)] at h₆
+        rw [div_lt_div_iff (by positivity) (by positivity)] at h₇
+        have h₁₀ : (n : ℝ) < 113 := by linarith
+        have h₁₁ : (k : ℝ) ≥ 0 := by positivity
+        have h₁₂ : (n : ℝ) + k > 0 := by positivity
+        have h₁₃ : k < 113 := by
+          nlinarith
+        have
+... [truncated] ...

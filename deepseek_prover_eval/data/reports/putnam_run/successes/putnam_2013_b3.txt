@@ -1,0 +1,21 @@
+Problem: putnam_2013_b3
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.430983781814575
+Lean check time (s): 8.47559666633606
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b3
+: (∀ (n : ℕ) (P : Finset (Finset (Fin n))) (f : Finset (Fin n) → ℝ),
+      P ≠ ⊥ → (∀ S ∈ P, ∀ S' ∈ P, S ∪ S' ∈ P ∧ S ∩ S' ∈ P) →
+      (∀ S ∈ P, S ≠ ⊥ → ∃ T ∈ P, T ⊂ S ∧ Finset.card T + 1 = Finset.card S) →
+      f ⊥ = 0 → (∀ S ∈ P, ∀ S' ∈ P, f (S ∪ S') = f S + f S' - f (S ∩ S')) →
+      ∃ r : Fin n → ℝ, ∀ S ∈ P, f S = ∑ i ∈ S, r i)
+      ↔ putnam_2013_b3_solution :=
+sorry

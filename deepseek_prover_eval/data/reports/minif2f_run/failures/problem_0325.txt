@@ -1,0 +1,270 @@
+Problem: problem_0325
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.686082363128662 / 4.789034366607666 / 28.475116729736328
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  have h₁ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ 49 := by
+    norm_num
+    have h₂ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ 49 := by
+      have h₃ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ 49 := by
+        -- Use the fact that the sum of absolute values is at least the sum of the minimum values
+        have h₄ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ 49 := by
+          -- Use the fact that the sum of absolute values is at least the sum of the minimum values
+          calc
+            (∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1)) ≥ ∑ k in Finset.Icc (1:ℕ) 119, 1 := by
+              -- For each term, the absolute value is at least 1
+              exact Finset.sum_le_sum fun k hk => by
+                have h₅ : 1 ≤ k := by
+                  simp only [Finset.mem_Icc] at hk
+                  linarith
+                have h₆ : 0 < k := by linarith
+                have h₇ : abs (↑k * x - 1) ≥ 1 := by
+                  cases' abs_cases (↑k * x - 1) with h₈ h₈ <;>
+                    nlinarith [h₈, mul_self_nonneg (k * x - 1)]
+                nlinarith
+            _ = 119 := by simp
+            _ ≥ 49 := by norm_num
+        exact h₄
+      exact h₃
+    exact h₂
+  exact h₁
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.125919818878174 / 5.126400709152222 / 26.252320528030396
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  have h : ∀ x : ℝ, 49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+    intro x
+    -- We will show that the sum is at least 49 for all x.
+    have h₁ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ 49 := by
+      -- Use the fact that the sum of absolute values is minimized when x is chosen to minimize each term.
+      have h₂ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ ∑ k in Finset.Icc (1:ℕ) 119, (1 : ℝ) := by
+        apply Finset.sum_le_sum
+        intro k hk
+        have h₃ : 0 < k := by
+          simp only [Finset.mem_Icc] at hk
+          linarith
+        have h₄ : abs (↑k * x - 1) ≥ 1 := by
+          cases' abs_cases (↑k * x - 1) with h₅ h₅
+          · -- Case 1: ↑k * x - 1 ≥ 0
+            nlinarith [mul_self_nonneg (k * x - 1)]
+          · -- Case 2: ↑k * x - 1 < 0
+            nlinarith [mul_self_nonneg (k * x + 1)]
+        linarith
+      simp_all [Finset.sum_const, Finset.card_range]
+      <;> norm_num
+      <;> linarith
+    exact h₁
+  exact h x
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 62.33270812034607 / 15.138393640518188 / 77.47110176086426
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  norm_num
+  <;>
+  apply le_of_not_lt
+  <;>
+  intro h
+  <;>
+  simp_all [Finset.sum_Icc_succ_top, abs_lt]
+  <;>
+  norm_num at *
+  <;>
+  nlinarith [h, abs_nonneg (119 * x - 1), abs_nonneg (1 * x - 1), abs_nonneg (2 * x - 1),
+    abs_nonneg (3 * x - 1), abs_nonneg (4 * x - 1), abs_nonneg (5 * x - 1), abs_nonneg (6 * x - 1),
+    abs_nonneg (7 * x - 1), abs_nonneg (8 * x - 1), abs_nonneg (9 * x - 1), abs_nonneg (10 * x - 1),
+    abs_nonneg (11 * x - 1), abs_nonneg (12 * x - 1), abs_nonneg (13 * x - 1), abs_nonneg (14 * x - 1),
+    abs_nonneg (15 * x - 1), abs_nonneg (16 * x - 1), abs_nonneg (17 * x - 1), abs_nonneg (18 * x - 1),
+    abs_nonneg (19 * x - 1), abs_nonneg (20 * x - 1), abs_nonneg (21 * x - 1), abs_nonneg (22 * x - 1),
+    abs_nonneg (23 * x - 1), abs_nonneg (24 * x - 1), abs_nonneg (25 * x - 1), abs_nonneg (26 * x - 1),
+    abs_nonneg (27 * x - 1), abs_nonneg (28 * x - 1), abs_nonneg (29 * x - 1), abs_nonneg (30 * x - 1),
+    abs_nonneg (31 * x - 1), abs_nonneg (32 * x - 1), abs_nonneg (33 * x - 1), abs_nonneg (34 * x - 1),
+    abs_nonneg (35 * x - 1), abs_nonneg (36 * x - 1), abs_nonneg (37 * x - 1), abs_nonneg (38 * x - 1),
+    abs_nonneg (39 * x - 1), abs_nonneg (40 * x - 1), abs_nonneg (41 * x - 1), abs_nonneg (42 * x - 1),
+    abs_nonneg (43 * x - 1), abs_nonneg (44 * x - 1), abs_nonneg (45 * x - 1), abs_n
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.499471426010132 / 3.5063109397888184 / 23.00578236579895
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  norm_num [Finset.sum_Icc_succ_top]
+  have h : ∀ k : ℕ, k ∈ Finset.Icc (1 : ℕ) 119 → |(k : ℝ) * x - 1| ≥ 0 := by
+    intro k hk
+    exact abs_nonneg _
+  have h₁ : ∑ k in Finset.Icc (1 : ℕ) 119, |(k : ℝ) * x - 1| ≥ 49 := by
+    have h₂ : ∑ k in Finset.Icc (1 : ℕ) 119, |(k : ℝ) * x - 1| ≥ 49 := by
+      -- We need to show that the sum of absolute values is at least 49.
+      -- This can be done by considering the properties of the absolute value function and the distribution of the terms.
+      -- For the sake of brevity, we assume that the sum is minimized when x = 0, and the minimum value is 49.
+      have h₃ : ∑ k in Finset.Icc (1 : ℕ) 119, |(k : ℝ) * x - 1| ≥ 49 := by
+        -- This is a placeholder for the actual proof, which would involve detailed analysis.
+        norm_num
+        <;>
+        exact by
+          linarith [h 1 (by norm_num), h 119 (by norm_num)]
+      exact h₃
+    exact h₂
+  linarith [h 1 (by norm_num), h 119 (by norm_num)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.11549139022827 / 5.825576543807983 / 21.941067934036255
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  have h : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ 49 := by
+    -- Use the fact that the sum of absolute values is at least the sum of the minimum values
+    have h₁ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ ∑ k in Finset.Icc (1:ℕ) 119, (1 : ℝ) := by
+      apply Finset.sum_le_sum
+      intro k hk
+      have h₂ : 0 ≤ abs (↑k * x - 1) := by positivity
+      have h₃ : abs (↑k * x - 1) ≥ 1 := by
+        cases' abs_cases (↑k * x - 1) with h₄ h₄ <;>
+        simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+        nlinarith [sq_nonneg (k * x - 1), sq_nonneg (k * x + 1)]
+      nlinarith
+    simp_all [Finset.sum_const, Finset.card_range]
+    <;> nlinarith
+  exact h
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.822747707366943 / 4.972417831420898 / 24.795165538787842
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  norm_num
+  have h : ∀ k : ℕ, k ∈ Finset.Icc 1 119 → abs (↑k * x - 1) ≥ 1 := by
+    intro k hk
+    have h₁ : 1 ≤ k := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₂ : k ≤ 119 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₃ : abs (↑k * x - 1) ≥ 1 := by
+      cases' abs_cases (↑k * x - 1) with h₄ h₄ <;>
+        nlinarith [mul_nonneg (by positivity : (0 : ℝ) ≤ k) (show (0 : ℝ) ≤ x by
+        nlinarith [mul_nonneg (by positivity : (0 : ℝ) ≤ k) (show (0 : ℝ) ≤ x by nlinarith)]),
+        mul_nonneg (by positivity : (0 : ℝ) ≤ k) (show (0 : ℝ) ≤ x by nlinarith)]
+    exact h₃
+  have h₄ : ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) ≥ ∑ k in Finset.Icc (1:ℕ) 119, 1 := by
+    apply Finset.sum_le_sum
+    intro k hk
+    exact h k hk
+  simp at h₄
+  norm_num at h₄
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.658901691436768 / 3.5535428524017334 / 24.2124445438385
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  norm_num [Finset.sum_Icc_succ_top]
+  -- Use the fact that the sum of the absolute values of the differences between kx and 1 is minimized when x is close to 0.
+  have h : ∀ k : ℕ, k ∈ Finset.Icc 1 119 → |(k : ℝ) * x - 1| ≥ 1 / 119 := by
+    intro k hk
+    have hk' : 1 ≤ k ∧ k ≤ 119 := by simpa using hk
+    have h₁ : (1 : ℝ) / 119 ≤ 1 := by norm_num
+    have h₂ : |(k : ℝ) * x - 1| ≥ 1 / 119 := by
+      cases' abs_cases ((k : ℝ) * x - 1) with h₃ h₃ <;>
+        nlinarith [mul_nonneg (by norm_num : (0 : ℝ) ≤ 119) (by linarith : (0 : ℝ) ≤ k)]
+    exact h₂
+  -- Summing up the lower bounds for each term gives the desired inequality.
+  have h' : ∑ k in Finset.Icc (1 : ℕ) 119, abs (↑k * x - 1) ≥ ∑ k in Finset.Icc (1 : ℕ) 119, (1 / 119 : ℝ) := by
+    apply Finset.sum_le_sum
+    intro i hi
+    exact h i hi
+  simp_all [Finset.sum_const, Finset.card_range]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.296831130981445 / 3.5049080848693848 / 15.80173921585083
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p22
+  (x : ℝ) :
+  49 ≤ ∑ k in Finset.Icc (1:ℕ) 119, abs (↑k * x - 1) := by
+  norm_num [Finset.sum_Icc_succ_top]
+  <;>
+    norm_num
+  <;>
+    cases' le_total 0 (119 * x - 1) with h h <;>
+    cases' le_total 0 (1 * x - 1) with h' h' <;>
+    cases' le_total 0 (2 * x - 1) with h'' h'' <;>
+    simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith [sq_nonneg (x - 1 / 119), sq_nonneg (x - 1), sq_nonneg (x - 2 / 119),
+      sq_nonneg (x - 2), sq_nonneg (x - 3 / 119), sq_nonneg (x - 3)]
+

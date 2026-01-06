@@ -1,0 +1,150 @@
+Problem: putnam_1997_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.383399724960327 / 7.907149791717529 / 26.290549516677856
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.610994338989258 / 8.783325672149658 / 17.394320011138916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.71853017807007 / 7.128371715545654 / 31.846901893615723
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.738023281097412 / 8.741120100021362 / 31.479143381118774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.649065494537354 / 7.973023176193237 / 30.62208867073059
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.29481267929077 / 6.621186971664429 / 30.9159996509552
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.05111074447632 / 6.97622537612915 / 29.02733612060547
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 29.011374473571777 / 6.78254771232605 / 35.79392218589783
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b2
+(f g : ℝ → ℝ)
+(hg : ∀ x : ℝ, g x ≥ 0)
+(hfderiv1 : ContDiff ℝ 1 f)
+(hfderiv2 : Differentiable ℝ (deriv f))
+(hfg : ∀ x : ℝ, f x + iteratedDeriv 2 f x = -x * g x * deriv f x)
+: IsBounded (range (fun x => |f x|)) :=
+sorry

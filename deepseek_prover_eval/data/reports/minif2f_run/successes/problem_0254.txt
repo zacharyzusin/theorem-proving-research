@@ -1,0 +1,25 @@
+Problem: problem_0254
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.818238496780396
+Lean check time (s): 3.6383838653564453
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p9
+  (a b c : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f (x + 3) = 3 * x^2 + 7 * x + 4)
+  (h₁ : ∀ x, f x = a * x^2 + b * x + c) :
+  a + b + c = 2 := by
+  have h₂ := h₀ (-2)
+  have h₃ := h₀ 1
+  have h₄ := h₀ 2
+  simp only [h₁, mul_neg, neg_mul, neg_neg, add_assoc] at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  linarith

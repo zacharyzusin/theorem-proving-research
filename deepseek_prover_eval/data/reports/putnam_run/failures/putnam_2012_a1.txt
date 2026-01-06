@@ -1,0 +1,243 @@
+Problem: putnam_2012_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.60395860671997 / 7.860357284545898 / 24.46431589126587
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- We use the Pigeonhole Principle and properties of real numbers to find the required indices.
+  have h₁ := hd 0
+  have h₂ := hd 1
+  have h₃ := hd 2
+  norm_num at h₁ h₂ h₃
+  use 0, 1, 2
+  constructor <;> simp_all [Set.mem_Ioo, Set.mem_Icc] <;>
+    norm_num <;>
+    (try nlinarith) <;>
+    (try
+      nlinarith [sq_nonneg (d 0 - d 1), sq_nonneg (d 1 - d 2), sq_nonneg (d 2 - d 0)]) <;>
+    (try
+      nlinarith [sq_nonneg (d 0 - d 1), sq_nonneg (d 1 - d 2), sq_nonneg (d 2 - d 0),
+        sq_nonneg (d 0 + d 1 - d 2), sq_nonneg (d 1 + d 2 - d 0), sq_nonneg (d 2 + d 0 - d 1)])
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.028706073760986 / 8.34883713722229 / 28.377543210983276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- We will show that there exist distinct indices i, j, k such that d_k ≥ d_i, d_k ≥ d_j, and d_i^2 + d_j^2 > d_k^2.
+  have h₁ := hd 0
+  have h₂ := hd 1
+  have h₃ := hd 2
+  have h₄ := hd 3
+  have h₅ := hd 4
+  have h₆ := hd 5
+  have h₇ := hd 6
+  have h₈ := hd 7
+  have h₉ := hd 8
+  have h₁₀ := hd 9
+  have h₁₁ := hd 10
+  have h₁₂ := hd 11
+  -- Use the fact that the numbers are in the open interval (1, 12) to find the required indices.
+  use 0, 1, 2
+  simp_all [Set.mem_Ioo, Fin.val_zero, Fin.val_one, Fin.val_two]
+  <;> norm_num
+  <;> nlinarith [sq_nonneg (d 0 - d 1), sq_nonneg (d 0 - d 2), sq_nonneg (d 1 - d 2),
+    sq_nonneg (d 1 + d 2 - d 0), sq_nonneg (d 0 + d 2 - d 1), sq_nonneg (d 0 + d 1 - d 2)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.576112031936646 / 8.33505654335022 / 21.911168575286865
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- We use the fact that the number of subsets of size 3 is greater than the number of possible distinct indices to find a contradiction.
+  obtain ⟨i, hi⟩ := Finset.card_pos.1 (by
+    -- We show that the number of subsets of size 3 is greater than the number of possible distinct indices.
+    simp_all [Finset.card_fin, Finset.card_univ]
+    <;> norm_num
+    <;> aesop
+  )
+  use i, i, i
+  -- We handle the cases where the indices are equal or not.
+  <;> simp_all [Finset.mem_univ, Finset.mem_singleton, Finset.mem_insert]
+  <;> norm_num
+  <;> linarith [hd i, hd i, hd i]
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 50.95376539230347 / 21.181145906448364 / 72.13491129875183
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  have h₁ := hd 0
+  have h₂ := hd 1
+  have h₃ := hd 2
+  have h₄ := hd 3
+  have h₅ := hd 4
+  have h₆ := hd 5
+  have h₇ := hd 6
+  have h₈ := hd 7
+  have h₉ := hd 8
+  have h₁₀ := hd 9
+  have h₁₁ := hd 10
+  have h₁₂ := hd 11
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  use 0, 1, 2
+  simp_all [Set.mem_Ioo]
+  <;>
+    nlinarith [sq_nonneg (d 0 - d 1), sq_nonneg (d 0 - d 2), sq_nonneg (d 1 - d 2),
+      sq_nonneg (d 0 - d 3), sq_nonneg (d 1 - d 3), sq_nonneg (d 2 - d 3),
+      sq_nonneg (d 0 - d 4), sq_nonneg (d 1 - d 4), sq_nonneg (d 2 - d 4),
+      sq_nonneg (d 3 - d 4), sq_nonneg (d 0 - d 5), sq_nonneg (d 1 - d 5),
+      sq_nonneg (d 2 - d 5), sq_nonneg (d 3 - d 5), sq_nonneg (d 4 - d 5),
+      sq_nonneg (d 0 - d 6), sq_nonneg (d 1 - d 6), sq_nonneg (d 2 - d 6),
+      sq_nonneg (d 3 - d 6), sq_nonneg (d 4 - d 6), sq_nonneg (d 5 - d 6),
+      sq_nonneg (d 0 - d 7), sq_nonneg (d 1 - d 7), sq_nonneg (d 2 - d 7),
+      sq_nonneg (d 3 - d 7), sq_nonneg (d 4 - d 7), sq_nonneg (d 5 - d 7),
+      sq_nonneg (d 6 - d 7), sq_nonneg (d 0 - d 8), sq_nonneg (d 1 - d 8),
+      sq_nonneg (d 2 - d 8), sq_nonneg (d 3 - d 8), sq_nonneg (d 4 - d 8),
+      sq_nonneg (d 5 - d 8), sq_nonneg (d 6 - d 8), sq_nonneg (d 7 - d 8),
+      sq_no
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.488706111907959 / 9.374091863632202 / 21.86279797554016
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- We use the fact that the function `d` is bounded and the set of possible values is finite.
+  have h₁ := hd 0
+  have h₂ := hd 1
+  have h₃ := hd 2
+  norm_num at h₁ h₂ h₃
+  use 0, 1, 2
+  simp_all [Set.mem_Ioo, Set.mem_Icc, Set.mem_Ioc, Set.mem_Ico]
+  <;> norm_num
+  <;> nlinarith [sq_nonneg (d 0 - d 1), sq_nonneg (d 0 - d 2), sq_nonneg (d 1 - d 2)]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.741192817687988 / 8.701427221298218 / 20.442620038986206
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- Use the Pigeonhole Principle to show that among any 13 real numbers in the interval (1, 12), at least two must share the same property.
+  obtain ⟨i, hi⟩ := Finset.card_pos.1 (show 0 < Finset.card (Finset.univ : Finset (Fin 12)) by simp)
+  use i, i, i
+  simp_all [Set.mem_Ioo, Finset.mem_univ, Finset.mem_singleton]
+  <;> norm_num
+  <;> nlinarith [hd i, hd i, hd i]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.27224636077881 / 9.537170886993408 / 25.809417247772217
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- We use the fact that the number of triples exceeds the number of constraints to find at least one acute triangle.
+  have h₁ := hd 0
+  have h₂ := hd 1
+  have h₃ := hd 2
+  have h₄ := hd 3
+  have h₅ := hd 4
+  have h₆ := hd 5
+  have h₇ := hd 6
+  have h₈ := hd 7
+  have h₉ := hd 8
+  have h₁₀ := hd 9
+  have h₁₁ := hd 10
+  have h₁₂ := hd 11
+  -- Use the pigeonhole principle to find at least one acute triangle.
+  use 0, 1, 2
+  simp_all [Set.mem_Ioo, Fin.val_zero, Fin.val_one, Fin.val_two]
+  <;> norm_num
+  <;> nlinarith [sq_nonneg (d 0 - d 1), sq_nonneg (d 0 - d 2), sq_nonneg (d 1 - d 2)]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.157721757888794 / 8.04005217552185 / 21.197773933410645
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_a1
+(d : Fin 12 → ℝ)
+(hd : ∀ i, d i ∈ Set.Ioo 1 12)
+: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 := by
+  classical
+  -- Use the Pigeonhole Principle to find three distinct indices i, j, k such that the corresponding d_i, d_j, d_k satisfy the acute triangle condition.
+  obtain ⟨i, hi⟩ := Finset.card_pos.1 (by
+    -- Show that the set of indices is non-empty.
+    have h : (Finset.univ : Finset (Fin 12)) ≠ ∅ := by simp
+    simpa using h)
+  use i, i, i
+  simp_all [Set.mem_Ioo, Finset.mem_univ, Finset.mem_singleton]
+  <;> norm_num
+  <;> nlinarith [hd i, hd 0, hd 1, hd 2]

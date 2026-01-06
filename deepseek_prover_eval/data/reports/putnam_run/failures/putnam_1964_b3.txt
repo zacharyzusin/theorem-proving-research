@@ -1,0 +1,254 @@
+Problem: putnam_1964_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.96663784980774 / 13.129275560379028 / 30.095913410186768
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₁ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+  have h₂ : Tendsto f atTop (𝓝 0) := by
+    have h₃ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to show that f(x) tends to 0 as x tends to infinity.
+      apply tendsto_of_locally_const
+      intro x
+      -- For any x, we can find a neighborhood around x where f is locally constant.
+      obtain ⟨s, hs, hsf⟩ := Metric.nhds_basis_ball.exists_iff.mpr (by simpa using hf.1.continuousAt)
+      use s, hs
+      intro y hy
+      -- Since f is continuous, it is locally constant on any open set.
+      have h₄ : f y = f x := by
+        have h₅ : y ∈ ball x (dist y x) := by simp [dist_comm]
+        have h₆ : dist y x < dist y x := by simp_all [dist_comm]
+        simp_all [dist_comm]
+      simp_all
+    exact h₃
+  exact h₂
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.848910570144653 / 15.91898488998413 / 28.767895460128784
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₁ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := by
+    intro α hα
+    exact hf.2 α hα
+  have h₂ : Tendsto f atTop (𝓝 0) := by
+    have h₃ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to prove the limit
+      have h₄ : Continuous f := hf.1
+      have h₅ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := h₁
+      exact
+        tendsto_atTop_zero_of_decidable_eq_of_continuous h₄ fun α hα ↦ h₅ α hα
+    exact h₃
+  exact h₂
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.161771297454834 / 10.888136863708496 / 24.04990816116333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₀ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+  have h₁ : Tendsto f atTop (𝓝 0) := by
+    have h₂ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to show that f(x) tends to 0 as x tends to infinity.
+      apply tendsto_of_locally_const
+      intro x
+      obtain ⟨t, ht⟩ := Metric.continuousAt_iff.mp hf.1.continuousAt x
+      filter_upwards [isOpen_ball.mem_nhds ht] with y hy
+      simp_all [Metric.tendsto_nhds]
+      <;> aesop
+    exact h₂
+  exact h₁
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.232560396194458 / 14.664052724838257 / 29.896613121032715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₁ : Tendsto f atTop (𝓝 0) := by
+    have h₂ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := hf.2
+    have h₃ : Continuous f := hf.1
+    -- Use the fact that f is continuous and the given condition to prove the limit
+    have h₄ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to prove the limit
+      apply tendsto_of_locally_const
+      intro x
+      -- For each x, find a neighborhood where f is locally constant
+      have h₅ := h₂ 1 (by norm_num)
+      have h₆ := h₂ (x + 1) (by linarith)
+      have h₇ := h₂ x (by linarith)
+      -- Use the fact that f is continuous and the given condition to prove the limit
+      simp at h₅ h₆ h₇
+      -- Use the fact that f is continuous and the given condition to prove the limit
+      aesop
+    exact h₄
+  exact h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 55.96674108505249 / 14.481436967849731 / 70.44817805290222
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₀ : Continuous f := hf.1
+  have h₁ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+  have h₂ : Tendsto f atTop (𝓝 0) := by
+    have h₃ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to show the limit
+      refine' tendsto_order.2 ⟨fun x ↦ _, fun ε hε ↦ _⟩
+      · -- Show that f(x) ≥ -ε for sufficiently large x
+        have h₄ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+        have h₅ : ∀ α > 0, ∀ᶠ n in atTop, |f (n * α)| < ε := by
+          intro α hα
+          have h₆ : Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := h₄ α hα
+          have h₇ : ∀ᶠ n in atTop, |f (n * α)| < ε := h₆.eventually (gt_mem_nhds hε)
+          exact h₇
+        have h₈ : ∀ᶠ x in atTop, f x ≥ -ε := by
+          have h₉ : ∀ᶠ x in atTop, ∃ α > 0, x = x * α / α := by
+            filter_upwards [eventually_gt_atTop 0] with x hx using ⟨1, by linarith, by field_simp⟩
+          have h₁₀ : ∀ᶠ x in atTop, ∃ α > 0, x = x * α / α := h₉
+          have h₁₁ : ∀ᶠ x in atTop, ∃ α > 0, x = x * α / α := h₁₀
+          filter_upwards [h₁₁] with x hx using by
+            rcases hx with ⟨α, hα, hx⟩
+            have h₁₂ : |f (x * α / α)| < ε := by
+              have h₁₃ : α > 0 := hα
+  
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.342381715774536 / 18.835655450820923 / 39.17803716659546
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₁ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+  have h₂ : Tendsto f atTop (𝓝 0) := by
+    have h₃ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to show that f(x) tends to 0 as x tends to infinity.
+      refine' tendsto_iff_norm_sub_tendsto_zero.mpr _
+      have h₄ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+      have h₅ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+      -- Use the fact that f is continuous and the given condition to show that f(x) tends to 0 as x tends to infinity.
+      have h₆ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := fun α hα ↦ hf.2 α hα
+      -- Use the fact that f is continuous and the given condition to show that f(x) tends to 0 as x tends to infinity.
+      simpa using h₆ 1 (by norm_num)
+    exact h₃
+  exact h₂
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.26518988609314 / 17.921128273010254 / 35.186318159103394
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₁ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := hf.2
+  have h₂ : Continuous f := hf.1
+  -- We use the fact that the function f is continuous and the given condition to prove the limit.
+  have h₃ : Tendsto f atTop (𝓝 0) := by
+    -- We use the fact that the function f is continuous and the given condition to prove the limit.
+    have h₄ : Tendsto f atTop (𝓝 0) := by
+      -- We use the fact that the function f is continuous and the given condition to prove the limit.
+      apply tendsto_of_locally_const
+      -- We use the fact that the function f is continuous and the given condition to prove the limit.
+      intro x
+      -- We use the fact that the function f is continuous and the given condition to prove the limit.
+      obtain ⟨t, ht⟩ := Metric.continuousAt_iff.mp h₂.continuousAt x
+      -- We use the fact that the function f is continuous and the given condition to prove the limit.
+      aesop
+    -- We use the fact that the function f is continuous and the given condition to prove the limit.
+    exact h₄
+  -- We use the fact that the function f is continuous and the given condition to prove the limit.
+  exact h₃
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.310704231262207 / 19.144652843475342 / 39.45535707473755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b3
+(f : ℝ → ℝ)
+(hf : Continuous f ∧ ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0))
+: (Tendsto f atTop (𝓝 0)) := by
+  have h₁ : ∀ α > 0, Tendsto (fun n : ℕ ↦ f (n * α)) atTop (𝓝 0) := by
+    intro α hα
+    exact hf.2 α hα
+  have h₂ : Tendsto f atTop (𝓝 0) := by
+    have h₃ : Tendsto f atTop (𝓝 0) := by
+      -- Use the fact that f is continuous and the given condition to show the limit tends to 0
+      refine' tendsto_order.2 ⟨fun x => _, fun x => _⟩
+      · -- Show that f(x) is eventually less than or equal to 0
+        have h₄ : ∀ᶠ (x : ℝ) in atTop, f x ≤ 0 := by
+          filter_upwards [eventually_ge_atTop 0] with x hx using
+            le_of_tendsto_of_tendsto (hf.1.tendsto 0) (hf.2 1 zero_lt_one)
+            (by simp_all [mul_comm])
+        exact h₄
+      · -- Show that f(x) is eventually greater than or equal to 0
+        have h₄ : ∀ᶠ (x : ℝ) in atTop, 0 ≤ f x := by
+          filter_upwards [eventually_ge_atTop 0] with x hx using
+            le_of_tendsto_of_tendsto (hf.1.tendsto 0) (hf.2 1 zero_lt_one)
+            (by simp_all [mul_comm])
+        exact h₄
+    exact h₃
+  exact h₂

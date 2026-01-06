@@ -1,0 +1,235 @@
+Problem: problem_0250
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.550710678100586 / 14.73947024345398 / 24.290180921554565
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ := h₃
+  have h₅ := h₂
+  have h₆ : m ≤ 99 := by linarith
+  have h₇ : 10 ≤ m := by linarith
+  interval_cases m <;> norm_num at h₂ h₃ ⊢ <;>
+    (try omega) <;>
+    (try {
+      have h₈ : x ≤ 99 := by
+        omega
+      interval_cases x <;> omega
+    }) <;>
+    omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.76357650756836 / 15.329336404800415 / 32.092912912368774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ := h₃
+  have h₅ := h₂
+  have h₆ := h₁
+  have h₇ := h₀
+  interval_cases m <;> norm_num [Nat.mod_eq_of_lt] at h₂ h₃ <;>
+    (try omega) <;>
+    (try
+      {
+        have h₈ : x % 10 = 0 ∨ x % 10 = 1 ∨ x % 10 = 2 ∨ x % 10 = 3 ∨ x % 10 = 4 ∨ x % 10 = 5 ∨ x % 10 = 6 ∨ x % 10 = 7 ∨ x % 10 = 8 ∨ x % 10 = 9 := by omega
+        rcases h₈ with (h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈) <;>
+          simp [h₈, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt] at h₂ h₃ <;>
+          omega
+      }) <;>
+    omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 6.5147294998168945 / 13.105756044387817 / 19.620485544204712
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ := h₃
+  rw [← Nat.mod_add_div x m] at h₂ h₄
+  have h₅ : m ≤ 99 := by linarith
+  interval_cases m <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.90635871887207 / 16.634861946105957 / 26.541220664978027
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ : m ≤ 99 := by linarith
+  have h₅ : 10 ≤ m := by linarith
+  interval_cases m <;> norm_num at h₂ h₃ ⊢
+  <;>
+  (try
+    {
+      have h₆ : x ≤ 99 := by
+        by_contra! h
+        have : 6 * x ≥ 6 * 100 := by nlinarith
+        omega
+      interval_cases x <;> omega
+    })
+  <;>
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 26.176907777786255 / 15.836504220962524 / 42.01341199874878
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ := h₃
+  have h₅ := h₂
+  have h₆ := h₁
+  have h₇ := h₀
+  interval_cases m <;> norm_num [Nat.mod_eq_of_lt] at h₂ h₃ <;>
+    (try omega) <;>
+    (try
+      {
+        have h₈ : x % 10 = 0 ∨ x % 10 = 1 ∨ x % 10 = 2 ∨ x % 10 = 3 ∨ x % 10 = 4 ∨ x % 10 = 5 ∨ x % 10 = 6 ∨ x % 10 = 7 ∨ x % 10 = 8 ∨ x % 10 = 9 := by omega
+        rcases h₈ with (h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈) <;> simp [h₈, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt] at h₂ h₃ <;> omega
+      }) <;>
+    (try omega) <;>
+    (try
+      {
+        have h₈ : x % 10 = 0 ∨ x % 10 = 1 ∨ x % 10 = 2 ∨ x % 10 = 3 ∨ x % 10 = 4 ∨ x % 10 = 5 ∨ x % 10 = 6 ∨ x % 10 = 7 ∨ x % 10 = 8 ∨ x % 10 = 9 := by omega
+        rcases h₈ with (h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈ | h₈) <;> simp [h₈, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt] at h₂ h₃ <;> omega
+      })
+  <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 6.569588661193848 / 13.575500249862671 / 20.14508891105652
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ := h₃
+  rw [← Nat.mod_add_div x m] at h₂ h₄
+  have h₅ : m ≤ 99 := by linarith
+  interval_cases m <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.756856203079224 / 15.698012828826904 / 25.454869031906128
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ := h₃
+  rw [← Nat.mod_add_div (x - 6^2) m] at h₃
+  have h₅ : m ≤ 99 := by linarith
+  interval_cases m <;> norm_num at h₂ h₃ <;>
+    (try omega) <;>
+    (try
+      {
+        have h₆ : x ≤ 99 := by
+          omega
+        interval_cases x <;> norm_num at h₂ h₃ <;> omega
+      }) <;>
+    omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.371018886566162 / 14.804376602172852 / 22.175395488739014
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_780
+  (m x : ℕ)
+  (h₀ : 10 ≤ m)
+  (h₁ : m ≤ 99)
+  (h₂ : (6 * x) % m = 1)
+  (h₃ : (x - 6^2) % m = 0) :
+  m = 43 := by
+  have h₄ : m ≤ 99 := by linarith
+  have h₅ : 10 ≤ m := by linarith
+  interval_cases m <;> omega
+  <;> norm_num at h₂ h₃
+  <;> omega
+  <;> omega
+  <;> omega
+

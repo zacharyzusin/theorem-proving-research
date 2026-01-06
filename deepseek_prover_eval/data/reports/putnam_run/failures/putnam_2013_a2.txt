@@ -1,0 +1,198 @@
+Problem: putnam_2013_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.53240966796875 / 11.096099615097046 / 39.628509283065796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 61.75615859031677 / 14.057848691940308 / 75.81400728225708
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 31.718474864959717 / 13.715517044067383 / 45.4339919090271
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 43.79589557647705 / 12.280606508255005 / 56.076502084732056
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 63.44145107269287 / 164.30574417114258 / 227.74719524383545
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.90497660636902 / 51.17340064048767 / 76.07837724685669
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.02833652496338 / 22.59255290031433 / 41.62088942527771
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 40.99757194519043 / 14.469611167907715 / 55.467183113098145
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_a2
+  (S : Set ℤ)
+  (hS : S = {n : ℤ | n > 0 ∧ ¬∃ m : ℤ, m ^ 2 = n})
+  (P : ℤ → List ℤ → Prop)
+  (hP : ∀ n a, P n a ↔
+    a.length > 0 ∧ n < a[0]! ∧
+    (∃ m : ℤ, m ^ 2 = n * a.prod) ∧
+    (∀ i : Fin (a.length - 1), a[i] < a[i+(1:ℕ)]))
+  (T : ℤ → Set ℤ)
+  (hT : T = fun n : ℤ => {m : ℤ | ∃ a : List ℤ, P n a ∧ a[a.length - 1]! = m})
+  (f : ℤ → ℤ)
+  (hf : ∀ n ∈ S, ((∃ r ∈ T n, f n = r) ∧ ∀ r ∈ T n, f n ≤ r)) :
+  InjOn f S :=
+sorry

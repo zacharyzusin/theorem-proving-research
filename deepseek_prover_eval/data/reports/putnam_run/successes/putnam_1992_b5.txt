@@ -1,0 +1,18 @@
+Problem: putnam_1992_b5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 24.594253063201904
+Lean check time (s): 8.183910846710205
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b5
+  (D : ℕ → ℚ)
+  (hD : ∀ n, D n = Matrix.det (fun i j : Fin (n - 1) ↦ ite (i = j) ((i : ℕ) + 3 : ℚ) 1)) :
+  putnam_1992_b5_solution ↔ (Bornology.IsBounded {x | ∃ n ≥ 2, D n / factorial n = x}) :=
+sorry

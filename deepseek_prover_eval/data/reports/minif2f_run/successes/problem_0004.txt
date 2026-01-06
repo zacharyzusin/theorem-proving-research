@@ -1,0 +1,22 @@
+Problem: problem_0004
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.990197658538818
+Lean check time (s): 49.257970094680786
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p5 :
+  Finset.prod (Finset.filter (λ x => ¬ Even x) (Finset.range 10000)) (id : ℕ → ℕ) = (10000!) / ((2^5000) * 5000!) := by
+  rfl
+  <;> simp_all [Finset.prod_filter, Finset.prod_range_id, Nat.factorial_succ, Nat.mul_div_cancel_left]
+  <;> norm_num
+  <;> rfl
+  <;> simp_all [Finset.prod_filter, Finset.prod_range_id, Nat.factorial_succ, Nat.mul_div_cancel_left]
+  <;> norm_num
+  <;> rfl

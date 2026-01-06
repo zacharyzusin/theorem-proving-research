@@ -1,0 +1,181 @@
+Problem: problem_0023
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.11634349822998 / 8.77800965309143 / 30.89435315132141
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  rintro h
+  have h₁ := congr_arg (fun x => x % 11) h
+  simp at h₁
+  have h₂ : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+  have h₃ : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+  rcases h₂ with (h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂) <;> rcases h₃ with (h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃) <;> simp [h₂, h₃, pow_succ, Int.mul_emod, Int.add_emod, Int.emod_emod] at h₁ <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 27.85478687286377 / 4.26448392868042 / 32.11927080154419
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  rintro h
+  have h₁ := congr_arg (fun x => x % 11) h
+  simp at h₁
+  have h₂ : x ^ 5 % 11 = 0 ∨ x ^ 5 % 11 = 1 ∨ x ^ 5 % 11 = 10 := by
+    have : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+    rcases this with (h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃) <;> simp [h₃, pow_succ, Int.mul_emod, Int.add_emod]
+  have h₃ : y ^ 2 % 11 = 0 ∨ y ^ 2 % 11 = 1 ∨ y ^ 2 % 11 = 3 ∨ y ^ 2 % 11 = 4 ∨ y ^ 2 % 11 = 5 ∨ y ^ 2 % 11 = 9 := by
+    have : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+    rcases this with (h₄ | h₄ | h₄ | h₄ | h₄ | h₄ | h₄ | h₄ | h₄ | h₄ | h₄) <;> simp [h₄, pow_succ, Int.mul_emod, Int.add_emod]
+  omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.47374176979065 / 3.213963747024536 / 25.687705516815186
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  rintro h
+  have h1 := congr_arg (fun x => x % 11) h
+  simp [pow_succ, pow_two, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1
+  have h2 : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+  have h3 : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2) <;> rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3) <;> simp [h2, h3, pow_succ, pow_two, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1 <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 23.52847719192505 / 3.1615304946899414 / 26.69000768661499
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  intro h
+  have h1 := congr_arg (· % 11) h
+  simp [pow_succ, pow_zero, pow_one, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1
+  have h2 : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by
+    omega
+  have h3 : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by
+    omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2) <;>
+    rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3) <;>
+    simp [h2, h3, pow_succ, pow_zero, pow_one, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1 <;>
+    omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.977540254592896 / 8.26026439666748 / 29.237804651260376
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  intro h
+  have h1 := congr_arg (fun x => x % 11) h
+  simp at h1
+  have h2 : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+  have h3 : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2) <;> rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3) <;> simp [h2, h3, pow_succ, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1 <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.118574619293213 / 8.18135142326355 / 29.299926042556763
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  intro h
+  have h1 := congr_arg (fun x => x % 11) h
+  simp at h1
+  have h2 : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+  have h3 : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2) <;> rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3) <;> simp [h2, h3, pow_succ, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1 ⊢ <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.816137552261353 / 2.938363552093506 / 25.75450110435486
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  intro h
+  have h1 := congr_arg (· % 11) h
+  simp [pow_succ, pow_two, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1
+  have h2 : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+  have h3 : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2) <;>
+    rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3) <;>
+    simp [h2, h3, pow_succ, pow_two, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1 <;>
+    omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 21.27349305152893 / 8.36590576171875 / 29.63939881324768
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_x5neqy2p4
+  (x y : ℤ) :
+  x^5 ≠ y^2 + 4 := by
+  intro h
+  have h1 := congr_arg (· % 11) h
+  simp at h1
+  have h2 : x % 11 = 0 ∨ x % 11 = 1 ∨ x % 11 = 2 ∨ x % 11 = 3 ∨ x % 11 = 4 ∨ x % 11 = 5 ∨ x % 11 = 6 ∨ x % 11 = 7 ∨ x % 11 = 8 ∨ x % 11 = 9 ∨ x % 11 = 10 := by omega
+  have h3 : y % 11 = 0 ∨ y % 11 = 1 ∨ y % 11 = 2 ∨ y % 11 = 3 ∨ y % 11 = 4 ∨ y % 11 = 5 ∨ y % 11 = 6 ∨ y % 11 = 7 ∨ y % 11 = 8 ∨ y % 11 = 9 ∨ y % 11 = 10 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2 | h2) <;>
+    rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3 | h3) <;>
+    simp [h2, h3, pow_succ, Int.mul_emod, Int.add_emod, Int.emod_emod] at h1 <;>
+    omega
+

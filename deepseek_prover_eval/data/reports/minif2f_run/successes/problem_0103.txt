@@ -1,0 +1,22 @@
+Problem: problem_0103
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.336504697799683
+Lean check time (s): 3.7671425342559814
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_34
+  (x: ℕ)
+  (h₀ : x < 100)
+  (h₁ : x*9 % 100 = 1) :
+  x = 89 := by
+  have h : x * 9 % 100 = 1 := h₁
+  have h₂ : x < 100 := h₀
+  interval_cases x <;> norm_num at h ⊢
+  <;> omega

@@ -1,0 +1,29 @@
+Problem: problem_0468
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 15.42402958869934
+Lean check time (s): 3.7040934562683105
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2003_p24 :
+  IsGreatest {y : ℝ | ∃ (a b : ℝ), 1 < b ∧ b ≤ a ∧ y = Real.logb a (a/b) + Real.logb b (b/a)} 0 := by
+  refine' ⟨_, _⟩
+  · use 2, 2
+    norm_num [Real.logb, Real.log_div, Real.log_mul, Real.log_pow]
+    <;> ring_nf
+    <;> norm_num
+  · rintro y ⟨a, b, hb, hab, rfl⟩
+    have h₁ : 0 < a := by linarith
+    have h₂ : 0 < b := by linarith
+    have h₃ : 0 < Real.log a := Real.log_pos (by linarith)
+    have h₄ : 0 < Real.log b := Real.log_pos (by linarith)
+    field_simp [Real.logb, Real.log_div, Real.log_mul, Real.log_pow] at *
+    rw [div_le_iff (by positivity), ← sub_nonneg]
+    nlinarith [sq_nonneg (Real.log a - Real.log b), Real.log_le_sub_one_of_pos h₁,
+      Real.log_le_sub_one_of_pos h₂]

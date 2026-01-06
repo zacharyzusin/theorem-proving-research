@@ -1,0 +1,298 @@
+Problem: problem_0389
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.583127975463867 / 5.093608140945435 / 20.6767361164093
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) = 48 + 49 * Complex.I := h₁
+    have h₄ : n = 97 := by
+      rw [eq_comm] at h₃
+      -- We use the fact that the sum of the series equals 48 + 49i to find n.
+      -- This step involves detailed complex number analysis and pattern recognition.
+      -- Given the complexity, we infer that n must be 97 based on the problem's context.
+      norm_num at h₃
+      rcases n with (_ | _ | n) <;> simp_all [Finset.sum_Icc_succ_top, Complex.ext_iff, pow_one,
+        pow_add, pow_mul, pow_two, pow_three]
+      <;> norm_num at h₃ ⊢ <;>
+        ring_nf at h₃ ⊢ <;>
+        norm_num at h₃ ⊢ <;>
+        nlinarith
+    exact h₄
+  exact h₂
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.17030620574951 / 17.882615327835083 / 37.052921533584595
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : n < 100 := by
+      by_contra! h
+      have h₄ : n ≥ 100 := by linarith
+      have h₅ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) ≠ 48 + 49 * Complex.I := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) = ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) := by rfl
+        rw [h₆]
+        simp_all [Complex.ext_iff, Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+        <;>
+        norm_num
+        <;>
+        ring_nf at * <;>
+        norm_cast at * <;>
+        nlinarith
+      contradiction
+    interval_cases n <;> simp_all [Complex.ext_iff, Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+    <;>
+    norm_num
+    <;>
+    ring_nf at * <;>
+    norm_cast at * <;>
+    nlinarith
+  exact h₂
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.046568155288696 / 16.692456483840942 / 36.73902463912964
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I := h₁
+    have h₄ : n = 97 := by
+      have h₅ : n ≤ 100 := by
+        by_contra! h₆
+        have h₇ : n ≥ 101 := by linarith
+        have h₈ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) ≠ 48 + 49 * Complex.I := by
+          simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff,
+            pow_one, pow_add, pow_mul, pow_two, pow_three]
+          <;> norm_num
+          <;> ring_nf
+          <;> norm_cast
+          <;> omega
+        simp_all
+      interval_cases n <;> simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff,
+        pow_one, pow_add, pow_mul, pow_two, pow_three]
+      <;> norm_num
+      <;> ring_nf at *
+      <;> simp_all [Complex.ext_iff]
+      <;> norm_cast at *
+      <;> omega
+    exact h₄
+  exact h₂
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.608064651489258 / 15.57974123954773 / 36.18780589103699
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I := h₁
+    have h₄ : n = 97 := by
+      have h₅ : n ≤ 100 := by
+        by_contra! h₆
+        have h₇ : n ≥ 101 := by linarith
+        have h₈ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) ≠ 48 + 49 * Complex.I := by
+          simp_all [Finset.sum_Icc_succ_top, Complex.ext_iff, pow_succ, mul_add, mul_sub,
+            mul_one, mul_neg, mul_comm]
+          <;> norm_num
+          <;> ring_nf
+          <;> norm_cast
+          <;>
+          (try { omega })
+          <;>
+          (try {
+            nlinarith
+          })
+        contradiction
+      interval_cases n <;> simp_all [Finset.sum_Icc_succ_top, Complex.ext_iff, pow_succ, mul_add, mul_sub,
+        mul_one, mul_neg, mul_comm]
+      <;> norm_num
+      <;> ring_nf
+      <;> norm_cast
+      <;>
+      (try { omega })
+      <;>
+      (try {
+        nlinarith
+      })
+    exact h₄
+  
+  exact h₂
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.565380573272705 / 4.589519262313843 / 19.154899835586548
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) = 48 + 49 * Complex.I := h₁
+    have h₄ : n = 97 := by
+      rcases n with (_ | _ | n) <;> simp_all [Finset.sum_Icc_succ_top, Complex.ext_iff, pow_add, pow_mul, pow_two, pow_three]
+      <;> norm_num at * <;> ring_nf at * <;> norm_cast at * <;>
+      (try { omega }) <;>
+      (try { linarith }) <;>
+      (try { nlinarith }) <;>
+      (try { nlinarith }) <;>
+      (try { nlinarith }) <;>
+      (try { nlinarith })
+      <;> nlinarith
+    exact h₄
+  exact h₂
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.483023881912231 / 4.155101776123047 / 15.638125658035278
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ := h₁
+  simp [Complex.ext_iff, pow_one, pow_two, pow_succ, Finset.sum_range_succ, Finset.sum_range_one] at h₂
+  norm_num at h₂
+  ring_nf at h₂
+  norm_cast at h₂
+  norm_num at h₂
+  rcases n with (_ | _ | n) <;> simp_all [Finset.sum_Icc_succ_top, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib]
+  all_goals ring_nf at h₂ ⊢ <;> norm_num at h₂ ⊢ <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 33.57784938812256 / 4.289379119873047 / 37.867228507995605
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) = 48 + 49 * Complex.I := h₁
+    have h₄ : n = 97 := by
+      have h₅ : n ≤ 97 := by
+        by_contra! h₆
+        have h₇ : n ≥ 98 := by linarith
+        have h₈ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) ≠ 48 + 49 * Complex.I := by
+          simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff, pow_succ,
+            pow_one, pow_mul, pow_two, pow_three]
+          <;> norm_num
+          <;>
+            induction' n with n ih
+            <;> simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff, pow_succ,
+              pow_one, pow_mul, pow_two, pow_three] <;> norm_num <;>
+              ring_nf at * <;>
+                norm_cast at * <;>
+                  simp_all [Complex.ext_iff, pow_succ, pow_one, pow_mul, pow_two, pow_three] <;>
+                    norm_num <;>
+                      linarith
+        simp_all
+      have h₅ : n ≥ 97 := by
+        by_contra! h₆
+        have h₇ : n ≤ 96 := by linarith
+        have h₈ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I ^ k)) ≠ 48 + 49 * Complex.I := by
+          simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff, pow_succ,
+            pow_one, pow_mul, pow_two, pow_thre
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.47074794769287 / 11.801913022994995 / 31.272660970687866
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p15
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I) :
+  n = 97 := by
+  have h₂ : n = 97 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) = 48 + 49 * Complex.I := h₁
+    have h₄ : n = 97 := by
+      have h₅ : n ≤ 100 := by
+        by_contra! h
+        have h₆ : n ≥ 101 := by linarith
+        have h₇ : ∑ k in Finset.Icc 1 n, (↑k * (Complex.I^k)) ≠ 48 + 49 * Complex.I := by
+          simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff, pow_one,
+            pow_two, pow_succ, Complex.I_mul_I]
+          <;> norm_num
+          <;> ring_nf
+          <;> norm_cast
+          <;> omega
+        simp_all
+      interval_cases n <;> simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_one, Complex.ext_iff,
+        pow_one, pow_two, pow_succ, Complex.I_mul_I] <;> norm_num <;> ring_nf <;> norm_cast <;> omega
+    exact h₄
+  
+  simp_all
+  <;> norm_num
+  <;> aesop
+

@@ -1,0 +1,315 @@
+Problem: putnam_2018_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.400257349014282 / 11.201127529144287 / 33.60138487815857
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≤ 2018 := by
+      by_contra! h₃
+      have h₄ : (a : ℚ) > 2018 := by exact_mod_cast h₃
+      have h₅ : (b : ℚ) > 0 := by exact_mod_cast h.2.le
+      field_simp at h₁
+      rw [← sub_eq_zero] at h₁
+      have h₆ : (a : ℚ) > 0 := by exact_mod_cast h.1.le
+      nlinarith
+    have h₃ : b ≤ 2018 := by
+      by_contra! h₄
+      have h₅ : (b : ℚ) > 2018 := by exact_mod_cast h₄
+      have h₆ : (a : ℚ) > 0 := by exact_mod_cast h.1.le
+      field_simp at h₁
+      rw [← sub_eq_zero] at h₁
+      have h₇ : (b : ℚ) > 0 := by exact_mod_cast h.2.le
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> simp_all [putnam_2018_a1_solution]
+  · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;> norm_num
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.99111008644104 / 10.78659200668335 / 31.77770209312439
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≠ 0 := by linarith
+    have h₃ : b ≠ 0 := by linarith
+    field_simp [h₂, h₃] at h₁
+    norm_cast at h₁
+    have h₄ : a ≤ 2018 := by
+      by_contra! h₅
+      have h₆ : b ≤ 2018 := by
+        nlinarith
+      nlinarith
+    have h₅ : b ≤ 2018 := by
+      by_contra! h₆
+      have h₇ : a ≤ 2018 := by
+        nlinarith
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> simp_all [putnam_2018_a1_solution]
+  · intro h₁
+    simp_all [putnam_2018_a1_solution]
+    <;> norm_num
+    <;> rcases h₁ with (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;> norm_num
+    <;> field_simp <;> ring_nf
+    <;> norm_num
+    <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.55279803276062 / 8.680344820022583 / 29.233142852783203
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≠ 0 := by linarith
+    have h₃ : b ≠ 0 := by linarith
+    field_simp [h₂, h₃] at h₁
+    norm_cast at h₁
+    have h₄ : a ≤ 2018 := by
+      by_contra! h₅
+      have h₆ : b ≤ 2018 := by
+        nlinarith
+      nlinarith
+    have h₅ : b ≤ 2018 := by
+      by_contra! h₆
+      have h₇ : a ≤ 2018 := by
+        nlinarith
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ <;> simp_all [putnam_2018_a1_solution]
+  · intro h₁
+    simp_all [putnam_2018_a1_solution]
+    <;> norm_num
+    <;> rcases h₁ with (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;> norm_num
+    <;> field_simp
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.383349895477295 / 8.762428045272827 / 30.145777940750122
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≠ 0 := by linarith
+    have h₃ : b ≠ 0 := by linarith
+    field_simp [h₂, h₃] at h₁
+    norm_cast at h₁
+    have h₄ : a ≤ 2018 := by
+      by_contra! h₅
+      have h₆ : b ≤ 2018 := by
+        by_contra! h₆
+        have h₇ : a * b > 2018 * 2018 := by
+          nlinarith
+        nlinarith
+      interval_cases b <;> omega
+    have h₅ : b ≤ 2018 := by
+      by_contra! h₅
+      have h₆ : a ≤ 2018 := by
+        by_contra! h₆
+        have h₇ : a * b > 2018 * 2018 := by
+          nlinarith
+        nlinarith
+      interval_cases a <;> omega
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> simp_all [putnam_2018_a1_solution]
+  · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;> norm_num
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.480875492095947 / 10.447286128997803 / 26.92816162109375
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≠ 0 := by linarith
+    have h₃ : b ≠ 0 := by linarith
+    field_simp [h₂, h₃] at h₁
+    norm_cast at h₁
+    have h₄ : a ≤ 2018 := by
+      by_contra! h₅
+      have h₆ : b ≤ 2018 := by
+        nlinarith
+      nlinarith
+    have h₅ : b ≤ 2018 := by
+      by_contra! h₆
+      have h₇ : a ≤ 2018 := by
+        nlinarith
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> simp_all [putnam_2018_a1_solution]
+    <;> try contradiction
+    <;> try linarith
+  · intro h₁
+    simp_all [putnam_2018_a1_solution]
+    <;> norm_num
+    <;> rfl
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.643991708755493 / 8.66637921333313 / 32.31037092208862
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≤ 2018 := by
+      by_contra! h₃
+      have h₄ : (a : ℚ) > 2018 := by exact_mod_cast h₃
+      have h₅ : (b : ℚ) > 0 := by exact_mod_cast h.2.le
+      have h₆ : (a : ℚ) * (b : ℚ) > 0 := by positivity
+      field_simp at h₁
+      rw [← sub_eq_zero] at h₁
+      nlinarith
+    have h₃ : b ≤ 2018 := by
+      by_contra! h₄
+      have h₅ : (b : ℚ) > 2018 := by exact_mod_cast h₄
+      have h₆ : (a : ℚ) > 0 := by exact_mod_cast h.1.le
+      have h₇ : (a : ℚ) * (b : ℚ) > 0 := by positivity
+      field_simp at h₁
+      rw [← sub_eq_zero] at h₁
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> simp_all [putnam_2018_a1_solution]
+  · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;> norm_num
+    <;> field_simp <;> ring_nf <;> norm_num
+    <;> rfl
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.480661630630493 / 9.17707085609436 / 29.657732486724854
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h1
+    norm_num at h1
+    have h2 : a ≠ 0 := by linarith
+    have h3 : b ≠ 0 := by linarith
+    field_simp at h1
+    norm_cast at h1
+    have h4 : a ≤ 2018 := by
+      by_contra! h5
+      have h6 : b ≤ 2018 := by
+        nlinarith
+      nlinarith
+    have h5 : b ≤ 2018 := by
+      by_contra! h6
+      have h7 : a ≤ 2018 := by
+        nlinarith
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h1 <;> simp_all [putnam_2018_a1_solution] <;> norm_num <;> aesop
+  · intro h1
+    simp_all [putnam_2018_a1_solution]
+    <;> norm_num
+    <;> rcases h1 with (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;> norm_num
+    <;> field_simp <;> ring_nf <;> norm_num
+    <;> norm_cast
+    <;> linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.732110738754272 / 9.202453136444092 / 29.934563875198364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a1
+  (a b : ℤ)
+  (h : 0 < a ∧ 0 < b) :
+  ((1 : ℚ) / a + (1 : ℚ) / b = (3 : ℚ) / 2018) ↔ (⟨a, b⟩ ∈ putnam_2018_a1_solution) := by
+  constructor
+  · intro h₁
+    norm_num at h₁
+    have h₂ : a ≠ 0 := by linarith
+    have h₃ : b ≠ 0 := by linarith
+    field_simp [h₂, h₃] at h₁
+    norm_cast at h₁
+    have h₄ : a ≤ 2018 := by
+      by_contra! h₅
+      have h₆ : b ≤ 2018 := by
+        nlinarith
+      nlinarith
+    have h₅ : b ≤ 2018 := by
+      by_contra! h₆
+      have h₇ : a ≤ 2018 := by
+        nlinarith
+      nlinarith
+    interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> simp_all [putnam_2018_a1_solution]
+  · intro h₁
+    norm_num [putnam_2018_a1_solution] at h₁ ⊢
+    rcases h₁ with (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;>
+      norm_num
+    <;>
+      field_simp <;>
+      ring_nf <;>
+      norm_num
+    <;>
+      linarith

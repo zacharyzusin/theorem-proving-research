@@ -1,0 +1,171 @@
+Problem: problem_0017
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 4
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.331523418426514 / 204.85932779312134 / 213.19085121154785
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total 0 (a - b) with h h <;>
+    simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+  <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a + b - 1),
+      sq_nonneg (a + b + 1), sq_nonneg (a - b - 1), sq_nonneg (a - b + 1)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.715919733047485 / 600.149397611618 / 609.8653173446655
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total a b with h h <;> simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+  <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - b + 1), sq_nonneg (a + b - 1),
+      sq_nonneg (a + b + 1), sq_nonneg (a + b - 2), sq_nonneg (a - b + 2), sq_nonneg (a - b - 1)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.6202216148376465 / 600.145022392273 / 607.7652440071106
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total 0 (a - b) with h h <;>
+    simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+  <;>
+    nlinarith [sq_nonneg (a + b), sq_nonneg (a - b), sq_nonneg (a + b - 1), sq_nonneg (a + b + 1)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.518667697906494 / 382.11094188690186 / 391.62960958480835
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total a b with hab hab <;>
+    cases' le_total 0 (a - b) with h h <;>
+    cases' le_total 0 (a + b) with h₁ h₁ <;>
+    simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a + b - (a - b)),
+      sq_nonneg (a + b + (a - b))]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.569303512573242 / 209.02542448043823 / 217.59472799301147
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total 0 (a - b) with h h <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith [sq_nonneg (a + b), sq_nonneg (a - b), sq_nonneg (a + b - 1), sq_nonneg (a + b + 1),
+      sq_nonneg (a - b - 1), sq_nonneg (a - b + 1)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 7.367661237716675 / 600.1636388301849 / 607.5313000679016
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total 0 (a - b) with h h <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith [sq_nonneg (a + b), sq_nonneg (a - b), sq_nonneg (a + b - 1), sq_nonneg (a + b + 1)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.603808879852295 / 600.1385018825531 / 609.7423107624054
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total 0 (a - b) with h h <;> simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+  <;>
+    nlinarith [sq_nonneg (a + b), sq_nonneg (a - b), sq_nonneg (a - b + 1), sq_nonneg (a + b - 1),
+      sq_nonneg (a + b + 1), sq_nonneg (a + b - 2), sq_nonneg (a - b + 2), sq_nonneg (a - b - 2)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.92660665512085 / 199.3524010181427 / 207.27900767326355
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpabsamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + |a - b| ≤ 1 := by
+  cases' le_total a b with hab hab <;> simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+  <;> nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a + b - 1), sq_nonneg (a + b + 1),
+    sq_nonneg (a - b - 1), sq_nonneg (a - b + 1)]
+

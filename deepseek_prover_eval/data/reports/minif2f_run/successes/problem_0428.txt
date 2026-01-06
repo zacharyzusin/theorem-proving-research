@@ -1,0 +1,42 @@
+Problem: problem_0428
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 22.782116174697876
+Lean check time (s): 4.775697708129883
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_509 :
+  Real.sqrt ((5 / Real.sqrt 80 + Real.sqrt 845 / 9 + Real.sqrt 45) / Real.sqrt 5) = 13 / 6 := by
+  have h₁ : Real.sqrt 80 = 4 * Real.sqrt 5 := by
+    rw [Real.sqrt_eq_iff_sq_eq] <;>
+    ring_nf <;>
+    norm_num <;>
+    nlinarith [Real.sqrt_nonneg 5, Real.sqrt_nonneg 80, Real.sq_sqrt (show 0 ≤ 5 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 80 by norm_num)]
+  have h₂ : Real.sqrt 845 = 13 * Real.sqrt 5 := by
+    rw [Real.sqrt_eq_iff_sq_eq] <;>
+    ring_nf <;>
+    norm_num <;>
+    nlinarith [Real.sqrt_nonneg 5, Real.sqrt_nonneg 845, Real.sq_sqrt (show 0 ≤ 5 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 845 by norm_num)]
+  have h₃ : Real.sqrt 45 = 3 * Real.sqrt 5 := by
+    rw [Real.sqrt_eq_iff_sq_eq] <;>
+    ring_nf <;>
+    norm_num <;>
+    nlinarith [Real.sqrt_nonneg 5, Real.sqrt_nonneg 45, Real.sq_sqrt (show 0 ≤ 5 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 45 by norm_num)]
+  simp_all only [h₁, h₂, h₃]
+  ring_nf
+  rw [Real.sqrt_eq_iff_sq_eq] <;>
+  ring_nf <;>
+  norm_num <;>
+  field_simp <;>
+  ring_nf <;>
+  norm_num <;>
+  nlinarith [Real.sqrt_nonneg 5, Real.sq_sqrt (show 0 ≤ 5 by norm_num)]

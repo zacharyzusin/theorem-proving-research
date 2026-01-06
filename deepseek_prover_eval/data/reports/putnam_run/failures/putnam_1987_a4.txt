@@ -1,0 +1,190 @@
+Problem: putnam_1987_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 47.335883140563965 / 8.65571141242981 / 55.991594552993774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 32.32979345321655 / 11.750221014022827 / 44.08001446723938
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.366087198257446 / 12.513666868209839 / 36.879754066467285
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.72021746635437 / 10.537076473236084 / 33.257293939590454
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 33.59008264541626 / 14.05284070968628 / 47.64292335510254
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 25.622482538223267 / 13.533349514007568 / 39.155832052230835
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 23.4192156791687 / 13.999828100204468 / 37.41904377937317
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 28.875351667404175 / 13.962144136428833 / 42.83749580383301
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1987_a4
+(P : MvPolynomial (Fin 3) ℂ)
+(hPreal : ∀ i : Fin 3 →₀ ℕ, (coeff i P).im = 0)
+(F : ℝ → ℝ → ℝ)
+(vars : ℂ → ℂ → ℂ → (Fin 3 → ℂ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+(h : ∀ x y z u : ℝ, eval (vars (u * x) (u * y) (u * z)) P = u ^ 2 * F (y - x) (z - x))
+(hPval : eval (vars 1 0 0) P = 4 ∧ eval (vars 0 1 0) P = 5 ∧ eval (vars 0 0 1) P = 6)
+(A B C : ℂ)
+(hPABC : eval (vars A B C) P = 0)
+(habs : ‖B - A‖ = 10)
+: (‖C - A‖ = putnam_1987_a4_solution) :=
+sorry

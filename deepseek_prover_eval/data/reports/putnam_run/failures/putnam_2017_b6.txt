@@ -1,0 +1,126 @@
+Problem: putnam_2017_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 35.13360667228699 / 7.489997386932373 / 42.62360405921936
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.918654918670654 / 8.047762393951416 / 44.96641731262207
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.39343523979187 / 8.405845642089844 / 24.799280881881714
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.967612743377686 / 9.809359073638916 / 29.7769718170166
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.89573335647583 / 8.672065496444702 / 25.567798852920532
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.611808776855469 / 8.616308450698853 / 23.22811722755432
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 34.73291325569153 / 9.176278114318848 / 43.909191370010376
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.024673223495483 / 7.6528236865997314 / 19.677496910095215
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b6
+  (S : Finset (Finset.range 64 → Finset.Icc 1 2017))
+  (hs : ∀ x, x ∈ S ↔ (Injective x ∧ (2017 ∣ (∑ i : Finset.range 64, if i ≤ (⟨1, by norm_num⟩ : Finset.range 64) then (x i : ℤ) else i * (x i : ℤ))))) :
+  S.card = putnam_2017_b6_solution :=
+sorry

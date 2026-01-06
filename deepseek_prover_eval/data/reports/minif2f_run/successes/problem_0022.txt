@@ -1,0 +1,31 @@
+Problem: problem_0022
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.346550941467285
+Lean check time (s): 3.8542022705078125
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_427
+  (a : ℕ)
+  (h₀ : a = (∑ k in (Nat.divisors 500), k)) :
+  ∑ k in Finset.filter (λ x => Nat.Prime x) (Nat.divisors a), k = 25 := by
+  rw [h₀]
+  rw [show (500 : ℕ) = 2^2 * 5^3 by norm_num]
+  -- We need to find the sum of the prime divisors of the divisors of 500
+  -- First, list all the divisors of 500
+  -- The prime divisors of 500 are 2 and 5
+  -- The prime divisors of the divisors of 500 are also 2 and 5
+  -- Sum them up
+  rfl
+  <;>
+  apply Eq.refl
+  <;>
+  decide
+  <;>
+  rfl

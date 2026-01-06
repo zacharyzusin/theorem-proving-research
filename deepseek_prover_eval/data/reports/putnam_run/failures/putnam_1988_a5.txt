@@ -1,0 +1,213 @@
+Problem: putnam_1988_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.750209093093872 / 4.8939433097839355 / 14.644152402877808
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    constructor
+    · ring_nf
+      <;> nlinarith
+    · nlinarith
+  · intro g hg x hx
+    have h1 := hg x hx
+    have h2 := hg (2 * x) (by nlinarith)
+    have h3 := hg (2 * x) (by nlinarith)
+    have h4 := hg x hx
+    nlinarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.285537242889404 / 4.91257119178772 / 19.198108434677124
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    have h₁ : 0 < x := hx
+    have h₂ : 0 < 2 * x := by linarith
+    constructor
+    · nlinarith [sq_nonneg (x - 2 * x), sq_nonneg (x + 2 * x)]
+    · nlinarith
+  · intro g hg x hx
+    have h₁ : 0 < x := hx
+    have h₂ : 0 < g x := by
+      have h₃ := hg x h₁
+      linarith
+    have h₃ := hg x h₁
+    have h₄ : g x = 2 * x := by
+      nlinarith [sq_nonneg (x - 2 * x), sq_nonneg (x + 2 * x), sq_nonneg (g x - 2 * x), sq_nonneg (g x + 2 * x)]
+    linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.936653852462769 / 4.627392530441284 / 13.564046382904053
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    constructor
+    · ring_nf
+      <;> nlinarith [hx]
+    · nlinarith [hx]
+  · intro g hg x hx
+    have h1 := hg x hx
+    have h2 := hg (2 * x) (by nlinarith)
+    nlinarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.776720523834229 / 4.869450807571411 / 18.64617133140564
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    have h₁ : (2 * x) > 0 := by linarith
+    have h₂ : (2 * (2 * x)) = 6 * x - 2 * x := by linarith
+    have h₃ : 2 * x > 0 := by linarith
+    exact ⟨by linarith, by linarith⟩
+  · intro g hg x hx
+    have h₁ := hg x hx
+    have h₂ := hg (g x) (by
+      have h₃ : g x > 0 := by linarith [h₁.2]
+      linarith)
+    have h₃ : g x = 2 * x := by
+      nlinarith [h₁.1, h₂.1]
+    nlinarith [h₁.2, h₂.2]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.198178052902222 / 4.797499656677246 / 14.995677709579468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    constructor
+    · ring_nf
+      <;> nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1)]
+    · nlinarith
+  · intro g hg x hx
+    have h1 := hg x hx
+    have h2 := hg (2 * x) (by nlinarith)
+    nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1)]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.515405178070068 / 5.028002023696899 / 18.543407201766968
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    have h₁ : (2 * x) > 0 := by positivity
+    have h₂ : (2 * (2 * x)) = 6 * x - 2 * x := by ring
+    have h₃ : 2 * x > 0 := by positivity
+    exact ⟨by linarith, by linarith⟩
+  · intro g hg x hx
+    have h₁ := hg x hx
+    have h₂ := hg (g x) (by
+      have h₃ := hg x hx
+      nlinarith)
+    have h₃ := hg x hx
+    have h₄ := hg (g x) (by
+      have h₅ := hg x hx
+      nlinarith)
+    nlinarith [sq_nonneg (g x - 2 * x)]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.48737621307373 / 5.048769950866699 / 15.53614616394043
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    constructor
+    · ring_nf
+      <;> norm_num
+      <;> nlinarith [hx]
+    · nlinarith [hx]
+  · intro g hg x hx
+    have h1 := hg x hx
+    have h2 := hg (2 * x) (by nlinarith [hx])
+    have h3 := hg (g x) (by nlinarith [hg x hx])
+    nlinarith [h1, h2, h3]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.99263048171997 / 5.46236252784729 / 17.45499300956726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a5
+: (∃ f : ℝ → ℝ, (∀ x > 0, f (f x) = 6 * x - f x ∧ f x > 0) ∧ (∀ g : ℝ → ℝ, (∀ x > 0, g (g x) = 6 * x - g x ∧ g x > 0) → (∀ x > 0, f x = g x))) := by
+  use fun x => 2 * x
+  constructor
+  · intro x hx
+    constructor
+    · ring_nf
+      <;> nlinarith
+    · nlinarith
+  · intro g hg x hx
+    have h1 := hg x hx
+    have h2 := hg (2 * x) (by nlinarith)
+    have h3 := hg (2 * x) (by nlinarith)
+    have h4 := hg x hx
+    ring_nf at *
+    nlinarith [sq_nonneg (x - 2 * x), sq_nonneg (x + 2 * x), sq_nonneg (g x - 2 * x), sq_nonneg (g x + 2 * x)]

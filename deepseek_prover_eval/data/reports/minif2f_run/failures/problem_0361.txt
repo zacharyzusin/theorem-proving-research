@@ -1,0 +1,253 @@
+Problem: problem_0361
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.89714813232422 / 5.195404052734375 / 23.092552185058594
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have h₃ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₃₁ : 0 < n := by linarith
+    have h₃₂ : Finset.card (Nat.divisors (2 * n)) = 28 := by simp_all
+    have h₃₃ : Finset.card (Nat.divisors (3 * n)) = 30 := by simp_all
+    have h₃₄ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+      -- We use the fact that the number of divisors of 6n can be derived from the prime factorization of n.
+      -- Given the constraints on the number of divisors of 2n and 3n, we can deduce the number of divisors of 6n.
+      rw [show 6 * n = 2 * (3 * n) by ring]
+      rw [Nat.divisors_mul]
+      -- We need to ensure that 2 and 3 are coprime, which they are.
+      <;> norm_num
+      <;>
+        simp_all [Nat.divisors_mul, Nat.divisors_prime_pow]
+      <;>
+        norm_num at *
+      <;>
+        rfl
+    exact h₃₄
+  exact h₃
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.852709531784058 / 15.84984040260315 / 30.702549934387207
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have step₁ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₃ := Nat.divisors_mul 2 n
+    have h₄ := Nat.divisors_mul 3 n
+    have h₅ := Nat.divisors_mul 6 n
+    simp_all [Finset.card_eq_zero]
+    <;>
+    (try omega) <;>
+    (try
+      simp_all [Finset.card_eq_zero, Nat.divisors]
+      <;>
+      norm_num at * <;>
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      omega) <;>
+    (try
+      aesop) <;>
+    (try
+      linarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      omega)
+  apply step₁
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.796911001205444 / 4.741647720336914 / 17.53855872154236
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have h₃ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₃ : 6 * n = 2 * (3 * n) := by ring
+    rw [h₃]
+    -- We use the fact that the number of divisors of 6n is related to the number of divisors of 3n and 2n.
+    rw [Nat.divisors_mul]
+    -- We need to show that the number of divisors of 6n is 35.
+    -- This involves understanding the relationship between the divisors of 3n and 2n.
+    <;>
+      simp_all [Nat.divisors_mul, Nat.divisors_prime_pow, Finset.card_union_eq]
+    <;>
+      nlinarith
+  exact h₃
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.309523105621338 / 5.911497354507446 / 17.221020460128784
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have h₃ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₄ : 6 * n = 2 * (3 * n) := by ring
+    rw [h₄]
+    -- Use the fact that the number of divisors of 2 * (3 * n) can be computed using the divisors of 3 * n and 2 * n
+    simp_all [Nat.divisors_mul, Nat.divisors_prime_pow, Finset.card_product, Finset.card_range]
+    -- Use the given conditions and the properties of divisors to conclude the proof
+    <;> omega
+  exact h₃
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.675662994384766 / 4.5996174812316895 / 19.275280475616455
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have step1 : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₃ := h₁
+    have h₄ := h₂
+    have h₅ : n ≠ 0 := by linarith
+    have h₆ : 0 < n := by linarith
+    have h₇ : Finset.card (Nat.divisors (2 * n)) = 28 := h₁
+    have h₈ : Finset.card (Nat.divisors (3 * n)) = 30 := h₂
+    have h₉ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+      rw [Nat.divisors_mul]
+      <;>
+        norm_num at *
+        <;>
+        simp_all [Nat.divisors_prime_pow, Finset.card_product]
+        <;>
+        rfl
+    exact h₉
+  
+  exact step1
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 7.308374404907227 / 6.6867451667785645 / 13.995119571685791
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have h₃ := h₁
+  have h₄ := h₂
+  have h₅ := h₀
+  simp_all [Nat.divisors]
+  <;> norm_num
+  <;> ring_nf
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.726637125015259 / 4.1843602657318115 / 15.91099739074707
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have h₃ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₄ : 6 * n = 2 * (3 * n) := by ring
+    rw [h₄]
+    -- Use the fact that the number of divisors of 2 * (3 * n) can be derived from the number of divisors of 3 * n and 2 * n
+    rw [Nat.divisors_mul]
+    -- Since 2 and 3 * n are coprime, we can use the property of divisors
+    <;> simp_all [Nat.divisors_prime_pow]
+    <;> norm_num
+    <;> rfl
+  exact h₃
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.796635866165161 / 4.970388412475586 / 15.767024278640747
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_709
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Finset.card (Nat.divisors (2 * n)) = 28)
+  (h₂ : Finset.card (Nat.divisors (3 * n)) = 30) :
+  Finset.card (Nat.divisors (6 * n)) = 35 := by
+  have h₃ : Finset.card (Nat.divisors (6 * n)) = 35 := by
+    have h₄ : 6 * n = 2 * (3 * n) := by ring
+    rw [h₄]
+    -- Use the fact that the number of divisors of 6n is the product of the number of divisors of 2n and 3n
+    rw [Nat.divisors_mul] <;>
+    simp_all [Nat.divisors_mul, Nat.divisors_prime_pow]
+    <;>
+    norm_num <;>
+    rfl
+  exact h₃
+

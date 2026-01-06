@@ -1,0 +1,277 @@
+Problem: problem_0328
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.85113525390625 / 3.9483978748321533 / 19.799533128738403
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₅ : 1 / k = 0 := by
+      rw [Nat.div_eq_of_lt] <;> linarith
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      exact Nat.zero_le _
+    linarith
+  exact
+    calc
+      ∑ k in Finset.Icc 1 n, 1 / k ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.890644788742065 / 3.691028118133545 / 19.58167290687561
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp_all [Finset.mem_Icc]
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      linarith
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      positivity
+    simp_all [Nat.div_eq_of_lt]
+    <;> omega
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.358389377593994 / 3.7003488540649414 / 19.058738231658936
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp_all [Finset.mem_Icc]
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      linarith
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      positivity
+    simp_all
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.477677345275879 / 3.9259982109069824 / 19.40367555618286
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      nlinarith
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      positivity
+    simp_all
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.82613468170166 / 3.9380111694335938 / 19.764145851135254
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      linarith
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      apply Nat.zero_le
+    linarith
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.647591590881348 / 4.423129558563232 / 20.07072114944458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      omega
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      apply Nat.zero_le
+    omega
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.201751708984375 / 3.916123867034912 / 21.117875576019287
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      linarith
+    rw [h₅]
+    have h₆ : 0 ≤ a k := by
+      exact Nat.zero_le _
+    have h₇ : a k / k ^ 2 ≥ 0 := by
+      exact Nat.zero_le _
+    linarith
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.805420160293579 / 3.8804988861083984 / 19.685919046401978
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1978_p5
+  (n : ℕ)
+  (a : ℕ → ℕ)
+  (h₀ : Function.Injective a)
+  (h₁ : a 0 = 0)
+  (h₂ : 0 < n) :
+  (∑ k in Finset.Icc 1 n, 1/k) ≤ ∑ k in Finset.Icc 1 n, (a k)/k^(2) := by
+  have h₃ : ∀ k ∈ Finset.Icc 1 n, 1 / k ≤ a k / k ^ 2 := by
+    intro k hk
+    have h₄ : k ≥ 1 := by
+      simp only [Finset.mem_Icc] at hk
+      linarith
+    have h₅ : 1 / k = 0 := by
+      apply Nat.div_eq_of_lt
+      linarith
+    have h₆ : a k / k ^ 2 ≥ 0 := by
+      apply Nat.zero_le
+    linarith
+  exact
+    calc
+      (∑ k in Finset.Icc 1 n, 1 / k) ≤ ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc 1 n, a k / k ^ 2 := by rfl
+

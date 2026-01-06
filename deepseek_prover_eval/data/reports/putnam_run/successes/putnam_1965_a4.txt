@@ -1,0 +1,21 @@
+Problem: putnam_1965_a4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 15.463565349578857
+Lean check time (s): 93.03250169754028
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a4
+{G B : Type*}
+[Fintype G] [Nonempty G]
+[Fintype B] [Nonempty B]
+(dances : G → B → Prop)
+(h : (¬∃ b : B, ∀ g : G, dances g b) ∧ ∀ g : G, ∃ b : B, dances g b)
+: ∃ g h : G, ∃ b c : B, dances g b ∧ dances h c ∧ ¬dances h b ∧ ¬dances g c :=
+sorry

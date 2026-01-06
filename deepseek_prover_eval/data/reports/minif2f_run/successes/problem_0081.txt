@@ -1,0 +1,22 @@
+Problem: problem_0081
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.635885000228882
+Lean check time (s): 2.6245336532592773
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_247
+  (n : ℕ)
+  (h₀ : (3 * n) % 2 = 11) :
+  n % 11 = 8 := by
+  have h₁ := h₀
+  rw [← Nat.mod_add_div n 11] at h₁
+  norm_num at h₁
+  ring_nf at h₁
+  omega

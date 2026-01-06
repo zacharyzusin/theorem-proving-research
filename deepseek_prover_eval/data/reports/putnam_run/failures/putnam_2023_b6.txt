@@ -1,0 +1,142 @@
+Problem: putnam_2023_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.756495714187622 / 7.872045993804932 / 21.628541707992554
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.828204154968262 / 7.529163122177124 / 21.357367277145386
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.345837116241455 / 7.495382308959961 / 17.841219425201416
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.799343347549438 / 7.678551912307739 / 20.477895259857178
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.846127271652222 / 7.543428897857666 / 20.389556169509888
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.002336263656616 / 7.434082269668579 / 21.436418533325195
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.59890604019165 / 7.508819341659546 / 24.107725381851196
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.787440538406372 / 7.568572998046875 / 21.356013536453247
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b6
+(n : ℕ)
+(S : Matrix (Fin n) (Fin n) ℤ)
+(npos : n > 0)
+(hS : ∀ i j : Fin n, S i j = ∑' a : ℕ, ∑' b : ℕ, if a * (i.1 + 1) + b * (j.1 + 1) = (n : ℤ) then 1 else 0)
+: S.det = putnam_2023_b6_solution n :=
+sorry

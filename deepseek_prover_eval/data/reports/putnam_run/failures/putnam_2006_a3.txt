@@ -1,0 +1,241 @@
+Problem: putnam_2006_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.850454568862915 / 15.745097875595093 / 29.595552444458008
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  intro j
+  have h₁ := hxlo 0
+  have h₂ := hxlo 1
+  have h₃ := hxlo 2006
+  have h₄ := hxhi 2006
+  have h₅ := hxhi 4012
+  have h₆ := hxhi 6018
+  norm_num [Finset.mem_range] at *
+  <;> simp_all [hxlo, hxhi]
+  <;> omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.64621615409851 / 15.494462728500366 / 30.140678882598877
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  · intro j
+    have h₁ := hxlo 0
+    have h₂ := hxlo 1
+    have h₃ := hxlo 2006
+    have h₄ := hxhi 2006
+    have h₅ := hxhi (2006 + 1)
+    have h₆ := hxhi (2006 + 2)
+    have h₇ := hxhi (2006 + 2005)
+    norm_num [Finset.mem_range] at j ⊢
+    <;> simp_all [hxlo, hxhi, Finset.mem_range]
+    <;> omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.522968769073486 / 17.781531810760498 / 31.304500579833984
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  intro j
+  have h₁ := hxlo 0
+  have h₂ := hxlo 1
+  have h₃ := hxlo 2006
+  have h₄ := hxhi 2006
+  have h₅ := hxhi (2006 + 1)
+  have h₆ := hxhi (2006 + 2006)
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆
+  <;> simp_all [Finset.mem_range]
+  <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.099811553955078 / 13.876211166381836 / 29.976022720336914
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  intro j
+  have h₁ := hxhi 0
+  have h₂ := hxhi 1
+  have h₃ := hxhi 2006
+  have h₄ := hxhi 4012
+  have h₅ := hxhi 6018
+  have h₆ := hxlo 0
+  have h₇ := hxlo 1
+  have h₈ := hxlo 2006
+  have h₉ := hxlo 4012
+  have h₁₀ := hxlo 6018
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀
+  <;> simp_all [Finset.mem_range]
+  <;> omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.54150938987732 / 12.673454999923706 / 27.214964389801025
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  · intro j
+    have h₁ := hxhi 0
+    have h₂ := hxhi 1
+    have h₃ := hxhi 2005
+    have h₄ := hxhi 2006
+    have h₅ := hxhi 4011
+    have h₆ := hxlo 0
+    have h₇ := hxlo 1
+    have h₈ := hxlo 2006
+    have h₉ := hxlo 4011
+    norm_num [Finset.mem_range] at *
+    <;> simp_all [hxlo, hxhi]
+    <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.036933183670044 / 13.37306261062622 / 26.409995794296265
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  norm_num
+  intro j
+  have h₁ := hxlo 0
+  have h₂ := hxlo 1
+  have h₃ := hxlo 2006
+  have h₄ := hxhi 2006
+  have h₅ := hxhi 2007
+  have h₆ := hxhi 4011
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆
+  <;> simp_all [Finset.mem_range]
+  <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.564728498458862 / 12.35225772857666 / 27.916986227035522
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  intro j
+  have h₁ := hxlo 0
+  have h₂ := hxlo 1
+  have h₃ := hxlo 2006
+  have h₄ := hxhi 2006
+  have h₅ := hxhi 4012
+  have h₆ := hxhi 6018
+  have h₇ := hxhi 8024
+  have h₈ := hxhi 10030
+  simp at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈
+  <;>
+  omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.67199420928955 / 13.771018028259277 / 27.443012237548828
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a3
+(x : ℤ → ℤ)
+(hxlo : ∀ k : ℤ, 0 ≤ k ∧ k ≤ 2006 → x k = k)
+(hxhi : ∀ k : ℤ, k ≥ 2006 → x (k + 1) = x k + x (k - 2005))
+: (∃ i : ℕ, i > 0 ∧ ∀ j : Finset.range 2005, 2006 ∣ x (i + j)) := by
+  use 2006
+  constructor
+  · norm_num
+  intro j
+  have h₁ := hxlo 0
+  have h₂ := hxlo 1
+  have h₃ := hxlo 2006
+  have h₄ := hxhi 2006
+  have h₅ := hxhi (2006 + 1)
+  have h₆ := hxhi (2006 + 2)
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆
+  <;> simp_all [Finset.mem_range]
+  <;> omega

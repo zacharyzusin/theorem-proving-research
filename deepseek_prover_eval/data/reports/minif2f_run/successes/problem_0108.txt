@@ -1,0 +1,20 @@
+Problem: problem_0108
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.789595365524292
+Lean check time (s): 3.8910701274871826
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_432
+  (x : ℝ) :
+  (x + 3) * (2 * x - 6) = 2 * x^2 - 18 := by
+  ring_nf
+  <;> simp_all only [mul_assoc]
+  <;> ring
+  <;> omega

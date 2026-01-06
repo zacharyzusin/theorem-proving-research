@@ -1,0 +1,23 @@
+Problem: problem_0359
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.740421772003174
+Lean check time (s): 3.3056480884552
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_284
+  (a b : ℕ)
+  (h₀ : 1 ≤ a ∧ a ≤ 9 ∧ b ≤ 9)
+  (h₁ : 10 * a + b = 2 * (a + b)) :
+  10 * a + b = 18 := by
+  have h₂ : a ≤ 9 := by
+    omega
+  have h₃ : b ≤ 9 := by
+    omega
+  interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;> omega

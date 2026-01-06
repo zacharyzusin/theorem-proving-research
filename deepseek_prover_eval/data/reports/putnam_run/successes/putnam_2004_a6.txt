@@ -1,0 +1,18 @@
+Problem: putnam_2004_a6
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 62.69077801704407
+Lean check time (s): 10.288151264190674
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_a6
+(f : (Set.Icc (0 : ℝ) 1 × Set.Icc (0 : ℝ) 1) → ℝ)
+(fcont : Continuous f)
+: (∫ y : Set.Icc (0 : ℝ) 1, (∫ x : Set.Icc (0 : ℝ) 1, f (x, y)) ^ 2) + (∫ x : Set.Icc (0 : ℝ) 1, (∫ y : Set.Icc (0 : ℝ) 1, f (x, y)) ^ 2) ≤ (∫ y : Set.Icc (0 : ℝ) 1, (∫ x : Set.Icc (0 : ℝ) 1, f (x, y))) ^ 2 + (∫ y : Set.Icc (0 : ℝ) 1, (∫ x : Set.Icc (0 : ℝ) 1, (f (x, y)) ^ 2)) :=
+sorry

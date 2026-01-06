@@ -1,0 +1,372 @@
+Problem: problem_0438
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 48.11356043815613 / 12.746008396148682 / 60.85956883430481
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    have h₃₀ : a 3 = (a 1 + a 2) / (1 - a 1 * a 2) := by
+      rw [h₂] <;> norm_num
+    rw [h₃₀, h₀, h₁]
+    field_simp [sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show 0 ≤ 3 by norm_num)]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₄₁ : a (n + 6) = a n := by
+      have h₄₂ : a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1)) := by
+        rw [h₂] <;> norm_num <;> linarith
+      have h₄₃ : a (n + 3) = (a (n + 1) + a (n + 2)) / (1 - a (n + 1) * a (n + 2)) := by
+        rw [h₂] <;> norm_num <;> linarith
+      have h₄₄ : a (n + 4) = (a (n + 2) + a (n + 3)) / (1 - a (n + 2) * a (n + 3)) := by
+        rw [h₂] <;> norm_num <;> linarith
+      have h₄₅ : a (n + 5) = (a (n + 3) + a (n + 4)) / (1 - a (n + 3) * a (n + 4)) := by
+        rw [h₂] <;> norm_num <;> linarith
+      have h₄₆ : a (n + 6) = (a (n + 4) + a (n + 5)) / (1 - a (n + 4) * a (n + 5)) := by
+        rw [h₂] <;> norm_num <;> linarith
+      field_simp [h₄₂, h₄₃, h₄₄, h₄₅, h₄₆, h₀, h₁, h₃] at *
+      <;> ring_nf at *
+      <;> field_simp [sub_eq_zero, add_comm] at *
+      <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show 0
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.04524803161621 / 5.052442312240601 / 33.09769034385681
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    rw [h₂ 1 (by norm_num)]
+    field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₅ := h₂ 1 (by norm_num)
+    have h₆ := h₂ 2 (by norm_num)
+    have h₇ := h₂ 3 (by norm_num)
+    have h₈ := h₂ 4 (by norm_num)
+    have h₉ := h₂ 5 (by norm_num)
+    have h₁₀ := h₂ 6 (by norm_num)
+    simp_all [h₀, h₁, h₃]
+    <;> field_simp [sub_eq_zero] at *
+    <;> ring_nf at *
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₅ : a 2009 = 0 := by
+    have h₆ : 2009 % 6 = 5 := by norm_num
+    rw [← Nat.mod_add_div 2009 6]
+    simp [h₄, h₆]
+    <;> norm_num [h₀, h₁, h₃]
+    <;> field_simp [sub_eq_zero] at *
+    <;> ring_nf at *
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  simp [h₅]
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 44.00968647003174 / 12.676784992218018 / 56.686471462249756
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    have h₃₀ : a 3 = (a 1 + a 2) / (1 - a 1 * a 2) := by
+      rw [h₂ 1 (by norm_num)]
+    rw [h₃₀, h₀, h₁]
+    field_simp [sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [Real.sqrt_eq_iff_sq_eq]
+    <;> ring_nf
+    <;> norm_num
+    <;>
+    nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₄₁ : a (n + 6) = a n := by
+      have h₄₂ : a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1)) := by
+        rw [h₂ n (by linarith)]
+      have h₄₃ : a (n + 3) = (a (n + 1) + a (n + 2)) / (1 - a (n + 1) * a (n + 2)) := by
+        rw [h₂ (n + 1) (by linarith)]
+      have h₄₄ : a (n + 4) = (a (n + 2) + a (n + 3)) / (1 - a (n + 2) * a (n + 3)) := by
+        rw [h₂ (n + 2) (by linarith)]
+      have h₄₅ : a (n + 5) = (a (n + 3) + a (n + 4)) / (1 - a (n + 3) * a (n + 4)) := by
+        rw [h₂ (n + 3) (by linarith)]
+      have h₄₆ : a (n + 6) = (a (n + 4) + a (n + 5)) / (1 - a (n + 4) * a (n + 5)) := by
+        rw [h₂ (n + 4) (by linarith)]
+      field_simp [h₄₂, h₄₃, h₄₄, h₄₅, h₄₆, h₃, h₀, h₁] at *
+      <;> ring_nf at *
+      <;> field_simp [sub_eq_zero, add_comm] at *
+      <;> nlinarith [sq_nonneg (a n + a 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.473415851593018 / 4.849057197570801 / 32.32247304916382
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    rw [h₂ 1 (by norm_num)]
+    field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₅ := h₂ 0
+    have h₆ := h₂ 1
+    have h₇ := h₂ 2
+    have h₈ := h₂ 3
+    have h₉ := h₂ 4
+    have h₁₀ := h₂ 5
+    simp_all [h₀, h₁, h₃, sub_eq_zero, add_comm]
+    <;> field_simp [h₀, h₁, h₃, sub_eq_zero, add_comm] at *
+    <;> ring_nf at *
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₅ : a 2009 = 0 := by
+    have h₆ : 2009 % 6 = 5 := by norm_num
+    rw [← Nat.mod_add_div 2009 6]
+    simp [h₄, h₆]
+    <;> norm_num [h₀, h₁, h₃]
+    <;> field_simp [h₀, h₁, h₃, sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  simp [h₅]
+  <;> aesop
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 25.318583965301514 / 5.459010124206543 / 30.777594089508057
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    rw [h₂ 1 (by norm_num)]
+    field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num), Real.sqrt_nonneg 3]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₅ := h₂ 1 (by norm_num)
+    have h₆ := h₂ 2 (by norm_num)
+    have h₇ := h₂ 3 (by norm_num)
+    have h₈ := h₂ 4 (by norm_num)
+    have h₉ := h₂ 5 (by norm_num)
+    have h₁₀ := h₂ 6 (by norm_num)
+    simp_all [h₀, h₁, h₃]
+    <;> field_simp [sub_eq_zero, add_comm] at *
+    <;> ring_nf at *
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num), Real.sqrt_nonneg 3]
+  have h₅ : a 2009 = 0 := by
+    have h₆ : 2009 % 6 = 5 := by norm_num
+    rw [← Nat.mod_add_div 2009 6]
+    simp [h₄, h₆]
+    <;> norm_num [h₀, h₁, h₃, h₄]
+    <;> aesop
+  simp [h₅]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 32.73222899436951 / 4.9110870361328125 / 37.64331603050232
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    rw [h₂ 1 (by norm_num)]
+    field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [h₀, h₁]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [h₀, h₁]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [h₀, h₁]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [h₀, h₁]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [h₀, h₁]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [h₀, h₁]
+    <;> ring_nf
+    <;> norm_num
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₅ := h₂ 1 (by norm_num)
+    have h₆ := h₂ 2 (by norm_num)
+    have h₇ := h₂ 3 (by norm_num)
+    have h₈ := h₂ 4 (by norm_num)
+    have h₉ := h₂ 5 (by norm_num)
+    have h₁₀ := h₂ 6 (by norm_num)
+    simp_all [h₀, h₁, h₃]
+    <;> field_simp [sub_eq_zero, add_comm] at *
+    <;> ring_nf at *
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₅ : a 2009 = 0 := by
+    have h₆ : 2009 % 6 = 5 := by norm_num
+    rw [← Nat.mod_add_div 2009 6]
+    simp [h₄, h₆]
+    <;> norm_num [h₀, h₁, h₃]
+    <;> field_simp [sub_eq_zero, add_comm] at *
+    <;> ring_nf at *
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  simp [h₅]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 50.78266501426697 / 12.838030099868774 / 63.62069511413574
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    have h₄ : a 3 = (a 1 + a 2) / (1 - a 1 * a 2) := by rw [h₂ 1 (by norm_num)]
+    rw [h₄, h₀, h₁]
+    field_simp [sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₅ : a (n + 6) = a n := by
+      have h₆ : a (n + 6) = (a (n + 4) + a (n + 5)) / (1 - a (n + 4) * a (n + 5)) := by
+        rw [h₂ (n + 4) (by linarith)]
+      have h₇ : a (n + 4) = (a (n + 2) + a (n + 3)) / (1 - a (n + 2) * a (n + 3)) := by
+        rw [h₂ (n + 2) (by linarith)]
+      have h₈ : a (n + 5) = (a (n + 3) + a (n + 4)) / (1 - a (n + 3) * a (n + 4)) := by
+        rw [h₂ (n + 3) (by linarith)]
+      rw [h₆, h₇, h₈]
+      have h₉ : a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1)) := by
+        rw [h₂ n (by linarith)]
+      have h₁₀ : a (n + 3) = (a (n + 1) + a (n + 2)) / (1 - a (n + 1) * a (n + 2)) := by
+        rw [h₂ (n + 1) (by linarith)]
+      simp_all only [h₃, h₀, h₁, h₂, Nat.add_succ, Nat.add_zero, Nat.zero_add, Nat.succ_add,
+        Nat.succ_inj', Nat.add_right_cancel_iff]
+      field_simp [sub_eq_zero, add_comm]
+      <;> ring_nf
+ 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.127289533615112 / 5.283413648605347 / 29.41070318222046
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p25
+  (a : ℕ → ℝ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 1 / Real.sqrt 3)
+  (h₂ : ∀ n, 1 ≤ n → a (n + 2) = (a n + a (n + 1)) / (1 - a n * a (n + 1))) :
+  abs (a 2009) = 0 := by
+  have h₃ : a 3 = 2 + Real.sqrt 3 := by
+    rw [h₂ 1 (by norm_num)]
+    field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> ring_nf
+    <;> field_simp [h₀, h₁, sub_eq_zero, add_comm]
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₄ : ∀ n, a (n + 6) = a n := by
+    intro n
+    have h₅ := h₂ 1
+    have h₆ := h₂ 2
+    have h₇ := h₂ 3
+    have h₈ := h₂ 4
+    have h₉ := h₂ 5
+    have h₁₀ := h₂ 6
+    norm_num at *
+    field_simp [h₀, h₁, h₃] at *
+    ring_nf at *
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  have h₅ : a 2009 = 0 := by
+    have h₆ : 2009 % 6 = 5 := by norm_num
+    rw [← Nat.mod_add_div 2009 6]
+    simp [h₄, h₆]
+    <;> norm_num [h₀, h₁, h₃]
+    <;> ring_nf
+    <;> field_simp [h₀, h₁, h₃]
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  simp [h₅]
+

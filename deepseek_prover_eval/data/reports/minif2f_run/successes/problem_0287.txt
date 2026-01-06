@@ -1,0 +1,20 @@
+Problem: problem_0287
+Dataset: minif2f
+Mode: noncot
+First success attempt: 3
+Generation time (s): 8.496972799301147
+Lean check time (s): 179.62712168693542
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_xmysqpymzsqpzmxsqeqxyz_xpypzp6dvdx3y3z3
+  (x y z : ℤ)
+  (h₀ : (x - y)^2 + (y - z)^2 + (z - x)^2 = x * y * z) :
+  (x + y + z + 6) ∣ (x^3 + y^3 + z^3) := by
+  use x^2 + y^2 + z^2 - x*y - x*z - y*z
+  ring_nf at h₀ ⊢
+  nlinarith [sq_nonneg (x + y + z), sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x)]

@@ -1,0 +1,30 @@
+Problem: problem_0394
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 17.689473867416382
+Lean check time (s): 3.4984023571014404
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_493
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = x^2 - 4 * Real.sqrt x + 1) :
+  f (f 4) = 70 := by
+  have h₁ : f 4 = 4^2 - 4 * Real.sqrt 4 + 1 := by rw [h₀]
+  have h₂ : Real.sqrt 4 = 2 := by norm_num [Real.sqrt_eq_iff_sq_eq]
+  have h₃ : f 4 = 4^2 - 4 * 2 + 1 := by rw [h₁, h₂]
+  have h₄ : f 4 = 16 - 8 + 1 := by rw [h₃]; norm_num
+  have h₅ : f 4 = 9 := by linarith
+  have h₆ : f (f 4) = f 9 := by rw [h₅]
+  have h₇ : f 9 = 9^2 - 4 * Real.sqrt 9 + 1 := by rw [h₀]
+  have h₈ : Real.sqrt 9 = 3 := by norm_num [Real.sqrt_eq_iff_sq_eq]
+  have h₉ : f 9 = 9^2 - 4 * 3 + 1 := by rw [h₇, h₈]
+  have h₁₀ : f 9 = 81 - 12 + 1 := by rw [h₉]; norm_num
+  have h₁₁ : f 9 = 70 := by linarith
+  rw [h₆, h₁₁]
+  <;> norm_num

@@ -1,0 +1,23 @@
+Problem: problem_0382
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.570493459701538
+Lean check time (s): 4.976380109786987
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_132
+  (x : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀ x, f x = x + 2)
+  (h₁ : ∀ x, g x = x^2)
+  (h₂ : f (g x) = g (f x)) :
+  x = - 1/2 := by
+  simp only [h₀, h₁] at h₂
+  rw [eq_comm] at h₂
+  nlinarith [sq_nonneg (x + 2 - 1), sq_nonneg (x + 2 + 1), sq_nonneg (x - 1), sq_nonneg (x + 1)]

@@ -1,0 +1,363 @@
+Problem: problem_0075
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 63.70055603981018 / 103.10605120658875 / 166.80660724639893
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have step₁ : S.card = 6 := by
+    have h₁ : S = {1, 4, 16, 64, 256, 1024} := by
+      ext n
+      simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+      constructor
+      · intro h
+        have h₁ : 0 < n := h.1
+        have h₂ : (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n) := h.2
+        have h₃ : n ≤ 1024 := by
+          by_contra! h₄
+          have h₅ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+            have h₆ : Real.sqrt n ≥ 0 := Real.sqrt_nonneg n
+            have h₇ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+              rw [gt_iff_lt]
+              have h₈ : Int.floor (Real.sqrt n) ≤ Real.sqrt n := Int.floor_le (Real.sqrt n)
+              have h₉ : (↑n + (1000 : ℝ)) / 70 > Real.sqrt n := by
+                have h₁₀ : (↑n : ℝ) ≥ n := by
+                  norm_cast
+                have h₁₁ : Real.sqrt n < (↑n + (1000 : ℝ)) / 70 := by
+                  apply lt_of_sub_pos
+                  field_simp at h₂ ⊢
+                  nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : 0 ≤ (n : ℝ)),
+                    Real.sqrt_nonneg n, sq_nonneg ((Real.sqrt n : ℝ) - 35)]
+                nlinarith
+              nlinarith
+            exact by linarith
+          nlinarith
+        interval_cases n <;> norm_num 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 44.144450187683105 / 3.5960118770599365 / 47.74046206474304
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have h₁ : S = {1, 4, 16, 196, 225, 625} := by
+    ext n
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and, and_true]
+    constructor
+    · intro h
+      rcases h with ⟨h₁, h₂⟩
+      norm_num at h₂
+      have h₃ : n ≤ 625 := by
+        by_contra! h₄
+        have h₅ : (n : ℝ) ≥ 626 := by exact_mod_cast (by linarith)
+        have h₆ : √n ≥ √626 := by
+          apply Real.sqrt_le_sqrt
+          exact_mod_cast h₄
+        have h₇ : ⌊√n⌋ ≥ ⌊√626⌋ := by
+          exact_mod_cast Int.floor_mono h₆
+        have h₈ : ⌊√626⌋ = 25 := by
+          norm_num [Int.floor_eq_iff]
+          constructor
+          · norm_num [Real.le_sqrt, Real.sqrt_nonneg]
+            <;> norm_num
+          · norm_num [Real.sqrt_lt, Real.sqrt_nonneg]
+            <;> norm_num
+        norm_num [h₈] at h₂
+        <;> nlinarith
+      interval_cases n <;> norm_num [Int.floor_eq_iff, Real.sqrt_eq_iff_sq_eq] at h₂ ⊢ <;>
+        norm_num <;>
+        (try contradiction) <;>
+        (try linarith) <;>
+        (try nlinarith [Real.sqrt_nonneg 626, Real.sqrt_nonneg 196, Real.sqrt_nonneg 16,
+          Real.sqrt_nonneg 4, Real.sqrt_nonneg 1, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ 626),
+          Real.sq_sqrt (by positivity : (0 : ℝ) ≤ 196), Real.sq_sqrt (by positivity : (0 : ℝ) ≤ 16),
+          Rea
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 41.18958115577698 / 19.525935173034668 / 60.715516328811646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have step1 : S.card = 6 := by
+    have h₁ : S = {1, 4, 16, 64, 256, 1024} := by
+      ext n
+      simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+      constructor
+      · intro h
+        have h₁ : 0 < n := h.1
+        have h₂ : (n + 1000 : ℝ) / 70 = Int.floor (Real.sqrt n) := h.2
+        have h₃ : n ≤ 1024 := by
+          by_contra! h₄
+          have h₅ : (n : ℝ) > 1024 := by exact_mod_cast h₄
+          have h₆ : Real.sqrt n > 32 := by
+            apply Real.lt_sqrt_of_sq_lt
+            nlinarith
+          have h₇ : Int.floor (Real.sqrt n) ≥ 33 := by
+            apply Int.le_floor.mpr
+            norm_num
+            nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+          rw [eq_comm] at h₂
+          field_simp at h₂
+          norm_cast at h₂
+          rw [Int.floor_eq_iff] at h₂
+          norm_num at h₂
+          nlinarith
+        interval_cases n <;> norm_num [Int.floor_eq_iff, Real.sqrt_eq_iff_sq_eq, sq, mul_comm] at h₂ ⊢ <;>
+          (try { contradiction }) <;>
+          (try { norm_num at * <;> nlinarith }) <;>
+          (try { aesop }) <;>
+          (try { linarith }) <;>
+          (try {
+            norm_cast at * <;>
+            simp_all [Finset.mem_insert, Finset.mem_singleton] <;>
+            aesop
+         
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 87.0607602596283 / 44.262370586395264 / 131.32313084602356
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have step1 : S.card = 6 := by
+    have h₁ : S = {1, 4, 16, 36, 64, 100} := by
+      ext n
+      simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+      constructor
+      · intro h
+        have h₁ : 0 < n := h.1
+        have h₂ : (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n) := h.2
+        have h₃ : n ≤ 100 := by
+          by_contra! h₄
+          have h₅ : n ≥ 101 := by linarith
+          have h₆ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+            have h₇ : Real.sqrt (n : ℝ) < (n + 1000) / 70 := by
+              have h₈ : Real.sqrt (n : ℝ) < (n + 1000) / 70 := by
+                apply Real.sqrt_lt' (by positivity) |>.mpr
+                norm_num at h₂ ⊢
+                rw [← sub_pos]
+                field_simp at h₂ ⊢
+                norm_num at h₂ ⊢
+                nlinarith [sq_nonneg (Real.sqrt n - 14), Real.sq_sqrt (by positivity : 0 ≤ (n : ℝ)),
+                  Real.sqrt_nonneg (n : ℝ)]
+              linarith
+            have h₉ : Int.floor (Real.sqrt n) < (↑n + 1000) / 70 := by
+              linarith [Int.floor_lt.mpr h₇]
+            linarith
+          linarith
+        interval_cases n <;> norm_num [Int.floor_eq_iff, Real.sqrt_eq_iff_sq_eq] at h₂ ⊢ <;>
+          (try {
+            nlinarith [Real.sqrt_nonneg 1, Real.sq_sqrt 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 70.62654829025269 / 84.7199718952179 / 155.34652018547058
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have step₁ : S.card = 6 := by
+    have h₁ : S = {1, 4, 16, 36, 64, 100} := by
+      ext n
+      simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+      constructor
+      · intro h
+        have h₁ : 0 < n := h.1
+        have h₂ : (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n) := h.2
+        have h₃ : n ≤ 100 := by
+          by_contra h₄
+          have h₅ : n ≥ 101 := by linarith
+          have h₆ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+            have h₇ : Real.sqrt n ≥ 0 := Real.sqrt_nonneg n
+            have h₈ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+              have h₉ : Int.floor (Real.sqrt n) ≤ Real.sqrt n := Int.floor_le (Real.sqrt n)
+              have h₁₀ : (↑n + (1000 : ℝ)) / 70 > Real.sqrt n := by
+                have h₁₁ : (↑n : ℝ) ≥ 101 := by norm_cast
+                have h₁₂ : Real.sqrt n < (↑n + (1000 : ℝ)) / 70 := by
+                  rw [← sub_pos]
+                  field_simp
+                  nlinarith [Real.sqrt_nonneg n, Real.mul_self_sqrt (by positivity : 0 ≤ (n : ℝ)),
+                    sq_nonneg ((↑n : ℝ) - 100)]
+                linarith
+              have h₁₃ : Int.floor (Real.sqrt n) ≤ Real.sqrt n := Int.floor_le (Real.sqrt n)
+              have h₁₄ : (↑n + (1000 : ℝ)) / 70 > Int.floor 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 65.73434329032898 / 206.03255152702332 / 271.7668948173523
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have step₁ : S.card = 6 := by
+    have h₁ : S = {1, 4, 7, 16, 28, 121} := by
+      ext n
+      simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+      constructor
+      · intro h
+        have h₁ : 0 < n := by aesop
+        have h₂ : (n : ℝ) + 1000 / 70 = ⌊Real.sqrt n⌋ := by exact_mod_cast h.2
+        have h₃ : n ≤ 200 := by
+          by_contra! h₄
+          have h₅ : (n : ℝ) ≥ 201 := by exact_mod_cast (by linarith)
+          have h₆ : Real.sqrt n ≥ Real.sqrt 201 := by
+            apply Real.sqrt_le_sqrt
+            norm_cast <;> linarith
+          have h₇ : ⌊Real.sqrt n⌋ ≥ ⌊Real.sqrt 201⌋ := by
+            exact_mod_cast Int.floor_mono h₆
+          have h₈ : ⌊Real.sqrt 201⌋ = 14 := by
+            apply Int.floor_eq_iff.mpr
+            norm_num [Real.le_sqrt, Real.sqrt_lt, Real.lt_sqrt]
+            <;>
+            norm_num at * <;>
+            nlinarith [Real.sqrt_nonneg 201, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ 201)]
+          norm_num [h₈] at h₂
+          <;> norm_num at * <;> nlinarith
+        interval_cases n <;> norm_num at h₂ ⊢ <;>
+          (try {
+            simp_all [Int.floor_eq_iff] <;>
+            norm_num at * <;>
+            ring_nf at * <;>
+            norm_cast at * <;>
+            nlinarith [Real.sqrt_nonneg 1, Real.sqrt_nonneg 4, 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 35.88954186439514 / 18.01495051383972 / 53.90449237823486
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have h₁ : S = {1, 4, 16, 25, 64, 169} := by
+    ext n
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, true_and, and_true]
+    constructor
+    · intro h
+      have h₁ : 0 < n := h.1
+      have h₂ : (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n) := h.2
+      have h₃ : n ≤ 169 := by
+        by_contra! h₄
+        have h₅ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+          have h₆ : Real.sqrt n ≥ 0 := Real.sqrt_nonneg n
+          have h₇ : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+            rw [Int.floor_lt] <;> norm_num <;>
+            nlinarith [Real.sq_sqrt (by positivity : 0 ≤ (n : ℝ)), Real.sqrt_nonneg n]
+          linarith
+        have h₈ : Int.floor (Real.sqrt n) ≥ 0 := by positivity
+        nlinarith [Int.floor_le (Real.sqrt n), Int.lt_floor_add_one (Real.sqrt n)]
+      interval_cases n <;> norm_num [Int.floor_eq_iff, Real.sqrt_lt, Real.lt_sqrt, Nat.cast_nonneg] at h₂ ⊢ <;>
+        norm_num at h₂ ⊢ <;>
+        (try { contradiction }) <;>
+        (try { linarith }) <;>
+        (try { exact Or.inl (by linarith) }) <;>
+        (try { exact Or.inr (Or.inl (by linarith)) }) <;>
+        (try { exact Or.inr (Or.inr (by linarith)) })
+    · intro h
+      rcases h with (rfl | rfl | rfl | rfl | rfl | rfl) <;>
+        norm_num [Int
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 69.97578811645508 / 600.1711206436157 / 670.1469087600708
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p21
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 0 < n ∧ (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n)) :
+  S.card = 6 := by
+  have step₁ : S.card = 6 := by
+    have h₁ : S = {1, 4, 9, 16, 25, 36} := by
+      ext n
+      simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+      constructor
+      · intro hn
+        have hn' : 0 < n := hn.1
+        have hn'' : (↑n + (1000 : ℝ)) / 70 = Int.floor (Real.sqrt n) := hn.2
+        have h1 : n ≤ 499 := by
+          by_contra h
+          have h2 : n ≥ 500 := by linarith
+          have h3 : (↑n + (1000 : ℝ)) / 70 > Int.floor (Real.sqrt n) := by
+            have h4 : Real.sqrt n ≥ Real.sqrt 500 := by
+              apply Real.sqrt_le_sqrt
+              norm_cast
+              linarith
+            have h5 : Int.floor (Real.sqrt n) ≤ Real.sqrt n := by
+              exact Int.floor_le (Real.sqrt n)
+            have h6 : (↑n + (1000 : ℝ)) / 70 > Real.sqrt n := by
+              have : (n : ℝ) ≥ 500 := by norm_cast <;> linarith
+              have : (↑n + (1000 : ℝ)) / 70 > Real.sqrt n := by
+                rw [gt_iff_lt]
+                rw [lt_div_iff (by positivity : (0 : ℝ) < 70)]
+                nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n),
+                  Real.sqrt_nonneg 500, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ (500 : ℝ)),
+                  sq_nonneg (Real.sqrt n - 22.37)]
+              linarith
+           
+... [truncated] ...

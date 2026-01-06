@@ -1,0 +1,312 @@
+Problem: putnam_1971_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.680256843566895 / 57.00343132019043 / 72.68368816375732
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have h₁ := hc 1 (by norm_num)
+  have h₂ := hc 2 (by norm_num)
+  cases' h₁ with m₁ hm₁
+  cases' h₂ with m₂ hm₂
+  use m₁
+  have h₃ := hm₁
+  have h₄ := hm₂
+  simp at h₃ h₄
+  have h₅ : m₁ ≥ 0 := by
+    nlinarith [Real.rpow_pos_of_pos (by norm_num : (0 : ℝ) < 1) c]
+  have h₆ : c = m₁ := by
+    have h₇ : (1 : ℝ) ^ c = m₁ := by simpa using h₃
+    have h₈ : (1 : ℝ) ^ c = 1 := by norm_num
+    have h₉ : (m₁ : ℝ) = 1 := by linarith
+    have h₁₀ : m₁ = 1 := by norm_cast at h₉
+    linarith
+  exact ⟨h₅, h₆⟩
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.061405897140503 / 46.56077766418457 / 68.62218356132507
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have h₁ := hc 1 (by norm_num)
+  have h₂ := hc 2 (by norm_num)
+  cases' h₁ with m₁ hm₁
+  cases' h₂ with m₂ hm₂
+  use m₁
+  have h₃ := hm₁
+  have h₄ := hm₂
+  simp at h₃ h₄
+  have h₅ : m₁ ≥ 0 := by
+    nlinarith [sq_nonneg (m₁ : ℝ), sq_nonneg (m₂ : ℝ), sq_nonneg (m₁ - m₂ : ℝ)]
+  have h₆ : c = m₁ := by
+    have h₇ : (1 : ℝ)^c = m₁ := by simp_all
+    have h₈ : (2 : ℝ)^c = m₂ := by simp_all
+    have h₉ : (1 : ℝ)^c = 1 := by norm_num
+    have h₁₀ : (2 : ℝ)^c = m₂ := by simp_all
+    have h₁₁ : c = m₁ := by
+      apply_fun (fun x => logb 2 x) at h₁₀
+      simp_all [logb_pow, logb_mul, logb_inv, logb_one, logb_pow, logb_mul, logb_inv, logb_one]
+      <;> norm_num at *
+      <;> nlinarith [sq_nonneg (m₁ : ℝ), sq_nonneg (m₂ : ℝ), sq_nonneg (m₁ - m₂ : ℝ)]
+    exact h₁₁
+  exact ⟨h₅, h₆⟩
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.854693174362183 / 23.042290925979614 / 45.8969841003418
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have step1 : ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+    have h1 := hc 1 (by norm_num)
+    have h2 := hc 2 (by norm_num)
+    have h3 := hc 3 (by norm_num)
+    obtain ⟨m1, hm1⟩ := h1
+    obtain ⟨m2, hm2⟩ := h2
+    obtain ⟨m3, hm3⟩ := h3
+    use m1
+    have h4 : (1 : ℝ) ^ c = m1 := by simp_all
+    have h5 : (2 : ℝ) ^ c = m2 := by simp_all
+    have h6 : (3 : ℝ) ^ c = m3 := by simp_all
+    have h7 : c = m1 := by
+      norm_num at *
+      <;> simp_all [Real.rpow_def_of_pos]
+      <;> ring_nf at *
+      <;> nlinarith [sq_nonneg (m1 - m2), sq_nonneg (m1 - m3), sq_nonneg (m2 - m3)]
+    constructor
+    · have h8 : m1 ≥ 0 := by
+        have h9 : (1 : ℝ) ^ c = m1 := by simp_all
+        have h10 : (1 : ℝ) ^ c = 1 := by simp
+        have h11 : (m1 : ℝ) = 1 := by linarith
+        have h12 : (m1 : ℤ) ≥ 0 := by
+          norm_cast at * <;>
+          nlinarith
+        exact_mod_cast h12
+      exact_mod_cast h8
+    · linarith
+  exact step1
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.79213309288025 / 45.404353618621826 / 73.19648671150208
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have step : ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+    have h1 := hc 1 (by norm_num)
+    have h2 := hc 2 (by norm_num)
+    have h3 := hc 3 (by norm_num)
+    cases' h1 with m1 h1
+    cases' h2 with m2 h2
+    cases' h3 with m3 h3
+    use m1
+    have h4 : m1 ≥ 0 := by
+      have h5 : (1 : ℝ) ^ c = m1 := by simp_all
+      have h6 : (1 : ℝ) ^ c = 1 := by norm_num
+      have h7 : (m1 : ℝ) = 1 := by linarith
+      have h8 : m1 = 1 := by norm_cast at h7 ⊢ <;> nlinarith
+      norm_cast at h8 ⊢ <;> nlinarith
+    constructor
+    · exact_mod_cast h4
+    · have h9 : (2 : ℝ) ^ c = m2 := by simp_all
+      have h10 : (3 : ℝ) ^ c = m3 := by simp_all
+      have h11 : c = m1 := by
+        have h12 : (1 : ℝ) ^ c = 1 := by norm_num
+        have h13 : (2 : ℝ) ^ c = m2 := by simp_all
+        have h14 : (3 : ℝ) ^ c = m3 := by simp_all
+        norm_cast at *
+        <;>
+        (try simp_all [zpow_ofNat]) <;>
+        (try nlinarith [sq_nonneg (m1 - 1), sq_nonneg (m2 - 2), sq_nonneg (m3 - 3)]) <;>
+        (try nlinarith [sq_nonneg (m1 - 1), sq_nonneg (m2 - 2), sq_nonneg (m3 - 3)]) <;>
+        (try nlinarith [sq_nonneg (m1 - 1), sq_nonneg (m2 - 2), sq_nonneg (m3 - 3)])
+        <;>
+        nlinarith
+      nlinarith
+  
+  exact step
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.97569966316223 / 58.7006254196167 / 78.67632508277893
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have h₀ := hc 1 (by norm_num)
+  have h₁ := hc 2 (by norm_num)
+  cases' h₀ with m₀ hm₀
+  cases' h₁ with m₁ hm₁
+  use m₀
+  have h₂ := hm₀
+  have h₃ := hm₁
+  simp at h₂ h₃
+  have h₄ : m₀ ≥ 0 := by
+    nlinarith [sq_nonneg (m₀ : ℝ), sq_nonneg (m₁ : ℝ),
+      sq_nonneg (m₀ - m₁ : ℝ), sq_nonneg (m₀ + m₁ : ℝ)]
+  have h₅ : c = m₀ := by
+    have h₆ : (1 : ℝ) ^ c = m₀ := by simp_all
+    have h₇ : (2 : ℝ) ^ c = m₁ := by simp_all
+    have h₈ : (1 : ℝ) ^ c = 1 := by norm_num
+    have h₉ : (2 : ℝ) ^ c = m₁ := by simp_all
+    have h₁₀ : c = m₀ := by
+      apply_fun (fun x => logb 2 x) at h₉
+      simp_all [logb_pow]
+      <;> norm_num at *
+      <;> linarith
+    simp_all
+  exact ⟨h₄, h₅⟩
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.229984521865845 / 83.28328537940979 / 107.51326990127563
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have h₁ := hc 1 (by norm_num)
+  have h₂ := hc 2 (by norm_num)
+  cases' h₁ with m₁ hm₁
+  cases' h₂ with m₂ hm₂
+  use m₁
+  have h₃ := hm₁
+  have h₄ := hm₂
+  simp at h₃ h₄
+  have h₅ : m₁ ≥ 0 := by
+    nlinarith [sq_nonneg (m₁ : ℝ), sq_nonneg (m₂ : ℝ),
+      sq_nonneg (m₁ - m₂ : ℝ), Real.rpow_pos_of_pos (by norm_num : (0 : ℝ) < 1) c]
+  have h₆ : c = m₁ := by
+    have h₇ : (1 : ℝ) ^ c = m₁ := by simpa using h₃
+    have h₈ : (2 : ℝ) ^ c = m₂ := by simpa using h₄
+    have h₉ : (1 : ℝ) ^ c = 1 := by norm_num
+    have h₁₀ : (2 : ℝ) ^ c = m₂ := by simpa using h₄
+    have h₁₁ : m₁ = 1 := by
+      norm_num at h₇
+      nlinarith [sq_nonneg (m₁ : ℝ), sq_nonneg (m₂ : ℝ), sq_nonneg (m₁ - m₂ : ℝ)]
+    have h₁₂ : c = m₁ := by
+      rw [h₁₁] at h₇
+      norm_num at h₇
+      nlinarith [sq_nonneg (m₁ : ℝ), sq_nonneg (m₂ : ℝ), sq_nonneg (m₁ - m₂ : ℝ)]
+    exact h₁₂
+  exact ⟨h₅, h₆⟩
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.69933772087097 / 27.28040051460266 / 47.97973823547363
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have h₀ := hc 1 (by norm_num)
+  have h₁ := hc 2 (by norm_num)
+  cases' h₀ with m₀ hm₀
+  cases' h₁ with m₁ hm₁
+  use m₀
+  have h₂ := hm₀
+  have h₃ := hm₁
+  simp at h₂ h₃
+  have h₄ : m₀ ≥ 0 := by
+    nlinarith [sq_nonneg (m₀ : ℝ), sq_nonneg (m₁ : ℝ),
+      sq_nonneg (m₀ - m₁ : ℝ), sq_nonneg (m₀ + m₁ : ℝ)]
+  have h₅ : c = m₀ := by
+    have h₆ : (1 : ℝ) ^ c = m₀ := by simpa using h₂
+    have h₇ : (2 : ℝ) ^ c = m₁ := by simpa using h₃
+    have h₈ : (1 : ℝ) ^ c = 1 := by norm_num
+    have h₉ : (2 : ℝ) ^ c = m₁ := by simpa using h₃
+    have h₁₀ : c = m₀ := by
+      apply_fun (fun x => logb 2 x) at h₇ h₉
+      field_simp [logb_pow] at h₇ h₉
+      <;> norm_num at h₇ h₉
+      <;> linarith
+    exact h₁₀
+  exact ⟨h₄, h₅⟩
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.351137161254883 / 44.41509509086609 / 64.76623225212097
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_a6
+(c : ℝ)
+(hc : ∀ n : ℤ, n > 0 → ∃ m : ℤ, (n : ℝ)^c = m)
+: ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+  have step1 : ∃ m : ℤ, m ≥ 0 ∧ c = m := by
+    have h1 := hc 1 (by norm_num)
+    have h2 := hc 2 (by norm_num)
+    have h3 := hc 3 (by norm_num)
+    cases' h1 with m1 hm1
+    cases' h2 with m2 hm2
+    cases' h3 with m3 hm3
+    use m1
+    have h4 : m1 ≥ 0 := by
+      have h5 : (1 : ℝ) ^ c = m1 := by simpa using hm1
+      have h6 : (1 : ℝ) ^ c = 1 := by norm_num
+      have h7 : (m1 : ℝ) = 1 := by linarith
+      have h8 : m1 = 1 := by norm_cast at h7 ⊢ <;> nlinarith
+      nlinarith
+    have h9 : c = m1 := by
+      have h10 : (1 : ℝ) ^ c = m1 := by simpa using hm1
+      have h11 : (1 : ℝ) ^ c = 1 := by norm_num
+      have h12 : (m1 : ℝ) = 1 := by linarith
+      have h13 : m1 = 1 := by norm_cast at h12 ⊢ <;> nlinarith
+      norm_cast at hm1 ⊢
+      <;> nlinarith
+    exact ⟨by nlinarith, by nlinarith⟩
+  exact step1

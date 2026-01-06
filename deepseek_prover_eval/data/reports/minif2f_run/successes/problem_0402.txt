@@ -1,0 +1,19 @@
+Problem: problem_0402
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.557824611663818
+Lean check time (s): 2.762563467025757
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_4bap1lt4bsqpap1sq
+  (a b : ℝ) :
+  4 * b * (a + 1) ≤ 4 * b^2 + (a + 1)^2 := by
+  have h₁ : 0 ≤ (2 * b - (a + 1)) ^ 2 := sq_nonneg _
+  have h₂ : 0 ≤ (2 * b + (a + 1)) ^ 2 := sq_nonneg _
+  nlinarith

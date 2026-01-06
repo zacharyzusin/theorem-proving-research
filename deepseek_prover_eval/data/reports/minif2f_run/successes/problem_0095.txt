@@ -1,0 +1,24 @@
+Problem: problem_0095
+Dataset: minif2f
+Mode: noncot
+First success attempt: 4
+Generation time (s): 7.072086334228516
+Lean check time (s): 69.29880142211914
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p12
+  (a m c : ℕ)
+  (h₀ : a + m + c = 12) :
+  a*m*c + a*m + m*c + a*c ≤ 112 := by
+  have h₁ : a ≤ 12 := by omega
+  have h₂ : m ≤ 12 := by omega
+  have h₃ : c ≤ 12 := by omega
+  interval_cases a <;> interval_cases m <;> interval_cases c <;> norm_num
+  <;> try omega
+  <;> try linarith
+  <;> try nlinarith

@@ -1,0 +1,134 @@
+Problem: putnam_1986_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 36.108975648880005 / 10.89956521987915 / 47.008540868759155
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.51456570625305 / 14.135159254074097 / 50.64972496032715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.717618942260742 / 15.21868109703064 / 35.93630003929138
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 37.02387499809265 / 13.001363754272461 / 50.02523875236511
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.632738828659058 / 8.978406429290771 / 27.61114525794983
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.71936798095703 / 13.65659499168396 / 32.37596297264099
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.544880628585815 / 20.735674381256104 / 38.28055500984192
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.644267559051514 / 8.383764028549194 / 26.028031587600708
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b4
+(G : ℝ → ℝ)
+(hGeq : ∀ r : ℝ, ∃ m n : ℤ, G r = |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+(hGlb : ∀ r : ℝ, ∀ m n : ℤ, G r ≤ |r - sqrt (m ^ 2 + 2 * n ^ 2)|)
+: (Tendsto G atTop (𝓝 0) ↔ putnam_1986_b4_solution) :=
+sorry

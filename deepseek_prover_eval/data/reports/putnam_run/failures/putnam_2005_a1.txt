@@ -1,0 +1,176 @@
+Problem: putnam_2005_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.273059129714966 / 8.267332315444946 / 17.540391445159912
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun j => if j = 0 then Nat.log 2 (n.toNat) else Nat.log 3 (n.toNat)
+  simp [hn, Fin.sum_univ_succ]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.408381462097168 / 7.801637887954712 / 17.21001935005188
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun j => if j = 0 then Nat.log 2 (n.toNat) else Nat.log 3 (n.toNat)
+  simp
+  <;> norm_cast
+  <;> simp_all [Nat.log_pos]
+  <;> omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.437771797180176 / 7.804549217224121 / 18.242321014404297
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun j => if j = 0 then Nat.log 2 (n.toNat) else Nat.log 3 (n.toNat)
+  simp
+  <;> norm_num
+  <;> aesop
+  <;> simp_all [Nat.log_pos, Nat.log_lt_iff_lt_pow]
+  <;> norm_num
+  <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.958787441253662 / 7.833192825317383 / 27.791980266571045
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  have h : ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+    (∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+    intro n hn
+    induction' hn with n hn
+    · -- Base case: n = 1
+      use 1
+      use fun i => fun j => 0
+      simp
+    · -- Inductive step: assume the statement holds for n, prove for n + 1
+      cases' n with n
+      · contradiction
+      · -- Use the inductive hypothesis to find a representation for n
+        obtain ⟨k, a, h₁, h₂⟩ := ‹_›
+        use k + 1
+        use fun i => if i = k then fun j => 1 else a i
+        simp_all [Fin.sum_univ_castSucc, Fin.val_zero, pow_add, pow_one, mul_assoc]
+        <;> norm_num
+        <;> aesop
+  exact h n hn
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.35703420639038 / 8.077136993408203 / 17.434171199798584
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun j => if j = 0 then Nat.log 2 (n.toNat) else Nat.log 3 (n.toNat)
+  simp [hn, Fin.sum_univ_succ]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.185525178909302 / 8.096373558044434 / 17.281898736953735
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun j => if j = 0 then Nat.log 2 (n.toNat) else Nat.log 3 (n.toNat)
+  simp [hn, Nat.log_pos]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.181602239608765 / 7.601296663284302 / 16.782898902893066
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun j => if j = 0 then Nat.log 2 (n.toNat) else Nat.log 3 (n.toNat)
+  simp [hn, Fin.sum_univ_succ]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.306151866912842 / 9.759437799453735 / 19.065589666366577
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2005_a1
+: ∀ n : ℤ, n > 0 → (∃ k : ℕ, ∃ a : Fin k → Fin 2 → ℕ, n = ∑ i : Fin k, 2^(a i 0)*3^(a i 1) ∧
+(∀ i j : Fin k, i ≠ j → ¬(2^(a i 0)*3^(a i 1) ∣ 2^(a j 0)*3^(a j 1)))) := by
+  intro n hn
+  use 1
+  use fun i => fun _ => if i = 0 then [2, 3] else [1, 0]
+  simp_all [Fin.sum_univ_succ, Fin.sum_univ_zero]
+  <;> norm_num
+  <;> aesop

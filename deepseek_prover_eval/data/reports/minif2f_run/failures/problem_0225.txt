@@ -1,0 +1,276 @@
+Problem: problem_0225
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 7.880367755889893 / 600.1484069824219 / 608.0287747383118
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have h₃ : m ≤ 2005 := by
+    nlinarith
+  have h₄ : n ≤ 2005 := by
+    nlinarith
+  have h₅ : m ≤ 45 := by
+    nlinarith [Nat.sqrt_le m]
+  have h₆ : n ≤ 45 := by
+    nlinarith [Nat.sqrt_le n]
+  interval_cases m <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.907289505004883 / 22.03294348716736 / 31.94023299217224
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have h₃ : m ≤ 2005 := by
+    nlinarith
+  have h₄ : n ≤ 2005 := by
+    nlinarith
+  have h₅ : m = 401 ∨ m = 5 := by
+    interval_cases m <;> omega
+  have h₆ : n = 5 ∨ n = 401 := by
+    interval_cases n <;> omega
+  rcases h₅ with (h₅ | h₅) <;> rcases h₆ with (h₆ | h₆) <;> simp_all
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.905188083648682 / 18.360348224639893 / 27.265536308288574
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have : m ≤ 2005 := by
+    nlinarith
+  have : n ≤ 2005 := by
+    nlinarith
+  interval_cases m <;> norm_num at h₂ ⊢ <;>
+    (try omega) <;>
+    (try
+      {
+        have h₃ : n ≤ 2005 := by
+          nlinarith
+        interval_cases n <;> norm_num at h₂ ⊢ <;>
+          omega
+      }) <;>
+    omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 6.178088665008545 / 18.244444847106934 / 24.42253351211548
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have h₃ : m ≤ 2005 := by
+    nlinarith
+  have h₄ : n ≤ 2005 := by
+    nlinarith
+  interval_cases m <;> norm_num at h₂ ⊢
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.526318550109863 / 21.57780385017395 / 29.104122400283813
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have : m ≤ 2005 := by
+    nlinarith
+  have : n ≤ 2005 := by
+    nlinarith
+  have : m = 401 ∨ m = 5 := by
+    interval_cases m <;> omega
+  have : n = 5 ∨ n = 401 := by
+    interval_cases n <;> omega
+  omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.477783918380737 / 18.274964332580566 / 38.752748250961304
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have h₃ : m ≤ 2005 := by
+    nlinarith
+  have h₄ : n ≤ 2005 := by
+    nlinarith
+  interval_cases m <;> norm_num at h₂ ⊢ <;>
+    (try omega) <;>
+    (try nlinarith) <;>
+    (try
+      {
+        have h₅ : n = 2005 / m := by omega
+        omega
+      })
+  <;>
+    (try
+      {
+        have h₅ : m = 2005 / n := by omega
+        omega
+      })
+  <;>
+    (try
+      {
+        have h₅ : m < 2005 := by nlinarith
+        have h₆ : n < 2005 := by nlinarith
+        interval_cases m <;> norm_num at h₂ ⊢ <;>
+          (try omega) <;>
+          (try nlinarith) <;>
+          (try
+            {
+              have h₇ : n = 2005 / m := by omega
+              omega
+            })
+      })
+  <;>
+    (try
+      {
+        have h₅ : m < 2005 := by nlinarith
+        have h₆ : n < 2005 := by nlinarith
+        interval_cases n <;> norm_num at h₂ ⊢ <;>
+          (try omega) <;>
+          (try nlinarith) <;>
+          (try
+            {
+              have h₇ : m = 2005 / n := by omega
+              omega
+            })
+      })
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.423441886901855 / 18.268758058547974 / 26.69219994544983
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have h₃ : m ≤ 2005 := by
+    nlinarith
+  have h₄ : n ≤ 2005 := by
+    nlinarith
+  interval_cases m <;> norm_num at h₂ ⊢ <;>
+    (try omega) <;>
+    (try nlinarith) <;>
+    (try linarith) <;>
+    (try nlinarith) <;>
+    (try omega)
+  <;>
+  omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.75623846054077 / 41.098780155181885 / 58.855018615722656
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_541
+  (m n : ℕ)
+  (h₀ : 1 < m)
+  (h₁ : 1 < n)
+  (h₂ : m * n = 2005) :
+  m + n = 406 := by
+  have : m ≤ 2005 := by
+    nlinarith
+  have : n ≤ 2005 := by
+    nlinarith
+  have : m = 401 ∨ m = 5 := by
+    have : m ∣ 2005 := by
+      use n
+      linarith
+    have : m ≤ 2005 := by
+      nlinarith
+    have : m = 401 ∨ m = 5 := by
+      interval_cases m <;> norm_num [Nat.dvd_iff_mod_eq_zero] at * <;> omega
+    exact this
+  have : n = 401 ∨ n = 5 := by
+    have : n ∣ 2005 := by
+      use m
+      linarith
+    have : n ≤ 2005 := by
+      nlinarith
+    have : n = 401 ∨ n = 5 := by
+      interval_cases n <;> norm_num [Nat.dvd_iff_mod_eq_zero] at * <;> omega
+    exact this
+  rcases ‹m = 401 ∨ m = 5› with (h | h) <;> rcases ‹n = 401 ∨ n = 5› with (h' | h') <;>
+    simp_all
+  <;> nlinarith
+

@@ -1,0 +1,38 @@
+Problem: problem_0314
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 23.472774505615234
+Lean check time (s): 36.22695875167847
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_faxinrrp2msqrt2geq2mxm1div2x :
+  ∀ x > 0, 2 - Real.sqrt 2 ≥ 2 - x - 1 / (2 * x) := by
+  intro x hx
+  have h₁ : 0 < x := hx
+  have h₂ : 0 < 2 * x := by linarith
+  have h₃ : 0 < 2 * x ^ 2 := by positivity
+  have h₄ : 0 < Real.sqrt 2 := by positivity
+  have h₅ : (Real.sqrt 2) ^ 2 = 2 := Real.sq_sqrt (by positivity)
+  have h₆ : 0 < 2 * x := by linarith
+  have h₇ : 0 < 2 * x ^ 2 := by positivity
+  have h₈ : 0 < Real.sqrt 2 := by positivity
+  have h₉ : (Real.sqrt 2) ^ 2 = 2 := Real.sq_sqrt (by positivity)
+  -- We need to show that 2 - Real.sqrt 2 ≥ 2 - x - 1 / (2 * x)
+  have h₁₀ : 2 - Real.sqrt 2 ≥ 2 - x - 1 / (2 * x) := by
+    have h₁₁ : 2 - Real.sqrt 2 ≥ 2 - x - 1 / (2 * x) := by
+      have h₁₂ : 0 < 2 * x := by linarith
+      have h₁₃ : 0 < 2 * x ^ 2 := by positivity
+      field_simp [h₁₂.ne']
+      rw [div_le_iff (by positivity)]
+      nlinarith [sq_nonneg (x - Real.sqrt 2 / 2), sq_nonneg (x - 1 / 2),
+        Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+        sq_nonneg (x - Real.sqrt 2 / 2), sq_nonneg (x - 1 / 2),
+        sq_nonneg (Real.sqrt 2 - 2 * x), sq_nonneg (Real.sqrt 2 - 1)]
+    linarith
+  linarith

@@ -1,0 +1,349 @@
+Problem: problem_0236
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 6
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.731244802474976 / 600.1590242385864 / 620.8902690410614
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = n := hx
+  have h₄ : t^4 = n := ht
+  have h₅ : t^4 = x^3 := by rw [h₄, h₃]
+  have h₆ : t^4 = x^3 := by rw [h₄, h₃]
+  have h₇ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t^2 - x^2), sq_nonneg (t^2 + x^2), sq_nonneg (t^2 - x), sq_nonneg (x^2 - t^2)]
+  have h₈ : t ≤ x := by nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₉ : t^4 ≤ x^4 := by
+    exact pow_le_pow_of_le_left (by nlinarith) h₈ 4
+  have h₁₀ : x^4 ≤ x^3 := by
+    nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1)]
+  have h₁₁ : t^4 ≤ x^3 := by linarith
+  have h₁₂ : n ≥ 4096 := by
+    nlinarith [pow_two_nonneg (t : ℕ), pow_two_nonneg (x : ℕ), pow_two_nonneg (t^2 : ℕ), pow_two_nonneg (x^2 : ℕ)]
+  linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.691675901412964 / 9.728107452392578 / 30.419783353805542
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = t^4 := by rw [hx, ht]
+  have h₄ : x ≤ t^2 := by
+    have h₅ : x^3 ≤ t^4 := by rw [h₃]
+    have h₆ : x ≤ t^2 := by
+      nlinarith [sq_nonneg (x - t^2), sq_nonneg (x + t^2), sq_nonneg (t^2 - x)]
+    exact h₆
+  have h₅ : t ≤ x^2 := by
+    have h₆ : t^4 ≤ x^6 := by
+      calc
+        t^4 ≤ x^4 := by
+          have h₇ : t^4 = x^3 := by rw [hx, ht]
+          nlinarith [sq_nonneg (t^2 - x^2), sq_nonneg (t^2 + x^2), sq_nonneg (x^2 - t^2)]
+        x^4 ≤ x^6 := by
+          nlinarith [sq_nonneg (x^3), sq_nonneg (x^2 - x), sq_nonneg (x - 1)]
+    have h₇ : t ≤ x^2 := by
+      nlinarith [sq_nonneg (t - x^2), sq_nonneg (t + x^2), sq_nonneg (x^2 - t)]
+    exact h₇
+  nlinarith [sq_nonneg (x - t), sq_nonneg (x + t), sq_nonneg (t - x), sq_nonneg (t + x)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 26.59893274307251 / 17.495140075683594 / 44.0940728187561
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = n := hx
+  have h₄ : t^4 = n := ht
+  have h₅ : x^3 = t^4 := by rw [h₃, ht]
+  have h₆ : x ≤ t^2 := by
+    have h₇ : x^3 ≤ t^4 := by linarith
+    have h₈ : x ≤ t^2 := by
+      nlinarith [pow_two_nonneg (x - t^2), pow_two_nonneg (x + t^2), pow_two_nonneg (t^2 - x)]
+    exact h₈
+  have h₇ : t ≤ x^2 := by
+    have h₈ : t^4 ≤ x^6 := by
+      calc
+        t^4 ≤ x^4 := by
+          have h₉ : t^4 = n := ht
+          have h₁₀ : x^3 = n := hx
+          have h₁₁ : t^4 ≤ x^4 := by
+            nlinarith [sq_nonneg (x - t), sq_nonneg (x + t), sq_nonneg (t - x), sq_nonneg (t + x)]
+          exact h₁₁
+        _ ≤ x^6 := by
+          nlinarith [sq_nonneg (x^2 - x), sq_nonneg (x^2 + x), sq_nonneg (x - 1), sq_nonneg (x + 1)]
+    have h₉ : t ≤ x^2 := by
+      nlinarith [sq_nonneg (t - x^2), sq_nonneg (t + x^2), sq_nonneg (x^2 - t), sq_nonneg (x^2 + t)]
+    exact h₉
+  nlinarith [sq_nonneg (x - t), sq_nonneg (x + t), sq_nonneg (t - x), sq_nonneg (t + x),
+    sq_nonneg (x^2 - t^2), sq_nonneg (x^2 + t^2), sq_nonneg (t^2 - x^2), sq_nonneg (t^2 + x^2)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.625617027282715 / 600.0854771137238 / 617.7110941410065
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = n := hx
+  have h₄ : t^4 = n := ht
+  have h₅ : x^3 = t^4 := by rw [h₃, ht]
+  have h₆ : x ≤ t^2 := by
+    have h₇ : x^3 ≤ t^4 := by linarith
+    have h₈ : x ≤ t^2 := by
+      nlinarith [sq_nonneg (x - t^2), sq_nonneg (x + t^2), sq_nonneg (t^2 - x)]
+    exact h₈
+  have h₇ : t^4 ≥ 4096 := by
+    have h₈ : t ≥ 8 := by
+      by_contra h
+      have h₉ : t ≤ 7 := by linarith
+      have h₁₀ : t^4 ≤ 7^4 := by
+        exact pow_le_pow_of_le_left (by linarith) h₉ 4
+      nlinarith
+    have h₉ : t^4 ≥ 8^4 := by
+      exact pow_le_pow_of_le_left (by linarith) (by linarith) 4
+    nlinarith
+  nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.171189546585083 / 600.1039299964905 / 619.2751195430756
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = n := hx
+  have h₄ : t^4 = n := ht
+  have h₅ : x^3 = t^4 := by rw [h₃, ht]
+  have h₆ : x ≤ t^2 := by
+    have h₇ : x^3 ≤ t^4 := by linarith
+    have h₈ : x ≤ t^2 := by
+      nlinarith [pow_two_nonneg (t^2 - x), pow_two_nonneg (t + x), pow_two_nonneg (t - x)]
+    exact h₈
+  have h₇ : t^4 ≥ 4096 := by
+    have h₈ : t ≥ 16 := by
+      by_contra! h
+      have h₉ : t ≤ 15 := by linarith
+      have h₁₀ : t^2 ≤ 225 := by nlinarith
+      have h₁₁ : x ≤ 225 := by nlinarith
+      have h₁₂ : x^2 ≤ 225^2 := by nlinarith
+      have h₁₃ : x^3 ≤ 225^3 := by nlinarith
+      nlinarith
+    nlinarith [pow_two_nonneg (t - 16), pow_two_nonneg (t + 16)]
+  nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.29938578605652 / 600.1464865207672 / 616.4458723068237
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = t^4 := by linarith
+  have h₄ : x ≤ t^2 := by
+    have h₅ : x^3 ≤ t^4 := by linarith
+    have h₆ : x ≤ t^2 := by
+      nlinarith [pow_two_nonneg (x - t^2), pow_two_nonneg (x + t^2)]
+    exact h₆
+  have h₅ : t^4 ≥ 4096 := by
+    have h₆ : t ≥ 16 := by
+      by_contra! h
+      have h₇ : t ≤ 15 := by linarith
+      have h₈ : t^4 ≤ 15^4 := by
+        exact pow_le_pow_of_le_left (by linarith) (by linarith) 4
+      nlinarith
+    have h₇ : t^4 ≥ 16^4 := by
+      exact pow_le_pow_of_le_left (by linarith) (by linarith) 4
+    nlinarith
+  nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.03451156616211 / 600.1611156463623 / 630.1956272125244
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = n := hx
+  have h₄ : t^4 = n := ht
+  have h₅ : x^3 = t^4 := by rw [h₃, ht]
+  have h₆ : x ≤ t^2 := by
+    have h₇ : x^3 ≤ t^4 := by linarith
+    have h₈ : x ≤ t^2 := by
+      nlinarith [sq_nonneg (t^2 - x), sq_nonneg (x - t), sq_nonneg (t^2 - t), sq_nonneg (t - 1)]
+    exact h₈
+  have h₇ : t ≤ 64 := by
+    have h₈ : t^4 ≥ t^3 := by
+      apply Nat.pow_le_pow_of_le_right
+      linarith
+      linarith
+    have h₉ : t^3 ≥ t^2 := by
+      apply Nat.pow_le_pow_of_le_right
+      linarith
+      linarith
+    have h₁₀ : t^2 ≥ t := by
+      nlinarith
+    nlinarith [pow_pos (by linarith : (0 : ℕ) < t) 2, pow_pos (by linarith : (0 : ℕ) < t) 3,
+      pow_pos (by linarith : (0 : ℕ) < t) 4]
+  have h₈ : x ≤ 64 := by
+    nlinarith [sq_nonneg (t^2 - x), sq_nonneg (x - t), sq_nonneg (t^2 - t), sq_nonneg (t - 1)]
+  have h₉ : n = x^3 := by linarith
+  have h₁₀ : n ≥ 4096 := by
+    have h₁₁ : x ≥ 16 := by
+      by_contra h
+      have h₁₂ : x ≤ 15 := by linarith
+      interval_cases x <;> norm_num at h₅ h₆ h₈ ⊢
+      <;> simp_all [pow_succ]
+      <;> nlinarith
+    have h₁₂ : x^3 ≥ 16^3 := by
+      exact Nat.pow_le_pow_of_le_left h₁₁ 3
+    norm_num at h₁₂ ⊢
+    nlinarith
+  linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.86384677886963 / 600.0957398414612 / 623.9595866203308
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_296
+  (n : ℕ)
+  (h₀ : 2 ≤ n)
+  (h₁ : ∃ x, x^3 = n)
+  (h₂ : ∃ t, t^4 = n) :
+  4096 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^3 = n := hx
+  have h₄ : t^4 = n := ht
+  have h₅ : t^4 = x^3 := by linarith
+  have h₆ : t^4 = x^3 := by linarith
+  have h₇ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t^2 - x^2), sq_nonneg (t^2 + x^2)]
+  have h₈ : t ≤ x := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₉ : t^4 ≤ x^4 := by
+    exact pow_le_pow_of_le_left (by nlinarith) h₈ 4
+  have h₁₀ : x^4 ≤ x^3 := by
+    nlinarith [sq_nonneg (x^2 - x), sq_nonneg (x^2 + x)]
+  have h₁₁ : x^3 ≤ x^4 := by
+    nlinarith [sq_nonneg (x^2 - x), sq_nonneg (x^2 + x)]
+  have h₁₂ : x ≤ 64 := by
+    contrapose! h₁₁
+    have : x ≥ 65 := by linarith
+    have : x^3 ≥ 65^3 := by
+      exact pow_le_pow_of_le_left (by linarith) this 3
+    nlinarith [pow_two x, pow_two 64]
+  interval_cases x <;> norm_num at hx ⊢
+  <;>
+  rcases t with (_ | _ | _ | _ | _ | _ | _ | _) <;>
+  norm_num at ht ⊢ <;>
+  nlinarith
+

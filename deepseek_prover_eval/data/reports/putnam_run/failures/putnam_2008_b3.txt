@@ -1,0 +1,166 @@
+Problem: putnam_2008_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 56.06381821632385 / 4.5337135791778564 / 60.59753179550171
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 60.75292944908142 / 4.596879243850708 / 65.34980869293213
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 29.62267827987671 / 4.527229070663452 / 34.14990735054016
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 54.40334749221802 / 4.573654651641846 / 58.97700214385986
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.813583135604858 / 4.580794334411621 / 20.39437747001648
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.094781160354614 / 4.589211463928223 / 22.683992624282837
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 44.42689752578735 / 4.605053901672363 / 49.03195142745972
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.10035014152527 / 4.563639163970947 / 23.663989305496216
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2008_b3
+    (H : Set (EuclideanSpace ℝ (Fin 4)))
+    (H_def : H = {P : Fin 4 → ℝ | ∀ i : Fin 4, |P i| ≤ 1 / 2})
+    (contains : ℝ → Prop)
+    (contains_def : ∀ r, contains r ↔
+      ∃ᵉ (A : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 4))) (C ∈ A),
+        Module.finrank ℝ A.direction = 2 ∧
+        sphere C r ∩ A ⊆ H) :
+    IsGreatest contains putnam_2008_b3_solution :=
+  sorry

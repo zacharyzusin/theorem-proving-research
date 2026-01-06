@@ -1,0 +1,23 @@
+Problem: problem_0060
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.266707420349121
+Lean check time (s): 3.6136202812194824
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_346
+  (f g : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x - 3)
+  (h₁ : ∀ x, g x = x + 1) :
+  g (f 5 - 1) = 7 := by
+  simp_all only [mul_comm, sub_eq_add_neg, add_right_comm]
+  norm_num
+  <;> ring
+  <;> norm_num
+  <;> linarith

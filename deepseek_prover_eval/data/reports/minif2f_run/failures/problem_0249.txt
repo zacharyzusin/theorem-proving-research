@@ -1,0 +1,373 @@
+Problem: problem_0249
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 51.15762138366699 / 600.1658155918121 / 651.3234369754791
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = (Real.log a) / (Real.log 8) := by rw [Real.logb]
+  have h₃ : Real.logb 4 (b^2) = 2 * (Real.log b) / (Real.log 4) := by
+    rw [Real.logb, Real.log_pow]
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_rpow]
+    <;> linarith
+  have h₄ : Real.logb 8 b = (Real.log b) / (Real.log 8) := by rw [Real.logb]
+  have h₅ : Real.logb 4 (a^2) = 2 * (Real.log a) / (Real.log 4) := by
+    rw [Real.logb, Real.log_pow]
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_rpow]
+    <;> linarith
+  have h₆ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₇ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₈ : Real.log 8 = 3 * Real.log 2 := by
+    rw [h₆]
+    simp [Real.log_pow]
+  have h₉ : Real.log 4 = 2 * Real.log 2 := by
+    rw [h₇]
+    simp [Real.log_pow]
+  field_simp [h₂, h₃, h₄, h₅, h₈, h₉] at h₀ h₁
+  ring_nf at h₀ h₁
+  have h₁₀ : Real.log 2 ≠ 0 := by norm_num
+  have h₁₁ : Real.log a * 3 + Real.log b * 2 = 5 * (3 * Real.log 2) := by linarith
+  have h₁₂ : Real.log b * 3 + Real.log a * 2 = 7 * (3 * Real.log 2) := by linarith
+  have h₁₃ : Real.log a = 3 * Real.log 2 := by
+    nlinarith [sq_nonneg (Real.log a - 3 * Real.log 2),
+      sq_nonneg (Real.log b - 3 * Real.log 2)]
+  have h₁₄ : Real.log b = 6 * Real.log 2 := by
+    nlinarit
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 58.602914571762085 / 11.535288333892822 / 70.13820290565491
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = Real.log a / Real.log 8 := by rw [Real.logb]
+  have h₃ : Real.logb 4 (b^2) = 2 * Real.log b / Real.log 4 := by
+    rw [Real.logb, mul_comm]
+    field_simp [Real.log_rpow, Real.log_mul, Real.log_pow]
+    <;> ring
+  have h₄ : Real.logb 8 b = Real.log b / Real.log 8 := by rw [Real.logb]
+  have h₅ : Real.logb 4 (a^2) = 2 * Real.log a / Real.log 4 := by
+    rw [Real.logb, mul_comm]
+    field_simp [Real.log_rpow, Real.log_mul, Real.log_pow]
+    <;> ring
+  have h₆ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₇ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₈ : Real.log 8 = 3 * Real.log 2 := by
+    rw [h₆]
+    simp [Real.log_pow]
+  have h₉ : Real.log 4 = 2 * Real.log 2 := by
+    rw [h₇]
+    simp [Real.log_pow]
+  field_simp [h₂, h₃, h₄, h₅, h₈, h₉] at h₀ h₁
+  have h₁₀ : Real.log a / (3 * Real.log 2) + 2 * Real.log b / (2 * Real.log 2) = 5 := by linarith
+  have h₁₁ : Real.log b / (3 * Real.log 2) + 2 * Real.log a / (2 * Real.log 2) = 7 := by linarith
+  have h₁₂ : Real.log 2 > 0 := Real.log_pos (by norm_num)
+  have h₁₃ : Real.log a / (3 * Real.log 2) + Real.log b / (Real.log 2) = 5 := by
+    field_simp at h₁₀ ⊢
+    linarith
+  have h₁₄ : Real.log b / (3 * Real.log 2) + Real.log a / (Real.log 2) = 7 := by
+    field_simp at h₁₁ ⊢
+    
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 44.19638657569885 / 17.226115703582764 / 61.422502279281616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = Real.log a / Real.log 8 := by rw [Real.logb]
+  have h₃ : Real.logb 4 (b^2) = 2 * Real.log b / Real.log 4 := by
+    rw [Real.logb, mul_comm]
+    field_simp [Real.log_rpow]
+    <;> ring
+  have h₄ : Real.logb 8 b = Real.log b / Real.log 8 := by rw [Real.logb]
+  have h₅ : Real.logb 4 (a^2) = 2 * Real.log a / Real.log 4 := by
+    rw [Real.logb, mul_comm]
+    field_simp [Real.log_rpow]
+    <;> ring
+  have h₆ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₇ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₈ : Real.log 8 = 3 * Real.log 2 := by
+    rw [h₆]
+    simp [Real.log_pow]
+  have h₉ : Real.log 4 = 2 * Real.log 2 := by
+    rw [h₇]
+    simp [Real.log_pow]
+  field_simp [h₂, h₃, h₄, h₅, h₈, h₉] at h₀ h₁
+  ring_nf at h₀ h₁
+  have h₁₀ : Real.log 2 ≠ 0 := by norm_num
+  have h₁₁ : Real.log a = 6 * Real.log 2 := by
+    nlinarith [sq_nonneg (Real.log a - 6 * Real.log 2), sq_nonneg (Real.log b - 3 * Real.log 2)]
+  have h₁₂ : Real.log b = 3 * Real.log 2 := by
+    nlinarith [sq_nonneg (Real.log a - 6 * Real.log 2), sq_nonneg (Real.log b - 3 * Real.log 2)]
+  have h₁₃ : a > 0 := by
+    by_contra h
+    have : Real.log a ≤ 0 := Real.log_nonpos (by nlinarith) (by nlinarith)
+    nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 2)]
+  have h₁₄ : b
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 37.75243306159973 / 19.466182231903076 / 57.21861529350281
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = (Real.log a) / (Real.log 8) := by rw [Real.logb]
+  have h₃ : Real.logb 4 (b^2) = 2 * (Real.log b) / (Real.log 4) := by
+    rw [Real.logb, Real.log_pow]
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_rpow]
+    <;> linarith
+  have h₄ : Real.logb 8 b = (Real.log b) / (Real.log 8) := by rw [Real.logb]
+  have h₅ : Real.logb 4 (a^2) = 2 * (Real.log a) / (Real.log 4) := by
+    rw [Real.logb, Real.log_pow]
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_rpow]
+    <;> linarith
+  have h₆ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₇ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₈ : Real.log 8 = 3 * Real.log 2 := by
+    rw [h₆]
+    simp [Real.log_pow]
+  have h₉ : Real.log 4 = 2 * Real.log 2 := by
+    rw [h₇]
+    simp [Real.log_pow]
+  field_simp [h₂, h₃, h₄, h₅, h₈, h₉] at h₀ h₁
+  ring_nf at h₀ h₁
+  have h₁₀ : Real.log 2 > 0 := Real.log_pos (by norm_num)
+  have h₁₁ : Real.log a = 6 * Real.log 2 := by
+    nlinarith [mul_pos h₁₀ h₁₀]
+  have h₁₂ : Real.log b = 3 * Real.log 2 := by
+    nlinarith [mul_pos h₁₀ h₁₀]
+  have h₁₃ : a * b = 512 := by
+    rw [← Real.exp_log (show a * b > 0 by
+      have h₁₄ : a > 0 := by
+        by_contra h
+        have : Real.log a ≤ 0 := Real.log_nonpos (by nlinarith) (by nlinarith)
+ 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 57.07660675048828 / 28.218554258346558 / 85.29516100883484
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = Real.log a / Real.log 8 := by simp [Real.logb]
+  have h₃ : Real.logb 4 (b^2) = 2 * Real.log b / Real.log 4 := by
+    simp [Real.logb, Real.log_pow, mul_comm, mul_assoc, mul_left_comm]
+    <;> ring
+  have h₄ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₅ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₆ : Real.log 8 = 3 * Real.log 2 := by rw [h₄]; rw [Real.log_pow]; norm_num
+  have h₇ : Real.log 4 = 2 * Real.log 2 := by rw [h₅]; rw [Real.log_pow]; norm_num
+  have h₈ : Real.logb 8 a + Real.logb 4 (b^2) = 5 := h₀
+  have h₉ : Real.logb 8 b + Real.logb 4 (a^2) = 7 := h₁
+  field_simp [h₂, h₃, h₆, h₇] at h₈ h₉
+  have h₁₀ : Real.log a / (3 * Real.log 2) + 2 * Real.log b / (2 * Real.log 2) = 5 := by linarith
+  have h₁₁ : Real.log b / (3 * Real.log 2) + 2 * Real.log a / (2 * Real.log 2) = 7 := by linarith
+  have h₁₂ : Real.log 2 > 0 := by norm_num
+  have h₁₃ : Real.log a / (3 * Real.log 2) + Real.log b / Real.log 2 = 5 := by
+    field_simp at h₁₀ ⊢; linarith
+  have h₁₄ : Real.log b / (3 * Real.log 2) + Real.log a / Real.log 2 = 7 := by
+    field_simp at h₁₁ ⊢; linarith
+  have h₁₅ : Real.log a / Real.log 2 = 6 := by
+    field_simp at h₁₃ h₁₄ ⊢
+    nlinarith
+  have h₁₆ : Real.log b / Real.log 2 = 3 := by
+    field_simp at h₁₃ h₁₄ ⊢
+ 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 49.88820743560791 / 32.850398540496826 / 82.73860597610474
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a + Real.logb 4 (b^2) = 5 := h₀
+  have h₃ : Real.logb 8 b + Real.logb 4 (a^2) = 7 := h₁
+  have h₄ : Real.logb 8 a = (Real.log a) / (Real.log 8) := by rw [Real.logb]
+  have h₅ : Real.logb 4 (b^2) = 2 * (Real.log b) / (Real.log 4) := by
+    rw [Real.logb, mul_comm]
+    field_simp [Real.log_rpow, Real.log_mul, Real.log_pow]
+    <;> ring
+  have h₆ : Real.logb 8 b = (Real.log b) / (Real.log 8) := by rw [Real.logb]
+  have h₇ : Real.logb 4 (a^2) = 2 * (Real.log a) / (Real.log 4) := by
+    rw [Real.logb, mul_comm]
+    field_simp [Real.log_rpow, Real.log_mul, Real.log_pow]
+    <;> ring
+  have h₈ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₉ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₁₀ : Real.log 8 = 3 * Real.log 2 := by rw [h₈]; simp [Real.log_pow]
+  have h₁₁ : Real.log 4 = 2 * Real.log 2 := by rw [h₉]; simp [Real.log_pow]
+  field_simp [h₄, h₅, h₆, h₇, h₁₀, h₁₁] at h₂ h₃
+  ring_nf at h₂ h₃
+  have h₁₂ : Real.log 2 > 0 := Real.log_pos (by norm_num)
+  have h₁₃ : Real.log a = 6 * Real.log 2 := by
+    nlinarith [mul_self_nonneg (Real.log a - 6 * Real.log 2),
+      mul_self_nonneg (Real.log b - 3 * Real.log 2)]
+  have h₁₄ : Real.log b = 3 * Real.log 2 := by
+    nlinarith [mul_self_nonneg (Real.log a - 6 * Real.log 2),
+      mul_self_
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 45.382686614990234 / 17.158619165420532 / 62.54130578041077
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = Real.log a / Real.log 8 := by simp [Real.logb]
+  have h₃ : Real.logb 4 (b^2) = 2 * Real.log b / Real.log 4 := by
+    simp [Real.logb, mul_comm]
+    <;> ring_nf
+    <;> field_simp [Real.log_rpow]
+    <;> ring
+  have h₄ : Real.logb 8 b = Real.log b / Real.log 8 := by simp [Real.logb]
+  have h₅ : Real.logb 4 (a^2) = 2 * Real.log a / Real.log 4 := by
+    simp [Real.logb, mul_comm]
+    <;> ring_nf
+    <;> field_simp [Real.log_rpow]
+    <;> ring
+  have h₆ : Real.log 8 = Real.log (2 ^ 3) := by norm_num
+  have h₇ : Real.log 4 = Real.log (2 ^ 2) := by norm_num
+  have h₈ : Real.log 8 = 3 * Real.log 2 := by
+    rw [h₆]
+    simp [Real.log_pow]
+  have h₉ : Real.log 4 = 2 * Real.log 2 := by
+    rw [h₇]
+    simp [Real.log_pow]
+  field_simp [h₂, h₃, h₄, h₅, h₈, h₉] at h₀ h₁
+  ring_nf at h₀ h₁
+  have h₁₀ : Real.log 2 ≠ 0 := by norm_num
+  have h₁₁ : Real.log a = 6 * Real.log 2 := by
+    nlinarith [sq_nonneg (Real.log a - 6 * Real.log 2),
+      sq_nonneg (Real.log b - 3 * Real.log 2)]
+  have h₁₂ : Real.log b = 3 * Real.log 2 := by
+    nlinarith [sq_nonneg (Real.log a - 6 * Real.log 2),
+      sq_nonneg (Real.log b - 3 * Real.log 2)]
+  have h₁₃ : a > 0 := by
+    by_contra h
+    have : Real.log a ≤ 0 := by
+      apply Real.log_nonpos
+      <;> nlinarith
+    nl
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 33.76322031021118 / 8.000253677368164 / 41.763473987579346
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p5
+  (a b : ℝ)
+  (h₀ : Real.logb 8 a + Real.logb 4 (b^2) = 5)
+  (h₁ : Real.logb 8 b + Real.logb 4 (a^2) = 7) :
+  a * b = 512 := by
+  have h₂ : Real.logb 8 a = Real.logb (2^3) a := by norm_num
+  have h₃ : Real.logb 4 (b^2) = Real.logb (2^2) (b^2) := by norm_num
+  have h₄ : Real.logb 8 b = Real.logb (2^3) b := by norm_num
+  have h₅ : Real.logb 4 (a^2) = Real.logb (2^2) (a^2) := by norm_num
+  rw [h₂, h₃] at h₀
+  rw [h₄, h₅] at h₁
+  field_simp [Real.logb, Real.log_mul, Real.log_rpow, mul_assoc] at h₀ h₁
+  ring_nf at h₀ h₁
+  have h₆ : Real.log a = 6 * Real.log 2 := by linarith
+  have h₇ : Real.log b = 3 * Real.log 2 := by linarith
+  have h₈ : a = 2^6 := by
+    rw [← Real.exp_log (show 0 < a by
+      by_contra h
+      have : a ≤ 0 := by linarith
+      have : Real.log a ≤ 0 := Real.log_nonpos (by nlinarith) (by nlinarith)
+      nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 2), Real.log_pos (by norm_num : (1 : ℝ) < 2)]
+    )]
+    rw [h₆]
+    simp [Real.exp_log, Real.exp_mul]
+    <;> norm_num
+    <;> field_simp [Real.exp_log, Real.exp_mul] at h₆ ⊢
+    <;> linarith
+  have h₉ : b = 2^3 := by
+    rw [← Real.exp_log (show 0 < b by
+      by_contra h
+      have : b ≤ 0 := by linarith
+      have : Real.log b ≤ 0 := Real.log_nonpos (by nlinarith) (by nlinarith)
+      nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 2), Real.log_pos (by norm_num : (1 : ℝ) < 2)]
+    )]
+    rw [h₇]
+    simp [Real.exp_log, Real.
+... [truncated] ...

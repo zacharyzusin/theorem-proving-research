@@ -1,0 +1,21 @@
+Problem: putnam_2015_a5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 34.78549408912659
+Lean check time (s): 8.331529140472412
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a5
+(q : ℕ)
+(Nq : ℕ)
+(qodd : Odd q)
+(qpos : q > 0)
+(hNq : Nq = {a : ℕ | 0 < a ∧ a < (q : ℝ) / 4 ∧ Nat.gcd a q = 1}.encard)
+: Odd Nq ↔ ∃ p k : ℕ, q = p ^ k ∧ k > 0 ∧ p.Prime ∧ (p % 8 = 5 ∨ p % 8 = 7) :=
+sorry

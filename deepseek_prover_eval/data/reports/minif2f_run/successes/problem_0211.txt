@@ -1,0 +1,24 @@
+Problem: problem_0211
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.610783815383911
+Lean check time (s): 4.164656162261963
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_234
+  (a b : ℕ)
+  (h₀ : 1 ≤ a ∧ a ≤ 9 ∧ b ≤ 9)
+  (h₁ : (10 * a + b)^3 = 912673) :
+  a + b = 16 := by
+  rcases h₀ with ⟨ha1, ha2, hb⟩
+  have h2 : a ≤ 9 := by linarith
+  have h3 : b ≤ 9 := by linarith
+  interval_cases a <;> interval_cases b <;> norm_num at h₁ ⊢ <;>
+    simp_all [pow_succ]
+  <;> nlinarith

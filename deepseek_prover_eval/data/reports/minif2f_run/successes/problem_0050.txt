@@ -1,0 +1,19 @@
+Problem: problem_0050
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.61472225189209
+Lean check time (s): 2.5867655277252197
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_171
+  (f : ℝ → ℝ)
+  (h₀ : ∀x, f x = 5 * x + 4) :
+  f 1 = 9 := by
+  simp only [h₀, mul_one, mul_zero, zero_add, add_zero, zero_mul, mul_comm]
+  norm_num

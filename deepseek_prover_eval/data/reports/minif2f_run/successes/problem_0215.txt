@@ -1,0 +1,20 @@
+Problem: problem_0215
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.028567790985107
+Lean check time (s): 3.3685808181762695
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_359
+  (y : ℝ)
+  (h₀ : y + 6 + y = 2 * 12) :
+  y = 9 := by
+  have h₁ : y + 6 + y = 2 * 12 := h₀
+  ring_nf at h₁
+  nlinarith

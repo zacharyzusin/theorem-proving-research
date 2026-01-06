@@ -1,0 +1,158 @@
+Problem: putnam_1973_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 29.39304280281067 / 49.52291011810303 / 78.9159529209137
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 44.17864465713501 / 63.35017776489258 / 107.52882242202759
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.68683671951294 / 23.891017198562622 / 48.57785391807556
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 46.210389137268066 / 18.377645015716553 / 64.58803415298462
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.097376346588135 / 53.56283402442932 / 75.66021037101746
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 34.62717890739441 / 17.582351684570312 / 52.20953059196472
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 66.60952734947205 / 39.663909912109375 / 106.27343726158142
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.087323904037476 / 31.146859169006348 / 53.23418307304382
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a2
+(L : List ℝ)
+(hL : L.length = 8 ∧ ∀ i : Fin L.length, L[i] = 1 ∨ L[i] = -1)
+(pluses : ℕ)
+(hpluses : pluses = {i : Fin L.length | L[i] = 1}.ncard)
+(S : ℕ → ℝ)
+(hS : S = fun n : ℕ ↦ ∑ i ∈ Finset.Icc 1 n, L[i % 8]/i)
+: (pluses = 4 → ∃ l : ℝ, Tendsto S atTop (𝓝 l)) ∧ (putnam_1973_a2_solution ↔ ((∃ l : ℝ, Tendsto S atTop (𝓝 l)) → pluses = 4)) :=
+sorry

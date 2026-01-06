@@ -1,0 +1,274 @@
+Problem: problem_0232
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.857102394104004 / 13.5293288230896 / 28.386431217193604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  norm_num [h₀] at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  <;> simp_all [Nat.divisors]
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.504722833633423 / 12.098395586013794 / 30.603118419647217
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 1
+  have h₄ := h₁ 0
+  have h₅ := h₀ 1
+  have h₆ := h₀ 0
+  have h₇ := h₀ N
+  have h₈ := h₀ 2
+  have h₉ := h₀ 3
+  have h₁₀ := h₀ 4
+  have h₁₁ := h₀ 5
+  have h₁₂ := h₀ 6
+  have h₁₃ := h₀ 7
+  have h₁₄ := h₀ 8
+  have h₁₅ := h₀ 9
+  have h₁₆ := h₀ 10
+  norm_num at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆
+  <;> simp_all [Nat.divisors, Nat.card_eq_fintype_card, Finset.card_eq_zero]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.76694941520691 / 11.664220571517944 / 26.431169986724854
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  norm_num [h₀] at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  <;> simp_all [Nat.divisors]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.83858323097229 / 14.831157922744751 / 36.66974115371704
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  have h₁₃ := h₀ 1
+  have h₁₄ := h₀ 2
+  have h₁₅ := h₀ 3
+  have h₁₆ := h₀ 4
+  have h₁₇ := h₀ 5
+  have h₁₈ := h₀ 6
+  have h₁₉ := h₀ 7
+  have h₂₀ := h₀ 8
+  have h₂₁ := h₀ 9
+  norm_num [Nat.divisors] at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ h₁₈ h₁₉ h₂₀ h₂₁
+  <;> simp_all [Nat.divisors]
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.70278549194336 / 11.693555355072021 / 26.39634084701538
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  norm_num [h₀] at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  <;> simp_all [Nat.divisors]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.676364183425903 / 13.513887166976929 / 28.190251350402832
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  norm_num [h₀] at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  <;> simp_all [Nat.divisors]
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.540372848510742 / 12.81817626953125 / 25.358549118041992
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  simp_all [Nat.divisors]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.709450244903564 / 13.60292673110962 / 28.312376976013184
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p25
+  (N : ℕ)
+  (f : ℕ → ℝ)
+  (h₀ : ∀ n, 0 < n → f n = ((Nat.divisors n).card)/(n^((1:ℝ)/3)))
+  (h₁ : ∀ n ≠ N, 0 < n → f n < f N) :
+  (Nat.digits 10 N).sum = 9 := by
+  have h₂ := h₁ N
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₁ 4
+  have h₈ := h₁ 5
+  have h₉ := h₁ 6
+  have h₁₀ := h₁ 7
+  have h₁₁ := h₁ 8
+  have h₁₂ := h₁ 9
+  norm_num [h₀] at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  <;> simp_all [Nat.divisors]
+  <;> norm_num
+  <;> aesop
+

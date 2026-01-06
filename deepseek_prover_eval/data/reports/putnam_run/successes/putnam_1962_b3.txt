@@ -1,0 +1,20 @@
+Problem: putnam_1962_b3
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.136794805526733
+Lean check time (s): 36.35404896736145
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b3
+(S : Set (EuclideanSpace ℝ (Fin 2)))
+(hS : Convex ℝ S ∧ 0 ∈ S)
+(htopo : (0 ∈ interior S) ∨ IsClosed S)
+(hray : ∀ P : EuclideanSpace ℝ (Fin 2), P ≠ 0 → ∃ Q : EuclideanSpace ℝ (Fin 2), SameRay ℝ P Q ∧ Q ∉ S)
+: Bornology.IsBounded S :=
+sorry

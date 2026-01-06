@@ -1,0 +1,126 @@
+Problem: putnam_1982_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.161460399627686 / 64.27052330970764 / 76.43198370933533
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.806997537612915 / 40.818469524383545 / 57.62546706199646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.030240774154663 / 57.121740102767944 / 73.15198087692261
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 78.96166658401489 / 37.0731360912323 / 116.03480267524719
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 34.24730467796326 / 125.95133423805237 / 160.19863891601562
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.225078582763672 / 45.95445895195007 / 69.17953753471375
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 56.702088832855225 / 32.6113657951355 / 89.31345462799072
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.92291569709778 / 57.219642639160156 / 74.14255833625793
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b3
+(p : ℕ → ℝ)
+(hp : p = fun n : ℕ => ({(c, d) : Finset.Icc 1 n × Finset.Icc 1 n | ∃ m : ℕ, m^2 = c + d}.ncard : ℝ) / n^2)
+: Tendsto (fun n : ℕ => p n * Real.sqrt n) atTop (𝓝 putnam_1982_b3_solution) :=
+sorry

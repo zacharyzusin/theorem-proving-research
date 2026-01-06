@@ -1,0 +1,18 @@
+Problem: putnam_1997_a5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.116898775100708
+Lean check time (s): 28.001245975494385
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a5
+(N : (n : ℕ+) → Set (Fin n → ℕ+))
+(hN : N = fun (n : ℕ+) => {t : Fin n → ℕ+ | (∀ i j : Fin n, i < j → t i <= t j) ∧ (∑ i : Fin n, (1 : ℝ)/(t i) = 1) })
+: Odd (N 10).ncard ↔ putnam_1997_a5_solution :=
+sorry

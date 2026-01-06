@@ -1,0 +1,17 @@
+Problem: problem_0173
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.451674938201904
+Lean check time (s): 3.398794651031494
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_254 :
+  (239 + 174 + 83) % 10 = 6 := by
+  simp [add_assoc, add_left_comm, add_right_comm, Nat.add_mod, Nat.mod_eq_of_lt,
+    show 239 % 10 = 9 by norm_num, show 174 % 10 = 4 by norm_num, show 83 % 10 = 3 by norm_num]

@@ -1,0 +1,25 @@
+Problem: problem_0282
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.948291301727295
+Lean check time (s): 3.2521440982818604
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_32
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ n ∣ 36) :
+  ∑ k in S, k = 91 := by
+  have h₁ : S = Finset.filter (fun n => n ∣ 36) (Finset.range 37) := by
+    ext n
+    simp [h₀, Nat.lt_succ_iff]
+    <;> omega
+  rw [h₁]
+  simp [Finset.sum_filter, Finset.sum_range_succ, Nat.div_eq_of_lt]
+  <;> norm_num
+  <;> decide

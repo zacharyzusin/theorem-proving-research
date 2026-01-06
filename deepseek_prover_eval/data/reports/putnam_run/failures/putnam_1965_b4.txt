@@ -1,0 +1,182 @@
+Problem: putnam_1965_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 26.782292366027832 / 42.07322907447815 / 68.85552144050598
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 29.922014236450195 / 35.515464305877686 / 65.43747854232788
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 26.09345293045044 / 40.879740953445435 / 66.97319388389587
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.889824151992798 / 47.604830265045166 / 75.49465441703796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.363842248916626 / 16.16607666015625 / 43.529918909072876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 25.88758897781372 / 49.60344123840332 / 75.49103021621704
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.643019437789917 / 36.924498558044434 / 61.56751799583435
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 34.0264687538147 / 23.90437626838684 / 57.93084502220154
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b4
+    (f u v : ℕ → ℝ → ℝ)
+    (hu : ∀ n > 0, ∀ x, u n x = ∑ i ∈ Finset.Icc 0 (n / 2), (n.choose (2 * i)) * x ^ i)
+    (hv : ∀ n > 0, ∀ x, v n x = ∑ i ∈ Finset.Icc 0 ((n - 1) / 2), (n.choose (2 * i + 1)) * x ^ i)
+    (hf : ∀ n > 0, ∀ x, f n x = u n x / v n x)
+    (n : ℕ)
+    (hn : 0 < n) :
+    let ⟨⟨p, q⟩, ⟨s, g⟩⟩ := putnam_1965_b4_solution
+    (∀ x, v n x ≠ 0 → v (n + 1) x ≠ 0 → q (f n) x ≠ 0 → f (n + 1) x = p (f n) x / q (f n) x) ∧
+    s = {x | ∃ l, Tendsto (fun n ↦ f n x) atTop (𝓝 l)} ∧
+    ∀ x ∈ s, Tendsto (fun n ↦ f n x) atTop (𝓝 (g x)) :=
+  sorry

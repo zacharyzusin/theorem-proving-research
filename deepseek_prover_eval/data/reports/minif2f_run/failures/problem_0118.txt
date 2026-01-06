@@ -1,0 +1,220 @@
+Problem: problem_0118
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.767758131027222 / 2.5526442527770996 / 13.320402383804321
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h1 : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h2 : Irrational (2 : ℝ) := by
+    exact Nat.prime_two.irrational_sqrt
+  have h3 : ¬ Irrational (√2 ^ (2 : ℝ)) := by
+    intro h
+    have h4 : √2 ^ (2 : ℝ) = 2 := by
+      rw [Real.rpow_two]
+      norm_num [Real.sqrt_eq_iff_sq_eq]
+    rw [h4] at h
+    exact h (by
+      exact ⟨2, by norm_num⟩)
+  exact ⟨h1, h2, h3⟩
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.153903007507324 / 2.5484189987182617 / 15.702322006225586
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h₁ : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h₂ : Irrational (2 : ℝ) := by
+    exact Nat.Prime.irrational_sqrt (by norm_num)
+  have h₃ : ¬ Irrational ((√2 : ℝ) ^ (2 : ℝ)) := by
+    rw [show (√2 : ℝ) ^ (2 : ℝ) = 2 by
+      norm_num [Real.sqrt_eq_iff_sq_eq, sq, mul_comm]
+      <;> ring_nf
+      <;> norm_num
+      <;> field_simp [Real.sqrt_eq_iff_sq_eq, sq, mul_comm]
+      <;> linarith]
+    exact fun h => h ⟨2, by simp⟩
+  exact ⟨h₁, h₂, h₃⟩
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.185839414596558 / 2.5582807064056396 / 13.744120121002197
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h1 : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h2 : Irrational (2 : ℝ) := by
+    exact Nat.Prime.irrational_sqrt (by norm_num)
+  have h3 : ¬ Irrational (√2 ^ (2 : ℝ)) := by
+    intro h
+    have h4 : √2 ^ (2 : ℝ) = 2 := by
+      rw [show √2 ^ (2 : ℝ) = √2 ^ 2 by norm_cast]
+      norm_num [Real.sqrt_eq_iff_sq_eq]
+    exact h ⟨2, by simp [h4]⟩
+  exact ⟨h1, h2, h3⟩
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.059800624847412 / 2.5253419876098633 / 12.585142612457275
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h1 : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h2 : Irrational (2 : ℝ) := by
+    exact Nat.Prime.irrational_sqrt (by norm_num)
+  have h3 : ¬ Irrational ((√2) ^ (2 : ℝ)) := by
+    intro h
+    have h4 : (√2) ^ (2 : ℝ) = 2 := by
+      rw [Real.rpow_two]
+      norm_num [Real.sqrt_eq_iff_mul_self_eq]
+    simp_all [Irrational]
+  exact ⟨h1, h2, h3⟩
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.347525358200073 / 2.545944929122925 / 12.893470287322998
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h1 : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h2 : Irrational (2 : ℝ) := by
+    exact Nat.Prime.irrational_sqrt (by norm_num)
+  have h3 : ¬ Irrational (√2 ^ (2 : ℝ)) := by
+    rw [show √2 ^ (2 : ℝ) = 2 by
+      field_simp [Real.sqrt_eq_iff_sq_eq]
+      <;> ring_nf
+      <;> norm_num]
+    exact fun h => h ⟨2, by simp⟩
+  exact ⟨h1, h2, h3⟩
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.631699562072754 / 2.5806939601898193 / 13.212393522262573
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h₁ : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h₂ : Irrational (2 : ℝ) := by
+    exact Nat.prime_two.irrational_sqrt
+  have h₃ : ¬ Irrational ((√2) ^ (2 : ℝ)) := by
+    intro h
+    have h₄ : (√2) ^ (2 : ℝ) = 2 := by
+      rw [Real.rpow_two]
+      norm_num [Real.sqrt_eq_iff_sq_eq]
+    simp_all [Irrational]
+    <;> norm_num
+    <;> aesop
+  exact ⟨h₁, h₂, h₃⟩
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.91338062286377 / 2.5356507301330566 / 14.449031352996826
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h₁ : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h₂ : Irrational (2 : ℝ) := by
+    exact Nat.Prime.irrational_sqrt (by norm_num)
+  have h₃ : ¬ Irrational (√2 ^ (2 : ℝ)) := by
+    intro h
+    have h₄ : √2 ^ (2 : ℝ) = 2 := by
+      rw [show (√2 : ℝ) ^ (2 : ℝ) = √2 ^ 2 by norm_cast]
+      norm_num [Real.sqrt_eq_iff_sq_eq]
+    exact h ⟨by simp_all [h₄], by simp_all [h₄]⟩
+  exact ⟨h₁, h₂, h₃⟩
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.025798082351685 / 2.5953192710876465 / 12.621117353439331
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_others_exirrpowirrrat :
+  ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by
+  use √2, 2
+  have h1 : Irrational (√2) := by
+    apply Nat.Prime.irrational_sqrt
+    norm_num
+  have h2 : Irrational (2 : ℝ) := by
+    exact Nat.Prime.irrational_sqrt (by norm_num)
+  have h3 : ¬ Irrational (√2 ^ (2 : ℝ)) := by
+    intro h
+    have h4 : √2 ^ (2 : ℝ) = 2 := by
+      rw [Real.rpow_two]
+      norm_num [Real.sqrt_eq_iff_sq_eq]
+    simp_all [Irrational]
+  exact ⟨h1, h2, h3⟩
+

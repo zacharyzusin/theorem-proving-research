@@ -1,0 +1,28 @@
+Problem: problem_0133
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.028576135635376
+Lean check time (s): 5.076239824295044
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_pprime_pdvdapowpma
+  (p a : ℕ)
+  (h₀ : 0 < a)
+  (h₁ : Nat.Prime p) :
+  p ∣ (a^p - a) := by
+  have h₂ : p ∣ a^p - a := by
+    have h₃ : a^p ≡ a [MOD p] := by
+      haveI := Fact.mk h₁
+      simp [← ZMod.int_cast_eq_int_cast_iff, ← ZMod.eq_iff_modEq_nat]
+      <;> simp [ZMod.pow_card]
+    have h₄ : p ∣ a^p - a := by
+      rw [Nat.dvd_iff_mod_eq_zero]
+      exact?
+    exact h₄
+  exact h₂

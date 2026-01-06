@@ -1,0 +1,28 @@
+Problem: problem_0054
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.065492868423462
+Lean check time (s): 2.6079885959625244
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1959_p1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  Nat.gcd (21*n + 4) (14*n + 3) = 1 := by
+  have h₁ : Nat.gcd (21*n + 4) (14*n + 3) = 1 := by
+    have h₁ : 21*n + 4 = 14*n + 3 + (7*n + 1) := by ring
+    rw [h₁]
+    have h₂ : 14*n + 3 = 2 * (7*n + 1) + 1 := by ring
+    rw [h₂]
+    simp [Nat.gcd_comm]
+    <;>
+    simp_all [Nat.gcd_eq_right]
+    <;>
+    omega
+  exact h₁

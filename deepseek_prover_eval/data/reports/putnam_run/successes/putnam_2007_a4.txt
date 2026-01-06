@@ -1,0 +1,20 @@
+Problem: putnam_2007_a4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.830479860305786
+Lean check time (s): 4.3183135986328125
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a4
+(S : Set (Polynomial ℝ))
+(repunit : ℝ → Prop)
+(hrepunit : ∀ x, repunit x ↔ x > 0 ∧ x = floor x ∧ ∀ d ∈ (digits 10 (floor x)), d = 1)
+(hS : ∀ f, f ∈ S ↔ (∀ n : ℝ, repunit n → repunit (f.eval n)))
+: (S = putnam_2007_a4_solution) :=
+sorry

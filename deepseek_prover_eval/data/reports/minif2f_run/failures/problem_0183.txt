@@ -1,0 +1,412 @@
+Problem: problem_0183
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 4
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 32.58926320075989 / 4.509541749954224 / 37.09880495071411
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 20 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (20 ^ 2 + (18 * 20 + 45)) = 25 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+    nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+    nlinarith
+  have h₄ : f⁻¹' {0} = {20, -2} := by
+    ext x
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff, Set.mem_preimage, Set.mem_setOf_eq,
+      Finset.mem_coe, Finset.mem_insert, Finset.mem_singleton]
+    constructor
+    · intro h
+      have h₅ : f x = 0 := h
+      rw [h₀] at h₅
+      have h₆ : x = 20 ∨ x = -2 := by
+        apply or_iff_not_imp_left.mpr
+        intro h₇
+        apply mul_left_cancel₀ (sub_ne_zero.mpr h₇)
+        nlinarith [Real.sqrt_nonneg (x ^ 2 + (18 * x + 45)), Real.sq_sqrt (show (0 : ℝ) ≤ x ^ 2 + (18 * x + 45) from by nlinarith [sq_nonneg x, sq_nonneg (x + 9)]), sq_nonneg (x - 20), sq_nonneg (x + 2)]
+      aesop
+    · rintro (rfl | rfl) <;> simp_all [h₀] <;>
+      nlinarith [Real.sqrt_nonneg (20 ^ 2 + (18 * 20 + 45)), Real.sqrt_nonneg ((-2) ^ 2 + (18 * (-2) + 45)), Real.sq_sqrt (show (0 : ℝ) ≤ 20 ^ 2 + (18 * 20 + 45) from by nlinarith), Real.sq_sqrt (show (0 : ℝ) ≤ (-2) ^ 2 + (18 *
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.180288553237915 / 600.1544749736786 / 636.3347635269165
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 20 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (20 ^ 2 + (18 * 20 + 45)) = 25 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    nlinarith
+  have h₄ : f⁻¹' {0} = {20, -2} := by
+    ext x
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff, Set.mem_preimage, Set.mem_setOf_eq] at h₂ h₃ ⊢
+    constructor
+    · intro h
+      have h₅ : f x = 0 := h
+      rw [h₀] at h₅
+      have h₆ : Real.sqrt (x ^ 2 + (18 * x + 45)) = x ^ 2 + 18 * x + 30 := by
+        nlinarith
+      have h₇ : x ^ 2 + (18 * x + 45) ≥ 0 := by
+        nlinarith [sq_nonneg (x + 9)]
+      have h₈ : Real.sqrt (x ^ 2 + (18 * x + 45)) ≥ 0 := Real.sqrt_nonneg _
+      have h₉ : x ^ 2 + 18 * x + 30 = Real.sqrt (x ^ 2 + (18 * x + 45)) := by linarith
+      have h₁₀ : (x ^ 2 + 18 * x + 30) ^ 2 = x ^ 2 + (18 * x + 45) := by
+        nlinarith [Real.sq_sqrt (by nlinarith : (0 : ℝ) ≤ x ^ 2 + (18 * x + 45)),
+          sq_nonneg (x + 9)]
+      have h₁₁ : x = 20 ∨ x = -2 := by
+        apply or_iff_not_imp_left.mpr
+        intro h₁₂
+        apply mul_left_
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 36.664255142211914 / 4.967196464538574 / 41.63145160675049
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 10 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (10 ^ 2 + (18 * 10 + 45)) = 17 := by
+      have h₄ : Real.sqrt (10 ^ 2 + (18 * 10 + 45)) = 17 := by
+        rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+        <;> nlinarith
+      exact h₄
+    nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      have h₅ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+        rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+        <;> nlinarith
+      exact h₅
+    nlinarith
+  have h₄ : f⁻¹' {0} = {10, -2} := by
+    ext x
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff, Set.mem_preimage, Set.mem_setOf_eq]
+    constructor
+    · intro h
+      have h₅ : f x = 0 := h
+      rw [h₀] at h₅
+      have h₆ : x = 10 ∨ x = -2 := by
+        apply or_iff_not_imp_left.mpr
+        intro h₇
+        apply mul_left_cancel₀ (sub_ne_zero.mpr h₇)
+        nlinarith [Real.sqrt_nonneg (x ^ 2 + (18 * x + 45)), Real.sq_sqrt (show (0 : ℝ) ≤ x ^ 2 + (18 * x + 45) by nlinarith)]
+      aesop
+    · rintro (rfl | rfl) <;>
+      rw [h₀] <;>
+      norm_num <;>
+      nlinarith [Real.sqrt_nonneg (10 ^ 2 + (18 * 10 + 45)), Real.sqrt_nonneg ((-2) ^ 2 + (18 * (-2) + 45)),
+        Real.sq_sqrt (show (0 : 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 33.86065363883972 / 600.1657357215881 / 634.0263893604279
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 5 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    nlinarith
+  have h₄ : f⁻¹' {0} = {5, -2} := by
+    ext x
+    simp only [Set.mem_preimage, Set.mem_singleton_iff, Set.mem_insert_iff]
+    constructor
+    · intro h
+      rw [h₀] at h
+      have h₅ : Real.sqrt (x ^ 2 + (18 * x + 45)) = x ^ 2 + 18 * x + 30 := by
+        nlinarith
+      have h₆ : x ^ 2 + 18 * x + 30 ≥ 0 := by
+        nlinarith [sq_nonneg (x + 9)]
+      have h₇ : Real.sqrt (x ^ 2 + (18 * x + 45)) ≥ 0 := Real.sqrt_nonneg _
+      have h₈ : x ^ 2 + (18 * x + 45) ≥ 0 := by
+        nlinarith [sq_nonneg (x + 9)]
+      apply or_iff_not_imp_left.mpr
+      intro h₉
+      apply mul_left_cancel₀ (sub_ne_zero.mpr h₉)
+      nlinarith [Real.sq_sqrt (by nlinarith : 0 ≤ x ^ 2 + (18 * x + 45)),
+        Real.sq_sqrt (by nlinarith : 0 ≤ x ^ 2 + (18 * x + 45)),
+        sq_nonneg (x - 5), sq_nonneg (x + 2)]
+    · rintro (rfl | rfl) <;>
+      simp_all [h₀, Real.sqrt_eq_iff_sq_eq] <;>
+     
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 38.970898151397705 / 4.797290563583374 / 43.76818871498108
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 5 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+      have h₄ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+        rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+        <;> nlinarith
+      exact h₄
+    norm_num [h₃]
+    <;> ring_nf
+    <;> norm_num
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      have h₅ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+        rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+        <;> nlinarith
+      exact h₅
+    norm_num [h₄]
+    <;> ring_nf
+    <;> norm_num
+  have h₄ : f⁻¹' {0} = {5, -2} := by
+    ext x
+    simp only [Set.mem_preimage, Set.mem_singleton_iff, Set.mem_insert_iff, h₀]
+    constructor
+    · intro h
+      have h₅ : x ^ 2 + (18 * x + 30) - 2 * Real.sqrt (x ^ 2 + (18 * x + 45)) = 0 := by
+        linarith
+      have h₆ : Real.sqrt (x ^ 2 + (18 * x + 45)) = (x ^ 2 + (18 * x + 30)) / 2 := by
+        nlinarith [Real.sqrt_nonneg (x ^ 2 + (18 * x + 45)), Real.sq_sqrt (show 0 ≤ x ^ 2 + (18 * x + 45) by nlinarith)]
+      have h₇ : x = 5 ∨ x = -2 := by
+        apply or_iff_not_imp_left.mpr
+        intro h₈
+        apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+        nlinarith [Real.sqrt_n
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 35.84059190750122 / 600.1491944789886 / 635.9897863864899
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 5 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    norm_num [h₃]
+    <;> nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    norm_num [h₄]
+    <;> nlinarith
+  have h₄ : f⁻¹' {0} = {5, -2} := by
+    ext x
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff, Set.mem_preimage, Set.mem_setOf_eq]
+    constructor
+    · intro h
+      rw [h₀] at h
+      have h₅ : 0 ≤ Real.sqrt (x ^ 2 + (18 * x + 45)) := Real.sqrt_nonneg _
+      have h₆ : Real.sqrt (x ^ 2 + (18 * x + 45)) ^ 2 = x ^ 2 + (18 * x + 45) := by
+        rw [Real.sq_sqrt] <;> nlinarith
+      have h₇ : x = 5 ∨ x = -2 := by
+        apply or_iff_not_imp_left.mpr
+        intro h₈
+        apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+        nlinarith [sq_nonneg (x + 2), sq_nonneg (x - 5), sq_nonneg (x + 10),
+          sq_nonneg (x - 2), sq_nonneg (x + 4), sq_nonneg (x - 10)]
+      cases h₇ with
+      | inl h₇ => simp_all
+      | inr h₇ => simp_all
+    · rintro (rfl | rfl) <;>
+      simp_all [h₀] <;>
+      norm_num <;>
+      nlinari
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 42.259567975997925 / 600.1484627723694 / 642.4080307483673
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 5 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;>
+      norm_num
+    nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;>
+      norm_num
+    nlinarith
+  have h₄ : f⁻¹' {0} = {5, -2} := by
+    ext x
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff, Set.mem_preimage, Set.mem_setOf_eq] at *
+    constructor
+    · intro h
+      have h₅ : f x = 0 := h
+      rw [h₀] at h₅
+      have h₆ : Real.sqrt (x ^ 2 + (18 * x + 45)) = x ^ 2 + 18 * x + 30 := by
+        nlinarith
+      have h₇ : x ^ 2 + 18 * x + 45 ≥ 0 := by
+        nlinarith [sq_nonneg (x + 9)]
+      have h₈ : x ^ 2 + (18 * x + 45) ≥ 0 := by nlinarith
+      have h₉ : Real.sqrt (x ^ 2 + (18 * x + 45)) ≥ 0 := Real.sqrt_nonneg _
+      have h₁₀ : x ^ 2 + 18 * x + 30 = Real.sqrt (x ^ 2 + (18 * x + 45)) := by linarith
+      have h₁₁ : Real.sqrt (x ^ 2 + (18 * x + 45)) ^ 2 = x ^ 2 + (18 * x + 45) := Real.sq_sqrt (by nlinarith)
+      have h₁₂ : x ^ 2 + 18 * x + 30 = x ^ 2 + (18 * x + 45) := by
+        nlinarith
+      have h₁₃ : 30 = 45 := by nlinarith
+      norm_num at h₁₃
+      have h₁₄ : x = 5 ∨ 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 34.80366039276123 / 4.20852255821228 / 39.01218295097351
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p3
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = (x^2 + (18 * x +  30) - 2 * Real.sqrt (x^2 + (18 * x + 45))))
+  (h₁ : Fintype (f⁻¹' {0})) :
+  ∏ x in (f⁻¹' {0}).toFinset, x = 20 := by
+  have h₂ : f 5 = 0 := by
+    rw [h₀]
+    have h₃ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    nlinarith
+  have h₃ : f (-2) = 0 := by
+    rw [h₀]
+    have h₄ : Real.sqrt ((-2) ^ 2 + (18 * (-2) + 45)) = 5 := by
+      rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+      <;> nlinarith
+    nlinarith
+  have h₄ : f⁻¹' {0} = {5, -2} := by
+    ext x
+    simp only [Set.mem_singleton_iff, Set.mem_insert_iff, Set.mem_preimage, Set.mem_setOf_eq,
+      Finset.mem_coe, Finset.mem_insert, Finset.mem_singleton] at h₁ ⊢
+    constructor
+    · intro h
+      have h₅ : f x = 0 := h
+      rw [h₀] at h₅
+      have h₆ : x = 5 ∨ x = -2 := by
+        apply or_iff_not_imp_left.mpr
+        intro h₇
+        apply mul_left_cancel₀ (sub_ne_zero.mpr h₇)
+        nlinarith [Real.sqrt_nonneg (x ^ 2 + (18 * x + 45)), Real.sq_sqrt (show 0 ≤ x ^ 2 + (18 * x + 45) by nlinarith)]
+      cases h₆ with
+      | inl h₆ => simp_all
+      | inr h₆ => simp_all
+    · intro h
+      cases h with
+      | inl h =>
+        rw [h]
+        rw [h₀]
+        have h₅ : Real.sqrt (5 ^ 2 + (18 * 5 + 45)) = 10 := by
+          rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+          <;> nlinarith
+        nlinarith
+      | inr h =
+... [truncated] ...

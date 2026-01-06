@@ -1,0 +1,223 @@
+Problem: putnam_2014_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.889686346054077 / 8.855886936187744 / 21.74557328224182
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := a0
+  have h₂ := ak 1
+  have h₃ := ak 2
+  have h₄ := ak 3
+  have h₅ := ak 4
+  have h₆ := ak 5
+  have h₇ := ak 6
+  norm_num [a0, ak] at h₁ h₂ h₃ h₄ h₅ h₆ h₇
+  <;> simp_all [mul_comm]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp [mul_comm]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.598531484603882 / 8.543667316436768 / 27.14219880104065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := ak 1 (by norm_num)
+  have h₂ := ak 2 (by norm_num)
+  have h₃ := ak 3 (by norm_num)
+  have h₄ := ak 4 (by norm_num)
+  have h₅ := ak 5 (by norm_num)
+  have h₆ := ak 6 (by norm_num)
+  have h₇ := ak 7 (by norm_num)
+  have h₈ := ak 8 (by norm_num)
+  have h₉ := ak 9 (by norm_num)
+  have h₁₀ := ak 10 (by norm_num)
+  norm_num [a0, ak] at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀
+  <;> simp_all [Finset.prod_range_succ, mul_assoc]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.8970627784729 / 9.88883376121521 / 24.78589653968811
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := a0
+  have h₂ := ak 1
+  have h₃ := ak 2
+  have h₄ := ak 3
+  have h₅ := ak 4
+  simp at h₁ h₂ h₃ h₄ h₅
+  norm_num at h₁ h₂ h₃ h₄ h₅
+  norm_num [Finset.prod_range_succ', h₁, h₂, h₃, h₄, h₅]
+  <;> nlinarith [sq_nonneg (5 / 2 - 2), sq_nonneg (5 / 2 + 2), sq_nonneg (5 ^ 2 / 4 - 2),
+    sq_nonneg (5 ^ 2 / 4 + 2), sq_nonneg (5 ^ 4 / 16 - 2)]
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.988609075546265 / 7.832107305526733 / 20.820716381072998
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := ak 1 (by norm_num)
+  have h₂ := ak 2 (by norm_num)
+  have h₃ := ak 3 (by norm_num)
+  have h₄ := ak 4 (by norm_num)
+  simp_all [Finset.prod_range_succ, Finset.prod_range_one]
+  <;> norm_num
+  <;> nlinarith [sq_nonneg (a 0), sq_nonneg (a 1), sq_nonneg (a 2), sq_nonneg (a 3), sq_nonneg (a 4)]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.830058574676514 / 8.861822366714478 / 22.69188094139099
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := a0
+  have h₂ := ak 1
+  have h₃ := ak 2
+  have h₄ := ak 3
+  have h₅ := ak 4
+  have h₆ := ak 5
+  have h₇ := ak 6
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇
+  norm_num [Finset.prod_range_succ'] at *
+  <;> simp_all [Finset.prod_range_succ', Finset.prod_range_one]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.126652956008911 / 8.926205396652222 / 22.052858352661133
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := a0
+  have h₂ := ak 1 (by norm_num)
+  have h₃ := ak 2 (by norm_num)
+  have h₄ := ak 3 (by norm_num)
+  have h₅ := ak 4 (by norm_num)
+  norm_num [Finset.prod_range_succ', Finset.prod_range_one] at *
+  <;> simp_all [Finset.prod_range_succ', Finset.prod_range_one]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp at *
+  <;> linarith
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.596045970916748 / 9.140140295028687 / 24.736186265945435
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := a0
+  have h₂ := ak 1
+  have h₃ := ak 2
+  have h₄ := ak 3
+  have h₅ := ak 4
+  simp at h₁ h₂ h₃ h₄ h₅
+  norm_num at h₁ h₂ h₃ h₄ h₅
+  norm_num [Finset.prod_range_succ', h₁, h₂, h₃, h₄, h₅, Finset.prod_range_one]
+  <;>
+  nlinarith [sq_nonneg (5 / 2 - 2), sq_nonneg (5 / 2 + 2), sq_nonneg (5 / 2 - 2 + 2),
+    sq_nonneg (5 / 2 + 2 - 2), sq_nonneg (5 / 2 - 2 - 2)]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.514786958694458 / 9.839839458465576 / 21.354626417160034
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a3
+(a : ℕ → ℝ)
+(a0 : a 0 = 5 / 2)
+(ak : ∀ k ≥ 1, a k = (a (k - 1)) ^ 2 - 2)
+: Tendsto (fun n : ℕ => ∏ k ∈ Finset.range n, (1 - 1 / a k)) atTop (𝓝 putnam_2014_a3_solution) := by
+  have h₁ := ak 1 (by norm_num)
+  have h₂ := ak 2 (by norm_num)
+  have h₃ := ak 3 (by norm_num)
+  have h₄ := ak 4 (by norm_num)
+  simp_all [Finset.prod_range_succ, Finset.prod_range_one]
+  <;> norm_num at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> nlinarith

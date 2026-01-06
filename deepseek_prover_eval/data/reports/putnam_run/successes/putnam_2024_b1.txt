@@ -1,0 +1,22 @@
+Problem: putnam_2024_b1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 16.691420316696167
+Lean check time (s): 8.112606763839722
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2024_b1
+    (grid : (n : ℕ) → ℕ → Fin n → Fin n → ℤ)
+    (grid_def : ∀ n k i j, grid n k i j = i.succ + j.succ - k)
+    (valid : ℕ → ℕ → Prop)
+    (valid_def : ∀ n k, valid n k ↔ 0 < n ∧ 0 < k ∧
+      ∃ (f : Fin n → Fin n), f.Injective ∧
+        Set.range (fun i => grid n k i (f i)) = Set.Icc (1 : ℤ) n) :
+    { (n, k) | valid n k } = putnam_2024_b1_solution :=
+  sorry

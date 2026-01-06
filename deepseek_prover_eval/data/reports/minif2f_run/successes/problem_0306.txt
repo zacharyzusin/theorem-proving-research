@@ -1,0 +1,20 @@
+Problem: problem_0306
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.92762303352356
+Lean check time (s): 5.111523151397705
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_543 :
+  (∑ k in (Nat.divisors (30^4)), 1) - 2 = 123 := by
+  have h₁ : 30^4 = 2^4 * 3^4 * 5^4 := by
+    norm_num
+  rw [h₁]
+  simp only [Nat.divisors_mul, Nat.divisors_prime_pow]
+  rfl

@@ -1,0 +1,22 @@
+Problem: problem_0297
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.90030574798584
+Lean check time (s): 6.523287534713745
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_510
+  (x y : ℝ)
+  (h₀ : x + y = 13)
+  (h₁ : x * y = 24) :
+  Real.sqrt (x^2 + y^2) = 11 := by
+  have h : x^2 + y^2 = 11^2 := by
+    nlinarith [sq_nonneg (x - y)]
+  rw [h]
+  rw [Real.sqrt_eq_iff_sq_eq] <;> nlinarith

@@ -1,0 +1,337 @@
+Problem: problem_0049
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.428970336914062 / 7.547523498535156 / 32.97649383544922
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := mul_pos h₄ h₅
+  have h₇ : 0 < m * n * m := mul_pos (mul_pos h₄ h₅) h₄
+  have h₈ : 0 < m * n * n := mul_pos (mul_pos h₄ h₅) h₅
+  have h₉ : (a : ℝ) = -(b * m + c * n) := by linarith
+  have h₁₀ : (a : ℝ) ^ 2 + (b * m) ^ 2 + (c * n) ^ 2 = 0 := by
+    nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n), sq_nonneg (b * n + c * m),
+      sq_nonneg (b * n - c * m)]
+  have h₁₁ : (a : ℝ) = 0 := by
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b * m), sq_nonneg (c * n)]
+  have h₁₂ : b = 0 := by
+    nlinarith [sq_nonneg (b : ℝ), sq_nonneg (c : ℝ), sq_nonneg (b * m), sq_nonneg (c * n)]
+  have h₁₃ : c = 0 := by
+    nlinarith [sq_nonneg (c : ℝ), sq_nonneg (b : ℝ), sq_nonneg (b * m), sq_nonneg (c * n)]
+  exact ⟨by exact_mod_cast h₁₁, by exact_mod_cast h₁₂, by exact_mod_cast h₁₃⟩
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 25.985730171203613 / 7.91096043586731 / 33.89669060707092
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := mul_pos h₄ h₅
+  have h₇ : 0 < m * n * m := by positivity
+  have h₈ : 0 < m * n * n := by positivity
+  have h₉ : (a : ℝ) = -(b * m + c * n) := by linarith
+  have h₁₀ : (a : ℝ) ^ 2 + (b * m) ^ 2 + (c * n) ^ 2 = 0 := by
+    nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n)]
+  have h₁₁ : (a : ℝ) = 0 := by
+    nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n)]
+  have h₁₂ : b * m + c * n = 0 := by nlinarith
+  have h₁₃ : b = 0 := by
+    apply mul_left_cancel₀ (show (m : ℝ) ≠ 0 by positivity)
+    nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n)]
+  have h₁₄ : c * n = 0 := by nlinarith
+  have h₁₅ : c = 0 := by
+    apply mul_left_cancel₀ (show (n : ℝ) ≠ 0 by positivity)
+    nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n)]
+  exact ⟨by exact_mod_cast h₁₁, by exact_mod_cast h₁₃, by exact_mod_cast h₁₅⟩
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 29.765706777572632 / 7.290935039520264 / 37.056641817092896
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := by positivity
+  have h₇ : 0 < m * n * m := by positivity
+  have h₈ : 0 < m * n * n := by positivity
+  have h₉ : 0 < m * n * m * n := by positivity
+  have h₁₀ : 0 < m * n * m * n * m := by positivity
+  have h₁₁ : 0 < m * n * m * n * n := by positivity
+  -- We use the fact that the cube roots of 2 and 4 are positive to show that the only solution to the equation is a = 0, b = 0, c = 0.
+  have h₁₂ : a = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b : ℝ), sq_nonneg (c : ℝ),
+      sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n),
+      sq_nonneg (b * n - c * m), sq_nonneg (b * n + c * m)]
+  have h₁₃ : b = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b : ℝ), sq_nonneg (c : ℝ),
+      sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n),
+      sq_nonneg (b * n - c * m), sq_nonneg (b * n + c * m)]
+  have h₁₄ : c = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b : ℝ), sq_nonneg (c : ℝ),
+      sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n),
+      sq_nonneg (b * n - c * m), sq_nonneg (b * n + c * m)]
+  exact ⟨h₁₂, h₁₃, h₁₄⟩
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 32.76764249801636 / 7.532061576843262 / 40.29970407485962
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : (m : ℝ) > 0 := by exact_mod_cast h₀.1
+  have h₅ : (n : ℝ) > 0 := by exact_mod_cast h₀.2
+  have h₆ : (m : ℝ) ^ 2 > 0 := by positivity
+  have h₇ : (n : ℝ) ^ 2 > 0 := by positivity
+  have h₈ : (m : ℝ) ^ 3 = 2 := by exact_mod_cast h₁
+  have h₉ : (n : ℝ) ^ 3 = 4 := by exact_mod_cast h₂
+  have h₁₀ : (a : ℝ) + b * m + c * n = 0 := by exact_mod_cast h₃
+  have h₁₁ : a = 0 := by
+    apply eq_of_sub_eq_zero
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      mul_self_nonneg (b * m + c * n), mul_self_nonneg (b * m - c * n),
+      mul_self_nonneg (b * n - c * m), mul_self_nonneg (b * n + c * m)]
+  have h₁₂ : b = 0 := by
+    apply eq_of_sub_eq_zero
+    nlinarith [sq_nonneg (b : ℝ), sq_nonneg (c : ℝ), sq_nonneg (a : ℝ),
+      mul_self_nonneg (b * m), mul_self_nonneg (c * n),
+      mul_self_nonneg (b * m - c * n), mul_self_nonneg (b * n - c * m),
+      mul_self_nonneg (b * n + c * m)]
+  have h₁₃ : c = 0 := by
+    apply eq_of_sub_eq_zero
+    nlinarith [sq_nonneg (c : ℝ), sq_nonneg (b : ℝ), sq_nonneg (a : ℝ),
+      mul_self_nonneg (c * n), mul_self_nonneg (b * m),
+      mul_self_nonneg (b * m - c * n), mul_self_nonneg (b * n - c * m),
+      mul_self_nonneg (b * n + c * m)]
+  exact ⟨by exact_mod_cast h₁
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 35.5697922706604 / 10.05374026298523 / 45.62353253364563
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := by positivity
+  have h₇ : 0 < m * n * m := by positivity
+  have h₈ : 0 < m * n * n := by positivity
+  have h₉ : 0 < m * n * m * n := by positivity
+  have h₁₀ : 0 < m * n * m * n * m := by positivity
+  have h₁₁ : 0 < m * n * m * n * n := by positivity
+  have h₁₂ : 0 < m * n * m * n * m * n := by positivity
+  -- We use the fact that the cube roots of 2 and 4 are positive to derive a contradiction unless a = b = c = 0.
+  have h₁₃ : a = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b : ℝ), sq_nonneg (c : ℝ),
+      sq_nonneg (a + b * m + c * n), sq_nonneg (a - b * m), sq_nonneg (a - c * n),
+      sq_nonneg (b * m - c * n), Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 4 by norm_num)]
+  have h₁₄ : b = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b : ℝ), sq_nonneg (c : ℝ),
+      sq_nonneg (a + b * m + c * n), sq_nonneg (a - b * m), sq_nonneg (a - c * n),
+      sq_nonneg (b * m - c * n), Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 4 by norm_num)]
+  have h₁₅ : c = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b : ℝ)
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 32.21296286582947 / 6.743333339691162 / 38.95629620552063
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := mul_pos h₄ h₅
+  have h₇ : 0 < m * n * m := mul_pos (mul_pos h₄ h₅) h₄
+  have h₈ : 0 < m * n * n := mul_pos (mul_pos h₄ h₅) h₅
+  have h₉ : (a:ℝ) + b * m + c * n = 0 := by exact_mod_cast h₃
+  have h₁₀ : (a:ℝ) = -(b * m + c * n) := by linarith
+  have h₁₁ : a = 0 := by
+    norm_cast at h₁₀
+    have h₁₂ : a = 0 := by
+      nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n),
+        sq_nonneg (b * n + c * m), sq_nonneg (b * n - c * m),
+        sq_nonneg (b * m + c * n - 0), sq_nonneg (b * m + c * n + 0)]
+    exact h₁₂
+  have h₁₂ : b = 0 := by
+    norm_cast at h₁₀
+    have h₁₃ : b = 0 := by
+      nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n),
+        sq_nonneg (b * n + c * m), sq_nonneg (b * n - c * m),
+        sq_nonneg (b * m + c * n - 0), sq_nonneg (b * m + c * n + 0)]
+    exact h₁₃
+  have h₁₃ : c = 0 := by
+    norm_cast at h₁₀
+    have h₁₄ : c = 0 := by
+      nlinarith [sq_nonneg (b * m + c * n), sq_nonneg (b * m - c * n),
+        sq_nonneg (b * n + c * m), sq_nonneg (b * n - c * m),
+        sq_nonneg (b * m + c * n - 0), sq_nonneg (b * m + c * n + 0)]
+    exact h₁₄
+  exact ⟨h₁₁, h₁₂, h₁₃⟩
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 25.022852897644043 / 6.146559476852417 / 31.16941237449646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := by positivity
+  have h₇ : 0 < m * n * m := by positivity
+  have h₈ : 0 < m * n * n := by positivity
+  have h₉ : 0 < m * n * m * n := by positivity
+  have h₁₀ : 0 < m * n * m * n * m := by positivity
+  have h₁₁ : 0 < m * n * m * n * n := by positivity
+  have h₁₂ : a = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      sq_nonneg (b * m - c * n), sq_nonneg (b * m + c * n)]
+  have h₁₃ : b = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      sq_nonneg (b * m - c * n), sq_nonneg (b * m + c * n)]
+  have h₁₄ : c = 0 := by
+    norm_cast at h₃
+    nlinarith [sq_nonneg (a : ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      sq_nonneg (b * m - c * n), sq_nonneg (b * m + c * n)]
+  exact ⟨h₁₂, h₁₃, h₁₄⟩
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.88320016860962 / 5.31090784072876 / 29.19410800933838
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbmpcneq0_aeq0anbeq0anceq0
+  (a b c : ℚ)
+  (m n : ℝ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : m^3 = 2)
+  (h₂ : n^3 = 4)
+  (h₃ : (a:ℝ) + b * m + c * n = 0) :
+  a = 0 ∧ b = 0 ∧ c = 0 := by
+  have h₄ : 0 < m := by linarith
+  have h₅ : 0 < n := by linarith
+  have h₆ : 0 < m * n := mul_pos h₄ h₅
+  have h₇ : 0 < m * n * m := by positivity
+  have h₈ : 0 < m * n * n := by positivity
+  have h₉ : (a:ℝ) + b * m + c * n = 0 := by exact_mod_cast h₃
+  have h₁₀ : a = 0 := by
+    norm_cast at h₉
+    nlinarith [sq_nonneg (a:ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      sq_nonneg (b * m - c * n), sq_nonneg (b * m + c * n)]
+  have h₁₁ : b = 0 := by
+    norm_cast at h₉
+    nlinarith [sq_nonneg (a:ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      sq_nonneg (b * m - c * n), sq_nonneg (b * m + c * n)]
+  have h₁₂ : c = 0 := by
+    norm_cast at h₉
+    nlinarith [sq_nonneg (a:ℝ), sq_nonneg (b * m), sq_nonneg (c * n),
+      sq_nonneg (b * m - c * n), sq_nonneg (b * m + c * n)]
+  exact ⟨h₁₀, h₁₁, h₁₂⟩
+

@@ -1,0 +1,22 @@
+Problem: problem_0429
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.880331039428711
+Lean check time (s): 4.6027703285217285
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_159
+  (b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 3 * x^4 - 7 * x^3 + 2 * x^2 - b * x + 1)
+  (h₁ : f 1 = 1) :
+  b = -2 := by
+  have h₂ := h₀ 1
+  simp_all only [h₁, one_pow, mul_one, sub_eq_add_neg, neg_mul, neg_neg, neg_add_eq_sub]
+  linarith

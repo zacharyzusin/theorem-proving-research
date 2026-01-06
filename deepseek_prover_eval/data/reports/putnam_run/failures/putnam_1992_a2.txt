@@ -1,0 +1,174 @@
+Problem: putnam_1992_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.263282060623169 / 20.22521471977234 / 28.488496780395508
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  rw [hC]
+  simp [taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.696982622146606 / 32.86753869056702 / 42.56452131271362
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  simp_all [taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> simp_all [Finset.sum_Icc_succ_top]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.775978088378906 / 23.698628664016724 / 32.47460675239563
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  rw [hC]
+  simp_all [taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.842012405395508 / 28.901700019836426 / 37.743712425231934
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  rw [hC]
+  simp_all [taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.684622526168823 / 19.183366298675537 / 27.86798882484436
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  rw [hC]
+  simp_all [taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.533665418624878 / 21.81140160560608 / 30.345067024230957
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  simp_all [hC, taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> ring_nf
+  <;> field_simp
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.658669233322144 / 13.432674646377563 / 22.091343879699707
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  simp_all [hC, taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.705342054367065 / 12.432064056396484 / 23.13740611076355
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a2
+(C : ℝ → ℝ)
+(hC : C = fun α ↦ taylorCoeffWithin (fun x ↦ (1 + x) ^ α) 1992 Set.univ 0)
+: (∫ y in (0)..1, C (-y - 1) * ∑ k ∈ Finset.Icc (1 : ℕ) 1992, 1 / (y + k) = putnam_1992_a2_solution) := by
+  rw [hC]
+  simp_all [taylorCoeffWithin, mul_comm]
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> simp_all [Finset.sum_range_succ, mul_add, mul_comm, mul_left_comm]
+  <;> norm_num
+  <;> linarith

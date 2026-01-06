@@ -1,0 +1,329 @@
+Problem: putnam_1976_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 61.266032218933105 / 55.09316873550415 / 116.35920095443726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [Set.mem_setOf_eq, putnam_1976_a3_solution, Set.mem_insert_iff, Set.mem_singleton_iff]
+  constructor
+  -- We need to show that the only solutions are (3, 2, 2, 3) and (2, 3, 3, 2).
+  · intro h
+    have h₁ := h.1
+    have h₂ := h.2.1
+    have h₃ := h.2.2.1
+    have h₄ := h.2.2.2.1
+    have h₅ := h.2.2.2.2
+    -- We will check each possible value of p, q, r, and s to see if they satisfy the equation.
+    have h₆ : p > 1 := Nat.Prime.one_lt h₁
+    have h₇ : q > 1 := Nat.Prime.one_lt h₂
+    have h₈ : r > 1 := h₃
+    have h₉ : s > 1 := h₄
+    -- We will use the fact that p, q, r, and s are primes and greater than 1 to narrow down the possibilities.
+    have h₁₀ : p^r = q^s ± 1 := by
+      rw [← Int.ofNat_inj] at h₅
+      simp_all [abs_eq_max_neg]
+      <;> omega
+    -- We will check each possible value of p, q, r, and s to see if they satisfy the equation.
+    have h₁₁ : p = 2 ∨ p = 3 := by
+      -- Since p is a prime and greater than 1, it must be either 2 or 3.
+      have : p ≤ 3 := by
+        by_contra! h
+        have : p ≥ 4 := by linarith
+        have : p^r ≥ 4^r := Nat.pow_le_pow_of_le_left (by linarith) r
+        have : q^s ≥ 2^s := Nat.pow_le_pow_of_le_left (by linarith) s
+        have : 4^r > q^s := by
+        
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 68.86332654953003 / 135.04737520217896 / 203.91070175170898
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  constructor
+  · intro h
+    simp only [putnam_1976_a3_solution, Set.mem_setOf_eq] at h ⊢
+    -- We need to show that the only solutions are (3, 2, 2, 3) and (2, 3, 3, 2)
+    -- We will check each possible value of p, q, r, and s to see if it satisfies the equation
+    have h₁ := h.1
+    have h₂ := h.2.1
+    have h₃ := h.2.2.1
+    have h₄ := h.2.2.2.1
+    have h₅ := h.2.2.2.2
+    -- We will use the fact that p, q are prime and r, s are greater than 1 to narrow down the possibilities
+    have h₆ : p > 1 := Nat.Prime.one_lt h₁
+    have h₇ : q > 1 := Nat.Prime.one_lt h₂
+    have h₈ : r > 1 := h₃
+    have h₉ : s > 1 := h₄
+    -- We will consider the possible values of p and q and see if there are any valid combinations
+    have h₁₀ : p ≤ 10 := by
+      by_contra! h₁₁
+      have h₁₂ : p ≥ 11 := by linarith
+      have h₁₃ : q ≤ 10 := by
+        by_contra! h₁₄
+        have h₁₅ : q ≥ 11 := by linarith
+        have h₁₆ : |(p^r : ℤ) - q^s| = 1 := h₅
+        have h₁₇ : (p^r : ℤ) - q^s = 1 ∨ (p^r : ℤ) - q^s = -1 := by
+          rw [abs_eq_max_neg] at h₁₆
+          omega
+        have h₁₈ : (p^r : ℤ) > q^s := by
+          have h₁₉ : (p : ℤ)^r > q^s := by
+            norm_cast
+            exact calc
+              q^s < p^s := by
+           
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 37.989370822906494 / 27.969937324523926 / 65.95930814743042
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [putnam_1976_a3_solution, Set.mem_setOf_eq, Prod.exists]
+  constructor
+  -- We need to show that the only solutions are (3, 2, 2, 3) and (2, 3, 3, 2)
+  · rintro ⟨hp, hq, hr, hs, h⟩
+    -- We will check each possible value of p, q, r, s to see if it satisfies the conditions
+    have h1 : p > 1 := Nat.Prime.one_lt hp
+    have h2 : q > 1 := Nat.Prime.one_lt hq
+    have h3 : r > 1 := hr
+    have h4 : s > 1 := hs
+    -- We will use the fact that p and q are primes and r and s are greater than 1 to narrow down the possibilities
+    have h5 : p^r > 0 := pow_pos (Nat.Prime.pos hp) r
+    have h6 : q^s > 0 := pow_pos (Nat.Prime.pos hq) s
+    -- We will use the fact that the absolute difference of the powers is 1
+    have h7 : |(p^r : ℤ) - q^s| = 1 := h
+    -- We will consider the cases where the difference is 1 and -1
+    have h8 : (p^r : ℤ) - q^s = 1 ∨ (p^r : ℤ) - q^s = -1 := by
+      rw [abs_eq_max_neg] at h7
+      -- We will consider the two cases for the maximum function
+      rcases max_cases ((p^r : ℤ) - q^s) (-((p^r : ℤ) - q^s)) with (h8 | h8) <;> simp_all [neg_neg]
+      <;> omega
+    -- We will now check each case to see if it leads to a valid solution
+    rcases h8 with (h8 | h8) <;> simp_all [sub_eq_add_neg, add_c
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 75.4734194278717 / 71.71092319488525 / 147.18434262275696
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [Set.mem_setOf_eq, putnam_1976_a3_solution, Set.mem_insert_iff, Set.mem_singleton_iff]
+  constructor
+  -- Case 1: Prove that if (p, r, q, s) satisfies the equation, then it must be one of the two given solutions.
+  · intro h
+    rcases h with ⟨hp, hq, hr, hs, h⟩
+    -- We need to show that (p, r, q, s) is either (3, 2, 2, 3) or (2, 3, 3, 2).
+    have h1 : p = 2 ∨ p = 3 := by
+      -- Since p is a prime and the equation involves p^r, we can deduce that p must be either 2 or 3.
+      have : p ≤ 3 := by
+        by_contra! h'
+        have : p ≥ 4 := by linarith
+        have : (p : ℤ) ^ r ≥ 4 ^ r := by gcongr <;> norm_cast <;> linarith
+        have : q ^ s ≥ 2 ^ s := by
+          have : q ≥ 2 := by linarith [Nat.Prime.two_le hq]
+          have : (q : ℤ) ^ s ≥ 2 ^ s := by
+            exact_mod_cast Nat.pow_le_pow_of_le_left (by linarith) s
+          linarith
+        have : |(p : ℤ) ^ r - q ^ s| ≥ 4 ^ r - 2 ^ s := by
+          have : |(p : ℤ) ^ r - q ^ s| ≥ 4 ^ r - 2 ^ s := by
+            have : (4 : ℤ) ^ r - 2 ^ s ≤ |(p : ℤ) ^ r - q ^ s| := by
+              have : (4 : ℤ) ^ r ≤ (p : ℤ) ^ r := by
+                exact_mod_cast Nat.pow_le_pow_of_le_left (by linarith) r
+              have : (2 : ℤ) ^ s ≥ 2 ^ s := by linarit
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 51.448407888412476 / 42.0356388092041 / 93.48404669761658
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [Set.mem_setOf_eq, putnam_1976_a3_solution, Set.mem_insert_iff, Set.mem_singleton_iff]
+  constructor
+  -- We need to show that the only solutions are the pairs (3, 2, 2, 3) and (2, 3, 3, 2).
+  · intro h
+    have h₁ := h.1
+    have h₂ := h.2.1
+    have h₃ := h.2.2.1
+    have h₄ := h.2.2.2.1
+    have h₅ := h.2.2.2.2
+    -- We will check each possible value of p, q, r, and s to see if it satisfies the equation.
+    have h₆ : p > 1 := Nat.Prime.one_lt h₁
+    have h₇ : q > 1 := Nat.Prime.one_lt h₂
+    have h₈ : r > 1 := h₃
+    have h₉ : s > 1 := h₄
+    -- We will use the fact that p, q, r, and s are primes and greater than 1 to narrow down the possibilities.
+    have h₁₀ : p ≤ 10 := by
+      by_contra! h₁₀
+      -- If p > 10, then p^r would be too large to satisfy the equation.
+      have : p^r ≥ p^2 := Nat.pow_le_pow_of_le_right (by linarith) (by linarith)
+      have : q^s ≥ q^2 := Nat.pow_le_pow_of_le_right (by linarith) (by linarith)
+      have : |(p^r : ℤ) - q^s| ≥ p^2 - q^2 := by
+        cases' le_total (p^r : ℤ) (q^s) with h h <;> simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+          nlinarith
+      have : p^2 - q^2 ≥ 2 := by
+        have : p^2 ≥ 4 := by nlinarith
+        have : q^2 ≥ 4 := 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 54.2252631187439 / 50.3806688785553 / 104.6059319972992
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [putnam_1976_a3_solution, Set.mem_setOf_eq, Prod.exists]
+  constructor
+  -- We need to show that the only solutions are (3, 2, 2, 3) and (2, 3, 3, 2).
+  · rintro ⟨hp, hq, hr, hs, h⟩
+    -- We will check each possible value of p, q, r, and s to see if it satisfies the equation.
+    have h₁ : p > 1 := Nat.Prime.one_lt hp
+    have h₂ : q > 1 := Nat.Prime.one_lt hq
+    have h₃ : r > 1 := hr
+    have h₄ : s > 1 := hs
+    -- We will use the fact that if p and q are primes and r, s > 1, then the equation |p^r - q^s| = 1 can only hold in very specific cases.
+    have h₅ : p^r = q^s ± 1 := by
+      rw [← Int.ofNat_inj] at h
+      simp_all [abs_eq_max_neg]
+      <;> omega
+    -- We will check each possible value of p, q, r, and s to see if it satisfies the equation.
+    have h₆ : p^r = q^s ± 1 := by omega
+    -- We will check each possible value of p, q, r, and s to see if it satisfies the equation.
+    have h₇ : p = 2 ∧ q = 2 ∧ r = 3 ∧ s = 2 ∨ p = 3 ∧ q = 2 ∧ r = 2 ∧ s = 3 := by
+      -- We will check each possible value of p, q, r, and s to see if it satisfies the equation.
+      have h₈ : p ≤ 4 := by
+        by_contra! h₉
+        have h₁₀ : p^r ≥ 4^r := Nat.pow_le_pow_of_le_left (by linarith) r
+        have h₁₁ : q^s ≥ 2^
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 71.19366073608398 / 27.462031602859497 / 98.65569233894348
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [putnam_1976_a3_solution, Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+  constructor
+  · intro h
+    rcases h with ⟨hp, hq, hr, hs, h⟩
+    -- We need to show that the only solutions are (3, 2, 2, 3) and (2, 3, 3, 2)
+    have h1 : p = 2 ∨ p = 3 := by
+      -- Since p is prime and we are looking for small values, we check p = 2 and p = 3
+      have : p ≤ 3 := by
+        by_contra! h'
+        -- If p > 3, then p^r for r > 1 and q^s for s > 1 would grow rapidly, making |p^r - q^s| > 1
+        have : p^r ≥ 2^r := by
+          apply Nat.pow_le_pow_of_le_left
+          linarith [Nat.Prime.two_le hp]
+        have : q^s ≥ 2^s := by
+          apply Nat.pow_le_pow_of_le_left
+          linarith [Nat.Prime.two_le hq]
+        have : |(p^r : ℤ) - q^s| = 1 := by assumption_mod_cast
+        have : (p^r : ℤ) - q^s = 1 ∨ (p^r : ℤ) - q^s = -1 := by
+          rw [← Int.ofNat_inj] at this
+          simp_all [abs_eq_max_neg]
+          <;> omega
+        cases this with
+        | inl h =>
+          have : p^r = q^s + 1 := by omega
+          have : q^s < p^r := by omega
+          have : q^s ≥ 2^s := by assumption
+          have : p^r ≥ 2^r := by assumption
+          have : 2^s < 2^r := by
+            apply Nat.pow_lt_pow_of_
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 39.337199449539185 / 23.255919933319092 / 62.593119382858276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a3
+: {(p, r, q, s) : ℕ × ℕ × ℕ × ℕ | Nat.Prime p ∧ Nat.Prime q ∧ r > 1 ∧ s > 1 ∧ |(p^r : ℤ) - q^s| = 1} = putnam_1976_a3_solution := by
+  ext ⟨p, r, q, s⟩
+  simp only [putnam_1976_a3_solution, Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+  constructor
+  -- First, we show that if (p, r, q, s) is in the set, then it must be one of the two solutions.
+  · intro h
+    have h₁ := h.1
+    have h₂ := h.2.1
+    have h₃ := h.2.2.1
+    have h₄ := h.2.2.2.1
+    have h₅ := h.2.2.2.2
+    -- We use the fact that p, q are prime and r, s are greater than 1 to narrow down the possibilities.
+    have h₆ : p > 1 := Nat.Prime.one_lt h₁
+    have h₇ : q > 1 := Nat.Prime.one_lt h₂
+    have h₈ : r > 1 := h₃
+    have h₉ : s > 1 := h₄
+    -- We use the fact that the absolute difference between p^r and q^s is 1 to narrow down the possibilities.
+    have h₁₀ : |(p^r : ℤ) - q^s| = 1 := h₅
+    -- We use the fact that p, q are prime and r, s are greater than 1 to narrow down the possibilities.
+    have h₁₁ : (p^r : ℤ) - q^s = 1 ∨ (p^r : ℤ) - q^s = -1 := by
+      rw [← Int.ofNat_inj] at h₁₀
+      norm_cast at h₁₀
+      simp_all [abs_eq_max_neg]
+      <;> omega
+    -- We consider the two cases separately.
+    rcases h₁₁ with (h₁₁ | h₁₁) <;> simp_all [sub_eq_neg_add, add_comm]
+    <;> norm_cast
+    <;> omega
+  -- Next, we show that if (p, r, q, s) is one of the two solutions, then it is in the set
+... [truncated] ...

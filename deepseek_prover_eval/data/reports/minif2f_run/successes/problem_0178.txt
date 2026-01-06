@@ -1,0 +1,30 @@
+Problem: problem_0178
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.993605613708496
+Lean check time (s): 2.7251336574554443
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_513
+  (a b : ℝ)
+  (h₀ : 3 * a + 2 * b = 5)
+  (h₁ : a + b = 2) :
+  a = 1 ∧ b = 1 := by
+  have h₂ : a = 1 := by
+    -- We use the given equations to solve for `a`.
+    -- First, we express `b` in terms of `a` using the second equation.
+    have : b = 2 - a := by linarith
+    -- Substitute `b = 2 - a` into the first equation and solve for `a`.
+    rw [this] at h₀
+    linarith
+  have h₃ : b = 1 := by
+    -- Substitute `a = 1` into the second equation to find `b`.
+    linarith
+  -- Combine the results to get the final answer.
+  exact ⟨h₂, h₃⟩

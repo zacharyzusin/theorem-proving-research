@@ -1,0 +1,266 @@
+Problem: problem_0432
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.351935148239136 / 13.262471675872803 / 35.61440682411194
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg _
+  have h₃ : abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    exact abs_sum_le_sum_abs _ _
+  have h₄ : 19 + abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    linarith [h₁]
+  have h₅ : 19 ≤ ∑ k in Finset.range n, abs (a k) := by
+    linarith
+  have h₆ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith
+  have h₇ : n ≥ 20 := by
+    contrapose! h₆
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_of_nonneg, abs_of_nonpos, le_of_lt]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.272884368896484 / 14.50728154182434 / 36.780165910720825
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg (a i)
+  have h₃ : abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    exact abs_sum_le_sum_abs _ _
+  have h₄ : 19 + abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    linarith
+  have h₅ : 19 ≤ ∑ k in Finset.range n, abs (a k) := by
+    linarith
+  have h₆ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith
+  have h₇ : n ≥ 20 := by
+    contrapose! h₆
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_add, abs_mul, abs_div, abs_sub, abs_neg]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.305894136428833 / 13.334939956665039 / 35.64083409309387
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg (a i)
+  have h₃ : abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    exact abs_sum_le_sum_abs _ _
+  have h₄ : 19 + abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    linarith
+  have h₅ : 19 ≤ ∑ k in Finset.range n, abs (a k) := by
+    linarith
+  have h₆ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith
+  have h₇ : n ≥ 20 := by
+    contrapose! h₆
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_of_nonneg, abs_of_nonpos, le_of_lt]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.887163639068604 / 13.08340048789978 / 33.970564126968384
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg _
+  have h₃ : abs (∑ k in Finset.range n, a k) ≥ 0 := abs_nonneg _
+  have h₄ : ∑ k in Finset.range n, abs (a k) ≥ 19 + abs (∑ k in Finset.range n, a k) := by
+    linarith [h₁]
+  have h₅ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith [h₄, abs_nonneg (∑ k in Finset.range n, a k)]
+  have h₆ : n ≥ 20 := by
+    contrapose! h₅
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_of_nonneg, abs_of_nonpos, le_of_lt]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.82187032699585 / 13.5868239402771 / 33.40869426727295
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg _
+  have h₃ : abs (∑ k in Finset.range n, a k) ≥ 0 := abs_nonneg _
+  have h₄ : ∑ k in Finset.range n, abs (a k) ≥ 19 + abs (∑ k in Finset.range n, a k) := by
+    linarith
+  have h₅ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith
+  have h₆ : n ≥ 20 := by
+    contrapose! h₅
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_of_nonneg, abs_of_nonpos, le_of_lt]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.72510004043579 / 13.079317808151245 / 34.804417848587036
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg (a i)
+  have h₃ : 0 ≤ abs (∑ k in Finset.range n, a k) := by
+    apply abs_nonneg
+  have h₄ : ∑ k in Finset.range n, abs (a k) ≥ 19 + abs (∑ k in Finset.range n, a k) := by
+    linarith [h₁]
+  have h₅ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith [h₄, h₃]
+  have h₆ : n ≥ 20 := by
+    contrapose! h₅
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_add, abs_sub_comm, abs_mul,
+      abs_of_nonneg, abs_of_nonpos, le_of_lt, Nat.cast_ofNat]
+    <;> norm_num
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.346134901046753 / 13.674267530441284 / 35.02040243148804
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg _
+  have h₃ : abs (∑ k in Finset.range n, a k) ≤ ∑ k in Finset.range n, abs (a k) := by
+    exact (abs_sum_le_sum_abs _ _).trans (by simp)
+  have h₄ : ∑ k in Finset.range n, abs (a k) ≥ 19 + abs (∑ k in Finset.range n, a k) := by
+    linarith [h₁]
+  have h₅ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by linarith [h₄]
+  have h₆ : n ≥ 20 := by
+    contrapose! h₅
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_of_nonneg, abs_of_nonpos, le_of_lt]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.110628128051758 / 13.08978271484375 / 33.20041084289551
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p4
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, abs (a n) < 1)
+  (h₁ : ∑ k in Finset.range n, (abs (a k)) = 19 + abs (∑ k in Finset.range n, a k)) :
+  20 ≤ n := by
+  have h₂ : 0 ≤ ∑ k in Finset.range n, abs (a k) := by
+    apply Finset.sum_nonneg
+    intro i _
+    exact abs_nonneg _
+  have h₃ : abs (∑ k in Finset.range n, a k) ≥ 0 := abs_nonneg _
+  have h₄ : ∑ k in Finset.range n, abs (a k) ≥ 19 + abs (∑ k in Finset.range n, a k) := by
+    linarith [h₁]
+  have h₅ : ∑ k in Finset.range n, abs (a k) ≥ 19 := by
+    linarith [h₄]
+  have h₆ : n ≥ 20 := by
+    contrapose! h₅
+    interval_cases n <;> simp_all [Finset.sum_range_succ, abs_of_nonneg, abs_of_nonpos, le_of_lt]
+    <;> linarith [h₀ 0, h₀ 1, h₀ 2, h₀ 3, h₀ 4, h₀ 5, h₀ 6, h₀ 7, h₀ 8, h₀ 9, h₀ 10, h₀ 11, h₀ 12, h₀ 13, h₀ 14, h₀ 15, h₀ 16, h₀ 17, h₀ 18, h₀ 19]
+  linarith
+

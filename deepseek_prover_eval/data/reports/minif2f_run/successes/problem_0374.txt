@@ -1,0 +1,50 @@
+Problem: problem_0374
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 20.846176147460938
+Lean check time (s): 2.9040238857269287
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_22
+  (b : ℕ)
+  (h₀ : b < 10)
+  (h₁ : Nat.sqrt (10 * b + 6) * Nat.sqrt (10 * b + 6) = 10 * b + 6) :
+  b = 3 ∨ b = 1 := by
+  have h₂ : b ≤ 9 := by linarith
+  interval_cases b <;> norm_num at h₁ ⊢
+  <;>
+  (try decide) <;>
+  (try {
+    have h₃ : Nat.sqrt (10 * b + 6) = 10 * b + 6 := by
+      nlinarith [Nat.sqrt_le (10 * b + 6), Nat.sqrt_le (10 * b + 6)]
+    nlinarith
+  }) <;>
+  (try {
+    have h₃ : Nat.sqrt (10 * b + 6) = 0 := by
+      nlinarith [Nat.sqrt_le (10 * b + 6), Nat.sqrt_le (10 * b + 6)]
+    nlinarith
+  })
+  <;>
+  (try {
+    have h₃ : Nat.sqrt (10 * b + 6) ≤ 10 * b + 6 := by
+      nlinarith [Nat.sqrt_le (10 * b + 6)]
+    nlinarith
+  })
+  <;>
+  (try {
+    have h₃ : Nat.sqrt (10 * b + 6) < 10 * b + 7 := by
+      nlinarith [Nat.sqrt_le (10 * b + 6)]
+    nlinarith
+  })
+  <;>
+  (try {
+    have h₃ : Nat.sqrt (10 * b + 6) = 10 * b + 6 := by
+      nlinarith [Nat.sqrt_le (10 * b + 6), Nat.sqrt_le (10 * b + 6)]
+    nlinarith
+  })

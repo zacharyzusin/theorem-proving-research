@@ -1,0 +1,134 @@
+Problem: putnam_1992_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.607228755950928 / 10.09099817276001 / 32.69822692871094
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 30.21045446395874 / 13.531681776046753 / 43.74213624000549
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 56.967636585235596 / 16.244787216186523 / 73.21242380142212
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 32.02418756484985 / 12.870083808898926 / 44.89427137374878
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.583964109420776 / 22.914326190948486 / 52.49829030036926
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 37.85977101325989 / 12.019301414489746 / 49.879072427749634
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 43.66891860961914 / 15.860802173614502 / 59.52972078323364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 39.577566385269165 / 11.201900482177734 / 50.7794668674469
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b1
+  (n : ℕ) (hn : n ≥ 2)
+  (A : Finset ℝ → Set ℝ)
+  (hA : A = fun S ↦ {x | ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧ (a + b) / 2 = x}) :
+  IsLeast {k : ℤ | ∃ S : Finset ℝ, S.card = n ∧ k = (A S).ncard} (putnam_1992_b1_solution n) :=
+sorry

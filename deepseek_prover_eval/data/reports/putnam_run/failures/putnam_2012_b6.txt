@@ -1,0 +1,296 @@
+Problem: putnam_2012_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.19444251060486 / 7.3191938400268555 / 23.513636350631714
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpprime.eq_one_or_self_of_dvd 2
+  have h2 := hpprime.eq_one_or_self_of_dvd 3
+  have h3 := hpprime.eq_one_or_self_of_dvd 4
+  have h4 : p % 3 = 2 := by
+    rw [Nat.ModEq] at hpmod3
+    omega
+  have h5 : p % 4 = 1 ∨ p % 4 = 3 := by
+    have h := hpodd
+    cases' h with k hk
+    have h₁ := hk
+    have h₂ := hpmod3
+    have h₃ := hpprime
+    omega
+  have h6 : Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+    simp_all [Equiv.Perm.signAux, Fin.val_succ, Nat.ModEq, Nat.ModEq]
+    <;>
+    rcases h5 with (h5 | h5) <;>
+    simp_all [Nat.ModEq, Nat.ModEq] <;>
+    omega
+  exact h6
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.913291931152344 / 5.591096878051758 / 20.5043888092041
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h₁ := hpprime.eq_one_or_self_of_dvd 2
+  have h₂ := hpprime.eq_one_or_self_of_dvd 3
+  have h₃ := hpprime.eq_one_or_self_of_dvd 4
+  have h₄ : p % 3 = 2 := by
+    rw [Nat.ModEq] at hpmod3
+    omega
+  have h₅ : p % 4 = 1 ∨ p % 4 = 3 := by
+    have h₅ := hpodd
+    cases' h₅ with k h₅
+    have h₆ := hpprime
+    have h₇ : p % 4 = 1 ∨ p % 4 = 3 := by
+      have h₈ := hpprime.eq_one_or_self_of_dvd 4
+      omega
+    exact h₇
+  simp_all [Equiv.Perm.signAux, Fin.prod_univ_succ, Nat.ModEq, Nat.ModEq]
+  <;>
+  omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.31758952140808 / 7.02925181388855 / 24.34684133529663
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpprime.eq_one_or_self_of_dvd 2
+  have h2 := hpprime.eq_one_or_self_of_dvd 3
+  have h3 := hpprime.eq_one_or_self_of_dvd 4
+  have h4 := hpprime.eq_one_or_self_of_dvd 5
+  have h5 : p % 3 = 2 := by
+    rw [Nat.ModEq] at hpmod3
+    omega
+  have h6 : p % 4 = 1 ∨ p % 4 = 3 := by
+    have h7 := Nat.Prime.eq_one_or_self_of_dvd hpprime 4
+    have h8 := Nat.Prime.eq_one_or_self_of_dvd hpprime 2
+    have h9 := Nat.Prime.eq_one_or_self_of_dvd hpprime 1
+    omega
+  simp_all [Equiv.Perm.signAux, Fin.prod_univ_succ, Nat.ModEq, Nat.ModEq]
+  <;>
+  rcases p with (_ | _ | _ | _ | _ | _ | _ | _ | _ | _) <;>
+  simp_all (config := {decide := true})
+  <;>
+  omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.220874309539795 / 5.600855588912964 / 19.82172989845276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpprime.eq_one_or_self_of_dvd 2
+  have h2 := hpprime.eq_one_or_self_of_dvd 3
+  have h3 := hpprime.eq_one_or_self_of_dvd 4
+  have h4 : p % 3 = 2 := by
+    rw [Nat.ModEq] at hpmod3
+    omega
+  have h5 : p % 4 = 1 ∨ p % 4 = 3 := by
+    have h := hpodd
+    cases' h with k hk
+    have h6 : p % 4 = 1 ∨ p % 4 = 3 := by
+      have h7 : p % 4 = 1 ∨ p % 4 = 3 := by
+        omega
+      omega
+    omega
+  simp_all [Equiv.Perm.signAux, Fin.val_zero, Nat.ModEq, Nat.ModEq]
+  <;>
+  omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.621730327606201 / 7.110958576202393 / 20.732688903808594
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpprime.eq_one_or_self_of_dvd 2
+  have h2 := hpprime.eq_one_or_self_of_dvd 3
+  have h3 := hpodd
+  have h4 := hpmod3
+  have h5 : p % 3 = 2 := by
+    rw [Nat.ModEq] at hpmod3
+    omega
+  have h6 : p % 4 = 1 ∨ p % 4 = 3 := by
+    have h7 := hpprime.eq_one_or_self_of_dvd 4
+    omega
+  simp_all [Equiv.Perm.signAux, Fin.val_zero, Nat.ModEq, Nat.ModEq]
+  <;>
+  rcases h6 with (h6 | h6) <;>
+  simp_all [Nat.ModEq, Nat.ModEq]
+  <;>
+  omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.862290859222412 / 6.6546385288238525 / 24.516929388046265
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpodd
+  have h2 := hpprime
+  have h3 := hpmod3
+  have h4 := hP
+  cases' h1 with k hk
+  have h5 : p % 4 = 3 := by
+    have h6 := h3
+    rw [Nat.ModEq] at h6
+    have h7 := Nat.Prime.eq_one_or_self_of_dvd h2 2
+    have h8 := Nat.Prime.eq_one_or_self_of_dvd h2 3
+    have h9 := Nat.Prime.eq_one_or_self_of_dvd h2 4
+    omega
+  have h6 : Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+    simp_all [Nat.ModEq, Equiv.Perm.signAux, Equiv.Perm.sign, Fin.val_zero]
+    <;>
+    rcases p with (_ | _ | _ | _ | p) <;>
+    simp_all [Nat.Prime, Nat.succ_pos, Nat.zero_lt_one, Nat.one_lt_iff_ne_zero_and_ne_one] <;>
+    norm_num <;>
+    ring_nf <;>
+    omega
+  exact h6
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.788334369659424 / 5.103391647338867 / 17.89172601699829
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpprime.eq_two_or_odd
+  have h2 : p ≠ 2 := by
+    rintro rfl
+    norm_num [Nat.ModEq, Nat.ModEq] at hpmod3
+  have h3 : p % 2 = 1 := by
+    cases' h1 with h1 h1 <;> simp_all [Nat.ModEq, Nat.ModEq]
+    <;> omega
+  have h4 : p ≡ 1 [MOD 2] := by
+    rw [Nat.ModEq]
+    omega
+  simp_all [Nat.ModEq, Nat.ModEq]
+  <;>
+  rcases p with (_ | _ | _ | _) <;>
+  simp_all (config := {decide := true})
+  <;>
+  omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.31184983253479 / 9.052114248275757 / 26.363964080810547
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b6
+(p : ℕ)
+(hpodd : Odd p)
+(hpprime : Nat.Prime p)
+(hpmod3 : p ≡ 2 [MOD 3])
+(P : Equiv.Perm (Fin p))
+(hP : ∀ i : Fin p, P i = (i * i * i))
+: Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+  have h1 := hpprime.eq_one_or_self_of_dvd 2
+  have h2 := hpprime.eq_one_or_self_of_dvd 3
+  have h3 := hpprime.eq_one_or_self_of_dvd 4
+  have h4 := hpprime.eq_one_or_self_of_dvd 5
+  have h5 : p % 3 = 2 := by
+    rw [Nat.ModEq] at hpmod3
+    omega
+  have h6 : p % 4 = 1 ∨ p % 4 = 3 := by
+    have h7 := Nat.Prime.eq_one_or_self_of_dvd hpprime 4
+    have h8 : p % 4 = 1 ∨ p % 4 = 3 := by
+      omega
+    exact h8
+  have h7 : Equiv.Perm.signAux P = 1 ↔ (p ≡ 3 [MOD 4]) := by
+    simp_all [Equiv.Perm.signAux, Nat.ModEq, Nat.ModEq]
+    <;>
+    cases p % 4 <;>
+    cases p % 3 <;>
+    simp_all (config := {decide := true})
+    <;>
+    omega
+  exact h7

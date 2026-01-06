@@ -1,0 +1,358 @@
+Problem: problem_0472
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.14566946029663 / 340.1024389266968 / 363.2481083869934
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, mul_comm] at h₃ h₄
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by exact_mod_cast h₃
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by exact_mod_cast h₄
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by exact_mod_cast h₉
+  have h₁₂ : m * n = k := by exact_mod_cast h₁₀
+  have h₁₃ : m ≤ 12 := by
+    linarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  have h₁₄ : n ≤ 12 := by
+    linarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  interval_cases m <;> interval_cases n <;> norm_num at h₁₁ h₁₂ <;> simp_all (config := {decide := true})
+  <;> nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.641786098480225 / 342.3044373989105 / 370.94622349739075
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, mul_comm] at h₃ h₄
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by exact_mod_cast h₃
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by exact_mod_cast h₄
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by exact_mod_cast h₉
+  have h₁₂ : m * n = k := by exact_mod_cast h₁₀
+  have h₁₃ : m < 12 := by
+    have : m ≤ 11 := by
+      have : m ≤ 11 := by
+        have : Nat.Prime m := h₀
+        have : m ≤ 11 := by
+          have : m < 12 := by
+            nlinarith [Nat.Prime.two_le h₀]
+          nlinarith
+        nlinarith
+      nlinarith
+    nlinarith
+  have h₁₄ : n < 12 := by
+    have : n ≤ 11 := by
+      have : n ≤ 11 := by
+        have : Nat.Prime n := h₁
+        have : n ≤ 11 := by
+          have : n < 12 := by
+            nlinarith [Nat.Prime.two_le h₁]
+          nlinarith
+        nlinarith
+      nlinarith
+    nlinarith
+  interval_cases m <;> interval_cases n <;> norm_num at h₁₁ h₁₂ ⊢ <;>
+    nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.16382122039795 / 337.8423366546631 / 361.00615787506104
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, h₃, h₄] at *
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by assumption_mod_cast
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by assumption_mod_cast
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by
+    exact_mod_cast h₉
+  have h₁₂ : m * n = k := by
+    exact_mod_cast h₁₀
+  have h₁₃ : m ≤ 12 := by
+    linarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  have h₁₄ : n ≤ 12 := by
+    linarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  interval_cases m <;> interval_cases n <;> norm_num at h₁₁ h₁₂ <;> simp_all (config := {decide := true})
+  <;> nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.52947998046875 / 339.2616558074951 / 366.79113578796387
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, mul_comm] at h₃ h₄
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by linarith
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by linarith
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by exact_mod_cast h₉
+  have h₁₂ : m * n = k := by exact_mod_cast h₁₀
+  have h₁₃ : m < 12 := by
+    have : m < 12 := by
+      have : m ≤ 11 := by
+        have : m ≤ 11 := by
+          have : Nat.Prime m := h₀
+          have : m ≥ 2 := Nat.Prime.two_le h₀
+          nlinarith
+        nlinarith
+      nlinarith
+    nlinarith
+  have h₁₄ : n < 12 := by
+    have : n < 12 := by
+      have : n ≤ 11 := by
+        have : n ≤ 11 := by
+          have : Nat.Prime n := h₁
+          have : n ≥ 2 := Nat.Prime.two_le h₁
+          nlinarith
+        nlinarith
+      nlinarith
+    nlinarith
+  interval_cases m <;> interval_cases n <;> norm_num at h₁₁ h₁₂ ⊢ <;> try contradiction
+  <;> nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.546023845672607 / 337.978289604187 / 360.5243134498596
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, mul_comm] at h₃ h₄
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by exact_mod_cast h₃
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by exact_mod_cast h₄
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by exact_mod_cast h₉
+  have h₁₂ : m ≤ 12 := by
+    linarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  have h₁₃ : n ≤ 12 := by
+    linarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  interval_cases m <;> interval_cases n <;> norm_num at h₁₁ h₁₂ h₁₃ <;>
+    simp_all (config := {decide := true})
+  <;> nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.042370080947876 / 342.3175427913666 / 365.35991287231445
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, mul_comm] at h₃ h₄
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by linarith
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by linarith
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by exact_mod_cast h₉
+  have h₁₂ : m ≤ 12 := by
+    linarith [h₁₁, Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  have h₁₃ : n ≤ 12 := by
+    linarith [h₁₁, Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ h₅ h₁₁ h₁₂ h₁₃ <;> norm_num [h₂] at h₃ h₄ h₆ h₇ h₁₀ <;> nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 25.328108310699463 / 600.1596810817719 / 625.4877893924713
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by simpa [h₂] using h₃
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by simpa [h₂] using h₄
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₈)]
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₈)]
+  have h₁₁ : m ≤ 12 := by
+    have h₁₂ : m ≤ 12 := by
+      have h₁₃ : m ≤ 12 := by
+        nlinarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+      exact h₁₃
+    exact h₁₂
+  have h₁₂ : n ≤ 12 := by
+    have h₁₃ : n ≤ 12 := by
+      nlinarith [Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+    exact h₁₃
+  interval_cases m <;> interval_cases n <;> norm_num at h₉ h₁₀ <;> simp_all (config := {decide := true})
+  <;> linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.44138741493225 / 339.6117584705353 / 363.05314588546753
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_482
+  (m n : ℕ)
+  (k : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : Nat.Prime m)
+  (h₁ : Nat.Prime n)
+  (h₂ : ∀ x, f x = x^2 - 12 * x + k)
+  (h₃ : f m = 0)
+  (h₄ : f n = 0)
+  (h₅ : m ≠ n) :
+  k = 35 := by
+  simp only [h₂, mul_comm] at h₃ h₄
+  have h₆ : (m : ℝ) ^ 2 - 12 * m + k = 0 := by exact_mod_cast h₃
+  have h₇ : (n : ℝ) ^ 2 - 12 * n + k = 0 := by exact_mod_cast h₄
+  have h₈ : (m : ℝ) ≠ n := by exact_mod_cast h₅
+  have h₉ : (m : ℝ) + n = 12 := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+    nlinarith
+  have h₁₀ : (m : ℝ) * n = k := by
+    nlinarith
+  have h₁₁ : m + n = 12 := by exact_mod_cast h₉
+  have h₁₂ : m * n = k := by exact_mod_cast h₁₀
+  have h₁₃ : m ≤ 12 := by
+    linarith [h₁₁, Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  have h₁₄ : n ≤ 12 := by
+    linarith [h₁₁, Nat.Prime.two_le h₀, Nat.Prime.two_le h₁]
+  interval_cases m <;> interval_cases n <;> norm_num at h₁₁ h₁₂ <;> simp_all (config := {decide := true})
+  <;> linarith
+

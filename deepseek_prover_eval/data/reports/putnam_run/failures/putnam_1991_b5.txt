@@ -1,0 +1,195 @@
+Problem: putnam_1991_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.848783016204834 / 13.057342290878296 / 22.90612530708313
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h := pprime.ne_zero
+  have h₁ := podd
+  have h₂ : ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = 0 := by
+    simp_all [ZMod.nat_cast_self]
+    <;> aesop
+  simp_all [ZMod.nat_cast_self]
+  <;> aesop
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 7.814155101776123 / 14.363044261932373 / 22.177199363708496
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h := @podd
+  have h' := @pprime
+  rcases p with (_ | _ | p)
+  all_goals simp_all [ZMod, Odd, Nat.Prime, Nat.succ_pos]
+  all_goals
+    rfl
+  <;>
+  decide
+  <;>
+  aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.844767570495605 / 13.062010526657104 / 21.90677809715271
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h₁ := pprime.eq_one_or_self_of_dvd p
+  have h₂ := podd
+  cases' h₂ with k hk
+  have h₃ : p ≠ 0 := by linarith [Nat.Prime.pos pprime]
+  simp_all [ZMod.nat_cast_self, ZMod.nat_cast_val, Nat.Prime.ne_zero]
+  <;> aesop
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.955366611480713 / 10.506243228912354 / 19.461609840393066
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h₁ := pprime.ne_zero
+  have h₂ := podd
+  cases' h₂ with k hk
+  subst hk
+  rcases p with (_ | _ | p)
+  all_goals simp_all [ZMod.nat_cast_self, Nat.Prime, Nat.succ_pos, Nat.zero_eq]
+  all_goals
+    rfl
+  <;>
+  decide
+  <;>
+  aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.720758438110352 / 11.819968461990356 / 20.540726900100708
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h₁ := pprime.pos
+  have h₂ := podd
+  cases' h₂ with k hk
+  have h₃ : p ≠ 0 := by linarith
+  have h₄ : 0 < p := by linarith
+  simp_all [ZMod.nat_cast_self, ZMod.nat_cast_val, Nat.cast_eq_zero]
+  <;>
+  rfl
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.432169198989868 / 12.371194839477539 / 20.803364038467407
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h := pprime.ne_zero
+  have h' := pprime.pos
+  simp_all [ZMod.nat_cast_self, ZMod.nat_cast_val, Nat.cast_eq_zero]
+  <;> rfl
+  <;> aesop
+  <;> aesop
+  <;> aesop
+  <;> aesop
+  <;> aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.236841201782227 / 13.902480602264404 / 22.13932180404663
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h₁ := pprime.pos
+  have h₂ := podd
+  cases' h₂ with k hk
+  have h₃ : p ≠ 0 := by linarith
+  simp_all [ZMod.nat_cast_self, Nat.Prime, Nat.succ_pos]
+  <;>
+  rfl
+  <;>
+  aesop
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.761235237121582 / 13.890204906463623 / 24.651440143585205
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b5
+(p : ℕ)
+(podd : Odd p)
+(pprime : Prime p)
+: ({z : ZMod p | ∃ x : ZMod p, z = x ^ 2} ∩ {z : ZMod p | ∃ y : ZMod p, z = y ^ 2 + 1}).encard = putnam_1991_b5_solution p := by
+  have h₀ := pprime.eq_one_or_self_of_dvd p
+  have h₁ := podd
+  have h₂ : p ≠ 0 := pprime.ne_zero
+  simp_all [ZMod.nat_cast_self]
+  <;> rcases h₁ with ⟨k, hk⟩
+  <;> subst hk
+  <;> simp_all [ZMod.nat_cast_self, Nat.cast_add, Nat.cast_mul, Nat.cast_one, Nat.cast_sub, Nat.cast_pow]
+  <;> rfl

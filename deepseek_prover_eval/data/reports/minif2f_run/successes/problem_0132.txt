@@ -1,0 +1,29 @@
+Problem: problem_0132
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.156362533569336
+Lean check time (s): 3.0735573768615723
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_329
+  (x y : ℝ)
+  (h₀ : 3 * y = x)
+  (h₁ : 2 * x + 5 * y = 11) :
+  x + y = 4 := by
+  have h : x + y = 4 := by
+    -- Substitute x = 3y into the second equation
+    have h₂ : x = 3 * y := by linarith
+    -- Substitute x = 3y into the first equation and solve for y
+    have h₃ : 2 * (3 * y) + 5 * y = 11 := by linarith
+    have h₄ : y = 1 := by linarith
+    -- Substitute y = 1 back into x = 3y to find x
+    have h₅ : x = 3 := by linarith
+    -- Add x and y to get the final result
+    linarith
+  exact h

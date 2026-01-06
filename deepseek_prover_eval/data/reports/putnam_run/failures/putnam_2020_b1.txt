@@ -1,0 +1,142 @@
+Problem: putnam_2020_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.41456127166748 / 14.001742839813232 / 27.416304111480713
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.625163555145264 / 13.817352771759033 / 26.442516326904297
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.346966743469238 / 13.477477312088013 / 20.82444405555725
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.57226300239563 / 13.959861516952515 / 24.532124519348145
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.588780403137207 / 11.869182586669922 / 19.45796298980713
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.802014827728271 / 13.830660820007324 / 28.632675647735596
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.151675462722778 / 11.085630416870117 / 21.237305879592896
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.345319986343384 / 13.598302602767944 / 22.943622589111328
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b1
+(d : ℕ → ℕ)
+(S : ℤ)
+(hd : d = fun n : ℕ => ∑ i : Fin (Nat.digits 2 n).length, (Nat.digits 2 n)[i]!)
+(hS : S = ∑ k : Icc 1 2020, ((-1 : ℤ)^(d k))*(k : ℤ)^3)
+: S % 2020 = putnam_2020_b1_solution :=
+sorry

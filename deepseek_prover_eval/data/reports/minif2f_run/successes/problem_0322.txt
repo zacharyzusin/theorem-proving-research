@@ -1,0 +1,35 @@
+Problem: problem_0322
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.503925085067749
+Lean check time (s): 2.8607356548309326
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_192
+  (q e d : ℂ)
+  (h₀ : q = 11 - (5 * Complex.I))
+  (h₁ : e = 11 + (5 * Complex.I))
+  (h₂ : d = 2 * Complex.I) :
+  q * e * d = 292 * Complex.I := by
+  subst_vars
+  simp [Complex.ext_iff, Complex.mul_re, Complex.mul_im, Complex.I_re, Complex.I_im]
+  ring_nf
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num

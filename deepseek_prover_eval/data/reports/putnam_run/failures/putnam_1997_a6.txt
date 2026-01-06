@@ -1,0 +1,174 @@
+Problem: putnam_1997_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 19.77108383178711 / 18.60915446281433 / 38.38023829460144
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.222232818603516 / 18.655967950820923 / 37.87820076942444
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.55973792076111 / 19.371939420700073 / 40.93167734146118
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.857178926467896 / 183.90169382095337 / 203.75887274742126
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.401073217391968 / 51.15955352783203 / 71.560626745224
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.213544607162476 / 19.00323987007141 / 39.21678447723389
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.61199641227722 / 17.64031457901001 / 37.25231099128723
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.064969301223755 / 18.016919136047363 / 35.08188843727112
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_a6
+  (n : ℤ)
+  (hn : n > 0)
+  (x : ℝ → (ℤ → ℝ))
+  (hx0 : ∀ c, x c 0 = 0)
+  (hx1 : ∀ c, x c 1 = 1)
+  (hxk : ∀ c, ∀ k ≥ 0, x c (k + 2) = (c*(x c (k + 1)) - (n - k)*(x c k))/(k + 1))
+  (S : Set ℝ)
+  (hS : S = {c : ℝ | x c (n + 1) = 0}) :
+  ∀ k : Set.Icc 1 n, x (sSup S) k = putnam_1997_a6_solution n k :=
+sorry

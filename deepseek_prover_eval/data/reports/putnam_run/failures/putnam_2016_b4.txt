@@ -1,0 +1,134 @@
+Problem: putnam_2016_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.58467721939087 / 7.360341548919678 / 17.945018768310547
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.426968097686768 / 8.773433446884155 / 19.200401544570923
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.682275772094727 / 7.5389244556427 / 38.22120022773743
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.902836084365845 / 8.685020446777344 / 24.58785653114319
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.499874114990234 / 8.690301895141602 / 19.190176010131836
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.207575559616089 / 8.214625358581543 / 21.422200918197632
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.581716775894165 / 7.573763370513916 / 28.15548014640808
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.585208654403687 / 8.146160364151001 / 23.731369018554688
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_b4
+  (n : ℕ) (npos : n ≥ 1)
+  (mats01 : Set (Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ))
+  (hmats01 : mats01 = {A | ∀ i j : Fin (2 * n), A i j = 0 ∨ A i j = 1}) :
+  (∑' A : mats01, (A.1 - (Matrix.transpose A)).det) / mats01.ncard = putnam_2016_b4_solution n :=
+sorry

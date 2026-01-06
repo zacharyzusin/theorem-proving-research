@@ -1,0 +1,20 @@
+Problem: problem_0068
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.106592655181885
+Lean check time (s): 2.9095282554626465
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_293
+  (n : ℕ)
+  (h₀ : n ≤ 9)
+  (h₁ : 11∣20 * 100 + 10 * n + 7) :
+  n = 5 := by
+  norm_num [Nat.dvd_iff_mod_eq_zero] at h₁
+  interval_cases n <;> norm_num [Nat.mul_mod, Nat.add_mod, Nat.mod_mod] at h₁ <;> omega

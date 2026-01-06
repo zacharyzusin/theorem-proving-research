@@ -1,0 +1,126 @@
+Problem: putnam_2009_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.016875267028809 / 8.462289333343506 / 21.479164600372314
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.867216348648071 / 8.646093130111694 / 22.513309478759766
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.150323152542114 / 7.731091737747192 / 23.881414890289307
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.44469666481018 / 7.836766719818115 / 22.281463384628296
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.204357862472534 / 7.588289022445679 / 19.792646884918213
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.205563068389893 / 8.155802726745605 / 19.361365795135498
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.135903358459473 / 7.514139175415039 / 23.65004253387451
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.81440782546997 / 8.721674919128418 / 21.53608274459839
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a3
+(cos_matrix : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hM : ∀ n : ℕ, ∀ i j : Fin n, (cos_matrix n) i j = Real.cos (1 + n * i + j))
+: Tendsto (fun n => (cos_matrix n).det) atTop (𝓝 putnam_2009_a3_solution) :=
+sorry

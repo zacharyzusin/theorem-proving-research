@@ -1,0 +1,244 @@
+Problem: problem_0423
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.44770908355713 / 3.4368624687194824 / 20.88457155227661
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = (10^3)^5 := by
+    norm_num [Real.rpow_mul] at h₁ ⊢
+    <;> ring_nf at h₁ ⊢ <;> nlinarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = 10^15 := by
+    rw [show (10:ℝ)^2 = 10^2 by norm_num] at h₂
+    rw [show (10:ℝ)^3 = 10^3 by norm_num] at h₂
+    norm_num [Real.rpow_mul] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢ <;> nlinarith
+  have h₄ : x = 3 := by
+    have h₅ : x = 3 := by
+      apply_fun (fun x => logb 10 x) at h₃
+      field_simp [logb_mul, logb_pow, logb_rpow] at h₃
+      <;> ring_nf at h₃ <;> nlinarith
+    exact h₅
+  exact h₄
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.491209745407104 / 3.5682332515716553 / 20.05944299697876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = 1000^5 := by
+    norm_num [Real.rpow_mul] at h₁ ⊢
+    <;> ring_nf at h₁ ⊢ <;> linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = 10^15 := by
+    norm_num [Real.rpow_mul] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢ <;> linarith
+  have h₄ : x = 3 := by
+    have h₅ : x = 3 := by
+      apply_fun (fun x => logb 10 x) at h₃
+      field_simp [logb_mul, logb_pow, logb_rpow, logb_div, logb_inv, logb_one, logb_zero] at h₃ ⊢
+      <;> ring_nf at h₃ ⊢ <;> nlinarith
+    exact h₅
+  exact h₄
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 19.23639702796936 / 3.7076492309570312 / 22.94404625892639
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = 1000^5 := by
+    rw [show (100:ℝ) = 10^2 by norm_num] at h₁
+    linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = 10^(15) := by
+    rw [show (1000:ℝ) = 10^3 by norm_num] at h₂
+    rw [show (10^3:ℝ)^5 = 10^(15) by
+      rw [← rpow_nat_cast]
+      simp [rpow_mul, rpow_nat_cast]
+      <;> ring_nf] at h₂
+    simp_all [rpow_add, rpow_mul, rpow_nat_cast]
+    <;> ring_nf at * <;> linarith
+  have h₄ : x = 3 := by
+    have h₅ : x = 3 := by
+      apply_fun fun x => logb 10 x at h₃
+      field_simp [logb_mul, logb_pow, logb_rpow, log_rpow] at h₃
+      <;> ring_nf at h₃ <;> norm_num at h₃ <;> nlinarith
+    exact h₅
+  exact h₄
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.266385555267334 / 3.5044827461242676 / 19.7708683013916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = 1000^5 := by
+    norm_num [Real.rpow_mul] at h₁ ⊢
+    <;> ring_nf at h₁ ⊢ <;> linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = 10^(15) := by
+    norm_num [Real.rpow_mul] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢ <;> linarith
+  have h₄ : x = 3 := by
+    have h₅ : x = 3 := by
+      apply_fun (fun x => logb 10 x) at h₃
+      field_simp [logb_mul, logb_pow, logb_rpow, logb_mul, logb_pow, logb_rpow] at h₃
+      <;> ring_nf at h₃ <;> norm_num at h₃ <;> nlinarith
+    exact h₅
+  exact h₄
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.53710389137268 / 3.645395517349243 / 21.182499408721924
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = 1000^5 := by
+    norm_num [Real.rpow_mul] at h₁ ⊢
+    <;> ring_nf at h₁ ⊢ <;> linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = (10^3)^5 := by
+    norm_num [Real.rpow_mul] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢ <;> linarith
+  have h₄ : (10:ℝ)^x * 10^(4 * x) = 10^15 := by
+    norm_num [Real.rpow_mul] at h₃ ⊢
+    <;> ring_nf at h₃ ⊢ <;> linarith
+  have h₅ : x + 4 * x = 15 := by
+    apply_fun fun x => logb 10 x at h₄
+    field_simp [logb_mul, logb_pow] at h₄
+    <;> linarith
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.012436866760254 / 3.3724565505981445 / 19.3848934173584
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = 1000^5 := by norm_num [Real.rpow_mul] at h₁ ⊢; linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = (10^3)^5 := by norm_num [Real.rpow_mul] at h₂ ⊢; linarith
+  have h₄ : (10:ℝ)^x * 10^(4 * x) = 10^15 := by norm_num [Real.rpow_mul] at h₃ ⊢; linarith
+  have h₅ : x + 4 * x = 15 := by
+    apply_fun fun x => logb 10 x at h₄
+    field_simp [logb_mul, logb_pow, logb_rpow, logb_mul, logb_pow, logb_rpow] at h₄ ⊢
+    linarith
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.390610456466675 / 3.477604866027832 / 18.868215322494507
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = 1000^5 := by
+    norm_num [Real.rpow_mul] at h₁ ⊢
+    <;> ring_nf at h₁ ⊢ <;> linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = 10^(15) := by
+    norm_num [Real.rpow_mul] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢ <;> linarith
+  have h₄ : x = 3 := by
+    have h₅ : x = 3 := by
+      apply_fun fun x => logb 10 x at h₃
+      field_simp [logb_mul, logb_pow, logb_rpow] at h₃
+      <;> ring_nf at h₃ <;> nlinarith
+    linarith
+  exact h₄
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.003947973251343 / 3.426950216293335 / 20.430898189544678
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2016_p2
+  (x : ℝ)
+  (h₀ : (10:ℝ)^x * 100^(2 * x) = 1000^5) :
+  x = 3 := by
+  have h₁ : (10:ℝ)^x * 100^(2 * x) = 1000^5 := h₀
+  have h₂ : (10:ℝ)^x * (10^2)^(2 * x) = (10^3)^5 := by
+    norm_num [Real.rpow_mul] at h₁ ⊢
+    <;> simp_all [Real.rpow_mul]
+    <;> ring_nf at h₁ ⊢
+    <;> linarith
+  have h₃ : (10:ℝ)^x * 10^(4 * x) = 10^15 := by
+    norm_num [Real.rpow_mul] at h₂ ⊢
+    <;> simp_all [Real.rpow_mul]
+    <;> ring_nf at h₂ ⊢
+    <;> linarith
+  have h₄ : x = 3 := by
+    apply_fun (fun x => logb 10 x) at h₃
+    field_simp [logb_mul, logb_pow, logb_rpow, logb_mul, logb_pow, logb_rpow] at h₃
+    <;> ring_nf at h₃
+    <;> linarith
+  exact h₄
+

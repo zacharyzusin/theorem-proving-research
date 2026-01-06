@@ -1,0 +1,352 @@
+Problem: problem_0410
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 38.498608350753784 / 17.164045095443726 / 55.66265344619751
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a + b + c + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₃ : 0 < a + b + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1]
+  have h₄ : 0 < a + b + c := by linarith [h₀.1, h₀.2.1, h₀.2.2.2]
+  have h₅ : 0 < b + c + d := by linarith [h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₆ : 0 < a + c + d := by linarith [h₀.1, h₀.2.2.1, h₀.2.2.2]
+  have h₇ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) := by linarith
+  constructor
+  case left =>
+    field_simp [h₇]
+    rw [← sub_pos]
+    field_simp [h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.1, mul_pos h₀.1 h₀.2.2.2,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2]
+  case right =>
+    field_simp [h₇]
+    rw [← sub_pos]
+    field_simp [h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.1, mul_pos h₀.1 h₀.2.2.2,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 42.3012421131134 / 17.114548444747925 / 59.41579055786133
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a + b + c + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₃ : 0 < a + b + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1]
+  have h₄ : 0 < a + b + c := by linarith [h₀.1, h₀.2.1, h₀.2.2.2]
+  have h₅ : 0 < b + c + d := by linarith [h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₆ : 0 < a + c + d := by linarith [h₀.1, h₀.2.2.1, h₀.2.2.2]
+  have h₇ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) := by rw [h₁]
+  constructor
+  case left =>
+    -- We need to show that s > 1
+    have h₈ : a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) > 1 := by
+      field_simp [h₂, h₃, h₄, h₅, h₆]
+      rw [← sub_pos]
+      field_simp [h₂, h₃, h₄, h₅, h₆]
+      ring_nf
+      nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2.1,
+        mul_pos h₀.1 h₀.2.2.1, mul_pos h₀.2.2.1 h₀.1,
+        mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.2,
+        mul_pos h₀.2.2.1 h₀.2.2.2, mul_pos h₀.2.2.2 h₀.1]
+    linarith
+  case right =>
+    -- We need to show that s < 2
+    have h₈ : a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) < 2 := by
+      field_simp [h₂, h₃, h₄, h₅, h₆]
+      rw [← sub_pos]
+      field_simp [h₂, h₃, h₄, h₅, h₆]
+      ring_nf
+      nlinarith [mul_pos h₀.1 h₀.2
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 33.65457534790039 / 16.549241542816162 / 50.20381689071655
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a + b + c + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₃ : 0 < a + b + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1]
+  have h₄ : 0 < a + b + c := by linarith [h₀.1, h₀.2.1, h₀.2.2.2]
+  have h₅ : 0 < b + c + d := by linarith [h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₆ : 0 < a + c + d := by linarith [h₀.1, h₀.2.2.1, h₀.2.2.2]
+  have h₇ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) := by rw [h₁]
+  constructor
+  case left =>
+    field_simp [h₁, h₃, h₄, h₅, h₆]
+    rw [← sub_pos]
+    field_simp [h₁, h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2.1,
+      mul_pos h₀.1 h₀.2.2.1, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.2]
+  case right =>
+    field_simp [h₁, h₃, h₄, h₅, h₆]
+    rw [← sub_pos]
+    field_simp [h₁, h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2.1,
+      mul_pos h₀.1 h₀.2.2.1, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.2]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 26.201240301132202 / 17.539680004119873 / 43.740920305252075
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < d := by linarith
+  have h₆ : 0 < a + b + c := by linarith
+  have h₇ : 0 < a + b + d := by linarith
+  have h₈ : 0 < a + c + d := by linarith
+  have h₉ : 0 < b + c + d := by linarith
+  constructor
+  case left =>
+    -- We need to show that s > 1
+    field_simp [h₁]
+    rw [← sub_pos]
+    field_simp [h₁]
+    ring_nf
+    nlinarith [mul_pos h₂ h₃, mul_pos h₂ h₄, mul_pos h₂ h₅, mul_pos h₃ h₄, mul_pos h₃ h₅, mul_pos h₄ h₅,
+      mul_pos (add_pos h₂ h₃) (add_pos h₄ h₅), mul_pos (add_pos h₂ h₄) (add_pos h₃ h₅),
+      mul_pos (add_pos h₂ h₅) (add_pos h₃ h₄)]
+  case right =>
+    -- We need to show that s < 2
+    field_simp [h₁]
+    rw [← sub_pos]
+    field_simp [h₁]
+    ring_nf
+    nlinarith [mul_pos h₂ h₃, mul_pos h₂ h₄, mul_pos h₂ h₅, mul_pos h₃ h₄, mul_pos h₃ h₅, mul_pos h₄ h₅,
+      mul_pos (add_pos h₂ h₃) (add_pos h₄ h₅), mul_pos (add_pos h₂ h₄) (add_pos h₃ h₅),
+      mul_pos (add_pos h₂ h₅) (add_pos h₃ h₄)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 23.35551953315735 / 17.48622465133667 / 40.84174418449402
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < d := by linarith
+  have h₆ : 0 < a + b + c := by linarith
+  have h₇ : 0 < a + b + d := by linarith
+  have h₈ : 0 < a + c + d := by linarith
+  have h₉ : 0 < b + c + d := by linarith
+  have h₁₀ : 0 < a * b := by positivity
+  have h₁₁ : 0 < a * c := by positivity
+  have h₁₂ : 0 < a * d := by positivity
+  have h₁₃ : 0 < b * c := by positivity
+  have h₁₄ : 0 < b * d := by positivity
+  have h₁₅ : 0 < c * d := by positivity
+  constructor
+  case left =>
+    field_simp [h₁]
+    rw [← sub_pos]
+    field_simp
+    ring_nf
+    nlinarith [mul_pos h₂ h₃, mul_pos h₂ h₄, mul_pos h₂ h₅, mul_pos h₃ h₄, mul_pos h₃ h₅, mul_pos h₄ h₅]
+  case right =>
+    field_simp [h₁]
+    rw [← sub_pos]
+    field_simp
+    ring_nf
+    nlinarith [mul_pos h₂ h₃, mul_pos h₂ h₄, mul_pos h₂ h₅, mul_pos h₃ h₄, mul_pos h₃ h₅, mul_pos h₄ h₅]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 44.26556873321533 / 34.398584842681885 / 78.66415357589722
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a + b + c + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₃ : 0 < a + b + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1]
+  have h₄ : 0 < a + b + c := by linarith [h₀.1, h₀.2.1, h₀.2.2.2]
+  have h₅ : 0 < b + c + d := by linarith [h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₆ : 0 < a + c + d := by linarith [h₀.1, h₀.2.2.1, h₀.2.2.2]
+  have h₇ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) := by linarith
+  constructor
+  case left =>
+    -- We need to show that s > 1
+    field_simp [h₇]
+    rw [← sub_pos]
+    field_simp [h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos (mul_pos h₀.1 h₀.2.1) h₀.2.2.1,
+      mul_pos (mul_pos h₀.1 h₀.2.1) h₀.2.2.2,
+      mul_pos (mul_pos h₀.1 h₀.2.2.1) h₀.2.2.2,
+      mul_pos (mul_pos h₀.2.1 h₀.2.2.1) h₀.2.2.2]
+  case right =>
+    -- We need to show that s < 2
+    field_simp [h₇]
+    rw [← sub_pos]
+    field_simp [h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 44.56719923019409 / 31.372740030288696 / 75.93993926048279
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  have h₂ : 0 < a + b + c + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₃ : 0 < a + b + d := by linarith [h₀.1, h₀.2.1, h₀.2.2.1]
+  have h₄ : 0 < a + b + c := by linarith [h₀.1, h₀.2.1, h₀.2.2.2]
+  have h₅ : 0 < b + c + d := by linarith [h₀.2.1, h₀.2.2.1, h₀.2.2.2]
+  have h₆ : 0 < a + c + d := by linarith [h₀.1, h₀.2.2.1, h₀.2.2.2]
+  have h₇ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) := h₁
+  constructor
+  case left =>
+    field_simp [h₃, h₄, h₅, h₆] at h₇ ⊢
+    rw [← sub_pos]
+    field_simp [h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos h₀.1 (mul_pos h₀.2.1 h₀.2.2.1),
+      mul_pos h₀.1 (mul_pos h₀.2.1 h₀.2.2.2),
+      mul_pos h₀.1 (mul_pos h₀.2.2.1 h₀.2.2.2),
+      mul_pos h₀.2.1 (mul_pos h₀.2.2.1 h₀.2.2.2)]
+  case right =>
+    field_simp [h₃, h₄, h₅, h₆] at h₇ ⊢
+    rw [← sub_pos]
+    field_simp [h₃, h₄, h₅, h₆]
+    ring_nf
+    nlinarith [mul_pos h₀.1 h₀.2.1, mul_pos h₀.1 h₀.2.2.1,
+      mul_pos h₀.1 h₀.2.2.2, mul_pos h₀.2.1 h₀.2.2.1,
+      mul_pos h₀.2.1 h₀.2.2.2, mul_pos h₀.2.2.1 h₀.2.2.2,
+      mul_pos h₀.1 (mul_po
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.966495513916016 / 18.08759903907776 / 45.054094552993774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1974_p5
+  (a b c d s : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
+  1 < s ∧ s < 2 := by
+  rcases h₀ with ⟨ha, hb, hc, hd⟩
+  have h₂ : 0 < a + b + c + d := by linarith
+  have h₃ : 0 < a + b + d := by linarith
+  have h₄ : 0 < a + b + c := by linarith
+  have h₅ : 0 < b + c + d := by linarith
+  have h₆ : 0 < a + c + d := by linarith
+  have h₇ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d) := h₁
+  constructor
+  case left =>
+    -- We need to show that s > 1
+    have h₈ : s > 1 := by
+      rw [h₇]
+      apply lt_of_sub_pos
+      field_simp
+      ring_nf
+      nlinarith [mul_pos ha hb, mul_pos ha hc, mul_pos ha hd, mul_pos hb hc, mul_pos hb hd, mul_pos hc hd,
+        mul_pos (add_pos ha hb) hc, mul_pos (add_pos ha hb) hd, mul_pos (add_pos ha hc) hd,
+        mul_pos (add_pos hb hc) hd]
+    exact h₈
+  case right =>
+    -- We need to show that s < 2
+    have h₈ : s < 2 := by
+      rw [h₇]
+      apply lt_of_sub_pos
+      field_simp
+      ring_nf
+      nlinarith [mul_pos ha hb, mul_pos ha hc, mul_pos ha hd, mul_pos hb hc, mul_pos hb hd, mul_pos hc hd,
+        mul_pos (add_pos ha hb) hc, mul_pos (add_pos ha hb) hd, mul_pos (add_pos ha hc) hd,
+        mul_pos (add_pos hb hc) hd]
+    exact h₈
+

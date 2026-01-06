@@ -1,0 +1,182 @@
+Problem: problem_0452
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 4.633276700973511 / 3.8239963054656982 / 8.457273006439209
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => n + 1
+  constructor
+  <;> simp
+  <;> intros
+  <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.855932235717773 / 3.2706055641174316 / 13.126537799835205
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => if n = 1 then 2 else n + 1
+  constructor
+  · simp
+  intro n
+  constructor
+  · by_cases h : n = 1 <;> by_cases h' : n = 0 <;> simp_all [Nat.add_comm, Nat.add_assoc, Nat.add_left_comm]
+    <;> omega
+  · intro n
+    by_cases h : n = 1 <;> by_cases h' : n = 0 <;> simp_all [Nat.add_comm, Nat.add_assoc, Nat.add_left_comm]
+    <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.568896293640137 / 3.3503055572509766 / 10.919201850891113
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => if n = 1 then 2 else n + 1
+  constructor
+  · simp
+  intro n
+  constructor
+  · by_cases h : n = 1 <;> by_cases h' : n + 1 = 1 <;> simp_all
+    <;> omega
+  · intro n
+    by_cases h : n = 1 <;> simp_all
+    <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 5.732556343078613 / 3.156254291534424 / 8.888810634613037
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => n + 1
+  constructor
+  norm_num
+  intro n
+  constructor
+  <;> simp [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.673128366470337 / 3.4677517414093018 / 11.140880107879639
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => if n = 1 then 2 else n + 1
+  constructor
+  · simp
+  intro n
+  constructor
+  · by_cases h : n = 1 <;> by_cases h' : n + 1 = 1 <;> simp_all
+    <;> omega
+  · intro n
+    by_cases h : n = 1 <;> simp_all
+    <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.881220579147339 / 3.139525890350342 / 12.02074646949768
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => if n = 1 then 2 else n + 1
+  constructor
+  · simp
+  intro n
+  constructor
+  · by_cases h : n = 1 <;> simp_all [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+    <;> omega
+  · intro n
+    by_cases h : n = 1 <;> simp_all [Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+    <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.63645601272583 / 3.2572731971740723 / 10.893729209899902
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => if n = 1 then 2 else n + 1
+  constructor
+  · simp
+  intro n
+  constructor
+  · by_cases h : n = 1 <;> by_cases h' : n + 1 = 1 <;> simp_all
+    <;> omega
+  intro n
+  by_cases h : n = 1 <;> simp_all
+  <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.119351625442505 / 3.360774517059326 / 11.480126142501831
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1993_p5 :
+  ∃ f : ℕ → ℕ, f 1 = 2 ∧ ∀ n, f (f n) = f n + n ∧ (∀ n, f n < f (n + 1)) := by
+  use fun n => if n = 1 then 2 else n + 1
+  constructor
+  · simp
+  intro n
+  constructor
+  · by_cases h : n = 1 <;> by_cases h' : n = 0 <;> simp_all
+    <;> omega
+  · intro n
+    by_cases h : n = 1 <;> by_cases h' : n = 0 <;> simp_all
+    <;> omega
+

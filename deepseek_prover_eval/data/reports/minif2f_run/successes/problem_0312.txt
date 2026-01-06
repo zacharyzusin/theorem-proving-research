@@ -1,0 +1,24 @@
+Problem: problem_0312
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.02336049079895
+Lean check time (s): 4.196944713592529
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p2
+  (x : ℝ)
+  (h₀ : x * (1 / 2 + 2 / 3) = 1) :
+  x = 6 / 7 := by
+  norm_num at h₀
+  -- Simplify the equation by finding a common denominator and simplifying the fractions.
+  ring_nf at h₀
+  -- Normalize the equation to isolate x.
+  field_simp at h₀
+  -- Simplify the fractions to solve for x.
+  linarith

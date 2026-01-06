@@ -1,0 +1,280 @@
+Problem: putnam_1977_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.96452307701111 / 45.227694511413574 / 64.19221758842468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * a i * a j := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have h₄ : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by positivity
+    field_simp at h₂
+    rw [← sub_pos] at h₂
+    field_simp at h₂
+    -- Use the fact that the inequality holds to derive the desired result
+    rw [← sub_pos]
+    field_simp
+    nlinarith [sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i),
+      sq_nonneg (a i + a j), sq_nonneg (A - 2 * a i * a j),
+      sq_nonneg (A + ∑ i : Fin n, (a i)^2 - (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2)]
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.987282514572144 / 47.41528081893921 / 66.40256333351135
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * a i * a j := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    field_simp at h₂ ⊢
+    rw [← sub_pos] at h₂ ⊢
+    field_simp at h₂ ⊢
+    nlinarith [sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i),
+      sq_nonneg (a i + a j), sq_nonneg (∑ i : Fin n, a i - (a i + a j)),
+      Finset.single_le_sum (fun i _ => sq_nonneg (a i)) (Finset.mem_univ i),
+      Finset.single_le_sum (fun i _ => sq_nonneg (a i)) (Finset.mem_univ j)]
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.096248626708984 / 53.82843255996704 / 74.92468118667603
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * a i * a j := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    field_simp at h₂
+    rw [← sub_pos] at h₂
+    field_simp at h₂
+    rw [← sub_pos] at h₂
+    nlinarith [sq_nonneg (a i + a j), sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i),
+      sq_nonneg (∑ i : Fin n, a i - (a i + a j)), sq_nonneg (∑ i : Fin n, a i + (a i + a j)),
+      Finset.sum_nonneg (fun i _ => sq_nonneg (a i)), Finset.sum_nonneg (fun i _ => sq_nonneg (a i - a j)),
+      Finset.sum_nonneg (fun i _ => sq_nonneg (a i + a j)), Finset.sum_nonneg (fun i _ => sq_nonneg (a i - a j))]
+  exact h₁
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.519823789596558 / 20.984171867370605 / 39.50399565696716
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * (a i) * (a j) := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    field_simp at h₂ ⊢
+    rw [← sub_pos] at h₂ ⊢
+    field_simp at h₂ ⊢
+    nlinarith [sq_nonneg (∑ i : Fin n, a i), sq_nonneg (a i - a j), sq_nonneg (a i + a j),
+      sq_nonneg (A - 2 * a i * a j), sq_nonneg (∑ i : Fin n, a i - (a i + a j)),
+      sq_nonneg (∑ i : Fin n, a i - (a i - a j)), sq_nonneg (∑ i : Fin n, a i - 0)]
+  exact h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.05275249481201 / 27.941153049468994 / 48.993905544281006
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * a i * a j := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    field_simp at h₂ ⊢
+    rw [← sub_pos] at h₂ ⊢
+    field_simp at h₂ ⊢
+    nlinarith [sq_nonneg (∑ i : Fin n, a i), sq_nonneg (a i - a j), sq_nonneg (a i + a j),
+      sq_nonneg (∑ i : Fin n, a i - a i), sq_nonneg (∑ i : Fin n, a i - a j),
+      sq_nonneg (∑ i : Fin n, a i + a i), sq_nonneg (∑ i : Fin n, a i + a j),
+      Finset.single_le_sum (fun i _ => sq_nonneg (a i)) (Finset.mem_univ i),
+      Finset.single_le_sum (fun i _ => sq_nonneg (a i)) (Finset.mem_univ j)]
+  exact h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 31.147022247314453 / 23.1196870803833 / 54.266709327697754
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * (a i) * (a j) := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    have h₅ : (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 ≥ (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) := by
+      field_simp [h₃.ne']
+      <;>
+      rw [div_le_div_iff] <;>
+      nlinarith [sq_nonneg (∑ i : Fin n, a i)]
+    have h₆ : A + ∑ i : Fin n, (a i)^2 < (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) := by linarith
+    have h₇ : A < (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) - ∑ i : Fin n, (a i)^2 := by linarith
+    have h₈ : (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) - ∑ i : Fin n, (a i)^2 ≤ 2 * (a i) * (a j) := by
+      have h₉ : (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) - ∑ i : Fin n, (a i)^2 ≤ 2 * (a i) * (a j) := by
+        field_simp [h₃.ne']
+        rw [div_le_iff (by positivity)]
+        nlinarith [sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i),
+          sq_nonneg (a i + a j), sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i - a i),
+          sq_nonneg (∑ i : Fin n, a i - a j)]
+      linarith
+    linarith
+  exact h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.962966442108154 / 47.061562061309814 / 65.02452850341797
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * a i * a j := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    field_simp at h₂ ⊢
+    rw [← sub_pos] at h₂ ⊢
+    field_simp at h₂ ⊢
+    nlinarith [sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i),
+      sq_nonneg (a i + a j), sq_nonneg (A - 2 * a i * a j),
+      sq_nonneg (A + ∑ i : Fin n, (a i)^2 - (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2)]
+  exact h₁
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 30.695305585861206 / 38.2587890625 / 68.9540946483612
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b5
+(n : ℕ)
+(hn : n > 1)
+(a : Fin n → ℝ)
+(A : ℝ)
+(hA : A + ∑ i : Fin n, (a i)^2 < (1/((n : ℝ) - 1))*(∑ i : Fin n, a i)^2)
+: ∀ i j : Fin n, i < j → A < 2*(a i)*(a j) := by
+  intro i j h
+  have h₁ : A < 2 * a i * a j := by
+    have h₂ : A + ∑ i : Fin n, (a i)^2 < (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 := hA
+    have h₃ : (n : ℝ) - 1 > 0 := by
+      have : (n : ℝ) > 1 := by exact_mod_cast hn
+      linarith
+    have h₄ : 0 < (n : ℝ) - 1 := by linarith
+    have h₅ : (1 / ((n : ℝ) - 1)) * (∑ i : Fin n, a i)^2 ≤ (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) := by
+      rw [one_div]
+      <;> field_simp [h₄]
+      <;> rw [div_le_div_iff] <;> nlinarith [sq_nonneg (∑ i : Fin n, a i)]
+    have h₆ : A + ∑ i : Fin n, (a i)^2 < (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) := by linarith
+    have h₇ : A < (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) - ∑ i : Fin n, (a i)^2 := by linarith
+    have h₈ : (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) - ∑ i : Fin n, (a i)^2 ≤ 2 * a i * a j := by
+      have h₉ : (∑ i : Fin n, a i)^2 / ((n : ℝ) - 1) - ∑ i : Fin n, (a i)^2 ≤ 2 * a i * a j := by
+        field_simp [h₃.ne']
+        rw [div_le_iff (by positivity)]
+        nlinarith [sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i), sq_nonneg (a i + a j),
+          sq_nonneg (a i - a j), sq_nonneg (∑ i : Fin n, a i - a i), sq_nonneg (∑ i : Fin n, a i - a j)]
+      linarith
+    linarith
+  exact h₁

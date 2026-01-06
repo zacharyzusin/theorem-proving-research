@@ -1,0 +1,32 @@
+Problem: problem_0151
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 14.585638999938965
+Lean check time (s): 3.295754909515381
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_341
+  (a b c : ℕ)
+  (h₀ : a ≤ 9 ∧ b ≤ 9 ∧ c ≤ 9)
+  (h₁ : Nat.digits 10 ((5^100) % 1000) = [c,b,a]) :
+  a + b + c = 13 := by
+  have h₂ : a ≤ 9 := by linarith
+  have h₃ : b ≤ 9 := by linarith
+  have h₄ : c ≤ 9 := by linarith
+  have h₅ : 5^100 % 1000 = 625 := by norm_num [Nat.pow_mod]
+  have h₆ : Nat.digits 10 625 = [5, 2, 6] := by
+    norm_num [Nat.digits_len]
+    <;> rfl
+  have h₇ : Nat.digits 10 ((5^100) % 1000) = [5, 2, 6] := by
+    rw [h₅]
+    exact h₆
+  have h₈ : a = 6 ∧ b = 2 ∧ c = 5 := by
+    simp_all [Nat.digits_len]
+    <;> omega
+  omega

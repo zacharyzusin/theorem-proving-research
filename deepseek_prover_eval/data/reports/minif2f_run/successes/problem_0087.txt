@@ -1,0 +1,22 @@
+Problem: problem_0087
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.090101957321167
+Lean check time (s): 13.866345643997192
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_392
+  (n : ℕ)
+  (h₀ : Even n)
+  (h₁ : ((n:ℤ) - 2)^2 + (n:ℤ)^2 + ((n:ℤ) + 2)^2 = 12296) :
+  ((n - 2) * n * (n + 2)) / 8 = 32736 := by
+  norm_num at h₁
+  have h₂ : n ≤ 122 := by
+    nlinarith [sq_nonneg (n - 2), sq_nonneg (n + 2)]
+  interval_cases n <;> norm_num at h₁ ⊢ <;> omega

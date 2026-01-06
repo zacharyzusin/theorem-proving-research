@@ -1,0 +1,182 @@
+Problem: putnam_1970_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.544638633728027 / 13.338961839675903 / 35.88360047340393
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.86415457725525 / 33.35699009895325 / 51.221144676208496
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.203035831451416 / 48.64683747291565 / 66.84987330436707
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.48337483406067 / 54.56827902793884 / 77.05165386199951
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 23.67394185066223 / 29.633867979049683 / 53.307809829711914
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.65981912612915 / 56.233813762664795 / 74.89363288879395
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.119778156280518 / 43.24756121635437 / 67.36733937263489
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.690577745437622 / 60.06055474281311 / 76.75113248825073
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a1
+(a b : ℝ)
+(ha : a > 0)
+(hb : b > 0)
+(f : ℝ → ℝ)
+(f_def : f = fun x : ℝ => Real.exp (a*x) * Real.cos (b*x))
+(p : ℕ → ℝ)
+(hp : ∃ c : ℝ, c > 0 ∧ ∀ x ∈ ball 0 c, ∑' n : ℕ, (p n)*x^n = f x)
+(S : Set ℕ)
+(S_def : S = {n : ℕ | p n = 0})
+: S = ∅ ∨ ¬Finite S :=
+sorry

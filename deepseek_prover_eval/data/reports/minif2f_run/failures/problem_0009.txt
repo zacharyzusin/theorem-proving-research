@@ -1,0 +1,185 @@
+Problem: problem_0009
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.492703199386597 / 6.752959966659546 / 15.245663166046143
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> rw [← Equiv.apply_eq_iff_eq_symm_apply] at *
+  <;> simp_all
+  <;> aesop
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 7.198957443237305 / 5.182953834533691 / 12.381911277770996
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp [Equiv.invFun_as_coe, Equiv.toFun_as_coe] at h₀ h₁ h₂ ⊢
+  rw [← h₁]
+  simp_all
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 6.293010950088501 / 5.832422256469727 / 12.125433206558228
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.symm_apply_eq]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.885204315185547 / 5.825312852859497 / 22.710517168045044
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> norm_num
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.18661904335022 / 4.789951324462891 / 22.97657036781311
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 6.082634925842285 / 4.107633590698242 / 10.190268516540527
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.symm_apply_eq, Equiv.apply_eq_iff_eq]
+  <;> aesop
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.453746318817139 / 4.004607915878296 / 11.458354234695435
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.invFun_as_coe, Equiv.toFun_as_coe]
+  <;> rw [← Equiv.apply_eq_iff_eq_symm_apply] at * <;> simp_all
+  <;> aesop
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 6.607478380203247 / 3.9104278087615967 / 10.517906188964844
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_209
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 2 = 10)
+  (h₁ : σ.2 10 = 1)
+  (h₂ : σ.2 1 = 2) :
+  σ.1 (σ.1 10) = 1 := by
+  simp_all [Equiv.symm_apply_eq, Equiv.apply_eq_iff_eq]
+  <;> aesop
+  <;> aesop
+  <;> aesop
+

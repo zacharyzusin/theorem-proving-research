@@ -1,0 +1,278 @@
+Problem: putnam_1967_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 42.1066780090332 / 120.5861451625824 / 162.6928231716156
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = 1 / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      apply Finset.sum_congr rfl
+      intro i hi
+      rw [show (2 : ℚ)^(-(n : ℤ) - i) = (1 / 2 : ℚ)^i by
+        rw [show (-(n : ℤ) - i) = -(i + n) by ring]
+        simp [zpow_neg, zpow_ofNat]
+        <;> norm_cast
+        <;> field_simp
+        <;> ring
+      ]
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = 1 / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i) := rfl
+      have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = 1 / 2 := by
+        have h₆ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 + 1 / 2)^(n - 1) / 2 := by
+          have h₇ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 + 1 / 2)^(n - 1) / 2 := by
+            have h₈ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 + 1 / 2)^(n - 1) / 2 := by
+              have h₉ : ∑ i ∈ Finset.range n, (Na
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 32.696441888809204 / 91.93927431106567 / 124.63571619987488
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = (1 : ℚ) / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      congr
+      funext i
+      rw [zpow_neg]
+      <;> norm_cast
+      <;> field_simp
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i) := by rfl
+      have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+        have h₆ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+          have h₇ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+            induction' hn with n hn IH
+            · norm_num
+            · cases n with
+              | zero =>
+                norm_num [Finset.sum_range_succ, Nat.choose_succ_succ]
+              | succ n =>
+                simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, pow_add, mul_add, mul_comm, mul_left_comm]
+                <;> fiel
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 38.11147713661194 / 178.61584043502808 / 216.72731757164001
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = (1 : ℚ) / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      congr
+      funext i
+      rw [zpow_neg]
+      <;> simp [zpow_neg, zpow_ofNat, div_eq_mul_inv]
+      <;> ring_nf
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+        have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+          have h₆ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i) := by
+            rfl
+          rw [h₆]
+          have h₇ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+            have h₈ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+              have h₉ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+                induction n with
+                | zero => simp
+   
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 35.00089645385742 / 106.02920746803284 / 141.03010392189026
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = (1 : ℚ) / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      congr with i
+      rw [zpow_neg]
+      <;> norm_cast
+      <;> field_simp
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+        have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i) := by rfl
+        rw [h₅]
+        have h₆ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+          have h₇ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+            have h₈ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+              induction' hn with n hn IH
+              case refl => simp [Finset.sum_range_one, Nat.choose]
+              case step =>
+                simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, pow_add, mul_add, mul_one
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 36.885417222976685 / 116.07590842247009 / 152.96132564544678
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = 1 / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      congr with i
+      rw [zpow_neg]
+      <;> simp [zpow_neg, mul_comm]
+      <;> field_simp
+      <;> ring
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = 1 / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i) := by rfl
+      rw [h₄]
+      have h₅ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = 1 / 2 := by
+        have h₆ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i) := by rfl
+        rw [h₆]
+        have h₇ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = 1 / 2 := by
+          have h₈ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (1 / 2 : ℚ) := by
+            have h₉ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (1 / 2 : ℚ) := by
+              induction' hn with n hn IH
+              all_goals
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 38.83366322517395 / 128.9942398071289 / 167.82790303230286
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = (1 : ℚ) / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      apply Finset.sum_congr rfl
+      intro i hi
+      rw [show (2 : ℚ)^(-(n : ℤ) - i) = (1 / 2 : ℚ)^i by
+        rw [show (-(n : ℤ) - i) = -(i + n) by ring]
+        simp [zpow_neg, zpow_add₀ (by positivity : (2 : ℚ) ≠ 0), zpow_ofNat]]
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i) := rfl
+      have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+        have h₆ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+          have h₇ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+            have h₈ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+              induction n with
+              | zero => simp_all
+              | succ n ih =>
+  
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.54448103904724 / 114.57184648513794 / 154.11632752418518
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = (1 : ℚ) / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      apply Finset.sum_congr rfl
+      intro i hi
+      rw [show (2 : ℚ)^(-(n : ℤ) - i) = (1 / 2 : ℚ)^i by
+        rw [show (-(n : ℤ) - i : ℤ) = -(i + n : ℤ) by ring]
+        simp [zpow_neg, zpow_add₀, zpow_ofNat, mul_comm]
+        <;> norm_cast
+        <;> field_simp
+        <;> ring]
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i) := rfl
+      have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+        have h₆ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+          have h₇ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+            have h₈ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+              induction n with
+              
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 37.62812399864197 / 122.40828609466553 / 160.0364100933075
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b5
+(n : ℕ)
+(hn : n > 0)
+: (1 : ℚ)/2 = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) := by
+  have h₁ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = (1 : ℚ) / 2 := by
+    have h₂ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (2 : ℚ)^(-(n : ℤ) - i) = ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i := by
+      congr
+      funext i
+      rw [zpow_neg]
+      <;> norm_cast
+      <;> field_simp
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+      have h₄ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+        have h₅ : ∑ i ∈ Finset.range n, (Nat.choose (n + i - 1) i) * (1 / 2 : ℚ)^i = (∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i) := by rfl
+        rw [h₅]
+        have h₆ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+          have h₇ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+            have h₈ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+              have h₉ : ∑ i ∈ Finset.range n, Nat.choose (n + i - 1) i * (1 / 2 : ℚ)^i = (1 : ℚ) / 2 := by
+                induction' hn with n hn
+                all_goals simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, pow
+... [truncated] ...

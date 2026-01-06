@@ -1,0 +1,42 @@
+Problem: problem_0279
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 26.864142656326294
+Lean check time (s): 5.0425097942352295
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_224
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ Real.sqrt n < 7 / 2 ∧ 2 < Real.sqrt n) :
+  S.card = 8 := by
+  have h₁ : S = {5, 6, 7, 8, 9, 10, 11, 12} := by
+    ext n
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, true_and, and_true]
+    constructor
+    · intro h
+      norm_num [Real.sqrt_lt, Real.lt_sqrt] at h ⊢
+      have h₂ : n ≥ 5 := by
+        by_contra! h₃
+        interval_cases n <;> norm_num [Real.sqrt_lt, Real.lt_sqrt] at h ⊢ <;> norm_num at h ⊢ <;> nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (show 0 ≤ (n : ℝ) by positivity)]
+      have h₃ : n ≤ 12 := by
+        by_contra! h₄
+        have h₅ : n ≥ 13 := by linarith
+        have h₆ : Real.sqrt n ≥ Real.sqrt 13 := by
+          apply Real.sqrt_le_sqrt
+          norm_num
+          linarith
+        norm_num [Real.sqrt_lt, Real.lt_sqrt] at h ⊢
+        nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (show 0 ≤ (n : ℝ) by positivity),
+          Real.sqrt_nonneg 13, Real.sq_sqrt (show 0 ≤ (13 : ℝ) by positivity)]
+      interval_cases n <;> norm_num [Real.sqrt_lt, Real.lt_sqrt] at h ⊢ <;> norm_num at h ⊢ <;> nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (show 0 ≤ (n : ℝ) by positivity)]
+    · intro h
+      rcases h with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) <;>
+        norm_num [Real.sqrt_lt, Real.lt_sqrt]
+  rw [h₁]
+  norm_num

@@ -1,0 +1,158 @@
+Problem: putnam_2020_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.16687250137329 / 11.694687128067017 / 29.861559629440308
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.37344479560852 / 15.125856637954712 / 33.49930143356323
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 19.632514476776123 / 12.533878326416016 / 32.16639280319214
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.428261041641235 / 14.093718767166138 / 34.52197980880737
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.70910334587097 / 13.962649583816528 / 33.6717529296875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.785504817962646 / 13.073644876480103 / 34.85914969444275
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 18.532508373260498 / 15.84414029121399 / 34.37664866447449
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 31.297948598861694 / 14.131219625473022 / 45.42916822433472
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b4
+(V : ℕ → Set (ℕ → ℤ))
+(q : ℕ → (ℕ → ℤ) → ℝ)
+(M : ℕ → ℝ)
+(hV : V = fun n ↦ ({s : ℕ → ℤ | s 0 = 0 ∧ (∀ j ≥ 2 * n, s j = 0) ∧ (∀ j ∈ Icc 1 (2 * n), |s j - s (j - 1)| = 1)}))
+(hq : q = fun n s ↦ 1 + ∑ j ∈ Finset.Icc 1 (2 * n - 1), 3 ^ (s j))
+(hM : M = fun n ↦ (∑' v : V n, 1 / (q n v)) / (V n).ncard)
+: (M 2020 = putnam_2020_b4_solution) :=
+sorry

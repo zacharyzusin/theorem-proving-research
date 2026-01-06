@@ -1,0 +1,51 @@
+Problem: problem_0189
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 18.041863441467285
+Lean check time (s): 3.8172719478607178
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_196
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ abs (2 - x) = 3) :
+  ∑ k in S, k = 4 := by
+  have h₁ : S = {5, -1} := by
+    ext x
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, eq_self_iff_true, and_true]
+    constructor
+    · intro h
+      match le_total 0 (2 - x) with
+      | .inl h₁ =>
+        rw [abs_of_nonneg h₁] at h
+        have h₂ : 2 - x = 3 := by linarith
+        have h₃ : x = -1 := by linarith
+        aesop
+      | .inr h₁ =>
+        rw [abs_of_nonpos h₁] at h
+        have h₂ : x - 2 = 3 := by linarith
+        have h₃ : x = 5 := by linarith
+        aesop
+    · intro h
+      match h with
+      | .inl h =>
+        rw [h]
+        norm_num
+        <;>
+        simp [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+        <;>
+        norm_num
+      | .inr h =>
+        rw [h]
+        norm_num
+        <;>
+        simp [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+        <;>
+        norm_num
+  rw [h₁]
+  norm_num

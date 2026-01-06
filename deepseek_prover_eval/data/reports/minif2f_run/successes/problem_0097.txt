@@ -1,0 +1,21 @@
+Problem: problem_0097
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.905181407928467
+Lean check time (s): 2.457395553588867
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_275
+  (x : ℝ)
+  (h : ((11:ℝ)^(1 / 4))^(3 * x - 3) = 1 / 5) :
+  ((11:ℝ)^(1 / 4))^(6 * x + 2) = 121 / 25 := by
+  norm_num at h ⊢
+  <;> simp_all [pow_add, pow_mul, mul_assoc]
+  <;> ring_nf at *
+  <;> nlinarith [sq_nonneg (x - 1), sq_nonneg (x + 1)]

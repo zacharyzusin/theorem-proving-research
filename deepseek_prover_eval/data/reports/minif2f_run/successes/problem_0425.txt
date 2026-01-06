@@ -1,0 +1,35 @@
+Problem: problem_0425
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.914766550064087
+Lean check time (s): 4.992793083190918
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_110
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ b ≤ a)
+  (h₁ : (a + b) % 10 = 2)
+  (h₂ : (2 * a + b) % 10 = 1) :
+  (a - b) % 10 = 6 := by
+  have h₃ := h₀.2.2
+  have h₄ := h₀.1
+  have h₅ := h₀.2.1
+  have h₆ : a % 10 = 9 := by
+    have : (a + b) % 10 = 2 := h₁
+    have : (2 * a + b) % 10 = 1 := h₂
+    omega
+  have h₇ : b % 10 = 3 := by
+    have : (a + b) % 10 = 2 := h₁
+    have : (2 * a + b) % 10 = 1 := h₂
+    omega
+  have h₈ : (a - b) % 10 = 6 := by
+    have : a % 10 = 9 := h₆
+    have : b % 10 = 3 := h₇
+    omega
+  exact h₈

@@ -1,0 +1,191 @@
+Problem: problem_0002
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 19.065755367279053 / 14.253063440322876 / 33.31881880760193
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h1 := h
+  rw [← Int.emod_add_ediv x 7] at h1
+  rw [← Int.emod_add_ediv y 7] at h1
+  ring_nf at h1
+  have h2 : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by
+    omega
+  have h3 : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by
+    omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2) <;>
+    rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3) <;>
+    simp [h2, h3, pow_succ, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h1 <;>
+    omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.778639078140259 / 2.78212571144104 / 18.5607647895813
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h1 := congr_arg (· % 7) h
+  simp [pow_succ, pow_two, Int.mul_emod, Int.sub_emod] at h1
+  have h2 : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by omega
+  have h3 : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2) <;> rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3) <;> simp [h2, h3, Int.pow_succ, Int.pow_zero, Int.mul_emod, Int.sub_emod] at h1 <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.536373376846313 / 7.785392999649048 / 22.32176637649536
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h1 := congr_arg (· % 7) h
+  simp at h1
+  have h2 : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by omega
+  have h3 : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2) <;> rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3) <;> simp [h2, h3, pow_succ, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h1 <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.690523624420166 / 2.556043863296509 / 19.246567487716675
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h1 := congr_arg (· % 7) h
+  simp [pow_succ, pow_two, pow_three, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h1
+  have h2 : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by
+    omega
+  have h3 : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by
+    omega
+  rcases h2 with (h2 | h2 | h2 | h2 | h2 | h2 | h2) <;>
+  rcases h3 with (h3 | h3 | h3 | h3 | h3 | h3 | h3) <;>
+  simp [h2, h3, Int.pow_succ, Int.pow_zero, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h1 <;>
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.246887683868408 / 7.848153829574585 / 23.095041513442993
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h₁ := congr_arg (fun x => x % 7) h
+  simp at h₁
+  have h₂ : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by
+    omega
+  have h₃ : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by
+    omega
+  rcases h₂ with (h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂) <;>
+    rcases h₃ with (h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃) <;>
+    simp [h₂, h₃, pow_succ, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h₁ ⊢ <;>
+    omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.08240032196045 / 2.6117513179779053 / 19.694151639938354
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h₁ := congr_arg (· % 7) h
+  simp [pow_succ, pow_two, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h₁
+  have h₂ : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by
+    omega
+  have h₃ : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by
+    omega
+  rcases h₂ with (h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂) <;>
+    rcases h₃ with (h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃) <;>
+    simp [h₂, h₃, pow_succ, pow_two, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h₁ <;>
+    omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.938156604766846 / 7.812950372695923 / 24.75110697746277
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h₁ := congr_arg (fun x => x % 7) h
+  norm_num at h₁
+  have h₂ : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by omega
+  have h₃ : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by omega
+  rcases h₂ with (h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂) <;>
+    rcases h₃ with (h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃) <;>
+    simp [h₂, h₃, pow_succ, Int.mul_emod, Int.sub_emod, Int.emod_emod] at h₁ ⊢ <;>
+    omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.396331787109375 / 12.961821794509888 / 28.358153581619263
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_4x3m7y3neq2003
+  (x y : ℤ) :
+  4 * x^3 - 7 * y^3 ≠ 2003 := by
+  intro h
+  have h₁ := congr_arg (· % 7) h
+  simp [Int.mul_emod, Int.sub_emod, pow_three] at h₁
+  have h₂ : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨ x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by omega
+  have h₃ : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨ y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by omega
+  rcases h₂ with (h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂) <;> rcases h₃ with (h₃ | h₃ | h₃ | h₃ | h₃ | h₃ | h₃) <;> simp [h₂, h₃, pow_succ, Int.mul_emod, Int.sub_emod] at h₁ <;> omega
+

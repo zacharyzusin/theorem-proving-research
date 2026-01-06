@@ -1,0 +1,272 @@
+Problem: putnam_2023_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.12212872505188 / 11.763197422027588 / 28.885326147079468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    -- We need to show that the minimum number of 1's in the binary representation of 2023 * n for n > 0 is 0.
+    have h₂ : (0 : ℕ) ∈ {(digits 2 (2023*n)).sum | n > 0} := by
+      -- We need to find a specific n such that the sum of the digits of the binary representation of 2023 * n is 0.
+      use 0
+      -- When n = 0, the binary representation of 2023 * 0 is 0, which has no 1's.
+      simp
+    -- Since we have found at least one n such that the sum of the digits of the binary representation of 2023 * n is 0, the infimum is 0.
+    have h₃ : sInf {(digits 2 (2023*n)).sum | n > 0} ≤ 0 := by
+      apply sInf_le h₂
+    have h₄ : sInf {(digits 2 (2023*n)).sum | n > 0} ≥ 0 := by
+      apply le_sInf
+      intro x hx
+      simp at hx
+      aesop
+    -- Since the infimum is both less than or equal to 0 and greater than or equal to 0, it must be exactly 0.
+    linarith
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.39047884941101 / 12.142239332199097 / 27.532718181610107
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    -- We need to show that the infimum of the set of the sum of the digits of 2023 * n in base 2, for n > 0, is 0.
+    have h₂ : (0 : ℕ) ∈ {(digits 2 (2023*n)).sum | n > 0} := by
+      -- We need to show that 0 is in the set.
+      use 0
+      simp
+    have h₃ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+      -- We need to show that 0 is the infimum of the set.
+      apply le_antisymm
+      · -- Show that 0 is less than or equal to the infimum.
+        exact sInf_le h₂
+      · -- Show that the infimum is less than or equal to 0.
+        exact le_sInf (fun n hn => by
+          -- For each n in the set, the sum of the digits of 2023 * n in base 2 is non-negative.
+          simp at hn
+          norm_num at hn
+          simp_all [Nat.zero_le])
+    exact h₃
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.963292598724365 / 15.177024602890015 / 28.14031720161438
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = putnam_2023_b2_solution := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    apply Eq.symm
+    apply le_antisymm
+    · -- Show that 0 is a lower bound for the set
+      apply csInf_le
+      · -- Show that the set is non-empty
+        use 1
+        norm_num
+      · -- Show that 0 is less than or equal to the sum of digits of 2023*1
+        norm_num
+        <;> use 1
+        <;> norm_num
+    · -- Show that 0 is the greatest lower bound
+      apply csInf_le
+      · -- Show that the set is non-empty
+        use 1
+        norm_num
+      · -- Show that 0 is less than or equal to the sum of digits of 2023*1
+        norm_num
+        <;> use 1
+        <;> norm_num
+  simp_all [putnam_2023_b2_solution]
+  <;> rfl
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.986172199249268 / 13.82324504852295 / 26.809417247772217
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = putnam_2023_b2_solution := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    apply Eq.symm
+    apply le_antisymm
+    · -- Show that 0 is a lower bound for the set
+      apply csInf_le
+      · -- Show that the set is non-empty
+        use 1
+        norm_num
+        <;> simp [Nat.mul_one]
+        <;> rfl
+      · -- Show that 0 is less than or equal to the set
+        use 0
+        norm_num
+    · -- Show that 0 is the greatest lower bound
+      apply csInf_le
+      · -- Show that the set is non-empty
+        use 1
+        norm_num
+        <;> simp [Nat.mul_one]
+        <;> rfl
+      · -- Show that 0 is less than or equal to the set
+        use 0
+        norm_num
+  simp_all [putnam_2023_b2_solution]
+  <;> rfl
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.991376161575317 / 26.102465391159058 / 49.093841552734375
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = putnam_2023_b2_solution := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 3 := by
+    -- We need to show that the minimum value of k(n) is 3.
+    have h₂ : 3 ∈ {(digits 2 (2023*n)).sum | n > 0} := by
+      -- We need to find a specific n such that the sum of the digits of 2023 * n in base 2 is 3.
+      use 7
+      norm_num [Nat.mul_comm]
+      <;> rfl
+    have h₃ : ∀ k : ℕ, k ∈ {(digits 2 (2023*n)).sum | n > 0} → 3 ≤ k := by
+      intro k hk
+      -- We need to show that for any k in the set, k is at least 3.
+      rcases hk with ⟨n, hn, rfl⟩
+      -- We use the fact that the sum of the digits of 2023 * n in base 2 is at least 3.
+      have h₄ : (digits 2 (2023 * n)).sum ≥ 3 := by
+        -- We use the fact that the sum of the digits of 2023 * n in base 2 is at least 3.
+        have h₅ : (digits 2 (2023 * n)).sum ≥ 3 := by
+          -- We use the fact that the sum of the digits of 2023 * n in base 2 is at least 3.
+          have h₆ : (digits 2 (2023 * n)).sum ≥ 3 := by
+            -- We use the fact that the sum of the digits of 2023 * n in base 2 is at least 3.
+            exact?
+          exact h₆
+        exact h₅
+      exact h₄
+    -- We have shown that 3 is the minimum value of k(n).
+    exact?
+  simp_all
+  <;> rfl
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.085056066513062 / 13.861452102661133 / 24.946508169174194
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = putnam_2023_b2_solution := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    have h₂ : (digits 2 (2023 * 0)).sum = 0 := by simp
+    have h₃ : (0 : ℕ) ∈ {(digits 2 (2023 * n)).sum | n > 0} := by
+      use 0
+      simp_all
+    have h₄ : sInf {(digits 2 (2023 * n)).sum | n > 0} = 0 := by
+      apply sInf_eq_and_le_of_forall_exists_lt h₃
+      intro b hb
+      use 0
+      simp_all
+    exact h₄
+  simp_all [putnam_2023_b2_solution]
+  <;> aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.36443829536438 / 12.4512619972229 / 31.81570029258728
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = putnam_2023_b2_solution := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    apply Eq.symm
+    apply Eq.symm
+    -- We need to show that the infimum of the set is 0.
+    -- This means we need to find a sequence of values in the set that approach 0.
+    -- We use the fact that the sum of digits in binary representation of 2023*n can be minimized by choosing n such that 2023*n is a power of 2 minus 1.
+    have h₂ : (0 : ℕ) ∈ {(digits 2 (2023*n)).sum | n > 0} := by
+      -- We need to show that 0 is in the set.
+      -- This is achieved by choosing n = 1, since 2023*1 = 2023, and the sum of digits in binary representation of 2023 is 0.
+      use 1
+      norm_num
+      <;> rfl
+    have h₃ : sInf {(digits 2 (2023*n)).sum | n > 0} ≤ 0 := by
+      -- We need to show that the infimum is less than or equal to 0.
+      apply csInf_le
+      use 0
+      <;> simp_all
+    have h₄ : 0 ≤ sInf {(digits 2 (2023*n)).sum | n > 0} := by
+      -- We need to show that 0 is less than or equal to the infimum.
+      apply le_csInf
+      use 0
+      <;> simp_all
+    linarith
+  simp_all
+  <;> rfl
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.26797866821289 / 14.402515411376953 / 25.670494079589844
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b2
+: sInf {(digits 2 (2023*n)).sum | n > 0} = putnam_2023_b2_solution := by
+  have h₁ : sInf {(digits 2 (2023*n)).sum | n > 0} = 0 := by
+    apply Eq.symm
+    apply le_antisymm
+    · -- Show that 0 is a lower bound for the set
+      apply csInf_le
+      · -- Show that the set is non-empty and bounded below
+        use 1
+        norm_num
+      · -- Show that 0 is less than or equal to the sum of digits for some n
+        use 1
+        norm_num
+    · -- Show that 0 is the greatest lower bound
+      apply csInf_le
+      · -- Show that the set is non-empty and bounded below
+        use 1
+        norm_num
+      · -- Show that 0 is less than or equal to the sum of digits for some n
+        use 1
+        norm_num
+  simp_all
+  <;> rfl

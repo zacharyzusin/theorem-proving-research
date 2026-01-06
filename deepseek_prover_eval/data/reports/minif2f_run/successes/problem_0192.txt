@@ -1,0 +1,23 @@
+Problem: problem_0192
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 55.641671895980835
+Lean check time (s): 2.534250259399414
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p7
+  (x : ℝ)
+  (n : ℕ)
+  (a : ℕ → ℝ)
+  (h₁ : ∀ m, a (m + 1) - a m = a (m + 2) - a (m + 1))
+  (h₂ : a 1 = 2 * x - 3)
+  (h₃ : a 2 = 5 * x - 11)
+  (h₄ : a 3 = 3 * x + 1)
+  (h₅ : a n = 2009) :
+  n = 502 := sorry

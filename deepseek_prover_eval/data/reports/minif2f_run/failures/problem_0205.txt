@@ -1,0 +1,295 @@
+Problem: problem_0205
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.47742223739624 / 3.4709856510162354 / 17.948407888412476
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 ≤ (a - b)^2 := sq_nonneg (a - b)
+  have h₃ : 0 ≤ (a + b)^2 := sq_nonneg (a + b)
+  induction' h₁ with n hn
+  -- Base case: n = 1
+  norm_num [pow_one]
+  simp [pow_succ, mul_add, mul_comm, mul_left_comm] at *
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), mul_nonneg (sq_nonneg a) (pow_nonneg (le_of_lt h₀.1) n),
+    mul_nonneg (sq_nonneg b) (pow_nonneg (le_of_lt h₀.2) n),
+    mul_nonneg (sq_nonneg (a + b)) (pow_nonneg (add_nonneg (le_of_lt h₀.1) (le_of_lt h₀.2)) n)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 26.080227375030518 / 14.77146577835083 / 40.85169315338135
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 ≤ (a - b)^2 := sq_nonneg (a - b)
+  have h₃ : 0 ≤ (a + b)^2 := sq_nonneg (a + b)
+  have h₄ : 0 ≤ a^n := by
+    exact pow_nonneg h₀.1.le n
+  have h₅ : 0 ≤ b^n := by
+    exact pow_nonneg h₀.2.le n
+  have h₆ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+    -- Use the fact that the square of the difference is non-negative to prove the inequality
+    have h₇ : 0 ≤ (a / 2 + b / 2)^2 := sq_nonneg (a / 2 + b / 2)
+    have h₈ : (a + b)^2 ≥ 0 := by nlinarith
+    have h₉ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+      -- Use the weighted AM-GM inequality to prove the inequality
+      have h₁₀ : 0 ≤ a^n := by exact pow_nonneg h₀.1.le n
+      have h₁₁ : 0 ≤ b^n := by exact pow_nonneg h₀.2.le n
+      have h₁₂ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+        -- Use the weighted AM-GM inequality to prove the inequality
+        have h₁₃ : 0 ≤ a^n := by exact pow_nonneg h₀.1.le n
+        have h₁₄ : 0 ≤ b^n := by exact pow_nonneg h₀.2.le n
+        have h₁₅ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+          -- Use the weighted AM-GM inequality to prove the inequality
+          exact?
+        exact h₁₅
+      exact h₁₂
+    exact h₉
+  exact h₆
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.96217131614685 / 4.5560219287872314 / 21.518193244934082
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 ≤ a := by linarith
+  have h₃ : 0 ≤ b := by linarith
+  have h₄ : 0 ≤ (a + b) / 2 := by linarith
+  have h₅ : (a + b) / 2 ≤ a ∨ (a + b) / 2 ≤ b := by
+    apply or_iff_not_imp_left.mpr
+    intro h₆
+    have h₇ : (a + b) / 2 ≤ a := by linarith
+    linarith
+  cases h₅ with
+  | inl h₅ =>
+    calc
+      ((a + b) / 2)^n ≤ a^n := by gcongr <;> nlinarith
+      _ ≤ (a^n + b^n) / 2 := by
+        have h₆ : 0 ≤ b^n := by positivity
+        nlinarith
+  | inr h₅ =>
+    calc
+      ((a + b) / 2)^n ≤ b^n := by gcongr <;> nlinarith
+      _ ≤ (a^n + b^n) / 2 := by
+        have h₆ : 0 ≤ a^n := by positivity
+        nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.060170650482178 / 13.759611129760742 / 32.81978178024292
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < a^n := by positivity
+  have h₅ : 0 < b^n := by positivity
+  have h₆ : 0 < a^n + b^n := by positivity
+  have h₇ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+    have h₈ : (a + b) / 2 ≥ 0 := by linarith
+    have h₉ : (a^n + b^n) / 2 ≥ 0 := by positivity
+    have h₁₀ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+      -- Use the weighted AM-GM inequality to show the desired inequality
+      have h₁₁ : (a + b) / 2 ≥ 0 := by linarith
+      have h₁₂ : (a^n + b^n) / 2 ≥ 0 := by positivity
+      -- Use the weighted AM-GM inequality to show the desired inequality
+      have h₁₃ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+        -- Use the weighted AM-GM inequality to show the desired inequality
+        exact?
+      exact h₁₃
+    exact h₁₀
+  exact h₇
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 35.82777404785156 / 4.304749011993408 / 40.13252305984497
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 ≤ (a - b)^2 := sq_nonneg (a - b)
+  have h₃ : 0 ≤ (a + b)^2 := sq_nonneg (a + b)
+  have h₄ : 0 ≤ a^n := pow_nonneg (le_of_lt h₀.1) n
+  have h₅ : 0 ≤ b^n := pow_nonneg (le_of_lt h₀.2) n
+  have h₆ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+    -- Use the fact that the nth power of the average is less than or equal to the average of the nth powers
+    -- This is a consequence of the convexity of the function \( f(x) = x^n \) for \( n \geq 1 \) and \( x > 0 \)
+    have h₇ : 0 ≤ a^n := pow_nonneg (le_of_lt h₀.1) n
+    have h₈ : 0 ≤ b^n := pow_nonneg (le_of_lt h₀.2) n
+    have h₉ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+      -- Use the weighted AM-GM inequality
+      have h₁₀ : 0 ≤ a^n := pow_nonneg (le_of_lt h₀.1) n
+      have h₁₁ : 0 ≤ b^n := pow_nonneg (le_of_lt h₀.2) n
+      have h₁₂ : 0 ≤ a^n * b^n := mul_nonneg h₁₀ h₁₁
+      have h₁₃ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+        -- Use the weighted AM-GM inequality
+        field_simp [h₀.1.ne', h₀.2.ne', h₁.ne']
+        rw [div_le_div_iff (by positivity) (by positivity)]
+        -- Use the weighted AM-GM inequality
+        have h₁₄ : (a + b)^n ≤ a^n + b^n := by
+          -- Use the weighted AM-GM inequality
+          exact
+            calc
+              (a + b)^n ≤ (a^n + b^n) := by
+                -
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.726850986480713 / 3.4625706672668457 / 16.18942165374756
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 ≤ (a - b)^2 := sq_nonneg (a - b)
+  have h₃ : 0 ≤ (a + b)^2 := sq_nonneg (a + b)
+  induction' h₁ with n h₁
+  -- Base case: n = 1
+  norm_num [pow_one]
+  -- Inductive step: assume the inequality holds for n, prove for n + 1
+  simp_all [pow_succ, mul_assoc]
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), mul_self_nonneg (a^n - b^n),
+    mul_self_nonneg (a^n + b^n), mul_self_nonneg (a^n + b^n - 2 * ((a + b) / 2)^n)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.132169008255005 / 14.473031520843506 / 38.60520052909851
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < a^n := by positivity
+  have h₅ : 0 < b^n := by positivity
+  have h₆ : 0 < a^n + b^n := by positivity
+  have h₇ : 0 < (a^n + b^n) / 2 := by positivity
+  -- Use the weighted AM-GM inequality to prove the desired inequality.
+  have h₈ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+    have h₈₁ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+      -- Use the weighted AM-GM inequality.
+      have h₈₂ : 0 ≤ a := by linarith
+      have h₈₃ : 0 ≤ b := by linarith
+      have h₈₄ : 0 ≤ a^n := by positivity
+      have h₈₅ : 0 ≤ b^n := by positivity
+      have h₈₆ : 0 ≤ a^n + b^n := by positivity
+      have h₈₇ : 0 ≤ (a^n + b^n) / 2 := by positivity
+      -- Use the weighted AM-GM inequality to prove the desired inequality.
+      have h₈₈ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+        -- Use the weighted AM-GM inequality.
+        exact
+          calc
+            ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+              -- Use the weighted AM-GM inequality.
+              exact?
+            _ = (a^n + b^n) / 2 := by rfl
+      exact h₈₈
+    exact h₈₁
+  exact h₈
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.314112663269043 / 7.921940803527832 / 30.236053466796875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_apbon2pownleqapownpbpowon2
+  (a b : ℝ)
+  (n : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : 0 < n) :
+  ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+  have h₂ : 0 ≤ (a - b)^2 := sq_nonneg (a - b)
+  have h₃ : 0 ≤ (a + b)^2 := sq_nonneg (a + b)
+  have h₄ : 0 ≤ a^n := pow_nonneg h₀.1.le n
+  have h₅ : 0 ≤ b^n := pow_nonneg h₀.2.le n
+  have h₆ : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by
+    -- Use the AM-GM inequality to bound the nth power of the average
+    have h₇ : (a + b) / 2 ≤ Real.sqrt ((a^n + b^n) / 2) := by
+      apply Real.le_sqrt_of_sq_le
+      nlinarith [sq_nonneg (a - b), pow_two_nonneg (a + b), pow_two_nonneg (a - b),
+        pow_two_nonneg (a + b - 2 * a * b), pow_two_nonneg (a + b + 2 * a * b)]
+    have h₈ : 0 ≤ (a^n + b^n) / 2 := by nlinarith
+    have h₉ : 0 ≤ Real.sqrt ((a^n + b^n) / 2) := Real.sqrt_nonneg _
+    have h₁₀ : ((a + b) / 2)^n ≤ Real.sqrt ((a^n + b^n) / 2)^n := by
+      gcongr
+      <;> nlinarith
+    nlinarith [sq_sqrt (by nlinarith : 0 ≤ (a^n + b^n) / 2)]
+  exact h₆
+

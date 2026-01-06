@@ -1,0 +1,234 @@
+Problem: problem_0011
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.475183248519897 / 600.1494348049164 / 615.6246180534363
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2, mul_pos h₀.2.2 h₀.1,
+    mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₂), mul_pos (sub_pos.mpr h₂) (sub_pos.mpr h₁),
+    mul_pos (sub_pos.mpr h₁) (sub_pos.mpr h₃), sq_nonneg (a - b + c), sq_nonneg (b - c + a),
+    sq_nonneg (c - a + b)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.883386373519897 / 600.162652015686 / 615.0460383892059
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2, mul_pos h₀.2.2 h₀.1,
+    mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₁), mul_pos (sub_pos.mpr h₁) (sub_pos.mpr h₂),
+    mul_pos (sub_pos.mpr h₂) (sub_pos.mpr h₃), sq_nonneg (a - b + c), sq_nonneg (b - c + a),
+    sq_nonneg (c - a + b)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.611021280288696 / 600.1683306694031 / 614.7793519496918
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2, mul_pos h₀.2.2 h₀.1,
+    mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₂), mul_pos (sub_pos.mpr h₂) (sub_pos.mpr h₁),
+    mul_pos (sub_pos.mpr h₁) (sub_pos.mpr h₃),
+    sq_nonneg (a - b + c), sq_nonneg (b - c + a), sq_nonneg (c - a + b)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.072647094726562 / 600.1607670783997 / 618.2334141731262
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  have h₄ : 0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2, mul_pos h₀.2.2 h₀.1,
+      mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₂), mul_pos (sub_pos.mpr h₂) (sub_pos.mpr h₁),
+      mul_pos (sub_pos.mpr h₁) (sub_pos.mpr h₃), sq_nonneg (a - b + c), sq_nonneg (b - c + a),
+      sq_nonneg (c - a + b)]
+  linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.655659198760986 / 600.1575520038605 / 621.8132112026215
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : 0 < c := by linarith
+  have h₇ : 0 < a * b := by positivity
+  have h₈ : 0 < b * c := by positivity
+  have h₉ : 0 < c * a := by positivity
+  have h₁₀ : 0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+    nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+      mul_nonneg (sub_nonneg.mpr h₁.le) (sub_nonneg.mpr h₂.le),
+      mul_nonneg (sub_nonneg.mpr h₂.le) (sub_nonneg.mpr h₃.le),
+      mul_nonneg (sub_nonneg.mpr h₃.le) (sub_nonneg.mpr h₁.le),
+      mul_nonneg (sq_nonneg (a - b)) (sub_nonneg.mpr h₂.le),
+      mul_nonneg (sq_nonneg (b - c)) (sub_nonneg.mpr h₃.le),
+      mul_nonneg (sq_nonneg (c - a)) (sub_nonneg.mpr h₁.le)]
+  exact h₁₀
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.263983726501465 / 600.7522885799408 / 621.0162723064423
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  have h₄ : 0 < a := by linarith
+  have h₅ : 0 < b := by linarith
+  have h₆ : 0 < c := by linarith
+  have h₇ : 0 < a * b := by positivity
+  have h₈ : 0 < b * c := by positivity
+  have h₉ : 0 < c * a := by positivity
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    mul_nonneg (sub_nonneg.mpr h₁.le) (sub_nonneg.mpr h₂.le),
+    mul_nonneg (sub_nonneg.mpr h₂.le) (sub_nonneg.mpr h₃.le),
+    mul_nonneg (sub_nonneg.mpr h₃.le) (sub_nonneg.mpr h₁.le),
+    mul_nonneg (sub_nonneg.mpr h₁.le) (sub_nonneg.mpr h₂.le),
+    mul_nonneg (sub_nonneg.mpr h₂.le) (sub_nonneg.mpr h₃.le),
+    mul_nonneg (sub_nonneg.mpr h₃.le) (sub_nonneg.mpr h₁.le)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.12176513671875 / 600.1206469535828 / 614.2424120903015
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2, mul_pos h₀.2.2 h₀.1,
+    mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₂), mul_pos (sub_pos.mpr h₂) (sub_pos.mpr h₁),
+    mul_pos (sub_pos.mpr h₁) (sub_pos.mpr h₃), sq_nonneg (a - b + c), sq_nonneg (b - c + a),
+    sq_nonneg (c - a + b)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.646834135055542 / 600.1685307025909 / 615.8153648376465
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1983_p6
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : c < a + b)
+  (h₂ : b < a + c)
+  (h₃ : a < b + c) :
+  0 ≤ a^2 * b * (a - b) + b^2 * c * (b - c) + c^2 * a * (c - a) := by
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    mul_pos h₀.1 h₀.2.1, mul_pos h₀.2.1 h₀.2.2, mul_pos h₀.2.2 h₀.1,
+    mul_pos (sub_pos.mpr h₁) (sub_pos.mpr h₂), mul_pos (sub_pos.mpr h₂) (sub_pos.mpr h₃),
+    mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₁), sq_nonneg (a - b + c), sq_nonneg (b - c + a),
+    sq_nonneg (c - a + b), sq_nonneg (a + b - c), sq_nonneg (b + c - a), sq_nonneg (c + a - b)]
+

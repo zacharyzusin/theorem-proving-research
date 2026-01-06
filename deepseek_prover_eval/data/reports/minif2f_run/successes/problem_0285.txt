@@ -1,0 +1,27 @@
+Problem: problem_0285
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.813136339187622
+Lean check time (s): 5.579433917999268
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_73
+  (p q r x : ℂ)
+  (h₀ : (x - p) * (x - q) = (r - p) * (r - q))
+  (h₁ : x ≠ r) :
+  x = p + q - r := by
+  have h : x = p + q - r := by
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₁)
+    rw [← sub_eq_zero] at h₀ ⊢
+    ring_nf at h₀ ⊢
+    simp only [sub_eq_add_neg] at h₀ ⊢
+    ring_nf at h₀ ⊢
+    simp_all [Complex.ext_iff]
+    <;> linarith
+  exact h

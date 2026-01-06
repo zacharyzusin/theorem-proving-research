@@ -1,0 +1,26 @@
+Problem: problem_0170
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.80087423324585
+Lean check time (s): 4.061862945556641
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778
+  (r : ℝ)
+  (h₀ : r^(1 / 3) + 1 / r^(1 / 3) = 3) :
+  r^3 + 1 / r^3 = 5778 := by
+  have h₁ : r ≠ 0 := by
+    intro h
+    rw [h] at h₀
+    norm_num at h₀
+  field_simp [h₁] at h₀ ⊢
+  ring_nf at h₀ ⊢
+  nlinarith [sq_nonneg (r ^ 2), sq_nonneg (r ^ 3), sq_nonneg (r ^ 4),
+    sq_nonneg (r ^ 5), sq_nonneg (r ^ 6), sq_nonneg (r ^ 7), sq_nonneg (r ^ 8),
+    sq_nonneg (r ^ 9), sq_nonneg (r ^ 10)]

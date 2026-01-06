@@ -1,0 +1,359 @@
+Problem: putnam_1989_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 83.54426693916321 / 61.18820142745972 / 144.73246836662292
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : z ≠ 0 := by
+      intro h
+      rw [h] at hz
+      simp_all [Complex.abs, Complex.normSq, pow_succ, pow_zero, mul_zero, add_zero]
+      <;> norm_num at *
+      <;> simp_all [Complex.ext_iff, pow_succ, pow_zero, mul_zero, add_zero]
+      <;> nlinarith [sq_nonneg (Complex.I.re), sq_nonneg (Complex.I.im)]
+    -- We use the fact that z ≠ 0 to simplify the equation and find that |z| = 1.
+    have h₃ : ‖z‖ ^ 10 = 1 := by
+      -- We use the fact that z ≠ 0 to simplify the equation and find that |z| = 1.
+      apply le_antisymm
+      · -- Show that ‖z‖ ^ 10 ≤ 1
+        apply le_of_not_gt
+        intro h
+        have h₄ : ‖z‖ ^ 10 > 1 := h
+        have h₅ : ‖z‖ > 1 := by
+          have h₆ : ‖z‖ ^ 10 > 1 := h₄
+          have h₇ : ‖z‖ > 1 := by
+            by_contra h₈
+            have h₉ : ‖z‖ ≤ 1 := by linarith
+            have h₁₀ : ‖z‖ ^ 10 ≤ 1 := by
+              exact pow_le_one 10 (norm_nonneg z) h₉
+            linarith
+          exact h₇
+        have h₁₁ : ‖z‖ ^ 10 ≤ 1 := by
+          have h₁₂ : ‖z‖ ≤ 1 := by
+            -- Use the fact that |z| > 1 leads to a contradiction.
+            have h₁₃ : ‖z‖ ^ 10 ≤ 1 := by
+              have h₁₄ : ‖z‖ ≤ 1 := by
+                -- Use the fact that |z| > 1 leads to a contradiction.
+                by_contra h₁₅
+  
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 49.07231855392456 / 32.52980327606201 / 81.60212182998657
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : ‖z‖ = 1 := by
+      apply le_antisymm
+      · -- Show that ‖z‖ ≤ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ > 1 := h
+        have h₄ : ‖z‖ ^ 10 ≥ 1 := by
+          have h₅ : ‖z‖ ^ 10 ≥ 1 := by
+            exact one_le_pow_of_one_le (by linarith) 10
+          linarith
+        have h₅ : ‖z‖ ^ 9 ≥ 1 := by
+          have h₆ : ‖z‖ ^ 9 ≥ 1 := by
+            exact one_le_pow_of_one_le (by linarith) 9
+          linarith
+        have h₆ : ‖z‖ ≥ 1 := by linarith
+        have h₇ : ‖11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11‖ ≥ ‖11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11‖ := by
+          simp
+        simp_all [Complex.abs, Complex.normSq, Complex.ext_iff, pow_two, pow_succ, mul_assoc, mul_comm, mul_left_comm]
+        <;> nlinarith [sq_nonneg (z.re - z.im), sq_nonneg (z.re + z.im), sq_nonneg (z.re), sq_nonneg (z.im),
+          sq_nonneg (z.re ^ 2 + z.im ^ 2), sq_nonneg (z.re ^ 2 - z.im ^ 2), sq_nonneg (2 * z.re * z.im),
+          sq_nonneg (11 * z.re ^ 10 - 11 * z.im ^ 10), sq_nonneg (10 * z.re ^ 9), sq_nonneg (10 * z.im ^ 9)]
+      · -- Show that ‖z‖ ≥ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ < 1 := h
+        have h₄ : ‖z‖ ^ 10 ≤ 1 := by
+          have h₅ : ‖z‖ ^ 10 ≤ 1 := by
+            exact pow_le_one 10 (
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 67.31746912002563 / 30.124361991882324 / 97.44183111190796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : ‖z‖ = 1 := by
+      apply le_antisymm
+      · -- Show that ‖z‖ ≤ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ ^ 2 > 1 := by
+          nlinarith [norm_nonneg z, norm_nonneg (z ^ 2), norm_nonneg (z ^ 3), norm_nonneg (z ^ 4),
+            norm_nonneg (z ^ 5), norm_nonneg (z ^ 6), norm_nonneg (z ^ 7), norm_nonneg (z ^ 8),
+            norm_nonneg (z ^ 9), norm_nonneg (z ^ 10)]
+        have h₄ : ‖z‖ ^ 2 = ‖z‖ ^ 2 := by rfl
+        have h₅ : ‖z ^ 2‖ = ‖z‖ ^ 2 := by simp [norm_pow]
+        have h₆ : ‖z ^ 3‖ = ‖z‖ ^ 3 := by simp [norm_pow]
+        have h₇ : ‖z ^ 4‖ = ‖z‖ ^ 4 := by simp [norm_pow]
+        have h₈ : ‖z ^ 5‖ = ‖z‖ ^ 5 := by simp [norm_pow]
+        have h₉ : ‖z ^ 6‖ = ‖z‖ ^ 6 := by simp [norm_pow]
+        have h₁₀ : ‖z ^ 7‖ = ‖z‖ ^ 7 := by simp [norm_pow]
+        have h₁₁ : ‖z ^ 8‖ = ‖z‖ ^ 8 := by simp [norm_pow]
+        have h₁₂ : ‖z ^ 9‖ = ‖z‖ ^ 9 := by simp [norm_pow]
+        have h₁₃ : ‖z ^ 10‖ = ‖z‖ ^ 10 := by simp [norm_pow]
+        simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq, pow_two, pow_succ, mul_assoc,
+          mul_comm, mul_left_comm]
+        <;> nlinarith [sq_nonneg (‖z‖ ^ 2 - 1), sq_nonneg (‖z‖ ^ 3 - ‖z‖), sq_nonneg (‖z‖ ^ 2 - ‖z‖),
+          sq_nonneg (‖z‖ - 1), sq_nonneg (‖z‖ ^ 2 - ‖z‖ ^ 3), sq_nonn
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 41.79178833961487 / 19.12418556213379 / 60.91597390174866
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : ‖z‖ = 1 := by
+      apply le_antisymm
+      · -- Show that ‖z‖ ≤ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ > 1 := h
+        have h₄ : ‖z‖ ^ 2 > 1 := by
+          nlinarith [norm_nonneg z]
+        have h₅ : ‖z‖ ^ 10 ≥ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by nlinarith [norm_nonneg z])
+          nlinarith
+        have h₆ : ‖z‖ ^ 9 ≥ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by nlinarith [norm_nonneg z])
+          nlinarith
+        have h₇ : ‖z‖ ^ 2 ≥ 1 := by nlinarith [norm_nonneg z]
+        have h₈ : ‖z‖ ^ 10 ≥ ‖z‖ ^ 2 := by nlinarith
+        have h₉ : ‖z‖ ^ 9 ≥ ‖z‖ ^ 2 := by nlinarith
+        simp_all [Complex.abs, Complex.normSq, pow_two, pow_succ, mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]
+        <;> norm_num
+        <;> nlinarith [sq_nonneg (‖z‖ ^ 2 - 1), sq_nonneg (‖z‖ ^ 2 - ‖z‖), sq_nonneg (‖z‖ - 1), sq_nonneg (‖z‖ ^ 2 - ‖z‖ ^ 2)]
+      · -- Show that ‖z‖ ≥ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ < 1 := h
+        have h₄ : ‖z‖ ^ 2 < 1 := by
+          nlinarith [norm_nonneg z]
+        have h₅ : ‖z‖ ^ 10 ≤ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by nlinarith [norm_nonneg z])
+          nlinarith
+        have h₆ : ‖z‖ ^ 9 ≤ ‖z‖ ^ 2 := by
+          apply pow_le_pow_ri
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 32.51973295211792 / 27.832961082458496 / 60.352694034576416
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : ‖z‖ = 1 := by
+      apply le_antisymm
+      · -- Show that ‖z‖ ≤ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ ^ 2 > 1 := by
+          nlinarith [norm_nonneg z, pow_two_nonneg ‖z‖]
+        have h₄ : ‖z‖ ^ 2 = ‖z‖ * ‖z‖ := by
+          simp [pow_two]
+        have h₅ : ‖z‖ * ‖z‖ > 1 := by
+          nlinarith
+        have h₆ : ‖z‖ ^ 10 ≥ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right
+          · nlinarith [norm_nonneg z]
+          · nlinarith
+        have h₇ : ‖z‖ ^ 9 ≥ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right
+          · nlinarith [norm_nonneg z]
+          · nlinarith
+        have h₈ : ‖z‖ ^ 2 ≥ 0 := by
+          nlinarith [norm_nonneg z]
+        simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq, pow_two, pow_succ, mul_assoc,
+          mul_comm, mul_left_comm]
+        <;> nlinarith [sq_nonneg (z.re - z.im), sq_nonneg (z.re + z.im), sq_nonneg (z.re), sq_nonneg (z.im),
+          sq_nonneg (z.re ^ 2 + z.im ^ 2)]
+      · -- Show that ‖z‖ ≥ 1
+        have h₃ : ‖z‖ ≥ 0 := by
+          exact norm_nonneg z
+        have h₄ : ‖z‖ ^ 2 ≥ 1 := by
+          contrapose! h
+          have h₅ : ‖z‖ ^ 2 < 1 := by nlinarith
+          have h₆ : ‖z‖ < 1 := by
+            nlinarith [pow_two_nonneg ‖z‖]
+          have h₇ : ‖z‖ ≤ 1 := by
+       
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 33.29428672790527 / 20.79730987548828 / 54.091596603393555
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : z ≠ 0 := by
+      intro h
+      rw [h] at hz
+      simp_all [Complex.norm_eq_abs, Complex.abs, Complex.normSq, pow_succ]
+      <;> norm_num at * <;>
+      simp_all [Complex.ext_iff, pow_succ, mul_comm, mul_left_comm, mul_assoc]
+      <;> nlinarith [Real.sqrt_nonneg 121, Real.sqrt_nonneg 100, Real.sq_sqrt (show (0 : ℝ) ≤ 121 by norm_num),
+        Real.sq_sqrt (show (0 : ℝ) ≤ 100 by norm_num)]
+    -- We use the fact that z ≠ 0 to cancel it out and simplify the equation.
+    have h₃ : ‖z‖ ^ 2 = 1 := by
+      field_simp [h₂, Complex.norm_eq_abs, Complex.abs, Complex.normSq] at hz ⊢
+      ring_nf at hz ⊢
+      simp_all [Complex.ext_iff, pow_succ, mul_comm, mul_left_comm, mul_assoc]
+      <;> nlinarith [Real.sqrt_nonneg 121, Real.sqrt_nonneg 100, Real.sq_sqrt (show (0 : ℝ) ≤ 121 by norm_num),
+        Real.sq_sqrt (show (0 : ℝ) ≤ 100 by norm_num), sq_nonneg (z.re + z.im), sq_nonneg (z.re - z.im),
+        sq_nonneg (z.re ^ 2 + z.im ^ 2), sq_nonneg (11 * z.re ^ 2 + 10 * z.re * z.im + 11 * z.im ^ 2),
+        sq_nonneg (11 * z.re ^ 2 - 10 * z.re * z.im + 11 * z.im ^ 2)]
+    have h₄ : ‖z‖ ≥ 0 := by apply Complex.abs.nonneg
+    have h₅ : ‖z‖ ≤ 1 := by
+      nlinarith [sq_nonneg (‖z‖ ^ 2 - 1), h₃, sq_nonneg (‖z‖ - 1), sq_nonneg (‖z‖ + 1)]
+    have h₆ : ‖z‖ ≥ 1 := by
+ 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 37.931702852249146 / 18.871235132217407 / 56.80293798446655
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : ‖z‖ = 1 := by
+      apply le_antisymm
+      · -- Show that ‖z‖ ≤ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ > 1 := h
+        have h₄ : ‖z‖ ^ 2 > 1 := by
+          nlinarith [norm_nonneg z, sq_nonneg (‖z‖ - 1)]
+        have h₅ : ‖z‖ ^ 10 ≥ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by nlinarith [norm_nonneg z])
+          nlinarith
+        have h₆ : ‖z‖ ^ 9 ≥ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by nlinarith [norm_nonneg z])
+          nlinarith
+        have h₇ : ‖z‖ ^ 2 ≥ 1 := by nlinarith [norm_nonneg z]
+        norm_num at *
+        simp_all [Complex.abs, Complex.normSq, pow_succ, mul_assoc, mul_comm, mul_left_comm]
+        <;>
+        nlinarith [sq_nonneg (z.re + z.im), sq_nonneg (z.re - z.im), sq_nonneg (z.re + z.im - 1),
+          sq_nonneg (z.re - z.im - 1), sq_nonneg (z.re + z.im + 1), sq_nonneg (z.re - z.im + 1)]
+      · -- Show that ‖z‖ ≥ 1
+        apply le_of_not_gt
+        intro h
+        have h₃ : ‖z‖ < 1 := h
+        have h₄ : ‖z‖ ^ 2 < 1 := by
+          nlinarith [norm_nonneg z, sq_nonneg (‖z‖ - 1)]
+        have h₅ : ‖z‖ ^ 10 ≤ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by nlinarith [norm_nonneg z])
+          nlinarith
+        have h₆ : ‖z‖ ^ 9 ≤ ‖z‖ ^ 2 := by
+          apply pow_le_pow_right (by n
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.62327790260315 / 13.445599794387817 / 38.06887769699097
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a3
+(z : ℂ)
+(hz : 11 * z ^ 10 + 10 * I * z ^ 9 + 10 * I * z - 11 = 0)
+: (‖z‖ = 1) := by
+  have h₁ : ‖z‖ = 1 := by
+    have h₂ : z ≠ 0 := by
+      intro h
+      rw [h] at hz
+      simp_all [Complex.abs, Complex.normSq, pow_succ, pow_zero, mul_zero, add_zero, zero_add,
+        Complex.ext_iff, Complex.I_mul_I]
+      <;> norm_num at * <;> aesop
+    -- We use the fact that z ≠ 0 to simplify the equation and find that |z| = 1.
+    have h₃ : ‖z‖ = 1 := by
+      apply Eq.symm
+      apply mul_left_cancel₀ (sub_ne_zero.mpr h₂)
+      rw [← sub_eq_zero] at hz ⊢
+      ring_nf at hz ⊢
+      simp_all [Complex.abs, Complex.normSq, pow_succ, pow_zero, mul_zero, add_zero, zero_add,
+        Complex.ext_iff, Complex.I_mul_I]
+      <;> norm_num at * <;>
+        simp_all [Complex.normSq, Complex.abs, Complex.ext_iff, pow_two, pow_succ, mul_add,
+          mul_sub, mul_one, mul_neg, mul_comm, mul_left_comm]
+      <;> ring_nf at * <;>
+        norm_num at * <;>
+        nlinarith [sq_nonneg (z.re + z.im), sq_nonneg (z.re - z.im), sq_nonneg (z.re), sq_nonneg (z.im),
+          Real.sqrt_nonneg (z.re ^ 2 + z.im ^ 2), Real.sq_sqrt (show (0 : ℝ) ≤ z.re ^ 2 + z.im ^ 2 by
+            nlinarith [sq_nonneg (z.re), sq_nonneg (z.im)]) ]
+    exact h₃
+  exact h₁

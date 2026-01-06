@@ -1,0 +1,359 @@
+Problem: putnam_1966_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.528358459472656 / 92.89166283607483 / 116.42002129554749
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n
+  simp_all only [Set.mem_insert_iff, Set.mem_singleton_iff, exists_prop]
+  aesop
+  <;>
+  (try
+    aesop)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_right]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_left]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_right]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_left]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_right]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_left]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_right]
+      <;>
+      omega)
+  <;>
+  (try
+    exact fun m hm hne => by
+      simp_all [IsCoprime, Nat.gcd_eq_left]
+      <;>
+      omega)
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.833418846130371 / 147.1159176826477 / 161.94933652877808
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n, by simp [hS]
+  intro m hm hne
+  have h : m = n ∨ m = n + 1 ∨ m = n + 2 ∨ m = n + 3 ∨ m = n + 4 ∨ m = n + 5 ∨ m = n + 6 ∨ m = n + 7 ∨ m = n + 8 ∨ m = n + 9 := by
+    simp [hS] at hm
+    aesop
+  rcases h with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) <;>
+    simp_all [Int.isCoprime_iff_gcd_eq_one, gcd_eq_right, gcd_eq_left, gcd_eq_right]
+  <;>
+    omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.455039262771606 / 139.7453408241272 / 155.2003800868988
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n, by simp [hS, Finset.mem_insert, Finset.mem_singleton]
+  intro m hm
+  intro h
+  have h' : m = n ∨ m = n + 1 ∨ m = n + 2 ∨ m = n + 3 ∨ m = n + 4 ∨ m = n + 5 ∨ m = n + 6 ∨ m = n + 7 ∨ m = n + 8 ∨ m = n + 9 := by
+    simp [hS, Finset.mem_insert, Finset.mem_singleton] at hm
+    omega
+  rcases h' with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) <;>
+    simp_all [IsCoprime, Nat.gcd_eq_right, Nat.gcd_eq_left]
+  <;>
+    omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.854631185531616 / 91.16545271873474 / 111.02008390426636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n
+  simp_all only [hS, Set.mem_setOf_eq, exists_prop]
+  aesop
+  <;>
+  (try
+    {
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+  <;>
+  (try
+    {
+      norm_num
+      <;>
+      aesop
+    })
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.054872512817383 / 92.51631093025208 / 110.57118344306946
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n + 1
+  simp_all only [hS, Set.mem_insert_iff, Set.mem_singleton_iff, exists_prop]
+  refine' ⟨by aesop, _⟩
+  intro m hm
+  rintro h
+  simp_all only [Set.mem_insert_iff, Set.mem_singleton_iff, ne_eq, not_or, not_not, and_true]
+  have h₁ : m = n ∨ m = n + 1 ∨ m = n + 2 ∨ m = n + 3 ∨ m = n + 4 ∨ m = n + 5 ∨ m = n + 6 ∨ m = n + 7 ∨ m = n + 8 ∨ m = n + 9 := by aesop
+  rcases h₁ with (h₁ | h₁ | h₁ | h₁ | h₁ | h₁ | h₁ | h₁ | h₁ | h₁) <;> simp_all [Int.isCoprime_iff_gcd_eq_one, gcd_eq_right, gcd_eq_left]
+  <;> norm_num <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.869455575942993 / 84.41983366012573 / 98.28928923606873
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n
+  constructor
+  · simp_all [hS]
+  intro m hm hne
+  have h₁ : IsCoprime m n := by
+    simp_all [hS, Set.mem_insert_iff, Set.mem_singleton_iff, Int.gcd_eq_left, Int.gcd_eq_right]
+    <;>
+    (try decide) <;>
+    (try omega) <;>
+    (try
+      {
+        norm_num at *
+        <;>
+        (try omega) <;>
+        (try
+          {
+            aesop
+          })
+      })
+    <;>
+    (try
+      {
+        exact isCoprime_iff_gcd_eq_one.mpr (by omega)
+      })
+  exact h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.739408016204834 / 85.23799109458923 / 102.97739911079407
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n
+  constructor
+  · simp_all [hS]
+    <;> aesop
+  intro m hm hne
+  simp_all [hS]
+  <;>
+  (try decide)
+  <;>
+  (try
+    {
+      -- We need to show that for each m in S n, gcd(m, n) = 1
+      have h₁ : m = n ∨ m = n + 1 ∨ m = n + 2 ∨ m = n + 3 ∨ m = n + 4 ∨ m = n + 5 ∨ m = n + 6 ∨ m = n + 7 ∨ m = n + 8 ∨ m = n + 9 := by aesop
+      rcases h₁ with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) <;>
+        simp_all [Int.gcd_eq_right, Int.gcd_eq_left, Nat.coprime_iff_gcd_eq_one] <;>
+        norm_num <;>
+        omega
+    })
+  <;>
+  omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.678839445114136 / 116.57921600341797 / 129.2580554485321
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1966_b2
+(S : ℤ → Set ℤ)
+(hS : S = fun n : ℤ => {n, n + 1, n + 2, n + 3, n + 4, n + 5, n + 6, n + 7, n + 8, n + 9})
+: ∀ n : ℤ, n > 0 → (∃ k ∈ S n, ∀ m ∈ S n, k ≠ m → IsCoprime m k) := by
+  intro n hn
+  use n
+  simp_all [hS, Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_setOf_eq]
+  <;>
+    aesop
+  <;>
+    (try
+      norm_num)
+  <;>
+    (try
+      ring_nf)
+  <;>
+    (try
+      omega)
+  <;>
+    (try
+      aesop)
+  <;>
+    (try
+      norm_num)
+  <;>
+    (try
+      ring_nf)
+  <;>
+    (try
+      omega)
+  <;>
+    (try
+      aesop)

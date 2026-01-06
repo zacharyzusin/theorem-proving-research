@@ -1,0 +1,22 @@
+Problem: problem_0229
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.2727766036987305
+Lean check time (s): 4.383551597595215
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_302 :
+  (Complex.I / 2)^2 = -(1 / 4) := by
+  norm_num [Complex.ext_iff, pow_two, mul_add, mul_sub, mul_one, mul_neg, mul_comm]
+  <;> simp [Complex.I_mul_I]
+  <;> norm_num
+  <;> ring
+  <;> norm_num
+  <;> ring
+  <;> norm_num

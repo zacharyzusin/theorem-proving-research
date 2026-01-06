@@ -1,0 +1,20 @@
+Problem: problem_0130
+Dataset: minif2f
+Mode: noncot
+First success attempt: 3
+Generation time (s): 7.281346797943115
+Lean check time (s): 48.610069036483765
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_unitcircatbpamblt1
+  (a b: ℝ)
+  (h₀ : a^2 + b^2 = 1) :
+  a * b + (a - b) ≤ 1 := by
+  have h₁ : 0 ≤ (a - b)^2 := sq_nonneg (a - b)
+  have h₂ : 0 ≤ (a + b)^2 := sq_nonneg (a + b)
+  nlinarith [sq_nonneg (a - b + 1), sq_nonneg (a + b - 1), sq_nonneg (a + b + 1), sq_nonneg (a - b - 1)]

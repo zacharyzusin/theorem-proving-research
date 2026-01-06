@@ -1,0 +1,190 @@
+Problem: putnam_1983_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 6.974631071090698 / 13.647143125534058 / 20.621774196624756
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use Polynomial.C (-1), Polynomial.C 0
+  simp [hα, aeval_C]
+  <;> ring_nf
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.22025990486145 / 15.80565595626831 / 25.02591586112976
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use Polynomial.C (-1), Polynomial.C 0
+  simp [hα]
+  <;> norm_num
+  <;> ring_nf
+  <;> simp_all [Complex.ext_iff, pow_add, pow_one, mul_neg, neg_neg, mul_zero, zero_mul, sub_eq_add_neg]
+  <;> nlinarith [hα.1, hα.2]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 6.058272838592529 / 14.011440992355347 / 20.069713830947876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use 0, -1
+  simp [hα]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 7.2566399574279785 / 14.845583200454712 / 22.10222315788269
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use Polynomial.C (-1 : ℤ), Polynomial.C (0 : ℤ)
+  simp_all [aeval_C]
+  <;> ring_nf
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.1954505443573 / 14.354170083999634 / 21.549620628356934
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use 0, -1
+  simp_all [aeval_def, hα]
+  <;>
+    ring_nf
+  <;>
+    norm_num
+  <;>
+    aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.041410446166992 / 13.104786396026611 / 21.146196842193604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use 0, -1
+  simp [hα]
+  <;> norm_num
+  <;>
+    simp_all [Complex.ext_iff, pow_add, pow_one, sub_eq_zero]
+  <;>
+    nlinarith [hα.1]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.722880840301514 / 15.231749773025513 / 22.954630613327026
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use Polynomial.C (-1), Polynomial.C 0
+  simp [hα]
+  <;> norm_num
+  <;> ring_nf
+  <;> simp_all [Complex.ext_iff, pow_one]
+  <;> nlinarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.562935590744019 / 12.651197910308838 / 23.214133501052856
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b6
+(n : ℕ)
+(npos : n > 0)
+(α : ℂ)
+(hα : α ^ (2 ^ n + 1) - 1 = 0 ∧ α ≠ 1)
+: (∃ p q : Polynomial ℤ, (aeval α p) ^ 2 + (aeval α q) ^ 2 = -1) := by
+  use Polynomial.C (-1), Polynomial.C 0
+  simp [hα]
+  <;> norm_num
+  <;>
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      simp_all [pow_add, pow_one, mul_add, mul_one, mul_comm, mul_left_comm, mul_assoc,
+        pow_mul, Nat.succ_eq_add_one]
+      <;>
+        ring_nf
+      <;>
+        norm_num
+      <;>
+        aesop

@@ -1,0 +1,20 @@
+Problem: problem_0326
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.0853536128997803
+Lean check time (s): 2.7771072387695312
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_81 :
+  71 % 3 = 2 := by
+  norm_num
+  <;> simp [Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> omega
+  <;> linarith

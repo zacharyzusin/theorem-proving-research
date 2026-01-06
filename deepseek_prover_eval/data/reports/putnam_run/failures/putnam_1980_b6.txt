@@ -1,0 +1,126 @@
+Problem: putnam_1980_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.859466791152954 / 49.30919790267944 / 65.1686646938324
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.537733554840088 / 67.67624115943909 / 81.21397471427917
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.5914044380188 / 26.66584038734436 / 50.25724482536316
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.950807809829712 / 41.321412801742554 / 56.272220611572266
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.988789796829224 / 34.07254600524902 / 49.06133580207825
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.575510501861572 / 18.781338453292847 / 33.35684895515442
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.92531967163086 / 10.596785545349121 / 26.52210521697998
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.165780067443848 / 42.14984178543091 / 56.315621852874756
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_b6
+(G : ℤ × ℤ → ℚ)
+(hG : ∀ d n : ℕ, d ≤ n → (d = 1 → G (d, n) = 1/(n : ℚ)) ∧ (d > 1 → G (d, n) = (d/(n : ℚ))*∑ i ∈ Finset.Icc d n, G ((d : ℤ) - 1, (i : ℤ) - 1)))
+: ∀ d p : ℕ, 1 < d ∧ d ≤ p ∧ Prime p → ¬p ∣ (G (d, p)).den :=
+sorry

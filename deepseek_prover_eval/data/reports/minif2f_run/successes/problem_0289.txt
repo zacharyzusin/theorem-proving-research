@@ -1,0 +1,17 @@
+Problem: problem_0289
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.090736150741577
+Lean check time (s): 2.4345626831054688
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_236 :
+  (1999^2000) % 5 = 1 := by
+  rw [show 1999 ^ 2000 % 5 = 1 by
+    norm_num [Nat.pow_mod, Nat.mod_eq_of_lt, show 2000 > 0 by norm_num]]

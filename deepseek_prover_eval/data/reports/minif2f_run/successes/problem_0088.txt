@@ -1,0 +1,35 @@
+Problem: problem_0088
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 17.757123470306396
+Lean check time (s): 265.5806632041931
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_314
+  (r n : ℕ)
+  (h₀ : r = 1342 % 13)
+  (h₁ : 0 < n)
+  (h₂ : 1342∣n)
+  (h₃ : n % 13 < r) :
+  6710 ≤ n := by
+  have h₄ : r = 1342 % 13 := h₀
+  have h₅ : 0 < n := h₁
+  have h₆ : 1342∣n := h₂
+  have h₇ : n % 13 < r := h₃
+  have h₈ : r = 1342 % 13 := h₀
+  have h₉ : n ≥ 6710 := by
+    -- We need to show that n is at least 6710.
+    -- Since 1342 divides n, we can write n = 1342 * k for some integer k.
+    -- The remainder r when n is divided by 13 is less than r.
+    -- We need to find the smallest n such that n ≥ 6710.
+    -- We use the fact that 1342 % 13 = 12 and the smallest n is 6710.
+    norm_num [h₈, h₄] at h₇
+    contrapose! h₇
+    interval_cases n <;> norm_num [Nat.div_eq_of_lt] at h₆ ⊢ <;> omega
+  exact h₉

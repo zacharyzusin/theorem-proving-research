@@ -1,0 +1,389 @@
+Problem: problem_0063
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.917784690856934 / 5.031749486923218 / 26.94953417778015
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₄ : a^2 = 6 * b := by simp_all
+  have h₅ : a^2 = 54 / b := by simp_all
+  have h₆ : 6 * b = 54 / b := by linarith
+  have h₇ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆ ⊢
+    norm_cast at h₆ ⊢
+    nlinarith
+  have h₉ : b = 3 := by
+    have h₁₀ : b ≥ 0 := by simp_all [NNReal.coe_le_coe]
+    have h₁₁ : b ≤ 3 := by
+      nlinarith [sq_nonneg (b - 3)]
+    have h₁₂ : b ≥ 3 := by
+      nlinarith [sq_nonneg (b - 3)]
+    nlinarith
+  have h₁₀ : a^2 = 6 * b := by simp_all
+  have h₁₁ : a = 3 * NNReal.sqrt 2 := by
+    apply Eq.symm
+    rw [← mul_self_inj (by positivity) (by positivity)]
+    field_simp at h₁₀ ⊢
+    ring_nf at h₁₀ ⊢
+    norm_cast at h₁₀ ⊢
+    <;> nlinarith [Real.sq_sqrt (show 0 ≤ 2 by norm_num)]
+  exact h₁₁
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.329872608184814 / 5.411996364593506 / 24.74186897277832
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₄ : a^2 = 6 * b := by simp_all
+  have h₅ : a^2 = 54 / b := by simp_all
+  have h₆ : 6 * b = 54 / b := by linarith
+  have h₇ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆
+    norm_cast at h₆
+    nlinarith
+  have h₉ : b = 3 := by
+    have h₁₀ : b ≤ 3 := by
+      nlinarith [sq_nonneg b]
+    have h₁₁ : b ≥ 3 := by
+      nlinarith [sq_nonneg b]
+    nlinarith
+  have h₁₀ : a = 3 * NNReal.sqrt 2 := by
+    rw [← mul_one a]
+    simp_all [sq, mul_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> field_simp
+    <;> ring_nf
+    <;> norm_num
+    <;> nlinarith [Real.sqrt_nonneg 2, Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)]
+  exact h₁₀
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.032650470733643 / 4.596133708953857 / 27.6287841796875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := ne_of_gt h₀.2
+  have h₄ : a^2 = 6*b := h₁
+  have h₅ : a^2 = 54/b := h₂
+  have h₆ : 6*b = 54/b := by linarith
+  have h₇ : b ≠ 0 := ne_of_gt h₀.2
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆
+    nlinarith
+  have h₉ : b = 3 := by
+    have h₁₀ : b * b = 9 := h₈
+    have h₁₁ : b = 3 := by
+      apply Eq.symm
+      rw [← mul_one b] at h₁₀
+      nlinarith
+    exact h₁₁
+  have h₁₀ : a^2 = 6 * b := h₄
+  have h₁₁ : a^2 = 18 := by
+    rw [h₉] at h₁₀
+    nlinarith
+  have h₁₂ : a = 3 * NNReal.sqrt 2 := by
+    have h₁₃ : a^2 = 18 := h₁₁
+    have h₁₄ : a = 3 * NNReal.sqrt 2 := by
+      apply Eq.symm
+      rw [eq_comm]
+      rw [← mul_self_inj (by positivity) (by positivity)]
+      norm_cast
+      <;> field_simp at h₁₃ ⊢ <;> ring_nf at h₁₃ ⊢ <;> nlinarith [Real.sq_sqrt (show 0 ≤ 2 by norm_num)]
+    exact h₁₄
+  exact h₁₂
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.394102573394775 / 9.14471435546875 / 27.538816928863525
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro hb
+    simp_all
+  have h₄ : a^2 = 6 * b := by
+    simp_all
+  have h₅ : a^2 = 54 / b := by
+    simp_all
+  have h₆ : 6 * b = 54 / b := by
+    linarith
+  have h₇ : b ≠ 0 := by
+    intro hb
+    simp_all
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆ ⊢
+    nlinarith
+  have h₉ : b = 3 := by
+    have hb : 0 < b := by
+      nlinarith
+    have hb' : b * b = 9 := by
+      nlinarith
+    nlinarith [sq_eq_sq (b : ℝ) 3]
+  have h₁₀ : a^2 = 54 / b := by
+    simp_all
+  have h₁₁ : a = 3 * NNReal.sqrt 2 := by
+    rw [← NNReal.coe_inj] at *
+    field_simp at *
+    nlinarith [Real.sqrt_nonneg 2, Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)]
+  exact h₁₁
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.797587394714355 / 5.405067682266235 / 24.20265507698059
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₄ : a^2 = 6 * b := by simp_all
+  have h₅ : a^2 = 54 / b := by simp_all
+  have h₆ : 6 * b = 54 / b := by linarith
+  have h₇ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆ ⊢
+    nlinarith
+  have h₉ : b = 3 := by
+    apply Eq.symm
+    rw [mul_comm] at h₈
+    nlinarith [sq_nonneg (b - 3)]
+  have h₁₀ : a^2 = 6 * b := by simp_all
+  have h₁₁ : a = 3 * NNReal.sqrt 2 := by
+    rw [← mul_one a]
+    simp_all [sq, mul_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> field_simp [h₃]
+    <;> ring_nf
+    <;> norm_cast
+    <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)]
+  exact h₁₁
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.026026725769043 / 5.4021897315979 / 29.428216457366943
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro h
+    simp_all
+  have h₄ : a^2 = 6 * b := by simp_all
+  have h₅ : a^2 = 54 / b := by simp_all
+  have h₆ : (6 * b : NNReal) = 54 / b := by simp_all
+  have h₇ : b^2 = 9 := by
+    field_simp at h₆
+    ring_nf at h₆
+    norm_cast at h₆
+    nlinarith
+  have h₈ : b = 3 := by
+    have h₉ : b^2 = 9 := by simp_all
+    have h₁₀ : b = 3 := by
+      apply Eq.symm
+      rw [eq_comm]
+      nlinarith [sq_nonneg (b - 3)]
+    simp_all
+  have h₉ : a^2 = 6 * b := by simp_all
+  have h₁₀ : a = 3 * NNReal.sqrt 2 := by
+    rw [h₈] at h₉
+    have h₁₁ : a^2 = 18 := by simp_all
+    have h₁₂ : a = 3 * NNReal.sqrt 2 := by
+      apply Eq.symm
+      rw [eq_comm]
+      rw [← mul_self_inj (by positivity) (by positivity)]
+      ring_nf
+      norm_num
+      <;> simp_all [pow_two, mul_assoc]
+      <;> ring_nf
+      <;> norm_num
+      <;> field_simp [h₃] at h₁₁ ⊢
+      <;> ring_nf at h₁₁ ⊢
+      <;> norm_num at h₁₁ ⊢
+      <;> nlinarith
+    simp_all
+  simp_all
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 18.755634546279907 / 6.17459774017334 / 24.930232286453247
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro hb
+    simp_all
+  have h₄ : a^2 = 6 * b := by simp_all
+  have h₅ : a^2 = 54 / b := by simp_all
+  have h₆ : 6 * b = 54 / b := by linarith
+  have h₇ : b ≠ 0 := by
+    intro hb
+    simp_all
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆ ⊢
+    nlinarith
+  have h₉ : b = 3 := by
+    have h₉ : b * b = 9 := by simp_all
+    have h₁₀ : b = 3 := by
+      apply Eq.symm
+      rw [eq_comm]
+      nlinarith
+    simp_all
+  have h₁₀ : a^2 = 6 * b := by simp_all
+  have h₁₁ : a = 3 * NNReal.sqrt 2 := by
+    rw [← mul_one a]
+    simp_all [sq]
+    <;> ring_nf
+    <;> field_simp at *
+    <;> norm_cast at *
+    <;> nlinarith [Real.sq_sqrt (show 0 ≤ 2 by norm_num)]
+  simp_all
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.63988184928894 / 5.817318916320801 / 30.45720076560974
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_184
+  (a b : NNReal)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a^2) = 6*b)
+  (h₂ : (a^2) = 54/b) :
+  a = 3 * NNReal.sqrt 2 := by
+  have h₃ : b ≠ 0 := by
+    intro hb
+    simp_all
+  have h₄ : a^2 = 6*b := by simpa using h₁
+  have h₅ : a^2 = 54/b := by simpa using h₂
+  have h₆ : 6*b = 54/b := by linarith
+  have h₇ : b ≠ 0 := by
+    intro hb
+    simp_all
+  have h₈ : b * b = 9 := by
+    field_simp at h₆
+    ring_nf at h₆ ⊢
+    norm_cast at h₆ ⊢
+    nlinarith
+  have h₉ : b = 3 := by
+    have hb : b ≥ 0 := by simp [NNReal.coe_nonneg]
+    nlinarith [sq_nonneg (b - 3)]
+  have h₁₀ : a^2 = 18 := by
+    rw [h₉] at h₄
+    norm_num at h₄ ⊢
+    nlinarith
+  have h₁₁ : a = 3 * NNReal.sqrt 2 := by
+    have ha : a ≥ 0 := by simp [NNReal.coe_nonneg]
+    rw [← NNReal.coe_inj] at *
+    have h₁₂ : (a : ℝ) ^ 2 = 18 := by
+      norm_cast at h₁₀ ⊢
+      <;> nlinarith
+    have h₁₃ : (a : ℝ) = 3 * Real.sqrt 2 := by
+      apply Eq.symm
+      nlinarith [Real.sqrt_nonneg 2, Real.sq_sqrt (show 0 ≤ (2 : ℝ) by norm_num)]
+    rw [← NNReal.coe_inj]
+    simp_all [NNReal.coe_mul, NNReal.coe_sqrt]
+    <;> nlinarith
+  exact h₁₁
+

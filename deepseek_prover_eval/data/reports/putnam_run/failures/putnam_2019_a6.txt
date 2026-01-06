@@ -1,0 +1,158 @@
+Problem: putnam_2019_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.165318727493286 / 7.986563444137573 / 32.15188217163086
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 45.25899076461792 / 7.837424039840698 / 53.09641480445862
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.76116156578064 / 7.714697599411011 / 22.47585916519165
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.950416564941406 / 7.736679792404175 / 30.68709635734558
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 24.856621980667114 / 7.888628244400024 / 32.74525022506714
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.62649416923523 / 7.57909893989563 / 29.20559310913086
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.88016176223755 / 8.604077100753784 / 28.484238862991333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.682223558425903 / 7.5806565284729 / 22.262880086898804
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_a6
+(g : ℝ → ℝ)
+(r : ℝ)
+(hcont : ContinuousOn g (Set.Icc 0 1))
+(hdiff : ContDiffOn ℝ 1 g (Set.Ioo 0 1) ∧ DifferentiableOn ℝ (deriv g) (Set.Ioo 0 1))
+(hr : r > 1)
+(hlim : Tendsto (fun x => g x / x ^ r) (𝓝[>] 0) (𝓝 0))
+: (Tendsto (deriv g) (𝓝[>] 0) (𝓝 0)) ∨ (Tendsto (fun x : ℝ => sSup {x' ^ r * abs (iteratedDeriv 2 g x') | x' ∈ Set.Ioc 0 x}) (𝓝[>] 0) atTop) :=
+sorry

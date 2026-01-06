@@ -1,0 +1,219 @@
+Problem: putnam_2000_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.24348783493042 / 8.01295781135559 / 16.25644564628601
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 1 else if j = 2 then 1 else if j = 3 then 1 else if j = 4 then 1 else 1
+  norm_num
+  <;> aesop
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.32573914527893 / 9.146268367767334 / 17.472007513046265
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 0 else if j = 2 then 1 else if j = 3 then 0 else if j = 4 then 1 else 0
+  norm_num
+  <;> aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.311464071273804 / 7.49813985824585 / 16.809603929519653
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 1 else if j = 2 then 1 else if j = 3 then 1 else if j = 4 then 1 else 1
+  constructor
+  <;> simp [sq]
+  <;> norm_num
+  <;> ring_nf
+  <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.685911178588867 / 9.217326402664185 / 18.90323758125305
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 1 else if j = 2 then 1 else if j = 3 then 1 else if j = 4 then 1 else 1
+  constructor
+  <;> simp [sq]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.581514596939087 / 10.144044399261475 / 18.72555899620056
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 1 else if j = 2 then 1 else if j = 3 then 1 else if j = 4 then 1 else 1
+  norm_num
+  <;> decide
+  <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.567772150039673 / 9.9888277053833 / 19.556599855422974
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 1 else if j = 2 then 1 else if j = 3 then 1 else if j = 4 then 1 else 1
+  constructor
+  <;> simp [sq]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.647188186645508 / 8.007564306259155 / 17.654752492904663
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 0 else if j = 2 then 1 else if j = 3 then 0 else if j = 4 then 1 else 0
+  simp
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> use 1
+  <;> aesop
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.562763214111328 / 9.274551391601562 / 22.83731460571289
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a2 :
+  ∀ n : ℕ,
+    ∃ N : ℤ,
+      ∃ i : Fin 6 → ℕ,
+        N > n ∧
+        N = (i 0)^2 + (i 1)^2 ∧
+        N + 1 = (i 2)^2 + (i 3)^2 ∧
+        N + 2 = (i 4)^2 + (i 5)^2 := by
+  intro n
+  use 0
+  use fun j => if j = 0 then 1 else if j = 1 then 1 else if j = 2 then 1 else if j = 3 then 1 else if j = 4 then 1 else 0
+  constructor
+  -- Show that N > n
+  · norm_num
+    <;> nlinarith
+  constructor
+  -- Show that N = (i 0)^2 + (i 1)^2
+  · norm_num
+    <;> aesop
+  constructor
+  -- Show that N + 1 = (i 2)^2 + (i 3)^2
+  · norm_num
+    <;> aesop
+  -- Show that N + 2 = (i 4)^2 + (i 5)^2
+  · norm_num
+    <;> aesop

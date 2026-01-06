@@ -1,0 +1,31 @@
+Problem: problem_0013
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.720889806747437
+Lean check time (s): 9.294515609741211
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_33
+  (x y z : ℝ)
+  (h₀ : x ≠ 0)
+  (h₁ : 2 * x = 5 * y)
+  (h₂ : 7 * y = 10 * z) :
+  z / x = 7 / 25 := by
+  have h₃ : z = 7 * y / 10 := by
+    field_simp at h₂ ⊢
+    linarith
+  have h₄ : y = 2 * x / 5 := by
+    field_simp at h₁ ⊢
+    linarith
+  rw [h₃, h₄]
+  field_simp
+  ring
+  <;> simp_all
+  <;> field_simp
+  <;> linarith

@@ -1,0 +1,21 @@
+Problem: problem_0324
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.0824170112609863
+Lean check time (s): 3.3463799953460693
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_102 :
+  (2^8) % 5 = 1 := by
+  norm_num
+  <;> rfl
+  <;> simp
+  <;> rfl
+  <;> norm_num
+  <;> rfl

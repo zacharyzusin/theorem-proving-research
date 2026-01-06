@@ -1,0 +1,213 @@
+Problem: problem_0345
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 7.947255849838257 / 600.154863357544 / 608.1021192073822
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;>
+    nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.573736906051636 / 600.1547718048096 / 609.7285087108612
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;>
+    (try contradiction) <;>
+    (try nlinarith) <;>
+    (try ring_nf at h₂ ⊢) <;>
+    nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.716784238815308 / 600.1573886871338 / 607.8741729259491
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;> nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 7.742791175842285 / 600.1631820201874 / 607.9059731960297
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;> nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.779273271560669 / 600.0936849117279 / 607.8729581832886
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;>
+    nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 7.748048782348633 / 600.0676493644714 / 607.8156981468201
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;>
+    nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.680691480636597 / 600.1556174755096 / 607.8363089561462
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;> nlinarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.639140844345093 / 600.1498992443085 / 607.7890400886536
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p1
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : x * y + (x + y) = 71)
+  (h₂ : x^2 * y + x * y^2 = 880) :
+  x^2 + y^2 = 146 := by
+  have h₃ : x ≤ 71 := by
+    nlinarith
+  have h₄ : y ≤ 71 := by
+    nlinarith
+  interval_cases x <;> interval_cases y <;> norm_num at h₁ h₂ ⊢ <;> nlinarith
+

@@ -1,0 +1,285 @@
+Problem: problem_0047
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 2
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.659557819366455 / 5.759991884231567 / 23.419549703598022
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : a^2 < 3 := by linarith
+  have h₅ : 0 < a := by nlinarith
+  have h₆ : a^2 < 3 := by nlinarith
+  have h₇ : a^12 - 144 * (1 / a) = 233 := by
+    have h₈ : a^2 > 1 := by nlinarith
+    have h₉ : a^2 < 3 := by nlinarith
+    have h₁₀ : a^10 = a^2 * a^8 := by ring
+    have h₁₁ : a^8 = a^2 * a^6 := by ring
+    have h₁₂ : a^6 = a^2 * a^4 := by ring
+    have h₁₃ : a^4 = a^2 * a^2 := by ring
+    have h₁₄ : a^2 = a^2 := by ring
+    field_simp [h₅.ne', h₀.ne'] at h₁ ⊢
+    nlinarith [sq_nonneg (a^2 - 1), sq_nonneg (a^2 - 2), sq_nonneg (a^2 - 3)]
+  exact h₇
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 25.277440309524536 / 3.5038158893585205 / 28.781256198883057
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : 0 < a := h₀
+  have h₅ : a^2 < 3 := h₃
+  have h₆ : 2 < a^2 := h₂
+  have h₇ : a^2 < 3 := h₃
+  have h₈ : a < √3 := by
+    nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show 0 ≤ 3 by norm_num)]
+  have h₉ : 0 < a^2 := by nlinarith
+  have h₁₀ : a^2 < 3 := h₃
+  have h₁₁ : a^2 > 2 := by nlinarith
+  have h₁₂ : a^12 - 144 * (1 / a) = 233 := by
+    have h₁₃ : 1 / a ≤ 1 / 1 := by
+      apply one_div_le_one_div_of_le
+      · nlinarith
+      · nlinarith
+    have h₁₄ : a^2 ≤ 3 := by nlinarith
+    have h₁₅ : a^12 ≥ 2^12 := by
+      have h₁₆ : a ≥ 2 := by nlinarith
+      have h₁₇ : a^12 ≥ 2^12 := by
+        exact pow_le_pow_of_le_left (by nlinarith) h₁₆ 12
+      linarith
+    have h₁₆ : a^12 - 144 * (1 / a) = 233 := by
+      rw [eq_comm] at h₁
+      field_simp at h₁ ⊢
+      nlinarith [sq_nonneg (a^6 - 12), sq_nonneg (a^4 - 12), sq_nonneg (a^2 - 12),
+        sq_nonneg (a - 12)]
+    linarith
+  linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.876439809799194 / 50.61431336402893 / 66.49075317382812
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : a^2 < 3 := by linarith
+  have h₅ : 0 < a^2 := by nlinarith
+  have h₆ : a^2 < 3 := by linarith
+  have h₇ : a^12 - 144 * (1 / a) = 233 := by
+    have h₈ : a^2 < 3 := by linarith
+    have h₉ : a^2 > 1 := by nlinarith
+    have h₁₀ : a^12 > 0 := by positivity
+    field_simp [h₀.ne'] at h₁ ⊢
+    nlinarith [sq_nonneg (a^6 - 36), sq_nonneg (a^4 - 12), sq_nonneg (a^2 - 3),
+      Int.floor_le (1 / a), Int.floor_le (a^2), Int.lt_floor_add_one (1 / a),
+      Int.lt_floor_add_one (a^2)]
+  exact h₇
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.066105365753174 / 600.1636340618134 / 617.2297394275665
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : a^2 < 3 := by linarith
+  have h₅ : 0 < a^2 := by nlinarith
+  have h₆ : a^2 - 1 < 3 := by linarith
+  have h₇ : 0 < a := by nlinarith
+  have h₈ : a^12 - 144 * (1 / a) = 233 := by
+    have h₉ : a^2 < 3 := by linarith
+    have h₁₀ : a^2 - 1 < 3 := by linarith
+    have h₁₁ : a^2 < 3 := by linarith
+    have h₁₂ : a^12 - 144 * (1 / a) = 233 := by
+      field_simp at h₁ ⊢
+      nlinarith [sq_nonneg (a^6 - 36), sq_nonneg (a^4 - 12), sq_nonneg (a^2 - 3),
+        sq_nonneg (a - 1), sq_nonneg (a - 2)]
+    exact h₁₂
+  exact h₈
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.052122354507446 / 3.875509738922119 / 21.927632093429565
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  norm_num at h₁ h₂ h₃ ⊢
+  have h₄ : 0 < a := by positivity
+  have h₅ : a^2 < 3 := by linarith
+  have h₆ : a < √3 := by
+    nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show 0 ≤ 3 by norm_num)]
+  have h₇ : a^2 < 3 := by nlinarith
+  have h₈ : a^12 < 3^6 := by
+    nlinarith [pow_pos h₄ 2, pow_pos h₄ 3, pow_pos h₄ 4, pow_pos h₄ 6]
+  have h₉ : a^12 - 144 * (1 / a) = 233 := by
+    field_simp [h₄.ne'] at h₁ ⊢
+    nlinarith [Int.floor_le (1 / a), Int.lt_floor_add_one (1 / a),
+      Int.floor_le (a^2), Int.lt_floor_add_one (a^2),
+      Real.sqrt_nonneg 3, Real.sq_sqrt (show 0 ≤ 3 by norm_num)]
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.81613564491272 / 600.1273112297058 / 624.9434468746185
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : 0 < a := h₀
+  have h₅ : a^2 < 3 := h₃
+  have h₆ : 2 < a^2 := h₂
+  have h₇ : a^2 - 2 > 0 := by linarith
+  have h₈ : a^2 < 3 := h₃
+  have h₉ : a^2 - 2 < 1 := by nlinarith
+  have h₁₀ : Int.floor (a^2) = 2 := by
+    apply Int.floor_eq_iff.mpr
+    norm_num
+    constructor <;> norm_num <;> nlinarith [Int.floor_le (a^2), Int.lt_floor_add_one (a^2)]
+  have h₁₁ : Int.floor (1 / a) = 0 := by
+    apply Int.floor_eq_iff.mpr
+    norm_num
+    have h₁₂ : 0 < a := h₀
+    have h₁₃ : 0 < 1 / a := by positivity
+    have h₁₄ : 1 / a ≥ 0 := by positivity
+    have h₁₅ : 1 / a < 1 := by
+      rw [div_lt_iff h₁₂]
+      nlinarith
+    constructor <;> norm_num <;> nlinarith [Int.floor_le (1 / a), Int.lt_floor_add_one (1 / a)]
+  rw [h₁₁, h₁₀] at h₁
+  field_simp at h₁ ⊢
+  nlinarith [sq_nonneg (a^6 - 12), sq_nonneg (a^4 - 6), sq_nonneg (a^2 - 2),
+    sq_nonneg (a - 1), sq_nonneg (a^3 - 3 * a), sq_nonneg (a^2 - 2 * a)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.914314985275269 / 5.625518560409546 / 20.539833545684814
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : a^2 < 3 := by linarith
+  have h₅ : 0 < a^2 := by nlinarith
+  have h₆ : a^2 - 1 < 3 := by nlinarith
+  have h₇ : a^2 - 1 < 3 := by nlinarith
+  have h₈ : a^2 < 3 := by nlinarith
+  have h₉ : a^2 - 1 < 3 := by nlinarith
+  norm_num at h₁
+  have h₁₀ : a^2 < 3 := by nlinarith
+  have h₁₁ : a^2 - 1 < 3 := by nlinarith
+  field_simp at h₁ ⊢
+  nlinarith [Int.floor_le (1 / a), Int.floor_le (a^2), Int.lt_floor_add_one (1 / a),
+    Int.lt_floor_add_one (a^2)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.547005414962769 / 4.846767902374268 / 20.393773317337036
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p9
+  (a : ℝ)
+  (h₀ : 0 < a)
+  (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2))
+  (h₂ : 2 < a^2)
+  (h₃ : a^2 < 3) :
+  a^12 - 144 * (1 / a) = 233 := by
+  have h₄ : a^2 < 3 := by linarith
+  have h₅ : 0 < a^2 := by nlinarith
+  have h₆ : a^2 - 1 < 3 := by linarith
+  have h₇ : 0 < a^2 := by nlinarith
+  have h₈ : a^2 < 3 := by linarith
+  have h₉ : a^2 - 1 < 3 := by linarith
+  have h₁₀ : a^2 - 1 < 3 := by linarith
+  have h₁₁ : a^2 - 1 < 3 := by linarith
+  have h₁₂ : a^2 - 1 < 3 := by linarith
+  field_simp at h₁ ⊢
+  nlinarith [Int.floor_le (1 / a), Int.floor_le (a^2), Int.lt_floor_add_one (1 / a),
+    Int.lt_floor_add_one (a^2)]
+

@@ -1,0 +1,54 @@
+Problem: problem_0408
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 14.77189016342163
+Lean check time (s): 3.4767978191375732
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_232
+  (x y z :  ZMod 31)
+  (h₀ : x = 3⁻¹)
+  (h₁ : y = 5⁻¹)
+  (h₂ : z = (x + y)⁻¹) :
+  z = 29 := by
+  norm_num [h₀, h₁, h₂]
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl

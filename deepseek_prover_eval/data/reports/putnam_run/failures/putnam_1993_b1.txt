@@ -1,0 +1,402 @@
+Problem: putnam_1993_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.83086395263672 / 21.41847252845764 / 42.24933648109436
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  refine' ⟨by norm_num [putnam_1993_b1_solution], fun n hn => _⟩
+  have h₁ := hn.1
+  have h₂ := hn.2
+  norm_num [Set.mem_setOf_eq] at hn
+  norm_num [Int.emod_eq_of_lt] at hn
+  norm_num [Int.emod_eq_of_lt]
+  contrapose! hn
+  norm_num [Int.emod_eq_of_lt] at hn
+  <;>
+  interval_cases n <;> norm_num [Int.emod_eq_of_lt] <;>
+  (try {
+    norm_num [Set.mem_setOf_eq] at h₂
+    norm_num [Int.emod_eq_of_lt] at h₂
+    <;>
+    aesop
+  }) <;>
+  (try {
+    norm_num [Set.mem_setOf_eq] at h₂
+    norm_num [Int.emod_eq_of_lt] at h₂
+    <;>
+    aesop
+  }) <;>
+  (try {
+    aesop
+  }) <;>
+  (try {
+    norm_num [Set.mem_setOf_eq] at h₂
+    norm_num [Int.emod_eq_of_lt] at h₂
+    <;>
+    aesop
+  })
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.33175992965698 / 20.952653169631958 / 57.28441309928894
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  refine' ⟨by norm_num [putnam_1993_b1_solution], fun n hn => _⟩
+  have h₁ := hn.2 0
+  have h₂ := hn.2 1992
+  have h₃ := h₁
+  have h₄ := h₂
+  simp [Set.mem_Ioo, Int.ofNat_lt] at h₁ h₂ h₃ h₄
+  norm_num [putnam_1993_b1_solution] at h₁ h₂ h₃ h₄
+  <;>
+    rcases h₁ with ⟨k₁, h₁₁, h₁₂⟩ <;>
+    rcases h₂ with ⟨k₂, h₂₁, h₂₂⟩ <;>
+    norm_cast at h₁₁ h₁₂ h₂₁ h₂₂ ⊢ <;>
+    (try norm_num at h₁₁ h₁₂ h₂₁ h₂₂) <;>
+    (try omega) <;>
+    (try linarith) <;>
+    (try {
+      nlinarith [Int.floor_le (k₁ : ℝ), Int.lt_floor_add_one (k₁ : ℝ),
+        Int.floor_le (k₂ : ℝ), Int.lt_floor_add_one (k₂ : ℝ)] }) <;>
+    (try {
+      norm_num [Int.floor_eq_iff] at h₁₁ h₁₂ h₂₁ h₂₂ ⊢ <;>
+      omega })
+  <;>
+    (try {
+      norm_num [Int.floor_eq_iff] at h₁₁ h₁₂ h₂₁ h₂₂ ⊢ <;>
+      omega })
+  <;>
+    (try {
+      nlinarith [Int.floor_le (k₁ : ℝ), Int.lt_floor_add_one (k₁ : ℝ),
+        Int.floor_le (k₂ : ℝ), Int.lt_floor_add_one (k₂ : ℝ)] })
+  <;>
+    (try {
+      norm_num [Int.floor_eq_iff] at h₁₁ h₁₂ h₂₁ h₂₂ ⊢ <;>
+      omega })
+  <;>
+    (try {
+      nlinarith [Int.floor_le (k₁ : ℝ), Int.lt_floor_add_one (k₁ : ℝ),
+        Int.floor_le (k₂ : ℝ), Int.lt_floor_add_one (k₂ : ℝ)] })
+  <;>
+    (try {
+      norm_num [Int.floor_eq_
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 89.81853699684143 / 16.198456525802612 / 106.01699352264404
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  have step₁ : IsLeast {n : ℕ | 0 < n ∧ ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ, (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994)} putnam_1993_b1_solution := by
+    have h₀ : putnam_1993_b1_solution ∈ {n : ℕ | 0 < n ∧ ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ, (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994)} := by
+      have h₁ : 0 < putnam_1993_b1_solution := by
+        norm_num [putnam_1993_b1_solution]
+        <;> rfl
+      have h₂ : ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ, (m / 1993 < (k : ℝ) / putnam_1993_b1_solution) ∧ ((k : ℝ) / putnam_1993_b1_solution < (m + 1) / 1994) := by
+        intro m hm
+        use ↑(⌈((m : ℝ) / 1993 * putnam_1993_b1_solution)⌉₊)
+        have h₃ : 0 < putnam_1993_b1_solution := by
+          norm_num [putnam_1993_b1_solution]
+          <;> rfl
+        have h₄ : (m : ℝ) < 1993 := by
+          norm_num [Set.mem_Ioo] at hm ⊢
+          <;> linarith
+        have h₅ : (m : ℝ) ≥ 0 := by
+          norm_num [Set.mem_Ioo] at hm ⊢
+          <;> linarith
+        have h₆ : (m : ℝ) / 1993 < (⌈((m : ℝ) / 1993 * putnam_1993_b1_solution)⌉₊ : ℝ) / putnam_1993_b1_solution := by
+          have h₇ : ((m : ℝ) / 1993 * putnam_1993_b1_solution) < ⌈((m : ℝ) / 1993 * putnam_1993_b1_s
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 38.655043840408325 / 16.90131139755249 / 55.556355237960815
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  refine' ⟨_, _⟩
+  · norm_num [putnam_1993_b1_solution]
+    <;>
+    exact ⟨by decide, by
+      intro m hm
+      use 0
+      norm_num [Set.mem_Ioo] at hm
+      norm_num [div_eq_mul_inv]
+      <;>
+      ring_nf
+      <;>
+      norm_num
+      <;>
+      linarith
+    ⟩
+  · intro n hn
+    norm_num [putnam_1993_b1_solution] at hn ⊢
+    <;>
+    rcases hn with ⟨h₁, h₂⟩
+    <;>
+    norm_num at h₂ ⊢
+    <;>
+    by_contra! h
+    <;>
+    have h₃ := h₂ 0
+    <;>
+    have h₄ := h₂ 1992
+    <;>
+    norm_num [Set.mem_Ioo] at h₃ h₄
+    <;>
+    rcases h₃ with ⟨h₃₁, h₃₂⟩
+    <;>
+    rcases h₄ with ⟨h₄₁, h₄₂⟩
+    <;>
+    norm_num at h₃₁ h₃₂ h₄₁ h₄₂
+    <;>
+    interval_cases m <;> norm_num at * <;>
+    (try omega) <;>
+    (try linarith) <;>
+    (try {
+      have h₅ : n ≤ 3987 := by
+        by_contra! h₅
+        have h₆ := h₂ 1992
+        norm_num [Set.mem_Ioo] at h₆
+        <;>
+        rcases h₆ with ⟨h₆₁, h₆₂⟩
+        <;>
+        norm_num at h₆₁ h₆₂
+        <;>
+        field_simp at h₆₁ h₆₂
+        <;>
+        rw [div_lt_div_iff] at h₆₁ h₆₂ <;> norm_cast at h₆₁ h₆₂ <;>
+        nlinarith
+      omega
+    })
+    <;>
+    (try {
+      have h₅ : n ≤ 3987 := by
+        by_contra! h₅
+        have h₆ := h₂ 1992
+        norm_num
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.502970457077026 / 35.68598794937134 / 50.188958406448364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  refine' ⟨by norm_num [putnam_1993_b1_solution], _⟩
+  rintro n ⟨hn, hn'⟩
+  norm_num [putnam_1993_b1_solution] at *
+  -- Use the fact that n must be at least 3987 to satisfy the conditions.
+  have h := hn' 0
+  have h' := hn' 1992
+  norm_num [Set.mem_Ioo, Int.emod_eq_of_lt] at h h'
+  <;>
+  (try norm_num at h h')
+  <;>
+  (try omega)
+  <;>
+  (try exact? )
+  <;>
+  (try linarith)
+  <;>
+  (try nlinarith)
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 35.81651520729065 / 28.221428394317627 / 64.03794360160828
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  have h₁ : putnam_1993_b1_solution = 3987 := by
+    norm_num [putnam_1993_b1_solution]
+  rw [h₁]
+  constructor
+  · norm_num
+    rintro m ⟨hm₁, hm₂⟩
+    use 0
+    norm_num
+    <;>
+    field_simp [hm₁, hm₂, Int.cast_ofNat]
+    <;>
+    rw [div_lt_div_iff] <;>
+    norm_cast <;>
+    omega
+  · rintro n ⟨hn₁, hn₂⟩
+    norm_num at *
+    have h := hn₂ 0
+    have h₂ := hn₂ 1992
+    norm_num at h h₂
+    have h₃ := h₂
+    norm_num at h₃
+    have h₄ : n ≥ 3987 := by
+      by_contra! h₅
+      have h₆ : n ≤ 3986 := by linarith
+      interval_cases n <;> norm_num at h h₂ h₃ <;> simp_all [Set.mem_Ioo, Int.emod_eq_of_lt]
+      <;> (try omega) <;> (try {
+        norm_num at h h₂ h₃
+        have h₇ := h 0
+        have h₈ := h 1992
+        norm_num at h₇ h₈
+        <;> simp_all [Set.mem_Ioo, Int.emod_eq_of_lt] <;> norm_cast at * <;> omega
+      }) <;> (try {
+        norm_num at h h₂ h₃
+        have h₇ := h 0
+        have h₈ := h 1992
+        norm_num at h₇ h₈
+        <;> simp_all [Set.mem_Ioo, Int.emod_eq_of_lt] <;> norm_cast at * <;> omega
+      }) <;> (try {
+        norm_num at h h₂ h₃
+        have h₇ := h 0
+        have h₈ := h 1992
+        norm_num at h₇ h₈
+        <;> simp_all [Set.mem_Ioo, Int.emod_eq_of_lt] <;> 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 25.36698889732361 / 18.199235439300537 / 43.566224336624146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  refine' ⟨_, _⟩
+  · -- Show that 3987 satisfies the conditions
+    norm_num [putnam_1993_b1_solution]
+    <;>
+    rintro m ⟨h1, h2⟩ <;>
+    norm_num <;>
+    use 0 <;>
+    norm_num <;>
+    field_simp <;>
+    rw [div_lt_div_iff] <;>
+    norm_cast <;>
+    omega
+  · -- Show that 3987 is the smallest such number
+    rintro n ⟨hn, hn'⟩
+    have h1 : n ≥ 3987 := by
+      by_contra h
+      have h' : n ≤ 3986 := by linarith
+      have h2 := hn' 0
+      have h3 := hn' 1992
+      norm_num [Set.mem_Ioo] at h2 h3
+      rcases h2 with ⟨h2, h2'⟩
+      rcases h3 with ⟨h3, h3'⟩
+      interval_cases m <;> norm_num at h2 h2' h3 h3' <;>
+        rcases hn' 1 with ⟨h4, h4'⟩ <;>
+        norm_num at h4 h4' <;>
+        field_simp at h2 h2' h3 h3' h4 h4' <;>
+        rw [div_lt_div_iff] at h2 h2' h3 h3' h4 h4' <;>
+        norm_cast at h2 h2' h3 h3' h4 h4' <;>
+        omega
+    exact by
+      simp_all [Set.mem_Ioo]
+      <;>
+      omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.284478902816772 / 22.029733419418335 / 41.31421232223511
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1993_b1 :
+    IsLeast
+    {n : ℕ | 0 < n ∧
+      ∀ m ∈ Set.Ioo (0 : ℤ) (1993), ∃ k : ℤ,
+      (m / 1993 < (k : ℝ) / n) ∧ ((k : ℝ) / n < (m + 1) / 1994) }
+    putnam_1993_b1_solution := by
+  refine' ⟨_, _⟩
+  · norm_num [putnam_1993_b1_solution]
+    <;>
+    norm_num
+    <;>
+    rintro n hn h₁ <;>
+    norm_num at h₁ <;>
+    simp_all [Set.mem_setOf_eq] <;>
+    norm_num <;>
+    omega
+  · rintro n hn h₁
+    norm_num [putnam_1993_b1_solution] at h₁ ⊢
+    <;>
+    rcases h₁ 0 (by norm_num) with ⟨k, hk⟩ <;>
+    rcases h₁ 1992 (by norm_num) with ⟨k', hk'⟩ <;>
+    norm_num at hk hk' <;>
+    field_simp at hk hk' ⊢ <;>
+    rw [div_lt_div_iff (by positivity) (by positivity)] at hk <;>
+    rw [div_lt_div_iff (by positivity) (by positivity)] at hk' <;>
+    norm_cast at hk hk' ⊢ <;>
+    omega

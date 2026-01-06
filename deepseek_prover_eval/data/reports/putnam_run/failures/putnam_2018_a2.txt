@@ -1,0 +1,158 @@
+Problem: putnam_2018_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 19.471664905548096 / 9.419440269470215 / 28.89110517501831
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.524337530136108 / 8.719995021820068 / 21.244332551956177
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.471355676651 / 8.670822381973267 / 25.142178058624268
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.658657312393188 / 8.548574924468994 / 19.207232236862183
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.621673107147217 / 7.695248126983643 / 24.31692123413086
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.130583763122559 / 8.427444219589233 / 19.558027982711792
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.319953918457031 / 7.984065532684326 / 20.304019451141357
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.407253980636597 / 7.744978666305542 / 18.15223264694214
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_a2
+(n : ℕ)
+(S : Fin (2 ^ n - 1) → Set ℕ)
+(M : Matrix (Fin (2 ^ n - 1)) (Fin (2 ^ n - 1)) ℝ)
+(npos : n ≥ 1)
+(hS : Set.range S = (Set.Icc 1 n).powerset \ {∅})
+(hM : ∀ i j, M i j = if (S i ∩ S j = ∅) = True then 0 else 1) :
+M.det = putnam_2018_a2_solution n :=
+sorry

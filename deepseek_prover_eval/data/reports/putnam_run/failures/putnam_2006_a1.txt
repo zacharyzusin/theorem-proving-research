@@ -1,0 +1,252 @@
+Problem: putnam_2006_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.863152503967285 / 14.82089352607727 / 29.684046030044556
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal) = (6 * Real.pi ^ 2) := by
+    have h₁ := (Real.pi_pos)
+    have h₂ := (Real.pi_pos)
+    -- Use the fact that the volume of the region is a multiple of π^2
+    simp [Real.pi_pos]
+    <;> norm_num
+    <;> field_simp [Real.pi_ne_zero, mul_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> nlinarith [sq_nonneg (Real.pi - 3), sq_nonneg (Real.pi - 2), sq_nonneg (Real.pi - 1)]
+  rw [h₀]
+  <;> rfl
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 26.151083946228027 / 14.3856201171875 / 40.53670406341553
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal) = 6 * Real.pi ^ 2 := by
+    have h₁ : {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)} = setOf fun p : ℝ × ℝ × ℝ => (p.1 ^ 2 + p.2.1 ^ 2 + p.2.2 ^ 2 + 8) ^ 2 ≤ 36 * (p.1 ^ 2 + p.2.1 ^ 2) := by
+      ext ⟨x, y, z⟩
+      <;> simp [sq]
+      <;> ring_nf
+      <;> aesop
+    rw [h₁]
+    -- Use the fact that the volume of the region is 6 * Real.pi ^ 2
+    have h₂ : (MeasureTheory.volume {p : ℝ × ℝ × ℝ | (p.1 ^ 2 + p.2.1 ^ 2 + p.2.2 ^ 2 + 8) ^ 2 ≤ 36 * (p.1 ^ 2 + p.2.1 ^ 2)}).toReal = 6 * Real.pi ^ 2 := by
+      -- Use the fact that the volume of the region is 6 * Real.pi ^ 2
+      simp [Real.pi_pos.le]
+      <;> norm_num
+      <;>
+        field_simp [Real.pi_pos.le]
+      <;>
+        ring_nf
+      <;>
+        norm_num
+      <;>
+        linarith [Real.pi_pos]
+    exact h₂
+  simp_all
+  <;>
+  norm_num
+  <;>
+  aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 40.344091176986694 / 18.390557527542114 / 58.73464870452881
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal) = 6 * Real.pi ^ 2 := by
+    have h₁ : {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)} = Set.Icc (-4) 4 ×ˢ Set.univ ×ˢ Set.univ ∩ {p : ℝ × ℝ × ℝ | (p.1 ^ 2 + p.2.1 ^ 2 + p.2.2 ^ 2 + 8) ^ 2 ≤ 36 * (p.1 ^ 2 + p.2.1 ^ 2)} := by
+      ext ⟨x, y, z⟩
+      constructor <;> intro h <;>
+      simp_all [Set.mem_inter_iff, Set.mem_Icc, Set.mem_setOf_eq, Set.mem_prod, Set.mem_univ, true_and] <;>
+      norm_num <;>
+     
+      (try constructor <;> nlinarith [sq_nonneg (x ^ 2 + y ^ 2 - 4), sq_nonneg (x ^ 2 + y ^ 2 + 4), sq_nonneg (z ^ 2 - 4), sq_nonneg (z ^ 2 + 4), sq_nonneg (x ^ 2 - y ^ 2), sq_nonneg (x ^ 2 + y ^ 2 - 8), sq_nonneg (x ^ 2 + y ^ 2 + 8)]) <;>
+     
+      (try nlinarith [sq_nonneg (x ^ 2 + y ^ 2 - 4), sq_nonneg (x ^ 2 + y ^ 2 + 4), sq_nonneg (z ^ 2 - 4), sq_nonneg (z ^ 2 + 4), sq_nonneg (x ^ 2 - y ^ 2), sq_nonneg (x ^ 2 + y ^ 2 - 8), sq_nonneg (x ^ 2 + y ^ 2 + 8)]) <;>
+     
+      (try
+        nlinarith [sq_nonneg (x ^ 2 + y ^ 2 - 4), sq_nonneg (x ^ 2 + y ^ 2 + 4), sq_nonneg (z ^ 2 - 4), sq_nonneg (z ^ 2 + 4), sq_nonneg (x ^ 2 - y ^ 2), sq_nonneg (x ^ 2 + y ^ 2 - 8), sq_nonneg 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 31.749974250793457 / 18.283445119857788 / 50.033419370651245
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal) = 6 * Real.pi ^ 2 := by
+    have h₁ : {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)} = Set.Icc (-8) 8 ×ˢ Set.univ ×ˢ Set.univ ∩ {p : ℝ × ℝ × ℝ | (p.1 ^ 2 + p.2.1 ^ 2 + p.2.2 ^ 2 + 8) ^ 2 ≤ 36 * (p.1 ^ 2 + p.2.1 ^ 2)} := by
+      ext ⟨x, y, z⟩
+      constructor <;> intro h <;>
+        simp_all [sq, mul_assoc] <;>
+        norm_num <;>
+       
+        ring_nf at * <;>
+       
+        constructor <;>
+        nlinarith [sq_nonneg (x ^ 2 + y ^ 2 - 4), sq_nonneg (x ^ 2 + y ^ 2 + 4),
+          sq_nonneg (x ^ 2 - y ^ 2), sq_nonneg (x ^ 2 + y ^ 2 - 8),
+          sq_nonneg (x ^ 2 + y ^ 2 + 8), sq_nonneg (z), sq_nonneg (z ^ 2)]
+    rw [h₁]
+    simp [MeasureTheory.volume_Icc_prod_Ici_eq_mul, Real.volume_ball']
+    <;> field_simp [mul_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.pi_pos.le]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.pi_pos.le]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.pi_pos.le]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.pi_pos.le]
+    <;> linarith [Real.pi_pos]
+  simp_all [putnam_2006_a1_solution]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 48.658719062805176 / 13.236852407455444 / 61.89557147026062
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = 6 * Real.pi ^ 2) := by
+    have h₁ := MeasureTheory.integral_pos_iff_support_of_nonneg_ae (show 0 ≤ fun p : ℝ × ℝ × ℝ => (1 : ℝ) by norm_num) |>.mpr
+    simp only [Set.mem_setOf_eq, Set.mem_setOf_eq] at h₁
+    have h₂ : (MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = 6 * Real.pi ^ 2 := by
+      -- Use the fact that the volume of the region can be computed using spherical coordinates.
+      have h₃ : (MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = 6 * Real.pi ^ 2 := by
+        -- Use the fact that the volume of the region can be computed using spherical coordinates.
+        have h₄ : {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)} = Set.Icc (-6) 6 ×ˢ Set.Icc (-6) 6 ×ˢ Set.Icc (-6) 6 ∩ {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)} := by
+          ext1 ⟨x, y, z⟩
+          constructor <;> intro h <;>
+          simp_all [Set.mem_Icc, Set.mem_inter_iff] <;>
+          norm_num at * <;>
+         
+          (try
+          
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 39.0473096370697 / 20.85741138458252 / 59.90472102165222
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = 6 * Real.pi ^ 2) := by
+    have h₁ : {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)} = Set.Icc (-8) 8 ×ˢ Set.univ ×ˢ Set.univ ∩ {p : ℝ × ℝ × ℝ | (p.1 ^ 2 + p.2.1 ^ 2 + p.2.2 ^ 2 + 8) ^ 2 ≤ 36 * (p.1 ^ 2 + p.2.1 ^ 2)} := by
+      ext ⟨x, y, z⟩
+      constructor <;> intro h <;>
+      simp_all [sq, mul_assoc] <;>
+      ring_nf at * <;>
+      norm_num at * <;>
+     
+      constructor <;>
+     
+      nlinarith [sq_nonneg (x ^ 2 + y ^ 2 - 4), sq_nonneg (x ^ 2 + y ^ 2 + 4), sq_nonneg (z ^ 2 - 4), sq_nonneg (z ^ 2 + 4), sq_nonneg (x * y), sq_nonneg (x * z), sq_nonneg (y * z)]
+    rw [h₁]
+    simp [MeasureTheory.volume_Icc, MeasureTheory.volume_prod, MeasureTheory.volume_univ, Real.pi_pos.le]
+    <;>
+    field_simp [pow_two] <;>
+    ring_nf <;>
+    norm_num <;>
+    field_simp [pow_two] <;>
+    ring_nf <;>
+    norm_num <;>
+    apply congr_arg (fun x => x * 2) <;>
+    field_simp [pow_two] <;>
+    ring_nf <;>
+    norm_num <;>
+    field_simp [pow_two] <;>
+    ring_nf <;>
+    norm_num <;>
+    apply congr_arg (fun x => x * Real.pi) <;>
+    field_simp [pow_two] <;>
+    ring_nf <;>
+    norm_n
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.263692617416382 / 11.877441644668579 / 20.14113426208496
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  simp [putnam_2006_a1_solution]
+  <;> norm_num
+  <;> field_simp [MeasureTheory.volume]
+  <;> ring_nf
+  <;> norm_num
+  <;> simp [MeasureTheory.volume]
+  <;> norm_num
+  <;> linarith [Real.pi_pos]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.20952320098877 / 14.439266443252563 / 31.648789644241333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a1
+: ((MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = putnam_2006_a1_solution) := by
+  have h₀ : putnam_2006_a1_solution = 6 * Real.pi ^ 2 := rfl
+  rw [h₀]
+  -- Use the fact that the volume of the region is 6 * Real.pi ^ 2
+  have h₁ : (MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = 6 * Real.pi ^ 2 := by
+    -- Use the fact that the volume of the region is 6 * Real.pi ^ 2
+    have h₂ : (MeasureTheory.volume {(x, y, z) : ℝ × ℝ × ℝ | (x ^ 2 + y ^ 2 + z ^ 2 + 8) ^ 2 ≤ 36 * (x ^ 2 + y ^ 2)}).toReal = 6 * Real.pi ^ 2 := by
+      -- Use the fact that the volume of the region is 6 * Real.pi ^ 2
+      simp [h₀]
+      <;>
+      exact?
+    exact h₂
+  exact h₁

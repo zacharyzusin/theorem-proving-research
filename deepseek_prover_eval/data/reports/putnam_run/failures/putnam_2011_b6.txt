@@ -1,0 +1,242 @@
+Problem: putnam_2011_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.217556953430176 / 9.033306121826172 / 19.250863075256348
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h := hp.2.eq_one_or_self_of_dvd 2
+  have h₁ := hp.1
+  have h₂ := hp.2.two_le
+  have h₃ := hp.2.one_lt
+  cases' h₁ with k hk
+  subst hk
+  simp_all [Finset.sum_range_succ, Nat.factorial_succ, Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.one_mul,
+    Nat.mul_zero, Nat.zero_mul, Nat.mul_assoc]
+  <;> omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 7.270645380020142 / 9.076244115829468 / 16.34688949584961
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h := hp.2.eq_one_or_self_of_dvd 2
+  have h₁ := hp.1
+  cases' h₁ with a ha
+  subst ha
+  simp_all [Finset.card_range, Nat.div_eq_of_lt]
+  <;>
+  omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 28.648812532424927 / 11.410260677337646 / 40.05907320976257
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h₁ := hp.2.eq_one_or_self_of_dvd 2
+  have h₂ := hp.2.two_le
+  have h₃ := hp.1
+  cases' h₃ with k hk
+  have h₄ : k = 0 ∨ k ≥ 1 := by omega
+  have h₅ : p ≥ 2 := by linarith [h₂]
+  have h₆ : (p + 1) / 2 ≤ p := by omega
+  have h₇ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+    have h₈ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+      have h₉ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)} ⊇ Finset.Icc 0 ((p - 1) / 2) := by
+        intro n hn
+        simp_all [Finset.mem_Icc, Finset.mem_filter, Finset.mem_range]
+        <;> omega
+      have h₁₀ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+        calc
+          {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥
+              Finset.card (Finset.Icc 0 ((p - 1) / 2)) := by
+            exact Finset.card_mono h₉
+          _ ≥ (p + 1) / 2 := by
+            simp_all [Finset.Icc_eq_empty, Finset.card_range, Nat.div_eq_of_lt]
+            <;> omega
+      exact h₁₀
+    exact h₈
+  exact h₇
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.953062057495117 / 8.088573694229126 / 17.041635751724243
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h := hp.2.eq_one_or_self_of_dvd 2
+  have h₁ := hp.1
+  have h₂ := hp.2
+  cases' h₁ with a ha
+  subst ha
+  simp_all [Finset.sum_range_succ, Nat.factorial_succ, Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.mul_zero]
+  <;> norm_num
+  <;> omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.482896089553833 / 10.424393892288208 / 37.90728998184204
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h := hp.2.eq_one_or_self_of_dvd 2
+  have h₁ := hp.1
+  cases' h₁ with a ha
+  have h₂ := hp.2.two_le
+  have h₃ := hp.2.one_lt
+  have h₄ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+    have h₅ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+      have h₆ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)} ⊇ Finset.Icc 0 ((p - 1) / 2) := by
+        intro n hn
+        simp_all [Finset.mem_filter, Finset.mem_Icc, Nat.div_le_iff_le_mul_add_pred]
+        <;> omega
+      have h₇ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+        calc
+          {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥
+              Finset.card (Finset.Icc 0 ((p - 1) / 2)) := by
+            exact Finset.card_le_of_subset h₆
+          _ ≥ (p + 1) / 2 := by
+            cases' p with p
+            · simp_all [Nat.div_eq_of_lt]
+            simp_all [Finset.Icc_eq_empty_of_lt, Nat.div_eq_of_lt]
+            <;> omega
+      exact h₇
+    exact h₅
+  exact h₄
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 44.638453006744385 / 9.925978422164917 / 54.5644314289093
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h₁ := hp.2.two_le
+  have h₂ := hp.1
+  have h₃ := hp.2.two_le
+  have h₄ : p ≥ 2 := by linarith
+  have h₅ : (p + 1) / 2 ≤ p := by omega
+  have h₆ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+    have h₇ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+      have h₈ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)} = Set.Icc 0 (p - 1) \ {n ∈ Finset.range p | p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)} := by
+        ext n
+        simp [Finset.mem_filter, Finset.mem_range, Nat.factorial_succ]
+        <;> omega
+      rw [h₈]
+      have h₉ : (Set.Icc 0 (p - 1) \ {n ∈ Finset.range p | p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}).card ≥ (p + 1) / 2 := by
+        have h₁₀ : (Set.Icc 0 (p - 1)).card = p := by
+          simp [Finset.Icc_eq_empty_of_lt, h₄]
+          <;> omega
+        have h₁₁ : ({n ∈ Finset.range p | p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)} : Finset ℕ).card ≤ p / 2 := by
+          apply (Finset.card_filter_le _ _).trans
+          <;> simp_all [Nat.div_le_self]
+          <;> omega
+        have h₁₂ : (Set.Icc 0 (p - 1) \ {n ∈ Finset.range p | p ∣ ∑
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.43166470527649 / 10.00221586227417 / 40.43388056755066
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h₁ := hp.2.eq_one_or_self_of_dvd 2
+  have h₂ := hp.2.two_le
+  have h₃ := hp.1
+  cases' h₃ with k hk
+  have h₄ : k ≥ 0 := by linarith
+  have h₅ : p ≥ 2 := by linarith
+  have h₆ : (p + 1) / 2 ≤ p := by omega
+  have h₇ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+    have h₈ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+      -- Use the fact that the number of such n is at least (p + 1) / 2
+      have h₉ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)} ⊇ Finset.Icc ((p + 1) / 2) p := by
+        intro n hn
+        simp_all [Finset.mem_Icc, Finset.mem_filter]
+        <;> omega
+      have h₁₀ : {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1) / 2 := by
+        calc
+          {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥
+              Finset.card (Finset.Icc ((p + 1) / 2) p) := by
+            exact Finset.card_mono h₉
+          _ ≥ (p + 1) / 2 := by
+            simp [Finset.Icc_eq_empty_of_lt, Nat.div_lt_self, h₅]
+            <;> omega
+      exact h₁₀
+    exact h₈
+  exact h₇
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.863795042037964 / 8.05072546005249 / 15.914520502090454
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b6
+(p : ℕ)
+(hp : Odd p ∧ Nat.Prime p)
+: {n ∈ Finset.range p | ¬ p ∣ ∑ k : Finset.range p, Nat.factorial k * n^(k : ℕ)}.card ≥ (p + 1)/2 := by
+  have h₁ := hp.2.eq_one_or_self_of_dvd 2
+  have h₂ := hp.2.eq_one_or_self_of_dvd 3
+  have h₃ := hp.2.eq_one_or_self_of_dvd 5
+  simp_all [Nat.Prime, Nat.succ_pos]
+  <;> omega

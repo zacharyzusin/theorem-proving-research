@@ -1,0 +1,26 @@
+Problem: problem_0246
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.219856262207031
+Lean check time (s): 69.72235155105591
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2015_p10
+  (x y : ℤ)
+  (h₀ : 0 < y)
+  (h₁ : y < x)
+  (h₂ : x + y + (x * y) = 80) :
+  x = 26 := by
+  have h₃ : x < 80 := by
+    nlinarith
+  have h₄ : y ≤ 79 := by
+    nlinarith
+  have h₅ : x > 0 := by
+    nlinarith
+  interval_cases x <;> omega

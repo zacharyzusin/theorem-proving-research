@@ -1,0 +1,237 @@
+Problem: problem_0025
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 54.93330669403076 / 8.125803470611572 / 63.059110164642334
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h₂ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := rfl
+    have h₃ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) := rfl
+    have h₄ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * Real.pi / 7) := rfl
+    -- Use the triple angle identity for cosine to relate the cosines of different angles.
+    have h₅ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * (Real.pi / 7)) := by ring
+    have h₆ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * (Real.pi / 7)) := by ring
+    have h₇ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := rfl
+    -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+    have h₈ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      rw [show Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) by rfl]
+      rw [show Real.cos (2 * Real.pi / 7) = Real.cos (2 * (Real.pi / 7)) by ring]
+      rw [show Real.cos (3 * Real.pi / 7) = Real.cos (3 * (Real.pi / 7)) by ring]
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₉ : Real.cos (3 * (Real.pi / 7)) = Real.cos (3 * (Real.pi / 7)) := rfl
+      have h₁₀ : Real.cos (2 * (Real.pi / 7)) = Real.co
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 53.85801911354065 / 18.528478384017944 / 72.3864974975586
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h₂ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      -- Use the identity for the sum of cosines of specific angles
+      have h₃ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := by rfl
+      have h₄ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) := by rfl
+      have h₅ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * Real.pi / 7) := by rfl
+      -- Use the sum to product identities and solve the equation
+      have h₆ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+        -- Use the sum to product identities and solve the equation
+        have h₇ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+          -- Use the sum to product identities and solve the equation
+          have h₈ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+            -- Use the sum to product identities and solve the equation
+            rw [show Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) by rfl]
+            rw [show Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) by rfl]
+            rw [s
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 40.90454411506653 / 41.53356385231018 / 82.43810796737671
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h1 : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h2 : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      have h3 : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+        -- Use the sum-to-product identities and known values of cosines at specific angles to simplify the expression.
+        have h4 : Real.cos (3 * Real.pi / 7) = Real.cos (Real.pi - 4 * Real.pi / 7) := by ring_nf
+        have h5 : Real.cos (Real.pi - 4 * Real.pi / 7) = -Real.cos (4 * Real.pi / 7) := by
+          rw [Real.cos_pi_sub]
+        have h6 : Real.cos (2 * Real.pi / 7) = Real.cos (Real.pi / 7 + Real.pi / 7) := by ring_nf
+        have h7 : Real.cos (Real.pi / 7 + Real.pi / 7) = Real.cos (Real.pi / 7) * Real.cos (Real.pi / 7) - Real.sin (Real.pi / 7) * Real.sin (Real.pi / 7) := by
+          rw [Real.cos_add]
+        have h8 : Real.cos (4 * Real.pi / 7) = Real.cos (Real.pi / 7 + 3 * Real.pi / 7) := by ring_nf
+        have h9 : Real.cos (Real.pi / 7 + 3 * Real.pi / 7) = Real.cos (Real.pi / 7) * Real.cos (3 * Real.pi / 7) - Real.sin (Real.pi / 7) * Real.sin (3 * Real.pi / 7) := by
+          rw [Real.cos_add]
+        have h10 : Real.sin (3 * Real.pi / 7) = Real.sin (R
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 69.63623094558716 / 14.896010875701904 / 84.53224182128906
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h₂ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      have h₃ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := rfl
+      have h₄ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) := rfl
+      have h₅ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * Real.pi / 7) := rfl
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₆ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+        -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+        have h₇ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+          -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+          have h₈ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+            -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+            rw [show Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 by
+              have h₉ : Real.cos (Real.pi / 7) 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 91.01670336723328 / 4.7632317543029785 / 95.77993512153625
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h₂ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      have h₃ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * (Real.pi / 7)) := by ring
+      have h₄ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * (Real.pi / 7)) := by ring
+      have h₅ : Real.cos (Real.pi / 7) = Real.cos (1 * (Real.pi / 7)) := by ring
+      rw [h₃, h₄, h₅]
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₆ : Real.cos (3 * (Real.pi / 7)) = Real.cos (3 * (Real.pi / 7)) := by rfl
+      have h₇ : Real.cos (2 * (Real.pi / 7)) = Real.cos (2 * (Real.pi / 7)) := by rfl
+      have h₈ : Real.cos (1 * (Real.pi / 7)) = Real.cos (1 * (Real.pi / 7)) := by rfl
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₉ : Real.cos (3 * (Real.pi / 7)) = Real.cos (3 * (Real.pi / 7)) := by rfl
+      have h₁₀ : Real.cos (2 * (Real.pi / 7)) = Real.cos (2 * (Real.pi / 7)) := by rfl
+      have h₁₁ : Real.cos (1 * (Real.pi / 7)) = Real.cos (1 * (Real.pi / 7)) := by rfl
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₁₂ : Real.cos (3 * (Real.pi
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 66.43891716003418 / 5.858392238616943 / 72.29730939865112
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h₂ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      have h₃ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := rfl
+      have h₄ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) := rfl
+      have h₅ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * Real.pi / 7) := rfl
+      -- Use the triple angle identity for cosine to find the value of the expression.
+      have h₆ : Real.cos (3 * Real.pi / 7) = Real.cos (Real.pi - 4 * Real.pi / 7) := by ring_nf
+      rw [h₆]
+      have h₇ : Real.cos (Real.pi - 4 * Real.pi / 7) = -Real.cos (4 * Real.pi / 7) := by
+        rw [Real.cos_pi_sub]
+      rw [h₇]
+      have h₈ : Real.cos (4 * Real.pi / 7) = Real.cos (4 * Real.pi / 7) := rfl
+      have h₉ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) := rfl
+      have h₁₀ : Real.cos (Real.pi / 7) + Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+        -- Use the sum-to-product identities and known values of cosines to find the sum.
+        have h₁₁ : Real.cos (Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 2 * Real.cos (2 * Real.pi / 7) := by
+          have h₁₂ : Real.cos (Real.pi / 7) + Real.cos (3 * Real.pi / 7)
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 68.65635657310486 / 17.92416286468506 / 86.58051943778992
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    rw [show Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) by rfl]
+    rw [show Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) by rfl]
+    rw [show Real.cos (3 * Real.pi / 7) = Real.cos (3 * Real.pi / 7) by rfl]
+    -- Use the triple angle identity for cosine to relate the angles
+    have h₂ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * (Real.pi / 7)) := by ring
+    have h₃ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * (Real.pi / 7)) := by ring
+    have h₄ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := by rfl
+    rw [h₂, h₃, h₄]
+    -- Use the sum-to-product and difference-to-product identities
+    have h₅ : Real.cos (3 * (Real.pi / 7)) = Real.cos (3 * (Real.pi / 7)) := by rfl
+    have h₆ : Real.cos (2 * (Real.pi / 7)) = Real.cos (2 * (Real.pi / 7)) := by rfl
+    have h₇ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := by rfl
+    -- Use the sum of cosines identity
+    have h₈ : Real.cos (3 * (Real.pi / 7)) = Real.cos (3 * (Real.pi / 7)) := by rfl
+    have h₉ : Real.cos (2 * (Real.pi / 7)) = Real.cos (2 * (Real.pi / 7)) := by rfl
+    have h₁₀ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := by rfl
+    -- Simplify the expression
+    have h₁₁ : Real.cos (3 * (Real.pi / 7
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 74.1462676525116 / 18.59296679496765 / 92.73923444747925
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1963_p5 :
+  Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+  have h₁ : (0 : ℝ) < Real.pi := by linarith [Real.pi_pos]
+  have h₂ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+    have h₃ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₄ : Real.cos (Real.pi / 7) = Real.cos (Real.pi / 7) := by rfl
+      have h₅ : Real.cos (2 * Real.pi / 7) = Real.cos (2 * Real.pi / 7) := by rfl
+      have h₆ : Real.cos (3 * Real.pi / 7) = Real.cos (3 * Real.pi / 7) := by rfl
+      -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+      have h₇ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+        -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+        have h₈ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+          -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+          have h₉ : Real.cos (Real.pi / 7) - Real.cos (2 * Real.pi / 7) + Real.cos (3 * Real.pi / 7) = 1 / 2 := by
+            -- Use the sum-to-product and product-to-sum identities to simplify the expression.
+  
+... [truncated] ...

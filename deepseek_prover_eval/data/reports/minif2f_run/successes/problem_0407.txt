@@ -1,0 +1,22 @@
+Problem: problem_0407
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.926477432250977
+Lean check time (s): 3.137641668319702
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_410
+  (x y : ℝ)
+  (h₀ : y = x^2 - 6 * x + 13) :
+  4 ≤ y := by
+  have h₁ : y = (x - 3) ^ 2 + 4 := by
+    rw [h₀]
+    ring
+  rw [h₁]
+  nlinarith [sq_nonneg (x - 3)]

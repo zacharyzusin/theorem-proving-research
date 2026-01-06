@@ -1,0 +1,265 @@
+Problem: problem_0113
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.611477851867676 / 3.4958300590515137 / 20.10730791091919
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h : ∀ n : ℕ, n ≥ 2 → (1 / Real.sqrt n : ℝ) ≤ 1 := by
+    intro n hn
+    have h₁ : (n : ℝ) ≥ 2 := by exact_mod_cast hn
+    have h₂ : (Real.sqrt n : ℝ) ≥ 1 := by
+      apply Real.le_sqrt_of_sq_le
+      nlinarith
+    rw [div_le_iff] <;> norm_num <;> nlinarith
+  have h₁ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k : ℝ) ≤ ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by
+    apply Finset.sum_le_sum
+    intro i hi
+    exact h i (by simp_all [Finset.mem_Icc])
+  have h₂ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 : ℝ) = 9999 := by
+    simp_all [Finset.sum_Icc_succ_top]
+    <;> norm_num
+  linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.910597324371338 / 2.9464967250823975 / 21.857094049453735
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h : ∀ n : ℕ, (2 : ℝ) ≤ n → 1 / Real.sqrt n ≤ 1 := by
+    intro n hn
+    have h1 : (1 : ℝ) ≤ n := by exact_mod_cast (by linarith)
+    have h2 : Real.sqrt n ≥ 1 := by exact Real.le_sqrt_of_sq_le (by nlinarith)
+    exact (div_le_one (by positivity)).mpr (by nlinarith)
+  have h1 : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) ≤ ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by
+    apply Finset.sum_le_sum
+    intro x hx
+    exact h x (by
+      simp only [Finset.mem_Icc] at hx
+      exact_mod_cast (by linarith)
+    )
+  have h2 : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 : ℝ) = 9999 := by
+    simp [Finset.sum_Icc_succ_top]
+    <;> norm_num
+  have h3 : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) < 198 := by
+    linarith
+  exact h3
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.288105010986328 / 2.957570791244507 / 23.245675802230835
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h₁ : ∀ n : ℕ, n ≥ 2 → 1 / Real.sqrt n ≤ 1 := by
+    intro n hn
+    have h : Real.sqrt n ≥ 1 := by
+      apply Real.le_sqrt_of_sq_le
+      norm_num
+      nlinarith
+    exact div_le_one_of_le (by nlinarith) (by positivity)
+  have h₂ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) < 198 := by
+    have h₃ : ∀ k : ℕ, k ∈ Finset.Icc (2 : ℕ) 10000 → 1 / Real.sqrt k ≤ 1 := by
+      intro k hk
+      exact h₁ k (Finset.mem_Icc.mp hk |>.1.trans_le (by norm_num))
+    calc
+      (∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k)) ≤ ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by
+        exact Finset.sum_le_sum h₃
+      _ = ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by rfl
+      _ = 10000 - 1 := by
+        simp [Finset.sum_Icc_succ_top]
+        <;> norm_num
+      _ < 198 := by norm_num
+  exact h₂
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.099002361297607 / 3.170891046524048 / 22.269893407821655
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h₁ : ∀ n : ℕ, n ≥ 2 → 1 / Real.sqrt n ≤ 1 := by
+    intro n hn
+    have h : Real.sqrt n ≥ 1 := by
+      apply Real.le_sqrt_of_sq_le
+      norm_num
+      nlinarith
+    exact div_le_one_of_le (by linarith) (by positivity)
+  have h₂ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) < 198 := by
+    have h₃ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) ≤ ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by
+      apply Finset.sum_le_sum
+      intro i hi
+      exact h₁ i (by
+        simp only [Finset.mem_Icc] at hi
+        linarith)
+    have h₄ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 : ℝ) = 9999 := by
+      simp
+      <;> norm_num
+    have h₅ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) < 198 := by
+      linarith
+    exact h₅
+  exact h₂
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.98246431350708 / 3.095857620239258 / 23.078321933746338
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h : ∀ n : ℕ, n ≥ 2 → (1 / Real.sqrt n) ≤ 1 := by
+    intro n hn
+    have h₁ : Real.sqrt n ≥ 1 := by
+      apply Real.le_sqrt_of_sq_le
+      norm_num
+      nlinarith
+    have h₂ : 1 / Real.sqrt n ≤ 1 := by
+      rw [div_le_iff (by positivity)]
+      nlinarith
+    exact h₂
+  have h₃ : ∑ k in Finset.Icc 2 10000, (1 / Real.sqrt k) < 198 := by
+    have h₄ : ∀ k : ℕ, k ∈ Finset.Icc 2 10000 → (1 / Real.sqrt k) ≤ 1 := by
+      intro k hk
+      exact h k (by
+        simp_all [Finset.mem_Icc]
+        <;> omega)
+    calc
+      ∑ k in Finset.Icc 2 10000, (1 / Real.sqrt k) ≤ ∑ k in Finset.Icc 2 10000, 1 := by
+        exact Finset.sum_le_sum h₄
+      _ = ∑ k in Finset.Icc 2 10000, 1 := by rfl
+      _ = 10000 - 1 := by
+        simp [Finset.sum_Icc_succ_top]
+        <;> norm_num
+      _ < 198 := by norm_num
+  exact h₃
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.49088954925537 / 2.488452434539795 / 19.979341983795166
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h : ∀ n : ℕ, (n : ℝ) ≥ 2 → ∑ k in Finset.Icc (2 : ℕ) n, (1 / Real.sqrt k) < 198 := by
+    intro n hn
+    induction' n with n ih
+    · linarith
+    · cases n with
+      | zero => linarith
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.cast_le]
+        refine' lt_of_sub_pos _
+        field_simp
+        have h₁ : Real.sqrt (n + 1) > 0 := Real.sqrt_pos.mpr (by positivity)
+        have h₂ : Real.sqrt (n + 1) ≥ 1 := by
+          apply Real.le_sqrt_of_sq_le
+          nlinarith
+        have h₃ : (n : ℝ) ≥ 2 := by assumption_mod_cast
+        nlinarith [Real.sq_sqrt (by nlinarith : (0 : ℝ) ≤ n + 1),
+          Real.sq_sqrt (by nlinarith : (0 : ℝ) ≤ (n + 1 : ℝ)),
+          sq_nonneg (Real.sqrt (n + 1) - 1)]
+  specialize h 10000 (by norm_num)
+  exact h
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.04431700706482 / 2.9549834728240967 / 18.999300479888916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h₁ : ∀ n : ℕ, n ≥ 2 → (1 : ℝ) / Real.sqrt n ≤ 1 := by
+    intro n hn
+    have h : Real.sqrt n ≥ 1 := by
+      apply Real.le_sqrt_of_sq_le
+      norm_num
+      linarith
+    exact div_le_one_of_le (by linarith) (by positivity)
+  have h₂ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) < 198 := by
+    have h₃ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) ≤ ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by
+      apply Finset.sum_le_sum
+      intro x hx
+      exact h₁ x (by
+        norm_num [Finset.mem_Icc] at hx ⊢
+        linarith)
+    norm_num [Finset.sum_Icc_succ_top] at h₃ ⊢
+    linarith
+  exact h₂
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.02703022956848 / 3.054316759109497 / 20.08134698867798
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sum1onsqrt2to1onsqrt10000lt198 :
+  ∑ k in (Finset.Icc (2 : ℕ) 10000), (1 / Real.sqrt k) < 198 := by
+  have h₁ : ∀ n : ℕ, n ≥ 2 → (1 : ℝ) / Real.sqrt n ≤ 1 := by
+    intro n hn
+    have h : Real.sqrt n ≥ 1 := by
+      apply Real.le_sqrt_of_sq_le
+      norm_num
+      nlinarith
+    exact div_le_one_of_le (by linarith) (by positivity)
+  have h₂ : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) < 198 := by
+    have : ∑ k in Finset.Icc (2 : ℕ) 10000, (1 / Real.sqrt k) ≤ ∑ k in Finset.Icc (2 : ℕ) 10000, 1 := by
+      apply Finset.sum_le_sum
+      intro i hi
+      exact h₁ i (by
+        simp only [Finset.mem_Icc] at hi
+        linarith)
+    simp_all only [Finset.sum_const, Finset.Icc_eq_empty, Finset.card_empty, Nat.cast_zero,
+      zero_mul, sub_zero]
+    norm_num
+    <;> linarith
+  exact h₂
+

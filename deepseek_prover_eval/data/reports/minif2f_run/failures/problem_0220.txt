@@ -1,0 +1,345 @@
+Problem: problem_0220
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 3
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 48.294559478759766 / 5.220648765563965 / 53.51520824432373
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₃ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₄ : Real.tan x = Real.sin x / Real.cos x := by rw [Real.tan_eq_sin_div_cos]
+  have h₅ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₆ : 1 / Real.sin x + 1 / (Real.sin x / Real.cos x) = m := by simpa [h₄] using h₅
+  have h₇ : 1 / Real.sin x + Real.cos x / Real.sin x = m := by field_simp at h₆ ⊢; ring_nf at h₆ ⊢; nlinarith
+  have h₈ : (1 + Real.cos x) / Real.sin x = m := by field_simp at h₇ ⊢; ring_nf at h₇ ⊢; nlinarith
+  have h₉ : Real.sin x ≠ 0 := by
+    intro h
+    rw [h] at h₈
+    norm_num at h₈
+    <;> simp_all [div_eq_mul_inv]
+    <;> field_simp at h₀ h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ ⊢
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  have h₁₀ : m = (1 + Real.cos x) / Real.sin x := by simp_all [div_eq_mul_inv]
+  have h₁₁ : ↑m.den + m.num = 44 := by
+    rw [h₁₀]
+    have h₁₂ : (1 + Real.cos x) / Real.sin x = m := by simp_all [div_eq_mul_inv]
+    have h₁₃ : Real.sin x ≠ 0 := by
+      intro h
+      rw [h] at h₁₂
+      norm_num at h₁₂
+      <;> simp_all [div_eq_mul_inv]
+      <;> field_simp at h₀ h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ ⊢
+      <;> nlinarith [Real.sin_sq_add_cos_sq x]
+    have h₁₄ : (1 + Real.cos x) / Real.sin x = m := by simp_all [div_eq_mu
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.735761165618896 / 600.1672461032867 / 617.9030072689056
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.tan x = Real.sin x / Real.cos x := by simp [Real.tan_eq_sin_div_cos]
+  have h₅ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₆ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  field_simp [h₄] at h₅ h₆ ⊢
+  ring_nf at h₅ h₆ ⊢
+  norm_cast at h₅ h₆ ⊢
+  <;>
+  nlinarith [Real.sin_sq_add_cos_sq x, Real.sin_le_one x, Real.cos_le_one x, sq_nonneg (Real.sin x + Real.cos x),
+    sq_nonneg (Real.sin x - Real.cos x), sq_nonneg (Real.sin x + Real.cos x - 1),
+    sq_nonneg (Real.sin x + Real.cos x + 1)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.496669054031372 / 4.639230251312256 / 25.135899305343628
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.sin x ≠ 0 := by
+    intro h
+    rw [h] at h₃
+    simp_all [Real.tan_eq_sin_div_cos]
+    <;> norm_num
+    <;> linarith [Real.cos_le_one x, Real.sin_le_one x]
+  have h₅ : Real.cos x ≠ 0 := by
+    intro h
+    rw [h] at h₂
+    simp_all [Real.tan_eq_sin_div_cos]
+    <;> norm_num
+    <;> linarith [Real.cos_le_one x, Real.sin_le_one x]
+  field_simp [Real.tan_eq_sin_div_cos] at h₂ h₃
+  ring_nf at h₂ h₃
+  norm_num at h₂ h₃
+  have h₆ : m.den + m.num = 44 := by
+    apply Eq.symm
+    field_simp [h₄, h₅] at h₂ h₃ ⊢
+    ring_nf at h₂ h₃ ⊢
+    norm_cast at h₂ h₃ ⊢
+    <;> simp_all [mul_comm]
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  exact h₆
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.315890550613403 / 5.278034210205078 / 25.59392476081848
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.cos x ≠ 0 := by
+    intro h
+    rw [h] at h₂
+    norm_num at h₂
+    <;> simp_all [Real.tan_eq_sin_div_cos]
+    <;> field_simp [h] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  have h₅ : Real.sin x ≠ 0 := by
+    intro h
+    rw [h] at h₃
+    norm_num at h₃
+    <;> simp_all [Real.tan_eq_sin_div_cos]
+    <;> field_simp [h] at h₃ ⊢
+    <;> ring_nf at h₃ ⊢
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  field_simp [h₄, h₅, Real.tan_eq_sin_div_cos] at h₂ h₃ ⊢
+  ring_nf at h₂ h₃ ⊢
+  norm_cast at h₂ h₃ ⊢
+  <;>
+    simp_all [add_comm, add_left_comm, add_assoc]
+  <;>
+    omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.603286504745483 / 164.896493434906 / 187.4997799396515
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.cos x ≠ 0 := by
+    intro h
+    rw [h] at h₂
+    norm_num at h₂
+    <;> simp_all [Real.tan_eq_sin_div_cos]
+    <;> field_simp [h] at h₂ ⊢
+    <;> ring_nf at h₂ ⊢
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  have h₅ : Real.sin x ≠ 0 := by
+    intro h
+    rw [h] at h₃
+    norm_num at h₃
+    <;> simp_all [Real.tan_eq_sin_div_cos]
+    <;> field_simp [h] at h₃ ⊢
+    <;> ring_nf at h₃ ⊢
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  field_simp [h₄, h₅, Real.tan_eq_sin_div_cos] at h₂ h₃ ⊢
+  ring_nf at h₂ h₃ ⊢
+  norm_num at h₂ h₃ ⊢
+  <;>
+  norm_cast at h₂ h₃ ⊢
+  <;>
+  simp_all [mul_comm]
+  <;>
+  nlinarith [Real.sin_sq_add_cos_sq x, sq_nonneg (Real.sin x + Real.cos x), sq_nonneg (Real.sin x - Real.cos x)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.38383960723877 / 217.76315188407898 / 242.14699149131775
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.tan x = Real.sin x / Real.cos x := by rw [Real.tan_eq_sin_div_cos]
+  have h₅ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  rw [h₄] at h₅
+  by_cases h₆ : Real.sin x = 0 <;> by_cases h₇ : Real.cos x = 0 <;> field_simp [h₆, h₇, Real.tan_eq_sin_div_cos] at h₀ h₁ h₂ h₃ h₅ ⊢
+  <;> ring_nf at h₀ h₁ h₂ h₃ h₅ ⊢ <;> norm_cast at h₀ h₁ h₂ h₃ h₅ ⊢ <;>
+    simp_all [mul_comm] <;>
+    (try norm_num) <;>
+    (try linarith) <;>
+    (try nlinarith [Real.sin_sq_add_cos_sq x]) <;>
+    (try nlinarith [Real.sin_sq_add_cos_sq x, sq_nonneg (Real.sin x + Real.cos x), sq_nonneg (Real.sin x - Real.cos x)]) <;>
+    (try
+      norm_num at * <;>
+      field_simp at * <;>
+      ring_nf at * <;>
+      norm_cast at * <;>
+      nlinarith [Real.sin_sq_add_cos_sq x, sq_nonneg (Real.sin x + Real.cos x), sq_nonneg (Real.sin x - Real.cos x)])
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.224694967269897 / 600.0981419086456 / 622.3228368759155
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.cos x ≠ 0 := by
+    intro h
+    rw [h] at h₂
+    norm_num at h₂
+    <;> simp_all [Real.tan_eq_sin_div_cos, div_eq_mul_inv]
+    <;> field_simp at *
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  have h₅ : Real.sin x ≠ 0 := by
+    intro h
+    rw [h] at h₃
+    norm_num at h₃
+    <;> simp_all [Real.tan_eq_sin_div_cos, div_eq_mul_inv]
+    <;> field_simp at *
+    <;> nlinarith [Real.sin_sq_add_cos_sq x]
+  field_simp [h₄, h₅, Real.tan_eq_sin_div_cos] at h₂ h₃ ⊢
+  ring_nf at h₂ h₃ ⊢
+  norm_cast at h₂ h₃ ⊢
+  <;>
+    nlinarith [Real.sin_sq_add_cos_sq x, sq_nonneg (Real.sin x + Real.cos x),
+      sq_nonneg (Real.sin x - Real.cos x), Real.sin_le_one x, Real.cos_le_one x,
+      Real.sin_le_one x, Real.cos_le_one x, Real.sin_sq_add_cos_sq x]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 37.46749925613403 / 600.1439166069031 / 637.6114158630371
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p9
+  (x : ℝ)
+  (m : ℚ)
+  (h₀ : 1 / Real.cos x + Real.tan x = 22 / 7)
+  (h₁ : 1 / Real.sin x + 1 / Real.tan x = m) :
+  ↑m.den + m.num = 44 := by
+  have h₂ : 1 / Real.cos x + Real.tan x = 22 / 7 := h₀
+  have h₃ : 1 / Real.sin x + 1 / Real.tan x = m := h₁
+  have h₄ : Real.tan x = Real.sin x / Real.cos x := by rw [Real.tan_eq_sin_div_cos]
+  have h₅ : 1 / Real.cos x + Real.sin x / Real.cos x = 22 / 7 := by
+    rw [h₄] at h₂
+    exact h₂
+  have h₆ : (1 + Real.sin x) / Real.cos x = 22 / 7 := by
+    field_simp [add_comm] at h₅ ⊢
+    linarith
+  have h₇ : Real.cos x ≠ 0 := by
+    intro h
+    rw [h] at h₆
+    norm_num at h₆
+  have h₈ : (1 + Real.sin x) / Real.cos x = 22 / 7 := h₆
+  have h₉ : 1 / Real.sin x + 1 / Real.tan x = m := h₃
+  have h₁₀ : 1 / Real.sin x + 1 / (Real.sin x / Real.cos x) = m := by rw [h₄] at h₃; exact h₃
+  have h₁₁ : 1 / Real.sin x + Real.cos x / Real.sin x = m := by
+    field_simp [h₇] at h₁₀ ⊢
+    linarith
+  have h₁₂ : (1 + Real.cos x) / Real.sin x = m := by
+    field_simp [h₇] at h₁₁ ⊢
+    linarith
+  have h₁₃ : m = (1 + Real.cos x) / Real.sin x := by linarith
+  have h₁₄ : ↑m.den + m.num = 44 := by
+    rw [h₁₃] at *
+    have h₁₅ : Real.sin x ≠ 0 := by
+      intro h
+      rw [h] at h₁₂
+      norm_num at h₁₂
+    field_simp [h₁₅] at h₈ h₁₂ ⊢
+    ring_nf at h₈ h₁₂ ⊢
+    norm_cast at h₈ h₁₂ ⊢
+    <;>
+    (try
+      simp_all [mul_comm])
+    <;>
+    (try
+      nlinarith [Real.sin_sq_add_co
+... [truncated] ...

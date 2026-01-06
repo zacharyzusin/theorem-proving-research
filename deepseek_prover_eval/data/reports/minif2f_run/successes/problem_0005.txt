@@ -1,0 +1,23 @@
+Problem: problem_0005
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.148783206939697
+Lean check time (s): 9.119598627090454
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_141
+  (a b : ℝ)
+  (h₁ : (a * b)=180)
+  (h₂ : 2 * (a + b)=54) :
+  (a^2 + b^2) = 369 := by
+  have h₃ : (a + b) = 27 := by
+    linarith
+  have h₄ : a^2 + b^2 = 369 := by
+    nlinarith [sq_nonneg (a - b)]
+  exact h₄

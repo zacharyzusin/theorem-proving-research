@@ -1,0 +1,27 @@
+Problem: problem_0353
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.607531785964966
+Lean check time (s): 2.563868522644043
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_214
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = a * (x - 2)^2 + 3)
+  (h₁ : f 4 = 4) :
+  f 6 = 7 := by
+  have h₂ : a = 1 / 4 := by
+    rw [h₀] at h₁
+    ring_nf at h₁
+    linarith
+  rw [h₀]
+  simp_all only [h₂, mul_one, mul_div_cancel_left, mul_comm]
+  ring_nf
+  <;> linarith

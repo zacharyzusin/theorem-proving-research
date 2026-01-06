@@ -1,0 +1,222 @@
+Problem: putnam_2023_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 27.930883169174194 / 14.372260332107544 / 42.30314350128174
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 29.951330184936523 / 13.338600873947144 / 43.28993105888367
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.350074529647827 / 13.730918407440186 / 44.08099293708801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 26.986427307128906 / 13.64834976196289 / 40.6347770690918
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 25.077338457107544 / 13.62405776977539 / 38.701396226882935
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 30.117727279663086 / 14.552195072174072 / 44.66992235183716
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 29.586090326309204 / 13.860143899917603 / 43.44623422622681
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 37.535407304763794 / 13.861503601074219 / 51.39691090583801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_b1
+(m n : ℕ)
+(initcoins : ℕ → ℕ → Bool)
+(hinitcoins : initcoins = (fun i j : ℕ => (i ≤ m - 2 ∧ j ≤ n - 2 : Bool)))
+(IsLegalMove : (ℕ → ℕ → Bool) → (ℕ → ℕ → Bool) → Prop)
+(IsLegalMove_def : ∀ coins1 coins2,
+  IsLegalMove coins1 coins2 ↔
+    ∃ i j, i < m - 1 ∧ j < n - 1 ∧
+      coins1 i j ∧ !coins1 (i + 1) j ∧ !coins1 i (j + 1) ∧ !coins1 (i + 1) (j + 1) ∧
+      !coins2 i j ∧ !coins2 (i + 1) j ∧ !coins2 i (j + 1) ∧ coins2 (i + 1) (j + 1) ∧
+      (∀ i' j', ((i', j') ≠ (i, j) ∧ (i', j') ≠ (i + 1, j) ∧ (i', j') ≠ (i, j + 1) ∧ (i', j') ≠ (i + 1, j + 1))
+        → coins1 i' j' = coins2 i' j'))
+(IsLegalSeq : List (ℕ → ℕ → Bool) → Prop)
+(IsLegalSeq_def : ∀ seq, IsLegalSeq seq ↔ seq.length ≥ 1 ∧ seq[0]! = initcoins ∧ (∀ i < seq.length - 1, IsLegalMove seq[i]! seq[i + 1]!))
+(mnpos : 1 < m ∧ 1 < n)
+: {config : ℕ → ℕ → Bool | ∃ seq : List (ℕ → ℕ → Bool), IsLegalSeq seq ∧ config = seq.getLast!}.encard = putnam_2023_b1_solution m n :=
+sorry

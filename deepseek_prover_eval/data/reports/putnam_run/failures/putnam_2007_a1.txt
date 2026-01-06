@@ -1,0 +1,134 @@
+Problem: putnam_2007_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 43.52443480491638 / 8.064948558807373 / 51.589383363723755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 49.26193070411682 / 7.744985580444336 / 57.00691628456116
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 53.74917650222778 / 8.823557376861572 / 62.572733879089355
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 58.506144285202026 / 8.305749893188477 / 66.8118941783905
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 32.66610765457153 / 8.621255159378052 / 41.287362813949585
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 33.87193775177002 / 8.127243041992188 / 41.99918079376221
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.35650277137756 / 7.8671064376831055 / 46.22360920906067
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 68.5778238773346 / 8.612159967422485 / 77.18998384475708
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_a1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∃ x y, f x = y ∧ f y = x ∧ deriv f x * deriv f y = 1)
+    (α : ℝ) :
+    P (fun t ↦ α * t ^ 2 + α * t + 1 / 24) ↔ α ∈ putnam_2007_a1_solution :=
+  sorry

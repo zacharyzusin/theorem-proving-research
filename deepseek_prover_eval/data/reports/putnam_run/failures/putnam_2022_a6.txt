@@ -1,0 +1,150 @@
+Problem: putnam_2022_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 62.30119514465332 / 8.10206937789917 / 70.40326452255249
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 60.1168327331543 / 7.484089612960815 / 67.60092234611511
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 63.3128707408905 / 7.357309579849243 / 70.67018032073975
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 85.63604259490967 / 7.356804370880127 / 92.9928469657898
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.56060004234314 / 7.66231107711792 / 37.22291111946106
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 86.51381373405457 / 7.41657567024231 / 93.93038940429688
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 29.931525945663452 / 7.5342442989349365 / 37.46577024459839
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.98138165473938 / 7.452620983123779 / 31.43400263786316
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a6
+    (n : ℕ) (hn : 0 < n) :
+    IsGreatest
+      {m : ℕ | ∃ x : ℕ → ℝ,
+        StrictMono x ∧ -1 < x 1 ∧ x (2 * n) < 1 ∧
+        ∀ k ∈ Icc 1 m, ∑ i ∈ Icc 1 n, ((x (2 * i) : ℝ) ^ (2 * k - 1) - (x (2 * i - 1)) ^ (2 * k - 1)) = 1}
+    (putnam_2022_a6_solution n) :=
+  sorry

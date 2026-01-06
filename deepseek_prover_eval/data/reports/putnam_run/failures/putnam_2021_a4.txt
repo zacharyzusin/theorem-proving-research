@@ -1,0 +1,150 @@
+Problem: putnam_2021_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 30.218221426010132 / 8.226265907287598 / 38.44448733329773
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 40.09658241271973 / 7.851687669754028 / 47.948270082473755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 64.46061038970947 / 8.274710893630981 / 72.73532128334045
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 47.819095849990845 / 9.161357641220093 / 56.98045349121094
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 32.10867524147034 / 7.774049758911133 / 39.88272500038147
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.296708583831787 / 7.496309995651245 / 24.793018579483032
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.295533657073975 / 8.613765478134155 / 24.90929913520813
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 35.630242109298706 / 9.276949405670166 / 44.90719151496887
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a4
+  (S : ℝ → Set (EuclideanSpace ℝ (Fin 2)))
+  (hS : S = fun R => ball (0 : EuclideanSpace ℝ (Fin 2)) R)
+  (I : ℝ → ℝ)
+  (hI : I = fun R => ∫ p in S R,
+    (1 + 2*(p 0)^2)/(1 + (p 0)^4 + 6*(p 0)^2*(p 1)^2 + (p 1)^4) - (1 + (p 1)^2)/(2 + (p 0)^4 + (p 1)^4)) :
+  Tendsto I atTop (𝓝 putnam_2021_a4_solution) :=
+sorry

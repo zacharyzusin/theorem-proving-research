@@ -1,0 +1,25 @@
+Problem: problem_0039
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.78072714805603
+Lean check time (s): 3.426997184753418
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_353
+  (s : ℕ)
+  (h₀ : s = ∑ k in Finset.Icc 2010 4018, k) :
+  s % 2009 = 0 := by
+  have h₁ : s = ∑ k in Finset.Icc 2010 4018, k := h₀
+  rw [h₁]
+  rfl
+  <;> norm_num
+  <;> rfl
+  <;> simp [Finset.sum_Icc_succ_top]
+  <;> norm_num
+  <;> rfl

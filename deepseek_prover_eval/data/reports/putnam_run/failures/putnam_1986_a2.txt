@@ -1,0 +1,188 @@
+Problem: putnam_1986_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 5.444790840148926 / 22.95587921142578 / 28.400670051574707
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  norm_num [putnam_1986_a2_solution]
+  <;> rfl
+  <;> norm_num [Nat.floor_eq_iff]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 6.080896854400635 / 36.95867586135864 / 43.03957271575928
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  norm_num [putnam_1986_a2_solution]
+  <;> rfl
+  <;> simp [Nat.floor_eq_iff]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> rfl
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 28.19405198097229 / 29.15263080596924 / 57.34668278694153
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  have h : ∀ n : ℕ, (Nat.floor ((10 ^ n : ℝ) / (10 ^ 100 + 3)) % 10) = 1 := by
+    intro n
+    have h₁ : (Nat.floor ((10 ^ n : ℝ) / (10 ^ 100 + 3)) % 10) = 1 := by
+      have h₂ : (10 : ℝ) ^ n / (10 ^ 100 + 3) < 2 := by
+        have h₃ : (10 : ℝ) ^ n < 2 * (10 ^ 100 + 3) := by
+          calc
+            (10 : ℝ) ^ n < 10 ^ n := by simp
+            _ ≤ 10 ^ n := by simp
+            _ < 2 * (10 ^ 100 + 3) := by
+              induction n with
+              | zero => norm_num
+              | succ n ih =>
+                simp_all [pow_succ]
+                norm_num
+                nlinarith [pow_pos (by norm_num : (0 : ℝ) < 10) n]
+        have h₄ : (10 : ℝ) ^ n / (10 ^ 100 + 3) < 2 := by
+          rw [div_lt_iff] <;> norm_num <;> nlinarith
+        linarith
+      have h₅ : (10 : ℝ) ^ n / (10 ^ 100 + 3) ≥ 1 := by
+        have h₆ : (10 : ℝ) ^ n ≥ 10 ^ 100 := by
+          apply pow_le_pow_right
+          norm_num
+          linarith
+        have h₇ : (10 : ℝ) ^ n / (10 ^ 100 + 3) ≥ 1 := by
+          rw [ge_iff_le, le_div_iff] <;> norm_num <;> nlinarith
+        linarith
+      have h₈ : Nat.floor ((10 ^ n : ℝ) / (10 ^ 100 + 3)) = 1 := by
+        rw [Nat.floor_eq_iff] <;> norm_num <;> constructor <;> nlinarith
+      simp_all
+    simp_all
+  simpa using h 20000
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 6.1320905685424805 / 32.201863527297974 / 38.333954095840454
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  norm_num [putnam_1986_a2_solution]
+  <;> rfl
+  <;> simp [Nat.floor_eq_iff]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> rfl
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.417065858840942 / 25.63896083831787 / 42.05602669715881
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  have h : ∀ n : ℕ, (Nat.floor ((10 ^ n : ℝ) / (10 ^ 100 + 3)) % 10) = 1 := by
+    intro n
+    have h₁ : (10 : ℝ) ^ n / (10 ^ 100 + 3) < 1 := by
+      have h₁ : (10 : ℝ) ^ n < 10 ^ 100 + 3 := by
+        induction n with
+        | zero => norm_num
+        | succ n ih =>
+          simp_all [pow_succ]
+          nlinarith [pow_pos (by norm_num : (0 : ℝ) < 10) n]
+      have h₂ : (10 : ℝ) ^ n / (10 ^ 100 + 3) < 1 := by
+        rw [div_lt_iff (by positivity)]
+        nlinarith
+      exact h₂
+    have h₂ : (Nat.floor ((10 ^ n : ℝ) / (10 ^ 100 + 3)) : ℕ) = 0 := by
+      apply Nat.floor_eq_zero.mpr
+      linarith
+    rw [h₂]
+    norm_num
+  simpa using h 20000
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 4.958702564239502 / 54.43591594696045 / 59.39461851119995
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  norm_num [Nat.floor_eq_iff, Nat.div_eq_of_lt]
+  <;> rfl
+  <;> norm_num
+  <;> rfl
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 5.773615598678589 / 35.856234550476074 / 41.62985014915466
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  norm_num [Nat.floor_eq_iff, putnam_1986_a2_solution]
+  <;>
+    norm_num
+  <;>
+    rfl
+  <;>
+    norm_num
+  <;>
+    rfl
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 4.719051122665405 / 17.462249279022217 / 22.181300401687622
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a2
+: (Nat.floor ((10 ^ 20000 : ℝ) / (10 ^ 100 + 3)) % 10 = putnam_1986_a2_solution) := by
+  norm_num [putnam_1986_a2_solution]
+  <;> rfl
+  <;> norm_num
+  <;> rfl

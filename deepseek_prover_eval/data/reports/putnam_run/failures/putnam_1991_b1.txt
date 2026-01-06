@@ -1,0 +1,166 @@
+Problem: putnam_1991_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.654623746871948 / 4.309604644775391 / 18.96422839164734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 25.119225025177002 / 4.276851415634155 / 29.396076440811157
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.10258173942566 / 4.272429704666138 / 24.375011444091797
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.104212522506714 / 4.309674978256226 / 23.41388750076294
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 25.753177881240845 / 4.291006565093994 / 30.04418444633484
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.24339461326599 / 4.305477142333984 / 23.548871755599976
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.54904389381409 / 4.22439169883728 / 43.77343559265137
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 31.797778367996216 / 4.303123712539673 / 36.10090208053589
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b1
+  (m S : ℤ → ℤ)
+  (A : ℤ)
+  (a : ℕ → ℤ)
+  (hm : ∀ n, 0 ≤ n → (m n) ^ 2 ≤ n ∧ (∀ m' : ℤ, m' ^ 2 ≤ n → m' ≤ m n))
+  (hS : ∀ n, 0 ≤ n → S n = n - (m n) ^ 2)
+  (ha : a 0 = A ∧ (∀ k, a (k + 1) = a k + S (a k)))
+  (hA : A > 0) :
+  (∃ (K : ℕ) (c : ℕ), ∀ k ≥ K, a k = c) ↔ A ∈ putnam_1991_b1_solution :=
+sorry

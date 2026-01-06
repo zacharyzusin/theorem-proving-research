@@ -1,0 +1,20 @@
+Problem: problem_0185
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.4919514656066895
+Lean check time (s): 3.9189343452453613
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_85 :
+  1 * 3^3 + 2 * 3^2 + 2*3 + 2 = 53 := by
+  norm_num
+  <;> rfl
+  <;> simp_all
+  <;> norm_num
+  <;> rfl

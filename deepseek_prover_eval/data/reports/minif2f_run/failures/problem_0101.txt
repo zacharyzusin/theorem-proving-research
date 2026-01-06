@@ -1,0 +1,380 @@
+Problem: problem_0101
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.068427562713623 / 6.870146036148071 / 27.938573598861694
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  intro y
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₀ 3
+  have h₇ := h₁ 0
+  have h₈ := h₁ 1
+  have h₉ := h₁ 2
+  have h₁₀ := h₁ 3
+  have h₁₁ := h₂ 0 0
+  have h₁₂ := h₂ 0 1
+  have h₁₃ := h₂ 0 2
+  have h₁₄ := h₂ 0 3
+  have h₁₅ := h₂ 1 0
+  have h₁₆ := h₂ 1 1
+  have h₁₇ := h₂ 1 2
+  have h₁₈ := h₂ 1 3
+  have h₁₉ := h₂ 2 0
+  have h₂₀ := h₂ 2 1
+  have h₂₁ := h₂ 2 2
+  have h₂₂ := h₂ 2 3
+  have h₂₃ := h₂ 3 0
+  have h₂₄ := h₂ 3 1
+  have h₂₅ := h₂ 3 2
+  have h₂₆ := h₂ 3 3
+  simp_all
+  <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 34.48308706283569 / 4.285746335983276 / 38.76883339881897
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  have h₃ := h₁ 0
+  have h₄ := h₁ 1
+  have h₅ := h₁ 2
+  have h₆ := h₁ 3
+  have h₇ := h₂ 0 0
+  have h₈ := h₂ 0 1
+  have h₉ := h₂ 0 2
+  have h₁₀ := h₂ 0 3
+  have h₁₁ := h₂ 1 0
+  have h₁₂ := h₂ 1 1
+  have h₁₃ := h₂ 1 2
+  have h₁₄ := h₂ 1 3
+  have h₁₅ := h₂ 2 0
+  have h₁₆ := h₂ 2 1
+  have h₁₇ := h₂ 2 2
+  have h₁₈ := h₂ 2 3
+  have h₁₉ := h₂ 3 0
+  have h₂₀ := h₂ 3 1
+  have h₂₁ := h₂ 3 2
+  have h₂₂ := h₂ 3 3
+  simp at *
+  have h₂₃ := h₀ 0
+  have h₂₄ := h₀ 1
+  have h₂₅ := h₀ 2
+  have h₂₆ := h₀ 3
+  simp at *
+  have h₂₇ := h₁ 0
+  have h₂₈ := h₁ 1
+  have h₂₉ := h₁ 2
+  have h₃₀ := h₁ 3
+  simp at *
+  have h₃₁ := h₂ 0 0
+  have h₃₂ := h₂ 0 1
+  have h₃₃ := h₂ 0 2
+  have h₃₄ := h₂ 0 3
+  simp at *
+  have h₃₅ := h₂ 1 0
+  have h₃₆ := h₂ 1 1
+  have h₃₇ := h₂ 1 2
+  have h₃₈ := h₂ 1 3
+  simp at *
+  have h₃₉ := h₂ 2 0
+  have h₄₀ := h₂ 2 1
+  have h₄₁ := h₂ 2 2
+  have h₄₂ := h₂ 2 3
+  simp at *
+  have h₄₃ := h₂ 3 0
+  have h₄₄ := h₂ 3 1
+  have h₄₅ := h₂ 3 2
+  have h₄₆ := h₂ 3 3
+  simp at *
+  norm_num
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 26.64787459373474 / 8.573250532150269 / 35.22112512588501
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₀ 3
+  have h₇ := h₁ 0
+  have h₈ := h₁ 1
+  have h₉ := h₁ 2
+  have h₁₀ := h₁ 3
+  have h₁₁ := h₂ 0 0
+  have h₁₂ := h₂ 0 1
+  have h₁₃ := h₂ 0 2
+  have h₁₄ := h₂ 0 3
+  have h₁₅ := h₂ 1 0
+  have h₁₆ := h₂ 1 1
+  have h₁₇ := h₂ 1 2
+  have h₁₈ := h₂ 1 3
+  have h₁₉ := h₂ 2 0
+  have h₂₀ := h₂ 2 1
+  have h₂₁ := h₂ 2 2
+  have h₂₂ := h₂ 2 3
+  have h₂₃ := h₂ 3 0
+  have h₂₄ := h₂ 3 1
+  have h₂₅ := h₂ 3 2
+  have h₂₆ := h₂ 3 3
+  norm_num [h₀, h₁, h₂, h₃, h₄, h₅, h₆, h₇, h₈, h₉, h₁₀, h₁₁, h₁₂, h₁₃, h₁₄, h₁₅, h₁₆, h₁₇, h₁₈, h₁₉, h₂₀, h₂₁, h₂₂, h₂₃, h₂₄, h₂₅, h₂₆] at *
+  <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.32309079170227 / 6.877557992935181 / 28.20064878463745
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  intro y
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₀ 3
+  have h₇ := h₁ 0
+  have h₈ := h₁ 1
+  have h₉ := h₁ 2
+  have h₁₀ := h₁ 3
+  have h₁₁ := h₂ 0 0
+  have h₁₂ := h₂ 0 1
+  have h₁₃ := h₂ 0 2
+  have h₁₄ := h₂ 0 3
+  have h₁₅ := h₂ 1 0
+  have h₁₆ := h₂ 1 1
+  have h₁₇ := h₂ 1 2
+  have h₁₈ := h₂ 1 3
+  have h₁₉ := h₂ 2 0
+  have h₂₀ := h₂ 2 1
+  have h₂₁ := h₂ 2 2
+  have h₂₂ := h₂ 2 3
+  have h₂₃ := h₂ 3 0
+  have h₂₄ := h₂ 3 1
+  have h₂₅ := h₂ 3 2
+  have h₂₆ := h₂ 3 3
+  simp_all
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.313979864120483 / 7.780427932739258 / 29.09440779685974
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  intro y
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₀ 3
+  have h₇ := h₁ 0
+  have h₈ := h₁ 1
+  have h₉ := h₁ 2
+  have h₁₀ := h₁ 3
+  have h₁₁ := h₂ 0 0
+  have h₁₂ := h₂ 0 1
+  have h₁₃ := h₂ 0 2
+  have h₁₄ := h₂ 0 3
+  have h₁₅ := h₂ 1 0
+  have h₁₆ := h₂ 1 1
+  have h₁₇ := h₂ 1 2
+  have h₁₈ := h₂ 1 3
+  have h₁₉ := h₂ 2 0
+  have h₂₀ := h₂ 2 1
+  have h₂₁ := h₂ 2 2
+  have h₂₂ := h₂ 2 3
+  have h₂₃ := h₂ 3 0
+  have h₂₄ := h₂ 3 1
+  have h₂₅ := h₂ 3 2
+  have h₂₆ := h₂ 3 3
+  simp_all
+  <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.578605890274048 / 3.738740921020508 / 23.317346811294556
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₁ 0
+  have h₇ := h₁ 1
+  have h₈ := h₁ 2
+  have h₉ := h₂ 0 0
+  have h₁₀ := h₂ 0 1
+  have h₁₁ := h₂ 0 2
+  have h₁₂ := h₂ 1 0
+  have h₁₃ := h₂ 1 1
+  have h₁₄ := h₂ 1 2
+  have h₁₅ := h₂ 2 0
+  have h₁₆ := h₂ 2 1
+  have h₁₇ := h₂ 2 2
+  have h₁₈ := h₂ 3 0
+  have h₁₉ := h₂ 3 1
+  have h₂₀ := h₂ 3 2
+  have h₂₁ := h₂ 4 0
+  have h₂₂ := h₂ 4 1
+  have h₂₃ := h₂ 4 2
+  simp at *
+  all_goals
+    omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.33589768409729 / 7.706604719161987 / 29.042502403259277
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  intro y
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₀ 3
+  have h₇ := h₁ 0
+  have h₈ := h₁ 1
+  have h₉ := h₁ 2
+  have h₁₀ := h₁ 3
+  have h₁₁ := h₂ 0 0
+  have h₁₂ := h₂ 0 1
+  have h₁₃ := h₂ 0 2
+  have h₁₄ := h₂ 0 3
+  have h₁₅ := h₂ 1 0
+  have h₁₆ := h₂ 1 1
+  have h₁₇ := h₂ 1 2
+  have h₁₈ := h₂ 1 3
+  have h₁₉ := h₂ 2 0
+  have h₂₀ := h₂ 2 1
+  have h₂₁ := h₂ 2 2
+  have h₂₂ := h₂ 2 3
+  have h₂₃ := h₂ 3 0
+  have h₂₄ := h₂ 3 1
+  have h₂₅ := h₂ 3 2
+  have h₂₆ := h₂ 3 3
+  simp_all
+  <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.821213960647583 / 7.823889255523682 / 34.645103216171265
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1981_p6
+  (f : ℕ → ℕ → ℕ)
+  (h₀ : ∀ y, f 0 y = y + 1)
+  (h₁ : ∀ x, f (x + 1) 0 = f x 1)
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
+  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by
+  intro y
+  have h₃ := h₀ 0
+  have h₄ := h₀ 1
+  have h₅ := h₀ 2
+  have h₆ := h₀ 3
+  have h₇ := h₁ 0
+  have h₈ := h₁ 1
+  have h₉ := h₁ 2
+  have h₁₀ := h₁ 3
+  have h₁₁ := h₂ 0 0
+  have h₁₂ := h₂ 0 1
+  have h₁₃ := h₂ 0 2
+  have h₁₄ := h₂ 0 3
+  have h₁₅ := h₂ 1 0
+  have h₁₆ := h₂ 1 1
+  have h₁₇ := h₂ 1 2
+  have h₁₈ := h₂ 1 3
+  have h₁₉ := h₂ 2 0
+  have h₂₀ := h₂ 2 1
+  have h₂₁ := h₂ 2 2
+  have h₂₂ := h₂ 2 3
+  have h₂₃ := h₂ 3 0
+  have h₂₄ := h₂ 3 1
+  have h₂₅ := h₂ 3 2
+  have h₂₆ := h₂ 3 3
+  norm_num [h₀, h₁, h₂, h₃, h₄, h₅, h₆, h₇, h₈, h₉, h₁₀, h₁₁, h₁₂, h₁₃, h₁₄, h₁₅, h₁₆, h₁₇, h₁₈, h₁₉, h₂₀, h₂₁, h₂₂, h₂₃, h₂₄, h₂₅, h₂₆] at *
+  <;> omega
+

@@ -1,0 +1,307 @@
+Problem: putnam_2001_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 44.74846339225769 / 25.0886549949646 / 69.83711838722229
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₁ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+      intro n hn
+      have h₂ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+      have h₃ : round (Real.sqrt n) = ⌊Real.sqrt n⌋₊ := by
+        simp [round_eq_iff]
+        <;>
+        norm_num
+        <;>
+        nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+      rw [h₃]
+      have h₄ : (2 : ℝ) ^ (⌊Real.sqrt n⌋₊ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋₊ : ℤ)) = 2 := by
+        have h₅ : (⌊Real.sqrt n⌋₊ : ℤ) = ⌊Real.sqrt n⌋ := by
+          simp
+        rw [h₅]
+        have h₆ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+          exact_mod_cast Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+        have h₇ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+          exact_mod_cast Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+        have h₈ : (2 : ℝ) ^ (⌊Real.sqrt n⌋ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋ : ℤ)) = 2 := by
+          have h₉ : (⌊Real.sqrt n⌋ : ℤ) = 0 ∨ (⌊Real.sqrt n⌋ : ℤ) ≥ 1 := by
+            omega
+          rcases h₉ with (h₉ | h₉) <;> simp_all [zpow_neg, zpow_ofNat] <;>
+            norm_num <;>
+            nlina
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 48.50050592422485 / 14.065014600753784 / 62.56552052497864
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₁ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+      -- Recognize the pattern and group terms to simplify the sum
+      have h₂ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+        intro n hn
+        have h₃ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+        have h₄ : round (Real.sqrt n) = ⌊Real.sqrt n⌋₊ := by
+          simp [round]
+        rw [h₄]
+        have h₅ : (2 : ℝ) ^ (⌊Real.sqrt n⌋₊ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋₊ : ℤ)) = 2 := by
+          have h₆ : (⌊Real.sqrt n⌋₊ : ℤ) = ⌊Real.sqrt n⌋ := by
+            simp [Int.floor_eq_iff]
+            <;> norm_num
+            <;> nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+          rw [h₆]
+          have h₇ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+            exact Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+          have h₈ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+            exact Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+          have h₉ : (2 : ℝ) ^ (⌊Real.sqrt n⌋ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋ : ℤ)) = 2 := by
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 39.25860357284546 / 11.057716131210327 / 50.316319704055786
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h₀ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₁ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+      intro n hn
+      have h₂ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+      have h₃ : round (Real.sqrt n) = ⌊Real.sqrt n⌋ := by
+        simp [round_eq, Int.floor_eq_iff, Real.le_sqrt, Real.sqrt_lt]
+        <;>
+        nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : 0 ≤ (n : ℝ)),
+          Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : 0 ≤ (n : ℝ))]
+      rw [h₃]
+      have h₄ : (2 : ℝ) ^ (⌊Real.sqrt n⌋ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋ : ℤ)) = 2 := by
+        have h₅ : ⌊Real.sqrt n⌋ = 1 := by
+          apply Int.floor_eq_iff.mpr
+          constructor
+          · norm_num
+            have h₆ : Real.sqrt n ≥ 1 := by
+              apply Real.le_sqrt_of_sq_le
+              norm_num
+              nlinarith
+            nlinarith [Real.sq_sqrt (by positivity : 0 ≤ (n : ℝ)), Real.sqrt_nonneg n]
+          · norm_num
+            have h₆ : Real.sqrt n < 2 := by
+              apply Real.sqrt_lt' (by positivity) |>.mpr
+              norm_num
+              have h₇ : (n : ℝ) < 4 := by
+            
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 33.35477614402771 / 11.922152996063232 / 45.27692914009094
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₁ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+      -- Use the fact that the series converges to 7/2
+      have h₂ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+        intro n hn
+        have h₃ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+        have h₄ : round (Real.sqrt n) = 1 := by
+          norm_num [round_eq]
+          have h₅ : (Real.sqrt n : ℝ) < 2 := by
+            have h₆ : (n : ℝ) < 4 := by
+              nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+            nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+          have h₆ : (Real.sqrt n : ℝ) ≥ 1 := by
+            have h₇ : (1 : ℝ) ≤ n := by exact_modcast hn
+            exact Real.le_sqrt_of_sq_le (by nlinarith)
+          norm_num [Int.floor_eq_iff] at * <;>
+            nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+        simp_all [h₄, Real.rpow_neg, Real.rpow_one]
+        <;> field_simp <;> ring_nf
+        <;> norm_num
+      -- S
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 55.90218663215637 / 9.78198504447937 / 65.68417167663574
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h₁ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₂ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+      intro n hn
+      have h₃ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+      have h₄ : round (Real.sqrt n) = ⌊Real.sqrt n⌋ := by
+        simp_all [round_eq, Int.floor_eq_iff]
+        <;>
+        norm_num
+        <;>
+        nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n)]
+      rw [h₄]
+      have h₅ : (2 : ℝ) ^ (⌊Real.sqrt n⌋ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋ : ℤ)) = 2 := by
+        have h₆ : (⌊Real.sqrt n⌋ : ℤ) = ⌊Real.sqrt n⌋ := by rfl
+        rw [h₆]
+        have h₇ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+          exact Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+        have h₈ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+          exact Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+        have h₉ : (2 : ℝ) ^ (⌊Real.sqrt n⌋ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋ : ℤ)) = 2 := by
+          have h₁₀ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+            exact Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+          have h₁₁ : (⌊Real.sqrt n⌋ : ℤ) ≥ 0 := by
+            exact Int.floor_nonneg.mpr (Real.sqrt_nonneg n)
+   
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 56.791399240493774 / 8.479895830154419 / 65.2712950706482
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h₁ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₂ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+      -- Use the fact that the series can be split into two parts and each part can be evaluated separately.
+      have h₃ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) / 2 ^ (n : ℝ)) + ∑' n : Set.Ici 1, (2 : ℝ) ^ (-round (Real.sqrt n)) / 2 ^ (n : ℝ) := by
+        -- Use the linearity of the sum.
+        apply tsum_add
+        <;> apply ENNReal.summable.tsum_eq
+        <;> simp_all [round_eq, Real.sqrt_eq_iff_mul_self_eq]
+        <;> norm_num
+        <;> linarith
+      rw [h₃]
+      -- Evaluate each part separately.
+      have h₄ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) / 2 ^ (n : ℝ)) = ∑' n : Set.Ici 1, 1 := by
+        -- For each n, the term simplifies to 1.
+        apply tsum_congr
+        intro n
+        have h₅ : (2 : ℝ) ^ (round (Real.sqrt n)) / 2 ^ (n : ℝ) = 1 := by
+          have h₆ : (round (Real.sqrt n) : ℝ) ≤ n := by
+            exact_mod_cast (round_le (Real.sq
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 37.00133728981018 / 10.02372932434082 / 47.025066614151
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₁ : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+      -- Recognize that the series can be grouped into pairs of terms
+      -- Each pair sums to 1, and there are 7 such pairs
+      have h₂ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+        intro n hn
+        have h₃ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+        have h₄ : round (Real.sqrt n) = 1 := by
+          norm_num
+          have h₅ : (1 : ℝ) ≤ Real.sqrt n := by
+            apply Real.le_sqrt_of_sq_le
+            norm_num
+            nlinarith
+          have h₆ : Real.sqrt n < 2 := by
+            rw [Real.sqrt_lt] <;> norm_num <;> nlinarith
+          have h₇ : round (Real.sqrt n) = 1 := by
+            norm_num [round_eq]
+            <;>
+            simp_all [Int.floor_eq_iff, Int.ceil_eq_iff]
+            <;>
+            norm_num <;>
+            nlinarith [Real.sq_sqrt (by nlinarith : 0 ≤ (n : ℝ))]
+          exact h₇
+        simp_all [h₄]
+        <;> field_simp <;> ring_nf
+        <;> norm_num
+        <;>
+        field_
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 39.18895673751831 / 10.704035758972168 / 49.89299249649048
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b3
+: ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = putnam_2001_b3_solution := by
+  have h : ∑' n : Set.Ici 1, ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 7 / 2 := by
+    have h₁ : ∀ n : ℕ, n ≥ 1 → ((2 : ℝ) ^ (round (Real.sqrt n)) + (2 : ℝ) ^ (-round (Real.sqrt n))) / 2 ^ (n : ℝ) = 1 := by
+      intro n hn
+      have h₂ : (n : ℝ) ≥ 1 := by exact_mod_cast hn
+      have h₃ : round (Real.sqrt n) = ⌊Real.sqrt n⌋₊ := by
+        simp [round_eq, Int.floor_eq_iff]
+        <;>
+        norm_num
+        <;>
+        nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n),
+          sq_nonneg (Real.sqrt n - ⌊Real.sqrt n⌋₊)]
+      rw [h₃]
+      have h₄ : (2 : ℝ) ^ (⌊Real.sqrt n⌋₊ : ℤ) + (2 : ℝ) ^ (-(⌊Real.sqrt n⌋₊ : ℤ)) = 2 := by
+        have h₅ : (⌊Real.sqrt n⌋₊ : ℤ) ≥ 0 := by positivity
+        have h₆ : (⌊Real.sqrt n⌋₊ : ℤ) ≥ 0 := by positivity
+        field_simp [zpow_neg, zpow_ofNat]
+        <;>
+        ring_nf
+        <;>
+        norm_num
+        <;>
+        nlinarith [Real.sqrt_nonneg n, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n),
+          sq_nonneg (Real.sqrt n - ⌊Real.sqrt n⌋₊)]
+      have h₇ : (2 : ℝ) ^ (n : ℝ) = 2 ^ (n : ℕ) := by
+        norm_cast
+      rw [h₄, h₇]
+      norm_num
+      <;>
+      simp_all [zpow_ofNat]
+      <;>
+      field_simp
+      <;>
+      ring_nf
+
+... [truncated] ...

@@ -1,0 +1,142 @@
+Problem: putnam_1982_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.821089267730713 / 4.313758373260498 / 17.13484764099121
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.141627073287964 / 4.3359055519104 / 19.477532625198364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.686205387115479 / 4.336690425872803 / 19.02289581298828
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.223976850509644 / 4.312597751617432 / 17.536574602127075
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.483331680297852 / 4.3050501346588135 / 17.788381814956665
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.932305574417114 / 4.322957277297974 / 17.255262851715088
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.07639455795288 / 4.313940048217773 / 20.390334606170654
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.793379783630371 / 4.334288120269775 / 16.127667903900146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a2
+(B : ℕ → ℝ → ℝ)
+(hB : B = fun (n : ℕ) (x : ℝ) ↦ ∑ k ∈ Finset.Icc 1 n, (k : ℝ) ^ x)
+(f : ℕ → ℝ)
+(hf : f = fun n ↦ B n (logb n 2) / (n * logb 2 n) ^ 2)
+: (∃ L : ℝ, Tendsto (fun N ↦ ∑ j ∈ Finset.Icc 2 N, f j) atTop (𝓝 L)) ↔ putnam_1982_a2_solution :=
+sorry

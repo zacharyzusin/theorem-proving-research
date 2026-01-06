@@ -1,0 +1,33 @@
+Problem: problem_0338
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.94134521484375
+Lean check time (s): 3.016470193862915
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_151 :
+  Int.ceil (Real.sqrt 27) - Int.floor (Real.sqrt 26) = 1 := by
+  have h₁ : Int.ceil (Real.sqrt 27) = 6 := by
+    norm_num
+    rw [Int.ceil_eq_iff]
+    constructor
+    · norm_num
+      nlinarith [Real.sqrt_nonneg 27, Real.sq_sqrt (show 0 ≤ (27 : ℝ) by norm_num)]
+    · norm_num
+      nlinarith [Real.sqrt_nonneg 27, Real.sq_sqrt (show 0 ≤ (27 : ℝ) by norm_num)]
+  have h₂ : Int.floor (Real.sqrt 26) = 5 := by
+    norm_num
+    rw [Int.floor_eq_iff]
+    constructor
+    · norm_num
+      nlinarith [Real.sqrt_nonneg 26, Real.sq_sqrt (show 0 ≤ (26 : ℝ) by norm_num)]
+    · norm_num
+      nlinarith [Real.sqrt_nonneg 26, Real.sq_sqrt (show 0 ≤ (26 : ℝ) by norm_num)]
+  rw [h₁, h₂]
+  norm_num

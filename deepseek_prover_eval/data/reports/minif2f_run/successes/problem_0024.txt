@@ -1,0 +1,29 @@
+Problem: problem_0024
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 15.020516395568848
+Lean check time (s): 4.345725774765015
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_398
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 9 * b = 20 * c)
+  (h₂ : 7 * a = 4 * b) :
+  63 * a = 80 * c := by
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a := by linarith
+  -- We need to show that 63 * a = 80 * c
+  -- We have the equations 9 * b = 20 * c and 7 * a = 4 * b
+  -- Solve for b in terms of c from the first equation: b = (20/9) * c
+  -- Substitute b into the second equation: 7 * a = 4 * (20/9) * c
+  -- Simplify to find a in terms of c: a = (80/63) * c
+  -- Finally, substitute a into the expression for 63 * a: 63 * a = 63 * (80/63) * c = 80 * c
+  nlinarith

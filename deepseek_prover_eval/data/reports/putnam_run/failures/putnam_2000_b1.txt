@@ -1,0 +1,282 @@
+Problem: putnam_2000_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.130222082138062 / 17.773334741592407 / 29.90355682373047
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp [hodd]
+  <;>
+  norm_num
+  <;>
+  exact by
+    have h₁ : (N : ℝ) ≥ 1 := by exact_mod_cast Nge1
+    have h₂ : (4 * N : ℝ) / 7 ≤ N := by
+      rw [div_le_iff] <;> norm_num <;> nlinarith
+    exact by
+      norm_num
+      <;>
+      exact h₂
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.180816650390625 / 18.62666416168213 / 34.807480812072754
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp
+  have h₁ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)).ncard ≥ (4 * N : ℝ) / 7 := by
+    have h₂ : ∀ j : Fin N, ¬Odd (0 * a j + 0 * b j + 0 * c j) := by
+      intro j
+      simp [hodd j]
+      <;> cases hodd j <;> simp_all (config := {decide := true})
+    have h₃ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)) = ∅ := by
+      ext j
+      simp_all
+    rw [h₃]
+    simp
+    <;> norm_num
+    <;> positivity
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 38.2295708656311 / 19.16055202484131 / 57.39012289047241
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp
+  have h₁ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)).ncard ≥ (4 * N : ℝ) / 7 := by
+    have h₂ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)) = {j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} := by
+      rfl
+    rw [h₂]
+    have h₃ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)) = {j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} := by
+      rfl
+    rw [h₃]
+    have h₄ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)) = {j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} := by
+      rfl
+    rw [h₄]
+    -- We need to show that the number of odd values is at least 4N/7
+    have h₅ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set (Fin N)).ncard ≥ (4 * N : ℝ) / 7 := by
+      -- Use the fact that at least one of a_j, b_j, c_j is odd for each j
+      have h₆ : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j) := hodd
+      have h₇ : ∀ j : Fin N, Odd (0 * a j + 0 * b j + 0 * c j) := by
+        intro j
+        simp [h₆ j]
+        <;> cases h₆ j <;> simp_all [Int.odd_iff_not_even, Int.even_iff, Int.emod_eq_of_lt]
+        <;> omega
+      have h₈ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} : Set
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.621843576431274 / 19.171900749206543 / 39.79374432563782
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp
+  have h₁ : ({j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)}.ncard : ℝ) = N := by
+    simp [hodd]
+    <;>
+    norm_cast
+    <;>
+    simp_all [Set.ncard_eq_toFinset_card, Finset.filter_eq]
+    <;>
+    norm_cast
+    <;>
+    simp_all [Set.ncard_eq_toFinset_card, Finset.filter_eq]
+    <;>
+    norm_cast
+    <;>
+    simp_all [Set.ncard_eq_toFinset_card, Finset.filter_eq]
+    <;>
+    norm_cast
+  have h₂ : (N : ℝ) ≥ (4 * N : ℝ) / 7 := by
+    have h₃ : (4 : ℝ) / 7 ≤ 1 := by norm_num
+    have h₄ : (N : ℝ) ≥ (4 * N : ℝ) / 7 := by
+      have h₅ : (N : ℝ) ≥ 0 := by positivity
+      nlinarith
+    linarith
+  nlinarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.859225273132324 / 19.119681119918823 / 33.97890639305115
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp
+  have h₁ : (N : ℝ) ≥ 1 := by exact_mod_cast Nge1
+  have h₂ : (4 * N : ℝ) / 7 ≤ N := by
+    rw [div_le_iff (by norm_num : (0 : ℝ) < 7)]
+    norm_cast
+    linarith
+  have h₃ : (N : ℝ) ≤ N := by exact_mod_cast le_refl N
+  have h₄ : (N : ℝ) ≥ (4 * N : ℝ) / 7 := by linarith
+  exact by
+    simp_all [Set.ncard_eq_zero]
+    <;>
+    norm_num
+    <;>
+    linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.626760244369507 / 34.3304283618927 / 45.95718860626221
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp [hodd, Finset.filter_eq', Finset.card_univ, Nge1]
+  <;>
+    norm_num
+  <;>
+    exact?
+  <;>
+    aesop
+  <;>
+    norm_num
+  <;>
+    exact?
+  <;>
+    aesop
+  <;>
+    norm_num
+  <;>
+    exact?
+  <;>
+    aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.731709480285645 / 18.574572563171387 / 34.30628204345703
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  have h₁ : {j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} = {j : Fin N | Odd (0 : ℤ)} := by
+    ext j
+    simp [Odd]
+  rw [h₁]
+  simp [hodd]
+  <;>
+  norm_num
+  <;>
+  exact by
+    have h₂ : (N : ℝ) ≥ 1 := by exact_mod_cast Nge1
+    have h₃ : (4 * N : ℝ) / 7 ≤ N := by
+      rw [div_le_iff] <;> norm_num <;> nlinarith
+    exact by
+      simp_all [Set.ncard_eq_zero]
+      <;>
+      norm_num
+      <;>
+      exact by
+        exact h₃
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.81092143058777 / 15.387586832046509 / 34.19850826263428
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_b1
+(N : ℕ)
+(a b c : Fin N → ℤ)
+(Nge1 : N ≥ 1)
+(hodd : ∀ j : Fin N, Odd (a j) ∨ Odd (b j) ∨ Odd (c j))
+: (∃ r s t : ℤ, {j : Fin N | Odd (r * a j + s * b j + t * c j)}.ncard ≥ (4 * N : ℝ) / 7) := by
+  use 0, 0, 0
+  simp
+  have h₁ : {j : Fin N | Odd (0 * a j + 0 * b j + 0 * c j)} = {j : Fin N | Odd (0 : ℤ)} := by
+    ext j
+    simp [hodd]
+  rw [h₁]
+  have h₂ : ({j : Fin N | Odd (0 : ℤ)} : Set (Fin N)).ncard = 0 := by
+    simp [Set.ncard_eq_zero]
+  have h₃ : (0 : ℝ) ≥ (4 * N : ℝ) / 7 := by
+    have h₄ : (N : ℝ) ≥ 1 := by exact_mod_cast Nge1
+    have h₅ : (0 : ℝ) ≥ (4 * N : ℝ) / 7 := by
+      have h₆ : (4 * N : ℝ) / 7 ≤ 0 := by
+        have h₇ : (N : ℝ) ≥ 1 := by exact_mod_cast Nge1
+        nlinarith
+      nlinarith
+    nlinarith
+  nlinarith

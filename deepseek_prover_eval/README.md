@@ -228,13 +228,43 @@ deepseek_prover_eval/
 │   └── test_single_problem.py # Single problem test
 ├── data/                  # Data directory
 │   ├── minif2f_extracted/ # Extracted MiniF2F problems
-│   └── results/           # Evaluation results (ignored by git)
-│       ├── minif2f_sharded_16/ # Sharded results (16 shards)
-│       └── minif2f_merged/     # Merged results
+│   └── results/           # Raw, machine-readable artifacts (tracked)
+│       ├── <dataset>_sharded_<N>/   # Per-shard outputs: metrics/ + proofs/
+│       ├── <dataset>_merged/        # Merged artifacts across all shards
+│       └── <dataset>/               # Single-run artifacts (non-sharded)
+│
+│   └── reports/           # Human-friendly reports (tracked)
+│       ├── minif2f_run/   # OVERVIEW.md, summary.csv, successes/, failures/
+│       └── putnam_run/    # OVERVIEW.md, summary.csv, successes/, failures/
 ├── logs/                  # Slurm job logs (ignored by git)
 ├── config.py              # Configuration file
 ├── requirements.txt       # Python dependencies
 └── README.md             # This file
+```
+
+## Results vs Reports
+
+- Results (`data/results/`): raw, machine-readable artifacts produced during evaluation.
+  - Per-shard directories contain `metrics/` (JSON summaries) and `proofs/` (per-problem JSON).
+  - Merged directories (e.g., `minif2f_merged/`, `putnam_merged/`) consolidate all shards and include a merged metrics JSON and often a `proofs/` aggregate.
+  - These are intended for programmatic analysis or re-aggregation.
+
+- Reports (`data/reports/`): human-friendly views tailored for browsing and sharing.
+  - Each dataset run has: `OVERVIEW.md` (summary), `summary.csv` (table), `successes/` (final Lean code), `failures/` (diagnostics).
+  - Start with `data/reports/README.md`, then open the dataset-specific `OVERVIEW.md`.
+
+Both results and reports are included in git (see `.gitignore` exceptions) so you can push and share them.
+
+## Housekeeping / Cleanup
+
+- To keep the repository clean:
+  - Prefer using `data/reports/` for human review and sharing.
+  - `data/results/` holds raw artifacts; it can be large. Use the provided `cleanup_results.py` (below) to prune empty folders if needed.
+
+Run optional cleanup:
+
+```bash
+python scripts/cleanup_results.py  # removes empty directories under data/results
 ```
 
 ## Evaluation Metrics

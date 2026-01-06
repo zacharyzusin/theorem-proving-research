@@ -1,0 +1,21 @@
+Problem: problem_0272
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.1363205909729
+Lean check time (s): 3.0518839359283447
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sqmod4in01d
+  (a : ℤ) :
+  (a^2 % 4) = 0 ∨ (a^2 % 4) = 1 := by
+  have h₀ : a % 4 = 0 ∨ a % 4 = 1 ∨ a % 4 = 2 ∨ a % 4 = 3 := by omega
+  rcases h₀ with (h₀ | h₀ | h₀ | h₀) <;>
+  simp [h₀, pow_two, Int.add_emod, Int.mul_emod, Int.emod_emod]
+  <;>
+  omega

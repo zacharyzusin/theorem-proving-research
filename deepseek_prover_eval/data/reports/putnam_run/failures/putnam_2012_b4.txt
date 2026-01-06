@@ -1,0 +1,366 @@
+Problem: putnam_2012_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 43.63107895851135 / 9.041157245635986 / 52.67223620414734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      have h := han n
+      have h₁ : 0 < exp (-a n) := exp_pos (-a n)
+      nlinarith
+  have h₂ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₃ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₄ : ∀ n : ℕ, a n - Real.log n = 1 + exp (-a 0) - Real.log n := by
+        intro n
+        induction n with
+        | zero =>
+          simp_all [ha0]
+          <;> norm_num
+          <;> field_simp [Real.exp_neg]
+          <;> linarith [Real.add_one_le_exp (-1 : ℝ)]
+        | succ n ih =>
+          simp_all [han, Real.exp_neg]
+          <;> field_simp [Real.exp_neg] at *
+          <;> linarith [Real.add_one_le_exp (-a n : ℝ)]
+      rw [tendsto_congr' (eventually_atTop.mpr ⟨1, h₄⟩)]
+      have h₅ : Tendsto (fun n : ℕ => (1 : ℝ) + exp (-a 0) - Real.log n) atTop (𝓝 1) := by
+        have h₆ : Tendsto (fun n : ℕ => Real.log n) atTop atTop := by
+          apply tendsto_atTop_atTop.mpr
+          intro b
+          use ⌈(b + 1 : ℝ)⌉₊
+          intro n hn
+          have h₇ : (⌈(b + 1 : ℝ)⌉₊ : ℝ) ≤ n := by exact_mod_cast hn
+          have h₈ : Real.log (⌈(b + 1 :
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.361966609954834 / 8.119050741195679 / 44.48101735115051
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      have h₁ := han n
+      have h₂ : 0 < exp (-a n) := exp_pos (-a n)
+      nlinarith [ih]
+  have h₂ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₃ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₄ : ∀ n : ℕ, a n - Real.log n = 1 + (∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1))) := by
+        intro n
+        induction n with
+        | zero => simp [ha0]
+        | succ n ih =>
+          simp_all [han, Finset.sum_range_succ, add_comm]
+          <;> field_simp [h₁ n, h₁ (n + 1), Real.exp_neg]
+          <;> ring_nf
+          <;> norm_num
+          <;> linarith [h₁ n, h₁ (n + 1)]
+      rw [tendsto_congr' (eventually_atTop.mpr ⟨0, h₄⟩)]
+      have h₅ : Tendsto (fun n ↦ ∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1))) atTop (𝓝 0) := by
+        have h₆ : ∀ n : ℕ, ∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1)) = ∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1)) := by simp
+        simpa [h₆] using
+          tendsto_finset_sum_nat_of_bounded (fun n ↦ ⟨0, by
+            have h₇ : ∀ k : ℕ, k ∈ Finset.range n → exp (-a k) -
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 77.58445644378662 / 7.376777172088623 / 84.96123361587524
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      rw [han]
+      exact add_pos ih (exp_pos _)
+  
+  have h₂ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₃ : ∀ n : ℕ, a n = 1 + ∑ k in Finset.range n, exp (-a k) := by
+      intro n
+      induction n with
+      | zero => simp_all
+      | succ n ih =>
+        simp_all [Finset.sum_range_succ, han, add_comm]
+        <;> ring_nf
+        <;> norm_num
+        <;> field_simp [exp_ne_zero]
+        <;> linarith [h₁ n]
+    have h₄ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₅ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+        have h₆ : ∀ n : ℕ, a n - Real.log n = 1 + ∑ k in Finset.range n, exp (-a k) - Real.log n := by
+          intro n
+          rw [h₃]
+          <;> simp [add_comm]
+        rw [tendsto_congr' (eventually_atTop.mpr ⟨1, fun n hn => by rw [h₆ n]⟩)]
+        have h₇ : Tendsto (fun n ↦ (1 : ℝ) + ∑ k in Finset.range n, exp (-a k) - Real.log n) atTop (𝓝 1) := by
+          have h₈ : (1 : ℝ) + ∑ k in Finset.range 0, exp (-a k) - Real.log 0 = 1 := by
+            simp [Real.log_zero]
+          have h₉ : Tendsto (fun n ↦ (1 : 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.178337335586548 / 7.907825708389282 / 26.08616304397583
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₁ : ∀ n : ℕ, a n = 1 + n - Real.log n := by
+      intro n
+      induction n with
+      | zero => simp_all [ha0]
+      | succ n ih =>
+        simp_all [han, Real.exp_neg, Real.exp_log]
+        <;> linarith [Real.log_le_sub_one_of_pos (by linarith : (0 : ℝ) < n + 1)]
+    have h₂ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      simp_all [sub_eq_add_neg]
+      <;>
+      apply tendsto_const_nhds.congr' _
+      <;>
+      filter_upwards [eventually_gt_atTop 0] with n hn
+      <;>
+      simp_all [Real.log_one]
+      <;>
+      norm_num
+      <;>
+      linarith
+    exact h₂
+  simp_all [h₁]
+  <;>
+  aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 31.66219687461853 / 6.996135473251343 / 38.65833234786987
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      specialize han n
+      have h₁ : 0 < exp (-a n) := exp_pos (-a n)
+      nlinarith [h₁, ih]
+  have h₂ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₃ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₄ : ∀ n : ℕ, a n - Real.log n = 1 + (∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1))) := by
+        intro n
+        induction n with
+        | zero => simp [ha0]
+        | succ n ih =>
+          simp_all [Finset.sum_range_succ, han, Real.log_succ]
+          <;> field_simp [h₁]
+          <;> ring_nf
+          <;> norm_num
+          <;> linarith [h₁ n]
+      rw [tendsto_congr' (eventually_atTop.mpr ⟨0, h₄⟩)]
+      have h₅ : Tendsto (fun n ↦ (∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1)))) atTop (𝓝 0) := by
+        have h₆ : ∀ n : ℕ, (∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1))) = (∑ k in Finset.range n, (exp (-a k) - Real.log (k + 1))) := by simp
+        simpa [h₆] using
+          tendsto_sum_nat_of_is_o (fun n ↦ (exp (-a n) - Real.log (n + 1))) (fun n ↦ (exp (-a n) - Real.log (n + 1)))
+            (is_o.sub (is_o.exp
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 35.516791582107544 / 7.349592924118042 / 42.866384506225586
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      have h := han n
+      have h₁ : a n > 0 := ih
+      have h₂ : exp (-a n) > 0 := exp_pos (-a n)
+      nlinarith [h, h₂]
+  have h₂ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₃ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₄ : ∀ n : ℕ, a n - Real.log n = 1 + exp (-a 0) + ∑ k in Finset.range n, exp (-a k) - Real.log n := by
+        intro n
+        induction n with
+        | zero => simp [ha0]
+        | succ n ih =>
+          simp_all [han, Finset.sum_range_succ, add_comm, add_left_comm, add_assoc]
+          <;> field_simp [Real.exp_neg]
+          <;> ring_nf
+          <;> norm_num
+          <;> linarith [h₁ n, h₁ 0]
+      rw [tendsto_congr' (eventually_atTop.mpr ⟨0, h₄⟩)]
+      have h₅ : Tendsto (fun n ↦ 1 + exp (-a 0) + ∑ k in Finset.range n, exp (-a k) - Real.log n) atTop (𝓝 1) := by
+        have h₆ : ∑ k in Finset.range 0, exp (-a k) = 0 := by simp
+        have h₇ : Tendsto (fun n ↦ ∑ k in Finset.range n, exp (-a k)) atTop (𝓝 (∑ k in Finset.range n, exp (-a k))) := by
+          apply tendsto_const_nhds
+        have h₈ : Tendsto (fu
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 47.80924034118652 / 7.608090877532959 / 55.41733121871948
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₁ : ∀ n : ℕ, a n = 1 + ∑ i in Finset.range n, exp (-a i) := by
+      intro n
+      induction n with
+      | zero => simp [ha0]
+      | succ n ih =>
+        simp_all [Finset.sum_range_succ, han, add_comm]
+        <;> linarith
+    have h₂ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₃ : ∀ n : ℕ, a n = 1 + ∑ i in Finset.range n, exp (-a i) := by
+        intro n
+        induction n with
+        | zero => simp [ha0]
+        | succ n ih =>
+          simp_all [Finset.sum_range_succ, han, add_comm]
+          <;> linarith
+      have h₄ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+        have h₅ : ∀ n : ℕ, a n = 1 + ∑ i in Finset.range n, exp (-a i) := by
+          intro n
+          induction n with
+          | zero => simp [ha0]
+          | succ n ih =>
+            simp_all [Finset.sum_range_succ, han, add_comm]
+            <;> linarith
+        have h₆ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+          have h₇ : ∀ n : ℕ, a n = 1 + ∑ i in Finset.range n, exp (-a i) := by
+            intro n
+            induction n with
+            | zero => simp [ha0]
+            | succ n ih =>
+    
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 29.653868436813354 / 7.361016750335693 / 37.01488518714905
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2012_b4
+(a : ℕ → ℝ)
+(ha0 : a 0 = 1)
+(han : ∀ n : ℕ, a (n + 1) = a n + exp (-a n))
+: ((∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L)) ↔ putnam_2012_b4_solution) := by
+  have h₁ : ∀ n : ℕ, a n > 0 := by
+    intro n
+    induction n with
+    | zero => linarith [ha0]
+    | succ n ih =>
+      specialize han n
+      have h₁ : 0 < exp (-a n) := exp_pos (-a n)
+      linarith [ih, h₁]
+  have h₂ : ∃ L : ℝ, Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 L) := by
+    use 1
+    have h₃ : ∀ n : ℕ, a n = 1 + ∑ i in Finset.range n, exp (-a i) := by
+      intro n
+      induction n with
+      | zero => simp [ha0]
+      | succ n ih =>
+        simp_all [Finset.sum_range_succ, han, add_comm]
+        <;> linarith [h₁ n]
+    have h₄ : Tendsto (fun n ↦ a n - Real.log n) atTop (𝓝 1) := by
+      have h₅ : ∀ n : ℕ, a n - Real.log n = 1 + ∑ i in Finset.range n, exp (-a i) - Real.log n := by
+        intro n
+        rw [h₃ n]
+        <;> simp [add_comm]
+      rw [tendsto_congr' (eventually_atTop.mpr ⟨1, fun n hn ↦ h₅ n⟩)]
+      have h₆ : Tendsto (fun n ↦ 1 + ∑ i in Finset.range n, exp (-a i) - Real.log n) atTop (𝓝 1) := by
+        have h₇ : ∀ n : ℕ, 1 + ∑ i in Finset.range n, exp (-a i) - Real.log n = 1 + ∑ i in Finset.range n, exp (-a i) - Real.log n := by
+          intro n
+          rfl
+        simpa [add_comm] using
+          tendsto_const_nhds.add
+            (tendsto_const_nhds.add
+              (tends
+... [truncated] ...

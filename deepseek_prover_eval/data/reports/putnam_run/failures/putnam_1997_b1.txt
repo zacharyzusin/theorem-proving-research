@@ -1,0 +1,187 @@
+Problem: putnam_1997_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.542421817779541 / 11.562772274017334 / 21.105194091796875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  rw [hF]
+  simp [putnam_1997_b1_solution]
+  <;> induction n <;> simp_all [Finset.sum_Icc_succ_top, Nat.mul_succ, Nat.mul_one, Nat.sub_zero]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.051263809204102 / 14.003056526184082 / 25.054320335388184
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  simp_all [dist_to_int, putnam_1997_b1_solution]
+  <;> field_simp [Finset.sum_Icc_succ_top]
+  <;> ring_nf
+  <;> norm_cast
+  <;> simp [Finset.sum_Icc_succ_top]
+  <;> field_simp [Finset.sum_Icc_succ_top]
+  <;> norm_cast
+  <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.887646436691284 / 17.71959114074707 / 32.607237577438354
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  have h₁ := hF
+  simp_all [putnam_1997_b1_solution]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num [Finset.sum_Icc_succ_top, Finset.sum_range_succ, dist_to_int]
+      <;> simp_all [hF, Finset.sum_range_succ, Finset.sum_Icc_succ_top, dist_to_int]
+      <;> norm_num
+      <;> rfl
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Finset.sum_range_succ, dist_to_int]
+      <;> norm_num
+      <;> linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.24473261833191 / 24.360897541046143 / 33.60563015937805
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  simp_all [dist_to_int, Finset.sum_range_succ, Finset.sum_range_one, hF]
+  <;> induction n <;> simp_all [Finset.sum_range_succ, Finset.sum_range_one, hF]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.658868789672852 / 10.86043405532837 / 22.51930284500122
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  simp_all [putnam_1997_b1_solution]
+  <;> induction n <;> simp_all [Finset.sum_Icc_succ_top, Nat.mul_succ, Nat.sub_sub, Nat.add_sub_cancel]
+  <;> norm_num
+  <;> try ring_nf
+  <;> norm_num
+  <;> field_simp [Finset.sum_Icc_succ_top, Nat.mul_succ, Nat.sub_sub, Nat.add_sub_cancel] at *
+  <;> linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.590785503387451 / 9.375393867492676 / 17.966179370880127
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  simp_all [dist_to_int, Finset.sum_Icc_succ_top]
+  <;> norm_num
+  <;> ring_nf
+  <;> field_simp [hn]
+  <;> norm_cast
+  <;> linarith
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.176764011383057 / 20.909116506576538 / 33.085880517959595
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  have h1 : ∀ n : ℕ, n > 0 → F n = ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))) := by
+    intro n hn
+    rw [hF]
+  have h2 : ∀ n : ℕ, n > 0 → F n = putnam_1997_b1_solution n := by
+    intro n hn
+    rw [h1 n hn]
+    exact?
+  exact h2 n hn
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.379029273986816 / 11.097339868545532 / 22.47636914253235
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1997_b1
+(F : ℕ → ℝ)
+(hF : F = fun (n : ℕ) => ∑ m ∈ Finset.Icc 1 (6 * n - 1), min (dist_to_int (m/(6*n)) ) (dist_to_int (m/(3*n))))
+: ∀ n, n > 0 → F n = putnam_1997_b1_solution n := by
+  intro n hn
+  simp_all [dist_to_int, putnam_1997_b1_solution]
+  <;> induction n <;> simp_all [Finset.sum_Icc_succ_top, Nat.succ_mul, Nat.mul_succ, Nat.mul_one, Nat.sub_self]
+  <;> norm_num
+  <;> try ring_nf
+  <;> norm_cast
+  <;> field_simp
+  <;> norm_cast
+  <;> linarith

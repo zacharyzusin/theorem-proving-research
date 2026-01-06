@@ -1,0 +1,28 @@
+Problem: problem_0323
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 10.132834196090698
+Lean check time (s): 4.132656812667847
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p6
+  (a b : ℝ)
+  (h₀ : a ≠ 0 ∧ b ≠ 0)
+  (h₁ : ∀ x, x^2 + a * x + b = (x - a) * (x - b)) :
+  a = 1 ∧ b = -2 := by
+  have h₂ := h₁ 0
+  have h₃ := h₁ 1
+  have h₄ := h₁ a
+  have h₅ := h₁ b
+  simp_all [mul_zero, zero_add, add_zero, sub_eq_add_neg, neg_mul, neg_neg, mul_one]
+  <;>
+  (try ring_nf at * <;>
+    try nlinarith)
+  <;>
+  exact ⟨by nlinarith, by nlinarith⟩

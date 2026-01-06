@@ -1,0 +1,198 @@
+Problem: putnam_1962_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.027056694030762 / 14.682993173599243 / 28.710049867630005
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  unfold putnam_1962_a5_solution
+  have h₁ : ∑ k in Finset.Icc 1 n, Nat.choose n k * k^2 = ∑ k in Finset.Icc 1 n, Nat.choose n k * k^2 := rfl
+  rw [h₁]
+  <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => contradiction
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left]
+      all_goals ring_nf at *
+      all_goals omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.017869710922241 / 10.618748188018799 / 18.63661789894104
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  simp [putnam_1962_a5_solution, hn]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => contradiction
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_comm, Nat.add_left_comm]
+      <;> ring_nf at *
+      <;> omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.238337755203247 / 9.9367036819458 / 19.175041437149048
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  rw [putnam_1962_a5_solution]
+  <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => contradiction
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left]
+      all_goals ring_nf at *
+      <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.323346614837646 / 10.906517267227173 / 19.22986388206482
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  unfold putnam_1962_a5_solution
+  induction' hn with n hn
+  · simp [Finset.sum_Icc_succ_top, Nat.choose_one_right, Nat.choose_succ_succ]
+  · cases n with
+    | zero => contradiction
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, pow_succ]
+      all_goals ring_nf at *
+      all_goals omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.698080062866211 / 13.495351314544678 / 24.19343137741089
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  unfold putnam_1962_a5_solution
+  <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left, Nat.add_sub_cancel]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => simp [Nat.choose, Finset.sum_Icc_succ_top]
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left, Nat.add_sub_cancel]
+      <;> ring_nf at *
+      <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.720503330230713 / 14.759316205978394 / 24.479819536209106
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  induction' n with n ih
+  · simp_all -- For n = 0, the sum is trivially 0, which matches the closed-form expression.
+  · cases n with
+    | zero =>
+      simp_all -- For n = 1, the sum is 1, which matches the closed-form expression.
+    | succ n =>
+      simp_all [putnam_1962_a5_solution, Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.pow_succ]
+      -- Use the induction hypothesis and simplify the expression step by step.
+      <;> ring_nf at *
+      <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.448965787887573 / 15.095794439315796 / 25.54476022720337
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  rw [putnam_1962_a5_solution]
+  <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left, Nat.add_sub_cancel]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => simp [Nat.choose, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left, Nat.add_sub_cancel]
+      all_goals ring_nf at *
+      <;> omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.93800950050354 / 13.915165424346924 / 25.853174924850464
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_a5
+: ∀ n ≥ 2, putnam_1962_a5_solution n = ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 := by
+  intro n hn
+  unfold putnam_1962_a5_solution
+  have h₁ : ∑ k ∈ Finset.Icc 1 n, Nat.choose n k * k^2 = ∑ k in Finset.Icc 1 n, Nat.choose n k * k^2 := rfl
+  rw [h₁]
+  <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => contradiction
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.add_sub_cancel_left]
+      <;> ring_nf at *
+      <;> omega

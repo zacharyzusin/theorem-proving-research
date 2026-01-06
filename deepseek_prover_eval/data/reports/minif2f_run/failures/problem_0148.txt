@@ -1,0 +1,284 @@
+Problem: problem_0148
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.618770599365234 / 15.400979995727539 / 30.019750595092773
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ := h₃ 3 (by norm_num)
+  have h₅ := h₃ 4 (by norm_num)
+  have h₆ := h₃ 5 (by norm_num)
+  have h₇ := h₃ 6 (by norm_num)
+  have h₈ := h₃ 7 (by norm_num)
+  have h₉ := h₃ 8 (by norm_num)
+  have h₁₀ := h₃ 9 (by norm_num)
+  have h₁₁ := h₃ 10 (by norm_num)
+  simp_all [Nat.even_add, Nat.even_sub, Nat.even_mul, Nat.odd_iff_not_even, Nat.even_iff]
+  <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.591075897216797 / 14.682994604110718 / 29.274070501327515
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ := h₃ 3 (by norm_num)
+  have h₅ := h₃ 4 (by norm_num)
+  have h₆ := h₃ 5 (by norm_num)
+  have h₇ := h₃ 6 (by norm_num)
+  have h₈ := h₃ 7 (by norm_num)
+  have h₉ := h₃ 8 (by norm_num)
+  have h₁₀ := h₃ 9 (by norm_num)
+  have h₁₁ := h₃ 10 (by norm_num)
+  simp_all [Nat.even_iff, Nat.odd_iff, Nat.add_mod, Nat.mul_mod, Nat.mod_mod]
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.838090658187866 / 14.4224271774292 / 29.260517835617065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ := h₃ 3 (by norm_num)
+  have h₅ := h₃ 4 (by norm_num)
+  have h₆ := h₃ 5 (by norm_num)
+  have h₇ := h₃ 6 (by norm_num)
+  have h₈ := h₃ 7 (by norm_num)
+  have h₉ := h₃ 8 (by norm_num)
+  have h₁₀ := h₃ 9 (by norm_num)
+  have h₁₁ := h₃ 10 (by norm_num)
+  simp_all [Nat.even_iff, Nat.odd_iff, Nat.add_mod, Nat.mul_mod, Nat.mod_mod]
+  <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.020753383636475 / 13.637184143066406 / 33.65793752670288
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ : ∀ n, Even (d (3 * n)) ∧ Odd (d (3 * n + 1)) ∧ Even (d (3 * n + 2)) := by
+    intro n
+    induction n with
+    | zero => simp [h₀, h₁, h₂, h₃, even_iff_two_dvd, odd_iff_not_even]
+    | succ n ih =>
+      simp_all [h₃, Nat.mul_succ, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm, even_iff_two_dvd, odd_iff_not_even]
+      <;> omega
+  have h₅ : Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+    have h₆ : 2021 = 3 * 673 + 2 := by norm_num
+    have h₇ : 2022 = 3 * 674 + 0 := by norm_num
+    have h₈ : 2023 = 3 * 674 + 1 := by norm_num
+    simp_all [h₄]
+  exact h₅
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.534447193145752 / 3.8105061054229736 / 16.344953298568726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ := h₃ 3
+  have h₅ := h₃ 4
+  have h₆ := h₃ 5
+  have h₇ := h₃ 6
+  have h₈ := h₃ 7
+  have h₉ := h₃ 8
+  have h₁₀ := h₃ 9
+  simp [h₀, h₁, h₂, Nat.even_iff, Nat.odd_iff] at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ ⊢
+  <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.57217288017273 / 3.3499739170074463 / 16.922146797180176
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ := h₃ 3
+  have h₅ := h₃ 4
+  have h₆ := h₃ 5
+  have h₇ := h₃ 6
+  have h₈ := h₃ 7
+  have h₉ := h₃ 8
+  have h₁₀ := h₃ 9
+  have h₁₁ := h₃ 10
+  simp [h₀, h₁, h₂, Nat.even_iff, Nat.odd_iff] at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ ⊢
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.10952615737915 / 15.673150062561035 / 53.782676219940186
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ : ∀ n, Even (d n) ∨ Odd (d n) := by
+    intro n
+    induction n with
+    | zero => simp_all [Nat.even_iff]
+    | succ n ih =>
+      cases n with
+      | zero => simp_all [Nat.even_iff]
+      | succ n =>
+        cases n with
+        | zero => simp_all [Nat.even_iff]
+        | succ n =>
+          simp_all [Nat.even_iff, Nat.odd_iff_not_even, parity_simps]
+          <;> omega
+  have h₅ : Even (d 2021) := by
+    have h₆ := h₄ 2021
+    cases h₆ with
+    | inl h₆ => exact h₆
+    | inr h₆ =>
+      have h₇ := h₃ 2021 (by norm_num)
+      have h₈ := h₃ 2020 (by norm_num)
+      have h₉ := h₃ 2019 (by norm_num)
+      have h₁₀ := h₃ 2018 (by norm_num)
+      simp_all [Nat.even_iff, Nat.odd_iff_not_even, parity_simps]
+      <;> omega
+  have h₆ : Odd (d 2022) := by
+    have h₇ := h₄ 2022
+    cases h₇ with
+    | inl h₇ =>
+      have h₈ := h₃ 2022 (by norm_num)
+      have h₉ := h₃ 2021 (by norm_num)
+      have h₁₀ := h₃ 2020 (by norm_num)
+      have h₁₁ := h₃ 2019 (by norm_num)
+      simp_all [Nat.even_iff, Nat.odd_iff_not_even, parity_simps]
+      <;> omega
+    | inr h₇ => exact h₇
+  have h₇ : Even (d 2023) := by
+    have h₈ := h₄ 2023
+    cases h₈ with
+    | inl h₈ => exact h₈
+    | inr h₈ =>
+      have h₉ := h₃ 2023 (by norm_num)
+   
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 29.891156911849976 / 15.462846040725708 / 45.354002952575684
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p8
+  (d : ℕ → ℕ)
+  (h₀ : d 0 = 0)
+  (h₁ : d 1 = 0)
+  (h₂ : d 2 = 1)
+  (h₃ : ∀ n≥3, d n = d (n - 1) + d (n - 3)) :
+  Even (d 2021) ∧ Odd (d 2022) ∧ Even (d 2023) := by
+  have h₄ : ∀ n, Even (d n) ∨ Odd (d n) := by
+    intro n
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+      match n with
+      | 0 => simp [h₀, even_iff_two_dvd, Nat.dvd_zero]
+      | 1 => simp [h₁, even_iff_two_dvd, Nat.dvd_zero]
+      | 2 => simp [h₂, even_iff_two_dvd, Nat.dvd_zero]
+      | n + 3 =>
+        simp_all [Nat.even_add, Nat.even_sub, Nat.even_mul, Nat.odd_iff_not_even, Nat.even_iff]
+        <;> omega
+  have h₅ : Even (d 2021) := by
+    have h₆ := h₄ 2021
+    have h₇ := h₄ 2022
+    have h₈ := h₄ 2023
+    simp_all [Nat.even_add, Nat.even_sub, Nat.even_mul, Nat.odd_iff_not_even, Nat.even_iff]
+    <;> omega
+  have h₆ : Odd (d 2022) := by
+    have h₇ := h₄ 2021
+    have h₈ := h₄ 2022
+    have h₉ := h₄ 2023
+    simp_all [Nat.even_add, Nat.even_sub, Nat.even_mul, Nat.odd_iff_not_even, Nat.even_iff]
+    <;> omega
+  have h₇ : Even (d 2023) := by
+    have h₈ := h₄ 2021
+    have h₉ := h₄ 2022
+    have h₁₀ := h₄ 2023
+    simp_all [Nat.even_add, Nat.even_sub, Nat.even_mul, Nat.odd_iff_not_even, Nat.even_iff]
+    <;> omega
+  exact ⟨h₅, h₆, h₇⟩
+

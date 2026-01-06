@@ -1,0 +1,23 @@
+Problem: problem_0305
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.234492778778076
+Lean check time (s): 2.7046010494232178
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_28
+  (c : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 2 * x^2 + 5 * x + c)
+  (h₁ : ∃ x, f x ≤ 0) :
+  c ≤ 25/8 := by
+  obtain ⟨x, hx⟩ := h₁
+  simp_all only [h₀, mul_comm]
+  have h₂ := mul_self_nonneg (x + 5 / 4)
+  nlinarith [sq_nonneg (x + 5 / 4)]

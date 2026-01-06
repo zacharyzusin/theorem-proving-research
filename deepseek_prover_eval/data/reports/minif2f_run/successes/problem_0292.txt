@@ -1,0 +1,23 @@
+Problem: problem_0292
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.513925790786743
+Lean check time (s): 3.4520809650421143
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_101
+  (x : ℝ)
+  (h₀ : x^2 - 5 * x - 4 ≤ 10) :
+  x ≥ -2 ∧ x ≤ 7 := by
+  constructor
+  all_goals
+    nlinarith [sq_nonneg (x - 7), sq_nonneg (x + 2)]
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith

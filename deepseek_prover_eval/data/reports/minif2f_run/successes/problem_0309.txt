@@ -1,0 +1,26 @@
+Problem: problem_0309
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.419761419296265
+Lean check time (s): 4.018527507781982
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_433
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 3 * Real.sqrt (2 * x - 7) - 8) :
+  f 8 = 1 := by
+  have h₁ : f 8 = 3 * Real.sqrt (2 * 8 - 7) - 8 := by rw [h₀]
+  have h₂ : f 8 = 3 * Real.sqrt (16 - 7) - 8 := by norm_num [h₁]
+  have h₃ : f 8 = 3 * Real.sqrt 9 - 8 := by norm_num [h₂]
+  have h₄ : f 8 = 3 * 3 - 8 := by
+    rw [h₃]
+    norm_num [Real.sqrt_eq_iff_sq_eq]
+    <;>
+    nlinarith [Real.sqrt_nonneg 9, Real.sq_sqrt (show (0 : ℝ) ≤ 9 by norm_num)]
+  norm_num [h₄]

@@ -1,0 +1,328 @@
+Problem: problem_0227
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 74.7603268623352 / 2.5093653202056885 / 77.2696921825409
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ (a (x + 1))^2 := by
+    intro x hx
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        calc
+          (a (x + 1))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+            exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [hx]))
+          _ = 1 := h₃
+      have h₅ : a (x + 2) ≤ 1 := by
+        have h₆ : (a (x + 2))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+          exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [Finset.mem_range.mp hx]))
+        calc
+          a (x + 2) ≤ 1 := by
+            exact by
+              simpa [sq] using
+                (by
+                  nlinarith)
+          _ = 1 := by norm_num
+      exact h₅
+    exact by
+      simpa [mul_le_of_le_one_right (sq_nonneg (a (x + 1)))] using
+        mul_le_of_le_one_right (sq_nonneg (a (x + 1))) h₂
+  have h₂ : (a 100)^2 * a 1 < 12 / 25 := by
+    have h₃ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+    have h₄ : (a 100)^2 ≤ 1 := by
+      have h₅ : (a 100)^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 73.57469654083252 / 2.5330216884613037 / 76.10771822929382
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ (a (x + 1))^2 := by
+    intro x _
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        have h₅ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+        have h₆ : (a (x + 1))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+          exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith))
+        linarith
+      have h₇ : a (x + 2) ≤ 1 := by
+        have h₈ : 0 ≤ a (x + 2) := by
+          exact zero_le (a (x + 2))
+        have h₉ : a (x + 2) ≤ 1 := by
+          have h₁₀ : (a (x + 2))^2 ≤ 1 := by
+            have h₁₁ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+            have h₁₂ : (a (x + 2))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+              exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith))
+            linarith
+          exact by
+            nlinarith [sq_nonneg (a (x + 2))]
+        exact h₉
+      exact h₇
+    exact by
+      simpa [h₂] using mul_le_of_le_one_right (sq_nonneg (a (x + 1)))
+  have h₂ : ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ ∑ x 
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 29.901532649993896 / 3.0395984649658203 / 32.94113111495972
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ n, a n = 0 := by
+    intro n
+    have h₂ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₃ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₄ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₅ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₆ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₇ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₈ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₉ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₁₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1 := h₀
+    have h₁₁ : a n = 0 := by
+      by_contra h
+      have h₁₂ : 0 < a n := by simp_all [NNReal.coe_eq_zero]
+      have h₁₃ : ∑ x in Finset.range 100, ((a (x + 1))^2) ≥ (a n)^2 := by
+        exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith))
+      have h₁₄ : (a n)^2 > 0 := by
+        exact pow_pos h₁₂ 2
+      nlinarith
+    exact h₁₁
+  simp_all [h₁]
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 68.46428942680359 / 3.476546287536621 / 71.94083571434021
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ (a (x + 1))^2 := by
+    intro x hx
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ k in Finset.range 100, (a (k + 1))^2 = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        have h₅ : ∑ k in Finset.range 100, (a (k + 1))^2 = 1 := h₀
+        have h₆ : (a (x + 1))^2 ≤ ∑ k in Finset.range 100, (a (k + 1))^2 := by
+          exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (by simp [Finset.mem_range.mp hx])
+        simp_all
+      exact by
+        simpa [sq] using
+          calc
+            a (x + 2) ≤ 1 := by
+              have h₅ : a (x + 2) ≤ 1 := by
+                have h₆ : ∑ k in Finset.range 100, (a (k + 1))^2 = 1 := h₀
+                have h₇ : (a (x + 1))^2 ≤ 1 := by
+                  have h₈ : ∑ k in Finset.range 100, (a (k + 1))^2 = 1 := h₀
+                  have h₉ : (a (x + 1))^2 ≤ ∑ k in Finset.range 100, (a (k + 1))^2 := by
+                    exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (by simp [Finset.mem_range.mp hx])
+                  simp_all
+                exact by
+                  simpa [sq] using
+                    calc
+                      a (x + 2) ≤ 1 := by
+                        exact?
+                    
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 56.64020109176636 / 2.8342442512512207 / 59.47444534301758
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ ((a (x + 1))^2) := by
+    intro x hx
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        have h₅ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+        have h₆ : (a (x + 1))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+          exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [Finset.mem_range.mp hx]))
+        simpa [h₅] using h₆
+      exact by
+        simpa [sq] using
+          calc
+            a (x + 2) ≤ 1 := by
+              have h₇ : a (x + 2) ≤ 1 := by
+                have h₈ : (a (x + 1))^2 ≤ 1 := h₄
+                have h₉ : a (x + 2) ≤ 1 := by
+                  have h₁₀ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+                  have h₁₁ : a (x + 2) ≤ 1 := by
+                    have h₁₂ : (a (x + 1))^2 ≤ 1 := h₄
+                    have h₁₃ : a (x + 2) ≤ 1 := by
+                      have h₁₄ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+                      have h₁₅ : a (x + 2) ≤ 1 := by
+                        calc
+                          a (x + 2) ≤ 1 := by
+                        
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 65.48267889022827 / 2.5828287601470947 / 68.06550765037537
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ ((a (x + 1))^2) := by
+    intro x hx
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        have h₅ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+        have h₆ : (a (x + 1))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+          exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [Finset.mem_range.mp hx]))
+        simp_all
+      exact by
+        simpa [sq] using
+          calc
+            a (x + 2) ≤ 1 := by
+              have h₇ : a (x + 2) ≤ 1 := by
+                have h₈ : (a (x + 1))^2 ≤ 1 := h₄
+                have h₉ : a (x + 2) ≤ 1 := by
+                  have h₁₀ : (a (x + 2)) ^ 2 ≤ 1 := by
+                    have h₁₁ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+                    have h₁₂ : (a (x + 2))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+                      exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [Finset.mem_range.mp hx]))
+                    simp_all
+                  exact by
+                    simpa [sq] using
+            
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 59.177184104919434 / 2.5680625438690186 / 61.74524664878845
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ (a (x + 1))^2 := by
+    intro x hx
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        have h₅ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+        have h₆ : (a (x + 1))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+          exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (by simp [Finset.mem_range, hx])
+        simp_all
+      exact by
+        simpa [sq] using
+          calc
+            a (x + 2) ≤ 1 := by
+              have h₇ : a (x + 2) ≤ 1 := by
+                have h₈ : (a (x + 1))^2 ≤ 1 := by simp_all
+                have h₉ : a (x + 2) ≤ 1 := by
+                  have h₁₀ : a (x + 2) ≤ 1 := by
+                    have h₁₁ : ∑ i in Finset.range 100, ((a (i + 1))^2) = 1 := h₀
+                    have h₁₂ : a (x + 2) ≤ 1 := by
+                      have h₁₃ : (a (x + 2))^2 ≤ ∑ i in Finset.range 100, ((a (i + 1))^2) := by
+                        exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (by simp [Finset.mem_range, Nat.succ_le_iff, hx])
+                      simp_all [sq]
+                      <;> nlinarith
+                  
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 61.04114294052124 / 2.869291067123413 / 63.91043400764465
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2007_6
+  (a : ℕ → NNReal)
+  (h₀ : ∑ x in Finset.range 100, ((a (x + 1))^2) = 1) :
+  ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) + (a 100)^2 * a 1 < 12 / 25 := by
+  have h₁ : ∀ x ∈ Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ (a (x + 1))^2 := by
+    intro x hx
+    have h₂ : a (x + 2) ≤ 1 := by
+      have h₃ : ∑ k in Finset.range 100, ((a (k + 1))^2) = 1 := h₀
+      have h₄ : (a (x + 1))^2 ≤ 1 := by
+        calc
+          (a (x + 1))^2 ≤ ∑ k in Finset.range 100, ((a (k + 1))^2) := by
+            exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [hx]))
+          _ = 1 := h₃
+      have h₅ : a (x + 2) ≤ 1 := by
+        calc
+          a (x + 2) ≤ 1 := by
+            exact by
+              have h₆ : (a (x + 2)) ^ 2 ≤ ∑ k in Finset.range 100, ((a (k + 1))^2) := by
+                exact Finset.single_le_sum (fun i _ => sq_nonneg (a (i + 1))) (Finset.mem_range.mpr (by linarith [hx]))
+              have h₇ : a (x + 2) ≤ 1 := by
+                exact by
+                  nlinarith [sq_nonneg (a (x + 2)), h₆]
+              exact h₇
+          _ = 1 := by norm_num
+      exact h₅
+    exact by
+      exact mul_le_of_le_one_right (sq_nonneg (a (x + 1))) h₂
+  have h₂ : ∑ x in Finset.range 99, ((a (x + 1))^2 * a (x + 2)) ≤ ∑ x in Finset.range 99, (a (x + 1))^2 := by
+    exact Finset.sum_le_sum h₁
+  have h₃ : ∑ x in Finset.range 99, (a (x + 1))^2 ≤ 1 := by
+    calc
+
+... [truncated] ...

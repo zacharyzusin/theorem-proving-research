@@ -1,0 +1,346 @@
+Problem: putnam_1986_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 31.75357961654663 / 17.84293508529663 / 49.59651470184326
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : putnam_1986_a1_solution = 18 := by
+    norm_num [putnam_1986_a1_solution]
+    <;>
+    nlinarith [sq_nonneg (18 : ℝ), sq_nonneg (6 : ℝ), sq_nonneg (3 : ℝ), sq_nonneg (2 : ℝ),
+      sq_nonneg (9 : ℝ), sq_nonneg (12 : ℝ), sq_nonneg (15 : ℝ), sq_nonneg (16 : ℝ),
+      sq_nonneg (17 : ℝ), sq_nonneg (19 : ℝ)]
+  have h₂ : IsGreatest {f x | x ∈ S} putnam_1986_a1_solution := by
+    rw [h₁]
+    constructor
+    · -- Show that 18 is a member of the set {f x | x ∈ S}
+      use 3 * Real.sqrt 2
+      simp_all only [Set.mem_setOf_eq, hf, mul_comm]
+      norm_num
+      nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num),
+        Real.sqrt_nonneg 2, sq_nonneg (3 * Real.sqrt 2), sq_nonneg (Real.sqrt 2),
+        sq_nonneg (3 * Real.sqrt 2 - 3), sq_nonneg (Real.sqrt 2 - 3)]
+    · -- Show that 18 is the greatest element in the set {f x | x ∈ S}
+      intro y hy
+      rcases hy with ⟨x, hx, rfl⟩
+      have h₃ : x ^ 4 + 36 ≤ 13 * x ^ 2 := by simpa [hS] using hx
+      have h₄ : x ^ 3 - 3 * x ≤ 18 := by
+        nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4), sq_nonneg (x - 3), sq_nonneg (x + 3),
+          sq_nonneg (x ^ 2 - 2 * x - 9), sq_nonneg (x ^ 2 + 2 * x - 9)]
+      exact h₄
+  simp_all
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 31.05311870574951 / 15.536613464355469 / 46.58973217010498
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : putnam_1986_a1_solution = 18 := by
+    -- We need to show that the solution is 18.
+    -- This involves solving the equation x^4 + 36 = 13x^2 and finding the maximum value of f(x) = x^3 - 3x.
+    -- The solutions to the equation x^4 + 36 = 13x^2 are x = 3 and x = -3.
+    -- Evaluating f(x) at these points gives f(3) = 3^3 - 3*3 = 27 - 9 = 18 and f(-3) = (-3)^3 - 3*(-3) = -27 + 9 = -18.
+    -- The maximum value is 18.
+    rfl
+  rw [h₁]
+  constructor
+  -- Show that 18 is in the set {f x | x ∈ S}
+  use 3
+  simp_all only [Set.mem_setOf_eq, hS, hf, pow_one, pow_three, mul_neg, neg_mul, neg_neg,
+    mul_zero, zero_mul, zero_sub, sub_zero]
+  norm_num
+  -- Show that 18 is the greatest element in the set {f x | x ∈ S}
+  intro y hy
+  rcases hy with ⟨x, hx, rfl⟩
+  have h₂ : x ^ 4 + 36 ≤ 13 * x ^ 2 := by simp_all [hS]
+  have h₃ : x ^ 3 - 3 * x ≤ 18 := by
+    nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4), sq_nonneg (x - 3), sq_nonneg (x + 3),
+      sq_nonneg (x ^ 2 - 3 * x), sq_nonneg (x ^ 2 + 3 * x)]
+  nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4), sq_nonneg (x - 3), sq_nonneg (x + 3),
+    sq_nonneg (x ^ 2 - 3 * x), sq_nonneg (x ^ 2 + 3 * x)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 26.680744647979736 / 17.84769582748413 / 44.52844047546387
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : putnam_1986_a1_solution = 18 := by
+    norm_num [putnam_1986_a1_solution]
+    <;>
+    nlinarith [sq_nonneg 3, sq_nonneg 6, sq_nonneg 9, sq_nonneg 12, sq_nonneg 15, sq_nonneg 18]
+  have h₂ : IsGreatest {f x | x ∈ S} putnam_1986_a1_solution := by
+    have h₃ : putnam_1986_a1_solution ∈ {f x | x ∈ S} := by
+      rw [hS, hf]
+      norm_num [putnam_1986_a1_solution]
+      <;>
+      nlinarith [sq_nonneg 3, sq_nonneg 6, sq_nonneg 9, sq_nonneg 12, sq_nonneg 15, sq_nonneg 18]
+    refine' ⟨h₃, _⟩
+    rintro y ⟨x, hx, rfl⟩
+    rw [hf]
+    have h₄ : x ^ 4 + 36 ≤ 13 * x ^ 2 := by
+      rw [hS] at hx
+      exact hx
+    nlinarith [sq_nonneg (x ^ 2 - 3), sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4),
+      sq_nonneg (x ^ 2 - 1), sq_nonneg (x ^ 2 - 2), sq_nonneg (x ^ 2 - 6),
+      sq_nonneg (x ^ 2 - 12), sq_nonneg (x ^ 2 - 15), sq_nonneg (x ^ 2 - 18)]
+  simp_all
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 29.58336853981018 / 17.80599856376648 / 47.38936710357666
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : IsGreatest {f x | x ∈ S} 18 := by
+    have h₁ : 18 ∈ {f x | x ∈ S} := by
+      -- Show that 18 is in the set of values of f(x) for x in S
+      rw [hS] at *
+      /-
+      We need to show that 18 is in the set { f(x) | x ∈ S }, where S = { x : ℝ | x^4 + 36 ≤ 13 * x^2 } and f(x) = x^3 - 3 * x.
+      This means we need to find an x in S such that f(x) = 18.
+      -/
+      use -3
+      norm_num [hf]
+      <;>
+        ring_nf
+      <;>
+        norm_num
+      <;>
+        linarith [sq_nonneg (-3), sq_nonneg (3), sq_nonneg (3), sq_nonneg (-3)]
+    have h₂ : ∀ b : ℝ, b ∈ {f x | x ∈ S} → b ≤ 18 := by
+      intro b hb
+      rw [Set.mem_setOf_eq] at hb
+      rcases hb with ⟨x, hx, rfl⟩
+      have hx' : x ^ 4 + 36 ≤ 13 * x ^ 2 := by simpa [hS] using hx
+      have h₃ : x ^ 3 - 3 * x ≤ 18 := by
+        nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 3), sq_nonneg (x + 3), sq_nonneg (x - 3),
+          sq_nonneg (x ^ 2 - 1), sq_nonneg (x ^ 2 + 1), sq_nonneg (x ^ 2 - 2 * x), sq_nonneg (x ^ 2 + 2 * x)]
+      exact h₃
+    exact ⟨h₁, h₂⟩
+  simpa [hf] using h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 32.94700884819031 / 17.161574602127075 / 50.10858345031738
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : putnam_1986_a1_solution = 18 := by
+    unfold putnam_1986_a1_solution
+    norm_num
+    <;>
+    nlinarith [sq_nonneg 9, sq_nonneg 3, sq_nonneg 18, sq_nonneg 6, sq_nonneg 2, sq_nonneg 1,
+      sq_nonneg 4, sq_nonneg 12, sq_nonneg 15, sq_nonneg 16, sq_nonneg 14, sq_nonneg 13,
+      sq_nonneg 11, sq_nonneg 10, sq_nonneg 9, sq_nonneg 8, sq_nonneg 7, sq_nonneg 6,
+      sq_nonneg 5, sq_nonneg 4, sq_nonneg 3, sq_nonneg 2, sq_nonneg 1]
+  
+  have h₂ : IsGreatest {f x | x ∈ S} 18 := by
+    rw [hS] at *
+    have h₃ : IsGreatest {f x | x ∈ {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2}} 18 := by
+      refine' ⟨_, _⟩
+      · -- Show that 18 is in the set
+        use -3
+        norm_num [hf]
+        <;> ring_nf
+        <;> norm_num
+      · -- Show that 18 is the greatest element in the set
+        intro y hy
+        rcases hy with ⟨x, hx, rfl⟩
+        have h₄ : x ^ 4 + 36 ≤ 13 * x ^ 2 := hx
+        norm_num [hf] at *
+        nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4), sq_nonneg (x ^ 2 - 3),
+          sq_nonneg (x - 3), sq_nonneg (x + 3), sq_nonneg (x ^ 2 - 2 * x),
+          sq_nonneg (x ^ 2 + 2 * x), sq_nonneg (x ^ 2 - 6 * x + 9),
+          sq_nonneg (x ^ 2 + 6 * x + 9)]
+    simpa [h₁] using h₃
+  
+ 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 29.61890697479248 / 15.37290906906128 / 44.99181604385376
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : IsGreatest {f x | x ∈ S} 18 := by
+    have h₁ : 18 ∈ {f x | x ∈ S} := by
+      -- We need to show that 18 is in the set {f x | x ∈ S}
+      -- This means we need to find an x in S such that f(x) = 18
+      -- We find that x = 3 works because f(3) = 3^3 - 3*3 = 27 - 9 = 18
+      -- and x = 3 satisfies the condition x^4 + 36 ≤ 13x^2
+      -- since 3^4 + 36 = 81 + 36 = 117 ≤ 13*9 = 117
+      use 3
+      simp [hS, hf]
+      norm_num
+    have h₂ : ∀ y ∈ {f x | x ∈ S}, y ≤ 18 := by
+      -- We need to show that 18 is the greatest value in the set {f x | x ∈ S}
+      rintro y ⟨x, hx, rfl⟩
+      -- For any y in the set, we need to show y ≤ 18
+      have hx' : x ^ 4 + 36 ≤ 13 * x ^ 2 := by simpa [hS] using hx
+      -- We use the fact that x satisfies the inequality x^4 + 36 ≤ 13x^2
+      -- and we need to show that f(x) ≤ 18
+      have h₃ : x ^ 3 - 3 * x ≤ 18 := by
+        -- We use non-linear arithmetic to prove the inequality
+        nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4), sq_nonneg (x - 3), sq_nonneg (x + 3),
+          sq_nonneg (x ^ 2 - 3 * x), sq_nonneg (x ^ 2 + 3 * x)]
+      exact h₃
+    exact ⟨h₁, h₂⟩
+  simpa [hf] using h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 25.132928133010864 / 17.357450485229492 / 42.490378618240356
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : putnam_1986_a1_solution = 18 := by
+    unfold putnam_1986_a1_solution
+    norm_num
+    <;>
+    nlinarith [sq_nonneg 3, sq_nonneg 6, sq_nonneg 9, sq_nonneg 12, sq_nonneg 15, sq_nonneg 18]
+  have h₂ : IsGreatest {f x | x ∈ S} putnam_1986_a1_solution := by
+    rw [h₁]
+    have h₃ : ∀ x : ℝ, x ∈ S → f x ≤ 18 := by
+      intro x hx
+      rw [hS] at hx
+      simp_all only [hf, Set.mem_setOf_eq]
+      nlinarith [sq_nonneg (x ^ 2 - 9), sq_nonneg (x ^ 2 - 4), sq_nonneg (x ^ 2 - 1), sq_nonneg (x ^ 2 - 3),
+        sq_nonneg (x ^ 2 - 2), sq_nonneg (x ^ 2 - 5), sq_nonneg (x ^ 2 - 6), sq_nonneg (x ^ 2 - 7),
+        sq_nonneg (x ^ 2 - 8), sq_nonneg (x ^ 2 - 10)]
+    have h₄ : ∃ x : ℝ, x ∈ S ∧ f x = 18 := by
+      use 3
+      constructor
+      · rw [hS]
+        norm_num
+      · rw [hf]
+        norm_num
+    exact ⟨by aesop, by aesop⟩
+  simpa using h₂
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 38.6597204208374 / 17.002575397491455 / 55.66229581832886
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a1
+    (S : Set ℝ) (f : ℝ → ℝ)
+    (hS : S = {x : ℝ | x ^ 4 + 36 ≤ 13 * x ^ 2})
+    (hf : f = fun x ↦ x ^ 3 - 3 * x) :
+    IsGreatest
+    {f x | x ∈ S}
+    putnam_1986_a1_solution := by
+  have h₁ : IsGreatest {f x | x ∈ S} 18 := by
+    have h₁ : 18 ∈ {f x | x ∈ S} := by
+      -- We need to show that 18 is in the set {f x | x ∈ S}
+      -- This means we need to find an x in S such that f x = 18
+      -- Let's solve the equation x^3 - 3x = 18
+      -- x^3 - 3x - 18 = 0
+      -- We can factor this as (x - 3)(x^2 + 3x + 6) = 0
+      -- Solving x - 3 = 0 gives x = 3
+      -- Substituting x = 3 into the original inequality x^4 + 36 ≤ 13x^2
+      -- (3)^4 + 36 ≤ 13*(3)^2
+      -- 81 + 36 ≤ 117
+      -- 117 ≤ 117, which is true
+      -- Therefore, x = 3 is in S and f 3 = 18
+      use 3
+      constructor
+      · -- Show that 3 is in S
+        norm_num [hS, hf]
+        <;> ring_nf
+        <;> norm_num
+      · -- Show that f 3 = 18
+        norm_num [hf]
+    have h₂ : ∀ y ∈ {f x | x ∈ S}, y ≤ 18 := by
+      -- We need to show that for all y in the set {f x | x ∈ S}, y ≤ 18
+      rintro y ⟨x, hx, rfl⟩
+      -- Let y = f x for some x in S
+      have h₃ : x ^ 4 + 36 ≤ 13 * x ^ 2 := by simpa [hS] using hx
+      -- Use the inequality x^4 + 36 ≤ 13x^2 from the definition of S
+      have h₄ : x ^ 3 - 3 * x ≤ 18 := by
+        -- Use non-linear arithmetic to show that x^3 - 3x ≤ 18
+        nlinarith
+... [truncated] ...

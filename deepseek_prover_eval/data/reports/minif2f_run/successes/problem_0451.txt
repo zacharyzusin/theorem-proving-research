@@ -1,0 +1,31 @@
+Problem: problem_0451
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 9.949692249298096
+Lean check time (s): 2.625608444213867
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_xpeeq7_2xpeeq3_eeq11_xeqn4
+  (x e : ℂ)
+  (h₀ : x + e = 7)
+  (h₁ : 2 * x + e = 3) :
+  e = 11 ∧ x = -4 := by
+  have h₂ : x = -4 := by
+    have h₃ : x = -4 := by
+      -- Eliminiere e aus den Gleichungen
+      have h₄ : x = -4 := by
+        linear_combination h₁ - h₀
+      exact h₄
+    exact h₃
+  have h₃ : e = 11 := by
+    have h₄ : e = 11 := by
+      -- Setze x = -4 in eine der Gleichungen ein
+      linear_combination h₀ - h₂
+    exact h₄
+  exact ⟨h₃, h₂⟩

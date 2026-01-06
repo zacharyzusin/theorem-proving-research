@@ -1,0 +1,21 @@
+Problem: problem_0413
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.518209218978882
+Lean check time (s): 4.311787366867065
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_109
+  (a b : ℝ)
+  (h₀ : 3 * a + 2 * b = 12)
+  (h₁ : a = 4) :
+  b = 0 := by
+  subst h₁
+  have h₂ : 3 * (4 : ℝ) + 2 * b = 12 := by linarith
+  linarith

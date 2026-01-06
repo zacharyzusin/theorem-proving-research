@@ -1,0 +1,20 @@
+Problem: putnam_1981_b5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 19.495877742767334
+Lean check time (s): 4.398993730545044
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b5
+(sumbits : List ℕ → ℤ)
+(B : ℕ → ℤ)
+(hsumbits : ∀ bits : List ℕ, sumbits bits = ∑ i : Fin bits.length, (bits[i] : ℤ))
+(hB : ∀ n > 0, B n = sumbits (Nat.digits 2 n))
+: (∃ q : ℚ, Real.exp (∑' n : Set.Ici 1, B n / ((n : ℝ) * ((n : ℝ) + 1))) = q) ↔ putnam_1981_b5_solution :=
+sorry

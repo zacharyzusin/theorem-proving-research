@@ -1,0 +1,150 @@
+Problem: putnam_2022_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.117124080657959 / 8.798312664031982 / 18.91543674468994
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.16674280166626 / 8.1766939163208 / 19.34343671798706
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.573477029800415 / 7.686874628067017 / 18.26035165786743
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.032099485397339 / 7.187742710113525 / 18.219842195510864
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.79284405708313 / 7.524983644485474 / 19.317827701568604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.676695108413696 / 10.174897909164429 / 20.851593017578125
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.844054937362671 / 7.428293943405151 / 16.272348880767822
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.108761072158813 / 7.366771936416626 / 17.47553300857544
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b1
+    (P : Polynomial ℤ)
+    (b : ℕ → ℝ)
+    (Pconst : P.coeff 0 = 0)
+    (Podd : Odd (P.coeff 1))
+    (hB : ∀ x : ℝ, HasSum (fun i => b i * x ^ i) (Real.exp (aeval x P))) :
+    ∀ k : ℕ, b k ≠ 0 :=
+  sorry

@@ -1,0 +1,150 @@
+Problem: putnam_1991_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 62.21491813659668 / 12.461879968643188 / 74.67679810523987
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 85.58088088035583 / 14.176112651824951 / 99.75699353218079
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 67.39234948158264 / 12.550886631011963 / 79.9432361125946
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 39.43570017814636 / 12.897435903549194 / 52.33313608169556
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.570022344589233 / 13.425315141677856 / 27.99533748626709
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 49.40137839317322 / 14.388248920440674 / 63.78962731361389
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.52269887924194 / 13.368411779403687 / 52.89111065864563
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 44.65764594078064 / 13.654918432235718 / 58.31256437301636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_b6
+  (a b : ℝ)
+  (abpos : a > 0 ∧ b > 0) :
+  IsGreatest {c | ∀ u,
+    (0 < |u| ∧ |u| ≤ c) →
+    (∀ x ∈ Set.Ioo 0 1, a ^ x * b ^ (1 - x) ≤ a * (Real.sinh (u * x) / Real.sinh u) + b * (Real.sinh (u * (1 - x)) / Real.sinh u))}
+  (putnam_1991_b6_solution a b) :=
+sorry

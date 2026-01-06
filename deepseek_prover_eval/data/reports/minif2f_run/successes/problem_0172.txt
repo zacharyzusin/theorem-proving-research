@@ -1,0 +1,22 @@
+Problem: problem_0172
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.758654356002808
+Lean check time (s): 3.811828851699829
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_440
+  (x : ℝ)
+  (h₀ : 3 / 2 / 3 = x / 10) :
+  x = 5 := by
+  have h₁ : x = 5 := by
+    have h₁ : 3 / 2 / 3 = x / 10 := h₀
+    field_simp at h₁
+    linarith
+  exact h₁

@@ -1,0 +1,268 @@
+Problem: putnam_1968_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 31.904141664505005 / 79.69517135620117 / 111.59931302070618
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h₀ : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [← sub_eq_zero]
+    have h₁ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+    rw [h₁]
+    have h₂ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+      have h₃ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+        have h₄ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+          have h₅ : Real.pi = Real.pi := by rfl
+          -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 equals 22/7 - pi
+          have h₆ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+            -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 equals 22/7 - pi
+            have h₇ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+              -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 equals 22/7 - pi
+              rw [eq_comm]
+              have h₈ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 equals 22/7 - pi
+                simp_all [integral_sin, Real.pi_pos.le]
+                <;> no
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.17297387123108 / 78.04791593551636 / 98.22088980674744
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h₁ : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [eq_comm]
+    have h₂ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+      have h₃ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+        have h₄ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+          have h₅ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+            -- Use the fact that the integral of the function over the interval [0, 1] equals 22/7 - π
+            simp [integral_congr (fun x ↦ by
+              -- Simplify the integrand using algebraic manipulation
+              field_simp [mul_comm]
+              <;> ring_nf
+              <;> norm_num
+              <;> field_simp [mul_comm]
+              <;> ring_nf
+              <;> norm_num
+              <;> linarith
+            )]
+            <;> norm_num
+            <;> linarith [Real.pi_pos]
+          exact h₅
+        exact h₄
+      exact h₃
+    linarith
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 56.749006032943726 / 59.26918029785156 / 116.01818633079529
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h₁ : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    have h₂ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+      have h₃ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+        have h₄ : Real.pi = Real.pi := rfl
+        have h₅ : 22 / 7 - Real.pi = 22 / 7 - Real.pi := rfl
+        -- Use the fact that the integral of the function over the interval [0, 1] is equal to the difference between 22/7 and π
+        have h₆ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+          have h₇ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+            -- Use the fact that the integral of the function over the interval [0, 1] is equal to the difference between 22/7 and π
+            rw [show ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi by
+              have h₈ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                -- Use the fact that the integral of the function over the interval [0, 1] is equal to the difference between 22/7 and π
+                have h₉ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                  -- Use the fact that the integral of the function over the interval [0, 1] is equal to the difference between 22/7 an
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 85.73020672798157 / 90.87832641601562 / 176.6085331439972
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h₁ : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [← sub_eq_zero]
+    have h₂ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+    rw [h₂]
+    -- Use the fact that the integral of a function over a symmetric interval can be split into two equal parts.
+    have h₃ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+    rw [h₃]
+    -- Use the fact that the integral of a function over a symmetric interval can be split into two equal parts.
+    have h₄ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+    rw [h₄]
+    -- Use the fact that the integral of a function over a symmetric interval can be split into two equal parts.
+    have h₅ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+    rw [h₅]
+    -- Use the fact that the integral of a function over a symmetric interval can be split into two equal parts.
+    have h₆ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+    rw [h₆]
+    -- Use the fact that the integral of a function over a symmetric interval can be split into two equal parts.
+    have h₇ : ∫ x in (0)..1, x^4 * (1 - x)
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 34.35552716255188 / 61.58378291130066 / 95.93931007385254
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h₁ : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [show (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) by
+      have h₂ : (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+        have h₃ : (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+          have h₄ : Real.pi = Real.pi := by rfl
+          have h₅ : (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+            -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 is equal to 22/7 - π
+            have h₆ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+              -- Use the symmetry of the integral to simplify the calculation
+              have h₇ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by rfl
+              rw [← sub_eq_zero]
+              have h₈ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                -- Use the symmetry of the integral to simplify the calculation
+                have h₉ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                  -- Use the symmetry of the integral to simplify the calculation
+                  have h₁₀ : ∫ x in (0)..1, x^4 * (1 - x)^4 /
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 28.474793672561646 / 187.95027446746826 / 216.4250681400299
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h₁ : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [← sub_eq_zero]
+    have h₂ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := rfl
+    rw [h₂]
+    have h₃ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+      have h₄ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+        have h₅ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+          have h₆ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+            -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 equals 22/7 - π
+            have h₇ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+              -- Use the known result from integral calculus
+              have h₈ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                -- Use the known result from integral calculus
+                simp [integral_congr]
+                <;> norm_num
+                <;> ring_nf
+                <;> norm_num
+                <;> field_simp [Real.pi_ne_zero, Real.pi_pos.ne']
+                <;> ring_nf
+                <;> norm_num
+                <;> linarith [Real.pi_pos]
+              exact h₈
+            exact h₇
+          exact h₆
+  
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 27.417176485061646 / 112.95698475837708 / 140.37416124343872
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h : 22 / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [eq_comm]
+    have h₀ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+      have h₁ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+        have h₂ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+          have h₃ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+            -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 is equal to 22/7 - π
+            have h₄ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+              -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 is equal to 22/7 - π
+              have h₅ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) from 0 to 1 is equal to 22/7 - π
+                simp [integral_sin, Real.pi_pos.le]
+                <;> norm_num
+                <;> field_simp [Real.pi_ne_zero, Real.pi_pos.ne']
+                <;> ring_nf
+                <;> norm_num
+                <;> linarith [Real.pi_pos]
+              exact h₅
+            exact h₄
+          exact h₃
+        exact h₂
+      exact h₁
+    exact h₀.symm
+  
+  exact h
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 31.37252950668335 / 121.63318634033203 / 153.00571584701538
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1968_a1
+: 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+  have h : 22/7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+    rw [show (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) by
+      have h₀ : (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+        have h₁ := Real.pi_gt_31415
+        have h₂ := Real.pi_lt_31416
+        norm_num at h₁ h₂
+        have h₃ : (22 : ℝ) / 7 - Real.pi = ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) := by
+          -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) over [0, 1] is equal to 22/7 - π
+          rw [← sub_eq_zero]
+          have h₄ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+            -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) over [0, 1] is equal to 22/7 - π
+            have h₅ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+              -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) over [0, 1] is equal to 22/7 - π
+              have h₆ : ∫ x in (0)..1, x^4 * (1 - x)^4 / (1 + x^2) = 22 / 7 - Real.pi := by
+                -- Use the fact that the integral of x^4 * (1 - x)^4 / (1 + x^2) over [0, 1] is equal to 22/7 - π
+                field_simp [mul_comm]
+                ring_nf
+                <;> norm_num
+                <;>
+                linarith [Real.pi_g
+... [truncated] ...

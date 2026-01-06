@@ -1,0 +1,199 @@
+Problem: problem_0162
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.376628637313843 / 2.5583133697509766 / 13.93494200706482
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  induction' h₁ with n h₁ ih
+  -- Base case: n = 1
+  norm_num
+  -- Inductive step: assume the inequality holds for n, prove it for n + 1
+  simp [pow_succ, mul_add, add_mul, mul_comm, mul_left_comm] at ih ⊢
+  nlinarith [sq_nonneg (n * x), sq_nonneg (x - 1), sq_nonneg (n * x - x + 1),
+    mul_nonneg (Nat.cast_nonneg n) (sub_nonneg.mpr h₀.le),
+    mul_nonneg (sub_nonneg.mpr h₀.le) (sub_nonneg.mpr h₀.le)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.035378456115723 / 2.5738697052001953 / 11.609248161315918
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  induction' h₁ with n hn
+  · simp
+  · simp_all [pow_succ]
+    -- Use the fact that (1 + x)^n ≥ 1 + nx for the base case
+    have h : 0 ≤ (n : ℝ) := by positivity
+    have h₂ : 0 ≤ x^2 := by nlinarith
+    nlinarith [sq_nonneg (x + 1), sq_nonneg (x - 1), mul_self_nonneg (x^2 - 1)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.859975814819336 / 2.5654702186584473 / 11.425446033477783
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  have h : ∀ n : ℕ, 0 < n → (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+    intro n hn
+    induction' hn with n hn IH
+    · norm_num
+      nlinarith
+    · simp_all [pow_succ]
+      nlinarith [sq_nonneg (n * x), sq_nonneg x, mul_self_nonneg (n * x + x)]
+  exact h n h₁
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.081424951553345 / 2.623530864715576 / 10.704955816268921
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  induction' h₁ with n h₁ ih
+  · norm_num
+    <;> nlinarith
+  · simp_all [pow_succ]
+    <;> nlinarith [mul_self_nonneg x, mul_self_nonneg (x + 1),
+      mul_self_nonneg (x - 1), mul_self_nonneg (x + n),
+      mul_self_nonneg (x - n)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.529382705688477 / 3.530803680419922 / 11.060186386108398
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  induction' h₁ with n h₁ h₂
+  all_goals simp_all [pow_succ]
+  all_goals
+    nlinarith [sq_nonneg (n - 1), sq_nonneg x, mul_self_nonneg (n * x),
+      mul_self_nonneg (1 + x), mul_self_nonneg (1 + x - n * x)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.737244844436646 / 2.6181929111480713 / 12.355437755584717
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  induction' h₁ with n h₁ ih
+  -- Base case: when n = 1
+  norm_num
+  -- Induction step: assume the inequality holds for n, prove for n + 1
+  simp [pow_succ, mul_add, add_mul, mul_comm, mul_left_comm] at ih ⊢
+  -- Use the fact that (1 + x)^n ≥ 1 + nx by the induction hypothesis
+  nlinarith [sq_nonneg (x + 1), sq_nonneg (x - 1), h₀, ih, sq_nonneg (n * x)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.081228494644165 / 2.544904947280884 / 11.626133441925049
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  have h : ∀ n : ℕ, (1 + x) ^ n ≥ 1 + n * x := by
+    intro n
+    induction n with
+    | zero => simp
+    | succ n ih =>
+      simp_all [pow_succ, mul_add, add_mul, mul_one, mul_comm, mul_left_comm]
+      nlinarith [sq_nonneg x, h₀, ih, sq_nonneg (x + 1)]
+  exact h n
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.981665134429932 / 2.6033408641815186 / 11.58500599861145
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_1pxpownlt1pnx
+  (x : ℝ)
+  (n : ℕ)
+  (h₀ : -1 < x)
+  (h₁ : 0 < n) :
+  (1 + ↑n*x) ≤ (1 + x)^(n:ℕ) := by
+  induction' h₁ with n hn IH
+  · norm_num
+    nlinarith
+  · simp [pow_succ]
+    nlinarith [mul_self_nonneg x, mul_self_nonneg (x + 1),
+      mul_self_nonneg (x - 1), pow_two_nonneg x, pow_two_nonneg (x + 1),
+      pow_two_nonneg (x - 1), mul_nonneg (Nat.cast_nonneg n) (le_of_lt h₀)]
+

@@ -1,0 +1,219 @@
+Problem: putnam_1970_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.410854816436768 / 18.78142523765564 / 36.19228005409241
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  constructor
+  · norm_num
+  intro h
+  rcases h with ⟨x, y, ⟨h1, h2⟩⟩
+  have h3 : 0 < x^2 + y^2 := by
+    nlinarith [sq_nonneg x, sq_nonneg y, Real.sqrt_nonneg (x^2 + y^2)]
+  have h4 : x^2 + y^2 < 1 := by nlinarith [sq_nonneg x, sq_nonneg y, Real.sqrt_nonneg (x^2 + y^2)]
+  nlinarith [sq_nonneg (2*A*x + B*y + D*x^2 + E*x*y + F*y^2), sq_nonneg (B*x + 2*C*y + E*x^2 + F*x*y + G*y^2),
+    sq_nonneg (D*x + E*y), sq_nonneg (E*x + F*y), sq_nonneg (F*x + G*y), sq_nonneg (G*y)]
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.190741777420044 / 32.11587691307068 / 53.30661869049072
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  use by norm_num
+  intro h
+  rcases h with ⟨x, y, hxy, h⟩
+  have h₁ : 0 < x^2 + y^2 := by
+    have h₂ : 0 < x^2 + y^2 := by
+      cases' hxy with hxy₁ hxy₂
+      nlinarith [sq_nonneg x, sq_nonneg y, sq_nonneg (x + y), sq_nonneg (x - y)]
+    exact h₂
+  have h₂ : x^2 + y^2 < 1 := by
+    cases' hxy with hxy₁ hxy₂
+    nlinarith [sq_nonneg x, sq_nonneg y, sq_nonneg (x + y), sq_nonneg (x - y)]
+  nlinarith [sq_nonneg (2 * A * x + B * y + D * x ^ 2 + E * x * y + F * y ^ 2),
+    sq_nonneg (B * x + 2 * C * y + 2 * E * x * y + F * x ^ 2 + G * y ^ 2),
+    sq_nonneg (D * x + E * y), sq_nonneg (E * x + F * y), sq_nonneg (F * x + G * y),
+    sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.61380362510681 / 48.45990204811096 / 65.07370567321777
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  constructor
+  · norm_num
+  · intro h
+    obtain ⟨x, y, hxy⟩ := h
+    simp only [Set.mem_Ioo, Set.mem_setOf_eq] at hxy
+    have h₁ : 0 < x^2 + y^2 := by nlinarith
+    have h₂ : x^2 + y^2 < 1 := by nlinarith
+    nlinarith [sq_nonneg (B + 2*A*x), sq_nonneg (B - 2*A*x), sq_nonneg (B^2 - 4*A*C),
+      sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - y^2), sq_nonneg (2*x*y),
+      sq_nonneg (D*x + E*y), sq_nonneg (D*y + E*x), sq_nonneg (F*x + G*y),
+      sq_nonneg (F*y + G*x)]
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.27866244316101 / 61.955771923065186 / 76.2344343662262
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  use by norm_num
+  intro h
+  rcases h with ⟨x, y, ⟨h1, h2⟩⟩
+  have h3 : 0 < x^2 + y^2 := by nlinarith [h1.1, h1.2]
+  nlinarith [sq_nonneg (2*A*x + B*y + D*x + E*y), sq_nonneg (2*C*y + B*x + F*y + G*x),
+    sq_nonneg (x + y), sq_nonneg (x - y), sq_nonneg (2*x), sq_nonneg (2*y),
+    sq_nonneg (x^2 - y^2), sq_nonneg (x^2 + y^2)]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.862895965576172 / 37.36582827568054 / 54.228724241256714
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  use by norm_num
+  intro h
+  rcases h with ⟨x, y, ⟨h₁, h₂⟩⟩
+  have h₃ : 0 < x^2 + y^2 := by
+    have h₄ : 0 < x^2 + y^2 := by nlinarith [h₁.1, h₁.2]
+    nlinarith
+  nlinarith [sq_nonneg (2*A*x + B*y + D*x^2 + E*x*y + F*y^2), sq_nonneg (B*x + 2*C*y + 2*E*x*y + 2*F*x*y + 2*G*y^2), sq_nonneg (x + y), sq_nonneg (x - y), sq_nonneg (2*x + 2*y), sq_nonneg (2*x - 2*y), sq_nonneg (x^2 - y^2), sq_nonneg (x^2 + y^2)]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.576288938522339 / 58.27732849121094 / 73.85361742973328
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1, by norm_num
+  intro h
+  rcases h with ⟨x, y, ⟨h₁, h₂⟩⟩
+  have h₃ : 0 < x^2 + y^2 := by
+    have h₄ : 0 < 1 := by norm_num
+    have h₅ : 0 < δ^2 := by
+      norm_num [Set.mem_Ioo] at h₁
+      nlinarith
+    nlinarith [Set.mem_Ioo.mp h₁]
+  nlinarith [sq_nonneg (2 * A * x + B * y), sq_nonneg (2 * C * y + B * x), sq_nonneg (2 * D * x + E * y), sq_nonneg (2 * F * y + E * x), sq_nonneg (2 * G * y + F * x), sq_nonneg (x^2 + y^2)]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.893669843673706 / 52.40928268432617 / 69.30295252799988
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  constructor
+  · norm_num
+  · intro h
+    rcases h with ⟨x, y, ⟨h1, h2⟩, h3⟩
+    have h4 : 0 < x^2 + y^2 := by nlinarith [sq_nonneg x, sq_nonneg y, Set.mem_Ioo.mp h1]
+    nlinarith [sq_nonneg (2 * A * x + B * y + D * x ^ 2 + E * x * y + F * y ^ 2),
+      sq_nonneg (B * x + 2 * C * y + E * x ^ 2 + F * x * y + G * y ^ 2),
+      sq_nonneg (x + y), sq_nonneg (x - y), sq_nonneg (2 * x), sq_nonneg (2 * y),
+      sq_nonneg (D * x + E * y + F * x + G * y), sq_nonneg (E * x + F * y + G * x + D * y)]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 21.795938730239868 / 57.19908380508423 / 78.9950225353241
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a2
+(A B C D E F G : ℝ)
+(hle : B^2 - 4*A*C < 0)
+: ∃ δ > 0, ¬∃ x y : ℝ, x^2 + y^2 ∈ Set.Ioo 0 (δ^2) ∧
+A*x^2 + B*x*y + C*y^2 + D*x^3 + E*x^2*y + F*x*y^2 + G*y^3 = 0 := by
+  use 1
+  constructor
+  · norm_num
+  · intro h
+    rcases h with ⟨x, y, hxy, h⟩
+    have h₁ : 0 < x^2 + y^2 := by
+      have h₁ : 0 < x^2 + y^2 := by
+        cases' hxy with hx hy
+        nlinarith [sq_nonneg x, sq_nonneg y]
+      nlinarith
+    have h₂ : x^2 + y^2 < 1 := by
+      cases' hxy with hx hy
+      nlinarith
+    nlinarith [sq_nonneg (2 * A * x + B * y + D * x ^ 2 + E * x * y + F * y ^ 2),
+      sq_nonneg (2 * C * y + B * x + E * x ^ 2 + F * x * y + G * y ^ 2),
+      sq_nonneg (x + y), sq_nonneg (x - y), sq_nonneg (2 * x), sq_nonneg (2 * y),
+      sq_nonneg (D * x + E * y), sq_nonneg (E * x + F * y), sq_nonneg (F * x + G * y),
+      sq_nonneg (x ^ 2 - y ^ 2), sq_nonneg (2 * D * x + E * y), sq_nonneg (2 * E * x + F * y),
+      sq_nonneg (2 * F * x + G * y), sq_nonneg (2 * G * y)]

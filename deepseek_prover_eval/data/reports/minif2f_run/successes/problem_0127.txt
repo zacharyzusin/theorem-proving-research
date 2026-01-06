@@ -1,0 +1,23 @@
+Problem: problem_0127
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.122512102127075
+Lean check time (s): 5.456616640090942
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_321
+  (n :  ZMod 1399)
+  (h₁ : n = 160⁻¹) :
+  n = 1058 := by
+  norm_num [ZMod.nat_cast_self] at h₁
+  norm_num [ZMod.nat_cast_self]
+  <;> rw [h₁]
+  <;> rfl
+  <;> norm_num
+  <;> rfl

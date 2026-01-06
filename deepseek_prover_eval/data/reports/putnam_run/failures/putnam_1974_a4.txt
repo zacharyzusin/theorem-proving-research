@@ -1,0 +1,254 @@
+Problem: putnam_1974_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.345078468322754 / 106.66425085067749 / 120.00932931900024
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  rw [putnam_1974_a4_solution]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num [Nat.choose_succ_succ, Finset.sum_Icc_succ_top, Nat.floor_eq_zero]
+    | succ n =>
+      simp_all [Nat.choose_succ_succ, Finset.sum_Icc_succ_top, Nat.floor_eq_zero, Nat.div_eq_of_lt]
+      <;> field_simp [Nat.cast_add, Nat.cast_mul, Nat.cast_two, Nat.cast_sub, Nat.cast_one] at *
+      <;> ring_nf at *
+      <;> norm_num
+      <;> omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.632288455963135 / 135.27670049667358 / 149.90898895263672
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  rw [putnam_1974_a4_solution]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> norm_num
+      <;> ring_nf
+      <;> field_simp
+      <;> linarith
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> field_simp [pow_add, pow_one, mul_add, mul_one, mul_comm, mul_left_comm] at *
+      <;> ring_nf at *
+      <;> norm_num at *
+      <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.001737594604492 / 171.8935911655426 / 185.8953287601471
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  rw [putnam_1974_a4_solution]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num
+      <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> norm_num
+      <;> ring_nf
+      <;> norm_num
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> field_simp [Nat.cast_add, Nat.cast_mul, Nat.cast_sub, Nat.cast_one] at *
+      <;> ring_nf at *
+      <;> norm_num at *
+      <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 28.808377265930176 / 192.54965782165527 / 221.35803508758545
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  simp [putnam_1974_a4_solution]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff, Nat.div_eq_of_lt]
+      <;> field_simp [pow_add, pow_one, mul_add, mul_comm, mul_left_comm] at *
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff, Nat.div_eq_of_lt]
+      <;> field_simp [pow_add, pow_one, mul_add, mul_comm, mul_left_comm] at *
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff, Nat.div_eq_of_lt]
+      <;> field_simp [pow_add, pow_one, mul_add, mul_comm, mul_left_comm] at *
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff, Nat.div_eq_of_lt]
+      <;> field_simp [pow_add, pow_one, mul_add, mul_comm, mul_left_comm] at *
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff, Nat.div_eq_of_lt]
+      <;> field_simp [pow_add, pow_one, mul_add, mul_comm, mul_
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.332386255264282 / 160.08595538139343 / 173.41834163665771
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  rw [putnam_1974_a4_solution]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num
+      <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> norm_num
+      <;> field_simp
+      <;> ring_nf
+      <;> norm_num
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> field_simp at *
+      <;> ring_nf at *
+      <;> norm_num
+      <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.130585193634033 / 140.85865092277527 / 153.9892361164093
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  rcases n with (_ | _)
+  · simp_all [Nat.div_eq_of_lt]
+  · simp_all [Nat.div_eq_of_lt]
+    <;> induction n with
+    | zero =>
+      simp_all [Nat.div_eq_of_lt]
+    | succ n ih =>
+      simp_all [Nat.div_eq_of_lt, Nat.choose_succ_succ, Finset.sum_range_succ, Nat.floor_eq_iff]
+      <;> field_simp [Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub, Nat.cast_pow] at *
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.97900676727295 / 158.44814896583557 / 169.42715573310852
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  rcases n with (_ | _ | n)
+  all_goals simp_all [putnam_1974_a4_solution, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+  all_goals norm_num
+  all_goals ring_nf
+  all_goals
+    apply Eq.refl
+  <;> simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+  <;> norm_num
+  <;> ring_nf
+  <;> apply Eq.refl
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.51851201057434 / 140.67485737800598 / 151.19336938858032
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_a4
+    (n : ℕ)
+    (hn : 0 < n) :
+    (1 : ℚ) / (2 ^ (n - 1)) * ∑ k ∈ Finset.Icc 0 ⌊n / 2⌋₊, (n - 2 * k) * (n.choose k) =
+    putnam_1974_a4_solution n := by
+  simp [putnam_1974_a4_solution]
+  <;> norm_cast
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num
+    | succ n =>
+      simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.floor_eq_iff]
+      <;> ring_nf at *
+      <;> field_simp at *
+      <;> linarith

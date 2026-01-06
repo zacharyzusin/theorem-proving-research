@@ -1,0 +1,26 @@
+Problem: problem_0397
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.456515312194824
+Lean check time (s): 4.269994497299194
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_403 :
+  ∑ k in (Nat.properDivisors 198), k = 270 := by
+  rw [Nat.properDivisors]
+  -- We need to show that the sum of the proper divisors of 198 is 270.
+  -- The proper divisors of 198 are all the divisors of 198 except 198 itself.
+  -- We will use the fact that the sum of the divisors of 198 is 468, and we need to subtract 198.
+  rfl
+  -- This is a placeholder for the actual proof, which would involve detailed calculations of the divisors and their sums.
+  <;> decide
+  <;> norm_num
+  <;> rfl
+  <;> rfl
+  <;> rfl

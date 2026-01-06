@@ -1,0 +1,302 @@
+Problem: problem_0204
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.232910394668579 / 3.6683356761932373 / 15.901246070861816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S = Finset.Ioo (-6 : ℤ) 6 := by
+    ext x
+    simp only [h₀, Finset.mem_Ioo, abs_lt, Int.ofNat_lt]
+    constructor
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+    · intro h
+      constructor
+      · norm_num at h ⊢
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num at h ⊢
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+  rw [h₁]
+  rfl
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.458054304122925 / 4.346976041793823 / 21.805030345916748
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S  = Finset.Icc (-6) 6 := by
+    ext x
+    simp only [Finset.mem_Icc, h₀, abs_lt, Int.ofNat_lt]
+    constructor
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+    · intro h
+      norm_num at h ⊢
+      cases' h with h₁ h₂
+      norm_num
+      have h₃ : (x : ℝ) ≤ 6 := by exact_mod_cast h₂
+      have h₄ : (x : ℝ) ≥ -6 := by exact_mod_cast h₁
+      have h₅ : (abs x : ℝ) < 3 * Real.pi := by
+        rw [abs_lt]
+        constructor <;> norm_num <;>
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      exact_mod_cast h₅
+  rw [h₁]
+  simp [Finset.Icc_eq_empty]
+  <;> norm_num
+  <;> nlinarith [Real.pi_gt_three, Real.pi_le_four]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.082641124725342 / 3.7923805713653564 / 16.8750216960907
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S  = Finset.Ioo (-6 : ℤ) 6 := by
+    ext x
+    simp only [Finset.mem_Ioo, h₀, abs_lt, Int.cast_ofNat]
+    constructor
+    · intro h
+      norm_num
+      constructor
+      · nlinarith [Real.pi_gt_three, Real.pi_pos]
+      · nlinarith [Real.pi_gt_three, Real.pi_pos]
+    · intro h
+      norm_num at h
+      constructor
+      · nlinarith [Real.pi_gt_three, Real.pi_pos]
+      · nlinarith [Real.pi_gt_three, Real.pi_pos]
+  rw [h₁]
+  norm_num
+  <;> simp [Real.pi_gt_three]
+  <;> norm_num
+  <;> nlinarith [Real.pi_gt_three, Real.pi_pos]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.983146905899048 / 3.902127504348755 / 22.885274410247803
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S = Finset.Icc (-6) 6 := by
+    ext x
+    simp only [h₀, Finset.mem_Icc, abs_lt]
+    constructor
+    · intro h
+      constructor
+      · have h₂ : (x : ℝ) ≥ -6 := by
+          have h₃ : (x : ℝ) ≥ -6 := by
+            nlinarith [Real.pi_gt_three, Real.pi_pos]
+          exact_mod_cast h₃
+        exact_mod_cast h₂
+      · have h₂ : (x : ℝ) ≤ 6 := by
+          have h₃ : (x : ℝ) ≤ 6 := by
+            nlinarith [Real.pi_gt_three, Real.pi_pos]
+          exact_mod_cast h₃
+        exact_mod_cast h₂
+    · intro h
+      have h₂ : (x : ℝ) ≥ -6 := by exact_mod_cast h.1
+      have h₃ : (x : ℝ) ≤ 6 := by exact_mod_cast h.2
+      have h₄ : ↑(abs x) < 3 * Real.pi := by
+        have h₅ : (abs x : ℝ) < 3 * Real.pi := by
+          rw [abs_lt]
+          constructor <;> nlinarith [Real.pi_gt_three, Real.pi_pos]
+        exact_mod_cast h₅
+      exact h₄
+  rw [h₁]
+  rfl
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.297245025634766 / 4.773506164550781 / 25.070751190185547
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S = Finset.Icc (-5) 5 := by
+    ext x
+    simp only [h₀, Finset.mem_Icc, abs_lt]
+    constructor
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four, Real.pi_pos]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four, Real.pi_pos]
+    · intro h
+      cases' h with h₁ h₂
+      have h₃ : (x : ℝ) ≥ -5 := by exact_mod_cast h₁
+      have h₄ : (x : ℝ) ≤ 5 := by exact_mod_cast h₂
+      have h₅ : (x : ℝ) ≥ -5 := by linarith
+      have h₆ : (x : ℝ) ≤ 5 := by linarith
+      have h₇ : (abs x : ℝ) < 3 * Real.pi := by
+        rw [abs_lt]
+        constructor
+        · nlinarith [Real.pi_gt_three, Real.pi_le_four, Real.pi_pos]
+        · nlinarith [Real.pi_gt_three, Real.pi_le_four, Real.pi_pos]
+      exact_mod_cast h₇
+  rw [h₁]
+  simp [Finset.Icc_eq_empty]
+  <;> norm_num
+  <;> nlinarith [Real.pi_gt_three, Real.pi_le_four, Real.pi_pos]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.039606809616089 / 3.755610942840576 / 15.795217752456665
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S = Finset.Ioo (-6 : ℤ) 6 := by
+    ext x
+    simp only [h₀, Finset.mem_Ioo, abs_lt, Int.ofNat_lt]
+    constructor
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+  rw [h₁]
+  norm_num
+  <;> rfl
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.023881673812866 / 3.735053777694702 / 17.75893545150757
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S  = Finset.Ioo (-6 : ℤ) 6 := by
+    ext x
+    simp only [h₀, Finset.mem_Ioo, abs_lt]
+    constructor
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+    · intro h
+      constructor
+      · norm_num at h ⊢
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num at h ⊢
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+  rw [h₁]
+  norm_num
+  <;> rfl
+  <;> simp [Real.pi_gt_three, Real.pi_le_four]
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.299227476119995 / 4.081188917160034 / 18.38041639328003
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p1
+  (S : Finset ℤ)
+  (h₀ : ∀ (x : ℤ), x ∈ S ↔ ↑(abs x) < 3 * Real.pi):
+  S.card = 19 := by
+  have h₁ : S = Finset.Ioo (-6 : ℤ) 6 := by
+    ext x
+    simp only [Finset.mem_Ioo, h₀, abs_lt, Int.ofNat_lt]
+    constructor
+    · intro h
+      constructor
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+    · intro h
+      constructor
+      · norm_num at h ⊢
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+      · norm_num at h ⊢
+        nlinarith [Real.pi_gt_three, Real.pi_le_four]
+  rw [h₁]
+  simp [Finset.Ioo_eq_empty_of_le]
+  <;> norm_num
+  <;> nlinarith [Real.pi_gt_three, Real.pi_le_four]
+

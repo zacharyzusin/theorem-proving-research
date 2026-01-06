@@ -1,0 +1,158 @@
+Problem: putnam_1982_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.526783227920532 / 21.402833461761475 / 35.92961668968201
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 30.871588706970215 / 11.053441524505615 / 41.92503023147583
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.874849319458008 / 42.39301156997681 / 60.267860889434814
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.266660451889038 / 34.30524754524231 / 52.57190799713135
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.0233793258667 / 15.299832344055176 / 36.323211669921875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.512974500656128 / 68.8899450302124 / 91.40291953086853
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.581154584884644 / 11.40393590927124 / 27.985090494155884
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.276131629943848 / 23.005207538604736 / 43.281339168548584
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_b5
+(T : Set ℝ)
+(hT : T = Ioi (Real.exp (Real.exp 1)))
+(S : ℝ → ℕ → ℝ)
+(hS : ∀ x ∈ T, S x 0 = (Real.exp 1) ∧ ∀ n : ℕ, S x (n + 1) = Real.logb (S x n) x)
+(g : ℝ → ℝ)
+: ∀ x ∈ T, (∃ L : ℝ, Tendsto (S x) atTop (𝓝 L)) ∧
+(∀ x ∈ T, Tendsto (S x) atTop (𝓝 (g x))) → ContinuousOn g T :=
+sorry

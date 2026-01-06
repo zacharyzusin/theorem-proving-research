@@ -1,0 +1,421 @@
+Problem: problem_0057
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 5
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 87.71991229057312 / 317.9227213859558 / 405.64263367652893
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ : p ≤ q := by linarith
+  have h₇ : q ≤ r := by linarith
+  have h₈ : p < r := by linarith
+  have h₉ : p ≥ 2 := by linarith
+  have h₁₀ : q ≥ 2 := by linarith
+  have h₁₁ : r ≥ 2 := by linarith
+  have h₁₂ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+  have h₁₃ : p = 2 ∨ p = 3 := by
+    have h₁₄ : p ≤ 3 := by
+      by_contra! h
+      have h₁₅ : p ≥ 4 := by linarith
+      have h₁₆ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+      have h₁₇ : (p - 1) * (q - 1) * (r - 1) ≤ p * q * r - 1 := by
+        exact Int.le_of_dvd (by
+          have h₁₈ : p * q * r - 1 > 0 := by
+            have h₁₉ : p * q * r > 1 := by
+              have h₂₀ : p > 1 := by linarith
+              have h₂₁ : q > 1 := by linarith
+              have h₂₂ : r > 1 := by linarith
+              have h₂₃ : p * q > 1 := by nlinarith
+              have h₂₄ : p * q * r > 1 := by nlinarith
+              linarith
+            nlinarith
+          nlinarith) h₁₆
+      have h₁₈ : (p - 1) * (q - 1) * (r - 1) ≥ 0 := by
+        have h₁₉ : p - 1 ≥ 0 := by linarith
+        have h₂₀ : q - 1 ≥ 0 := by linarith
+        have h₂₁ : r - 1 ≥ 0 := by linarith
+        positivity
+      nlinarith
+    interval
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 64.36609244346619 / 600.1533026695251 / 664.5193951129913
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ := h₁
+  have h₇ : p ≤ q := by linarith
+  have h₈ : q ≤ r := by linarith
+  have h₉ : p < r := by linarith
+  have h₁₀ : p ≥ 2 := by linarith
+  have h₁₁ : q ≥ 2 := by linarith
+  have h₁₂ : r ≥ 2 := by linarith
+  have h₁₃ : p ≤ 15 := by
+    by_contra! h
+    have h₁₄ : q > 15 := by
+      nlinarith
+    have h₁₅ : r > 15 := by
+      nlinarith
+    have h₁₆ : (p - 1) * (q - 1) * (r - 1) > p * q * r - 1 := by
+      nlinarith [mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₄),
+        mul_pos (sub_pos.mpr h₄) (sub_pos.mpr h₅),
+        mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₅)]
+    have h₁₇ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₁₈ : (p * q * r - 1) ≥ 0 := by
+      nlinarith [mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₄),
+        mul_pos (sub_pos.mpr h₄) (sub_pos.mpr h₅),
+        mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₅)]
+    have h₁₉ : (p - 1) * (q - 1) * (r - 1) ≤ (p * q * r - 1) := by
+      exact Int.le_of_dvd (by nlinarith) h₁
+    nlinarith
+  have h₁₄ : q ≤ 15 := by
+    by_contra! h
+    have h₁₅ : r > 15 := by
+      nlinarith
+    have h₁₆ : (p - 1) * (q - 1) * (r - 1) > p * q * r - 1 := by
+      nlinarith [mul_pos (sub_pos.mpr h₃) (sub_pos.mpr h₄),
+    
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 57.95919156074524 / 390.8703234195709 / 448.82951498031616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ := h₁
+  have h₇ : p ≤ q := by linarith
+  have h₈ : q ≤ r := by linarith
+  have h₉ : p < r := by linarith
+  have h₁₀ : p ≥ 2 := by linarith
+  have h₁₁ : q ≥ 3 := by linarith
+  have h₁₂ : r ≥ 4 := by linarith
+  have h₁₃ : p ≤ 3 := by
+    by_contra! h
+    have h₁₄ : p ≥ 4 := by linarith
+    have h₁₅ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₁₆ : p * q * r > 0 := by
+      nlinarith [mul_pos (by linarith : (0 : ℤ) < p) (by linarith : (0 : ℤ) < q),
+        mul_pos (by linarith : (0 : ℤ) < q) (by linarith : (0 : ℤ) < r)]
+    have h₁₇ : (p - 1) * (q - 1) * (r - 1) ≤ p * q * r - 1 := by
+      simp_all [Int.ofNat_le]
+      <;> nlinarith [mul_pos (by linarith : (0 : ℤ) < p) (by linarith : (0 : ℤ) < q),
+        mul_pos (by linarith : (0 : ℤ) < q) (by linarith : (0 : ℤ) < r)]
+    have h₁₈ : (p - 1) * (q - 1) * (r - 1) > 0 := by
+      apply mul_pos
+      apply mul_pos
+      all_goals
+        omega
+    have h₁₉ : p * q * r - 1 < (p - 1) * (q - 1) * (r - 1) := by
+      nlinarith [mul_pos (by linarith : (0 : ℤ) < p) (by linarith : (0 : ℤ) < q),
+        mul_pos (by linarith : (0 : ℤ) < q) (by linarith : (0 : ℤ) < r)]
+    nlinarith
+  have h₁₄ : q ≤ 5 := b
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 48.15310096740723 / 600.1545798778534 / 648.3076808452606
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ := h₁
+  have h₇ : p ≤ q := by linarith
+  have h₈ : q ≤ r := by linarith
+  have h₉ : p < r := by linarith
+  have h₁₀ : p ≥ 2 := by linarith
+  have h₁₁ : q ≥ 2 := by linarith
+  have h₁₂ : r ≥ 2 := by linarith
+  have h₁₃ : p ≤ 10 := by
+    by_contra! h
+    have h₁₄ : p ≥ 11 := by linarith
+    have h₁₅ : q ≥ 11 := by linarith
+    have h₁₆ : r ≥ 11 := by linarith
+    have h₁₇ : (p - 1) * (q - 1) * (r - 1) ≥ (10) * (10) * (10) := by
+      gcongr <;> omega
+    have h₁₈ : p * q * r - 1 ≤ (10) * (10) * (10) - 1 := by
+      have : p * q * r ≤ 10 * 10 * 10 := by
+        have : p ≤ 10 := by omega
+        have : q ≤ 10 := by omega
+        have : r ≤ 10 := by omega
+        have : p * q ≤ 10 * 10 := by nlinarith
+        nlinarith
+      omega
+    have h₁₉ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₂₀ : (p - 1) * (q - 1) * (r - 1) ≤ (p * q * r - 1) := by
+      exact Int.le_of_dvd (by
+        have : p * q * r - 1 > 0 := by
+          have : p * q * r > 1 := by
+            nlinarith
+          omega
+        omega) h₁
+    nlinarith
+  have h₁₄ : q ≤ 20 := by
+    by_contra! h
+    have h₁₅ : q ≥ 21 := by linarith
+    have h₁₆ : r ≥ 21 := by linarith
+    have h₁₇
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 75.36371183395386 / 600.1556885242462 / 675.5194003582001
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ := h₁
+  have h₇ : p ≤ q := by linarith
+  have h₈ : q ≤ r := by linarith
+  have h₉ : p < r := by linarith
+  have h₁₀ : p ≥ 2 := by linarith
+  have h₁₁ : q ≥ 3 := by linarith
+  have h₁₂ : r ≥ 4 := by linarith
+  have h₁₃ : p ≤ 10 := by
+    by_contra! h
+    have h₁₄ : p ≥ 11 := by linarith
+    have h₁₅ : q ≥ 11 := by linarith
+    have h₁₆ : r ≥ 11 := by linarith
+    have h₁₇ : (p - 1) * (q - 1) * (r - 1) ≥ 10 * 10 * 10 := by
+      have h₁₈ : p - 1 ≥ 10 := by omega
+      have h₁₉ : q - 1 ≥ 10 := by omega
+      have h₂₀ : r - 1 ≥ 10 := by omega
+      calc
+        (p - 1) * (q - 1) * (r - 1) ≥ 10 * 10 * 10 := by gcongr <;> omega
+        _ = 1000 := by norm_num
+    have h₂₁ : p * q * r ≥ 11 * 11 * 11 := by
+      have h₂₂ : p * q ≥ 11 * 11 := by nlinarith
+      have h₂₃ : p * q * r ≥ 11 * 11 * 11 := by nlinarith
+      exact h₂₃
+    have h₂₄ : (p * q * r - 1) ≥ 11 * 11 * 11 - 1 := by nlinarith
+    have h₂₅ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₂₆ : (p - 1) * (q - 1) * (r - 1) ≤ (p * q * r - 1) := by
+      exact Int.le_of_dvd (by nlinarith) h₁
+    nlinarith
+  have h₁₄ : q ≤ 20 := by
+    by_contra! h
+    have h₁₅ : q ≥ 21 := by linarith
+    hav
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 40.73946571350098 / 8.43454647064209 / 49.174012184143066
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ : p ≥ 2 := by linarith
+  have h₇ : q ≥ 3 := by linarith
+  have h₈ : r ≥ 4 := by linarith
+  have h₉ : p < q := by linarith
+  have h₁₀ : q < r := by linarith
+  have h₁₁ : p ≤ 3 := by
+    by_contra! h
+    have h₁₂ : p ≥ 4 := by linarith
+    have h₁₃ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₁₄ : (p * q * r - 1) ≥ 0 := by
+      have : p * q * r ≥ 4 * 3 * 4 := by
+        nlinarith
+      omega
+    have h₁₅ : (p - 1) * (q - 1) * (r - 1) ≤ (p * q * r - 1) := by
+      exact Int.le_of_dvd (by nlinarith) h₁₃
+    nlinarith
+  have h₁₂ : q ≤ 5 := by
+    by_contra! h
+    have h₁₃ : q ≥ 6 := by linarith
+    have h₁₄ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₁₅ : (p * q * r - 1) ≥ 0 := by
+      have : p * q * r ≥ 2 * 6 * 4 := by
+        nlinarith
+      omega
+    have h₁₆ : (p - 1) * (q - 1) * (r - 1) ≤ (p * q * r - 1) := by
+      exact Int.le_of_dvd (by nlinarith) h₁₄
+    nlinarith
+  have h₁₃ : r ≤ 16 := by
+    by_contra! h
+    have h₁₄ : r ≥ 17 := by linarith
+    have h₁₅ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₁₆ : (p * q * r - 1) ≥ 0 := by
+      have : p * q * r ≥ 2 * 3 * 17 := by
+        nlinarith
+      
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 58.92576193809509 / 600.1524829864502 / 659.0782449245453
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ := h₁
+  have h₇ : p ≥ 2 := by linarith
+  have h₈ : q ≥ 3 := by linarith
+  have h₉ : r ≥ 4 := by linarith
+  have h₁₀ : p < q := by linarith
+  have h₁₁ : q < r := by linarith
+  have h₁₂ : p ≤ 10 := by
+    by_contra! h
+    have h₁₃ : p ≥ 11 := by linarith
+    have h₁₄ : q ≥ 11 := by linarith
+    have h₁₅ : r ≥ 11 := by linarith
+    have h₁₆ : (p - 1) * (q - 1) * (r - 1) ≥ 10 * 10 * 10 := by
+      have h₁₇ : p - 1 ≥ 10 := by omega
+      have h₁₈ : q - 1 ≥ 10 := by omega
+      have h₁₉ : r - 1 ≥ 10 := by omega
+      calc
+        (p - 1) * (q - 1) * (r - 1) ≥ 10 * 10 * 10 := by gcongr <;> omega
+        _ = 1000 := by norm_num
+    have h₁₇ : p * q * r - 1 ≤ 10 * 10 * 10 - 1 := by
+      have h₁₈ : p * q * r ≤ 10 * 10 * 10 := by
+        nlinarith [mul_le_mul_of_nonneg_right h₁₃ (by linarith : (0 : ℤ) ≤ q),
+          mul_le_mul_of_nonneg_right h₁₄ (by linarith : (0 : ℤ) ≤ r)]
+      omega
+    have h₁₈ : (p - 1) * (q - 1) * (r - 1) ∣ (p * q * r - 1) := h₁
+    have h₁₉ : (p - 1) * (q - 1) * (r - 1) ≤ p * q * r - 1 := by
+      exact Int.le_of_dvd (by nlinarith) h₁
+    nlinarith
+  have h₁₃ : q ≤ 20 := by
+    by_contra! h
+    have h₁₄ : q ≥ 21 := by linarith
+    have h₁₅ : 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.107160806655884 / 600.1644532680511 / 624.271614074707
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1992_p1
+  (p q r : ℤ)
+  (h₀ : 1 < p ∧ p < q ∧ q < r)
+  (h₁ : (p - 1) * (q - 1) * (r - 1)∣(p * q * r - 1)) :
+  (p, q, r) = (2, 4, 8) ∨ (p, q, r) = (3, 5, 15) := by
+  have h₂ := h₁
+  have h₃ := h₀.1
+  have h₄ := h₀.2.1
+  have h₅ := h₀.2.2
+  have h₆ : p ≥ 2 := by linarith
+  have h₇ : q ≥ 3 := by linarith
+  have h₈ : r ≥ 4 := by linarith
+  have h₉ : p < q := by linarith
+  have h₁₀ : q < r := by linarith
+  have h₁₁ : p ≤ q - 1 := by omega
+  have h₁₂ : q ≤ r - 1 := by omega
+  have h₁₃ : r ≤ p * q := by
+    nlinarith [mul_pos (show (0 : ℤ) < p by linarith) (show (0 : ℤ) < q by linarith)]
+  have h₁₄ : p * q < p * r := by nlinarith
+  have h₁₅ : q * r < p * r := by nlinarith
+  have h₁₆ : p * q < p * r := by nlinarith
+  have h₁₇ : q * r < p * r := by nlinarith
+  interval_cases p <;> interval_cases q <;> interval_cases r <;> norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ <;> simp_all (config := {decide := true})
+  <;> norm_num <;> aesop
+

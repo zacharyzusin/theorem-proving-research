@@ -1,0 +1,23 @@
+Problem: problem_0182
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.544004678726196
+Lean check time (s): 2.573047399520874
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_246
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = a * x^4 - b * x^2 + x + 5)
+  (h₂ : f (-3) = 2) :
+  f 3 = 8 := by
+  simp_all only [pow_one, pow_two, mul_neg, mul_one, mul_zero, mul_add, mul_sub, mul_assoc,
+    mul_comm]
+  ring_nf at h₂ ⊢
+  linarith

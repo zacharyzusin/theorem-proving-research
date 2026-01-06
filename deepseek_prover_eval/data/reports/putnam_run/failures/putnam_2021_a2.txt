@@ -1,0 +1,406 @@
+Problem: putnam_2021_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 46.18471384048462 / 7.40181303024292 / 53.58652687072754
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step1 : putnam_2021_a2_solution = Real.exp 1 := by
+    norm_num [putnam_2021_a2_solution]
+    <;>
+    rfl
+  
+  have step2 : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+      have h₂ := hg 1 (by norm_num)
+      have h₃ := hg 2 (by norm_num)
+      have h₄ := hg (1 / 2) (by norm_num)
+      have h₅ := hg (1 / 4) (by norm_num)
+      have h₆ := hg (3 / 2) (by norm_num)
+      have h₇ := hg (1 / 3) (by norm_num)
+      have h₈ := hg (2 / 3) (by norm_num)
+      simp at h₂ h₃ h₄ h₅ h₆ h₇ h₈
+      have h₉ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+        -- Use the fact that g(x) is defined by a limit and simplify the expression
+        have h₉₀ : ∀ x : ℝ, x > 0 → Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)) := by
+          intro x hx
+          exact hg x hx
+        -- Use the fact that g(x) is defined by a limit and simplify the expression
+        have h₉₁ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+          -- Use the fact that g(x) is defined by a limit and simplify the expression
+          have h₉₂ : ∀ x : ℝ, x > 0 → Tendsto (
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 33.46235466003418 / 8.271733045578003 / 41.73408770561218
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step1 : putnam_2021_a2_solution = Real.exp 1 := by
+    have h₁ := hg 1 (by norm_num)
+    have h₂ := hg 2 (by norm_num)
+    have h₃ := hg (1 / 2) (by norm_num)
+    have h₄ := hg (1 / 4) (by norm_num)
+    have h₅ := hg (3 / 4) (by norm_num)
+    norm_num [tendsto_order] at h₁ h₂ h₃ h₄ h₅
+    <;> simp_all [pow_one, sub_eq_add_neg, add_assoc]
+    <;> field_simp at *
+    <;> norm_num at *
+    <;> nlinarith [Real.exp_pos 1]
+  
+  have step2 : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)) := by
+      intro x hx
+      exact hg x hx
+    have h₂ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+      have h₃ : ∀ x : ℝ, x > 0 → g x = Real.exp 1 := by
+        intro x hx
+        have h₄ := h₁ x hx
+        have h₅ := h₁ 1 (by norm_num)
+        have h₆ := h₁ 2 (by norm_num)
+        have h₇ := h₁ (1 / 2) (by norm_num)
+        have h₈ := h₁ (3 / 4) (by norm_num)
+        have h₉ := h₁ (1 / 4) (by norm_num)
+        norm_num [pow_one, sub_eq_add_neg, add_assoc] at *
+        <;> norm_num [Real.exp_eq_exp] at *
+        <;> simp_all [pow_one, sub_eq_add_neg, add_assoc]
+        
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 37.89540386199951 / 7.526036500930786 / 45.4214403629303
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step1 : putnam_2021_a2_solution = Real.exp 1 := by
+    rfl
+  rw [step1]
+  have h1 : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h2 := hg 1 (by norm_num)
+    have h3 := hg 2 (by norm_num)
+    have h4 := hg (1 / 2) (by norm_num)
+    have h5 := hg (1 / 4) (by norm_num)
+    have h6 := hg (3 / 2) (by norm_num)
+    have h7 := hg (3 / 4) (by norm_num)
+    norm_num [div_eq_mul_inv] at h2 h3 h4 h5 h6 h7 ⊢
+    <;>
+    (try simp_all [sub_eq_add_neg, mul_assoc]) <;>
+    (try norm_num at * ) <;>
+    (try linarith) <;>
+    (try
+      norm_num [Real.exp_pos] at *
+      <;>
+      linarith) <;>
+    (try
+      apply tendsto_nhds_unique (h2.mono_left (nhds_le_nhds (by norm_num : (0 : ℝ) ≤ 1))) _
+      <;>
+      simp_all [sub_eq_add_neg, mul_assoc]) <;>
+    (try
+      apply tendsto_nhds_unique (h3.mono_left (nhds_le_nhds (by norm_num : (0 : ℝ) ≤ 1))) _
+      <;>
+      simp_all [sub_eq_add_neg, mul_assoc]) <;>
+    (try
+      apply tendsto_nhds_unique (h4.mono_left (nhds_le_nhds (by norm_num : (0 : ℝ) ≤ 1))) _
+      <;>
+      simp_all [sub_eq_add_neg, mul_assoc]) <;>
+    (try
+      apply tendsto_nhds_unique (h5.mono_left (nhds_le_nhds (by norm_num : (0 : ℝ) ≤ 1))) _
+      <;>
+      
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 36.43332123756409 / 7.491474151611328 / 43.924795389175415
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step1 : putnam_2021_a2_solution = Real.exp 1 := by
+    norm_num [putnam_2021_a2_solution]
+    <;>
+    simp_all [hg]
+    <;>
+    norm_num
+    <;>
+    rw [show (1 : ℝ) = Real.log (Real.exp 1) by norm_num]
+    <;>
+    simp_all [hg]
+    <;>
+    norm_num
+    <;>
+    apply tendsto_nhds_unique (hg 1 (by norm_num)) _
+    <;>
+    simp_all [hg]
+    <;>
+    norm_num
+    <;>
+    apply tendsto_exp_one_nhds
+  
+  have step2 : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+      have h₂ := hg 1 (by norm_num)
+      have h₃ := hg 2 (by norm_num)
+      have h₄ := hg (1 / 2) (by norm_num)
+      have h₅ := hg (1 / 4) (by norm_num)
+      have h₆ := hg (3 / 2) (by norm_num)
+      have h₇ := hg (1 / 3) (by norm_num)
+      have h₈ := hg (2 / 3) (by norm_num)
+      simp_all [div_eq_mul_inv]
+      <;>
+      (try norm_num at * )
+      <;>
+      (try simp_all [div_eq_mul_inv])
+      <;>
+      (try norm_num)
+      <;>
+      (try linarith)
+      <;>
+      (try
+        simp_all [exp_ne_zero]
+        <;>
+        field_simp [exp_ne_zero] at *
+        <;>
+        norm_num at *
+        <;>
+        linarith)
+      <;>
+      (try
+       
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 55.765745401382446 / 14.867206335067749 / 70.6329517364502
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step₁ : putnam_2021_a2_solution = Real.exp 1 := by
+    have h₁ := hg 1 (by norm_num)
+    have h₂ := hg 2 (by norm_num)
+    have h₃ := hg (1 / 2) (by norm_num)
+    have h₄ := hg (1 / 4) (by norm_num)
+    have h₅ := hg (3 / 2) (by norm_num)
+    have h₆ := hg (1 / 3) (by norm_num)
+    have h₇ := hg (2 / 3) (by norm_num)
+    norm_num [div_eq_mul_inv] at *
+    <;>
+    (try simp_all [pow_one, pow_two, mul_inv_cancel_left])
+    <;>
+    (try norm_num at *)
+    <;>
+    (try linarith)
+    <;>
+    (try
+      norm_num [exp_pos] at *
+      <;>
+      aesop)
+  
+  have step₂ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)) := by
+      intro x hx
+      exact hg x hx
+    have h₂ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+      have h₃ := h₁ 1 (by norm_num)
+      have h₄ := h₁ 2 (by norm_num)
+      have h₅ := h₁ (1 / 2) (by norm_num)
+      have h₆ := h₁ (3 / 2) (by norm_num)
+      have h₇ := h₁ (1 / 3) (by norm_num)
+      have h₈ := h₁ (2 / 3) (by norm_num)
+      have h₉ := h₁ (1 / 4) (by norm_num)
+      have h₁₀ := h₁ (3 / 4) (by norm_num)
+      have h₁₁ := h₁ (1 /
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.115447521209717 / 7.473220586776733 / 33.58866810798645
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step₁ : putnam_2021_a2_solution = Real.exp 1 := by
+    norm_num [putnam_2021_a2_solution]
+    <;>
+    rfl
+  
+  have step₂ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ := hg 1 (by norm_num)
+    have h₂ := hg 2 (by norm_num)
+    have h₃ := hg (1 / 2) (by norm_num)
+    have h₄ := hg (1 / 4) (by norm_num)
+    have h₅ := hg (3 / 2) (by norm_num)
+    have h₆ := hg (9 / 4) (by norm_num)
+    simp at h₁ h₂ h₃ h₄ h₅ h₆
+    have h₇ := tendsto_nhds_unique (by
+      simpa using h₁
+      ) (by
+      simpa using tendsto_const_nhds
+      )
+    have h₈ := tendsto_nhds_unique (by
+      simpa using h₂
+      ) (by
+      simpa using tendsto_const_nhds
+      )
+    have h₉ := tendsto_nhds_unique (by
+      simpa using h₃
+      ) (by
+      simpa using tendsto_const_nhds
+      )
+    have h₁₀ := tendsto_nhds_unique (by
+      simpa using h₄
+      ) (by
+      simpa using tendsto_const_nhds
+      )
+    have h₁₁ := tendsto_nhds_unique (by
+      simpa using h₅
+      ) (by
+      simpa using tendsto_const_nhds
+      )
+    have h₁₂ := tendsto_nhds_unique (by
+      simpa using h₆
+      ) (by
+      simpa using tendsto_const_nhds
+      )
+    aesop
+  
+  simpa [step₁] using step₂
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 28.135873794555664 / 7.380348443984985 / 35.51622223854065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step₁ : putnam_2021_a2_solution = Real.exp 1 := by
+    norm_num [putnam_2021_a2_solution]
+    <;>
+    rfl
+  
+  have step₂ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ := hg 1 (by norm_num)
+    have h₂ := hg 2 (by norm_num)
+    have h₃ := hg (1 / 2) (by norm_num)
+    have h₄ := hg (1 / 4) (by norm_num)
+    have h₅ := hg (3 / 2) (by norm_num)
+    have h₆ := hg (1 / 3) (by norm_num)
+    have h₇ := hg (2 / 3) (by norm_num)
+    norm_num [div_eq_mul_inv, mul_assoc] at h₁ h₂ h₃ h₄ h₅ h₆ h₇
+    have h₈ := tendsto_nhds_unique (by
+      simpa [div_eq_mul_inv, mul_assoc] using h₁) (by
+        simpa [div_eq_mul_inv, mul_assoc] using h₂)
+    have h₉ := tendsto_nhds_unique (by
+      simpa [div_eq_mul_inv, mul_assoc] using h₃) (by
+        simpa [div_eq_mul_inv, mul_assoc] using h₄)
+    have h₁₀ := tendsto_nhds_unique (by
+      simpa [div_eq_mul_inv, mul_assoc] using h₅) (by
+        simpa [div_eq_mul_inv, mul_assoc] using h₆)
+    have h₁₁ := tendsto_nhds_unique (by
+      simpa [div_eq_mul_inv, mul_assoc] using h₆) (by
+        simpa [div_eq_mul_inv, mul_assoc] using h₇)
+    simp_all [div_eq_mul_inv, mul_assoc]
+    <;> norm_num at *
+    <;> aesop
+  
+  simpa [step₁] using ste
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 29.5797700881958 / 7.761344909667969 / 37.34111499786377
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a2
+(g : ℝ → ℝ)
+(hg : ∀ x > 0, Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)))
+: Tendsto (fun x : ℝ => g x / x) atTop (𝓝 putnam_2021_a2_solution) := by
+  have step1 : putnam_2021_a2_solution = Real.exp 1 := by
+    norm_num [putnam_2021_a2_solution]
+    <;>
+    rfl
+  
+  have step2 : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+    have h₁ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+      have h₂ : ∀ x : ℝ, x > 0 → Tendsto (fun r : ℝ => ((x + 1) ^ (r + 1) - x ^ (r + 1)) ^ (1 / r)) (𝓝[>] 0) (𝓝 (g x)) := by
+        intro x hx
+        exact hg x hx
+      have h₃ : Tendsto (fun x : ℝ => g x / x) atTop (𝓝 (Real.exp 1)) := by
+        have h₄ : ∀ x : ℝ, x > 0 → g x = Real.exp 1 * x := by
+          intro x hx
+          have h₅ := h₂ x hx
+          have h₆ := h₂ 1 (by norm_num)
+          have h₇ := h₂ (1 / 2) (by norm_num)
+          have h₈ := h₂ 2 (by norm_num)
+          have h₉ := h₂ (1 / 3) (by norm_num)
+          have h₁₀ := h₂ 3 (by norm_num)
+          norm_num [Real.exp_ne_zero] at h₅ h₆ h₇ h₈ h₉ h₁₀ ⊢
+          <;> simp_all [pow_add, pow_one, mul_comm]
+          <;> field_simp at * <;> norm_num at * <;> nlinarith [Real.exp_pos 1]
+        simp_all [div_eq_mul_inv]
+        <;>
+        field_simp [Real.exp_ne_zero] <;>
+        norm_num <;>
+        apply tendsto_const_nhds <;>
+        simp_all
+        <;>
+        app
+... [truncated] ...

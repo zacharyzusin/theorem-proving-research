@@ -1,0 +1,19 @@
+Problem: problem_0208
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.848063707351685
+Lean check time (s): 2.9130377769470215
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_235 :
+  (29 * 79 + 31 * 81) % 10 = 2 := by
+  norm_num
+  <;> rfl
+  <;> simp_all [mul_add, mul_comm, mul_left_comm, mul_assoc, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> omega

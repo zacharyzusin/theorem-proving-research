@@ -1,0 +1,30 @@
+Problem: problem_0447
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.95661211013794
+Lean check time (s): 4.2455832958221436
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_67
+  (f g : ℝ → ℝ)
+  (h₀ : ∀ x, f x = 5 * x + 3)
+  (h₁ : ∀ x, g x = x^2 - 2) :
+  g (f (-1)) = 2 := by
+  simp_all only [h₀, h₁, neg_mul, neg_add, neg_neg, neg_zero, add_zero, zero_add, mul_one,
+    mul_neg, mul_zero, sub_eq_add_neg, neg_add_rev, neg_neg, neg_zero]
+  /- Simplify the expressions using the given functions and algebraic properties.
+     This step ensures that the expressions are in their simplest form before applying further properties.
+  -/
+  norm_num
+  /- Normalize the numerical expressions to their simplest form.
+     This step confirms that the simplified expression is indeed 2.
+  -/
+  <;> ring
+  <;> norm_num
+  <;> linarith

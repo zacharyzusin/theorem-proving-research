@@ -1,0 +1,463 @@
+Problem: putnam_1971_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 50.88531851768494 / 81.06245589256287 / 131.9477744102478
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp [hT]
+    <;>
+    by_cases h : t ≥ T <;>
+    by_cases h' : t ≤ 2 * T <;>
+    simp_all [Nat.floor_eq_iff, hT] <;>
+    (try ring_nf) <;>
+    (try norm_num) <;>
+    (try linarith) <;>
+    (try
+      {
+        have h₁ : 0 < T := by linarith
+        have h₂ : 0 < 2 * T := by linarith
+        have h₃ : 0 < t := by linarith
+        have h₄ : 0 < t - T := by linarith
+        norm_num at *
+        <;>
+        field_simp at * <;>
+        ring_nf at * <;>
+        norm_cast at * <;>
+        linarith
+      }) <;>
+    (try
+      {
+        aesop
+      })
+  
+  have h₂ : MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+    rw [h₁]
+    have h₃ : Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := rfl
+    rw [h₃]
+    have h₄ : ∀ t : ℝ, t ∈ Set.Icc T (2 * T) → Nat.floor t = 2 * (Nat.floor (t - T)) → t = T := by
+      intro t ht h₁
+      simp_all [Nat.floor_eq_iff]
+      <;>
+      (try ring_nf at * <;>
+      linarith) <;>
+      (try
+        {
+          have h₅ : T ≤ t := by aesop
+          have h₆ : t ≤ 2
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 64.24612760543823 / 39.50850510597229 / 103.75463271141052
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T + 1) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp only [Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_Icc, Set.mem_setOf_eq]
+    constructor <;> intro h <;>
+    (
+      simp_all [Nat.floor_eq_iff, Nat.lt_succ_iff] <;>
+      (try constructor) <;>
+      (try linarith) <;>
+      (try
+        {
+          have h₁ := h.1
+          have h₂ := h.2
+          have h₃ : (t : ℝ) ≥ T := by linarith
+          have h₄ : (t : ℝ) < T + 1 := by linarith
+          have h₅ : 2 * T ≤ t := by linarith
+          have h₆ : t < 2 * T + 1 := by linarith
+          norm_num at *
+          <;>
+          (try omega) <;>
+          (try linarith) <;>
+          (try
+            {
+              have h₇ : (Nat.floor t : ℤ) = 2 * (Nat.floor (t - T)) := by
+                simp_all [Nat.floor_eq_iff, Nat.lt_succ_iff]
+                <;>
+                (try omega) <;>
+                (try linarith) <;>
+                (try
+                  {
+                    nlinarith
+                  })
+              simp_all [Nat.floor_eq_iff, Nat.lt_succ_iff]
+              <;>
+              (try omega) <;>
+              (try linarith) <;>
+              (try
+                {
+                  nlinari
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.561696529388428 / 50.64366626739502 / 74.20536279678345
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp [hT]
+    <;>
+    by_cases h : t ≥ T <;>
+    by_cases h' : t ≤ 2 * T <;>
+    simp_all [Nat.floor_eq_iff] <;>
+    (try norm_num) <;>
+    (try linarith) <;>
+    (try ring_nf) <;>
+    (try field_simp) <;>
+    (try norm_cast) <;>
+    (try linarith) <;>
+    (try nlinarith)
+  rw [h₁]
+  have h₂ : MeasureTheory.volume (Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))}) = 1 := by
+    have h₃ : Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} = {T} := by
+      ext t
+      simp [hT]
+      <;>
+      by_cases h : t ≥ T <;>
+      by_cases h' : t ≤ 2 * T <;>
+      by_cases h'' : t = T <;>
+      simp_all [Nat.floor_eq_iff] <;>
+      (try norm_num) <;>
+      (try linarith) <;>
+      (try ring_nf) <;>
+      (try field_simp) <;>
+      (try norm_cast) <;>
+      (try linarith) <;>
+      (try nlinarith)
+    rw [h₃]
+    simp
+  exact h₂
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 50.74748945236206 / 65.57541394233704 / 116.3229033946991
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp [hT]
+    <;>
+    by_cases h : t ≥ T <;>
+    by_cases h' : t ≤ 2 * T <;>
+    simp_all [Nat.floor_eq_iff] <;>
+    (try ring_nf at * <;> norm_num at * <;> linarith) <;>
+    (try
+      norm_num
+      <;>
+      linarith) <;>
+    (try
+      use ⟨by linarith, by linarith⟩) <;>
+    (try
+      simp_all [Nat.floor_eq_iff]) <;>
+    (try
+      norm_num
+      <;>
+      linarith)
+  
+  have h₂ : MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+    rw [h₁]
+    have h₃ : Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} = {T} := by
+      ext t
+      simp only [Set.mem_inter_iff, Set.mem_setOf_eq, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨⟨hT_le, hT_ge⟩, h_floor⟩
+        have h_floor' : ⌊t⌋ = 2 * ⌊t - T⌋ := h_floor
+        have h_floor_eq : ⌊t⌋ = 1 * ⌊t - T⌋ + ⌊t - T⌋ := by omega
+        have h_floor_eq' : ⌊t⌋ = 2 * ⌊t - T⌋ := by omega
+        have h_floor_eq'' : t = T := by
+          have h_floor_eq''' : ⌊t⌋ = 2 * ⌊t - T⌋ := h_floor_eq'
+          have h_floor_eq'''' : t ∈ Set.Icc T (2 * T) := by
+            constructor <;> linarith [Int.floor_le (t - T), 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.06467366218567 / 55.603171586990356 / 75.66784524917603
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp [hT]
+    <;>
+    by_cases h : t ≥ T <;>
+    by_cases h' : t ≤ 2 * T <;>
+    simp_all [Nat.floor_eq_iff] <;>
+    ring_nf <;>
+    norm_num <;>
+    (try constructor) <;>
+    (try nlinarith) <;>
+    (try linarith) <;>
+    (try
+      {
+        omega
+      }) <;>
+    (try
+      {
+        field_simp at * <;>
+        ring_nf at * <;>
+        norm_cast at * <;>
+        omega
+      })
+  rw [h₁]
+  simp [hT]
+  <;>
+  exact by
+    simp_all [Nat.floor_eq_iff]
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    (try constructor)
+    <;>
+    (try nlinarith)
+    <;>
+    (try linarith)
+    <;>
+    (try
+      {
+        omega
+      })
+    <;>
+    (try
+      {
+        field_simp at * <;>
+        ring_nf at * <;>
+        norm_cast at * <;>
+        omega
+      })
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 37.0208854675293 / 70.96018671989441 / 107.9810721874237
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₀ : ∀ t : ℝ, t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T)) → t ∈ Set.Icc T (T + 1) := by
+    intro t ht
+    have h₁ : t ≥ T := ht.1
+    have h₂ : Nat.floor t = 2 * (Nat.floor (t - T)) := ht.2
+    have h₃ : t < T + 1 := by
+      by_contra h
+      have h₄ : t ≥ T + 1 := by linarith
+      have h₅ : Nat.floor t ≥ T + 1 := by
+        have h₆ : Nat.floor t ≥ T + 1 := by
+          apply Nat.le_floor.mpr
+          norm_num
+          linarith
+        linarith
+      have h₆ : Nat.floor (t - T) ≥ 1 := by
+        apply Nat.succ_le_of_lt
+        have h₇ : t - T ≥ 1 := by linarith
+        have h₈ : Nat.floor (t - T) ≥ 1 := by
+          apply Nat.succ_le_of_lt
+          have h₉ : t - T > 0 := by linarith
+          have h₁₀ : Nat.floor (t - T) ≥ 0 := Nat.zero_le _
+          linarith
+        linarith
+      have h₇ : Nat.floor t ≠ 2 * (Nat.floor (t - T)) := by
+        have h₈ : Nat.floor t = 2 * (Nat.floor (t - T)) := ht.2
+        have h₉ : Nat.floor t ≥ 2 * (Nat.floor (t - T)) := by
+          linarith
+        have h₁₀ : Nat.floor t < 2 * (Nat.floor (t - T)) + 1 := by
+          have h₁₁ : Nat.floor t < 2 * (Nat.floor (t - T)) + 1 := by
+            omega
+          linarith
+        omega
+      omega
+    exact ⟨by linarith, by linarith⟩
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.943716526031494 / 33.869160652160645 / 46.81287717819214
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : ∀ t : ℝ, t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T)) → t ∈ Set.Ici T := by
+    intro t ht
+    exact ht.1
+  have h₂ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Ici T ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp [h₁]
+    <;> aesop
+  rw [h₂]
+  simp [hT]
+  <;>
+  exact by
+    simp_all [Nat.floor_eq_iff]
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    field_simp [hT]
+    <;>
+    linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 25.976711988449097 / 39.818230867385864 / 65.79494285583496
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b3
+(T : ℝ)
+(hT : T > 0)
+: MeasureTheory.volume {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = 1 := by
+  have h₁ : {t : ℝ | t ≥ T ∧ Nat.floor t = 2 * (Nat.floor (t - T))} = Set.Icc T (2 * T) ∩ {t : ℝ | Nat.floor t = 2 * (Nat.floor (t - T))} := by
+    ext t
+    simp [hT]
+    <;>
+    (try
+      {
+        intro h
+        norm_num at h
+        simp_all [Nat.floor_eq_iff]
+        <;>
+        (try
+          {
+            linarith
+          })
+        <;>
+        (try
+          {
+            exact ⟨by linarith, by linarith⟩
+          })
+        <;>
+        (try
+          {
+            omega
+          })
+      })
+    <;>
+    (try
+      {
+        intro h
+        norm_num at h
+        simp_all [Nat.floor_eq_iff]
+        <;>
+        (try
+          {
+            linarith
+          })
+        <;>
+        (try
+          {
+            exact ⟨by linarith, by linarith⟩
+          })
+        <;>
+        (try
+          {
+            omega
+          })
+      })
+  rw [h₁]
+  simp [MeasureTheory.volume_Icc_eq_card]
+  <;>
+  field_simp [hT]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_cast
+  <;>
+  simp [hT]
+  <;>
+  field_simp [hT]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_cast
+  <;>
+  simp [hT]
+  <;>
+  field_simp [hT]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_cast
+  <;>
+  simp [hT]
+  <;>
+  field_simp [hT]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_cast

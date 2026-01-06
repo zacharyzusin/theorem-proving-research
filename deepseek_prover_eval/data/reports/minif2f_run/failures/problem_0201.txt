@@ -1,0 +1,227 @@
+Problem: problem_0201
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.420564889907837 / 3.2945454120635986 / 15.715110301971436
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 98
+  have h₇ := h₁ 98
+  simp_all [pow_succ, mul_assoc, mul_comm, mul_left_comm]
+  <;> ring_nf at *
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq] at *
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.303300857543945 / 3.3088319301605225 / 15.612132787704468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 100
+  have h₇ := h₁ 100
+  simp_all [pow_succ, mul_assoc, mul_comm, mul_left_comm]
+  <;> ring_nf at *
+  <;> field_simp at *
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num), Real.sqrt_nonneg 3]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.044595956802368 / 3.5789804458618164 / 15.623576402664185
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 98
+  have h₇ := h₁ 98
+  simp_all [pow_succ, mul_assoc, mul_comm, mul_left_comm]
+  <;> ring_nf at *
+  <;> field_simp at *
+  <;> nlinarith [Real.sq_sqrt (show 0 ≤ 3 by norm_num), Real.sqrt_nonneg 3]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.937159776687622 / 3.333620309829712 / 20.270780086517334
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 100
+  have h₇ := h₁ 100
+  simp_all [pow_succ, mul_assoc, mul_comm, mul_left_comm]
+  <;> ring_nf at *
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq] at *
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num),
+    Real.sqrt_nonneg 3, sq_nonneg (a 1 - b 1), sq_nonneg (a 1 + b 1),
+    sq_nonneg (a 1 - b 1 - 2), sq_nonneg (a 1 + b 1 - 2),
+    sq_nonneg (a 1 - b 1 + 2), sq_nonneg (a 1 + b 1 + 2)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.08596920967102 / 3.312584638595581 / 18.3985538482666
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 98
+  have h₇ := h₁ 98
+  simp_all [pow_succ, mul_assoc, mul_comm, mul_left_comm]
+  <;> ring_nf at *
+  <;> field_simp at *
+  <;> nlinarith [sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num),
+    sq_nonneg (a 1 - b 1),
+    Real.sqrt_nonneg 3,
+    sq_nonneg (a 1 + b 1),
+    sq_nonneg (a 100 - b 100),
+    sq_nonneg (a 100 + b 100)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.858903646469116 / 4.228583335876465 / 18.08748698234558
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 98
+  have h₇ := h₁ 98
+  simp_all [pow_succ]
+  <;> ring_nf
+  <;> norm_num
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num),
+    Real.sqrt_nonneg 3, sq_nonneg (Real.sqrt 3 - 1), sq_nonneg (Real.sqrt 3 + 1),
+    sq_nonneg (a 1 - b 1), sq_nonneg (a 1 + b 1)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.995286464691162 / 4.22467303276062 / 18.219959497451782
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 100
+  have h₇ := h₁ 100
+  simp_all [pow_succ, mul_assoc, mul_comm, mul_left_comm]
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq] at *
+  <;> ring_nf at *
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num),
+    Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num),
+    Real.sqrt_nonneg 3]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.14338493347168 / 4.17685341835022 / 19.3202383518219
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p25
+  (a b : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 1) = Real.sqrt 3 * a n - b n)
+  (h₁ : ∀ n, b (n + 1) = Real.sqrt 3 * b n + a n)
+  (h₂ : a 100 = 2)
+  (h₃ : b 100 = 4) :
+  a 1 + b 1 = 1 / (2^98) := by
+  have h₄ := h₀ 99
+  have h₅ := h₁ 99
+  have h₆ := h₀ 100
+  have h₇ := h₁ 100
+  simp_all [pow_succ]
+  ring_nf at *
+  nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num), Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num),
+    Real.sqrt_nonneg 3, sq_nonneg (Real.sqrt 3 - 1), sq_nonneg (Real.sqrt 3 + 1),
+    sq_nonneg (Real.sqrt 3 ^ 2 - 1), sq_nonneg (Real.sqrt 3 ^ 2 + 1)]
+

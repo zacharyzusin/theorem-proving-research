@@ -1,0 +1,244 @@
+Problem: putnam_1983_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.137068271636963 / 5.798224925994873 / 21.935293197631836
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉
+  have h₁ := han 0
+  have h₂ := han 1
+  have h₃ := han 2
+  have h₄ := han 3
+  have h₅ := han 4
+  simp_all [hf, Int.floor_eq_iff]
+  <;>
+    nlinarith [Real.sqrt_nonneg (a 0), Real.sqrt_nonneg (a 1), Real.sqrt_nonneg (a 2), Real.sqrt_nonneg (a 3), Real.sqrt_nonneg (a 4),
+      Real.sq_sqrt (show (0 : ℝ) ≤ a 0 by positivity), Real.sq_sqrt (show (0 : ℝ) ≤ a 1 by positivity),
+      Real.sq_sqrt (show (0 : ℝ) ≤ a 2 by positivity), Real.sq_sqrt (show (0 : ℝ) ≤ a 3 by positivity),
+      Real.sq_sqrt (show (0 : ℝ) ≤ a 4 by positivity)]
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.502074241638184 / 4.9277002811431885 / 15.429774522781372
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉₊
+  have h₁ := han 0
+  have h₂ := hf
+  simp_all [hf, ha0]
+  <;>
+  norm_num
+  <;>
+  norm_cast
+  <;>
+  nlinarith [Real.sqrt_nonneg (a 0), Real.sq_sqrt (show (0 : ℝ) ≤ a 0 from by norm_cast; nlinarith)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.481203317642212 / 5.455942869186401 / 25.937146186828613
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉₊
+  have h₁ := han 0
+  simp [hf, ha0] at h₁
+  norm_num at h₁
+  have h₂ : a 0 ≥ 0 := by linarith
+  have h₃ : ⌈√(a 0)⌉₊ = ⌈√(a 0)⌉₊ := by rfl
+  have h₄ : a 0 = (⌈√(a 0)⌉₊ : ℕ) ^ 2 := by
+    have h₅ : (⌈√(a 0)⌉₊ : ℝ) ≥ √(a 0) := by exact_mod_cast Nat.le_ceil _
+    have h₆ : (⌈√(a 0)⌉₊ : ℝ) ^ 2 ≥ (√(a 0)) ^ 2 := by
+      gcongr
+    have h₇ : (√(a 0)) ^ 2 = a 0 := by
+      rw [Real.sq_sqrt (by positivity)]
+    have h₈ : (⌈√(a 0)⌉₊ : ℝ) ^ 2 ≥ a 0 := by linarith
+    have h₉ : a 0 = (⌈√(a 0)⌉₊ : ℕ) ^ 2 := by
+      norm_cast at h₈ ⊢
+      <;> nlinarith
+    exact h₉
+  simp_all
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.746829748153687 / 4.736409664154053 / 14.48323941230774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉₊
+  have h₁ := han 0
+  simp_all [hf, Int.floor_eq_iff]
+  <;>
+    norm_num
+  <;>
+    nlinarith [Real.sqrt_nonneg (a 0), Real.sq_sqrt (show (0 : ℝ) ≤ a 0 from by positivity)]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.023807764053345 / 4.825721979141235 / 18.84952974319458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉
+  have h₁ := han 0
+  have h₂ := han 1
+  have h₃ := han 2
+  have h₄ := han 3
+  have h₅ := han 4
+  simp_all [hf, Int.floor_eq_iff]
+  <;>
+    norm_num
+  <;>
+    ring_nf
+  <;>
+    norm_cast
+  <;>
+    nlinarith [Real.sqrt_nonneg (a 0), Real.sq_sqrt (show (0 : ℝ) ≤ a 0 from by norm_cast; linarith),
+      Real.sqrt_nonneg (a 0 - 1), Real.sq_sqrt (show (0 : ℝ) ≤ a 0 - 1 from by norm_cast; linarith)]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.197129249572754 / 4.828432559967041 / 15.025561809539795
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉₊
+  have h1 := han 0
+  simp [hf, ha0] at h1 ⊢
+  <;> norm_num
+  <;>
+    nlinarith [Real.sqrt_nonneg (a 0), Real.sq_sqrt (show (0 : ℝ) ≤ a 0 by linarith),
+      Int.le_ceil (√(a 0))]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.548201560974121 / 5.283465147018433 / 19.831666707992554
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉
+  have h₁ := han 0
+  have h₂ := han 1
+  have h₃ := han 2
+  have h₄ := han 3
+  have h₅ := han 4
+  have h₆ := han 5
+  have h₇ := han 6
+  have h₈ := han 7
+  have h₉ := han 8
+  have h₁₀ := han 9
+  simp_all [hf, Int.floor_eq_iff]
+  <;>
+    norm_num
+  <;>
+    nlinarith [Real.sqrt_nonneg (a 0), Real.sq_sqrt (show (0 : ℝ) ≤ a 0 by norm_cast; linarith),
+      Int.le_ceil (√(a 0)), Int.ceil_lt_add_one (√(a 0))]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.506448030471802 / 5.024650812149048 / 15.53109884262085
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1983_b4
+    (f : ℕ → ℤ)
+    (a : ℕ → ℕ)
+    (hf : f = fun (n : ℕ) ↦ n + Int.floor (√n))
+    (ha0 : a 0 > 0)
+    (han : ∀ n : ℕ, a (n + 1) = f (a n)) :
+    (∃ i : ℕ, ∃ s : ℤ, a i = s ^ 2) := by
+  use 0
+  use ⌈√(a 0)⌉₊
+  have h₁ := han 0
+  simp [hf] at h₁
+  norm_cast at h₁ ⊢
+  <;>
+  nlinarith [Nat.sqrt_le (a 0), Nat.lt_succ_sqrt (a 0),
+    Real.sqrt_nonneg (a 0), Real.sq_sqrt (by positivity : (0 : ℝ) ≤ a 0)]

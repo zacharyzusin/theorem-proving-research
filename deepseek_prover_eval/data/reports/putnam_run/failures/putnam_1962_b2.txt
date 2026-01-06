@@ -1,0 +1,136 @@
+Problem: putnam_1962_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 5.03160285949707 / 39.49549198150635 / 44.52709484100342
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => Set.univ
+  intro a b hab
+  simp [Set.ssubset_univ_iff, hab]
+  <;> aesop
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 4.118991851806641 / 14.674033641815186 / 18.793025493621826
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => Set.univ
+  intro a b h
+  simp [Set.ssubset_univ_iff]
+  <;> aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 3.9990997314453125 / 12.741867303848267 / 16.74096703529358
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => Set.univ
+  intro a b hab
+  constructor
+  · simp
+  · intro h
+    simp_all
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 4.437419176101685 / 11.481347799301147 / 15.918766975402832
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => {1}
+  intro a b h
+  simp [Set.ssubset_iff_subset_ne, Set.singleton_ne_empty]
+  <;> aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 3.797226905822754 / 12.89510989189148 / 16.692336797714233
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => {1}
+  intro a b hab
+  simp [hab]
+  <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 4.12687611579895 / 8.283464431762695 / 12.410340547561646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => Set.univ
+  intro a b h
+  simp [Set.ssubset_univ_iff]
+  <;> aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 3.9167139530181885 / 11.69421100616455 / 15.61092495918274
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun a => Set.univ
+  intro a b hab
+  simp [Set.subset_univ]
+  <;> aesop
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 4.1916773319244385 / 11.93178105354309 / 16.12345838546753
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1962_b2
+: ∃ f : ℝ → Set ℕ+, ∀ a b : ℝ, a < b → f a ⊂ f b := by
+  use fun x => Set.univ
+  intro a b hab
+  simp [Set.ssubset_univ_iff, hab]
+  <;> aesop

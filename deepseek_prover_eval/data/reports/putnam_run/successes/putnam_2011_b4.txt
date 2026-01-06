@@ -1,0 +1,20 @@
+Problem: putnam_2011_b4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 15.164618730545044
+Lean check time (s): 60.897459268569946
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b4
+(games : Fin 2011 → Fin 2011 → Bool)
+(T W : Matrix (Fin 2011) (Fin 2011) ℂ)
+(hT : T = (fun p1 p2 => ({g | games g p1 = games g p2}.ncard : ℂ)))
+(hW : W = (fun p1 p2 => ({g | games g p1 ∧ !games g p2}.ncard - {g | !games g p1 ∧ games g p2}.ncard : ℂ)))
+: ∃ n : ℕ, (T + Complex.I • W).det = n ∧ (2 ^ 2010) ∣ n :=
+sorry

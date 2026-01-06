@@ -1,0 +1,259 @@
+Problem: putnam_2003_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 38.76840329170227 / 21.889711380004883 / 60.65811467170715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = Nat.factorial ⌊n / i⌋₊ := by
+    intro i hi
+    have h₂ : i ≤ n := Finset.mem_Icc.mp hi |>.2
+    have h₃ : i ≥ 1 := Finset.mem_Icc.mp hi |>.1
+    have h₄ : ⌊n / i⌋₊ ≤ n := by
+      apply Nat.le_of_not_gt
+      intro h
+      have h₅ : n / i = 0 := by
+        apply Nat.div_eq_of_lt
+        linarith
+      have h₆ : ⌊n / i⌋₊ = 0 := by simp [h₅]
+      have h₇ : i ≤ n := by linarith
+      have h₈ : n < i := by omega
+      linarith
+    have h₅ : ∀ k ∈ List.range ⌊n / i⌋₊, k < ⌊n / i⌋₊ := by
+      intro k hk
+      simp_all [List.mem_range]
+    have h₆ : ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = Nat.factorial ⌊n / i⌋₊ := by
+      clear h₁ h₂ h₃ h₄ h₅
+      induction' ⌊n / i⌋₊ with m ih
+      · simp
+      · simp_all [List.range_succ, List.map_append, List.foldl_append, Nat.factorial_succ, Nat.mul_comm]
+        <;> omega
+    exact h₆
+  have h₂ : ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = ∏ i ∈ Finset.Icc 1 n, Nat.factorial ⌊n / i⌋₊ := by
+    apply Finset.prod_congr rfl
+    intro i hi
+    rw [h₁ i hi]
+  have h₃ : ∏ i ∈ Finset.Icc 1 n, Nat.factorial ⌊n / i⌋₊ = n ! := by
+    have h₄ : ∏ i ∈ Finset.Icc 1 n, Nat.factorial ⌊n / i⌋₊ = ∏ i ∈ Finset.Icc 1 n, Nat.factorial (n / i
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.832778453826904 / 18.161133766174316 / 30.99391222000122
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    intro i hi
+    rfl
+  have h₂ : n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    have h₃ : ∀ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+      intro i hi
+      rfl
+    exact?
+  exact h₂
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.059804201126099 / 19.023927211761475 / 32.08373141288757
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 =
+      ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    intro i _
+    rfl
+  have h₂ : n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    have h₃ : ∀ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 =
+        ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+      intro i _
+      rfl
+    exact?
+  exact h₂
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.092543601989746 / 27.334806203842163 / 41.42734980583191
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ n : ℕ, n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    intro n
+    induction n with
+    | zero =>
+      simp
+    | succ n ih =>
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+      simp_all [Nat.factorial_succ, Nat.div_eq_of_lt, Nat.lt_succ_self, List.foldl, List.map]
+      <;>
+        try {
+          norm_num
+          <;>
+          ring_nf
+          <;>
+          omega
+        }
+      <;>
+        try {
+          exact?
+        }
+      <;>
+        try {
+          simp_all [Finset.prod_Icc_succ_top]
+          <;>
+          ring_nf
+          <;>
+          omega
+        }
+  exact h₁ n
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.516777276992798 / 8.84971284866333 / 19.366490125656128
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ n : ℕ, n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    intro n
+    induction n with
+    | zero =>
+      simp
+    | succ n ih =>
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+      simp_all [Finset.prod_range_succ', Nat.factorial_succ, Nat.div_eq_of_lt, Nat.lt_succ_self]
+      <;> norm_num
+      <;> aesop
+  apply h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.078596115112305 / 11.285497903823853 / 32.36409401893616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = Nat.lcm i 1 := by
+    intro i hi
+    have h₁ : i ≥ 1 := by
+      simp only [Finset.mem_Icc] at hi
+      linarith
+    have h₂ : ⌊n / i⌋₊ = 0 := by
+      apply Nat.floor_eq_zero
+      have h₃ : n / i = 0 := by
+        apply Nat.div_eq_of_lt
+        simp_all [Nat.lt_succ_iff]
+        <;> omega
+      simp_all
+    simp_all [List.range_succ, List.foldl, Nat.lcm]
+    <;> omega
+  have h₂ : ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 = ∏ i ∈ Finset.Icc 1 n, Nat.lcm i 1 := by
+    apply Finset.prod_congr rfl
+    intro i hi
+    exact h₁ i hi
+  have h₃ : ∏ i ∈ Finset.Icc 1 n, Nat.lcm i 1 = n ! := by
+    simp_all [Finset.prod_const, Nat.factorial]
+    <;> induction n with
+    | zero => simp
+    | succ n ih =>
+      simp_all [Finset.prod_Icc_succ_top, Nat.factorial_succ, Nat.lcm]
+      <;> ring_nf
+      <;> omega
+  simp_all
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.58627986907959 / 8.276242971420288 / 21.862522840499878
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ n : ℕ, n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    intro n
+    induction n with
+    | zero =>
+      simp
+    | succ n ih =>
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+      simp_all [Nat.factorial_succ, Nat.div_eq_of_lt, Nat.lt_succ_self, List.foldl, List.map, List.range_succ,
+        Nat.succ_div]
+      <;> try {
+        norm_num
+        <;> omega
+      }
+      <;> try {
+        ring_nf
+        <;> omega
+      }
+      <;> try {
+        simp_all [Nat.mul_div_cancel_left]
+        <;> omega
+      }
+  exact h₁ n
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.155693054199219 / 9.105711221694946 / 24.261404275894165
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b3 (n : ℕ) :
+    n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+  have h₁ : ∀ n : ℕ, n ! = ∏ i ∈ Finset.Icc 1 n, ((List.range ⌊n / i⌋₊).map succ).foldl Nat.lcm 1 := by
+    intro n
+    induction n with
+    | zero =>
+      -- Base case: n = 0
+      simp
+    | succ n ih =>
+      -- Inductive step: assume the statement holds for n, prove for n + 1
+      rw [Finset.prod_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+      simp_all [Nat.factorial_succ, List.foldl, List.map, List.range_succ, Nat.div_eq_of_lt, Nat.succ_pos]
+      -- Use the induction hypothesis and simplify the expression
+      <;> norm_num
+      <;> try ring_nf
+      <;> try simp_all [Nat.factorial_succ, List.foldl, List.map, List.range_succ, Nat.div_eq_of_lt, Nat.succ_pos]
+      <;> try omega
+      <;> try linarith
+  exact h₁ n

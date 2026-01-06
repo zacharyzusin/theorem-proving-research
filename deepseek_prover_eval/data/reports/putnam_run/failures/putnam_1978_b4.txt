@@ -1,0 +1,261 @@
+Problem: putnam_1978_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.86100459098816 / 16.602041721343994 / 25.463046312332153
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  intro N
+  use N + 1, N + 1, N + 1, N + 1
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  ring_nf
+  <;> simp [add_assoc, add_comm, add_left_comm]
+  <;> linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.223180532455444 / 17.878578901290894 / 27.101759433746338
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  intro N
+  use N + 1, N + 1, N + 1, N + 1
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  ring_nf
+  <;> simp [add_assoc, add_comm, add_left_comm]
+  <;> ring
+  <;> linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 25.05732750892639 / 18.05001187324524 / 43.10733938217163
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  have h : ∀ N : ℝ, ∃ a b c d : ℤ, a > N ∧ b > N ∧ c > N ∧ d > N ∧ a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+    intro N
+    use (N + 3).to_int, (N + 3).to_int, (N + 3).to_int, (N + 3).to_int
+    constructor
+    · -- Prove that a > N
+      norm_num [Int.to_int, Int.ofNat_lt] <;>
+        nlinarith [Int.floor_le N, Int.lt_floor_add_one N]
+    · constructor
+      · -- Prove that b > N
+        norm_num [Int.to_int, Int.ofNat_lt] <;>
+          nlinarith [Int.floor_le N, Int.lt_floor_add_one N]
+      · constructor
+        · -- Prove that c > N
+          norm_num [Int.to_int, Int.ofNat_lt] <;>
+            nlinarith [Int.floor_le N, Int.lt_floor_add_one N]
+        · constructor
+          · -- Prove that d > N
+            norm_num [Int.to_int, Int.ofNat_lt] <;>
+              nlinarith [Int.floor_le N, Int.lt_floor_add_one N]
+          · -- Prove that the equation holds
+            norm_cast
+            <;>
+            ring_nf
+            <;>
+            norm_cast
+            <;>
+            nlinarith [sq_nonneg (N + 3), sq_nonneg (N + 3 - 1), sq_nonneg (N + 3 - 2), sq_nonneg (N + 3 - 3)]
+  
+  exact h
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 35.96660113334656 / 15.186028242111206 / 51.152629375457764
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  have step1 : ∀ N : ℝ, ∃ a b c d : ℤ, a > N ∧ b > N ∧ c > N ∧ d > N ∧ a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+    intro N
+    use (N + 3).toInt + 1, (N + 3).toInt + 1, (N + 3).toInt + 1, (N + 3).toInt + 1
+    constructor
+    · -- Prove a > N
+      have h : (N + 3 : ℝ) + 1 > N := by linarith
+      have h1 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      have h2 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      exact_mod_cast h2
+    constructor
+    · -- Prove b > N
+      have h : (N + 3 : ℝ) + 1 > N := by linarith
+      have h1 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      have h2 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      exact_mod_cast h2
+    constructor
+    · -- Prove c > N
+      have h : (N + 3 : ℝ) + 1 > N := by linarith
+      have h1 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      have h2 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      exact_mod_cast h2
+    constructor
+    · -- Prove d > N
+      have h : (N + 3 : ℝ) + 1 > N := by linarith
+      have h1 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      have h2 : ((N + 3 : ℝ) + 1 : ℝ) > N := by linarith
+      exact_mod_cast h2
+    -- Prove the equation
+    ring_nf
+    <;> norm_cast
+    <;> simp [add_assoc, add_com
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.183248519897461 / 20.535821437835693 / 28.719069957733154
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  intro N
+  use N + 1, N + 1, N + 1, N + 1
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  ring_nf
+  <;> norm_num
+  <;> nlinarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.105675458908081 / 17.955233097076416 / 27.060908555984497
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  intro N
+  use N + 1, N + 1, N + 1, N + 1
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  ring_nf
+  <;> simp [mul_add, add_mul, mul_comm, mul_left_comm]
+  <;> ring
+  <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.412774085998535 / 16.289559602737427 / 23.702333688735962
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  intro N
+  use N + 1, N + 1, N + 1, N + 1
+  constructor
+  <;> simp [sq]
+  <;> ring_nf
+  <;> norm_num
+  <;> nlinarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.285488367080688 / 18.50912833213806 / 26.79461669921875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b4 :
+  ∀ N : ℝ,
+    ∃ a b c d : ℤ,
+      a > N ∧ b > N ∧ c > N ∧ d > N ∧
+      a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = a * b * c + a * b * d + a * c * d + b * c * d := by
+  intro N
+  use N + 1, N + 1, N + 1, N + 1
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  ring_nf
+  <;> norm_num
+  <;> nlinarith

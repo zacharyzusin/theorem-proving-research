@@ -1,0 +1,25 @@
+Problem: problem_0477
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 10.266184329986572
+Lean check time (s): 4.380832195281982
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_412
+  (x y : ℕ)
+  (h₀ : x % 19 = 4)
+  (h₁ : y % 19 = 7) :
+  ((x + 1)^2 * (y + 5)^3) % 19 = 13 := by
+  have h₂ : x % 19 = 4 := h₀
+  have h₃ : y % 19 = 7 := h₁
+  have h₄ : (x + 1)^2 * (y + 5)^3 % 19 = 13 := by
+    rw [← Nat.mod_add_div x 19, ← Nat.mod_add_div y 19]
+    simp [h₂, h₃, pow_two, pow_three, Nat.mul_mod, Nat.add_mod, Nat.mod_mod, Nat.mul_assoc]
+    <;> norm_num <;> rfl
+  exact h₄

@@ -1,0 +1,222 @@
+Problem: putnam_1978_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.3303701877594 / 5.330379009246826 / 16.660749197006226
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h₁ : ∀ i j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * 2) := by
+    intro i j
+    have h₁ : (i ^ 2 * j + 2 * i * j + i * j ^ 2) = i * j * (i + j) * 2 := by
+      ring_nf
+      <;> simp [mul_assoc]
+      <;> ring
+    rw [h₁]
+    <;> simp [mul_comm, mul_assoc, mul_left_comm]
+    <;> field_simp
+    <;> ring
+  simp_all [h₁]
+  <;> rfl
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.12139344215393 / 5.276657581329346 / 15.398051023483276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * 2) := by
+    intro i j
+    have h1 : (i ^ 2 * j + 2 * i * j + i * j ^ 2) = i * j * (i + j) * 2 := by
+      ring
+    rw [h1]
+    <;> field_simp
+  simp_all [h]
+  <;> norm_cast
+  <;> rfl
+  <;> rfl
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.469734191894531 / 5.41631007194519 / 16.88604426383972
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * 2) := by
+    intro i j
+    have h₁ : (i ^ 2 * j + 2 * i * j + i * j ^ 2) = i * j * (i + j) * 2 := by
+      ring
+    rw [h₁]
+    <;> simp [div_eq_mul_inv]
+    <;> ring
+  simp_all [h]
+  <;> norm_num
+  <;> rfl
+  <;> simp_all [h]
+  <;> norm_num
+  <;> rfl
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.50771951675415 / 5.217420816421509 / 14.72514033317566
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * 2) := by
+    intro i j
+    have h1 : (i ^ 2 * j + 2 * i * j + i * j ^ 2) = i * j * (i + j) * 2 := by
+      ring
+    rw [h1]
+    <;> field_simp
+  simp_all [h]
+  <;> rfl
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.652719497680664 / 5.439081907272339 / 21.091801404953003
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * 2) := by
+    intro i j
+    have h1 : i ^ 2 * j + 2 * i * j + i * j ^ 2 = i * j * (i + j) * 2 := by
+      ring
+    rw [h1]
+    <;> simp [div_eq_mul_inv]
+    <;> ring
+  simp_all [tsum_eq_single 1]
+  <;> norm_num
+  <;> intro i
+  <;> simp_all [tsum_eq_single 1]
+  <;> norm_num
+  <;> intro j
+  <;> simp_all [tsum_eq_single 1]
+  <;> norm_num
+  <;> intro i
+  <;> simp_all [tsum_eq_single 1]
+  <;> norm_num
+  <;> intro j
+  <;> simp_all [tsum_eq_single 1]
+  <;> norm_num
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.531504392623901 / 5.359159708023071 / 20.890664100646973
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h : (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 7 / 4) := by
+    have h1 : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * 1) := by
+      intro i j
+      have h2 : i ^ 2 * j + 2 * i * j + i * j ^ 2 = i * j * (i + j) * 1 := by
+        ring
+      rw [h2]
+      <;> field_simp
+    simp_all [tsum_eq_single 1]
+    all_goals norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> linarith
+  exact h
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.559356451034546 / 5.551284074783325 / 28.11064052581787
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h₁ : (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 7 / 4) := by
+    have h₂ : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * (i + j)) := by
+      intro i j
+      have h₃ : i ^ 2 * j + 2 * i * j + i * j ^ 2 = i * j * (i + j) * (i + j) := by
+        ring
+      rw [h₃]
+      <;> simp [mul_assoc]
+      <;> ring_nf
+      <;> field_simp
+    simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> simp_all [tsum_eq_single 1]
+    <;> norm_num
+  exact h₁
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.077545166015625 / 5.4857776165008545 / 19.56332278251648
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b2
+: (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = putnam_1978_b2_solution) := by
+  have h : (∑' i : ℕ+, ∑' j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 7 / 4) := by
+    have h₁ : ∀ i : ℕ+, ∀ j : ℕ+, (1 : ℚ) / (i ^ 2 * j + 2 * i * j + i * j ^ 2) = 1 / (i * j * (i + j) * (i + j)) := by
+      intro i j
+      have h₂ : (i ^ 2 * j + 2 * i * j + i * j ^ 2) = i * j * (i + j) * (i + j) := by
+        ring
+      rw [h₂]
+      <;> field_simp
+    simp_all [tsum_eq_single 1]
+    <;> norm_num
+    <;> intro i hi j hj
+    <;> norm_cast at hi hj ⊢
+    <;> aesop
+  exact h

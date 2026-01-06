@@ -1,0 +1,20 @@
+Problem: problem_0259
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.339946031570435
+Lean check time (s): 5.234726667404175
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_149 :
+  ∑ k in (Finset.filter (λ x => x % 8 = 5 ∧ x % 6 = 3) (Finset.range 50)), k = 66 := by
+  simp [Finset.sum_filter, Finset.sum_range_succ, Nat.mod_eq_of_lt, Nat.succ_pos, Nat.zero_le,
+    Nat.one_le_iff_ne_zero]
+  <;> norm_num
+  <;> rfl
+  <;> aesop

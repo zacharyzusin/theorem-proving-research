@@ -1,0 +1,19 @@
+Problem: problem_0072
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.9821009635925293
+Lean check time (s): 3.583120346069336
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_207 :
+  8 * 9^2 + 5 * 9 + 2 = 695 := by
+  norm_num
+  <;> ring
+  <;> rfl
+  <;> rfl

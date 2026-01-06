@@ -1,0 +1,29 @@
+Problem: problem_0213
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.334943056106567
+Lean check time (s): 46.703059911727905
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_222
+  (b : ℕ)
+  (h₀ : Nat.lcm 120 b = 3720)
+  (h₁ : Nat.gcd 120 b = 8) :
+  b = 248 := by
+  have h₂ : b ∣ 3720 := by
+    have h₃ : b ∣ Nat.lcm 120 b := by
+      exact Nat.dvd_lcm_right 120 b
+    simp_all
+  have h₃ : 120 ∣ 3720 := by
+    norm_num
+  have h₄ : b = 248 := by
+    have h₅ : b ≤ 3720 := by
+      exact Nat.le_of_dvd (by norm_num) h₂
+    interval_cases b <;> norm_num at h₀ h₁ ⊢ <;> omega
+  exact h₄

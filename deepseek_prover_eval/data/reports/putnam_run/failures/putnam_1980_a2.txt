@@ -1,0 +1,182 @@
+Problem: putnam_1980_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.117492198944092 / 37.76700401306152 / 60.884496212005615
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 30.58186411857605 / 10.716863870620728 / 41.29872798919678
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.39127802848816 / 9.306100130081177 / 39.697378158569336
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.07535457611084 / 9.479851484298706 / 36.555206060409546
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 41.37614154815674 / 10.66639494895935 / 52.04253649711609
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.851709127426147 / 7.695742130279541 / 32.54745125770569
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.579758644104004 / 8.898823022842407 / 47.47858166694641
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 34.62588310241699 / 11.382322072982788 / 46.00820517539978
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a2
+    (r s : ℕ)
+    (abcdlcm : ℕ → ℕ → ℕ → ℕ → Prop)
+    (rspos : r > 0 ∧ s > 0)
+    (habcdlcm : ∀ a b c d : ℕ, abcdlcm a b c d ↔
+      (a > 0 ∧ b > 0 ∧ c > 0 ∧ d > 0 ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) c) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a b) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm a c) d) ∧
+      (3 ^ r * 7 ^ s = Nat.lcm (Nat.lcm b c) d))) :
+    {(a, b, c, d) : ℕ × ℕ × ℕ × ℕ | abcdlcm a b c d}.encard = putnam_1980_a2_solution r s :=
+  sorry

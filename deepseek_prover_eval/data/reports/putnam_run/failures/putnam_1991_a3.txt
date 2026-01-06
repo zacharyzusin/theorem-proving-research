@@ -1,0 +1,166 @@
+Problem: putnam_1991_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.321577548980713 / 9.663141965866089 / 22.9847195148468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.400110244750977 / 12.214594841003418 / 23.614705085754395
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.935410976409912 / 17.15965509414673 / 36.09506607055664
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.710453033447266 / 17.701117753982544 / 38.41157078742981
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.147408485412598 / 19.716113328933716 / 30.863521814346313
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.002697706222534 / 15.666715860366821 / 34.669413566589355
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.25060796737671 / 21.846129655838013 / 38.09673762321472
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 21.453962802886963 / 16.892908096313477 / 38.34687089920044
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a3
+  (p : Polynomial ℝ)
+  (n : ℕ)
+  (hn : n = p.degree)
+  (hge : n ≥ 2) :
+  p ∈ putnam_1991_a3_solution ↔
+    (∃ r : ℕ → ℝ, (∀ i : Fin (n - 1), r i < r (i + 1)) ∧
+    (∀ i : Fin n, p.eval (r i) = 0) ∧
+    (∀ i : Fin (n - 1), (Polynomial.derivative p).eval ((r i + r (i + 1)) / 2) = 0)) :=
+sorry

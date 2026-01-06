@@ -1,0 +1,209 @@
+Problem: putnam_1979_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.3705894947052 / 23.488624334335327 / 38.85921382904053
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    have h₂ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+      simpa [Complex.abs, Complex.normSq, Complex.re, Complex.im, sq, mul_comm] using
+        calc
+          |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+            simp_all [Complex.abs, Complex.normSq, Complex.re, Complex.im, sq, mul_comm]
+            <;>
+            exact?
+          _ = ∑ i : Fin n, |(z i).re| := by rfl
+    exact h₂
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.3740394115448 / 25.93950915336609 / 46.31354856491089
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+      -- Use the fact that the real part of the square root of the sum of squares is bounded by the sum of the absolute values of the real parts.
+      calc
+        |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+          simpa [Complex.abs, Complex.normSq, Complex.re, Complex.im, sq, Real.sqrt_le_iff] using
+            calc
+              |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+                simp_all [Complex.abs, Complex.normSq, Complex.re, Complex.im, sq, Real.sqrt_le_iff]
+                all_goals
+                  exact?
+              _ = ∑ i : Fin n, |(z i).re| := by rfl
+        _ = ∑ i : Fin n, |(z i).re| := by rfl
+    exact h₁
+  
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.016552448272705 / 31.982143878936768 / 47.99869632720947
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    have h₂ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+      simpa [Complex.abs, Complex.normSq, Complex.re, Complex.im, Complex.ext_iff, pow_two, mul_comm] using
+        calc
+          |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+            simp_all [Complex.abs, Complex.normSq, Complex.re, Complex.im, Complex.ext_iff, pow_two, mul_comm]
+            <;>
+            exact?
+          _ = ∑ i : Fin n, |(z i).re| := by rfl
+    exact h₂
+  exact h₁
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.316978693008423 / 23.149600744247437 / 35.46657943725586
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    simpa [Complex.abs, Complex.normSq, Complex.re, Complex.im, Complex.ext_iff,
+      Real.sqrt_nonneg, sq_nonneg, add_nonneg, mul_self_nonneg] using
+      calc
+        |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+          exact?
+        _ = ∑ i : Fin n, |(z i).re| := by rfl
+  exact h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.937547445297241 / 22.95277428627014 / 38.89032173156738
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    have h₂ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+      simpa [Complex.abs, Complex.normSq, Complex.re, Complex.im, Finset.sum_const, Finset.card_fin] using
+        calc
+          |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+            simp_all [Complex.abs, Complex.normSq, Complex.re, Complex.im, Finset.sum_const, Finset.card_fin]
+            <;>
+            exact?
+          _ = ∑ i : Fin n, |(z i).re| := by rfl
+    exact h₂
+  exact h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 65.95394849777222 / 8.684819459915161 / 74.63876795768738
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    have h₂ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+      simp [Complex.abs, Complex.normSq, Complex.re, Complex.im, Complex.ext_iff, pow_two, mul_comm]
+      <;>
+      exact
+        calc
+          |Real.sqrt (∑ i : Fin n, (z i).re ^ 2 + (∑ i : Fin n, (z i).im ^ 2))| ≤
+              Real.sqrt (∑ i : Fin n, (z i).re ^ 2 + (∑ i : Fin n, (z i).im ^ 2)) := by
+            exact le_rfl
+          _ ≤ ∑ i : Fin n, |(z i).re| := by
+            -- Use the fact that the square root of a sum of squares is less than or equal to the sum of the absolute values of the real and imaginary parts
+            apply Real.sqrt_le_iff.mpr
+            constructor
+            · positivity
+            · have h₃ : ∑ i : Fin n, (z i).re ^ 2 + ∑ i : Fin n, (z i).im ^ 2 ≤ (∑ i : Fin n, |(z i).re|) ^ 2 := by
+                -- Use the fact that the square of the sum of absolute values is greater than or equal to the sum of the squares of the real and imaginary parts
+                have h₄ : ∀ i : Fin n, (z i).re ^ 2 + (z i).im ^ 2 ≤ |(z i).re| ^ 2 + |(z i).im| ^ 2 := by
+                  intro i
+                  cases' le_total 0 ((z i).re) with h₅ h₅ <;> cases' le_to
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 4.983536720275879 / 21.879246473312378 / 26.862783193588257
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  simp [Finset.abs_sum_le_sum_abs]
+  <;>
+  exact?
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.868139505386353 / 25.93017888069153 / 41.79831838607788
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b6
+(n : ℕ)
+(z : Fin n → ℂ)
+: (|((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re|) := by
+  have h₁ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+    have h₂ : |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+      simpa [Complex.abs, Complex.normSq, Complex.re, Complex.im, Complex.ext_iff, pow_two, mul_comm] using
+        calc
+          |((∑ i : Fin n, (z i) ^ 2) ^ ((1 : ℂ) / 2)).re| ≤ ∑ i : Fin n, |(z i).re| := by
+            simp_all [Complex.abs, Complex.normSq, Complex.re, Complex.im, Complex.ext_iff, pow_two, mul_comm]
+            all_goals
+              exact?
+          _ = ∑ i : Fin n, |(z i).re| := by rfl
+    exact h₂
+  exact h₁

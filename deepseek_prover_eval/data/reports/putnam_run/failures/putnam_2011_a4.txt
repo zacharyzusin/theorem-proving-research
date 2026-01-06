@@ -1,0 +1,158 @@
+Problem: putnam_2011_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.532164335250854 / 8.343204021453857 / 25.875368356704712
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.942864179611206 / 7.5013346672058105 / 29.444198846817017
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 26.451544046401978 / 7.574759483337402 / 34.02630352973938
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.238412380218506 / 8.065208435058594 / 26.3036208152771
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.516974687576294 / 7.7443060874938965 / 17.26128077507019
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.207546710968018 / 7.739093780517578 / 30.946640491485596
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.46457839012146 / 7.388671636581421 / 16.85325002670288
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.387763023376465 / 7.176865816116333 / 21.564628839492798
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a4
+    (nmat : ℕ → Prop)
+    (hnmat : ∀ n, nmat n ↔
+      ∃ A : Matrix (Fin n) (Fin n) ℤ,
+        (∀ r, Even ((A r) ⬝ᵥ (A r))) ∧
+        Pairwise fun r1 r2 ↦ Odd ((A r1) ⬝ᵥ (A r2)))
+    (n : ℕ) (npos : 0 < n) :
+    nmat n ↔ n ∈ putnam_2011_a4_solution :=
+  sorry

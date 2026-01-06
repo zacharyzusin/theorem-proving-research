@@ -1,0 +1,16 @@
+Problem: problem_0276
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.751145124435425
+Lean check time (s): 2.697068691253662
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_132 :
+  2004 % 12 = 0 := by
+  simp [Nat.mod_eq_of_lt, show 2004 % 12 = 0 by norm_num]

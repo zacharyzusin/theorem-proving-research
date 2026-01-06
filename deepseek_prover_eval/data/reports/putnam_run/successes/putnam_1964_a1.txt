@@ -1,0 +1,20 @@
+Problem: putnam_1964_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 34.18934178352356
+Lean check time (s): 14.186905145645142
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_a1
+(A : Finset (EuclideanSpace ℝ (Fin 2)))
+(hAcard : A.card = 6)
+(dists : Set ℝ)
+(hdists : dists = {d : ℝ | ∃ a b : EuclideanSpace ℝ (Fin 2), a ∈ A ∧ b ∈ A ∧ a ≠ b ∧ d = dist a b})
+: (sSup dists / sInf dists ≥ Real.sqrt 3) :=
+sorry

@@ -1,0 +1,26 @@
+Problem: problem_0280
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 9.108628511428833
+Lean check time (s): 3.874016046524048
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_divisibility_3divnto3m2n
+  (n : ℕ) :
+  3 ∣ n^3 + 2 * n := by
+  induction' n with n ih
+  · norm_num
+  · have h₁ : (n + 1)^3 + 2 * (n + 1) = n^3 + 2 * n + 3 * (n^2 + n + 1) := by
+      ring
+    rw [h₁]
+    apply Nat.dvd_add
+    · simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]
+      <;> ring_nf at * <;> omega
+    · simp_all [Nat.dvd_iff_mod_eq_zero, Nat.pow_succ]
+      <;> ring_nf at * <;> omega

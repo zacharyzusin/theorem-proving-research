@@ -1,0 +1,182 @@
+Problem: putnam_1975_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.526955366134644 / 15.828320741653442 / 36.355276107788086
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 32.87196373939514 / 14.19677209854126 / 47.0687358379364
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.249650239944458 / 19.93326234817505 / 40.18291258811951
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 34.894182443618774 / 42.23648977279663 / 77.1306722164154
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.10607624053955 / 76.6994240283966 / 103.80550026893616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 42.96987509727478 / 18.34282422065735 / 61.31269931793213
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.562078714370728 / 29.367677927017212 / 50.92975664138794
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.915690660476685 / 20.063250303268433 / 43.97894096374512
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a3
+(a b c : ℝ)
+(hi : 0 < a ∧ a < b ∧ b < c)
+(P : (ℝ × ℝ × ℝ) → Prop)
+(f : (ℝ × ℝ × ℝ) → ℝ)
+(hP : P = fun (x, y, z) => x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0 ∧ x^b + y^b + z^b = 1)
+(hf : f = fun (x, y, z) => x^a + y^b + z^c)
+: (P (putnam_1975_a3_solution.1 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≤ f (putnam_1975_a3_solution.1 (a, b, c))) ∧
+(P (putnam_1975_a3_solution.2 (a, b, c)) ∧ ∀ x y z : ℝ, P (x, y, z) →
+f (x, y, z) ≥ f (putnam_1975_a3_solution.2 (a, b, c))) :=
+sorry

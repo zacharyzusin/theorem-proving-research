@@ -1,0 +1,30 @@
+Problem: problem_0230
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 14.06650424003601
+Lean check time (s): 4.703748941421509
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1983_p2
+  (x p : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < p ∧ p < 15)
+  (h₁ : p ≤ x ∧ x ≤ 15)
+  (h₂ : f x = abs (x - p) + abs (x - 15) + abs (x - p - 15)) :
+  15 ≤ f x := by
+  have h₃ : 0 < p := by linarith
+  have h₄ : p ≤ x := by linarith
+  have h₅ : x ≤ 15 := by linarith
+  have h₆ : f x = abs (x - p) + abs (x - 15) + abs (x - p - 15) := by linarith
+  rw [h₆]
+  cases' le_total 0 (x - p) with h₇ h₇ <;>
+    cases' le_total 0 (x - 15) with h₈ h₈ <;>
+    cases' le_total 0 (x - p - 15) with h₉ h₉ <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos] <;>
+    nlinarith

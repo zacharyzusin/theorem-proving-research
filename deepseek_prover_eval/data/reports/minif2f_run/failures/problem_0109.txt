@@ -1,0 +1,438 @@
+Problem: problem_0109
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.977656364440918 / 5.37737512588501 / 34.35503149032593
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, mul_assoc]
+  ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+  <;> norm_num
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.022976398468018 / 5.514965295791626 / 29.537941694259644
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+  ring
+  <;>
+    norm_num
+  <;>
+    simp_all [Real.log_mul, Real.log_rpow]
+  <;>
+    ring_nf
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    norm_num
+  <;>
+    linarith [Real.log_pos (by norm_num : (1 : ℝ) < 4),
+      Real.log_pos (by norm_num : (1 : ℝ) < 5),
+      Real.log_pos (by norm_num : (1 : ℝ) < 6),
+      Real.log_pos (by norm_num : (1 : ℝ) < 7),
+      Real.log_pos (by norm_num : (1 : ℝ) < 8)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.976601362228394 / 4.505335569381714 / 23.481936931610107
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, Real.log_pow, mul_assoc]
+  ring
+  <;>
+    norm_num
+  <;>
+    simp_all [Real.log_mul, Real.log_pow, mul_assoc]
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_pow, mul_assoc]
+  <;>
+    ring
+  <;>
+    norm_num
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 24.0849289894104 / 5.999278783798218 / 30.084207773208618
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+  ring
+  <;> norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.67857789993286 / 4.767784833908081 / 25.446362733840942
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+  ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring
+  <;>
+    norm_num
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.35640549659729 / 5.448735475540161 / 26.80514097213745
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, Real.log_rpow, mul_assoc]
+  ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow, mul_assoc]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow, mul_assoc]
+  <;>
+    ring
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow, mul_assoc]
+  <;>
+    ring
+  <;>
+    norm_num
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.18458914756775 / 4.694427490234375 / 34.879016637802124
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  have h₉ : Real.logb 4 5 * Real.logb 5 6 = Real.logb 4 6 := by
+    field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+    <;> ring
+  have h₁₀ : Real.logb 4 6 * Real.logb 6 7 = Real.logb 4 7 := by
+    field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+    <;> ring
+  have h₁₁ : Real.logb 4 7 * Real.logb 7 8 = Real.logb 4 8 := by
+    field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+    <;> ring
+  have h₁₂ : Real.logb 4 8 = (Real.log 8) / (Real.log 4) := by
+    rw [Real.logb]
+  have h₁₃ : Real.log 8 = 3 * Real.log 2 := by
+    rw [← Real.log_rpow] <;> norm_num
+  have h₁₄ : Real.log 4 = 2 * Real.log 2 := by
+    rw [← Real.log_rpow] <;> norm_num
+  rw [h₁₂, h₁₃, h₁₄] at *
+  field_simp
+  <;> ring
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_rpow]
+  <;> ring
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.42933940887451 / 4.632736444473267 / 29.06207585334778
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_598
+  (a b c d : ℝ)
+  (h₁ : ((4:ℝ)^a) = 5)
+  (h₂ : ((5:ℝ)^b) = 6)
+  (h₃ : ((6:ℝ)^c) = 7)
+  (h₄ : ((7:ℝ)^d) = 8) :
+  a * b * c * d = 3 / 2 := by
+  have h₅ : a = Real.logb 4 5 := by
+    rw [Real.logb, ← h₁]
+    field_simp [Real.log_rpow]
+  have h₆ : b = Real.logb 5 6 := by
+    rw [Real.logb, ← h₂]
+    field_simp [Real.log_rpow]
+  have h₇ : c = Real.logb 6 7 := by
+    rw [Real.logb, ← h₃]
+    field_simp [Real.log_rpow]
+  have h₈ : d = Real.logb 7 8 := by
+    rw [Real.logb, ← h₄]
+    field_simp [Real.log_rpow]
+  rw [h₅, h₆, h₇, h₈]
+  field_simp [Real.logb, Real.log_mul, Real.log_rpow]
+  ring
+  <;>
+    norm_num
+  <;>
+    simp_all [Real.log_mul, Real.log_rpow]
+  <;>
+    ring_nf
+  <;>
+    norm_num
+  <;>
+    field_simp [Real.log_mul, Real.log_rpow]
+  <;>
+    ring_nf
+  <;>
+    norm_num
+  <;>
+    linarith [Real.log_pos (by norm_num : (1 : ℝ) < 4),
+      Real.log_pos (by norm_num : (1 : ℝ) < 5),
+      Real.log_pos (by norm_num : (1 : ℝ) < 6),
+      Real.log_pos (by norm_num : (1 : ℝ) < 7),
+      Real.log_pos (by norm_num : (1 : ℝ) < 8)]
+

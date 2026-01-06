@@ -1,0 +1,265 @@
+Problem: problem_0176
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.56107783317566 / 3.3425750732421875 / 12.903652906417847
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  subst h₀
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.779868841171265 / 3.2889297008514404 / 12.068798542022705
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  norm_num [h₀]
+  <;> rw [show (16 : ℝ) = 8 + 8 by norm_num]
+  <;> rw [show (8 : ℝ) = 2 ^ 3 by norm_num]
+  <;> rw [show (2 : ℝ) ^ 3 = 8 by norm_num]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.44516897201538 / 2.6272683143615723 / 13.072437286376953
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  rw [h₀]
+  norm_num
+  <;>
+  simp_all [pow_one]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  rw [← Real.sqrt_eq_rpow]
+  <;>
+  norm_num
+  <;>
+  rw [← Real.sqrt_eq_rpow]
+  <;>
+  norm_num
+  <;>
+  rw [← Real.sqrt_eq_rpow]
+  <;>
+  norm_num
+  <;>
+  rw [← Real.sqrt_eq_rpow]
+  <;>
+  norm_num
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.133535861968994 / 2.500267744064331 / 12.633803606033325
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  rw [h₀]
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  rw [show (8 : ℝ) = 2 ^ (3 : ℝ) by norm_num]
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  rw [show (2 : ℝ) ^ (1 : ℝ) = 2 by norm_num]
+  <;>
+  norm_num
+  <;>
+  rw [show (2 : ℝ) ^ (3 : ℝ) = 8 by norm_num]
+  <;>
+  norm_num
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.664917945861816 / 2.626572608947754 / 12.29149055480957
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  subst h₀
+  norm_num [show (16 : ℝ) = 2 ^ 4 by norm_num, show (8 : ℝ) = 2 ^ 3 by norm_num]
+  <;> rw [← Real.rpow_nat_cast]
+  <;> norm_num
+  <;> rw [← Real.rpow_mul] <;> norm_num
+  <;> rw [← Real.rpow_mul] <;> norm_num
+  <;> rw [← Real.rpow_mul] <;> norm_num
+  <;> rw [← Real.rpow_mul] <;> norm_num
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.274003744125366 / 2.6278955936431885 / 17.901899337768555
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  subst h₀
+  norm_num [pow_one]
+  <;> rw [show (16 : ℝ) = 8 + 8 by norm_num]
+  <;> rw [show (8 : ℝ) = 2 ^ 3 by norm_num]
+  <;> rw [show (2 : ℝ) ^ 3 = 2 ^ 3 by rfl]
+  <;> norm_num [pow_one]
+  <;> ring_nf
+  <;> norm_num
+  <;> rw [show (4 : ℝ) = 2 ^ 2 by norm_num]
+  <;> rw [show (2 : ℝ) ^ 2 = 2 ^ 2 by rfl]
+  <;> norm_num [pow_one]
+  <;> ring_nf
+  <;> norm_num
+  <;> rw [show (4 : ℝ) = 2 ^ 2 by norm_num]
+  <;> rw [show (2 : ℝ) ^ 2 = 2 ^ 2 by rfl]
+  <;> norm_num [pow_one]
+  <;> ring_nf
+  <;> norm_num
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.172771453857422 / 2.4820430278778076 / 11.65481448173523
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  rw [h₀]
+  norm_num
+  <;> simp_all [pow_one]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> rw [← Real.sqrt_eq_rpow]
+  <;> norm_num
+  <;> rw [← Real.sqrt_eq_rpow]
+  <;> norm_num
+  <;> rw [← Real.sqrt_eq_rpow]
+  <;> norm_num
+  <;> rw [← Real.sqrt_eq_rpow]
+  <;> norm_num
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.010928630828857 / 2.6598167419433594 / 12.670745372772217
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_114
+  (a : ℝ)
+  (h₀ : a = 8) :
+  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by
+  subst h₀
+  norm_num
+  <;> rw [show (16 : ℝ) = 4 ^ 2 by norm_num]
+  <;> rw [show (8 : ℝ) = 2 ^ 3 by norm_num]
+  <;> rw [show (4 : ℝ) = 2 ^ 2 by norm_num]
+  <;> ring_nf
+  <;> norm_num
+  <;> rw [← Real.rpow_nat_cast]
+  <;> norm_num
+  <;> rw [← Real.rpow_mul]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+

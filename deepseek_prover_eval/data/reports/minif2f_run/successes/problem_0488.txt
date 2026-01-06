@@ -1,0 +1,25 @@
+Problem: problem_0488
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.160531759262085
+Lean check time (s): 3.433474063873291
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_10 :
+  abs ((120 : ℝ)/100 * 30 - 130/100 * 20) = 10 := by
+  norm_num [abs_of_pos, abs_of_nonneg, div_eq_mul_inv, mul_assoc]
+  <;> ring_nf
+  <;> norm_num
+  <;> apply abs_of_nonneg
+  <;> norm_num
+  <;> apply le_of_lt
+  <;> norm_num
+  <;> field_simp
+  <;> norm_num
+  <;> linarith

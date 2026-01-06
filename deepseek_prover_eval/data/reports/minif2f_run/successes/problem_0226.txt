@@ -1,0 +1,22 @@
+Problem: problem_0226
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.878891944885254
+Lean check time (s): 2.553715467453003
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_314
+  (n : ℕ)
+  (h₀ : n = 11) :
+  (1 / 4)^(n + 1) * 2^(2 * n) = 1 / 4 := by
+  subst h₀
+  norm_num
+  <;> simp [pow_add, pow_mul, mul_assoc]
+  <;> norm_num
+  <;> rfl

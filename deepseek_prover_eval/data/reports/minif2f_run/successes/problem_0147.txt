@@ -1,0 +1,19 @@
+Problem: problem_0147
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.471458911895752
+Lean check time (s): 3.3488268852233887
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_304 :
+  91^2 = 8281 := by
+  norm_num
+  <;> rfl
+  <;> norm_num
+  <;> rfl

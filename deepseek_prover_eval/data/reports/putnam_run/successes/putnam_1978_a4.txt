@@ -1,0 +1,19 @@
+Problem: putnam_1978_a4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 31.827679872512817
+Lean check time (s): 18.51612114906311
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a4
+(bypass : (S : Type) → [inst : Mul S] → Prop)
+(hbypass : bypass = fun S [Mul S] ↦ ∀ a b c d : S, (a * b) * (c * d) = a * d)
+: ((∀ (S : Type) (_ : Mul S), bypass S → ∀ a b c : S, a * b = c → (c * c = c ∧ ∀ d : S, a * d = c * d))
+  ∧ (∃ (S : Type) (_ : Mul S) (_ : Fintype S), bypass S ∧ (∀ a : S, a * a = a) ∧ (∃ a b : S, a * b = a ∧ a ≠ b) ∧ (∃ a b : S, a * b ≠ a))) :=
+sorry

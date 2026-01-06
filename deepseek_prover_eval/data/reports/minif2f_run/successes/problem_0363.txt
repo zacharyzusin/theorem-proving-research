@@ -1,0 +1,27 @@
+Problem: problem_0363
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.585843563079834
+Lean check time (s): 4.047800302505493
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_461
+  (n : ℕ)
+  (h₀ : n = Finset.card (Finset.filter (λ x => Nat.gcd x 8 = 1) (Finset.Icc 1 7))) :
+  (3^n) % 8 = 1 := by
+  have h₁ : n = 4 := by
+    rw [h₀]
+    rfl
+  rw [h₁]
+  norm_num
+  <;> rfl
+  <;> simp_all
+  <;> decide
+  <;> decide
+  <;> decide

@@ -1,0 +1,226 @@
+Problem: problem_0041
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.943237543106079 / 600.1631631851196 / 614.1064007282257
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp only [h₀, h₁] at h₂ h₃
+  have h₅ : x^4 = 5 * x^2 - 6 := by linarith
+  have h₆ : y^4 = 5 * y^2 - 6 := by linarith
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - y^2),
+    sq_nonneg (x^2 + y^2 - 2), sq_nonneg (x^2 + y^2 + 2)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.472870588302612 / 600.132896900177 / 612.6057674884796
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp only [h₀, h₁] at h₂ h₃
+  have h₅ := h₂
+  have h₆ := h₃
+  have h₇ := h₄
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - y^2),
+    sq_nonneg (x^2 + y^2 - 2), sq_nonneg (x^2 + y^2 + 2)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.535797119140625 / 600.0666966438293 / 613.60249376297
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp_all only [h₀, h₁, sub_eq_iff_eq_add, add_comm]
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (y^2 + 1),
+    mul_self_nonneg (x^2 - y^2), mul_self_nonneg (x^2 + y^2), mul_self_nonneg (x^2 - 2),
+    mul_self_nonneg (y^2 - 2), mul_self_nonneg (x^2 + 2), mul_self_nonneg (y^2 + 2)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.170516014099121 / 600.1473371982574 / 612.3178532123566
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp only [h₀, h₁] at h₂ h₃
+  ring_nf at h₂ h₃
+  have h₅ : x^2 < y^2 := h₄
+  nlinarith [sq_nonneg (x^2 - y^2), sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - y^2 + 1),
+    sq_nonneg (x^2 - y^2 - 1), sq_nonneg (x^2 + y^2 - 1), sq_nonneg (x^2 + y^2 + 1)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.967888355255127 / 600.2838299274445 / 613.2517182826996
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp_all only [h₀, h₁, sub_eq_iff_eq_add, add_comm]
+  nlinarith [sq_nonneg (x ^ 2 - 1), sq_nonneg (y ^ 2 - 1), sq_nonneg (x ^ 2 + 1), sq_nonneg (y ^ 2 + 1),
+    sq_nonneg (x ^ 2 - y ^ 2), sq_nonneg (x ^ 2 + y ^ 2), sq_nonneg (x ^ 2 - x), sq_nonneg (y ^ 2 - y),
+    sq_nonneg (x - y), sq_nonneg (x + y)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.828725099563599 / 600.1521420478821 / 611.9808671474457
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp_all only [h₀, h₁, sub_eq_iff_eq_add, add_comm]
+  ring_nf
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (y^2 + 1),
+    sq_nonneg (x^2 - y^2), sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - x), sq_nonneg (y^2 - y)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.063881874084473 / 600.1538715362549 / 613.2177534103394
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  have h₅ : x^4 = 5 * x^2 - 6 := by linarith [h₀ x, h₁ x, h₂]
+  have h₆ : y^4 = 5 * y^2 - 6 := by linarith [h₀ y, h₁ y, h₃]
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 - y^2),
+    sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - y^2 + 2), sq_nonneg (x^2 - y^2 - 2)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.909247875213623 / 600.1314902305603 / 612.0407381057739
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_156
+  (x y : ℝ)
+  (f g : ℝ → ℝ)
+  (h₀ : ∀t, f t = t^4)
+  (h₁ : ∀t, g t = 5 * t^2 - 6)
+  (h₂ : f x = g x)
+  (h₃ : f y = g y)
+  (h₄ : x^2 < y^2) :
+  y^2 - x^2 = 1 := by
+  simp_all only [h₀, h₁, sub_eq_iff_eq_add, add_comm]
+  ring_nf at *
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (y^2 + 1),
+    sq_nonneg (x^2 - y^2), sq_nonneg (x^2 + y^2), sq_nonneg (x^2 - x), sq_nonneg (y^2 - y)]
+

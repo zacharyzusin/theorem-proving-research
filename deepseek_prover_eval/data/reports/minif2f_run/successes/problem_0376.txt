@@ -1,0 +1,30 @@
+Problem: problem_0376
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.161316156387329
+Lean check time (s): 3.5171890258789062
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_136
+  (n : ℕ)
+  (h₀ : 123 * n + 17 = 39500) : n = 321 := by
+  have h₁ : n = 321 := by
+    -- We need to solve the equation 123n + 17 = 39500 for n.
+    -- First, we isolate the term with n by subtracting 17 from both sides.
+    -- 123n + 17 - 17 = 39500 - 17
+    -- 123n = 39483
+    -- Next, we divide both sides by 123 to solve for n.
+    -- n = 39483 / 123
+    -- We calculate 39483 / 123 to find n.
+    -- 39483 / 123 = 321
+    -- Therefore, n = 321.
+    apply Eq.symm
+    ring_nf at h₀ ⊢
+    omega
+  exact h₁

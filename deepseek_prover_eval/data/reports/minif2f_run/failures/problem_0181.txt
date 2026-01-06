@@ -1,0 +1,638 @@
+Problem: problem_0181
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 87.07023477554321 / 4.295487642288208 / 91.36572241783142
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 73.60120058059692 / 14.478859186172485 / 88.08005976676941
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 86.50952816009521 / 3.6411757469177246 / 90.15070390701294
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 72.77012205123901 / 12.608471632003784 / 85.3785936832428
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 86.11243796348572 / 4.170360088348389 / 90.2827980518341
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 86.29774951934814 / 4.229473114013672 / 90.52722263336182
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 86.22716665267944 / 4.132033109664917 / 90.35919976234436
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 86.56294322013855 / 4.268957138061523 / 90.83190035820007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p7
+  (f : ℤ → ℤ)
+  (h₀ : ∀ n, 1000 ≤ n → f n = n - 3)
+  (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) :
+  f 84 = 997 := by
+  have h₂ := h₁ 84
+  have h₃ := h₁ 89
+  have h₄ := h₁ 94
+  have h₅ := h₁ 99
+  have h₆ := h₁ 104
+  have h₇ := h₁ 109
+  have h₈ := h₁ 114
+  have h₉ := h₁ 119
+  have h₁₀ := h₁ 124
+  have h₁₁ := h₁ 129
+  have h₁₂ := h₁ 134
+  have h₁₃ := h₁ 139
+  have h₁₄ := h₁ 144
+  have h₁₅ := h₁ 149
+  have h₁₆ := h₁ 154
+  have h₁₇ := h₁ 159
+  have h₁₈ := h₁ 164
+  have h₁₉ := h₁ 169
+  have h₂₀ := h₁ 174
+  have h₂₁ := h₁ 179
+  have h₂₂ := h₁ 184
+  have h₂₃ := h₁ 189
+  have h₂₄ := h₁ 194
+  have h₂₅ := h₁ 199
+  have h₂₆ := h₁ 204
+  have h₂₇ := h₁ 209
+  have h₂₈ := h₁ 214
+  have h₂₉ := h₁ 219
+  have h₃₀ := h₁ 224
+  have h₃₁ := h₁ 229
+  have h₃₂ := h₁ 234
+  have h₃₃ := h₁ 239
+  have h₃₄ := h₁ 244
+  have h₃₅ := h₁ 249
+  have h₃₆ := h₁ 254
+  have h₃₇ := h₁ 259
+  have h₃₈ := h₁ 264
+  have h₃₉ := h₁ 269
+  have h₄₀ := h₁ 274
+  have h₄₁ := h₁ 279
+  have h₄₂ := h₁ 284
+  have h₄₃ := h₁ 289
+  have h₄₄ := h₁ 294
+  have h₄₅ := h₁ 299
+  have h₄₆ := h₁ 304
+  have h₄₇ := h₁ 309
+  have h₄₈ := h₁ 314
+  have h₄₉ := h₁ 319
+  have h₅₀ := h₁ 324
+  have h₅₁ := h₁ 329
+  have h₅₂ := h₁ 334
+  have h₅₃ := h₁ 339
+  have h₅₄ := h₁ 344
+  have h₅₅ := h₁ 349
+  have h₅₆ := h₁ 354
+  have h₅₇ := h₁ 359
+  have h₅₈ := h₁ 364
+  have h₅₉ := h₁ 369
+  have h₆₀ := h₁ 374
+  have h₆₁ := h₁ 379
+  have h₆₂ := h₁ 384
+  have h₆₃ := h₁ 389
+  have 
+... [truncated] ...

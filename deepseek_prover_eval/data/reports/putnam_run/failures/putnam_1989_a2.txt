@@ -1,0 +1,246 @@
+Problem: putnam_1989_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 19.067524194717407 / 21.412992477416992 / 40.4805166721344
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+    simp [putnam_1989_a2_solution]
+    <;> field_simp [abpos.1.ne', abpos.2.ne', Real.exp_ne_zero]
+    <;> ring_nf
+    <;> norm_cast
+    <;> field_simp [abpos.1.ne', abpos.2.ne', Real.exp_ne_zero]
+    <;> norm_cast
+    <;> simp_all [Real.exp_ne_zero]
+    <;> norm_cast
+    <;> simp_all [Real.exp_ne_zero]
+    <;> norm_cast
+    <;> simp_all [Real.exp_ne_zero]
+    <;> norm_cast
+    <;> simp_all [Real.exp_ne_zero]
+    <;> norm_cast
+    <;> simp_all [Real.exp_ne_zero]
+    <;> norm_cast
+    <;> simp_all [Real.exp_ne_zero]
+    <;> norm_cast
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.522932767868042 / 41.151901721954346 / 50.67483448982239
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+    simp_all [putnam_1989_a2_solution]
+    <;>
+    rfl
+  exact h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.866772413253784 / 31.170445203781128 / 54.03721761703491
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (b ^ 2 * x ^ 2) * Real.exp (a ^ 2 * y ^ 2) / (Real.exp (b ^ 2 * x ^ 2) + Real.exp (a ^ 2 * y ^ 2)) := by
+    apply integral_congr_ae
+    filter_upwards [ae_restrict_mem measurableSet_Ioo, ae_restrict_mem measurableSet_Ioo] with x hx y hy
+    have hx' : 0 < x := hx.1
+    have hy' : 0 < y := hy.1
+    have hx'' : x < a := hx.2
+    have hy'' : y < b := hy.2
+    simp [max_eq_left, max_eq_right, Real.exp_add, mul_assoc, mul_comm, mul_left_comm]
+    <;>
+    ring_nf
+    <;>
+    field_simp [Real.exp_ne_zero]
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    linarith [hx', hy', hx'', hy'']
+  simp_all [putnam_1989_a2_solution]
+  <;>
+  field_simp [Real.exp_ne_zero]
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  linarith [abpos.1, abpos.2]
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 43.061697244644165 / 18.36411142349243 / 61.4258086681366
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have step1 : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+    have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (b ^ 2 * x ^ 2) * Real.exp (a ^ 2 * y ^ 2) := by
+      apply congr_arg (fun z => ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, z)
+      funext x
+      funext y
+      have h₂ : max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2) = b ^ 2 * x ^ 2 + a ^ 2 * y ^ 2 - (b ^ 2 * x ^ 2 + a ^ 2 * y ^ 2 - max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) := by
+        ring_nf
+        <;> cases' le_total (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2) with h h <;> simp_all [max_eq_left, max_eq_right, le_refl, le_of_lt] <;>
+        nlinarith
+      rw [h₂]
+      <;> simp [Real.exp_add, mul_add, add_mul]
+      <;> ring
+      <;> field_simp
+      <;> ring
+    rw [h₁]
+    have h₂ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (b ^ 2 * x ^ 2) * Real.exp (a ^ 2 * y ^ 2) = (∫ x in Set.Ioo 0 a, Real.exp (b ^ 2 * x ^ 2) * ∫ y in Set.Ioo 0 b, Real.exp (a ^ 2 * y ^ 2)) := by
+      simp [mul_comm]
+      <;> field_simp
+      <;> congr 1
+      <;> ext x
+      <;> congr 1
+      <;> ext y
+      <;> ring
+    rw 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.605609893798828 / 17.00281524658203 / 26.60842514038086
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+    simp_all [putnam_1989_a2_solution]
+    <;>
+    rfl
+  exact h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.223344802856445 / 26.451601266860962 / 35.67494606971741
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+    simp [putnam_1989_a2_solution]
+    <;> aesop
+  exact h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 28.310657739639282 / 25.779689073562622 / 54.090346813201904
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (b ^ 2 * x ^ 2) * Real.exp (a ^ 2 * y ^ 2) / (Real.exp (b ^ 2 * x ^ 2) + Real.exp (a ^ 2 * y ^ 2)) := by
+    apply integral_congr_ae
+    filter_upwards [ae_restrict_mem measurableSet_Ioo, ae_restrict_mem measurableSet_Ioo] with x hx y hy
+    have hx' : 0 < x := hx.1
+    have hx'' : x < a := hx.2
+    have hy' : 0 < y := hy.1
+    have hy'' : y < b := hy.2
+    have h₁ : 0 ≤ b ^ 2 * x ^ 2 := by positivity
+    have h₂ : 0 ≤ a ^ 2 * y ^ 2 := by positivity
+    have h₃ : max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2) = b ^ 2 * x ^ 2 ∨ max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2) = a ^ 2 * y ^ 2 := by
+      by_cases h : b ^ 2 * x ^ 2 ≥ a ^ 2 * y ^ 2
+      · exact Or.inl (by simp [h, max_eq_left])
+      · exact Or.inr (by simp [h, max_eq_right])
+    cases h₃ with
+    | inl h₃ =>
+      simp_all [h₃, Real.exp_add, mul_assoc]
+      <;> field_simp [Real.exp_ne_zero]
+    | inr h₃ =>
+      simp_all [h₃, Real.exp_add, mul_assoc]
+      <;> field_simp [Real.exp_ne_zero]
+  simp_all [putnam_1989_a2_solution]
+  <;> rfl
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 28.83213210105896 / 25.52077007293701 / 54.35290217399597
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_a2
+(a b : ℝ)
+(abpos : a > 0 ∧ b > 0)
+: ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = putnam_1989_a2_solution a b := by
+  have h₁ : ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2)) = ∫ x in Set.Ioo 0 a, ∫ y in Set.Ioo 0 b, Real.exp (b ^ 2 * x ^ 2) * Real.exp (a ^ 2 * y ^ 2) / (Real.exp (b ^ 2 * x ^ 2) + Real.exp (a ^ 2 * y ^ 2)) := by
+    apply integral_congr_ae
+    filter_upwards [ae_restrict_mem measurableSet_Ioo, ae_restrict_mem measurableSet_Ioo] with x hx y hy
+    have h₁ : 0 < x := hx.1
+    have h₂ : x < a := hx.2
+    have h₃ : 0 < y := hy.1
+    have h₄ : y < b := hy.2
+    have h₅ : max (b ^ 2 * x ^ 2) (a ^ 2 * y ^ 2) = Real.log (Real.exp (b ^ 2 * x ^ 2) + Real.exp (a ^ 2 * y ^ 2)) := by
+      rw [max_def]
+      split_ifs <;>
+      field_simp [Real.exp_log, Real.exp_pos, add_comm] <;>
+      nlinarith [Real.exp_pos (b ^ 2 * x ^ 2), Real.exp_pos (a ^ 2 * y ^ 2)]
+    simp_all [Real.exp_log, Real.exp_pos, add_comm]
+    <;>
+    field_simp [Real.exp_log, Real.exp_pos, add_comm] <;>
+    nlinarith [Real.exp_pos (b ^ 2 * x ^ 2), Real.exp_pos (a ^ 2 * y ^ 2)]
+  simp_all [putnam_1989_a2_solution]
+  <;>
+  field_simp [Real.exp_log, Real.exp_pos, add_comm] <;>
+  nlinarith [Real.exp_pos (b ^ 2 * a ^ 2), Real.exp_pos (a ^ 2 * b ^ 2)]

@@ -1,0 +1,27 @@
+Problem: problem_0209
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 16.571421146392822
+Lean check time (s): 3.420105218887329
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p13 :
+  Real.sqrt (Real.log 6 / Real.log 2 + Real.log 6 / Real.log 3) = Real.sqrt (Real.log 3 / Real.log 2) + Real.sqrt (Real.log 2 / Real.log 3) := by
+  have h₁ : Real.log 6 = Real.log (2 * 3) := by norm_num
+  rw [h₁]
+  have h₂ : Real.log (2 * 3) = Real.log 2 + Real.log 3 := by rw [Real.log_mul (by norm_num) (by norm_num)]
+  rw [h₂]
+  have h₃ : (Real.log 2 + Real.log 3) / Real.log 2 + (Real.log 2 + Real.log 3) / Real.log 3 = Real.log 3 / Real.log 2 + Real.log 2 / Real.log 3 + 2 := by
+    field_simp [add_comm]
+    ring
+  rw [h₃]
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq] <;> ring_nf
+  <;> field_simp [add_comm]
+  <;> nlinarith [Real.log_pos (by norm_num : (1 : ℝ) < 2), Real.log_pos (by norm_num : (1 : ℝ) < 3),
+    Real.log_pos (by norm_num : (1 : ℝ) < 6)]

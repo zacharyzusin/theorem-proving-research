@@ -1,0 +1,395 @@
+Problem: putnam_1978_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 50.471991300582886 / 18.904057502746582 / 69.37604880332947
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step₁ : (∏ i : Fin n, sin (a i) / (a i)) ≤ (sin μ / μ) ^ n := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := ha
+    have h₂ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      have h := h₁ i
+      simp only [Ioo, and_imp, gt_iff_lt, lt_add_iff_pos_right] at h ⊢
+      aesop
+    have h₃ : ∀ i : Fin n, a i > 0 := by
+      intro i
+      exact h₂ i
+    have h₄ : ∀ i : Fin n, sin (a i) / a i ≤ sin μ / μ := by
+      intro i
+      have h₅ : a i ∈ Ioo 0 Real.pi := h₁ i
+      have h₆ : 0 < a i := h₂ i
+      have h₇ : a i ≤ μ := by
+        have h₈ : ∑ i : Fin n, a i / n = μ := by linarith [hμ]
+        have h₉ : a i / n ≤ μ / n := by
+          apply div_le_div_of_le_of_nonneg
+          exact Finset.single_le_sum (fun i _ => div_nonneg (by linarith [h₁ i |>.1, h₁ i |>.2]) (by positivity)) (by simp [Finset.mem_univ])
+          positivity
+        field_simp at h₈ h₉ ⊢
+        nlinarith
+      have h₈ : 0 < μ := by
+        have h₉ : ∑ i : Fin n, a i / n = μ := by linarith [hμ]
+        have h₁₀ : 0 < n := by positivity
+        have h₁₁ : 0 < ∑ i : Fin n, a i / n := by
+          have h₁₂ : ∑ i : Fin n, a i / n > 0 := by
+            apply Finset.sum_pos
+            · intro i _
+              exact div_pos (h₂ i)
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 76.48151421546936 / 46.35186147689819 / 122.83337569236755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step1 : (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := by exact ha
+    have h₂ : ∀ i : Fin n, 0 < a i ∧ a i < Real.pi := by
+      intro i
+      exact ⟨by linarith [h₁ i |>.1, h₁ i |>.2], by linarith [h₁ i |>.1, h₁ i |>.2]⟩
+    have h₃ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      exact (h₂ i).1
+    have h₄ : ∀ i : Fin n, a i < Real.pi := by
+      intro i
+      exact (h₂ i).2
+    have h₅ : ∀ i : Fin n, sin (a i) / a i ≤ sin μ / μ := by
+      intro i
+      have h₆ : 0 < a i := h₃ i
+      have h₇ : a i < Real.pi := h₄ i
+      have h₈ : 0 < μ := by
+        have h₉ : ∑ i : Fin n, a i / n > 0 := by
+          apply Finset.sum_pos
+          exact fun i _ => div_pos (h₃ i) (by positivity)
+          exact ⟨⟨0, by linarith [npos]⟩, by simp_all [Finset.mem_univ] <;> aesop⟩
+        simp_all [hμ]
+        <;> positivity
+      have h₉ : sin (a i) / a i ≤ sin μ / μ := by
+        -- Use the fact that the function \( f(x) = \frac{\sin x}{x} \) is decreasing in \( (0, \pi) \)
+        have h₁₀ : sin (a i) / a i ≤ sin μ / μ := by
+          -- Apply the Mean Value Theorem or similar ideas
+          have h₁₁ : a i ∈ Set.Ioo 0 Real.pi := by simpa using h₁ i
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 71.64768505096436 / 27.1270694732666 / 98.77475452423096
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step1 : (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := by intro i; exact ha i
+    have h₂ : ∀ i : Fin n, 0 < a i := by intro i; rcases h₁ i with ⟨h₁, _⟩; linarith
+    have h₃ : ∀ i : Fin n, a i ≤ Real.pi := by intro i; rcases h₁ i with ⟨_, h₂⟩; linarith
+    have h₄ : ∏ i : Fin n, (sin (a i) / a i) ≤ ∏ i : Fin n, (sin μ / μ) := by
+      apply Finset.prod_le_prod
+      · intro i _
+        have h₅ : 0 < a i := h₂ i
+        have h₆ : 0 < μ := by
+          have h₇ : ∑ i : Fin n, a i / n > 0 := by
+            apply Finset.sum_pos
+            · intro i _
+              exact div_pos (h₂ i) (by positivity)
+            · exact ⟨⟨0, by linarith⟩, by simp_all [hμ] <;> positivity⟩
+          simp_all [hμ]
+          <;> positivity
+        have h₇ : sin (a i) / a i ≥ 0 := by
+          apply div_nonneg
+          · exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [h₁ i], by linarith [h₁ i]⟩
+          · linarith [h₂ i]
+        have h₈ : sin μ / μ ≥ 0 := by
+          have h₉ : 0 < μ := by
+            have h₉ : ∑ i : Fin n, a i / n > 0 := by
+              apply Finset.sum_pos
+              · intro i _
+                exact div_pos (h₂ i) (by positivity)
+     
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 44.47965741157532 / 32.06409001350403 / 76.54374742507935
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step1 : (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := ha
+    have h₂ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      have h := h₁ i
+      simp only [Ioo, gt_iff_lt, lt_add_iff_pos_right] at h ⊢
+      aesop
+    have h₃ : ∀ i : Fin n, a i ≤ Real.pi := by
+      intro i
+      have h := h₁ i
+      simp only [Ioo, gt_iff_lt, lt_add_iff_pos_right] at h ⊢
+      linarith
+    have h₄ : ∀ i : Fin n, sin (a i) / a i ≤ sin μ / μ := by
+      intro i
+      have h₅ : 0 < a i := h₂ i
+      have h₆ : a i ≤ Real.pi := h₃ i
+      have h₇ : 0 < μ := by
+        have h₈ : ∑ i : Fin n, a i / n > 0 := by
+          apply Finset.sum_pos
+          exact fun i _ => div_pos (h₂ i) (by positivity)
+          exact ⟨⟨0, by linarith⟩, by simp_all [hμ] <;> aesop⟩
+        have h₉ : ∑ i : Fin n, a i / n = μ := by rw [hμ]
+        linarith
+      have h₈ : sin (a i) / a i ≤ sin μ / μ := by
+        have h₉ : a i ∈ Ioo 0 Real.pi := h₁ i
+        have h₁₀ : sin (a i) / a i ≤ sin μ / μ := by
+          -- Use the fact that sin is concave and the average of a_i is μ
+          have h₁₁ : sin (a i) / a i ≤ sin μ / μ := by
+            apply le_of_sub_nonneg
+            have h₁₂ : 0 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 44.628398180007935 / 46.65026640892029 / 91.27866458892822
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step1 : (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+    have h₁ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      have h := ha i
+      simp only [Set.mem_Ioo] at h
+      linarith
+    have h₂ : ∀ i : Fin n, a i < Real.pi := by
+      intro i
+      have h := ha i
+      simp only [Set.mem_Ioo] at h
+      linarith
+    have h₃ : ∏ i : Fin n, (sin (a i) / a i) ≤ (∏ i : Fin n, (sin μ / μ)) := by
+      have h₄ : ∀ i : Fin n, sin (a i) / a i ≤ sin μ / μ := by
+        intro i
+        have h₅ : 0 < a i := h₁ i
+        have h₆ : a i < Real.pi := h₂ i
+        have h₇ : 0 < μ := by
+          have h₈ : ∑ i : Fin n, a i / n > 0 := by
+            apply Finset.sum_pos
+            · intro i _
+              exact div_pos (h₁ i) (by positivity)
+            · exact ⟨⟨0, by linarith⟩, by simp_all [hμ] <;> positivity⟩
+          simp_all [hμ]
+          <;> positivity
+        have h₈ : sin (a i) / a i ≤ sin μ / μ := by
+          apply (div_le_div_iff (by positivity) (by positivity)).mpr
+          -- Use the fact that the function \( f(x) = \frac{\sin x}{x} \) is maximized at \( x = \mu \)
+          have h₉ : a i ≤ μ := by
+            simp_all [hμ]
+            <;>
+            exact
+              by
+           
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 72.52364420890808 / 24.55790400505066 / 97.08154821395874
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step1 : (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := ha
+    have h₂ : ∀ i : Fin n, 0 < a i ∧ a i < Real.pi := by
+      intro i
+      exact ⟨by linarith [h₁ i |>.1, h₁ i |>.2], by linarith [h₁ i |>.1, h₁ i |>.2]⟩
+    have h₃ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      exact (h₂ i).1
+    have h₄ : ∀ i : Fin n, a i < Real.pi := by
+      intro i
+      exact (h₂ i).2
+    have h₅ : ∀ i : Fin n, sin (a i) / a i ≤ sin μ / μ := by
+      intro i
+      have h₆ : 0 < a i := h₃ i
+      have h₇ : a i < Real.pi := h₄ i
+      have h₈ : 0 < μ := by
+        have h₉ : ∑ i : Fin n, a i / n > 0 := by
+          apply Finset.sum_pos
+          exact fun i _ => div_pos (h₃ i) (by positivity)
+          exact ⟨⟨0, by linarith [npos]⟩, by simp_all [hμ] <;> positivity⟩
+        simp_all [hμ]
+        <;> positivity
+      have h₉ : sin (a i) / a i ≤ sin μ / μ := by
+        have h₁₀ : a i ∈ Ioo 0 Real.pi := h₁ i
+        have h₁₁ : μ ∈ Ioo 0 Real.pi := by
+          have h₁₂ : μ = ∑ i : Fin n, a i / n := hμ
+          rw [hμ]
+          have h₁₃ : ∑ i : Fin n, a i / n > 0 := by
+            apply Finset.sum_pos
+            exact fun i _ => div_pos (h₃ i) (by positiv
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 41.75147032737732 / 23.13053607940674 / 64.88200640678406
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step1 : (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := ha
+    have h₂ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      rcases h₁ i with ⟨h₁, h₂⟩
+      linarith [Real.pi_pos]
+    have h₃ : ∀ i : Fin n, a i > 0 := by
+      intro i
+      exact h₂ i
+    have h₄ : ∀ i : Fin n, sin (a i) / a i ≤ sin μ / μ := by
+      intro i
+      have h₅ : 0 < a i := h₃ i
+      have h₆ : a i ∈ Ioo 0 Real.pi := h₁ i
+      have h₇ : 0 < μ := by
+        have h₇ : ∑ i : Fin n, a i / n > 0 := by
+          apply Finset.sum_pos
+          exact fun i _ => div_pos (h₂ i) (by positivity)
+          exact ⟨⟨0, by linarith [npos]⟩, by simp_all [hμ] <;> aesop⟩
+        simp_all [hμ]
+        <;> positivity
+      have h₈ : sin (a i) / a i ≤ sin μ / μ := by
+        have h₉ : sin (a i) / a i ≤ sin μ / μ := by
+          apply (div_le_div_iff (by positivity) (by positivity)).mpr
+          -- Use the fact that sin is increasing on (0, π)
+          have h₁₀ : a i ≤ μ := by
+            simp_all [hμ]
+            <;>
+            (field_simp [Finset.sum_div] at * <;>
+            rw [div_le_iff (by positivity)] <;>
+            nlinarith [Finset.single_le_sum (fun j _ => div_nonneg (le
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 84.50186133384705 / 17.75991654396057 / 102.26177787780762
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a5
+(n : ℕ)
+(npos : n > 0)
+(a : Fin n → ℝ)
+(ha : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi)
+(μ : ℝ)
+(hμ : μ = ∑ i : Fin n, a i / n)
+: (∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n) := by
+  have step₁ : ∏ i : Fin n, sin (a i) / (a i) ≤ (sin μ / μ) ^ n := by
+    have h₁ : ∀ i : Fin n, a i ∈ Ioo 0 Real.pi := by simpa using ha
+    have h₂ : ∀ i : Fin n, 0 < a i := by
+      intro i
+      have h := h₁ i
+      simp only [Set.mem_Ioo] at h
+      linarith
+    have h₃ : ∀ i : Fin n, a i > 0 := by
+      intro i
+      exact h₂ i
+    have h₄ : ∏ i : Fin n, sin (a i) / (a i) ≤ ∏ i : Fin n, (sin μ / μ) := by
+      apply Finset.prod_le_prod
+      · intro i _
+        have h₅ : 0 < a i := h₃ i
+        have h₆ : 0 < a i := h₃ i
+        have h₇ : sin (a i) / a i ≥ 0 := by
+          apply div_nonneg
+          · exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [h₁ i |>.1, h₁ i |>.2], by linarith [h₁ i |>.1, h₁ i |>.2]⟩
+          · linarith [h₁ i |>.1, h₁ i |>.2]
+        linarith
+      · intro i _
+        have h₅ : 0 < a i := h₃ i
+        have h₆ : 0 < a i := h₃ i
+        have h₇ : sin (a i) / a i ≤ sin μ / μ := by
+          have h₈ : a i ∈ Ioo 0 Real.pi := h₁ i
+          have h₉ : sin a i ≤ a i := by
+            exact Real.sin_le (by linarith [h₈.1, h₈.2])
+          have h₁₀ : sin μ ≥ 0 := Real.sin_nonneg_of_mem_Icc ⟨by
+            have h₁₁ : μ ≥ 0 := by
+              have h₁₂ : ∑ i : Fin n, a i / n ≥ 0 := by
+... [truncated] ...

@@ -1,0 +1,22 @@
+Problem: problem_0253
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.770784616470337
+Lean check time (s): 3.397026777267456
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_169 :
+  Nat.gcd 20! 200000 = 40000 := by
+  rw [Nat.gcd_comm]
+  norm_num
+  <;> rfl
+  <;> decide
+  <;> rfl
+  <;> decide
+  <;> rfl

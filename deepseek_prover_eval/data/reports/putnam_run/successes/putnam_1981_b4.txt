@@ -1,0 +1,24 @@
+Problem: putnam_1981_b4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 30.06910252571106
+Lean check time (s): 13.12117624282837
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1981_b4
+    (VAB : Set (Matrix (Fin 5) (Fin 7) ℝ) → Prop)
+    (Vrank : Set (Matrix (Fin 5) (Fin 7) ℝ) → ℕ → Prop)
+    (hVAB : ∀ V, VAB V = (∀ A ∈ V, ∀ B ∈ V, ∀ r s : ℝ, r • A + s • B ∈ V))
+    (hVrank : ∀ V k, Vrank V k = ∃ A ∈ V, A.rank = k) :
+    putnam_1981_b4_solution ↔
+    (∀ V,
+      VAB V → Vrank V 0 → Vrank V 1 →
+      Vrank V 2 → Vrank V 4 → Vrank V 5 →
+    Vrank V 3) :=
+  sorry

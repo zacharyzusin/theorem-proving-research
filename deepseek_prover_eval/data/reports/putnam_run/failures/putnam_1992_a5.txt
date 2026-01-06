@@ -1,0 +1,283 @@
+Problem: putnam_1992_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.814794778823853 / 19.078129529953003 / 39.892924308776855
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  intro h
+  rcases h with ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h 0
+  simp at h₁ h₂
+  have h₃ := h 0
+  have h₄ := h 0
+  simp at h₃ h₄
+  have h₅ := h 0
+  have h₆ := h 0
+  simp at h₅ h₆
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆
+  have h₇ := h 0
+  have h₈ := h 0
+  simp at h₇ h₈
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈
+  <;>
+  (try decide) <;>
+  (try omega) <;>
+  (try
+    (
+      have h₉ := h 0
+      have h₁₀ := h 0
+      simp at h₉ h₁₀
+      norm_num at h₉ h₁₀
+      <;>
+      omega
+    )) <;>
+  (try
+    (
+      have h₉ := h 0
+      have h₁₀ := h 0
+      simp at h₉ h₁₀
+      norm_num at h₉ h₁₀
+      <;>
+      omega
+    ))
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.51267433166504 / 26.82706379890442 / 45.33973813056946
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  rintro ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h (m - 1)
+  have h₃ := h 1
+  have h₄ := h 0
+  have h₅ := h (m - 1)
+  have h₆ := h 1
+  simp at h₁ h₂ h₃ h₄ h₅ h₆
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆
+  <;>
+  cases' Nat.even_or_odd { i : ℕ | (digits 2 (k + 0)).get i = 1 }.ncard with h₇ h₇ <;>
+    cases' Nat.even_or_odd { i : ℕ | (digits 2 (k + m + 0)).get i = 1 }.ncard with h₈ h₈ <;>
+      cases' Nat.even_or_odd { i : ℕ | (digits 2 (k + 2 * m + 0)).get i = 1 }.ncard with h₉ h₉ <;>
+        simp_all (config := {decide := true}) <;>
+        omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.040666818618774 / 34.15584850311279 / 49.19651532173157
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  rintro ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h (m - 1)
+  have h₃ := h 1
+  have h₄ := h 0
+  have h₅ := h (m - 1)
+  have h₆ := h 1
+  cases' Nat.even_or_odd k with hk' hk' <;> cases' Nat.even_or_odd m with hm' hm' <;>
+    cases' Nat.even_or_odd (k + m) with hkm' hkm' <;>
+    simp_all [Nat.even_iff, Nat.odd_iff, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+  <;>
+  norm_num at * <;>
+  omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.352464199066162 / 40.26823711395264 / 56.6207013130188
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  intro h
+  rcases h with ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h 0
+  have h₃ := h 0
+  have h₄ := h 0
+  simp [Nat.even_iff, Nat.odd_iff] at h₁ h₂ h₃ h₄
+  have h₅ := h 1
+  have h₆ := h 1
+  have h₇ := h 1
+  have h₈ := h 1
+  simp [Nat.even_iff, Nat.odd_iff] at h₅ h₆ h₇ h₈
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈
+  <;>
+    rcases k with (_ | _) <;>
+    rcases m with (_ | _) <;>
+    simp_all [Nat.even_iff, Nat.odd_iff] <;>
+    omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.239483833312988 / 28.24761652946472 / 43.48710036277771
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  rintro ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h (m - 1)
+  have h₃ := h 1
+  have h₄ := h 0
+  have h₅ := h (m - 1)
+  have h₆ := h 1
+  cases' Nat.even_or_odd (Nat.zero_lt_of_lt hk).ne' with hk' hk' <;>
+    cases' Nat.even_or_odd (Nat.zero_lt_of_lt hm).ne' with hm' hm' <;>
+      simp_all [Nat.even_iff, Nat.odd_iff, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+  <;>
+    norm_num at * <;>
+    omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.832805395126343 / 33.648428440093994 / 55.48123383522034
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  intro h
+  rcases h with ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h 0
+  have h₃ := h 0
+  have h₄ := h 0
+  simp at h₁ h₂ h₃ h₄
+  have h₅ := h 1
+  have h₆ := h 1
+  have h₇ := h 1
+  have h₈ := h 1
+  simp at h₅ h₆ h₇ h₈
+  have h₉ := h 2
+  have h₁₀ := h 2
+  have h₁₁ := h 2
+  have h₁₂ := h 2
+  simp at h₉ h₁₀ h₁₁ h₁₂
+  have h₁₃ := h 3
+  have h₁₄ := h 3
+  have h₁₅ := h 3
+  have h₁₆ := h 3
+  simp at h₁₃ h₁₄ h₁₅ h₁₆
+  norm_num [Nat.even_iff, Nat.odd_iff, Nat.mod_eq_of_lt] at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆
+  <;>
+  (try omega) <;>
+  (try aesop)
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.741514444351196 / 29.576709270477295 / 47.31822371482849
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  rintro ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h (m - 1)
+  have h₃ := h 1
+  have h₄ := h 0
+  have h₅ := h (m - 1)
+  have h₆ := h 1
+  simp at h₁ h₂ h₃ h₄ h₅ h₆
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆
+  cases' Nat.even_or_odd {i | (digits 2 k).get i = 1}.ncard with h₇ h₇ <;>
+    cases' Nat.even_or_odd {i | (digits 2 (k + m)).get i = 1}.ncard with h₈ h₈ <;>
+      cases' Nat.even_or_odd {i | (digits 2 (k + 2 * m)).get i = 1}.ncard with h₉ h₉ <;>
+        simp_all [Nat.even_iff, Nat.odd_iff_not_even]
+  <;> omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.152197360992432 / 22.82193374633789 / 37.97413110733032
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a5
+  (a : ℕ → ℕ)
+  (ha : a = fun n ↦ ite (Even {i | (digits 2 n).get i = 1}.ncard) 0 1) :
+  ¬∃ k > 0, ∃ m > 0, ∀ j ≤ m - 1,
+    a (k + j) = a (k + m + j) ∧ a (k + m + j) = a (k + 2 * m + j) := by
+  rw [ha]
+  rintro ⟨k, hk, m, hm, h⟩
+  have h₁ := h 0
+  have h₂ := h (m - 1)
+  have h₃ := h 1
+  have h₄ := h (m)
+  have h₅ := h (2 * m)
+  simp at h₁ h₂ h₃ h₄ h₅
+  cases Classical.em (Even {i | (digits 2 k).get i = 1}.ncard) <;>
+    cases Classical.em (Even {i | (digits 2 (k + m)).get i = 1}.ncard) <;>
+    cases Classical.em (Even {i | (digits 2 (k + 2 * m)).get i = 1}.ncard) <;>
+    simp_all [Nat.even_iff, Nat.odd_iff]
+  <;>
+  omega

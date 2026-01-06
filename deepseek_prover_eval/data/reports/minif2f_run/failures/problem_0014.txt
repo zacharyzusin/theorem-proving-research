@@ -1,0 +1,315 @@
+Problem: problem_0014
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.871252536773682 / 4.599398136138916 / 15.470650672912598
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : 0 < 53 := by norm_num
+  have h₂ : 0 < 144 := by norm_num
+  have h₃ : 0 < 2 := by norm_num
+  field_simp at h₀
+  rw [eq_comm] at h₀
+  have h₄ : x = 3 / 4 := by
+    apply Eq.symm
+    apply Eq.symm
+    rw [← sub_eq_zero] at h₀ ⊢
+    field_simp at h₀ ⊢
+    ring_nf at h₀ ⊢
+    nlinarith
+  exact h₄
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.06728482246399 / 5.049293041229248 / 15.116577863693237
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : 0 < 53 := by norm_num
+  have h₂ : 0 < 144 := by norm_num
+  have h₃ : 0 < 3 := by norm_num
+  field_simp at h₀
+  ring_nf at h₀
+  nlinarith [sq_nonneg (x - 3 / 4), sq_nonneg (x + 3 / 4), sq_nonneg (x - 1), sq_nonneg (x + 1),
+    sq_nonneg (x - 1 / 2), sq_nonneg (x + 1 / 2)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.213621377944946 / 5.854883670806885 / 30.06850504875183
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+  have h₂ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+    intro h
+    have h₃ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₁
+    rw [h] at h₃
+    norm_num at h₃
+  have h₃ : 2 + 2 / (3 + x) ≠ 0 := by
+    intro h
+    have h₄ : 1 + 1 / (2 + 2 / (3 + x)) = 0 := by
+      simp_all [div_eq_mul_inv]
+      <;> field_simp at *
+      <;> nlinarith
+    have h₅ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+      intro h
+      simp_all [div_eq_mul_inv]
+      <;> field_simp at *
+      <;> nlinarith
+    simp_all
+  have h₄ : 3 + x ≠ 0 := by
+    intro h
+    have h₅ : 2 + 2 / (3 + x) = 0 := by
+      simp_all [div_eq_mul_inv]
+      <;> field_simp at *
+      <;> nlinarith
+    have h₆ : 2 + 2 / (3 + x) ≠ 0 := by
+      intro h
+      simp_all [div_eq_mul_inv]
+      <;> field_simp at *
+      <;> nlinarith
+    simp_all
+  field_simp at h₁
+  ring_nf at h₁ ⊢
+  nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.096242904663086 / 5.063684463500977 / 24.159927368164062
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : x = 3 / 4 := by
+    have h₁₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+    have h₁₁ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+      intro h
+      have h₂ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+      field_simp [h] at h₂
+      <;> norm_num at h₂ <;> linarith
+    field_simp [h₁₁] at h₁₀
+    have h₁₂ : 3 + x ≠ 0 := by
+      intro h
+      have h₂ : 2 + 2 / (3 + x) = 0 := by
+        field_simp [h] at h₁₀ ⊢
+        <;> nlinarith
+      field_simp [h₂] at h₁₀ ⊢
+      <;> nlinarith
+    field_simp [h₁₂] at h₁₀ ⊢
+    <;> ring_nf at h₁₀ ⊢
+    <;> nlinarith [sq_nonneg (x - 3 / 4)]
+  exact h₁
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.3419189453125 / 4.9680070877075195 / 22.30992603302002
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : x = 3 / 4 := by
+    have h₁₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+    have h₁₁ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+      intro h
+      field_simp [h] at h₁₀
+      <;> norm_num at h₁₀ <;> linarith
+    have h₁₂ : 2 + 2 / (3 + x) ≠ 0 := by
+      intro h
+      field_simp [h] at h₁₀
+      <;> norm_num at h₁₀ <;> linarith
+    have h₁₃ : 3 + x ≠ 0 := by
+      intro h
+      field_simp [h] at h₁₀
+      <;> norm_num at h₁₀ <;> linarith
+    field_simp at h₁₀
+    ring_nf at h₁₀
+    nlinarith [sq_nonneg (x - 3 / 4), sq_nonneg (x + 3 / 4)]
+  exact h₁
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.28381037712097 / 4.830418586730957 / 21.11422896385193
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+  have h₂ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+    intro h
+    have h₃ := h₁
+    rw [h] at h₃
+    norm_num at h₃
+  have h₃ : 2 + 2 / (3 + x) ≠ 0 := by
+    intro h
+    have h₄ := h₁
+    rw [← sub_eq_zero] at h₄
+    field_simp [h] at h₄
+    linarith
+  have h₄ : 3 + x ≠ 0 := by
+    intro h
+    have h₅ := h₁
+    rw [← sub_eq_zero] at h₅
+    field_simp [h, h₂, h₃] at h₅
+    linarith
+  field_simp [h₂, h₃, h₄] at h₁ ⊢
+  nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.173757076263428 / 5.092545509338379 / 35.26630258560181
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : x = 3 / 4 := by
+    have h₁₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+    have h₁₁ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+      intro h
+      have : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) ≤ 2 := by
+        calc
+          2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) ≤ 2 + 1 / 1 := by
+            apply add_le_add_left
+            apply div_le_one_of_le
+            · norm_num
+            · positivity
+          _ = 2 + 1 := by norm_num
+          _ ≤ 2 := by linarith
+      linarith
+    have h₁₂ : 2 + 2 / (3 + x) ≠ 0 := by
+      intro h
+      have : 1 + 1 / (2 + 2 / (3 + x)) ≤ 1 := by
+        calc
+          1 + 1 / (2 + 2 / (3 + x)) ≤ 1 + 1 / 1 := by
+            apply add_le_add_left
+            apply div_le_one_of_le
+            · norm_num
+            · positivity
+          _ = 1 + 1 := by norm_num
+          _ ≤ 1 := by linarith
+      linarith
+    have h₁₃ : 3 + x ≠ 0 := by
+      intro h
+      have : 2 + 2 / (3 + x) ≤ 2 := by
+        calc
+          2 + 2 / (3 + x) ≤ 2 + 2 / 0 := by
+            apply add_le_add_left
+            apply div_le_div_of_le_left
+            · norm_num
+            · norm_num
+            · linarith
+          _ = 2 + 0 := by norm_num
+          _ ≤ 2 := by linarith
+      linarith
+    field_simp at h₁₀
+    ring_nf at h₁₀
+    nlinarith
+  exact h₁
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.889923810958862 / 5.044186353683472 / 31.934110164642334
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2021_p3
+  (x : ℝ)
+  (h₀ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53) :
+  x = 3 / 4 := by
+  have h₁ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 144 / 53 := h₀
+  have h₂ : 1 + 1 / (2 + 2 / (3 + x)) ≠ 0 := by
+    intro h
+    have h₃ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 0 := by
+      rw [h] at h₁
+      norm_num at h₁
+      linarith
+    norm_num at h₃
+    <;> simp_all [div_eq_mul_inv]
+    <;> field_simp at h₁ h₃ ⊢
+    <;> ring_nf at h₁ h₃ ⊢
+    <;> nlinarith
+  have h₃ : 2 + 2 / (3 + x) ≠ 0 := by
+    intro h
+    have h₄ : 1 + 1 / (2 + 2 / (3 + x)) = 0 := by
+      rw [h]
+      norm_num
+    have h₅ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 2 := by
+      rw [h₄]
+      norm_num
+    linarith
+  have h₄ : 3 + x ≠ 0 := by
+    intro h
+    have h₅ : 2 + 2 / (3 + x) = 0 := by
+      rw [h]
+      norm_num
+    have h₆ : 1 + 1 / (2 + 2 / (3 + x)) = 1 := by
+      rw [h₅]
+      norm_num
+    have h₇ : 2 + 1 / (1 + 1 / (2 + 2 / (3 + x))) = 2 := by
+      rw [h₆]
+      norm_num
+    linarith
+  field_simp at h₁
+  ring_nf at h₁
+  nlinarith
+

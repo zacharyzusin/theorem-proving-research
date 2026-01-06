@@ -1,0 +1,313 @@
+Problem: problem_0321
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.003107786178589 / 14.346313714981079 / 23.349421501159668
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n < 2000 := by linarith
+  interval_cases n <;> simp_all [Finset.sum_range_succ, Nat.mod_eq_of_lt]
+  <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.7034592628479 / 2.984609842300415 / 27.688069105148315
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n ≤ 1998 := by linarith
+  have h₁' : ∑ k in Finset.range (n), u k ≤ ∑ k in Finset.range (1998), u k := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg
+    · apply Finset.range_subset.2
+      linarith
+    · intro i hi _
+      simp
+  have h₂' : ∑ k in Finset.range (1998), u k ≤ 10000 := by
+    have h₃ : ∑ k in Finset.range (1998), u k ≤ 10000 := by
+      have h₄ : ∀ k, k ∈ Finset.range (1998) → u k ≤ 9 := by
+        intro k hk
+        have h₅ : k < 1998 := Finset.mem_range.1 hk
+        have h₆ : k ≤ 1997 := by linarith
+        have h₇ : u k = (u (k - 2) + u (k - 1)) % 10 := by
+          have h₈ : k ≥ 2 := by omega
+          rw [h₂] <;> omega
+        omega
+      exact
+        calc
+          ∑ k in Finset.range (1998), u k ≤ ∑ k in Finset.range (1998), 9 := by
+            exact Finset.sum_le_sum h₄
+          _ = 1998 * 9 := by simp [Finset.sum_const]
+          _ ≤ 10000 := by norm_num
+    exact h₃
+  linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.52506399154663 / 3.0259180068969727 / 27.550981998443604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n ≤ 1998 := by linarith
+  have h'' : ∑ k in Finset.range (n), u k ≤ ∑ k in Finset.range (1998), u k := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg
+    · rw [Finset.range_subset]
+      linarith
+    · intro i hi h₁
+      simp_all
+  have h''' : ∑ k in Finset.range (1998), u k ≤ 10000 := by
+    have h₁ : ∑ k in Finset.range (1998), u k ≤ 10000 := by
+      have h₂ : ∀ n, u n ≤ 10 := by
+        intro n
+        induction n using Nat.strong_induction_on with
+        | h n ih =>
+          match n with
+          | 0 => simp [h₀]
+          | 1 => simp [h₁]
+          | n + 2 =>
+            have h₃ := h₂ (n + 1)
+            have h₄ := h₂ n
+            simp_all [h₂]
+            <;> omega
+      calc
+        ∑ k in Finset.range (1998), u k ≤ ∑ k in Finset.range (1998), 10 := by
+          exact Finset.sum_le_sum (by intro i hi; exact h₂ i)
+        _ = 1998 * 10 := by simp [Finset.sum_const, Finset.card_range]
+        _ ≤ 10000 := by norm_num
+    exact h₁
+  linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.075308561325073 / 3.929776191711426 / 21.0050847530365
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n ≤ 1998 := by linarith
+  have h'' : ∑ k in Finset.range n, u k ≤ 10000 := by
+    have h''' : ∑ k in Finset.range n, u k ≤ ∑ k in Finset.range 1999, u k := by
+      apply Finset.sum_le_sum_of_subset_of_nonneg
+      · apply Finset.range_subset.2
+        linarith
+      · intro i hi hni
+        simp_all
+    have h'''' : ∑ k in Finset.range 1999, u k ≤ 10000 := by
+      have h''''' : ∑ k in Finset.range 1999, u k ≤ 10000 := by
+        simp_all [Finset.sum_range_succ, Nat.add_sub_cancel]
+        <;> omega
+      linarith
+    linarith
+  linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 31.70657253265381 / 3.386807918548584 / 35.09338045120239
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n ≤ 1998 := by linarith
+  have h'' : ∑ k in Finset.range n, u k ≤ ∑ k in Finset.range 1998, u k := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg
+    · rw [Finset.range_subset]
+      linarith
+    · intro x _ _
+      exact Nat.zero_le _
+  have h''' : ∑ k in Finset.range 1998, u k ≤ 10000 := by
+    have h₄ : ∑ k in Finset.range 1998, u k ≤ 10000 := by
+      have h₅ : ∑ k in Finset.range 1998, u k ≤ 10000 := by
+        -- Use the fact that the sum of the sequence is bounded by 10000
+        have h₆ : ∀ k, k ∈ Finset.range 1998 → u k ≤ 9 := by
+          intro k hk
+          have h₇ : k < 1998 := Finset.mem_range.mp hk
+          have h₈ : k ≤ 1997 := by linarith
+          have h₉ : u k ≤ 9 := by
+            induction k with
+            | zero => simp_all
+            | succ k ih =>
+              cases k with
+              | zero => simp_all
+              | succ k =>
+                have h₁₀ : k ≤ 1997 := by linarith
+                have h₁₁ : u (k + 2) ≤ 9 := by
+                  have h₁₂ : u (k + 2) = (u k + u (k + 1)) % 10 := h₂ k (by omega)
+                  omega
+                simp_all [Finset.mem_range]
+                <;> omega
+          exact h₉
+        exact
+          calc
+       
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 25.9663028717041 / 2.8468592166900635 / 28.813162088394165
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n ≤ 1998 := by linarith
+  have h'' : ∑ k in Finset.range (n), u k ≤ ∑ k in Finset.range (1998), u k := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg
+    · rw [Finset.range_subset]
+      linarith
+    · intro x _ hx
+      simp_all
+  have h''' : ∑ k in Finset.range (1998), u k ≤ 10000 := by
+    have h₁ : ∑ k in Finset.range (1998), u k ≤ 10000 := by
+      -- Use the fact that the sequence is bounded by 10 and the sum of a bounded sequence is bounded
+      have h₁ : ∀ n, u n ≤ 10 := by
+        intro n
+        induction n using Nat.strong_induction_on with
+        | h n ih =>
+          match n with
+          | 0 => simp [h₀]
+          | 1 => simp [h₁]
+          | n + 2 =>
+            have h₄ := h₂ n
+            have h₅ := ih n
+            have h₆ := ih (n + 1)
+            omega
+      -- Use the fact that the sum of a bounded sequence is bounded
+      calc
+        ∑ k in Finset.range (1998), u k ≤ ∑ k in Finset.range (1998), 10 := Finset.sum_le_sum fun x hx => by
+          exact Nat.le_of_lt_succ (by omega)
+        _ = 1998 * 10 := by simp [Finset.sum_const]
+        _ ≤ 10000 := by norm_num
+    exact h₁
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.122010707855225 / 3.806062936782837 / 23.92807364463806
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n < 2000 := by linarith
+  have h'' : ∑ k in Finset.range (n), u k ≤ 10000 := by
+    have : ∑ k in Finset.range (n), u k ≤ ∑ k in Finset.range (2000), u k := by
+      apply Finset.sum_le_sum_of_subset_of_nonneg
+      · rw [Finset.range_subset]
+        linarith
+      · intro x _ _
+        exact Nat.zero_le (u x)
+    have : ∑ k in Finset.range (2000), u k ≤ 10000 := by
+      have : ∑ k in Finset.range (2000), u k ≤ 10000 := by
+        -- We use the fact that the sum of the sequence is bounded by 10000
+        -- due to the nature of the sequence and the modulo operation.
+        -- The detailed proof would involve showing that the sum does not exceed 10000
+        -- given the periodicity and the bounds on the terms.
+        simp_all [Finset.sum_range_succ, Nat.mod_eq_of_lt]
+        <;> omega
+      exact this
+    linarith
+  linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.991981983184814 / 14.350931882858276 / 23.34291386604309
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2002_p21
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 4)
+  (h₁ : u 1 = 7)
+  (h₂ : ∀ n ≥ 2, u (n + 2) = (u n + u (n + 1)) % 10) :
+  ∀ n, ∑ k in Finset.range (n), u k > 10000 → 1999 ≤ n := by
+  intro n hn
+  by_contra! h
+  have h' : n < 2000 := by linarith
+  interval_cases n <;> simp_all [Finset.sum_range_succ, Nat.mod_eq_of_lt]
+  <;> omega
+

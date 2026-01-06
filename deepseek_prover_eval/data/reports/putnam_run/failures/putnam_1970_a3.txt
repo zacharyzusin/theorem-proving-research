@@ -1,0 +1,182 @@
+Problem: putnam_1970_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 27.473114013671875 / 34.62472414970398 / 62.097838163375854
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 27.071377992630005 / 39.65987253189087 / 66.73125052452087
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 47.35720944404602 / 29.887492656707764 / 77.24470210075378
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.407400131225586 / 25.52635097503662 / 52.93375110626221
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 26.38976263999939 / 48.72334837913513 / 75.11311101913452
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 39.943727016448975 / 27.389236450195312 / 67.33296346664429
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 26.649423599243164 / 50.117050886154175 / 76.76647448539734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.003575563430786 / 50.87894368171692 / 76.8825192451477
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_a3
+(L : ℕ → ℕ)
+(hL : ∀ n : ℕ, L n ≤ (Nat.digits 10 n).length ∧
+(∀ k : ℕ, k < L n → (Nat.digits 10 n)[k]! = (Nat.digits 10 n)[0]!) ∧
+(L n ≠ (Nat.digits 10 n).length → (Nat.digits 10 n)[L n]! ≠ (Nat.digits 10 n)[0]!))
+: (∃ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1) ∧
+(∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 → L (n^2) ≤ putnam_1970_a3_solution.1) ∧
+(∃ m : ℕ, m^2 = putnam_1970_a3_solution.2) ∧
+L (putnam_1970_a3_solution.2) = putnam_1970_a3_solution.1 ∧
+(Nat.digits 10 putnam_1970_a3_solution.2)[0]! ≠ 0 ∧
+∀ n : ℕ, (Nat.digits 10 (n^2))[0]! ≠ 0 ∧ L (n^2) = putnam_1970_a3_solution.1 → n^2 ≥ putnam_1970_a3_solution.2 :=
+sorry

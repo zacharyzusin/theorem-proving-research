@@ -1,0 +1,27 @@
+Problem: problem_0364
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 7.69067907333374
+Lean check time (s): 3.856313467025757
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_59
+  (b : ℝ)
+  (h₀ : (4 : ℝ)^b + 2^3 = 12) :
+  b = 1 := by
+  have h₁ : (4 : ℝ)^b + 2^3 = 12 := h₀
+  have h₂ : (4 : ℝ)^b = 4 := by
+    linarith [h₁]
+  have h₃ : b = 1 := by
+    -- We use the fact that 4^b = 4 to solve for b
+    apply_fun fun x => logb 4 x at h₂
+    -- Simplify the equation to find b
+    simp at h₂
+    linarith
+  exact h₃

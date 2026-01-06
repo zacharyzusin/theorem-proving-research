@@ -1,0 +1,24 @@
+Problem: problem_0388
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.310829877853394
+Lean check time (s): 2.8228600025177
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_301
+  (j : ℕ)
+  (h₀ : 0 < j) :
+  (3 * (7 * ↑j + 3)) % 7 = 2 := by
+  have h₁ : (3 * (7 * ↑j + 3)) % 7 = 2 := by
+    rw [← Nat.mod_add_div (3 * (7 * j + 3)) 7]
+    simp [Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt, show 3 < 7 by norm_num,
+      show 0 < 7 by norm_num]
+    <;> induction j <;> simp_all [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.mul_zero,
+      Nat.zero_add, Nat.add_zero] <;> norm_num <;> omega
+  exact h₁

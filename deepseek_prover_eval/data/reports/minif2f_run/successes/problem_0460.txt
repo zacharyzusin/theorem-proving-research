@@ -1,0 +1,33 @@
+Problem: problem_0460
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 9.747928619384766
+Lean check time (s): 5.2251996994018555
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_seq_mul2pnp1
+  (n : ℕ)
+  (u : ℕ → ℕ)
+  (h₀ : u 0 = 0)
+  (h₁ : ∀ n, u (n + 1) = 2 * u n + (n + 1)) :
+  u n = 2^(n + 1) - (n + 2) := by
+  have h₂ : ∀ n, u n = 2^(n + 1) - (n + 2) := by
+    intro n
+    induction n with
+    | zero =>
+      simp_all
+    | succ n ih =>
+      cases n with
+      | zero =>
+        simp_all [Nat.pow_succ, Nat.mul_succ]
+        <;> omega
+      | succ n =>
+        simp_all [Nat.pow_succ, Nat.mul_succ]
+        <;> omega
+  simp_all

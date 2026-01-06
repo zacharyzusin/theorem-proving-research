@@ -1,0 +1,360 @@
+Problem: problem_0079
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 56.021599769592285 / 600.1687345504761 / 656.1903343200684
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  obtain ⟨ha, hb, hc⟩ := h₀
+  have h₂ : 0 < a * b := by positivity
+  have h₃ : 0 < b * c := by positivity
+  have h₄ : 0 < c * a := by positivity
+  have h₅ : 0 < Real.sqrt 2 := by positivity
+  have h₆ : 0 < Real.sqrt (a + b) := by positivity
+  have h₇ : 0 < Real.sqrt (b + c) := by positivity
+  have h₈ : 0 < Real.sqrt (c + a) := by positivity
+  have h₉ : a / Real.sqrt (a + b) ≥ a / Real.sqrt (a + b) := by linarith
+  have h₁₀ : b / Real.sqrt (b + c) ≥ b / Real.sqrt (b + c) := by linarith
+  have h₁₁ : c / Real.sqrt (c + a) ≥ c / Real.sqrt (c + a) := by linarith
+  have h₁₂ : a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥ 3 / Real.sqrt 2 := by
+    have h₁₃ : a / Real.sqrt (a + b) ≥ a / Real.sqrt (a + b) := by linarith
+    have h₁₄ : b / Real.sqrt (b + c) ≥ b / Real.sqrt (b + c) := by linarith
+    have h₁₅ : c / Real.sqrt (c + a) ≥ c / Real.sqrt (c + a) := by linarith
+    -- Use the fact that the sum of the terms is at least 3 / Real.sqrt 2
+    have h₁₆ : a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥ 3 / Real.sqrt 2 := by
+      -- Use the Cauchy-Schwarz inequality to bound the sum
+      have h₁₇ : a / Real.sqrt (a + b) + b / Real.sqrt (b + c
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 33.65781497955322 / 600.1875751018524 / 633.8453900814056
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  obtain ⟨ha, hb, hc⟩ := h₀
+  have h₂ : 0 < a * b := by positivity
+  have h₃ : 0 < b * c := by positivity
+  have h₄ : 0 < c * a := by positivity
+  have h₅ : 0 < Real.sqrt 2 := by positivity
+  have h₆ : 0 < Real.sqrt (a + b) := by positivity
+  have h₇ : 0 < Real.sqrt (b + c) := by positivity
+  have h₈ : 0 < Real.sqrt (c + a) := by positivity
+  have h₉ : Real.sqrt (a + b) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    linarith
+  have h₁₀ : Real.sqrt (b + c) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    linarith
+  have h₁₁ : Real.sqrt (c + a) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    linarith
+  calc
+    a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥
+        a / Real.sqrt (a + b + c) + b / Real.sqrt (a + b + c) + c / Real.sqrt (a + b + c) := by
+      gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr
+    _ = (a + b + c) / Real.sqrt (a + b + c) := by
+      field_simp [add_assoc]
+      <;> ring
+    _ = Real.sqrt (a + b + c) := by
+      field_simp [Real.sqrt_eq_iff_sq_eq]
+      <;> ring_nf
+      <;> nlinarith [sq_sqrt (show 0 ≤ a + b + c by positivity)]
+    _ ≥ 3 / Real.sqr
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 34.43337345123291 / 600.1578869819641 / 634.591260433197
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : 0 < b * c := by positivity
+  have h₇ : 0 < c * a := by positivity
+  have h₈ : 0 < Real.sqrt 2 := by positivity
+  have h₉ : 0 < Real.sqrt (a + b) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₀ : 0 < Real.sqrt (b + c) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₁ : 0 < Real.sqrt (c + a) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₂ : Real.sqrt 2 ≥ 1 := by norm_num [Real.sqrt_le_sqrt]
+  have h₁₃ : a / Real.sqrt (a + b) ≥ a / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    linarith
+  have h₁₄ : b / Real.sqrt (b + c) ≥ b / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    linarith
+  have h₁₅ : c / Real.sqrt (c + a) ≥ c / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    linarith
+  calc
+    a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥
+      a / Real.sqrt (a + b + c) + b / Real.sqrt (a + b + c) + c 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 41.55947661399841 / 600.1547763347626 / 641.714252948761
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : 0 < b * c := by positivity
+  have h₇ : 0 < c * a := by positivity
+  have h₈ : 0 < a * b * c := by positivity
+  -- Use the fact that the square root of a sum is less than or equal to the sum of the square roots
+  have h₉ : Real.sqrt 2 ≥ 0 := Real.sqrt_nonneg _
+  have h₁₀ : Real.sqrt (a + b) ≥ 0 := Real.sqrt_nonneg _
+  have h₁₁ : Real.sqrt (b + c) ≥ 0 := Real.sqrt_nonneg _
+  have h₁₂ : Real.sqrt (c + a) ≥ 0 := Real.sqrt_nonneg _
+  -- Use the fact that the square root of a sum is less than or equal to the sum of the square roots
+  have h₁₃ : a / Real.sqrt (a + b) ≥ a / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₄ : b / Real.sqrt (b + c) ≥ b / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₅ : c / Real.sqrt (c + a) ≥ c / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    nlinar
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 38.30902028083801 / 600.1719715595245 / 638.4809918403625
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : 0 < b * c := by positivity
+  have h₇ : 0 < c * a := by positivity
+  have h₈ : 0 < Real.sqrt 2 := by positivity
+  have h₉ : 0 < Real.sqrt (a + b) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₀ : 0 < Real.sqrt (b + c) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₁ : 0 < Real.sqrt (c + a) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₂ : Real.sqrt (a + b) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₃ : Real.sqrt (b + c) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₄ : Real.sqrt (c + a) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  calc
+    a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥
+        a / Real.sqrt (a + b + c) + b / Real.sqrt (a + b + c) + c / Real.sqrt (a + b + c) := by
+      gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr <;> gcongr
+    _ = (a + b + c) / Real.sqrt (a + b + c) := by
+      field_simp [add_assoc]
+    _ = Real.sqrt (a + b + c) := by
+      field_simp [h₁₀.ne', h₉
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 52.56144714355469 / 600.1661937236786 / 652.7276408672333
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : 0 < b * c := by positivity
+  have h₇ : 0 < c * a := by positivity
+  have h₈ : 0 < a * b * c := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₉ : 0 < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
+  -- Use the fact that the square root of (a + b) is positive to simplify the inequality.
+  have h₁₀ : 0 < Real.sqrt (a + b) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₁ : 0 < Real.sqrt (b + c) := Real.sqrt_pos.mpr (by linarith)
+  have h₁₂ : 0 < Real.sqrt (c + a) := Real.sqrt_pos.mpr (by linarith)
+  -- Use the fact that the square root of (a + b) is positive to simplify the inequality.
+  have h₁₃ : a / Real.sqrt (a + b) ≥ a / Real.sqrt (a + b) := by linarith
+  have h₁₄ : b / Real.sqrt (b + c) ≥ b / Real.sqrt (b + c) := by linarith
+  have h₁₅ : c / Real.sqrt (c + a) ≥ c / Real.sqrt (c + a) := by linarith
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₁₆ : 3 / Real.sqrt 2 ≤ 3 / Real.sqrt 2 := by linarith
+  -- Use the fact that the square root 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 32.34054112434387 / 600.1542501449585 / 632.4947912693024
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : 0 < b * c := by positivity
+  have h₇ : 0 < c * a := by positivity
+  have h₈ : 0 < a * b * c := by positivity
+  -- Use the fact that the square root of a sum is less than or equal to the sum of square roots.
+  have h₉ : Real.sqrt 2 ≥ 1 := by norm_num [Real.sqrt_le_sqrt]
+  -- Use the fact that the square root of a sum is less than or equal to the sum of square roots.
+  have h₁₀ : Real.sqrt (a + b) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    linarith
+  have h₁₁ : Real.sqrt (b + c) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    linarith
+  have h₁₂ : Real.sqrt (c + a) ≤ Real.sqrt (a + b + c) := by
+    apply Real.sqrt_le_sqrt
+    linarith
+  -- Combine the inequalities using the fact that the sum of the fractions is greater than or equal to 3/sqrt(2).
+  calc
+    a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥
+        a / Real.sqrt (a + b + c) + b / Real.sqrt (a + b + c) + c / Real.sqrt (a + b + c) := by
+      gcongr <;>
+      gcongr <;>
+      gcongr <;>
+      gcongr <;>
+      gcongr <;>
+ 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 40.067163944244385 / 600.1607308387756 / 640.22789478302
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : 3 ≤ a * b + b * c + c * a) :
+  3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by
+  have h₂ : 0 < a := by linarith
+  have h₃ : 0 < b := by linarith
+  have h₄ : 0 < c := by linarith
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : 0 < b * c := by positivity
+  have h₇ : 0 < c * a := by positivity
+  have h₈ : 0 < a * b * c := by positivity
+  have h₉ : 0 < Real.sqrt 2 := by positivity
+  have h₁₀ : 0 < Real.sqrt (a + b) := by positivity
+  have h₁₁ : 0 < Real.sqrt (b + c) := by positivity
+  have h₁₂ : 0 < Real.sqrt (c + a) := by positivity
+  have h₁₃ : Real.sqrt 2 ≥ 1 := by
+    apply Real.le_sqrt_of_sq_le
+    norm_num
+  have h₁₄ : a / Real.sqrt (a + b) ≥ a / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₅ : b / Real.sqrt (b + c) ≥ b / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₆ : c / Real.sqrt (c + a) ≥ c / Real.sqrt (a + b + c) := by
+    apply div_le_div_of_le_left (by positivity) (by positivity)
+    apply Real.sqrt_le_sqrt
+    nlinarith
+  have h₁₇ : a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) ≥ a / Real.sqrt (a + b + c) + b / Real.sqrt (a + b + c)
+... [truncated] ...

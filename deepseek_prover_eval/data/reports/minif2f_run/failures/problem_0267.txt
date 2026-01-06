@@ -1,0 +1,178 @@
+Problem: problem_0267
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 5.508165597915649 / 3.3839046955108643 / 8.892070293426514
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f (f 0))
+  simp at h₁ h₂ h₃ h₄
+  <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 5.581524848937988 / 3.4505364894866943 / 9.032061338424683
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f 1987)
+  simp at h₁ h₂ h₃ h₄
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.238785266876221 / 3.4368581771850586 / 10.67564344406128
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f 1987)
+  have h₅ := h (f (f 0))
+  have h₆ := h (f (f 1987))
+  simp at h₁ h₂ h₃ h₄ h₅ h₆
+  <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 5.552371263504028 / 3.521430492401123 / 9.073801755905151
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f (f 0))
+  simp at h₁ h₂ h₃ h₄
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.222040891647339 / 3.4496469497680664 / 10.671687841415405
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f 1987)
+  have h₅ := h (f (f 0))
+  have h₆ := h (f (f 1987))
+  simp at h₁ h₂ h₃ h₄ h₅ h₆
+  <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 5.564488410949707 / 3.434068202972412 / 8.99855661392212
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f (f 0))
+  simp at h₁ h₂ h₃ h₄
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 5.512243986129761 / 3.3943402767181396 / 8.9065842628479
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f (f 0))
+  simp at h₁ h₂ h₃ h₄
+  <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 5.632346868515015 / 3.462695360183716 / 9.09504222869873
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p4
+  (f : ℕ → ℕ) :
+  ∃ n, f (f n) ≠ n + 1987 := by
+  by_contra! h
+  have h₁ := h 0
+  have h₂ := h 1987
+  have h₃ := h (f 0)
+  have h₄ := h (f (f 0))
+  simp at h₁ h₂ h₃ h₄
+  <;> omega
+

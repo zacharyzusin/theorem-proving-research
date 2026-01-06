@@ -1,0 +1,235 @@
+Problem: putnam_1986_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.460455894470215 / 4.365692853927612 / 16.826148748397827
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : (A * Dᵀ - B * Cᵀ)ᵀ = 1 := by
+      rw [hid]
+      simp
+    have h3 : (A * Dᵀ - B * Cᵀ)ᵀ = D * Aᵀ - Cᵀ * B := by
+      simp [Matrix.sub_eq_add_neg, Matrix.mul_apply, Matrix.transpose_apply, Finset.sum_sub_distrib]
+      <;>
+      aesop
+    rw [h3] at h2
+    simp_all
+  exact h1
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.88832950592041 / 4.334633827209473 / 21.222963333129883
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : Aᵀ = A := by
+      have h3 := hsymm.1
+      have h4 : (A * Bᵀ)ᵀ = A * Bᵀ := by simp_all [Matrix.transpose_transpose]
+      simp_all [Matrix.transpose_mul, Matrix.transpose_transpose]
+    have h5 : Cᵀ = C := by
+      have h6 := hsymm.2
+      have h7 : (C * Dᵀ)ᵀ = C * Dᵀ := by simp_all [Matrix.transpose_transpose]
+      simp_all [Matrix.transpose_mul, Matrix.transpose_transpose]
+    simp_all [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_transpose]
+    <;>
+    rw [← sub_eq_zero] at *
+    <;>
+    simp_all [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_transpose]
+    <;>
+    aesop
+  exact h1
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.383426904678345 / 4.362552165985107 / 15.745979070663452
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : Aᵀ * D - Cᵀ * B = 1 := by
+      have h3 := congr_arg (fun x : Matrix (Fin n) (Fin n) F => x.transpose) hid
+      simp [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_one] at h3 ⊢
+      simp_all [IsSymm, Matrix.mul_eq_one_comm]
+      <;>
+      aesop
+    exact h2
+  exact h1
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.289907217025757 / 4.35645055770874 / 14.646357774734497
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : (A * Dᵀ - B * Cᵀ)ᵀ = 1 := by rw [hid]
+    simp [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_one] at h2
+    simp_all [Matrix.IsSymm, Matrix.mul_eq_one_comm]
+    <;>
+    aesop
+  exact h1
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.95229434967041 / 4.361761569976807 / 20.314055919647217
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : Aᵀ * D - Cᵀ * B = 1 := by
+      calc
+        Aᵀ * D - Cᵀ * B = (A * Dᵀ)ᵀ - (B * Cᵀ)ᵀ := by
+          simp [Matrix.transpose_transpose, Matrix.mul_assoc, Matrix.mul_sub, Matrix.sub_mul]
+        _ = (A * Dᵀ)ᵀ - (B * Cᵀ)ᵀ := by rfl
+        _ = (A * Dᵀ)ᵀ - (B * Cᵀ)ᵀ := by rfl
+        _ = 1 := by
+          rw [hid]
+          <;> simp [Matrix.transpose_transpose, Matrix.mul_assoc, Matrix.mul_sub, Matrix.sub_mul]
+    exact h2
+  exact h1
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.521188020706177 / 4.364307403564453 / 15.88549542427063
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : Aᵀ * D - Cᵀ * B = 1 := by
+      have h3 : (A * Dᵀ - B * Cᵀ)ᵀ = 1 := by
+        rw [hid]
+        simp
+      simp [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_one] at h3
+      simp_all [IsSymm, Matrix.mul_eq_one_comm]
+      <;> aesop
+    exact h2
+  exact h1
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.15381646156311 / 4.38827919960022 / 14.54209566116333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 := congr_arg (fun x : Matrix (Fin n) (Fin n) F => xᵀ) hid
+    simp [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_one] at h2
+    simp_all [Matrix.IsSymm, Matrix.mul_eq_one_comm]
+    <;>
+    aesop
+  exact h1
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.520663261413574 / 4.368675708770752 / 16.889338970184326
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b6
+(n : ℕ)
+(npos : n > 0)
+(F : Type*) [Field F]
+(A B C D : Matrix (Fin n) (Fin n) F)
+(hsymm : IsSymm (A * Bᵀ) ∧ IsSymm (C * Dᵀ))
+(hid : A * Dᵀ - B * Cᵀ = 1)
+: (Aᵀ * D - Cᵀ * B = 1) := by
+  have h1 : Aᵀ * D - Cᵀ * B = 1 := by
+    have h2 : Aᵀ * D - Cᵀ * B = 1 := by
+      calc
+        Aᵀ * D - Cᵀ * B = (A * Dᵀ - B * Cᵀ)ᵀ := by
+          simp [Matrix.transpose_sub, Matrix.transpose_mul, Matrix.transpose_transpose]
+          <;>
+          simp_all [Matrix.mul_assoc]
+        _ = 1 := by
+          rw [hid]
+          simp
+    exact h2
+  exact h1

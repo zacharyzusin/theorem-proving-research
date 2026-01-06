@@ -1,0 +1,21 @@
+Problem: problem_0190
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.855592727661133
+Lean check time (s): 5.052949905395508
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_342
+  (a d: ℝ)
+  (h₀ : ∑ k in (Finset.range 5), (a + k * d) = 70)
+  (h₁ : ∑ k in (Finset.range 10), (a + k * d) = 210) :
+  a = 42/5 := by
+  simp [Finset.sum_range_succ, Finset.sum_range_one] at h₀ h₁
+  ring_nf at h₀ h₁
+  nlinarith [sq_nonneg d, sq_nonneg (a + 9 * d), sq_nonneg (a + 5 * d)]

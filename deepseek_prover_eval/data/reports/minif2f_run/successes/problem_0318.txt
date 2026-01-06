@@ -1,0 +1,27 @@
+Problem: problem_0318
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.399263381958008
+Lean check time (s): 3.8493118286132812
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_327
+  (a : ℝ)
+  (h₀ : 1 / 5 * abs (9 + 2 * a) < 1) :
+  -7 < a ∧ a < -2 := by
+  have : -7 < a ∧ a < -2 := by
+    have h₁ : 0 < 5 := by norm_num
+    have h₂ : abs (9 + 2 * a) < 5 := by
+      field_simp at h₀ ⊢
+      nlinarith [abs_nonneg (9 + 2 * a), abs_lt.1 (by linarith : |9 + 2 * a| < 5)]
+    have h₃ : -5 < 9 + 2 * a ∧ 9 + 2 * a < 5 := abs_lt.1 h₂
+    have h₄ : -7 < a := by linarith
+    have h₅ : a < -2 := by linarith
+    exact ⟨h₄, h₅⟩
+  exact this

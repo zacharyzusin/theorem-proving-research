@@ -1,0 +1,21 @@
+Problem: problem_0043
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.614484786987305
+Lean check time (s): 4.102186679840088
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_345 :
+  (2000 + 2001 + 2002 + 2003 + 2004 + 2005 + 2006) % 7 = 0 := by
+  apply Eq.symm
+  norm_num [Nat.add_mod, Nat.mul_mod, Nat.mod_eq_of_lt]
+  <;> decide
+  <;> rfl
+  <;> decide
+  <;> rfl

@@ -1,0 +1,468 @@
+Problem: problem_0337
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 48.915146827697754 / 4.826955556869507 / 53.74210238456726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 17, 51, 111} := by
+    ext n
+    simp only [h₀, Nat.ModEq, Nat.ModEq, Nat.ModEq, Nat.ModEq, Nat.mod_eq_of_lt,
+      Nat.mod_eq_of_lt, Nat.mod_eq_of_lt, Nat.mod_eq_of_lt, Nat.mod_eq_of_lt]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 3 => contradiction
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 11 => simp_all (config := {decide := true})
+      | 12 => contradiction
+      | 13 => contradiction
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => simp_all (config := {decide := true})
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 23 => contradiction
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => contradiction
+      | 32 => contradiction
+      | 33 => contradiction
+      | 34 => contradiction
+      | 35 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 37.89606976509094 / 5.378315448760986 / 43.27438521385193
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 13, 23, 33, 65, 195} := by
+    ext n
+    simp only [h₀, Nat.ModEq, Finset.mem_insert, Finset.mem_singleton, Nat.mod_eq_of_lt,
+      Nat.succ_pos, Nat.zero_lt_one, and_true]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 3 => contradiction
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 11 => simp [Nat.mod_eq_of_lt]
+      | 12 => contradiction
+      | 13 => simp [Nat.mod_eq_of_lt]
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => contradiction
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 23 => simp [Nat.mod_eq_of_lt]
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => contradiction
+      | 32 => contradiction
+      | 33 => simp [Nat.mod_eq_of_lt]
+      | 34 => contradiction
+      | 35 => contradiction
+      
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 37.606340169906616 / 4.176423788070679 / 41.782763957977295
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 13, 31, 33} := by
+    ext n
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, Nat.ModEq, Nat.dvd_iff_mod_eq_zero,
+      Nat.mod_eq_of_lt]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 3 => contradiction
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 11 => simp [Nat.mod_eq_of_lt]
+      | 12 => contradiction
+      | 13 => simp [Nat.mod_eq_of_lt]
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => contradiction
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 23 => contradiction
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => simp [Nat.mod_eq_of_lt]
+      | 32 => contradiction
+      | 33 => simp [Nat.mod_eq_of_lt]
+      | 34 => contradiction
+      | 35 => contradiction
+      | 36 => contradiction
+   
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 44.810524225234985 / 10.185991048812866 / 54.99651527404785
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 17, 51, 111} := by
+    ext n
+    simp only [h₀, Nat.ModEq, Finset.mem_insert, Finset.mem_singleton, Nat.mod_eq_of_lt,
+      Nat.succ_pos, Nat.zero_lt_one, and_true]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 3 => contradiction
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 11 => simp_all [Nat.mod_eq_of_lt]
+      | 12 => contradiction
+      | 13 => contradiction
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => simp_all [Nat.mod_eq_of_lt]
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 23 => contradiction
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => contradiction
+      | 32 => contradiction
+      | 33 => contradiction
+      | 34 => contradiction
+      | 35 => contradiction
+      | 36 => contradictio
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.38081431388855 / 15.15970492362976 / 33.54051923751831
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {7, 13, 91} := by
+    ext n
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, Nat.ModEq, Nat.dvd_iff_mod_eq_zero,
+      Nat.mod_eq_of_lt]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => simp_all (config := {decide := true})
+      | 7 => simp_all (config := {decide := true})
+      | 13 => simp_all (config := {decide := true})
+      | 91 => simp_all (config := {decide := true})
+      | 19 => omega
+      | 57 => omega
+      | 171 => omega
+      | 45 => omega
+      | 39 => omega
+      | 111 => omega
+    · intro h
+      match n with
+      | 7 => simp_all (config := {decide := true})
+      | 13 => simp_all (config := {decide := true})
+      | 91 => simp_all (config := {decide := true})
+  simp [h₁]
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 47.81951594352722 / 4.634988784790039 / 52.45450472831726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 13, 23, 33} := by
+    ext n
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, Nat.ModEq, Nat.ModEq]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 11 => simp [Nat.mod_eq_of_lt]
+      | 13 => simp [Nat.mod_eq_of_lt]
+      | 23 => simp [Nat.mod_eq_of_lt]
+      | 33 => simp [Nat.mod_eq_of_lt]
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 12 => contradiction
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => contradiction
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => contradiction
+      | 32 => contradiction
+      | 34 => contradiction
+      | 35 => contradiction
+      | 36 => contradiction
+      | 37 => contradiction
+      | 38 => contradiction
+      | 39 =
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 44.33018779754639 / 9.568177700042725 / 53.89836549758911
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 17, 51, 111} := by
+    ext n
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, Nat.ModEq, Nat.ModEq]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 3 => contradiction
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 11 => simp
+      | 12 => contradiction
+      | 13 => contradiction
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => simp
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 23 => contradiction
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => contradiction
+      | 32 => contradiction
+      | 33 => contradiction
+      | 34 => contradiction
+      | 35 => contradiction
+      | 36 => contradiction
+      | 37 => contradiction
+      | 38 => contradiction
+      | 39 => contradiction
+      | 40 => 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 47.550273418426514 / 16.110740423202515 / 63.66101384162903
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_303
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2 ≤ n ∧ 171 ≡ 80 [MOD n] ∧ 468 ≡ 13 [MOD n]) :
+  ∑ k in S, k = 111 := by
+  have h₁ : S = {11, 13, 23, 33, 61, 69, 111} := by
+    ext n
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, Nat.ModEq, Nat.dvd_iff_mod_eq_zero,
+      Nat.mod_eq_of_lt]
+    constructor
+    · intro h
+      match n with
+      | 0 => contradiction
+      | 1 => contradiction
+      | 2 => contradiction
+      | 3 => contradiction
+      | 4 => contradiction
+      | 5 => contradiction
+      | 6 => contradiction
+      | 7 => contradiction
+      | 8 => contradiction
+      | 9 => contradiction
+      | 10 => contradiction
+      | 11 => simp
+      | 12 => contradiction
+      | 13 => simp
+      | 14 => contradiction
+      | 15 => contradiction
+      | 16 => contradiction
+      | 17 => contradiction
+      | 18 => contradiction
+      | 19 => contradiction
+      | 20 => contradiction
+      | 21 => contradiction
+      | 22 => contradiction
+      | 23 => simp
+      | 24 => contradiction
+      | 25 => contradiction
+      | 26 => contradiction
+      | 27 => contradiction
+      | 28 => contradiction
+      | 29 => contradiction
+      | 30 => contradiction
+      | 31 => contradiction
+      | 32 => contradiction
+      | 33 => simp
+      | 34 => contradiction
+      | 35 => contradiction
+      | 36 => contradiction
+      | 37 => contradiction
+      | 38 => contradiction
+      | 39
+... [truncated] ...

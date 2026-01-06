@@ -1,0 +1,24 @@
+Problem: putnam_1995_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 34.338345527648926
+Lean check time (s): 20.807183742523193
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a1
+(S : Set ℝ)
+(hS : ∀ a ∈ S, ∀ b ∈ S, a * b ∈ S)
+(T U : Set ℝ)
+(hsub : T ⊆ S ∧ U ⊆ S)
+(hunion : T ∪ U = S)
+(hdisj : T ∩ U = ∅)
+(hT3 : ∀ a ∈ T, ∀ b ∈ T, ∀ c ∈ T, a * b * c ∈ T)
+(hU3 : ∀ a ∈ U, ∀ b ∈ U, ∀ c ∈ U, a * b * c ∈ U)
+: (∀ a ∈ T, ∀ b ∈ T, a * b ∈ T) ∨ (∀ a ∈ U, ∀ b ∈ U, a * b ∈ U) :=
+sorry

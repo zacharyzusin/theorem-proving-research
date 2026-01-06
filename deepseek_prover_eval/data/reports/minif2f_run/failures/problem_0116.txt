@@ -1,0 +1,233 @@
+Problem: problem_0116
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.717334032058716 / 4.522854804992676 / 22.24018883705139
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  have h₁ : ∀ n : ℕ, (n + 2)! = (n + 2) * (n + 1) * n ! := by
+    intro n
+    simp [factorial, mul_assoc]
+    <;> ring
+  have h₂ : ∀ n : ℕ, (n + 1)! = (n + 1) * n ! := by
+    intro n
+    simp [factorial, mul_assoc]
+    <;> ring
+  have h₃ : ∀ n : ℕ, ((n + 2)! - (n + 1)! : ℝ) / n ! = ((n + 2) * (n + 1) - (n + 1)) := by
+    intro n
+    rw [h₁, h₂]
+    field_simp [Nat.cast_add, Nat.cast_mul, Nat.cast_sub, Nat.cast_one, Nat.cast_zero]
+    <;> ring
+    <;> norm_cast
+    <;> simp_all [factorial]
+    <;> ring
+  use (n + 1)
+  norm_cast
+  simp_all [sq]
+  <;> ring
+  <;> norm_cast
+  <;> simp_all [factorial]
+  <;> ring
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.499689817428589 / 3.28446102142334 / 15.784150838851929
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  have h₁ : ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+    use ((n + 2)! - (n + 1)!) / n! |>.toNat
+    norm_cast
+    <;>
+    field_simp [Nat.factorial_ne_zero, Nat.cast_inj]
+    <;>
+    ring_nf
+    <;>
+    norm_cast
+    <;>
+    simp_all [Nat.factorial_succ, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib, Nat.mul_one, Nat.mul_add, Nat.mul_comm]
+    <;>
+    ring_nf
+    <;>
+    omega
+  
+  exact h₁
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.612415313720703 / 3.2975871562957764 / 13.91000247001648
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  use 1
+  norm_num
+  have h₁ : (n + 2)! = (n + 2) * (n + 1)! := by
+    simp [Nat.factorial_succ, Nat.mul_comm]
+  have h₂ : (n + 1)! = (n + 1) * n! := by
+    simp [Nat.factorial_succ, Nat.mul_comm]
+  field_simp [h₁, h₂, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub]
+  <;> ring_nf
+  <;> norm_cast
+  <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.997777938842773 / 3.099931240081787 / 13.09770917892456
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  have h₁ : ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+    use ((n + 2)! - (n + 1)!) / n! |>.toNat
+    norm_cast
+    <;>
+    field_simp [Nat.factorial_ne_zero, Nat.cast_inj, Nat.cast_ne_zero]
+    <;>
+    ring_nf
+    <;>
+    norm_cast
+    <;>
+    omega
+  
+  exact h₁
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.787277698516846 / 3.344317674636841 / 13.131595373153687
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  have h₁ : 9 ≤ n := h₀
+  use 1
+  field_simp [Nat.factorial_succ, Nat.factorial_pos, Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_sub]
+  <;> ring_nf
+  <;> norm_cast
+  <;> simp_all [Nat.factorial_succ, Nat.factorial_pos, Nat.cast_mul, Nat.cast_add, Nat.cast_one, Nat.cast_sub]
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.568073272705078 / 3.5777854919433594 / 15.145858764648438
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  have h₁ : 9 ≤ n := h₀
+  use 1
+  norm_num
+  have h₂ : (n + 2)! = (n + 2) * (n + 1) * n ! := by
+    rw [factorial_succ, factorial_succ]
+    ring_nf
+  have h₃ : (n + 1)! = (n + 1) * n ! := by
+    rw [factorial_succ]
+    <;> ring_nf
+  field_simp [h₂, h₃, Nat.factorial_pos, Nat.cast_ne_zero, Nat.cast_add_one_ne_zero]
+  <;> ring_nf
+  <;> norm_num
+  <;> nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.518484354019165 / 3.6047134399414062 / 15.123197793960571
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  use 1
+  norm_cast
+  have h₁ : (n + 2)! = (n + 2) * (n + 1)! := by
+    simp [Nat.factorial_succ, Nat.mul_comm]
+  have h₂ : (n + 1)! = (n + 1) * n ! := by
+    simp [Nat.factorial_succ, Nat.mul_comm]
+  rw [h₁, h₂]
+  field_simp [Nat.factorial_ne_zero]
+  ring
+  <;> simp_all [Nat.factorial_succ, Nat.mul_comm]
+  <;> ring
+  <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.41316556930542 / 3.646427869796753 / 16.059593439102173
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p6
+  (n : ℕ)
+  (h₀ : 9 ≤ n) :
+  ∃ (x : ℕ), (x : ℝ)^2 = ((n + 2)! - (n + 1)!) / n! := by
+  use  (Nat.choose (n + 1) 2)
+  norm_cast
+  have h₁ : (n + 2)! = (n + 2) * (n + 1)! := by
+    simp [Nat.factorial_succ, Nat.mul_succ]
+  have h₂ : (n + 1)! = (n + 1) * n ! := by
+    simp [Nat.factorial_succ, Nat.mul_succ]
+  simp_all [Nat.choose_eq_factorial_div_factorial, Nat.div_eq_of_eq_mul_left, Nat.factorial_pos,
+    Nat.succ_pos]
+  <;> ring_nf
+  <;> field_simp [Nat.factorial_ne_zero]
+  <;> ring
+  <;> omega
+

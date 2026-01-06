@@ -1,0 +1,30 @@
+Problem: problem_0343
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.911848068237305
+Lean check time (s): 4.170957326889038
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2003_p6
+  (a r : ℝ)
+  (u : ℕ → ℝ)
+  (h₀ : ∀ k, u k = a * r^k)
+  (h₁ : u 1 = 2)
+  (h₂ : u 3 = 6) :
+  u 0 = 2 / Real.sqrt 3 ∨ u 0 = - (2 / Real.sqrt 3) := by
+  simp only [h₀] at h₁ h₂ ⊢
+  have hr : r ^ 2 = 3 := by
+    nlinarith [pow_two r]
+  have ha : a = 2 / Real.sqrt 3 ∨ a = -(2 / Real.sqrt 3) := by
+    apply eq_or_eq_neg_of_sq_eq_sq <;> field_simp <;>
+    nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+  cases' ha with ha ha <;> simp_all [h₀]
+  <;> norm_num
+  <;>
+    nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]

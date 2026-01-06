@@ -1,0 +1,228 @@
+Problem: problem_0166
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.081705331802368 / 4.969554662704468 / 18.051259994506836
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x : ℕ, x ∈ Finset.range n → a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ 1 := by
+      calc
+        a x ≤ ∑ i in Finset.range n, a i := by
+          exact Finset.single_le_sum (fun i _ => by exact zero_le (a i)) hx
+        _ = n := h₂
+        _ = n := by simp
+    exact h₃
+  exact
+    calc
+      ∏ x in Finset.range n, a x ≤ ∏ x in Finset.range n, 1 := by
+        exact Finset.prod_le_prod (fun x hx => by exact zero_le (a x)) h₁
+      _ = 1 := by simp
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.488853931427002 / 2.620033025741577 / 14.108886957168579
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ ∑ i in Finset.range n, a i := by
+      apply Finset.single_le_sum (fun i _ => by exact zero_le (a i)) hx
+    simp_all
+  exact
+    calc
+      ∏ x in Finset.range n, a x ≤ ∏ x in Finset.range n, 1 := by
+        exact Finset.prod_le_prod (fun i _ => by exact zero_le (a i)) h₁
+      _ = 1 := by simp
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.840906143188477 / 2.5311973094940186 / 12.372103452682495
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ ∑ i in Finset.range n, a i := by
+      apply Finset.single_le_sum (fun i _ => by exact zero_le (a i)) hx
+    simp_all
+    <;> omega
+  exact Finset.prod_le_one (fun x hx => by exact zero_le (a x)) h₁
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.911859273910522 / 13.330418348312378 / 22.2422776222229
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ ∑ i in Finset.range n, a i := by
+      apply Finset.single_le_sum (fun i _ => by exact zero_le (a i)) hx
+    simp_all
+    <;> exact?
+  exact?
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.424538612365723 / 2.5567545890808105 / 14.981293201446533
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ ∑ i in Finset.range n, a i := by
+      apply Finset.single_le_sum (fun i _ => by exact zero_le (a i)) hx
+    simp [h₂] at h₃
+    exact h₃
+  have h₄ : ∏ x in Finset.range n, a x ≤ ∏ x in Finset.range n, 1 := by
+    apply Finset.prod_le_prod
+    · intro i hi
+      exact zero_le (a i)
+    · intro i hi
+      exact h₁ i hi
+  simp at h₄
+  exact h₄
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.832898616790771 / 13.002926349639893 / 21.835824966430664
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ ∑ i in Finset.range n, a i := by
+      apply Finset.single_le_sum (fun i hi => by exact zero_le (a i)) hx
+    simp_all
+    <;> exact?
+  exact?
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.007930994033813 / 2.453519105911255 / 16.46145009994507
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ 1 := by
+      calc
+        a x ≤ ∑ i in Finset.range n, a i := by
+          apply Finset.single_le_sum (fun i _ => by exact zero_le (a i)) hx
+        _ = n := h₂
+        _ = n := by simp
+        _ ≥ 1 := by
+          cases n with
+          | zero => simp_all
+          | succ n => simp_all
+    exact h₃
+  have h₄ : ∏ x in Finset.range n, a x ≤ 1 := by
+    apply Finset.prod_le_one
+    · intro x hx
+      exact zero_le (a x)
+    · intro x hx
+      exact h₁ x hx
+  exact h₄
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.528278350830078 / 2.583008289337158 / 13.111286640167236
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sum1toneqn_prod1tonleq1
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : ∑ x in Finset.range n, a x = n) :
+  ∏ x in Finset.range n, a x ≤ 1 := by
+  have h₁ : ∀ x ∈ Finset.range n, a x ≤ 1 := by
+    intro x hx
+    have h₂ : ∑ i in Finset.range n, a i = n := h₀
+    have h₃ : a x ≤ ∑ i in Finset.range n, a i := by
+      exact Finset.single_le_sum (fun i _ => by exact zero_le (a i)) (by simp [hx])
+    rw [h₂] at h₃
+    exact le_trans h₃ (by simp)
+  exact Finset.prod_le_one (fun x hx => by exact zero_le (a x)) h₁
+

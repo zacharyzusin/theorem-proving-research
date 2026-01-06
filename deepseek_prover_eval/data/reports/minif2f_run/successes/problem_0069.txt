@@ -1,0 +1,20 @@
+Problem: problem_0069
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.718593597412109
+Lean check time (s): 3.537285089492798
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_769 :
+  (129^34 + 96^38) % 11 = 9 := by
+  norm_num [Nat.add_mod, Nat.pow_mod, Nat.mod_eq_of_lt, show 11 ∣ 11 by norm_num]
+  <;> rfl
+  <;> decide
+  <;> decide
+  <;> decide

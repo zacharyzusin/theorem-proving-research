@@ -1,0 +1,24 @@
+Problem: problem_0344
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.1111814975738525
+Lean check time (s): 4.364692687988281
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2rootsintpoly_am10tap11eqasqpam110
+  (a : ℂ) :
+  (a - 10) * (a + 11) = a^2 + a - 110 := by
+  simp only [mul_add, mul_sub, sub_mul, add_comm, add_left_comm, add_assoc, add_right_comm,
+    sub_eq_add_neg, neg_mul, neg_neg, one_mul]
+  ring
+  <;> norm_num
+  <;> ring
+  <;> norm_num
+  <;> ring
+  <;> norm_num

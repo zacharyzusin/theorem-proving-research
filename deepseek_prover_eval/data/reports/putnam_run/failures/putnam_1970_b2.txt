@@ -1,0 +1,208 @@
+Problem: putnam_1970_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.909282207489014 / 45.652323484420776 / 57.56160569190979
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub 0
+  have h₄ := H.sub_dvd_eval_sub T
+  have h₅ := H.sub_dvd_eval_sub (-T)
+  simp_all [mul_comm]
+  <;> field_simp [hT.ne', Real.sqrt_ne_zero, ne_eq, Nat.cast_eq_zero, Nat.cast_ofNat] at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.095825910568237 / 52.96985340118408 / 65.06567931175232
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub 0
+  have h₄ := H.sub_dvd_eval_sub T
+  have h₅ := H.sub_dvd_eval_sub (-T)
+  simp_all [mul_comm]
+  <;> field_simp [hT.ne', Real.sqrt_ne_zero] at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.066081047058105 / 91.52427577972412 / 104.59035682678223
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) (T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (T / Real.sqrt 3) (-T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) 0
+  have h₄ := H.sub_dvd_eval_sub (T / Real.sqrt 3) 0
+  simp_all [mul_comm]
+  <;> field_simp [hT.ne', Real.sqrt_ne_zero, ne_eq, Nat.cast_eq_zero, Nat.cast_ofNat] at *
+  <;> ring_nf at *
+  <;> norm_num
+  <;> linarith [Real.sqrt_pos.mpr hT]
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.13364577293396 / 56.11927390098572 / 67.25291967391968
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub 0
+  have h₄ := H.sub_dvd_eval_sub T
+  have h₅ := H.sub_dvd_eval_sub (-T)
+  simp_all [mul_comm]
+  <;> field_simp [hT.ne', Real.sqrt_ne_zero] at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> linarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.28564453125 / 46.916667461395264 / 60.202311992645264
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) (T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (-T) (T)
+  have h₃ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) (-T)
+  have h₄ := H.sub_dvd_eval_sub (T / Real.sqrt 3) (T)
+  field_simp [hT.ne', Real.sqrt_ne_zero] at h₁ h₂ h₃ h₄ ⊢
+  ring_nf at h₁ h₂ h₃ h₄ ⊢
+  <;> simp_all [mul_comm]
+  <;> nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.461694955825806 / 54.94824504852295 / 67.40994000434875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) (T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (T / Real.sqrt 3) (-T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub (-T) (T)
+  have h₄ := H.sub_dvd_eval_sub (T) (-T)
+  simp_all [div_eq_mul_inv, mul_assoc, mul_comm, mul_left_comm]
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq, hT.ne', Real.sqrt_nonneg, sq_nonneg] at *
+  <;> ring_nf at *
+  <;> linarith
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.690908193588257 / 52.502517223358154 / 65.19342541694641
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) (T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (0 : ℝ) (T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub (-T / Real.sqrt 3) (0 : ℝ)
+  have h₄ := H.sub_dvd_eval_sub (T / Real.sqrt 3) (-T / Real.sqrt 3)
+  simp_all [mul_comm]
+  <;> field_simp [hT.ne', Real.sqrt_ne_zero] at *
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> linarith [Real.sqrt_nonneg 3]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.427099227905273 / 53.68824863433838 / 65.11534786224365
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b2
+(T : ℝ)
+(H : Polynomial ℝ)
+(hT : T > 0)
+(hH : H.degree ≤ 3)
+: (H.eval (-T / Real.sqrt 3) + H.eval (T / Real.sqrt 3))/2 = ⨍ t in Set.Icc (-T) T, H.eval t := by
+  have h₁ := H.sub_dvd_eval_sub (-T / Real.sqrt 3)
+  have h₂ := H.sub_dvd_eval_sub (T / Real.sqrt 3)
+  have h₃ := H.sub_dvd_eval_sub 0
+  have h₄ := H.sub_dvd_eval_sub T
+  have h₅ := H.sub_dvd_eval_sub (-T)
+  simp_all [mul_comm]
+  <;> field_simp [hT.ne', Real.sqrt_ne_zero] at *
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith [Real.sqrt_nonneg 3]

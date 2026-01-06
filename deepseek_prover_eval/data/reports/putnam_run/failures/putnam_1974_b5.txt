@@ -1,0 +1,260 @@
+Problem: putnam_1974_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 32.21643090248108 / 32.16166687011719 / 64.37809777259827
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by rfl
+    have h₄ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+      have h₅ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) 1, (n^i : ℝ)/(Nat.factorial i) := by
+        apply Finset.sum_le_sum_of_subset_of_nonneg
+        · intro x hx
+          simp_all [Finset.mem_Icc]
+          <;> omega
+        · intro x _ hx
+          positivity
+      have h₆ : ∑ i ∈ Finset.Icc (0 : ℕ) 1, (n^i : ℝ)/(Nat.factorial i) ≥ (Real.exp n)/2 := by
+        simp [Finset.sum_Icc_succ_top, Nat.factorial_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Real.exp_pos]
+        have h₇ : n ≥ 0 := by linarith
+        have h₈ : Real.exp n ≥ 0 := Real.exp_pos n |>.le
+        have h₉ : (n : ℝ) ^ 0 = 1 := by norm_num
+        have h₁₀ : (Nat.factorial 0 : ℝ) = 1 := by norm_num
+        field_simp [h₉, h₁₀]
+        <;>
+        nlinarith [Real.add_one_le_exp n, sq_nonneg (n - 1)]
+
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 82.15961694717407 / 25.6175754070282 / 107.77719235420227
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+    have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by linarith
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+      have h₄ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+      have h₅ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by linarith
+      have h₆ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+        have h₇ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+        have h₈ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+          have h₉ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by linarith
+          have h₁₀ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factoria
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 27.244962692260742 / 19.37511372566223 / 46.620076417922974
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+  rw [h₁]
+  have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) := by
+      have h₄ : Finset.Icc (0 : ℕ) n = Finset.range (n + 1) := by
+        ext x
+        simp [Finset.mem_Icc, Nat.lt_succ_iff]
+        <;> omega
+      simp [h₄]
+    rw [h₃]
+    have h₅ : ∑ i ∈ Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+      have h₆ : ∑ i ∈ Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) = Real.exp n := by
+        rw [Real.exp_eq_exp_re_of_nat]
+        simp [← Real.exp_nat_mul]
+        <;> induction n with
+        | zero => simp
+        | succ n ih =>
+          simp_all [Finset.sum_range_succ, Nat.factorial_succ, Nat.cast_add_one_ne_zero]
+          <;> field_simp [Real.exp_ne_zero] at *
+          <;> ring_nf at *
+          <;> linarith
+      rw [h₆]
+      have h₇ : Real.exp n > 0 := Real.exp_pos n
+      linarith
+    exact h₅
+  exact h₂
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.619832038879395 / 29.0231671333313 / 48.64299917221069
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i in Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) := by
+      apply Finset.sum_subset
+      · intro x hx
+        simp_all [Finset.mem_Icc, Nat.lt_succ_iff]
+        <;> omega
+      · intro x hx
+        simp_all [Finset.mem_Icc, Nat.lt_succ_iff]
+        <;> omega
+    rw [h₂]
+    have h₃ : ∑ i in Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) = (Real.exp n) := by
+      rw [Real.exp_eq_tsum]
+      <;> simp [Finset.sum_range_succ, Nat.factorial_succ, Nat.cast_add, Nat.cast_mul, Nat.cast_one, Nat.cast_sub]
+      <;> norm_cast
+      <;> field_simp [Nat.factorial_ne_zero]
+      <;> ring
+    rw [h₃]
+    linarith [Real.exp_pos n]
+  exact h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 28.422593593597412 / 41.4258337020874 / 69.84842729568481
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+  rw [h₁]
+  have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) := by
+      have h₄ : Finset.Icc (0 : ℕ) n = Finset.range (n + 1) := by
+        ext x
+        simp [Nat.lt_succ_iff]
+        <;> omega
+      simp [h₄]
+    rw [h₃]
+    have h₅ : ∑ i ∈ Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+      have h₆ : ∑ i ∈ Finset.range (n + 1), (n^i : ℝ)/(Nat.factorial i) = Real.exp n := by
+        rw [Real.exp_eq_exp_ℝ]
+        simp [← Real.exp_nat_mul]
+        <;> induction n with
+        | zero => simp
+        | succ n ih =>
+          simp_all [Finset.sum_range_succ, Nat.factorial_succ, pow_succ]
+          <;> field_simp [Nat.factorial_succ, pow_succ] at ih ⊢
+          <;> nlinarith
+      rw [h₆]
+      have h₇ : Real.exp n > (Real.exp n)/2 := by
+        have h₈ : Real.exp n > 0 := Real.exp_pos n
+        linarith
+      linarith
+    exact h₅
+  exact h₂
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 88.0730390548706 / 17.031349420547485 / 105.10438847541809
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by linarith
+    have h₄ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+      have h₅ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = Real.exp n - (∑ i ∈ Finset.Icc (n+1 : ℕ) ∞, (n^i : ℝ)/(Nat.factorial i)) := by
+        have h₆ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) + ∑ i ∈ Finset.Icc (n+1 : ℕ) ∞, (n^i : ℝ)/(Nat.factorial i) = Real.exp n := by
+          have h₇ : ∑ i ∈ Finset.Icc (0 : ℕ) ∞, (n^i : ℝ)/(Nat.factorial i) = Real.exp n := by
+            rw [Real.exp_eq_exp_ℝ]
+            simp [Nat.factorial_zero, Nat.cast_one, Finset.sum_Icc_succ_top]
+          have h₈ : ∑ i ∈ Finset.Icc (0 : ℕ) ∞, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) + ∑ i ∈ Finset.Icc (n+1 : ℕ) ∞, (n^i : ℝ)/(Nat.factorial i) := by
+            rw [← Finset.sum_union]
+            · congr
+              <;> ext
+              <;> simp [Finset
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 86.3105800151825 / 41.668203353881836 / 127.97878336906433
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) > (Real.exp n) / 2 := by
+    have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) := rfl
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) := by rfl
+    have h₄ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) > (Real.exp n) / 2 := by
+      have h₅ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) = Real.exp n - (∑ i ∈ Finset.Icc (n + 1 : ℕ) ∞, (n^i : ℝ) / (Nat.factorial i)) := by
+        have h₆ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) + ∑ i ∈ Finset.Icc (n + 1 : ℕ) ∞, (n^i : ℝ) / (Nat.factorial i) = Real.exp n := by
+          have h₇ : Real.exp n = ∑ i ∈ Finset.Icc (0 : ℕ) ∞, (n^i : ℝ) / (Nat.factorial i) := by
+            rw [Real.exp_eq_exp_ℝ]
+            simp [Real.exp_eq_exp_ℝ]
+          have h₈ : ∑ i ∈ Finset.Icc (0 : ℕ) ∞, (n^i : ℝ) / (Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ) / (Nat.factorial i) + ∑ i ∈ Finset.Icc (n + 1 : ℕ) ∞, (n^i : ℝ) / (Nat.factorial i) := by
+            exact tsum_eq_add_tsum_compl (Finset.Icc (0 : ℕ) n) (by
+              have h₉ : ∑ i ∈ Finset.Icc (0 : ℕ
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 63.33720302581787 / 68.94308423995972 / 132.2802872657776
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b5
+: ∀ n ≥ 0, ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+  intro n hn
+  have h₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+    have h₂ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+    rw [h₂]
+    have h₃ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by rfl
+    have h₄ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+      have h₅ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+      have h₆ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+        have h₇ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) = ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := rfl
+        have h₈ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by rfl
+        have h₉ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) > (Real.exp n)/2 := by
+          have h₁₀ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) ≥ ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factorial i) := by rfl
+          have h₁₁ : ∑ i ∈ Finset.Icc (0 : ℕ) n, (n^i : ℝ)/(Nat.factori
+... [truncated] ...

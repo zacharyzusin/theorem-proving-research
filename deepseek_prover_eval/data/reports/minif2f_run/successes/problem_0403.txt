@@ -1,0 +1,28 @@
+Problem: problem_0403
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 16.03152084350586
+Lean check time (s): 2.892209053039551
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_156
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  Nat.gcd (n + 7) (2 * n + 1) ≤ 13 := by
+  have h₁ : Nat.gcd (n + 7) (2 * n + 1) ≤ 13 := by
+    have h₁ : Nat.gcd (n + 7) (2 * n + 1) ∣ 13 := by
+      have h₂ : Nat.gcd (n + 7) (2 * n + 1) ∣ n + 7 := Nat.gcd_dvd_left (n + 7) (2 * n + 1)
+      have h₃ : Nat.gcd (n + 7) (2 * n + 1) ∣ 2 * n + 1 := Nat.gcd_dvd_right (n + 7) (2 * n + 1)
+      have h₄ : Nat.gcd (n + 7) (2 * n + 1) ∣ 13 := by
+        have h₅ : 13 = 2 * (n + 7) - (2 * n + 1) := by omega
+        rw [h₅]
+        exact dvd_sub' (dvd_mul_of_dvd_right (Nat.gcd_dvd_left (n + 7) (2 * n + 1)) 2) h₃
+      exact h₄
+    exact Nat.le_of_dvd (by norm_num) h₁
+  exact h₁

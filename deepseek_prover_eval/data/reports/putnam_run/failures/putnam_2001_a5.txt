@@ -1,0 +1,299 @@
+Problem: putnam_2001_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.114033699035645 / 14.998435735702515 / 25.11246943473816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (15, 4)
+  constructor
+  · norm_num
+  · rintro ⟨a, n⟩ ⟨ha, hn, h⟩ <;>
+    rcases n with (_ | _ | _ | _ | n) <;>
+    rcases a with (_ | _ | _ | _ | _ | _ | _ | _ | _ | _ | a) <;>
+    norm_num at h <;>
+    simp_all [Nat.pow_succ, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib] <;>
+    ring_nf at h <;>
+    omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 32.305959939956665 / 27.709492444992065 / 60.01545238494873
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (15, 4)
+  constructor
+  · constructor
+    · norm_num
+    · constructor
+      · norm_num
+      · norm_num
+  rintro ⟨a, n⟩ ⟨ha, hn, h⟩
+  have h₁ : a > 0 := ha
+  have h₂ : n > 0 := hn
+  have h₃ : a^(n+1) - (a+1)^n = 2001 := h
+  have h₄ : a ≤ 46 := by
+    by_contra! h₅
+    have h₆ : a ≥ 47 := by linarith
+    have h₇ : a^(n+1) - (a+1)^n > 2001 := by
+      have h₈ : a^(n+1) ≥ 47^(n+1) := by
+        exact pow_le_pow_of_le_left (by linarith) h₆ (n+1)
+      have h₉ : (a+1)^n ≤ (47+1)^n := by
+        exact pow_le_pow_of_le_left (by linarith) (by linarith) n
+      have h₁₀ : 47^(n+1) - (47+1)^n > 2001 := by
+        have h₁₁ : n ≥ 1 := by linarith
+        have h₁₂ : 47^(n+1) ≥ 47^2 := by
+          exact pow_le_pow_right (by linarith) (by linarith)
+        have h₁₃ : (47+1)^n ≤ (47+1)^n := by
+          exact le_refl ((47+1)^n)
+        have h₁₄ : 47^(n+1) - (47+1)^n > 2001 := by
+          have h₁₅ : 47^(n+1) - (47+1)^n ≥ 47^2 - (47+1)^1 := by
+            have h₁₆ : 47^(n+1) ≥ 47^2 := by
+              exact pow_le_pow_right (by linarith) (by linarith)
+            have h₁₇ : (47+1)^n ≤ (47+1)^1 := by
+              exact pow_le_pow_of_le_right (by linarith) (by linarith)
+            omega
+          omega
+        omega
+      omega
+    omega
+  interval_cases a <;> norm_num at h₃ ⊢
+  <;> rcases n with (_ | _ 
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 25.15874147415161 / 19.70344042778015 / 44.86218190193176
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (25, 4)
+  constructor
+  · norm_num
+  · rintro ⟨a, n⟩ ⟨ha, hn, h⟩
+    have h₁ : a > 0 := ha
+    have h₂ : n > 0 := hn
+    have h₃ : a ^ (n + 1) - (a + 1) ^ n = 2001 := h
+    have h₄ : a ≤ 50 := by
+      by_contra! h₅
+      have h₆ : a ^ (n + 1) - (a + 1) ^ n ≥ 50 ^ (n + 1) - 51 ^ n := by
+        gcongr <;> omega
+      have h₇ : 50 ^ (n + 1) - 51 ^ n ≥ 2001 := by
+        have h₈ : n ≥ 1 := by linarith
+        have h₉ : 50 ^ (n + 1) ≥ 50 ^ 2 := by
+          apply Nat.pow_le_pow_of_le_right
+          linarith
+          linarith
+        have h₁₀ : 51 ^ n ≤ 51 ^ n := by linarith
+        have h₁₁ : 50 ^ (n + 1) - 51 ^ n ≥ 2001 := by
+          cases n with
+          | zero => contradiction
+          | succ n =>
+            norm_num at *
+            induction n with
+            | zero =>
+              norm_num at *
+              <;> omega
+            | succ n ih =>
+              simp_all [Nat.pow_succ, Nat.mul_sub_left_distrib]
+              <;> ring_nf at *
+              <;> omega
+        linarith
+      omega
+    interval_cases a <;> norm_num at h₃ ⊢
+    <;>
+    rcases n with (_ | _ | _ | _ | n) <;>
+    norm_num at h₃ ⊢ <;>
+    ring_nf at h₃ ⊢ <;>
+    omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.62372088432312 / 14.965855598449707 / 24.589576482772827
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (15, 4)
+  constructor
+  · norm_num
+  · rintro ⟨a, n⟩ ⟨ha, hn, h⟩ <;>
+    rcases n with (_ | _ | _ | _ | n) <;>
+    rcases a with (_ | _ | _ | _ | _ | a) <;>
+    norm_num at h <;>
+    simp_all [Nat.pow_succ, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib] <;>
+    ring_nf at h <;>
+    omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 33.865713119506836 / 23.476975679397583 / 57.34268879890442
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (6, 4)
+  constructor
+  · constructor
+    · norm_num
+    · constructor
+      · norm_num
+      · norm_num
+  · rintro ⟨a, n⟩ ⟨ha, hn, h⟩
+    have h₁ : a > 0 := ha
+    have h₂ : n > 0 := hn
+    have h₃ : a^(n+1) - (a+1)^n = 2001 := h
+    have h₄ : a ≤ 30 := by
+      by_contra! h₅
+      have h₆ : a^(n+1) - (a+1)^n > 2001 := by
+        have h₇ : a^(n+1) ≥ 31^(n+1) := by
+          apply Nat.pow_le_pow_of_le_left
+          linarith
+        have h₈ : (a+1)^n ≤ (a+1)^n := by
+          linarith
+        have h₉ : 31^(n+1) - (a+1)^n > 2001 := by
+          have h₁₀ : 31^(n+1) ≥ 31^(n+1) := by
+            linarith
+          have h₁₁ : (a+1)^n ≤ (31)^n := by
+            apply Nat.pow_le_pow_of_le_left
+            linarith
+          have h₁₂ : 31^(n+1) - (a+1)^n > 2001 := by
+            have h₁₃ : 31^(n+1) - (a+1)^n ≥ 31^(n+1) - 31^n := by
+              omega
+            have h₁₄ : 31^(n+1) - 31^n = 31^n * (31 - 1) := by
+              rw [Nat.pow_succ]
+              ring
+            have h₁₅ : 31^n * (31 - 1) = 31^n * 30 := by
+              omega
+            have h₁₆ : 31^n * 30 ≥ 31^n * 30 := by
+              linarith
+            have h₁₇ : 31^n ≥ 1 := by
+              apply Nat.one_le_pow
+              linarith
+            have h₁₈ : 31^n * 30 ≥ 30 := by
+              nlinarith
+            omega
+        
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 31.890738487243652 / 26.520761728286743 / 58.411500215530396
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (15, 4)
+  constructor
+  · norm_num
+  rintro ⟨a, n⟩ ⟨ha, hn, h⟩
+  have h₁ : a > 0 := by linarith
+  have h₂ : n > 0 := by linarith
+  have h₃ : a ^ (n + 1) - (a + 1) ^ n = 2001 := by linarith
+  have h₄ : a ≤ 43 := by
+    by_contra! h₅
+    have h₆ : a ^ (n + 1) - (a + 1) ^ n > 2001 := by
+      have h₇ : a ^ (n + 1) ≥ a ^ 5 := by
+        apply pow_le_pow_right (by linarith)
+        linarith
+      have h₈ : (a + 1) ^ n ≤ (a + 1) ^ n := by linarith
+      have h₉ : a ^ 5 - (a + 1) ^ n > 2001 := by
+        have h₁₀ : a ^ 5 - (a + 1) ^ n ≥ a ^ 5 - (a + 1) ^ 4 := by
+          apply sub_le_sub_left
+          exact pow_le_pow_right (by linarith) (by linarith)
+        have h₁₁ : a ^ 5 - (a + 1) ^ 4 > 2001 := by
+          have h₁₂ : a ≥ 44 := by linarith
+          have h₁₃ : a ^ 5 - (a + 1) ^ 4 > 2001 := by
+            have h₁₄ : a ^ 5 ≥ 44 ^ 5 := by
+              exact pow_le_pow_of_le_left (by linarith) h₁₂ 5
+            have h₁₅ : (a + 1) ^ 4 ≤ (44 + 1) ^ 4 := by
+              exact pow_le_pow_of_le_left (by linarith) (by linarith) 4
+            norm_num at h₁₄ h₁₅ ⊢
+            omega
+          exact h₁₃
+        linarith
+      linarith
+    linarith
+  interval_cases a <;> norm_num at h₃ ⊢
+  <;> rcases n with (_ | _ | _ | _ | _ | n) <;> norm_num at h₃ ⊢ <;>
+    (try omega) <;> (try nlinarith) <;> (try
+ 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.587140560150146 / 14.335695505142212 / 23.92283606529236
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (4, 4)
+  constructor
+  · norm_num
+  · rintro ⟨a, n⟩ ⟨ha, hn, h⟩ <;>
+    rcases n with (_ | _ | _ | _ | _ | n) <;>
+    rcases a with (_ | _ | _ | _ | a) <;>
+    norm_num at h <;>
+    simp_all [Nat.pow_succ, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib] <;>
+    ring_nf at h <;>
+    omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.944207429885864 / 16.096912145614624 / 26.04111957550049
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a5
+: ∃! an : ℤ × ℕ, let (a, n) := an; a > 0 ∧ n > 0 ∧ a^(n+1) - (a+1)^n = 2001 := by
+  use (15, 4)
+  constructor
+  · norm_num
+  rintro ⟨a, n⟩ ⟨ha, hn, h⟩ <;>
+    rcases n with (_ | _ | _ | _ | n) <;>
+    rcases a with (_ | _ | _ | _ | _ | _ | _ | _ | _ | _ | a) <;>
+    norm_num at h <;>
+    simp_all [Nat.pow_succ, Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib] <;>
+    ring_nf at h <;>
+    omega

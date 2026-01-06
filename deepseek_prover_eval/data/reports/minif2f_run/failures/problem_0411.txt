@@ -1,0 +1,270 @@
+Problem: problem_0411
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.092905044555664 / 4.423873424530029 / 24.516778469085693
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : (8 : ℝ) = 2 ^ (3 : ℝ) := by norm_num
+  have h₃ : (Real.logb 8 x) = (Real.logb (2 ^ 3) x) := by rw [h₂]
+  have h₄ : (Real.logb (2 ^ 3) x) = (1 / 3) * (Real.logb 2 x) := by
+    field_simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₃] at h₁
+  rw [h₄] at h₁
+  have h₅ : (Real.logb 2 x) ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+    <;> simp_all [Real.logb_eq_zero]
+  field_simp [Real.logb, Real.log_rpow, h₅] at h₁
+  ring_nf at h₁
+  have h₆ : (Real.logb 2 x) = 3 ∨ (Real.logb 2 x) = -3 := by
+    apply or_iff_not_imp_left.mpr
+    intro h
+    apply mul_left_cancel₀ (sub_ne_zero_of_ne h)
+    nlinarith
+  cases h₆ with
+  | inl h₆ =>
+    rw [h₆]
+    nlinarith
+  | inr h₆ =>
+    rw [h₆]
+    nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.342952013015747 / 4.542079210281372 / 25.88503122329712
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : (Real.logb 2 x) ^ 2 = 27 := by
+    have h₃ : Real.logb 8 x = (Real.logb 2 x) / 3 := by
+      rw [show (8 : ℝ) = 2 ^ (3 : ℝ) by norm_num]
+      field_simp [Real.logb, Real.log_rpow, h₀]
+      <;> ring
+    have h₄ : Real.logb 2 (Real.logb 8 x) = Real.logb 2 ((Real.logb 2 x) / 3) := by rw [h₃]
+    rw [h₄] at h₁
+    have h₅ : Real.logb 8 (Real.logb 2 x) = (Real.logb 2 (Real.logb 2 x)) / 3 := by
+      rw [show (8 : ℝ) = 2 ^ (3 : ℝ) by norm_num]
+      field_simp [Real.logb, Real.log_rpow, h₀]
+      <;> ring
+    rw [h₅] at h₁
+    field_simp [Real.logb, Real.log_rpow, h₀] at h₁
+    ring_nf at h₁
+    have h₆ : Real.logb 2 x ≠ 0 := by
+      intro h
+      rw [h] at h₁
+      norm_num at h₁
+    apply mul_left_cancel₀ h₆
+    nlinarith [sq_nonneg (Real.logb 2 x - 3), sq_nonneg (Real.logb 2 x + 3)]
+  exact h₂
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.227876663208008 / 4.257862091064453 / 21.48573875427246
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : (8 : ℝ) = 2 ^ (3 : ℝ) := by norm_num
+  have h₃ : (Real.logb 8 x) = (Real.logb (2 ^ 3) x) := by rw [h₂]
+  have h₄ : (Real.logb (2 ^ 3) x) = (1 / 3) * (Real.logb 2 x) := by
+    field_simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₃] at h₁
+  rw [h₄] at h₁
+  have h₅ : (Real.logb 2 x) ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+    <;> simp_all [Real.logb_eq_zero]
+    <;> nlinarith
+  field_simp [Real.logb, Real.log_rpow, h₅] at h₁ ⊢
+  <;> ring_nf at h₁ ⊢
+  <;> nlinarith [sq_nonneg (Real.logb 2 x - 3), sq_nonneg (Real.logb 2 x + 3)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.43307375907898 / 4.173100709915161 / 18.60617446899414
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : Real.logb 8 x = Real.logb (2 ^ 3) x := by norm_num
+  have h₃ : Real.logb 2 x = Real.logb (2) x := by norm_num
+  rw [h₂, h₃] at h₁
+  simp_all [Real.logb, Real.log_rpow, mul_comm]
+  <;> field_simp [Real.log_mul, Real.log_rpow, h₀.ne', mul_comm] at h₁ ⊢
+  <;> ring_nf at h₁ ⊢
+  <;> nlinarith [sq_nonneg (Real.log x), sq_nonneg (Real.log x - 3),
+    sq_nonneg (Real.log x + 3), Real.log_pos (by norm_num : (1 : ℝ) < 2),
+    Real.log_pos (by norm_num : (1 : ℝ) < 8)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.46407437324524 / 4.089863300323486 / 17.553937673568726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : (Real.logb 8 x) = (Real.logb 2 x) / 3 := by
+    simp [Real.logb, show (8 : ℝ) = 2 ^ 3 by norm_num, log_rpow]
+    <;> field_simp [log_mul, log_rpow]
+    <;> ring
+  have h₃ : (Real.logb 2 x) ^ 2 = 27 := by
+    rw [h₂] at h₁
+    field_simp [Real.logb, show (8 : ℝ) = 2 ^ 3 by norm_num, log_rpow] at h₁
+    <;> ring_nf at h₁
+    <;> nlinarith [sq_nonneg (Real.logb 2 x - 3), sq_nonneg (Real.logb 2 x + 3)]
+  exact h₃
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.795469999313354 / 5.8560051918029785 / 29.651475191116333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : (Real.logb 8 x) = (Real.logb 2 x) / 3 := by
+    rw [show (8 : ℝ) = 2 ^ 3 by norm_num]
+    field_simp [Real.logb, Real.log_rpow, h₀]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.log_mul, Real.log_rpow, h₀]
+    <;> ring_nf
+  rw [h₂] at h₁
+  have h₃ : Real.logb 8 (Real.logb 2 x) = (Real.logb 2 (Real.logb 2 x)) / 3 := by
+    rw [show (8 : ℝ) = 2 ^ 3 by norm_num]
+    field_simp [Real.logb, Real.log_rpow, h₀]
+    <;> ring_nf
+    <;> norm_num
+    <;> field_simp [Real.log_mul, Real.log_rpow, h₀]
+    <;> ring_nf
+  rw [h₃] at h₁
+  field_simp [Real.logb, Real.log_rpow, h₀] at h₁
+  ring_nf at h₁
+  have h₄ : Real.logb 2 x = 3 ∨ Real.logb 2 x = -3 := by
+    apply or_iff_not_imp_left.mpr
+    intro h
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h)
+    nlinarith [sq_nonneg (Real.logb 2 x - 3), sq_nonneg (Real.logb 2 x + 3)]
+  rcases h₄ with (h₄ | h₄) <;> simp_all [pow_two]
+  <;> nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.346986770629883 / 4.017969131469727 / 25.36495590209961
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : Real.logb 8 x = (Real.logb 2 x) / 3 := by
+    simp [Real.logb, show (8 : ℝ) = 2 ^ 3 by norm_num, log_rpow, mul_comm]
+    <;> field_simp [Real.log_mul, Real.log_rpow, Real.log_ne_zero_of_pos_of_ne_one]
+    <;> ring
+  have h₃ : Real.logb 2 (Real.logb 8 x) = Real.logb 2 ((Real.logb 2 x) / 3) := by rw [h₂]
+  rw [h₃] at h₁
+  have h₄ : Real.logb 8 (Real.logb 2 x) = Real.logb 2 (Real.logb 2 x) / 3 := by
+    simp [Real.logb, show (8 : ℝ) = 2 ^ 3 by norm_num, log_rpow, mul_comm]
+    <;> field_simp [Real.log_mul, Real.log_rpow, Real.log_ne_zero_of_pos_of_ne_one]
+    <;> ring
+  rw [h₄] at h₁
+  field_simp at h₁
+  have h₅ : Real.logb 2 x ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+  field_simp [h₅] at h₁
+  nlinarith [sq_nonneg (Real.logb 2 x - 3), sq_nonneg (Real.logb 2 x + 3)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.101758241653442 / 5.0592944622039795 / 20.161052703857422
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1988_p3
+  (x : ℝ)
+  (h₀ : 0 < x)
+  (h₁ : Real.logb 2 (Real.logb 8 x) = Real.logb 8 (Real.logb 2 x)) :
+  (Real.logb 2 x)^2 = 27 := by
+  have h₂ : Real.logb 8 x = Real.logb (2 ^ 3) x := by norm_num
+  have h₃ : Real.logb 2 x = Real.logb (2) x := by norm_num
+  rw [h₂, h₃] at h₁
+  simp_all [Real.logb, Real.log_rpow, mul_comm]
+  ring_nf at h₁ ⊢
+  <;>
+  field_simp [Real.log_mul, Real.log_rpow, Real.log_pow, Real.log_inv, Real.log_div] at h₁ ⊢
+  <;>
+  ring_nf at h₁ ⊢
+  <;>
+  nlinarith [sq_nonneg (Real.log x), sq_nonneg (Real.log x - 3), sq_nonneg (Real.log x + 3)]
+

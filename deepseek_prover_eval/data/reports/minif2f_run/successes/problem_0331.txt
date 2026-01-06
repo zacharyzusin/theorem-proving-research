@@ -1,0 +1,28 @@
+Problem: problem_0331
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 7.841753244400024
+Lean check time (s): 3.733630418777466
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_110
+  (q e : ℂ)
+  (h₀ : q = 2 - 2 * Complex.I)
+  (h₁ : e = 5 + 5 * Complex.I) :
+  q * e = 20 := by
+  rw [h₀, h₁]
+  norm_num
+  <;> simp [Complex.ext_iff, mul_add, mul_sub, sub_mul, add_mul, mul_comm, mul_left_comm,
+    mul_assoc]
+  <;> norm_num
+  <;> ring
+  <;> norm_num
+  <;> simp [Complex.I_sq]
+  <;> ring
+  <;> norm_num

@@ -1,0 +1,28 @@
+Problem: problem_0098
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.163929462432861
+Lean check time (s): 2.890446901321411
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_388
+  (x y z : ℝ)
+  (h₀ : 3 * x + 4 * y - 12 * z = 10)
+  (h₁ : -2 * x - 3 * y + 9 * z = -4) :
+  x = 14 := by
+  have h₂ := h₀
+  have h₃ := h₁
+  -- We use the given equations to solve for x.
+  -- First, we eliminate y by multiplying the first equation by 3 and the second by 4.
+  have h₄ := congr_arg (fun x => x * 3) h₀
+  have h₅ := congr_arg (fun x => x * 4) h₁
+  -- Simplify the expressions to get new equations.
+  ring_nf at h₄ h₅
+  -- Solve the resulting system of equations using linear arithmetic.
+  linarith

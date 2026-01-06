@@ -1,0 +1,198 @@
+Problem: putnam_1989_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.79867434501648 / 4.708679437637329 / 26.50735378265381
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 26.456140279769897 / 4.687127590179443 / 31.14326786994934
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 27.243138790130615 / 4.905246019363403 / 32.14838480949402
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.632686138153076 / 4.7240355014801025 / 32.35672163963318
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.988725185394287 / 4.726559638977051 / 26.715284824371338
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.71694803237915 / 4.648245811462402 / 31.365193843841553
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 29.769155979156494 / 4.652067184448242 / 34.421223163604736
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 25.31343960762024 / 4.703712224960327 / 30.017151832580566
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b6
+    (n : ℕ) [NeZero n]
+    (I : (Fin n → ℝ) → Fin (n + 2) → ℝ)
+    (I_def : ∀ x, I x = Fin.cons 0 (Fin.snoc x 1))
+    (X : Set (Fin n → ℝ))
+    (X_def : ∀ x, x ∈ X ↔ 0 < x 0 ∧ x (-1) < 1 ∧ StrictMono x)
+    (S : (ℝ → ℝ) → (Fin (n + 2) → ℝ) → ℝ)
+    (S_def : ∀ f x, S f x = ∑ i : Fin n.succ, (x i.succ - x i.castSucc) * f (i + 1)) :
+    ∃ P : Polynomial ℝ,
+      P.degree = n ∧
+      (∀ t ∈ Icc 0 1, P.eval t ∈ Icc 0 1) ∧
+      (∀ f : ℝ → ℝ, f 1 = 0 → ContinuousOn f (Icc 0 1) →
+        ∫ x, S f (I x) ∂ℙ[|X] = ∫ t in (0)..1, f t * P.eval t) :=
+  sorry

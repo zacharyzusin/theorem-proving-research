@@ -1,0 +1,21 @@
+Problem: problem_0293
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 7.287051439285278
+Lean check time (s): 4.554907321929932
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_257
+  (x : ℕ)
+  (h₀ : 1 ≤ x ∧ x ≤ 100)
+  (h₁ : 77∣(∑ k in (Finset.range 101), k - x)) :
+  x = 45 := by
+  norm_num [Finset.sum_range_succ, Finset.sum_range_one] at h₁
+  have h₂ : x ≤ 100 := by linarith
+  interval_cases x <;> norm_num [Finset.sum_range_succ, Finset.sum_range_one] at h₁ <;> omega

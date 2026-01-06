@@ -1,0 +1,254 @@
+Problem: problem_0080
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.91552734375 / 3.0327179431915283 / 18.94824528694153
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ := h₀
+    have h₄ := h₁
+    -- We use the given equations to solve for f and z.
+    -- First, we solve for f using the given equations.
+    linear_combination h₀ * 3 - h₁
+    <;> simp_all [mul_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> aesop
+  have h₃ : z = 7 := by
+    have h₄ := h₀
+    have h₅ := h₁
+    -- We use the given equations to solve for f and z.
+    -- Next, we solve for z using the given equations.
+    linear_combination h₀ - h₂
+    <;> simp_all [mul_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> aesop
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.878455877304077 / 2.9284543991088867 / 13.806910276412964
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ := h₀
+    have h₄ := h₁
+    -- Solve for f using the given equations
+    linear_combination h₄ - 3 * h₃
+  have h₃ : z = 7 := by
+    have h₄ := h₀
+    have h₅ := h₁
+    -- Solve for z using the given equations
+    linear_combination h₅ - 3 * h₄
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.836309909820557 / 2.8707633018493652 / 13.707073211669922
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ := h₀
+    have h₄ := h₁
+    ring_nf at h₃ h₄
+    linear_combination h₄ - 3 * h₃
+  have h₃ : z = 7 := by
+    have h₄ := h₀
+    have h₅ := h₁
+    subst_vars
+    ring_nf at h₄ h₅ ⊢
+    linear_combination h₅
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.134451150894165 / 2.7795121669769287 / 17.913963317871094
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ := h₀
+    have h₄ := h₁
+    -- We use the given equations to solve for f and z.
+    -- First, we solve for f using the given equations.
+    linear_combination h₀ * 3 - h₁
+    <;> simp_all [mul_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith
+  have h₃ : z = 7 := by
+    have h₄ := h₀
+    have h₅ := h₁
+    -- Next, we solve for z using the given equations.
+    linear_combination h₀ - h₂
+    <;> simp_all [mul_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.414950370788574 / 3.1497552394866943 / 17.56470561027527
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ := h₀
+    have h₄ := h₁
+    -- Simplify the equations to solve for f
+    simp_all [mul_comm, mul_assoc, mul_left_comm]
+    ring_nf at *
+    -- Use linear arithmetic to solve for f
+    linear_combination h₀ * 3 + h₁
+  have h₃ : z = 7 := by
+    have h₄ := h₀
+    have h₅ := h₁
+    -- Simplify the equations to solve for z
+    simp_all [mul_comm, mul_assoc, mul_left_comm]
+    ring_nf at *
+    -- Use linear arithmetic to solve for z
+    linear_combination h₀ - h₂
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.203896760940552 / 2.8923304080963135 / 14.096227169036865
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ : f = -10 := by
+      have h₄ : f = -10 := by
+        linear_combination h₀ * 3 - h₁
+      exact h₄
+    exact h₃
+  have h₃ : z = 7 := by
+    have h₄ : z = 7 := by
+      have h₅ : z = 7 := by
+        linear_combination h₀ - h₂
+      exact h₅
+    exact h₄
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.275610208511353 / 2.6276743412017822 / 14.903284549713135
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ : f = -10 := by
+      -- Use the given equations to solve for f
+      have h₄ : f = -10 := by
+        linear_combination h₀ * 3 - h₁
+      exact h₄
+    exact h₃
+  have h₃ : z = 7 := by
+    have h₄ : z = 7 := by
+      -- Use the given equations to solve for z
+      have h₅ : z = 7 := by
+        linear_combination h₀ - h₂
+      exact h₅
+    exact h₄
+  exact ⟨h₂, h₃⟩
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.952477216720581 / 3.2557716369628906 / 14.208248853683472
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
+  (f z: ℂ)
+  (h₀ : f + 3*z = 11)
+  (h₁ : 3*(f - 1) - 5*z = -68) :
+  f = -10 ∧ z = 7 := by
+  have h₂ : f = -10 := by
+    have h₃ := h₀
+    have h₄ := h₁
+    -- Solve for f using the given equations
+    linear_combination h₀ * 3 - h₁
+  have h₃ : z = 7 := by
+    have h₄ := h₀
+    have h₅ := h₁
+    -- Solve for z using the given equations
+    linear_combination h₀ - h₂
+  exact ⟨h₂, h₃⟩
+

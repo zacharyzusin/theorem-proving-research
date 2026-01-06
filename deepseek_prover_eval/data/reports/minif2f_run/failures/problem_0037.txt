@@ -1,0 +1,264 @@
+Problem: problem_0037
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.79711103439331 / 4.764172077178955 / 18.561283111572266
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  have h₁ : n ≥ 3 := by linarith
+  induction' h₁ with k hk IH
+  · -- Base case: n = 3
+    norm_num [Nat.factorial]
+  cases k with
+  | zero => contradiction -- k cannot be zero since h₁ : k ≥ 3
+  | succ k' =>
+    cases k' with
+    | zero => contradiction -- k cannot be one since h₁ : k ≥ 3
+    | succ k'' =>
+      cases k'' with
+      | zero => contradiction -- k cannot be two since h₁ : k ≥ 3
+      | succ k''' =>
+        simp_all [Nat.factorial, Nat.pow_succ, Nat.mul_comm]
+        -- Use the fact that n! < n^n for n ≥ 3 and the properties of factorials and powers
+        all_goals
+          nlinarith [pow_pos (by linarith : (0 : ℕ) < k''' + 3) (k''' + 2),
+            Nat.factorial_le (by linarith : k''' + 3 ≤ k''' + 3)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.294790744781494 / 5.113412857055664 / 23.408203601837158
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  have h : n! < n^(n - 1) := by
+    have h₁ : n! < n ^ (n - 1) := by
+      have h₂ : n! ≤ n ^ (n - 1) := by
+        induction' h₀ with n hn
+        · norm_num [Nat.factorial_succ]
+        · cases n with
+          | zero => contradiction
+          | succ n =>
+            simp_all [Nat.factorial_succ, Nat.pow_succ]
+            nlinarith [pow_pos (by norm_num : (0 : ℕ) < 2) n, Nat.factorial_le (by linarith : n.succ - 1 ≤ n.succ)]
+      have h₃ : n! < n ^ (n - 1) := by
+        have h₄ : n! ≤ n ^ (n - 1) := h₂
+        have h₅ : n! < n ^ (n - 1) := by
+          apply Nat.lt_of_le_of_ne
+          exact h₄
+          intro h₆
+          have h₇ : n! = n ^ (n - 1) := by linarith
+          have h₈ : n! ≠ n ^ (n - 1) := by
+            rcases n with (_ | _ | n) <;> simp_all [Nat.factorial_succ, Nat.pow_succ]
+            all_goals
+              ring_nf at *
+              omega
+          contradiction
+        exact h₅
+      exact h₃
+    exact h₁
+  exact h
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.274968147277832 / 4.132957696914673 / 17.407925844192505
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  have h₁ : n! < n^(n - 1) := by
+    have h₁ : n! < n^(n - 1) := by
+      -- Use the fact that n! < n^n for n ≥ 1 and n^(n - 1) = n^n / n
+      have h₂ : n! < n^n := by
+        induction' h₀ with n hn
+        · norm_num [Nat.factorial_succ]
+        · cases n with
+          | zero => contradiction
+          | succ n =>
+            simp_all [Nat.factorial_succ, Nat.pow_succ]
+            nlinarith [pow_pos (by linarith : (0 : ℕ) < n + 1) n]
+      have h₃ : n^n ≤ n^(n - 1) * n := by
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [Nat.pow_succ, Nat.mul_comm]
+          <;> nlinarith
+      nlinarith
+    exact h₁
+  exact h₁
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.80824613571167 / 4.074816942214966 / 12.883063077926636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  induction' h₀ with n h₀ ih
+  -- Base case: n = 3
+  all_goals simp_all [Nat.factorial, Nat.pow_succ, Nat.mul_comm, Nat.mul_assoc, Nat.mul_left_comm]
+  -- Simplify the expressions for n! and n^(n-1)
+  all_goals
+    norm_num
+    -- Use nlinarith to handle the arithmetic and inequalities
+    nlinarith [pow_pos (by norm_num : (0 : ℕ) < 3) n, pow_pos (by norm_num : (0 : ℕ) < 2) n]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.383207559585571 / 3.8027946949005127 / 13.186002254486084
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  have h₁ : n! < n^(n - 1) := by
+    have h₁ : n! < n^(n - 1) := by
+      have h₁ : n! < n^(n - 1) := by
+        induction' h₀ with n hn
+        -- Base case: n = 3
+        all_goals simp_all [Nat.factorial, Nat.pow_succ, Nat.mul_comm, Nat.mul_assoc, Nat.mul_left_comm]
+        all_goals nlinarith [pow_pos (by norm_num : (0 : ℕ) < 3) n]
+      exact h₁
+    exact h₁
+  exact h₁
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.886439561843872 / 3.778470516204834 / 12.664910078048706
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  have h₁ : n! < n^(n - 1) := by
+    have h₁ : n! < n^(n - 1) := by
+      have h₁ : n! < n^(n - 1) := by
+        induction' h₀ with n hn
+        -- Base case: n = 3
+        all_goals simp_all [Nat.factorial, Nat.pow_succ, Nat.mul_comm]
+        all_goals nlinarith [pow_pos (by norm_num : (0 : ℕ) < 3) n]
+      exact h₁
+    exact h₁
+  exact h₁
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.394747734069824 / 4.083013296127319 / 23.477761030197144
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  have h : n! < n^(n - 1) := by
+    have h₁ : n! < n^(n - 1) := by
+      -- Use the fact that n! < n^n for n ≥ 3, and n^(n-1) = n^n / n
+      have h₂ : n! < n^n := by
+        induction' h₀ with n hn
+        -- Base case: n = 3
+        all_goals simp_all [Nat.factorial_succ, Nat.pow_succ, Nat.mul_comm]
+        all_goals nlinarith [pow_pos (by norm_num : (0 : ℕ) < 3) n]
+      have h₃ : n^n = n^(n - 1) * n := by
+        cases n with
+        | zero => simp_all
+        | succ n =>
+          simp_all [Nat.pow_succ, Nat.mul_comm]
+          <;> ring
+      rw [h₃] at h₂
+      -- Since n! < n^n and n^n = n^(n-1) * n, we have n! < n^(n-1) * n
+      -- Since n ≥ 3, n > 0, so we can divide both sides by n
+      have h₄ : n^(n - 1) * n > n^(n - 1) := by
+        apply Nat.lt_of_sub_pos
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [Nat.mul_sub_left_distrib, Nat.mul_sub_right_distrib]
+          <;> ring_nf
+          <;> omega
+      omega
+    exact h₁
+  exact h
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.194422483444214 / 3.54823637008667 / 16.742658853530884
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_nfactltnexpnm1ngt3
+  (n : ℕ)
+  (h₀ : 3 ≤ n) :
+  n! < n^(n - 1) := by
+  induction' h₀ with n hn IH
+  · norm_num [Nat.factorial] -- Base case for n = 3
+  · cases n with
+    | zero => contradiction -- n cannot be zero since h₀ : 3 ≤ n
+    | succ n =>
+      cases n with
+      | zero => contradiction -- n cannot be one since h₀ : 3 ≤ n
+      | succ n =>
+        cases n with
+        | zero => contradiction -- n cannot be two since h₀ : 3 ≤ n
+        | succ n =>
+          simp_all [Nat.factorial, pow_succ, Nat.mul_comm, Nat.mul_assoc, Nat.mul_left_comm]
+          -- Use the fact that n! < n^(n - 1) for n ≥ 3
+          all_goals
+            nlinarith [pow_pos (by linarith : (0 : ℕ) < n + 3) n,
+              Nat.factorial_le (by linarith : n + 3 ≥ 1),
+              Nat.factorial_pos (n + 3)]
+

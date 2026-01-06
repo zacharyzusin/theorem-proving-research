@@ -1,0 +1,36 @@
+Problem: problem_0117
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.737743139266968
+Lean check time (s): 5.07934045791626
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_435
+  (k : ℕ)
+  (h₀ : 0 < k)
+  (h₁ : ∀ n, Nat.gcd (6 * n + k) (6 * n + 3) = 1)
+  (h₂ : ∀ n, Nat.gcd (6 * n + k) (6 * n + 2) = 1)
+  (h₃ : ∀ n, Nat.gcd (6 * n + k) (6 * n + 1) = 1) :
+  5 ≤ k := by
+  by_contra! h
+  have h₄ := h₁ 0
+  have h₅ := h₂ 0
+  have h₆ := h₃ 0
+  have h₇ := h₁ 1
+  have h₈ := h₂ 1
+  have h₉ := h₃ 1
+  have h₁₀ := h₁ 2
+  have h₁₁ := h₂ 2
+  have h₁₂ := h₃ 2
+  interval_cases k <;> simp_all (config := {decide := true})
+  <;> norm_num
+  <;> try contradiction
+  <;> try linarith
+  <;> try omega
+  <;> try nlinarith

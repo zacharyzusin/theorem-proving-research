@@ -1,0 +1,166 @@
+Problem: putnam_2018_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.68424940109253 / 18.50648307800293 / 33.19073247909546
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.543001890182495 / 18.66362953186035 / 33.20663142204285
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.225188255310059 / 19.350696086883545 / 34.5758843421936
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.3530855178833 / 18.340651750564575 / 32.693737268447876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.45105266571045 / 18.977202892303467 / 33.428255558013916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.774518251419067 / 18.989009857177734 / 33.7635281085968
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.039716005325317 / 19.44132661819458 / 34.4810426235199
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.548269987106323 / 18.323585271835327 / 33.87185525894165
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b1
+(P Pvdiff : Finset (Fin 2 → ℤ))
+(v : Fin 2 → ℤ)
+(hP : P = {v' : Fin 2 → ℤ | 0 ≤ v' 0 ∧ v' 0 ≤ 2 ∧ 0 ≤ v' 1 ∧ v' 1 ≤ 100})
+(hPvdiff : Pvdiff = P \ ({v} : Finset (Fin 2 → ℤ)))
+: (v ∈ P ∧ (∃ Q R : Finset (Fin 2 → ℤ),
+    (Q ∪ R = Pvdiff) ∧ (Q ∩ R = ∅) ∧ (Q.card = R.card) ∧
+    (∑ q ∈ Q, q 0 = ∑ r ∈ R, r 0) ∧ (∑ q ∈ Q, q 1 = ∑ r ∈ R, r 1)))
+  ↔ v ∈ putnam_2018_b1_solution :=
+sorry

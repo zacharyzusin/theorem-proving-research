@@ -1,0 +1,142 @@
+Problem: putnam_2017_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.204967260360718 / 7.491036415100098 / 28.696003675460815
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.330748796463013 / 7.34494423866272 / 31.675693035125732
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.153651475906372 / 7.528964519500732 / 30.682615995407104
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 52.02978992462158 / 8.587266683578491 / 60.61705660820007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.414238929748535 / 8.066337823867798 / 29.480576753616333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.604702234268188 / 7.244340419769287 / 18.849042654037476
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.594231128692627 / 7.6260459423065186 / 19.220277070999146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.926109790802002 / 7.8911216259002686 / 25.81723141670227
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_a2
+    (Q : ℕ → RatFunc ℚ)
+    (hQbase : Q 0 = 1 ∧ Q 1 = (X : ℚ[X]))
+    (hQn : ∀ n, Q (n + 2) = (Q (n + 1) ^ 2 - 1) / Q n)
+    (n : ℕ) (hn : 0 < n) :
+    ∃ P : ℤ[X], Q n = P.map (Int.castRingHom ℚ) :=
+  sorry

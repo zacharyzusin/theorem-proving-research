@@ -1,0 +1,21 @@
+Problem: problem_0086
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.871445894241333
+Lean check time (s): 2.6007068157196045
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2013_p4 :
+  (2^2014 + 2^2012) / (2^2014 - 2^2012) = (5:ℝ) / 3 := by
+  norm_num [pow_add, pow_mul, div_eq_mul_inv]
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp
+  <;> norm_num
+  <;> linarith

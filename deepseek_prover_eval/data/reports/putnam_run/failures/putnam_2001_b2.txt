@@ -1,0 +1,158 @@
+Problem: putnam_2001_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 48.021729946136475 / 9.744851350784302 / 57.766581296920776
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.05914878845215 / 8.332022666931152 / 36.3911714553833
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.333637714385986 / 7.95560359954834 / 38.289241313934326
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.138399839401245 / 9.052932500839233 / 26.19133234024048
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 30.31797456741333 / 8.21128797531128 / 38.52926254272461
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 41.788817405700684 / 8.27564787864685 / 50.064465284347534
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.796949863433838 / 9.431229591369629 / 26.228179454803467
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 41.49526929855347 / 10.415217638015747 / 51.910486936569214
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b2
+    (x y : ℝ)
+    (hx : x ≠ 0)
+    (hy : y ≠ 0)
+    (eq1 eq2 : Prop)
+    (heq1 : eq1 ↔ (1 / x + 1 / (2 * y) = (x ^ 2 + 3 * y ^ 2) * (3 * x ^ 2 + y ^ 2)))
+    (heq2 : eq2 ↔ (1 / x - 1 / (2 * y) = 2 * (y ^ 4 - x ^ 4))) :
+    eq1 ∧ eq2 ↔ (x, y) ∈ putnam_2001_b2_solution :=
+  sorry

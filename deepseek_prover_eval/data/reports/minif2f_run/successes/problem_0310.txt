@@ -1,0 +1,30 @@
+Problem: problem_0310
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.814442157745361
+Lean check time (s): 2.792241334915161
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_126
+  (x y : ℝ)
+  (h₀ : 2 * 3 = x - 9)
+  (h₁ : 2 * (-5) = y + 1) :
+  x = 15 ∧ y = -11 := by
+  refine' ⟨_, _⟩
+  -- Solve for x using the first equation
+  -- 2 * 3 = x - 9
+  -- 6 = x - 9
+  -- x = 15
+  <;> ring_nf at h₀ h₁ ⊢
+  <;> linarith
+  -- Solve for y using the second equation
+  -- 2 * (-5) = y + 1
+  -- -10 = y + 1
+  -- y = -11
+  <;> linarith

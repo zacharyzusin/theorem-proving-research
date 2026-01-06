@@ -1,0 +1,142 @@
+Problem: putnam_1975_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 43.72020149230957 / 59.960673809051514 / 103.68087530136108
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 43.46303391456604 / 29.820196390151978 / 73.28323030471802
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.686307430267334 / 36.83116436004639 / 54.51747179031372
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 83.01143527030945 / 48.974417209625244 / 131.9858524799347
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.557454347610474 / 39.072261095047 / 60.62971544265747
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.109458446502686 / 39.54301905632019 / 55.652477502822876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 53.40424180030823 / 50.70372247695923 / 104.10796427726746
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.745399951934814 / 36.64483880996704 / 56.390238761901855
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_a1
+(nab nxy : (ℤ × ℤ × ℤ) → Prop)
+(hnab : nab = fun (n, a, b) => n = (a^2 + (a : ℚ))/2 + (b^2 + (b : ℚ))/2)
+(hnxy : nxy = fun (n, x, y) => 4*n + 1 = x^2 + y^2)
+: (∀ n a b : ℤ, nab (n, a, b) → nxy (n, putnam_1975_a1_solution.1 (a, b), putnam_1975_a1_solution.2 (a, b))) ∧
+∀ n : ℤ, (∃ x y : ℤ, nxy (n, x, y)) → ∃ a b : ℤ, nab (n, a, b) :=
+sorry

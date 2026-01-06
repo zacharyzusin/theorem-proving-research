@@ -1,0 +1,18 @@
+Problem: problem_0358
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.585540294647217
+Lean check time (s): 2.7284483909606934
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_binomnegdiscrineq_10alt28asqp1
+  (a : ℝ) :
+  10 * a ≤ 28 * a^2 + 1 := by
+  have h₁ : 0 ≤ (a - 5 / 28) ^ 2 := sq_nonneg (a - 5 / 28)
+  nlinarith [sq_nonneg (a - 5 / 28)]

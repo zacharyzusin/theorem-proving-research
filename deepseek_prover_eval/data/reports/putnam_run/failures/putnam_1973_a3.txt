@@ -1,0 +1,326 @@
+Problem: putnam_1973_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 81.1334764957428 / 113.56420922279358 / 194.69768571853638
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have step1 : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have hn' : (n : ℤ) > 0 := hn
+    have hn'' : (n : ℤ) ≥ 1 := by linarith
+    have h1 : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb]
+    rw [h1]
+    have h2 : ∃ k : ℝ, k ∈ {k + (n : ℝ) / k | k > (0 : ℤ)} := by
+      use 1 + (n : ℝ)
+      use by norm_num
+      <;> norm_num
+      <;>
+      field_simp <;>
+      nlinarith
+    have h3 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := rfl
+    have h4 : ∃ k : ℝ, k ∈ {k + (n : ℝ) / k | k > (0 : ℤ)} := h2
+    have h5 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := rfl
+    have h6 : ⌊sInf {k + (n : ℝ) / k | k > (0 : ℤ)}⌋ = ⌊Real.sqrt (4 * n + 1)⌋ := by
+      apply Eq.symm
+      have h7 : ∀ k : ℤ, k > 0 → (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+        intro k hk
+        have h8 : (k : ℝ) > 0 := by exact_mod_cast hk
+        have h9 : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+          have h10 : 0 < (k : ℝ) := by positivity
+          have h11 : 0 < (n : ℝ) := by exact_mod_cast (by linarith)
+          have h12 : 0 < (k : ℝ) * (n : ℝ) := by positivity
+          have h13 : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+   
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 63.52942085266113 / 48.74730372428894 / 112.27672457695007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have h1 : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have h2 : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb]
+    rw [h2]
+    have h3 : ∀ k : ℤ, k > 0 → (k : ℝ) + (n : ℝ) / k ≥ 2 * Real.sqrt (n) := by
+      intro k hk
+      have h4 : (k : ℝ) > 0 := by exact_mod_cast hk
+      have h5 : (n : ℝ) / k ≥ 0 := by positivity
+      have h6 : (k : ℝ) + (n : ℝ) / k ≥ 2 * Real.sqrt (n) := by
+        have h7 : 0 < (k : ℝ) := by positivity
+        have h8 : 0 < (n : ℝ) := by exact_mod_cast (by linarith)
+        have h9 : 0 < (k : ℝ) * (n : ℝ) := by positivity
+        have h10 : Real.sqrt (n) ≥ 0 := Real.sqrt_nonneg n
+        field_simp [h7]
+        rw [le_div_iff (by positivity)]
+        nlinarith [sq_nonneg ((k : ℝ) - Real.sqrt (n)), Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n),
+          sq_nonneg ((k : ℝ) - Real.sqrt (n))]
+      linarith
+    have h4 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := rfl
+    have h5 : ∃ m : ℝ, m = 2 * Real.sqrt (n) := by use 2 * Real.sqrt (n)
+    have h6 : ∀ k : ℤ, k > 0 → (k : ℝ) + (n : ℝ) / k ≥ 2 * Real.sqrt (n) := by
+      intro k hk
+      exact h3 k (by exact_mod_cast hk)
+    have h7 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} ≥
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 85.0986647605896 / 38.6754047870636 / 123.7740695476532
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have h1 : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have h2 : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb]
+    rw [h2]
+    have h3 : ∀ k : ℤ, k > 0 → (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+      intro k hk
+      have h4 : (k : ℝ) > 0 := by exact_mod_cast hk
+      have h5 : (n : ℝ) / k ≥ 0 := by positivity
+      have h6 : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+        have h7 : 0 < (k : ℝ) := by exact_mod_cast hk
+        have h8 : 0 < (n : ℝ) := by exact_mod_cast (by linarith)
+        have h9 : 0 < (k : ℝ) * (n : ℝ) := by positivity
+        have h10 : (k : ℝ) * (n : ℝ) / k = (n : ℝ) := by field_simp [h7.ne'] <;> ring
+        have h11 : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+          have h12 : √(n : ℝ) ≥ 0 := Real.sqrt_nonneg (n : ℝ)
+          have h13 : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+            have h14 : 0 < (k : ℝ) := by exact_mod_cast hk
+            have h15 : 0 < (n : ℝ) := by exact_mod_cast (by linarith)
+            have h16 : 0 < (k : ℝ) * (n : ℝ) := by positivity
+            have h17 : 0 < (k : ℝ) * (k : ℝ) := by positivity
+            have h18 : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+              have h19 : (k : ℝ) + (n : ℝ) / k ≥ 2 * 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 85.19346594810486 / 22.75737166404724 / 107.9508376121521
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have step1 : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have hn' : (n : ℤ) > 0 := by assumption
+    have h1 : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb]
+    rw [h1]
+    have h2 : ∃ k : ℝ, k ∈ {k + (n : ℝ) / k | k > (0 : ℤ)} := by
+      use 1 + (n : ℝ)
+      norm_num
+      <;>
+        field_simp <;>
+        nlinarith
+    have h3 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = Real.sqrt (4 * n + 1) := by
+      have h4 : ∀ k : ℤ, k > 0 → (k : ℝ) + (n : ℝ) / k ≥ 2 * Real.sqrt (n : ℝ) := by
+        intro k hk
+        have h5 : (k : ℝ) > 0 := by exact_mod_cast hk
+        have h6 : (n : ℝ) / k ≥ 0 := by positivity
+        have h7 : (k : ℝ) + (n : ℝ) / k ≥ 2 * Real.sqrt (n : ℝ) := by
+          have h8 : 0 < (k : ℝ) := by exact_mod_cast hk
+          have h9 : 0 < (n : ℝ) := by exact_mod_cast (by linarith)
+          have h10 : 0 < (k : ℝ) * (n : ℝ) := by positivity
+          have h11 : Real.sqrt (n : ℝ) ≥ 0 := Real.sqrt_nonneg _
+          have h12 : (k : ℝ) * (n : ℝ) ≥ 0 := by positivity
+          field_simp [h8.ne', h9.ne']
+          rw [le_div_iff (by positivity)]
+          nlinarith [sq_nonneg ((k : ℝ) - Real.sqrt (n : ℝ)), Real.sq_sqrt (by positivity : (0 : ℝ) ≤ n),
+            sq_nonn
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 64.04966378211975 / 29.924952507019043 / 93.9746162891388
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have h₁ : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have hn' : (n : ℤ) > 0 := hn
+    have hn'' : (n : ℤ) ≥ 1 := by linarith
+    have hn''' : (n : ℝ) ≥ 1 := by exact_mod_cast hn''
+    have h2 : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb] <;> rfl
+    rw [h2]
+    have h3 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = Real.sqrt (4 * n + 1) := by
+      -- We need to show that the infimum of the set {k + n / k | k > 0} is sqrt(4n + 1)
+      have h4 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = Real.sqrt (4 * n + 1) := by
+        -- Use the fact that the set is bounded below by 2 * sqrt(n)
+        have h5 : IsGreatest ((fun k : ℤ => (k : ℝ) + n / k) '' {k : ℤ | k > 0}) (Real.sqrt (4 * n + 1)) := by
+          constructor
+          · -- Show that sqrt(4n + 1) is in the set
+            have h6 : (Real.sqrt (4 * n + 1) : ℝ) ∈ (fun k : ℤ => (k : ℝ) + n / k) '' {k : ℤ | k > 0} := by
+              use (⌈Real.sqrt (4 * n + 1)⌉ : ℤ)
+              have h7 : (⌈Real.sqrt (4 * n + 1)⌉ : ℝ) > 0 := by positivity
+              have h8 : (⌈Real.sqrt (4 * n + 1)⌉ : ℝ) > 0 := by positivity
+              have h9 : (⌈Real.sqrt (4 * n + 1)⌉ : ℝ) ≥ Real.sqrt (4 * n + 1) := by exact Int.le_ceil _
+              hav
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 59.32186198234558 / 34.442333459854126 / 93.7641954421997
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have h₁ : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have hn' : (n : ℤ) > 0 := hn
+    have hn'' : (n : ℤ) ≥ 1 := by linarith
+    have hn''' : (n : ℤ) ≥ 1 := by linarith
+    have h₂ : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb] <;> simp [hn']
+    rw [h₂]
+    have h₃ : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = Real.sqrt (4 * n + 1) := by
+      -- Use the fact that the infimum of the set is the square root of 4n + 1
+      have h₄ : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = Real.sqrt (4 * n + 1) := by
+        -- Use the fact that the infimum of the set is the square root of 4n + 1
+        have h₅ : Real.sqrt (4 * n + 1) = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by
+          -- Use the fact that the infimum of the set is the square root of 4n + 1
+          apply Eq.symm
+          apply le_antisymm
+          · -- Show that the square root of 4n + 1 is less than or equal to the infimum
+            apply Real.sqrt_le_iff.mpr
+            constructor
+            · -- Show that 4n + 1 is non-negative
+              have h₆ : (4 : ℝ) * n + 1 ≥ 0 := by
+                have h₇ : (n : ℝ) ≥ 1 := by exact_mod_cast hn''
+                nlinarith
+              nlinarith
+            · -- Show that th
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 66.49605894088745 / 23.204124689102173 / 89.70018362998962
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have h₁ : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have hn' : (n : ℤ) > 0 := hn
+    have h2 : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by
+      rw [hb]
+      <;> simp [hn']
+    rw [h2]
+    have h3 : sInf {k + (n : ℝ) / k | k > (0 : ℤ)} = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := rfl
+    have h4 : ⌊sInf {k + (n : ℝ) / k | k > (0 : ℤ)}⌋ = ⌊Real.sqrt (4 * n + 1)⌋ := by
+      apply Eq.symm
+      apply Eq.symm
+      have h5 : ∃ k : ℤ, k > 0 ∧ k + (n : ℝ) / k ≥ 2 * Real.sqrt (n) := by
+        use n.toNat
+        have h6 : (n : ℝ) ≥ 0 := by
+          exact_mod_cast (by linarith)
+        have h7 : (n : ℝ) / n.toNat ≥ 0 := by positivity
+        have h8 : (n : ℝ) / n.toNat ≥ 0 := by positivity
+        have h9 : (n : ℝ) / n.toNat ≤ (n : ℝ) := by
+          exact div_le_self (by positivity) (by
+            norm_cast
+            <;>
+            (try
+              norm_num) <;>
+            (try
+              nlinarith) <;>
+            (try
+              omega) <;>
+            nlinarith [sq_nonneg (n - 1)]
+          )
+        have h10 : (n : ℝ) ≥ 0 := by positivity
+        have h11 : (n : ℝ) + (n : ℝ) / n.toNat ≥ 2 * Real.sqrt (n) := by
+          have h12 : (n : ℝ) ≥ 0 := by positivity
+          h
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 85.24282836914062 / 30.856589555740356 / 116.09941792488098
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1973_a3
+(b : ℤ → ℝ)
+(hb : b = fun (n : ℤ) => sInf {k + (n : ℝ)/(k : ℝ) | k > (0 : ℤ)})
+: ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+  have h₁ : ∀ n : ℤ, n > 0 → floor (b n) = floor (Real.sqrt (4 * n + 1)) := by
+    intro n hn
+    have h₂ : b n = sInf {k + (n : ℝ) / k | k > (0 : ℤ)} := by rw [hb]
+    rw [h₂]
+    have h₃ : ∀ k : ℤ, k > 0 → (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ):= by
+      intro k hk
+      have h₄ : (k : ℝ) > 0 := by exact_mod_cast hk
+      have h₅ : (n : ℝ) / k ≥ 0 := by positivity
+      have h₆ : (k : ℝ) + (n : ℝ) / k ≥ 2 * √(n : ℝ) := by
+        have h₇ : 0 < (k : ℝ) := by exact_mod_cast hk
+        have h₈ : 0 < (n : ℝ) := by exact_mod_cast (by linarith : (0 : ℤ) < n)
+        have h₉ : 0 < (n : ℝ) / k := by positivity
+        have h₁₀ : (k : ℝ) * ((n : ℝ) / k) = (n : ℝ) := by
+          field_simp
+          <;> ring
+        nlinarith [sq_nonneg ((k : ℝ) - √(n : ℝ)), Real.sq_sqrt (by positivity : (0 : ℝ) ≤ (n : ℝ)),
+          sq_nonneg ((k : ℝ) + √(n : ℝ) - 2 * √(n : ℝ)), Real.sqrt_nonneg (n : ℝ)]
+      linarith
+    have h₄ : ∃ k : ℝ, k ∈ {k + (n : ℝ) / k | k > (0 : ℤ)} ∧ b n ≤ k := by
+      use 2 * √(n : ℝ)
+      have h₅ : (2 * √(n : ℝ) : ℝ) ∈ {k + (n : ℝ) / k | k > (0 : ℤ)} := by
+        use ⌈2 * √(n : ℝ)⌉₊
+        have h₆ : (⌈2 * √(n : ℝ)⌉₊ : ℝ) > 0 := by positivity
+        have h₇ : (⌈2 * √(n : ℝ)⌉₊ : ℝ) + (n : ℝ) / (⌈2 * √(n : ℝ)⌉₊ : ℝ) ≥ 2 *
+... [truncated] ...

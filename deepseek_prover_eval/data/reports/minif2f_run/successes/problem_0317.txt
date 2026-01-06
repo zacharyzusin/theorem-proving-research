@@ -1,0 +1,22 @@
+Problem: problem_0317
+Dataset: minif2f
+Mode: noncot
+First success attempt: 3
+Generation time (s): 8.894539833068848
+Lean check time (s): 198.66886711120605
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p7
+  (x y : ℝ) :
+  1 ≤ ((x * y) - 1)^2 + (x + y)^2 := by
+  have h₁ : 0 ≤ x^2 + y^2 := by nlinarith
+  have h₂ : 0 ≤ (x - y)^2 := by nlinarith
+  have h₃ : 0 ≤ (x + y)^2 := by nlinarith
+  have h₄ : 0 ≤ (x * y)^2 := by nlinarith
+  nlinarith [sq_nonneg (x * y - 1), sq_nonneg (x + y), sq_nonneg (x - y), sq_nonneg (x + y - 2 * x * y),
+    sq_nonneg (x + y + 2 * x * y)]

@@ -1,0 +1,22 @@
+Problem: putnam_1988_b3
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 45.10839009284973
+Lean check time (s): 14.227228164672852
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_b3
+    (r : ℤ → ℝ)
+    (hr : ∀ n ≥ 1,
+      (∃ c d : ℤ,
+        (c ≥ 0 ∧ d ≥ 0) ∧
+        c + d = n ∧ r n = |c - d * Real.sqrt 3|) ∧
+        (∀ c d : ℤ, (c ≥ 0 ∧ d ≥ 0 ∧ c + d = n) → |c - d * Real.sqrt 3| ≥ r n))
+    : IsLeast {g : ℝ | g > 0 ∧ (∀ n : ℤ, n ≥ 1 → r n ≤ g)} putnam_1988_b3_solution :=
+  sorry

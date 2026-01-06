@@ -1,0 +1,142 @@
+Problem: putnam_1990_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 59.19519329071045 / 30.384928703308105 / 89.58012199401855
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 50.02707242965698 / 40.948362827301025 / 90.97543525695801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 41.37148332595825 / 14.233142614364624 / 55.604625940322876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 23.222116470336914 / 24.65366768836975 / 47.875784158706665
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.02071213722229 / 21.412879705429077 / 38.43359184265137
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 29.96992254257202 / 29.307536840438843 / 59.277459383010864
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 23.728140830993652 / 18.014835834503174 / 41.742976665496826
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 40.615028381347656 / 16.722780227661133 / 57.33780860900879
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b1
+    (P : (ℝ → ℝ) → Prop)
+    (P_def : ∀ f, P f ↔ ∀ x,
+      (f x) ^ 2 = (∫ t in (0 : ℝ)..x, (f t) ^ 2 + (deriv f t) ^ 2) + 1990)
+    (f : ℝ → ℝ) :
+    (ContDiff ℝ 1 f ∧ P f) ↔ f ∈ putnam_1990_b1_solution :=
+  sorry

@@ -1,0 +1,417 @@
+Problem: putnam_2020_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 33.30484890937805 / 4.88973331451416 / 38.19458222389221
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 ≤ a n := by
+    intro n
+    induction n with
+    | zero =>
+      -- Base case: a 0 = π / 2
+      rw [ha0]
+      exact by linarith [Real.pi_pos]
+    | succ n ih =>
+      -- Inductive step: a (n + 1) = sin (a n)
+      rw [ha]
+      exact Real.sin_nonneg_of_nonneg_of_le_pi (by linarith [ih]) (by linarith [Real.pi_pos, ih])
+  have h₂ : ∀ n, a n ≥ 0 := by
+    intro n
+    exact h₁ n
+  have h₃ : ∀ n, a n ≤ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      -- Base case: a 0 = π / 2
+      rw [ha0]
+      exact by linarith [Real.pi_pos, Real.pi_le_four]
+    | succ n ih =>
+      -- Inductive step: a (n + 1) = sin (a n)
+      rw [ha]
+      exact Real.sin_le_one _
+  have h₄ : ∀ n, (a n)^2 ≤ 1 := by
+    intro n
+    nlinarith [h₂ n, h₃ n]
+  have h₅ : ∑' n, (a n)^2 ≤ ∑' n, 1 := by
+    apply tsum_le_tsum (fun n => by nlinarith [h₄ n]) (by
+      -- Show that the series of (a n)^2 converges
+      have h₆ : ∀ n, (a n)^2 ≥ 0 := by
+        intro n
+        nlinarith [h₂ n, h₃ n]
+      positivity) (by
+      -- Show that the series of 1 converges
+      exact tsum_le_tsum (fun n => by nlinarith [h₄ n]) (by
+        have h₆ : ∀ n, (a n)^2 ≥ 0 := by
+          intro n
+          nlinarith [h₂
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.34131908416748 / 4.739922285079956 / 19.081241369247437
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_pos.trans_le (by linarith [Real.pi_gt_three])
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by
+        have : a n < Real.pi := by
+          have : a n < Real.pi := by
+            linarith [Real.pi_gt_three]
+          linarith [Real.pi_gt_three]
+        linarith [Real.pi_gt_three])
+  simp_all [Finset.sum_Icc_succ_top, Finset.sum_range_succ, tendsto_const_nhds]
+  <;> norm_num
+  <;> aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 42.36694383621216 / 8.12708568572998 / 50.49402952194214
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      -- Base case: n = 0
+      norm_num [ha0, Real.pi_pos]
+      <;> linarith [Real.pi_gt_three]
+    | succ n ih =>
+      -- Inductive step: assume the statement holds for n, prove for n+1
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by
+        have : a n < Real.pi := by
+          have : a n < Real.pi / 2 + Real.pi / 2 := by linarith [Real.pi_pos]
+          linarith [Real.pi_pos]
+        linarith [Real.pi_pos])
+  have h₂ : ∀ n, a n ≥ 0 := by
+    intro n
+    induction n with
+    | zero =>
+      -- Base case: n = 0
+      norm_num [ha0]
+    | succ n ih =>
+      -- Inductive step: assume the statement holds for n, prove for n+1
+      rw [ha]
+      exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [ih, h₁ n], by linarith [ih, h₁ n]⟩
+  have h₃ : ∀ n, a n ≤ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      -- Base case: n = 0
+      norm_num [ha0]
+      <;> linarith [Real.pi_gt_three]
+    | succ n ih =>
+      -- Inductive step: assume the statement holds for n, prove for n+1
+      rw [ha]
+      exact Real.sin_le_one (a n)
+  have h₄ : ∀ n, (a n)^2 ≤ 1 := by
+    intro n
+    have h₅ : 0 ≤ a n := h₂ n
+  
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 73.74045825004578 / 4.591604232788086 / 78.33206248283386
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_pos.trans_le (by linarith [Real.pi_gt_three])
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by
+        have h : a n < Real.pi := by
+          have h₁ : a n < Real.pi := by
+            have h₂ : a n = Real.arcsin (a (n - 1)) := by
+              rw [ha]
+              <;> simp [ha0, ha]
+            have h₃ : a (n - 1) ∈ Set.Icc (0 : ℝ) Real.pi := by
+              have h₄ : a (n - 1) = Real.arcsin (a (n - 2)) := by
+                rw [ha]
+                <;> simp [ha0, ha]
+              have h₅ : a (n - 2) ∈ Set.Icc (0 : ℝ) Real.pi := by
+                have h₆ : a (n - 2) = Real.arcsin (a (n - 3)) := by
+                  rw [ha]
+                  <;> simp [ha0, ha]
+                exact ⟨by
+                  have : 0 ≤ Real.arcsin (a (n - 3)) := Real.arcsin_nonneg.mpr (by
+                    have : 0 ≤ a (n - 3) := by
+                      induction n - 3 with
+                      | zero =>
+                        simp_all [ha0, ha]
+                        <;> linarith [Real.pi_pos]
+                      | succ n' ih =>
+                        simp_a
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 30.205042600631714 / 5.666089057922363 / 35.87113165855408
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_pos.trans_le (by linarith [Real.pi_pos])
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by
+        have : a n < Real.pi := by
+          have : a n < Real.pi / 2 + Real.pi := by
+            have : a n < Real.pi := by
+              linarith [Real.pi_pos]
+            linarith [Real.pi_pos]
+          linarith [Real.pi_pos]
+        linarith [Real.pi_pos])
+  have h₂ : ∀ n, a n ≥ 0 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact by linarith [Real.pi_pos]
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [h₁ n, Real.pi_pos], by linarith [h₁ n, Real.pi_pos]⟩
+  have h₃ : ∀ n, a n ≤ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact by linarith [Real.pi_pos, Real.pi_le_four]
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_le_one _
+  have h₄ : ∀ n, 0 ≤ a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact by linarith [Real.pi_pos]
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [h₁ n, Real.pi_
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 47.538512229919434 / 5.523818016052246 / 53.06233024597168
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_div_two_pos
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by linarith [Real.pi_pos, Real.pi_div_two_pos])
+  have h₂ : ∀ n, a n ≥ 0 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact le_of_lt (Real.pi_div_two_pos)
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [Real.pi_pos, Real.pi_div_two_pos], by linarith [Real.pi_pos, Real.pi_div_two_pos]⟩
+  have h₃ : ∀ n, a n ≤ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_div_two_le_one
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_le_one _
+  have h₄ : ∀ n, (a n)^2 ≤ a n := by
+    intro n
+    have h₅ : 0 ≤ a n := h₂ n
+    have h₆ : a n ≤ 1 := h₃ n
+    nlinarith [Real.sin_sq_add_cos_sq (a n)]
+  have h₅ : ∑' n, (a n)^2 ≤ ∑' n, a n := by
+    apply tsum_le_tsum (fun n ↦ h₄ n) (summable_of_nonneg_of_le (fun n ↦ sq_nonneg (a n)) (fun n ↦ h₄ n) (summable_of_nonneg_of_le (fun n ↦ h₂ n) (fun n ↦ h₁ n).le (summable_pi_div_two))) (summable_of_nonneg_of_le (fun n ↦ h₂ n) (fun n ↦ h₁ n).le (summable_pi_div_
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.065879583358765 / 6.563556909561157 / 36.62943649291992
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_pos.trans_le (by linarith [Real.pi_gt_three])
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by
+        have : a n < Real.pi := by
+          have : a n < Real.pi / 2 := by
+            have : a n < Real.pi / 2 := by
+              linarith [Real.pi_gt_three]
+            linarith
+          linarith [Real.pi_gt_three]
+        linarith [Real.pi_gt_three])
+  have h₂ : ∀ n, a n ≥ 0 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact by linarith [Real.pi_pos]
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [ih, h₁ n], by linarith [ih, h₁ n]⟩
+  have h₃ : ∀ n, a n ≤ 1 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact by
+        have : Real.pi / 2 ≤ Real.pi := by linarith [Real.pi_gt_three]
+        have : Real.sin (Real.pi / 2) = 1 := by norm_num
+        linarith
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_le_one _
+  have h₄ : ∀ n, (a n)^2 ≤ 1 := by
+    intro n
+    nlinarith [h₁ n, h₃ n]
+  have h₅ : ∑' n : ℕ, (a n)^2 ≤ ∑' n : ℕ, (1 : ℝ) := by
+    apply tsum
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 34.95462417602539 / 4.877344608306885 / 39.831968784332275
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_a3
+  (a : ℕ → ℝ)
+  (ha0 : a 0 = Real.pi / 2)
+  (ha : ∀ n, a (n+1) = Real.sin (a n)) :
+  (∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L)) ↔ putnam_2020_a3_solution := by
+  have h₁ : ∀ n, 0 < a n := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact Real.pi_pos.trans_le (by linarith [Real.pi_gt_three])
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_pos_of_pos_of_lt_pi ih (by
+        have : a n < Real.pi := by
+          have : a n < Real.pi := by
+            have : a n < Real.pi := by
+              linarith [Real.pi_gt_three, Real.pi_pos]
+            linarith
+          linarith
+        linarith)
+  have h₂ : ∀ n, a n ≥ 0 := by
+    intro n
+    induction n with
+    | zero =>
+      rw [ha0]
+      exact by linarith [Real.pi_pos]
+    | succ n ih =>
+      rw [ha]
+      exact Real.sin_nonneg_of_mem_Icc ⟨by linarith [h₁ n, Real.pi_pos], by linarith [h₁ n, Real.pi_pos]⟩
+  have h₃ : ∑' n, (a n)^2 = ∑' n, (a n)^2 := rfl
+  have h₄ : ∃ L, Tendsto (fun m : ℕ => ∑ n ∈ Finset.Icc 1 m, (a n)^2) atTop (𝓝 L) := by
+    use ∑' n, (a n)^2
+    have h₅ : ∀ n, (a n)^2 ≥ 0 := by
+      intro n
+      exact sq_nonneg (a n)
+    have h₆ : ∑' n, (a n)^2 = ∑' n, (a n)^2 := rfl
+    have h₇ : ∑ n ∈ Finset.Icc 1 0, (a n)^2 = 0 := by simp
+    have h₈ : ∀ m : ℕ, ∑ n ∈ Finset.Icc 1 m, (a n)^2 ≥ 0 := by
+      intro m
+      exact Finset.sum_nonneg (fun n _ => h₅ n)
+  
+... [truncated] ...

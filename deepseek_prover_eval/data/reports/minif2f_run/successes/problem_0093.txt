@@ -1,0 +1,24 @@
+Problem: problem_0093
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.303585052490234
+Lean check time (s): 4.577585458755493
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_80
+  (x : ℝ)
+  (h₀ : x ≠ -1)
+  (h₁ : (x - 9) / (x + 1) = 2) :
+  x = -11 := by
+  have h : x + 1 ≠ 0 := by
+    intro h₂
+    have : x = -1 := by linarith
+    contradiction
+  field_simp [h] at h₁
+  linarith

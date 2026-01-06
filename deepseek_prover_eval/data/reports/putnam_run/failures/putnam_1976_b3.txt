@@ -1,0 +1,238 @@
+Problem: putnam_1976_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 58.860387563705444 / 18.416983604431152 / 77.2773711681366
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 62.528170347213745 / 18.67509150505066 / 81.2032618522644
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 68.39031624794006 / 39.16116547584534 / 107.5514817237854
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 56.24308919906616 / 26.061837911605835 / 82.304927110672
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 50.20292901992798 / 20.797878980636597 / 71.00080800056458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 62.377317905426025 / 21.407878875732422 / 83.78519678115845
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 90.49361729621887 / 19.04402256011963 / 109.5376398563385
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 58.872342586517334 / 18.04411005973816 / 76.9164526462555
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b3
+(Ω : Type*)
+[MeasurableSpace Ω]
+(μ : Measure Ω)
+[IsProbabilityMeasure μ]
+(n : ℕ)
+(hn : n ≥ 1)
+(a : ℝ)
+(ha : 0 ≤ a ∧ a < 1/4)
+(u : ℕ → ℝ)
+(hu01 : u 0 = 1 ∧ u 1 = 1 - a)
+(huk : ∀ k ≥ 1, u (k + 1) = u k - a * (u (k-1)))
+(hupos : ∀ k : ℕ, u k > 0)
+(events : Fin n → Set Ω)
+(heventsmeas : ∀ i : Fin n, MeasurableSet (events i))
+(heventsprob : ∀ i : Fin n, μ (events i) ≥ ENNReal.ofReal (1 - a))
+(heventsindep : ∀ i j : Fin n, |(i : ℤ) - (j : ℤ)| > 1 → IndepSet (events i) (events j) μ)
+: μ (⋂ i : Fin n, events i) ≥ ENNReal.ofReal (u n) :=
+sorry

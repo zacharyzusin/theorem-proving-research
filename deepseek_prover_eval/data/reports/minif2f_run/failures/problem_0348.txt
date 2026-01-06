@@ -1,0 +1,252 @@
+Problem: problem_0348
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.651217699050903 / 6.629974603652954 / 30.281192302703857
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b := by
+    nlinarith
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : 0 < a * b + 1 := by nlinarith
+    have h₇ : (a^2 + b^2) / (a * b + 1) ≤ a^2 + b^2 := Nat.div_le_self _ _
+    have h₈ : (a^2 + b^2) / (a * b + 1) ≥ 0 := Nat.zero_le _
+    have h₉ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+      have h₁₀ : (a^2 + b^2) / (a * b + 1) ≤ a^2 + b^2 := Nat.div_le_self _ _
+      have h₁₁ : (a^2 + b^2) / (a * b + 1) ≥ 0 := Nat.zero_le _
+      interval_cases (a^2 + b^2) / (a * b + 1) <;> simp_all
+    exact h₉
+  exact ⟨(a^2 + b^2) / (a * b + 1), by
+    nlinarith
+  ⟩
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.86734938621521 / 7.368180513381958 / 24.235529899597168
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b := mul_pos h₀.1 h₀.2
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1))^2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : (a^2 + b^2) / (a * b + 1) = 1 := by
+      apply Nat.div_eq_of_lt_le
+      nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
+      nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
+    rw [h₆]
+    <;> norm_num
+  exact ⟨(a^2 + b^2) / (a * b + 1), by linarith⟩
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 25.2614426612854 / 7.193784236907959 / 32.45522689819336
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b := mul_pos h₀.1 h₀.2
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : 0 < a * b + 1 := by linarith
+    have h₇ : (a^2 + b^2) / (a * b + 1) ≤ (a^2 + b^2) / (a * b + 1) := by linarith
+    have h₈ : (a^2 + b^2) / (a * b + 1) ≥ 0 := by positivity
+    have h₉ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+      have h₁₀ : (a^2 + b^2) / (a * b + 1) ≤ (a^2 + b^2) / (a * b + 1) := by linarith
+      have h₁₁ : (a^2 + b^2) / (a * b + 1) ≥ 0 := by positivity
+      have h₁₂ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+        nlinarith
+      exact h₁₂
+    exact h₉
+  refine' ⟨(a^2 + b^2) / (a * b + 1), _⟩
+  linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.89002275466919 / 8.040034770965576 / 24.930057525634766
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b + 1 := by
+    nlinarith
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : 0 < a * b + 1 := by nlinarith
+    have h₇ : (a^2 + b^2) / (a * b + 1) ≤ a^2 + b^2 := Nat.div_le_self _ _
+    have h₈ : (a^2 + b^2) / (a * b + 1) ≥ 0 := Nat.zero_le _
+    nlinarith
+  exact ⟨(a^2 + b^2) / (a * b + 1), by nlinarith⟩
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.360884666442871 / 5.0841569900512695 / 15.44504165649414
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b := mul_pos h₀.1 h₀.2
+  use (a^2 + b^2) / (a * b + 1)
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.537069082260132 / 5.61730432510376 / 25.15437340736389
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b + 1 := by
+    nlinarith
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : (a^2 + b^2) / (a * b + 1) = 0 ∨ (a^2 + b^2) / (a * b + 1) = 1 := by
+      have h₇ : (a * b + 1) ∣ (a^2 + b^2) := h₃
+      have h₈ : (a^2 + b^2) / (a * b + 1) ≤ 1 := by
+        apply Nat.div_le_of_le_mul
+        nlinarith
+      interval_cases (a^2 + b^2) / (a * b + 1) <;> simp_all
+    cases h₆ <;> simp_all
+  use (a^2 + b^2) / (a * b + 1)
+  <;> linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.091585397720337 / 7.5938780307769775 / 27.685463428497314
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b := by nlinarith
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1)) ^ 2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : (a^2 + b^2) / (a * b + 1) = 0 ∨ (a^2 + b^2) / (a * b + 1) = 1 := by
+      have h₇ : (a^2 + b^2) / (a * b + 1) ≤ 1 := by
+        apply Nat.div_le_of_le_mul
+        nlinarith
+      have h₈ : (a^2 + b^2) / (a * b + 1) ≥ 0 := by
+        apply Nat.zero_le
+      interval_cases (a^2 + b^2) / (a * b + 1) <;> simp_all
+    cases h₆ <;> simp_all
+  exact ⟨((a^2 + b^2) / (a * b + 1)), by
+    nlinarith
+  ⟩
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.212669372558594 / 600.1560072898865 / 624.3686766624451
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1988_p6
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : (a * b + 1) ∣ (a^2 + b^2)) :
+  ∃ x : ℕ, x^2 = (a^2 + b^2) / (a * b + 1) := by
+  have h₂ : 0 < a * b := mul_pos h₀.1 h₀.2
+  have h₃ : (a * b + 1) ∣ (a^2 + b^2) := h₁
+  have h₄ : (a^2 + b^2) = (a * b + 1) * ((a^2 + b^2) / (a * b + 1)) := by
+    rw [Nat.mul_div_cancel' h₃]
+  have h₅ : ((a^2 + b^2) / (a * b + 1))^2 = (a^2 + b^2) / (a * b + 1) := by
+    have h₆ : (a^2 + b^2) / (a * b + 1) = 0 ∨ (a^2 + b^2) / (a * b + 1) = 1 := by
+      have h₇ : (a * b + 1) ∣ (a^2 + b^2) := h₃
+      have h₈ : (a^2 + b^2) / (a * b + 1) ≤ 1 := by
+        apply Nat.div_le_of_le_mul
+        have h₉ : a^2 + b^2 ≤ a * b + 1 := by
+          have h₁₀ : a^2 + b^2 ≤ a * b + 1 := by
+            nlinarith [sq_nonneg (a - b)]
+          exact h₁₀
+        nlinarith
+      have h₉ : (a^2 + b^2) / (a * b + 1) ≥ 0 := by
+        apply Nat.zero_le
+      omega
+    cases h₆ with
+    | inl h₆ => simp [h₆]
+    | inr h₆ => simp [h₆]
+  exact ⟨(a^2 + b^2) / (a * b + 1), by linarith⟩
+

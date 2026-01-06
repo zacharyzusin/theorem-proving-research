@@ -1,0 +1,28 @@
+Problem: problem_0247
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 12.067797183990479
+Lean check time (s): 7.366173267364502
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p8
+  (x y : ℝ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : y^3 = 1)
+  (h₂ : 6 * x^2 = 2 * (6 * y^2)) :
+  x^3 = 2 * Real.sqrt 2 := by
+  have h₃ : y = 1 := by
+    nlinarith [pow_two_nonneg y]
+  have h₄ : x^2 = 2 := by
+    nlinarith [h₂, h₃]
+  have h₅ : x = Real.sqrt 2 := by
+    apply Eq.symm
+    rw [Real.sqrt_eq_iff_sq_eq] <;> nlinarith [Real.sqrt_nonneg 2, Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)]
+  rw [h₅]
+  nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num), Real.sqrt_nonneg 2]

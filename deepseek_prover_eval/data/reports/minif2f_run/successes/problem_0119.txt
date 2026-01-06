@@ -1,0 +1,29 @@
+Problem: problem_0119
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.123619794845581
+Lean check time (s): 7.041141986846924
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_427
+  (x y z : ℝ)
+  (h₀ : 3 * x + y = 17)
+  (h₁ : 5 * y + z = 14)
+  (h₂ : 3 * x + 5 * z = 41) :
+  x + y + z = 12 := by
+  have h₃ := h₀
+  have h₄ := h₁
+  have h₅ := h₂
+  -- We need to find x + y + z, which is 12.
+  -- We will use the given equations to solve for x, y, and z.
+  -- From the first equation: 3x + y = 17
+  -- From the second equation: 5y + z = 14
+  -- From the third equation: 3x + 5z = 41
+  -- We will use these equations to find the value of x + y + z.
+  nlinarith [sq_nonneg (x - 3), sq_nonneg (y - 5), sq_nonneg (z - 9)]

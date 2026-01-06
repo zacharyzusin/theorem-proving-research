@@ -1,0 +1,24 @@
+Problem: problem_0450
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.026466131210327
+Lean check time (s): 2.8085384368896484
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_123
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : a + b = 20)
+  (h₂ : a = 3 * b) :
+  a - b = 10 := by
+  have h₃ := h₁
+  have h₄ := h₂
+  have h₅ : b ≤ 20 := by omega
+  have h₆ : a ≤ 20 := by omega
+  interval_cases b <;> omega

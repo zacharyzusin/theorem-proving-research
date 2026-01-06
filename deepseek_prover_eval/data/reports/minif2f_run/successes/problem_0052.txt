@@ -1,0 +1,21 @@
+Problem: problem_0052
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.125340461730957
+Lean check time (s): 2.7962160110473633
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_188
+  (σ : Equiv ℝ ℝ)
+  (h : σ.1 2 = σ.2 2) :
+  σ.1 (σ.1 2) = 2 := by
+  have h1 := σ.left_inv 2
+  have h2 := σ.right_inv 2
+  simp_all [Equiv.eq_symm_apply]
+  <;> aesop

@@ -1,0 +1,21 @@
+Problem: problem_0392
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.240797758102417
+Lean check time (s): 3.667618751525879
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_104
+  (x : ℝ)
+  (h₀ : 125 / 8 = x / 12) :
+  x = 375 / 2 := by
+  have h₁ : x = 375 / 2 := by
+    field_simp at h₀
+    linarith
+  linarith

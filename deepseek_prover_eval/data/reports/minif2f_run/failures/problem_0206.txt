@@ -1,0 +1,258 @@
+Problem: problem_0206
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 44.847930908203125 / 9.197615623474121 / 54.045546531677246
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ x
+  have h₃ := h₁ (x + a)
+  have h₄ := h₁ (x + 2 * a)
+  have h₅ := h₁ (x + 3 * a)
+  have h₆ := h₁ (x + 4 * a)
+  have h₇ := h₁ (x + 5 * a)
+  have h₈ := h₁ (x + 6 * a)
+  have h₉ := h₁ (x + 7 * a)
+  have h₁₀ := h₁ (x + 8 * a)
+  have h₁₁ := h₁ (x + 9 * a)
+  have h₁₂ := h₁ (x + 10 * a)
+  norm_num at *
+  nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + a) - (f (x + a))^2), Real.sq_sqrt (show 0 ≤ f (x + a) - (f (x + a))^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + 2 * a) - (f (x + 2 * a))^2), Real.sq_sqrt (show 0 ≤ f (x + 2 * a) - (f (x + 2 * a))^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + 3 * a) - (f (x + 3 * a))^2), Real.sq_sqrt (show 0 ≤ f (x + 3 * a) - (f (x + 3 * a))^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + 4 * a) - (f (x + 4 * a))^2), Real.sq_sqrt (show 0 ≤ f (x + 4 * a) - (f (x + 4 * a))^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + 5 * a) - (f (x + 5 * a))^2), Real.sq_sqrt (show 0 ≤ f (x + 5 * a) - (f (x + 5 * a))^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + 6 * a) - (f (x + 6 * a))^2), Real.sq_sqrt (show 0 ≤ f (x + 6 * a) - (f (x + 6 * a))^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + 7 * a) - (f (x + 7 * a))^2), Real.sq_sqrt
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.656151533126831 / 4.680480003356934 / 18.336631536483765
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ x
+  have h₃ := h₁ (x + a)
+  have h₄ := h₁ (x + 2 * a)
+  simp at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  field_simp [h₀] at h₂ h₃ h₄ ⊢
+  <;> nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith),
+    Real.sqrt_nonneg (f (x + a) - (f (x + a))^2), Real.sq_sqrt (show 0 ≤ f (x + a) - (f (x + a))^2 by nlinarith)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.877940893173218 / 4.811508417129517 / 18.689449310302734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ x
+  have h₃ := h₁ (x + a)
+  have h₄ := h₁ (x - a)
+  simp at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  field_simp [h₀.ne'] at h₂ h₃ h₄ ⊢
+  <;>
+    nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith),
+      Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.73364520072937 / 4.406574010848999 / 19.14021921157837
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ (x + a)
+  have h₃ := h₁ x
+  have h₄ := h₁ (x - a)
+  simp at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith),
+    Real.sqrt_nonneg (f (x - a) - (f (x - a))^2), Real.sq_sqrt (show 0 ≤ f (x - a) - (f (x - a))^2 by nlinarith),
+    Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 24.585141897201538 / 4.9533631801605225 / 29.53850507736206
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ x
+  have h₃ := h₁ (x + a)
+  have h₄ := h₁ (x + a + a)
+  simp at h₂ h₃ h₄
+  have h₅ : f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2) := by linarith
+  have h₆ : f (x + 2 * a) = 1 / 2 + Real.sqrt (f (x + a) - (f (x + a))^2) := by linarith
+  have h₇ : Real.sqrt (f x - (f x)^2) = Real.sqrt (f x - (f x)^2) := by rfl
+  have h₈ : Real.sqrt (f (x + a) - (f (x + a))^2) = Real.sqrt (1 / 2 + Real.sqrt (f x - (f x)^2) - (1 / 2 + Real.sqrt (f x - (f x)^2))^2) := by
+    rw [h₅] at *
+    <;> simp_all
+  rw [h₅, h₈] at *
+  <;> simp_all [Real.sqrt_eq_iff_sq_eq]
+  <;> ring_nf
+  <;> nlinarith [Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by
+    nlinarith [sq_nonneg (f x - 1 / 2)]),
+    Real.sq_sqrt (show 0 ≤ 1 / 2 + Real.sqrt (f x - (f x)^2) - (1 / 2 + Real.sqrt (f x - (f x)^2))^2 by
+    nlinarith [sq_nonneg (Real.sqrt (f x - (f x)^2) - 1 / 2)])]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.007158994674683 / 4.917045831680298 / 17.92420482635498
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ x
+  have h₃ := h₁ (x + a)
+  have h₄ := h₁ (x + 2 * a)
+  simp at h₂ h₃ h₄
+  have h₅ : f (x + a) = f x := by
+    nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by nlinarith [sq_nonneg (f x - 1 / 2)])]
+  nlinarith [h₅]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 25.05940055847168 / 4.54203724861145 / 29.60143780708313
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  constructor
+  exact h₀
+  intro x
+  have h₂ := h₁ x
+  have h₃ := h₁ (x + a)
+  have h₄ := h₁ (x + a + a)
+  simp at h₂ h₃ h₄
+  have h₅ : f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2) := by rw [h₂]
+  have h₆ : f (x + 2 * a) = 1 / 2 + Real.sqrt (f (x + a) - (f (x + a))^2) := by rw [h₃]
+  have h₇ : f (x + 3 * a) = 1 / 2 + Real.sqrt (f (x + 2 * a) - (f (x + 2 * a))^2) := by rw [h₄]
+  nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sqrt_nonneg (f (x + a) - (f (x + a))^2),
+    Real.sqrt_nonneg (f (x + 2 * a) - (f (x + 2 * a))^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by
+      nlinarith [sq_nonneg (f x - 1 / 2)]), Real.sq_sqrt (show 0 ≤ f (x + a) - (f (x + a))^2 by
+      nlinarith [sq_nonneg (f (x + a) - 1 / 2)]), Real.sq_sqrt (show 0 ≤ f (x + 2 * a) - (f (x + 2 * a))^2 by
+      nlinarith [sq_nonneg (f (x + 2 * a) - 1 / 2)])]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.398810625076294 / 5.320903778076172 / 19.719714403152466
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1968_p5_1
+  (a : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : 0 < a)
+  (h₁ : ∀ x, f (x + a) = 1 / 2 + Real.sqrt (f x - (f x)^2)) :
+  ∃ b > 0, ∀ x, f (x + b) = f x := by
+  use a
+  use h₀
+  intro x
+  have h₂ := h₁ (x + a)
+  have h₃ := h₁ x
+  have h₄ := h₁ (x - a)
+  have h₅ := h₁ (x + 2 * a)
+  have h₆ := h₁ (x - 2 * a)
+  simp at h₂ h₃ h₄ h₅ h₆
+  ring_nf at h₂ h₃ h₄ h₅ h₆
+  nlinarith [Real.sqrt_nonneg (f x - (f x)^2), Real.sq_sqrt (show 0 ≤ f x - (f x)^2 by
+    nlinarith [sq_nonneg (f x - 1 / 2)]),
+    sq_nonneg (f x - 1 / 2)]
+

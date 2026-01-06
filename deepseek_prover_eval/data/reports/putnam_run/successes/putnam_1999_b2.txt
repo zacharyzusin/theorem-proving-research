@@ -1,0 +1,22 @@
+Problem: putnam_1999_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.727108001708984
+Lean check time (s): 14.96444320678711
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b2
+  (P Q : Polynomial ℂ)
+  (hQ : Q.natDegree = 2)
+  (hP : ∀ x : ℂ, P.eval x = (Q.eval x) * (Polynomial.derivative^[2] P).eval x) :
+  (∃ x1 x2, x1 ≠ x2 ∧ P.eval x1 = 0 ∧ P.eval x2 = 0) →
+  (∃ f : Fin (P.natDegree) → ℂ,
+    (∀ i j, i ≠ j → f i ≠ f j) ∧
+    (∀ i, P.eval (f i) = 0)) :=
+sorry

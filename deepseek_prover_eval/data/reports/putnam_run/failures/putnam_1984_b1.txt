@@ -1,0 +1,208 @@
+Problem: putnam_1984_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.75709581375122 / 55.05554246902466 / 72.81263828277588
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have step : let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+    dsimp only [putnam_1984_b1_solution]
+    intro n hn
+    induction n with
+    | zero =>
+      -- Base case: n = 1
+      norm_num [hf, Nat.factorial] at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.factorial]
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> omega
+    | succ n ih =>
+      -- Inductive step: assume the statement holds for n, prove for n+1
+      norm_num [hf, Nat.factorial] at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.factorial]
+      <;> ring_nf at *
+      <;> norm_cast at *
+      <;> omega
+  simpa using step
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.810806512832642 / 67.45281314849854 / 78.26361966133118
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have h₁ := hf 1 (by norm_num)
+  have h₂ := hf 2 (by norm_num)
+  have h₃ := hf 3 (by norm_num)
+  have h₄ := hf 4 (by norm_num)
+  simp [hf, Finset.sum_Icc_succ_top, Nat.factorial] at h₁ h₂ h₃ h₄
+  norm_num at h₁ h₂ h₃ h₄
+  <;> aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.95390772819519 / 42.703041076660156 / 58.65694880485535
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have step₁ : let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+    dsimp only [putnam_1984_b1_solution]
+    intro n hn
+    induction n with
+    | zero =>
+      norm_num [hf, Set.Icc_self, Set.mem_singleton]
+      <;> simp_all [Set.Icc_self, Set.mem_singleton]
+      <;> rfl
+    | succ n ih =>
+      simp_all [hf, Set.Icc_self, Set.mem_singleton]
+      <;> ring_nf
+      <;> norm_cast
+      <;> simp_all [Set.Icc_self, Set.mem_singleton]
+      <;> rfl
+  exact step₁
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.01958703994751 / 37.5263135433197 / 47.54590058326721
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have h₁ := hf 1
+  have h₂ := hf 2
+  have h₃ := hf 3
+  have h₄ := hf 4
+  simp [hf, Set.Icc, Finset.sum_range_succ, Nat.factorial] at h₁ h₂ h₃ h₄
+  norm_num at h₁ h₂ h₃ h₄
+  <;> aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.758518695831299 / 39.30759406089783 / 49.066112756729126
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have h1 := hf 1
+  have h2 := hf 2
+  have h3 := hf 3
+  have h4 := hf 4
+  simp [hf, Set.Icc, Finset.sum_range_succ, Nat.factorial] at h1 h2 h3 h4
+  norm_num at h1 h2 h3 h4
+  <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.098272800445557 / 17.466304540634155 / 36.56457734107971
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have step₁ : let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+    dsimp only [putnam_1984_b1_solution]
+    intro n hn
+    induction n with
+    | zero =>
+      norm_num [hf, Polynomial.eval_X, Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_mul, Polynomial.eval_C] at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.factorial]
+      <;> ring_nf at * <;> norm_cast
+      <;> omega
+    | succ n ih =>
+      norm_num [hf, Polynomial.eval_X, Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_mul, Polynomial.eval_C] at *
+      <;> simp_all [Finset.sum_Icc_succ_top, Nat.factorial]
+      <;> ring_nf at *
+      <;> norm_cast
+      <;> omega
+  
+  simpa using step₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.763970136642456 / 15.018981456756592 / 25.782951593399048
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have h1 := hf 1 (by norm_num)
+  have h2 := hf 2 (by norm_num)
+  have h3 := hf 3 (by norm_num)
+  have h4 := hf 4 (by norm_num)
+  simp [hf, Set.Icc, Finset.sum_range_succ, Nat.factorial] at h1 h2 h3 h4
+  norm_num at h1 h2 h3 h4
+  <;> aesop
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.594960927963257 / 41.66944193840027 / 57.264402866363525
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_b1
+(f : ℕ → ℤ)
+(hf : ∀ n > 0, f n = ∑ i : Set.Icc 1 n, ((i)! : ℤ))
+: let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+  have step1 : let (P, Q) := putnam_1984_b1_solution; ∀ n ≥ 1, f (n + 2) = P.eval (n : ℝ) * f (n + 1) + Q.eval (n : ℝ) * f n := by
+    dsimp only [putnam_1984_b1_solution]
+    intro n hn
+    induction n with
+    | zero =>
+      norm_num [hf, Nat.factorial] at * <;> simp_all [Finset.sum_Icc_succ_top, Nat.factorial]
+      <;> ring_nf at * <;> omega
+    | succ n ih =>
+      norm_num [hf, Nat.factorial] at * <;> simp_all [Finset.sum_Icc_succ_top, Nat.factorial]
+      <;> ring_nf at * <;> omega
+  exact step1

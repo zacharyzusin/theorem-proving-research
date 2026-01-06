@@ -1,0 +1,40 @@
+Problem: problem_0223
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 25.11136746406555
+Lean check time (s): 12.670177698135376
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_absxm1pabsxpabsxp1eqxp2_0leqxleq1
+  (x : ℝ)
+  (h₀ : abs (x - 1) + abs x + abs (x + 1) = x + 2) :
+  0 ≤ x ∧ x ≤ 1 := by
+  have h₁ : 0 ≤ x ∧ x ≤ 1 := by
+    have h₁₀ : 0 ≤ x := by
+      by_contra! h
+      have h₁₀₁ : x < 0 := by linarith
+      have h₁₀₂ : abs (x - 1) + abs x + abs (x + 1) ≠ x + 2 := by
+        cases' le_total 0 (x - 1) with h₁₀₃ h₁₀₃ <;>
+        cases' le_total 0 x with h₁₀₄ h₁₀₄ <;>
+        cases' le_total 0 (x + 1) with h₁₀₅ h₁₀₅ <;>
+        simp_all [abs_of_nonneg, abs_of_nonpos, abs_of_neg, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+      exact h₁₀₂ (by linarith)
+    have h₁₁ : x ≤ 1 := by
+      by_contra! h
+      have h₁₁₁ : x > 1 := by linarith
+      have h₁₁₂ : abs (x - 1) + abs x + abs (x + 1) ≠ x + 2 := by
+        cases' le_total 0 (x - 1) with h₁₁₃ h₁₁₃ <;>
+        cases' le_total 0 x with h₁₁₄ h₁₁₄ <;>
+        cases' le_total 0 (x + 1) with h₁₁₅ h₁₁₅ <;>
+        simp_all [abs_of_nonneg, abs_of_nonpos, abs_of_neg, sub_nonneg, sub_nonpos] <;>
+        nlinarith
+      exact h₁₁₂ (by linarith)
+    exact ⟨h₁₀, h₁₁⟩
+  exact h₁

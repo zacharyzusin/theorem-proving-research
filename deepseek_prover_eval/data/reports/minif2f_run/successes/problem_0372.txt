@@ -1,0 +1,31 @@
+Problem: problem_0372
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 14.67076849937439
+Lean check time (s): 3.39499568939209
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_22 :
+  Real.logb (5^2) (5^4) = 2 := by
+  rw [Real.logb]
+  field_simp [Real.log_rpow, Real.log_ne_zero, Real.log_ne_zero, Real.log_ne_zero]
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_ne_zero, Real.log_ne_zero, Real.log_ne_zero]
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_ne_zero, Real.log_ne_zero, Real.log_ne_zero]
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_ne_zero, Real.log_ne_zero, Real.log_ne_zero]
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp [Real.log_mul, Real.log_ne_zero, Real.log_ne_zero, Real.log_ne_zero]
+  <;> ring_nf
+  <;> norm_num

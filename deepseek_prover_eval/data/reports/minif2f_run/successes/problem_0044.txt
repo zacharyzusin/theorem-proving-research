@@ -1,0 +1,18 @@
+Problem: problem_0044
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.9947123527526855
+Lean check time (s): 4.7278056144714355
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_447 :
+  ∑ k in Finset.filter (λ x => 3∣x) (Finset.Icc 1 49), (k % 10) = 78 := by
+  simp only [Finset.sum_filter, Finset.sum_range_succ, Finset.sum_range_zero]
+  apply Eq.symm
+  rfl

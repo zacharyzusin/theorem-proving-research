@@ -1,0 +1,419 @@
+Problem: putnam_2002_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 81.48742270469666 / 8.074429750442505 / 89.56185245513916
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step₁ : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h1 : f n = 1/e - (1 - 1/n)^n := by simp [hf]
+    rw [h1]
+    have h2 : (1 : ℝ) / e - (1 - 1 / n : ℝ) ^ n < 1 / (n * e) := by
+      have h3 : (1 : ℝ) / e - (1 - 1 / n : ℝ) ^ n < 1 / (n * e) := by
+        have h4 : (n : ℝ) > 1 := by exact_mod_cast hn
+        have h5 : (1 : ℝ) / e = 1 / Real.exp 1 := by simp [he]
+        have h6 : (1 : ℝ) / (n * e) = 1 / (n * Real.exp 1) := by
+          simp [he]
+          <;> ring_nf
+          <;> field_simp
+          <;> ring_nf
+        have h7 : (1 - 1 / n : ℝ) ^ n < Real.exp (-1 : ℝ) := by
+          have h8 : (1 - 1 / n : ℝ) ^ n < Real.exp (-1 : ℝ) := by
+            have h9 : (1 - 1 / n : ℝ) ^ n < 1 := by
+              apply zpow_lt_one
+              ·
+                have : (n : ℝ) > 1 := by exact_mod_cast hn
+                have : (1 : ℝ) / n < 1 := by
+                  apply (div_lt_one (by positivity)).mpr
+                  <;> nlinarith
+                nlinarith
+              ·
+                have : (n : ℝ) > 1 := by exact_mod_cast hn
+                have : (1 : ℝ) / n < 1 := by
+                  apply (div_lt_one (by positivity)).mpr
+                  <;> nlinarith
+                nlinarith
+             
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 56.797513246536255 / 9.683177947998047 / 66.4806911945343
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h₁ : f n = 1/e - (1 - 1/n)^n := by simp_all [hf]
+    rw [h₁]
+    have h₂ : 0 < n := by linarith
+    have h₃ : 0 < (n : ℝ) := by exact_mod_cast h₂
+    have h₄ : 0 < e := by
+      have h₅ : Real.exp 1 > 0 := Real.exp_pos 1
+      linarith [he]
+    have h₆ : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h₇ : (1 : ℝ) / e > 0 := by positivity
+    have h₈ : (1 : ℝ) / e < 1 := by
+      have h₉ : Real.exp 1 > 1 := by
+        nlinarith [Real.add_one_lt_exp (by linarith : (1 : ℝ) ≠ 0)]
+      rw [he]
+      apply (div_lt_one (by positivity)).mpr
+      linarith
+    have h₉ : (1 : ℝ) / (n * e) > 0 := by positivity
+    have h₁₀ : (1 : ℝ) / (2 * n * e) < 1 / e - (1 - 1 / n)^n := by
+      have h₁₁ : (1 : ℝ) / e - (1 - 1 / n)^n > (1 : ℝ) / (2 * n * e) := by
+        have h₁₂ : (1 - 1 / n : ℝ)^n < 1 := by
+          apply Real.one_lt_rpow_of_pos_of_lt_one_of_neg
+          <;> norm_num <;>
+            cases n <;> simp_all [Int.ofNat_lt] <;> norm_num <;>
+            apply lt_of_sub_pos <;> field_simp <;>
+            ring_nf <;>
+            nlinarith
+        have h₁₃ : (1 : ℝ) / e < 1 := by
+          nlinarith [h₈]
+        have h₁₄ : (1 : ℝ) / (2 * n * e) < (1 : ℝ) / e :=
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 47.637959241867065 / 6.101073980331421 / 53.739033222198486
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step1 : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h1 : f n = 1 / e - (1 - 1 / n) ^ n := by simp [hf]
+    rw [h1]
+    have h2 : 0 < e := by
+      rw [he]
+      exact Real.exp_pos 1
+    have h3 : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h4 : (n : ℝ) > 0 := by linarith
+    have h5 : (1 : ℝ) / n ≥ 0 := by positivity
+    have h6 : (1 : ℝ) / n ≤ 1 := by
+      apply div_le_one_of_le
+      <;> norm_cast at * <;> nlinarith
+    have h7 : (1 - 1 / n : ℝ) ≥ 0 := by
+      apply sub_nonneg_of_le
+      apply div_le_one_of_le
+      <;> norm_cast at * <;> nlinarith
+    have h8 : (1 - 1 / n : ℝ) ^ n ≤ 1 := by
+      apply pow_le_one _ (by
+        apply sub_nonneg_of_le
+        apply div_le_one_of_le
+        <;> norm_cast at * <;> nlinarith)
+      <;>
+        apply sub_le_self <;>
+        positivity
+    have h9 : 1 / e - (1 - 1 / n) ^ n < 1 / (n * e) := by
+      have h10 : (1 - 1 / n : ℝ) ^ n < 1 := by
+        have h11 : (1 - 1 / n : ℝ) ^ n < 1 := by
+          apply pow_lt_one (by
+            apply sub_nonneg_of_le
+            apply div_le_one_of_le
+            <;> norm_cast at * <;> nlinarith)
+          <;>
+            (try norm_num) <;>
+            (try nlinarith) <;>
+            (try simp_all [he]) <;>
+    
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 65.67972230911255 / 9.883346796035767 / 75.56306910514832
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h1 : f n = 1 / e - (1 - 1 / n) ^ n := by simp [hf]
+    rw [h1]
+    have h2 : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h3 : (e : ℝ) = Real.exp 1 := by simp [he]
+    have h4 : 0 < (e : ℝ) := by
+      rw [h3]
+      exact Real.exp_pos _
+    have h5 : 0 < (n : ℝ) := by linarith
+    have h6 : (1 : ℝ) / n ≥ 0 := by positivity
+    have h7 : (1 : ℝ) / n < 1 := by
+      apply (div_lt_one (by positivity)).mpr
+      <;> nlinarith
+    have h8 : (1 - 1 / n : ℝ) ^ n < Real.exp (-1 : ℝ) := by
+      have h9 : (1 - 1 / n : ℝ) ^ n < Real.exp (-1 : ℝ) := by
+        have h10 : (1 - 1 / n : ℝ) ^ n < 1 := by
+          apply zpow_lt_one (by
+            have : (1 : ℝ) - 1 / n < 1 := by
+              apply sub_lt_iff_lt_add'.mpr
+              have : (1 : ℝ) / n > 0 := by positivity
+              nlinarith
+            nlinarith
+          ) (by
+            have : (1 : ℝ) - 1 / n > 0 := by
+              apply sub_pos.mpr
+              apply lt_of_sub_pos
+              field_simp
+              <;> nlinarith
+            nlinarith
+          ) (by
+            nlinarith
+          )
+        have h11 : Real.exp (-1 : ℝ) = Real.exp (-1 : ℝ) := by rfl
+        have h12 : (1 - 1 / 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 51.30463218688965 / 8.824034452438354 / 60.128666639328
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h₁ : f n = 1/e - (1 - 1/n)^n := by simp [hf]
+    rw [h₁]
+    have h₂ : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h₃ : (n : ℝ) > 0 := by linarith
+    have h₄ : (e : ℝ) = Real.exp 1 := by simp [he]
+    have h₅ : Real.exp 1 > 0 := Real.exp_pos 1
+    have h₆ : 1 / (2 * n * e) < 1 / e - (1 - 1 / n) ^ n := by
+      have h₆₁ : 1 / (2 * n * e) < 1 / e := by
+        apply one_div_lt_one_div_of_lt
+        · positivity
+        · nlinarith [Real.add_one_lt_exp (by linarith : (1 : ℝ) ≠ 0)]
+      have h₆₂ : 1 / e - (1 - 1 / n) ^ n ≥ 1 / e := by
+        have h₆₃ : (1 - 1 / n : ℝ) ^ n ≤ 1 := by
+          apply pow_le_one _ (by
+            apply sub_nonneg.mpr
+            have : (1 : ℝ) / n ≥ 0 := by positivity
+            have : (1 : ℝ) / n ≤ 1 := by
+              apply div_le_one_of_le
+              · linarith
+              · linarith
+            linarith
+          )
+          <;>
+          (try norm_num) <;>
+          (try linarith) <;>
+          (try
+            {
+              apply le_of_sub_nonneg
+              field_simp
+              <;>
+              rw [le_div_iff (by positivity)] <;>
+              nlinarith
+            })
+        nlinarith
+      li
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 44.28417110443115 / 8.570169448852539 / 52.85434055328369
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h1 : f n = 1 / e - (1 - 1 / n) ^ n := by simp [hf]
+    rw [h1]
+    have h2 : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h3 : 0 < e := by
+      rw [he]
+      exact Real.exp_pos 1
+    have h4 : 0 < (n : ℝ) := by linarith
+    have h5 : (1 : ℝ) / n ≥ 0 := by positivity
+    have h6 : (1 : ℝ) / n ≤ 1 := by
+      have h7 : (n : ℝ) ≥ 1 := by linarith
+      have h8 : (1 : ℝ) / n ≤ 1 := by
+        apply div_le_one_of_le
+        <;> nlinarith
+      nlinarith
+    have h7 : (1 - 1 / n : ℝ) ^ n > 0 := by
+      have h8 : (1 - 1 / n : ℝ) > 0 := by
+        apply sub_pos.mpr
+        apply lt_of_sub_pos
+        field_simp
+        <;> nlinarith
+      exact pow_pos h8 n
+    have h8 : (1 - 1 / n : ℝ) ^ n < 1 := by
+      have h9 : (1 - 1 / n : ℝ) < 1 := by
+        apply sub_lt_iff_lt_add'.mpr
+        apply lt_of_sub_pos
+        field_simp
+        <;> nlinarith
+      exact pow_lt_one (by nlinarith) h9 (by linarith)
+    have h9 : 1 / e - (1 - 1 / n) ^ n > 1 / (2 * n * e) := by
+      have h10 : 1 / e - (1 - 1 / n) ^ n > 1 / (2 * n * e) := by
+        field_simp [he]
+        rw [← sub_pos]
+        field_simp [he]
+        norm_num
+        rw [← sub_pos]
+        field_simp 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 54.40271759033203 / 15.734968185424805 / 70.13768577575684
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step1 : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h1 : f n = 1 / e - (1 - 1 / n : ℝ) ^ n := by
+      simp [hf]
+      <;> norm_cast
+      <;> simp_all [he]
+      <;> ring_nf
+      <;> field_simp [he]
+      <;> norm_cast
+    rw [h1]
+    have h2 : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h3 : 0 < (n : ℝ) := by linarith
+    have h4 : 0 < e := by
+      have h5 : Real.exp 1 > 0 := Real.exp_pos 1
+      linarith [he]
+    have h5 : (1 : ℝ) / e > 0 := by positivity
+    have h6 : (1 : ℝ) / n ≥ 0 := by positivity
+    have h7 : (1 : ℝ) / n < 1 := by
+      have h8 : (n : ℝ) > 1 := by exact_mod_cast hn
+      have h9 : (1 : ℝ) / n < 1 := by
+        rw [div_lt_one (by positivity)]
+        nlinarith
+      exact h9
+    have h8 : (1 - 1 / n : ℝ) > 0 := by
+      have h9 : (1 : ℝ) / n < 1 := by assumption
+      nlinarith
+    have h9 : (1 - 1 / n : ℝ) ^ n > 0 := by
+      exact pow_pos (by nlinarith) _
+    constructor
+    case left =>
+      have h10 : 1 / (2 * n * e : ℝ) < 1 / e - (1 - 1 / n : ℝ) ^ n := by
+        have h11 : 1 / (2 * n * e : ℝ) < 1 / (n * e : ℝ) := by
+          apply (div_lt_div_iff (by positivity) (by positivity)).mpr
+          nlinarith
+        have h12 : 1 / (n * e : ℝ) ≤ 1 / e - (1 - 1 / n : ℝ
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 62.36324071884155 / 15.958699226379395 / 78.32193994522095
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2002_b3
+(e : ℝ)
+(he : e = Real.exp 1)
+(f : ℤ → ℝ)
+(hf : f = fun n : ℤ => 1/e - (1 - 1/n)^n)
+: ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+  have step1 : ∀ n : ℤ, n > 1 → 1/(2*n*e) < f n ∧ f n < 1/(n*e) := by
+    intro n hn
+    have h₁ : f n = 1 / e - (1 - 1 / n) ^ n := by
+      simp [hf]
+    rw [h₁]
+    have h₂ : (n : ℝ) > 1 := by exact_mod_cast hn
+    have h₃ : (e : ℝ) = Real.exp 1 := by simp [he]
+    have h₄ : 0 < (e : ℝ) := by
+      rw [h₃]
+      exact Real.exp_pos _
+    have h₅ : (1 : ℝ) / e < 1 := by
+      rw [div_lt_one (by positivity)] <;>
+        nlinarith [Real.exp_pos 1, Real.add_one_lt_exp (show (1 : ℝ) ≠ 0 by norm_num)]
+    have h₆ : (1 : ℝ) / n ≥ 0 := by
+      apply div_nonneg
+      · linarith
+      · linarith
+    have h₇ : (1 : ℝ) - 1 / n ≤ 1 := by
+      have h₇ : (1 : ℝ) / n ≥ 0 := by positivity
+      have h₈ : (1 : ℝ) - 1 / n ≤ 1 := by
+        have h₉ : (1 : ℝ) / n ≥ 0 := by positivity
+        have h₁₀ : (1 : ℝ) - 1 / n ≤ 1 := by
+          rw [sub_le_iff_le_add]
+          have h₁₁ : (1 : ℝ) / n ≥ 0 := by positivity
+          nlinarith
+        exact h₁₀
+      exact h₈
+    have h₈ : (1 : ℝ) - 1 / n > 0 := by
+      have h₉ : (1 : ℝ) / n > 0 := by positivity
+      nlinarith
+    have h₉ : (1 : ℝ) - 1 / n < 1 := by
+      nlinarith
+    have h₁₀ : (1 : ℝ) - 1 / n > 0 := by nlinarith
+    have h₁₁ : (1 - 1 / n : ℝ) ^ n < 1 := by
+      exact Zpow_lt_one (by nlinarith)
+... [truncated] ...

@@ -1,0 +1,150 @@
+Problem: putnam_2016_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 56.69703698158264 / 7.858028888702393 / 64.55506587028503
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 32.157062292099 / 8.028879404067993 / 40.18594169616699
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 27.48054814338684 / 8.444079875946045 / 35.924628019332886
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 47.801941871643066 / 8.017226696014404 / 55.81916856765747
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 38.28028202056885 / 8.441039800643921 / 46.72132182121277
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 70.87459135055542 / 8.614704608917236 / 79.48929595947266
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 36.58857750892639 / 7.472195863723755 / 44.06077337265015
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 46.94188332557678 / 7.603891372680664 / 54.545774698257446
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2016_a6
+  (p : ℝ → Prop)
+  (hp : ∀ c, p c ↔
+          ∀ P : Polynomial ℝ, P.degree = 3 →
+          (∃ x ∈ Icc 0 1, P.eval x = 0) →
+          ∫ x in (0)..1, |P.eval x| ≤ c * (sSup {y | ∃ x ∈ Icc 0 1, y = |P.eval x|})) :
+  IsLeast p putnam_2016_a6_solution :=
+sorry

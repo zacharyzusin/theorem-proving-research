@@ -1,0 +1,134 @@
+Problem: putnam_1979_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 51.84010410308838 / 31.108860731124878 / 82.94896483421326
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.851755142211914 / 38.94422483444214 / 54.79597997665405
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.248876094818115 / 43.956369161605835 / 65.20524525642395
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.061636924743652 / 50.698981523513794 / 68.76061844825745
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 52.21263074874878 / 24.211615800857544 / 76.42424654960632
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 43.39577078819275 / 20.367571115493774 / 63.76334190368652
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 40.46949863433838 / 27.167641162872314 / 67.6371397972107
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 47.55792236328125 / 67.19640493392944 / 114.7543272972107
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_a6
+(n : ℕ)
+(p : ℕ → ℝ)
+(hp : ∀ i ∈ Finset.range n, p i ∈ Icc 0 1)
+: ∃ x ∈ Icc 0 1, (∀ i ∈ Finset.range n, x ≠ p i) ∧ ∑ i ∈ Finset.range n, 1/|x - p i| ≤ 8*n*∑ i ∈ Finset.range n, (1 : ℝ)/(2*i + 1) :=
+sorry

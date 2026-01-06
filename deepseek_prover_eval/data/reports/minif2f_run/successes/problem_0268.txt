@@ -1,0 +1,24 @@
+Problem: problem_0268
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.609890460968018
+Lean check time (s): 4.766694784164429
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_33
+  (n : ℕ)
+  (h₀ : n < 398)
+  (h₁ : (n * 7) % 398 = 1) :
+  n = 57 := by
+  have h₂ : n * 7 % 398 = 1 := h₁
+  have h₃ : n * 7 % 398 = 1 := h₁
+  rw [← Nat.mod_add_div n 398] at h₂ h₃
+  norm_num at h₂ h₃
+  ring_nf at h₂ h₃
+  omega

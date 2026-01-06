@@ -1,0 +1,305 @@
+Problem: putnam_2007_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.4435031414032 / 12.49009084701538 / 28.93359398841858
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  have h₁ := hf 0
+  have h₂ := hf 1
+  have h₃ := hf 2
+  have h₄ := hfnconst
+  cases' h₄ with n hn₄
+  cases' hn₄ with hn₄ hn₅
+  have h₅ := hf n
+  have h₆ := hf (n + 1)
+  have h₇ := hf (n + 2)
+  have h₈ := hf (n + 3)
+  have h₉ := hf (n + 4)
+  have h₁₀ := hf (n + 5)
+  have h₁₁ := hf (n + 6)
+  have h₁₂ := hf (n + 7)
+  have h₁₃ := hf (n + 8)
+  have h₁₄ := hf (n + 9)
+  have h₁₅ := hf (n + 10)
+  simp_all [Polynomial.eval_eq_sum_range, Nat.dvd_iff_mod_eq_zero, Nat.mod_eq_of_lt]
+  <;> omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.14138913154602 / 14.070079565048218 / 28.21146869659424
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  have h₁ := hfnconst
+  have h₂ := hf 0
+  have h₃ := hf 1
+  have h₄ := hf (f.natDegree)
+  have h₅ := hf (f.natDegree + 1)
+  have h₆ := hf 0
+  have h₇ := hf 1
+  have h₈ := hf (f.natDegree)
+  have h₉ := hf (f.natDegree + 1)
+  have h₁₀ := hf 0
+  have h₁₁ := hf 1
+  have h₁₂ := hf (f.natDegree)
+  have h₁₃ := hf (f.natDegree + 1)
+  simp_all [Polynomial.eval_eq_sum_range, Nat.div_eq_of_lt]
+  <;>
+  norm_num
+  <;>
+  aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.68872618675232 / 13.215747117996216 / 30.904473304748535
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  have h₁ := hfnconst
+  cases' h₁ with n hn₁
+  have h₂ := hn₁.1
+  have h₃ := hn₁.2
+  have h₄ := hf 0
+  have h₅ := hf 1
+  have h₆ := hf (f.natDegree)
+  have h₇ := hf (f.natDegree + 1)
+  simp at h₂ h₃ h₄ h₅ h₆ h₇
+  have h₈ := f.sub_dvd_eval_sub 0 n
+  have h₉ := f.sub_dvd_eval_sub 1 n
+  have h₁₀ := f.sub_dvd_eval_sub (f.eval n) (f.eval n + 1)
+  simp at h₈ h₉ h₁₀
+  constructor
+  -- Forward direction: If f(n) divides f(f(n) + 1), then n = 1
+  · intro h
+    have h₁₁ := h₁₀
+    simp_all
+    <;> omega
+  -- Reverse direction: If n = 1, then f(n) divides f(f(n) + 1)
+  · intro h
+    simp_all
+    <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.77674674987793 / 16.063056707382202 / 34.83980345726013
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  have h₀ := hfnconst
+  have h₁ := hf 0
+  have h₂ := hf 1
+  have h₃ := hf (f.natDegree)
+  have h₄ := hf (f.natDegree + 1)
+  have h₅ := hf 0
+  have h₆ := hf 1
+  have h₇ := hf (f.natDegree)
+  have h₈ := hf (f.natDegree + 1)
+  have h₉ := hf 0
+  have h₁₀ := hf 1
+  have h₁₁ := hf (f.natDegree)
+  have h₁₂ := hf (f.natDegree + 1)
+  simp at h₀ h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  norm_num at h₀ h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  <;>
+  simp_all [Polynomial.eval_C, Polynomial.eval_X, Polynomial.eval_add, Polynomial.eval_mul,
+    Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_neg]
+  <;>
+  omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.08814525604248 / 11.384073257446289 / 25.47221851348877
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  have h₁ := hfnconst
+  have h₂ := hf 0
+  have h₃ := hf 1
+  have h₄ := hf (f.natDegree)
+  have h₅ := hf (f.natDegree + 1)
+  have h₆ := hf 0
+  have h₇ := hf 1
+  have h₈ := hf (f.natDegree)
+  have h₉ := hf (f.natDegree + 1)
+  have h₁₀ := hf 0
+  have h₁₁ := hf 1
+  have h₁₂ := hf (f.natDegree)
+  have h₁₃ := hf (f.natDegree + 1)
+  simp_all [Polynomial.eval_eq_sum_range, Nat.dvd_iff_mod_eq_zero, Nat.mod_eq_of_lt]
+  <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.75609517097473 / 12.666248798370361 / 29.422343969345093
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  constructor
+  · intro h
+    have h₁ := hfnconst
+    cases' h₁ with n hn
+    cases' hn with hn₀ hn₁
+    have h₂ := hf 0
+    have h₃ := hf 1
+    have h₄ := hf (f.natDegree)
+    have h₅ := hf (f.natDegree + 1)
+    have h₆ := hf 0
+    have h₇ := hf 1
+    have h₈ := hf (f.natDegree)
+    have h₉ := hf (f.natDegree + 1)
+    have h₁₀ := hf 0
+    have h₁₁ := hf 1
+    have h₁₂ := hf (f.natDegree)
+    have h₁₃ := hf (f.natDegree + 1)
+    norm_num at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃
+    aesop
+  · intro h
+    simp_all
+    <;>
+    norm_num
+    <;>
+    aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.34691095352173 / 15.00278091430664 / 34.34969186782837
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  have h₁ := hfnconst
+  have h₂ := hf 0
+  have h₃ := hf 1
+  have h₄ := hf (f.natDegree)
+  have h₅ := hf (f.natDegree + 1)
+  have h₆ := hf 2
+  have h₇ := hf 3
+  have h₈ := hf 4
+  have h₉ := hf 5
+  have h₁₀ := hf 6
+  have h₁₁ := hf 7
+  have h₁₂ := hf 8
+  have h₁₃ := hf 9
+  have h₁₄ := hf 10
+  simp at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄
+  <;>
+  simp_all [Polynomial.eval_C, Polynomial.eval_X, Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.45191478729248 / 15.261131525039673 / 28.713046312332153
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b1
+(f : Polynomial ℤ)
+(hf : ∀ n : ℕ, f.coeff n ≥ 0)
+(hfnconst : ∃ n : ℕ, n > 0 ∧ f.coeff n > 0)
+(n : ℤ)
+(hn : n > 0)
+: f.eval n ∣ f.eval (f.eval n + 1) ↔ n = 1 := by
+  constructor
+  · intro h
+    by_contra! hn'
+    have h1 := hf 0
+    have h2 := hf 1
+    have h3 := hfnconst
+    obtain ⟨n, hn, hn'⟩ := h3
+    have h4 := hf n
+    have h5 := hf (natDegree f)
+    have h6 := hf (natDegree f + 1)
+    have h7 := hf 0
+    have h8 := hf 1
+    have h9 := hf (natDegree f)
+    have h10 := hf (natDegree f + 1)
+    simp_all [hf, hfnconst, hn, hn']
+    <;> omega
+  · intro h
+    simp_all [hf, hfnconst, hn]
+    <;> aesop

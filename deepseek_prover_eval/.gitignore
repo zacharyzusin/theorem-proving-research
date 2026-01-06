@@ -27,6 +27,12 @@ data/results/
 eval_output.log
 *.lean.tmp
 
+# Include evaluation artifacts and reports for sharing
+!data/results/
+!data/results/**
+!data/reports/
+!data/reports/**
+
 # Slurm job logs
 logs/
 *.out

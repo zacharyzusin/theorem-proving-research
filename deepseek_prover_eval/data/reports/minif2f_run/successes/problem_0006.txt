@@ -1,0 +1,19 @@
+Problem: problem_0006
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.959303140640259
+Lean check time (s): 2.661388635635376
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_3 :
+  (∑ x in Finset.range 10, ((x + 1)^2)) % 10 = 5 := by
+  simp [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> rfl
+  <;> rfl

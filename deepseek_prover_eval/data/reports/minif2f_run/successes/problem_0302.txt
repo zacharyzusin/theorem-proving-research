@@ -1,0 +1,22 @@
+Problem: problem_0302
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.102720499038696
+Lean check time (s): 3.3820714950561523
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_739 :
+  9! % 10 = 0 := by
+  apply Nat.mod_eq_zero_of_dvd
+  apply Nat.dvd_of_mod_eq_zero
+  rfl
+  <;> norm_num
+  <;> decide
+  <;> simp [Nat.factorial]
+  <;> decide

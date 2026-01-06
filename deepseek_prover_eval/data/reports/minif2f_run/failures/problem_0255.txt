@@ -1,0 +1,275 @@
+Problem: problem_0255
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.400605916976929 / 7.168664455413818 / 20.569270372390747
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  norm_num [h₀, h₁] at h₂ ⊢
+  have h₃ := h₂ 0
+  have h₄ := h₂ 1
+  have h₅ := h₂ 2
+  have h₆ := h₂ 3
+  have h₇ := h₂ 4
+  norm_num [h₀, h₁] at h₃ h₄ h₅ h₆ h₇
+  <;> simp_all [mul_comm]
+  <;> norm_num
+  <;> ring_nf at *
+  <;> norm_num at *
+  <;> field_simp at *
+  <;> norm_cast at *
+  <;> linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.58146333694458 / 4.709534645080566 / 14.290997982025146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  norm_num [h₀, h₁, h₂] at *
+  <;> simp_all [mul_comm]
+  <;> norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp at *
+  <;> norm_num at *
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.294355154037476 / 4.479498863220215 / 12.77385401725769
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  norm_num [h₀, h₁, h₂]
+  <;> rfl
+  <;> simp_all [mul_comm]
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.496208190917969 / 54.176133155822754 / 69.67234134674072
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  norm_num [h₀, h₁] at h₂ ⊢
+  have h₃ := h₂ 0
+  have h₄ := h₂ 1
+  have h₅ := h₂ 2
+  have h₆ := h₂ 3
+  have h₇ := h₂ 4
+  norm_num [div_eq_mul_inv] at h₃ h₄ h₅ h₆ h₇
+  <;>
+  simp_all [mul_comm, mul_assoc, mul_left_comm]
+  <;>
+  norm_num
+  <;>
+  field_simp at *
+  <;>
+  ring_nf at *
+  <;>
+  norm_cast at *
+  <;>
+  simp_all [mul_comm, mul_assoc, mul_left_comm]
+  <;>
+  norm_num
+  <;>
+  linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.393490314483643 / 4.928197860717773 / 14.321688175201416
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  norm_num [h₀, h₁, h₂]
+  <;>
+  simp_all [mul_div_cancel_left]
+  <;>
+  norm_num
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.48163652420044 / 6.771368980407715 / 31.253005504608154
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  have h₃ : a 3 = 3 / 5 := by
+    have h₃ := h₂ 1
+    have h₄ := h₂ 2
+    have h₅ := h₂ 0
+    field_simp [h₀, h₁] at h₃ h₄ h₅ ⊢
+    ring_nf at h₃ h₄ h₅ ⊢
+    linarith
+  have h₄ : ∀ n, a n = 3 / 5 := by
+    intro n
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+      match n with
+      | 0 =>
+        have h₅ := h₂ 0
+        field_simp [h₀, h₁] at h₅ ⊢
+        ring_nf at h₅ ⊢
+        linarith
+      | 1 =>
+        have h₅ := h₂ 1
+        field_simp [h₀, h₁] at h₅ ⊢
+        ring_nf at h₅ ⊢
+        linarith
+      | k + 2 =>
+        have h₅ := h₂ k
+        have h₆ := h₂ (k + 1)
+        have h₇ := ih k (by linarith)
+        have h₈ := ih (k + 1) (by linarith)
+        field_simp [h₀, h₁, h₃] at h₅ h₆ h₇ h₈ ⊢
+        ring_nf at h₅ h₆ h₇ h₈ ⊢
+        nlinarith
+  norm_num [h₄]
+  <;> simp_all
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.892127513885498 / 6.233006715774536 / 20.125134229660034
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  norm_num [h₀, h₁] at h₂ ⊢
+  have h₃ := h₂ 0
+  have h₄ := h₂ 1
+  have h₅ := h₂ 2
+  have h₆ := h₂ 3
+  have h₇ := h₂ 4
+  norm_num [h₀, h₁] at h₃ h₄ h₅ h₆ h₇
+  <;>
+  simp_all [mul_comm, mul_assoc, mul_left_comm]
+  <;>
+  norm_num
+  <;>
+  field_simp at *
+  <;>
+  ring_nf at *
+  <;>
+  norm_cast at *
+  <;>
+  linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.09595775604248 / 6.372408151626587 / 26.468365907669067
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2019_p9
+  (a : ℕ → ℚ)
+  (h₀ : a 1 = 1)
+  (h₁ : a 2 = 3 / 7)
+  (h₂ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  have h₃ : ∀ n, a (n + 2) = (a n * a (n + 1)) / (2 * a n - a (n + 1)) := by
+    intro n
+    apply h₂
+  have h₄ := h₃ 0
+  have h₅ := h₃ 1
+  have h₆ := h₃ 2
+  have h₇ := h₃ 3
+  have h₈ := h₃ 4
+  norm_num [h₀, h₁] at h₄ h₅ h₆ h₇ h₈
+  <;> norm_num [div_eq_mul_inv] at h₄ h₅ h₆ h₇ h₈
+  <;> norm_num [mul_add, mul_sub, mul_assoc] at h₄ h₅ h₆ h₇ h₈
+  <;> field_simp at h₄ h₅ h₆ h₇ h₈
+  <;> ring_nf at h₄ h₅ h₆ h₇ h₈
+  <;> norm_num at h₄ h₅ h₆ h₇ h₈
+  <;> norm_cast at h₄ h₅ h₆ h₇ h₈
+  <;> simp_all [mul_comm]
+  <;> ring_nf
+  <;> norm_num
+  <;> omega
+

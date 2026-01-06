@@ -1,0 +1,166 @@
+Problem: putnam_2023_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.040292978286743 / 7.881926774978638 / 21.92221975326538
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.731661558151245 / 7.666334629058838 / 27.397996187210083
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.211071968078613 / 7.677472114562988 / 24.8885440826416
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.700434923171997 / 8.123863458633423 / 22.82429838180542
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.504327535629272 / 7.820111513137817 / 23.32443904876709
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.662293672561646 / 8.138924837112427 / 30.801218509674072
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.530693769454956 / 12.543524265289307 / 30.074218034744263
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.825090885162354 / 15.258328914642334 / 39.08341979980469
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2023_a2
+(n : ℕ)
+(hn : n > 0 ∧ Even n)
+(p : Polynomial ℝ)
+(hp : Polynomial.Monic p ∧ p.degree = 2*n)
+(S : Set ℝ)
+(hS : S = {x : ℝ | ∃ k : ℤ, x = k ∧ 1 ≤ |k| ∧ |k| ≤ n})
+(hpinv : ∀ k ∈ S, p.eval (1/k) = k^2)
+: {x : ℝ | x ≠ 0 ∧ p.eval (1/x) = x^2} \ S = putnam_2023_a2_solution n :=
+sorry

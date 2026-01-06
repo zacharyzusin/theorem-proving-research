@@ -1,0 +1,226 @@
+Problem: putnam_1986_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.464815139770508 / 54.371317625045776 / 65.83613276481628
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  norm_num [putnam_1986_b1_solution] at *
+  have h₁ : b > 0 := by linarith
+  have h₂ : h > 0 := by linarith
+  have h₃ : b ^ 2 + h ^ 2 = 4 := by nlinarith
+  have h₄ : b * h = 0.5 * b * (1 - h / 2) := by nlinarith
+  field_simp at h₄
+  ring_nf at h₄
+  nlinarith [sq_pos_of_pos h₁, sq_pos_of_pos h₂, sq_nonneg (b - 2 * h), sq_nonneg (b + 2 * h)]
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.092319011688232 / 18.855815649032593 / 32.948134660720825
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  norm_num at areaeq
+  have h₁ : b > 0 := hbh.1
+  have h₂ : h > 0 := hbh.2.1
+  have h₃ : b ^ 2 + h ^ 2 = 4 := by
+    norm_num [pow_two] at hbh
+    nlinarith
+  ring_nf at areaeq
+  have h₄ : b * h = 0.5 * b * (1 - h / 2) := by linarith
+  have h₅ : h = 4 / 5 := by
+    apply Eq.symm
+    field_simp at h₄ ⊢
+    ring_nf at h₄ ⊢
+    nlinarith [sq_pos_of_pos h₁, sq_pos_of_pos h₂]
+  norm_num [h₅]
+  <;>
+  simp_all [putnam_1986_b1_solution]
+  <;>
+  nlinarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.12236213684082 / 23.280641555786133 / 41.40300369262695
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  have step₁ : b * h = 0.5 * b * (1 - h / 2) := by
+    apply areaeq
+  
+  have step₂ : b * h = 0.5 * b * (1 - h / 2) := by
+    exact step₁
+  
+  have step₃ : h = 4 / 5 := by
+    ring_nf at step₂ hbh ⊢
+    have h₁ : b > 0 := by linarith
+    have h₂ : h > 0 := by linarith
+    have h₃ : b ^ 2 + h ^ 2 = 4 := by
+      ring_nf at hbh ⊢
+      nlinarith
+    field_simp at step₂
+    nlinarith [sq_pos_of_pos h₁, sq_pos_of_pos h₂, sq_nonneg (b - 4 / 5), sq_nonneg (h - 4 / 5),
+      sq_nonneg (b + h), sq_nonneg (b - h)]
+  
+  have step₄ : h = putnam_1986_b1_solution := by
+    norm_num [putnam_1986_b1_solution] at *
+    <;> nlinarith [sq_nonneg (b - 4 / 5), sq_nonneg (h - 4 / 5)]
+  
+  exact step₄
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.85128688812256 / 18.665637254714966 / 40.516924142837524
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  have step₁ : h = 2 / 5 := by
+    ring_nf at areaeq
+    have h1 : b > 0 := hbh.1
+    have h2 : h > 0 := hbh.2.1
+    have h3 : b ^ 2 + h ^ 2 = 4 := by nlinarith [hbh.2.2]
+    have h4 : (b : ℝ) * h = 0.5 * b * (1 - h / 2) := by linarith
+    ring_nf at h4
+    have h5 : (b : ℝ) > 0 := by linarith
+    have h6 : (h : ℝ) > 0 := by linarith
+    have h7 : (b : ℝ) * h = 0.5 * b - b * h / 4 := by linarith
+    field_simp at h7 ⊢
+    ring_nf at h7 ⊢
+    nlinarith [sq_pos_of_pos h2, sq_pos_of_pos h1, sq_nonneg (b - 2 * h),
+      mul_pos h1 h2, mul_pos h1 h1, mul_pos h2 h2,
+      mul_pos (sq_pos_of_pos h1) (sq_pos_of_pos h2)]
+  
+  have step₂ : h = putnam_1986_b1_solution := by
+    have h₁ : putnam_1986_b1_solution = 2 / 5 := by
+      norm_num [putnam_1986_b1_solution]
+      <;>
+      rfl
+    rw [h₁]
+    <;>
+    nlinarith
+  
+  exact step₂
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.762307405471802 / 17.466203212738037 / 25.22851061820984
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  norm_num [putnam_1986_b1_solution] at areaeq ⊢
+  ring_nf at areaeq ⊢
+  nlinarith [sq_nonneg (b - 1), sq_nonneg (h - 1), sq_nonneg (b + 1), sq_nonneg (h + 1)]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.394141674041748 / 21.42473316192627 / 33.81887483596802
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  norm_num [putnam_1986_b1_solution] at *
+  have h₁ : b > 0 := by linarith
+  have h₂ : h > 0 := by linarith
+  have h₃ : b ^ 2 + h ^ 2 = 4 := by nlinarith
+  have h₄ : b * h = 0.5 * b * (1 - h / 2) := by linarith
+  field_simp at h₄
+  ring_nf at h₄
+  nlinarith [sq_nonneg (b - 2 * h), sq_nonneg (b + 2 * h), sq_nonneg (b - 2), sq_nonneg (h - 2),
+    sq_nonneg (b + 2), sq_nonneg (h + 2)]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.788464546203613 / 18.122537851333618 / 30.91100239753723
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  norm_num [putnam_1986_b1_solution] at areaeq ⊢
+  ring_nf at areaeq ⊢
+  have h₁ : b > 0 := hbh.1
+  have h₂ : h > 0 := hbh.2.1
+  have h₃ : b ^ 2 + h ^ 2 = 4 := by linarith [hbh.2.2]
+  have h₄ : b * h = 0.5 * b * (1 - h / 2) := by linarith [areaeq]
+  field_simp at h₄
+  ring_nf at h₄
+  nlinarith [sq_pos_of_pos h₁, sq_pos_of_pos h₂, sq_nonneg (b - 2 * h), sq_nonneg (b + 2 * h)]
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.908265590667725 / 44.52080821990967 / 53.42907381057739
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_b1
+(b h : ℝ)
+(hbh : b > 0 ∧ h > 0 ∧ b ^ 2 + h ^ 2 = 2 ^ 2)
+(areaeq : b * h = 0.5 * b * (1 - h / 2))
+: h = putnam_1986_b1_solution := by
+  norm_num [putnam_1986_b1_solution] at *
+  ring_nf at *
+  nlinarith [sq_pos_of_pos hbh.1, sq_pos_of_pos hbh.2.1,
+    mul_self_nonneg (b - 2), mul_self_nonneg (h - 2),
+    mul_self_nonneg (b + 2), mul_self_nonneg (h + 2)]

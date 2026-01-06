@@ -1,0 +1,297 @@
+Problem: problem_0051
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.219507694244385 / 3.2629270553588867 / 16.48243474960327
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have key : n = 5 := by
+    have h₁ : (n : ℝ) ≠ 0 := by positivity
+    have h₂ : (x : ℝ) ≥ 1 := by exact_mod_cast x.prop.1
+    have h₃ : (y : ℝ) ≥ 1 := by exact_mod_cast y.prop.1
+    have h₄ : (n : ℝ) ≥ 1 := by exact_mod_cast n.prop.1
+    field_simp at h₀
+    ring_nf at h₀
+    have h₅ : (n : ℝ) = 5 := by
+      apply Eq.symm
+      field_simp at h₀ ⊢
+      nlinarith [mul_self_nonneg (x - y), mul_self_nonneg (x + y)]
+    exact_mod_cast h₅
+  exact key
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.541783332824707 / 3.206946849822998 / 21.748730182647705
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have step₁ : n = 5 := by
+    have h₁ : 0 < (4 : ℝ) := by positivity
+    have h₂ : 0 < (6 : ℝ) := by positivity
+    have h₃ : 0 < (n : ℝ) := by
+      exact_mod_cast (show 0 < n by exact_mod_cast Nat.pos_of_ne_zero (fun h => by simp_all [Nat.cast_eq_zero]))
+    have h₄ : (n : ℝ) ≠ 0 := by positivity
+    field_simp at h₀
+    have h₅ : (n : ℝ) = 5 := by
+      ring_nf at h₀ ⊢
+      nlinarith [sq_pos_of_ne_zero (show (x : ℝ) ≠ 0 by exact_mod_cast x.ne_zero),
+        sq_pos_of_ne_zero (show (y : ℝ) ≠ 0 by exact_mod_cast y.ne_zero),
+        sq_nonneg ((x : ℝ) - 2 * y), sq_nonneg ((y : ℝ) - 2 * x)]
+    have h₆ : (n : ℕ) = 5 := by
+      norm_cast at h₅
+    exact_mod_cast h₆
+  
+  exact step₁
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.634977340698242 / 3.339618444442749 / 20.97459578514099
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have h₁ := h₀
+  field_simp at h₁
+  norm_cast at h₁
+  rw [← mul_right_inj' (show (2 : ℕ) ≠ 0 by norm_num)] at h₁
+  ring_nf at h₁
+  norm_cast at h₁
+  have h₂ : n = 5 := by
+    have h₃ : n ≤ 10 := by
+      by_contra! h
+      have h₄ : n ≥ 11 := by linarith
+      have h₅ : (x : ℕ) ≥ 1 := x.prop.le
+      have h₆ : (y : ℕ) ≥ 1 := y.prop.le
+      have h₇ : (x : ℕ) + (y : ℕ) ≥ 2 := by linarith
+      have h₈ : (n : ℕ) ≥ 11 := by linarith
+      have h₉ : (x : ℕ) * 3 ≥ 3 := by nlinarith
+      have h₁₀ : (y : ℕ) * 2 ≥ 2 := by nlinarith
+      nlinarith
+    interval_cases n <;> norm_num at h₁ <;> omega
+  exact h₂
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.01575541496277 / 3.7166552543640137 / 23.732410669326782
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have h₁ := h₀
+  field_simp at h₁
+  ring_nf at h₁
+  norm_cast at h₁
+  have h₂ : n ≠ 0 := by
+    intro hn
+    simp_all
+  have h₃ : n ≤ 10 := by
+    by_contra! hn
+    have h₄ : n ≥ 11 := by linarith
+    have h₅ : (n : ℕ) ≥ 11 := by exact_mod_cast h₄
+    have h₆ : (x : ℕ) ≥ 1 := by exact_mod_cast x.prop
+    have h₇ : (y : ℕ) ≥ 1 := by exact_mod_cast y.prop
+    have h₈ : (x : ℕ) + (y : ℕ) ≥ 2 := by linarith
+    have h₉ : (n : ℕ) ≥ 11 := by exact_mod_cast h₄
+    have h₁₀ : (n : ℕ) ∣ 12 := by
+      norm_num at h₁
+      omega
+    have h₁₁ : (n : ℕ) ≤ 12 := by
+      exact Nat.le_of_dvd (by norm_num) h₁₀
+    interval_cases n <;> norm_num at h₁ <;> omega
+  interval_cases n <;> norm_num at h₁ <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.806496620178223 / 23.201177835464478 / 36.0076744556427
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have key : n = 5 := by
+    field_simp [add_comm] at h₀
+    ring_nf at h₀
+    norm_cast at h₀
+    have : n ≠ 0 := by
+      intro h
+      simp_all
+    have : n ≤ 12 := by
+      by_contra! h
+      have : n ≥ 13 := by linarith
+      have : (n : ℕ) ≥ 13 := by exact_mod_cast this
+      have : (x : ℕ) ≥ 1 := by exact_mod_cast x.prop
+      have : (y : ℕ) ≥ 1 := by exact_mod_cast y.prop
+      nlinarith
+    interval_cases n <;> simp_all [mul_comm]
+    <;> omega
+  simp_all
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.61553144454956 / 600.1463623046875 / 616.7618937492371
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have h₁ := h₀
+  field_simp [add_comm] at h₁
+  norm_cast at h₁
+  ring_nf at h₁
+  have h₂ : n ≠ 0 := by
+    intro hn
+    simp_all
+  have h₃ : n ≤ 12 := by
+    by_contra! hn
+    have h₄ : n ≥ 13 := by linarith
+    have h₅ : (n : ℕ) ≥ 13 := by exact_mod_cast h₄
+    have h₆ : (x : ℕ) ≥ 1 := by exact_mod_cast x.prop
+    have h₇ : (y : ℕ) ≥ 1 := by exact_mod_cast y.prop
+    have h₈ : (x : ℕ) + (y : ℕ) ≥ 2 := by linarith
+    have h₉ : (n : ℕ) ≤ (x : ℕ) + (y : ℕ) := by
+      nlinarith
+    nlinarith
+  interval_cases n <;> simp_all (config := {decide := true})
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.51474380493164 / 3.3473405838012695 / 16.86208438873291
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have h₁ : (n : ℝ) ≠ 0 := by
+    intro h
+    simp_all [Nat.cast_eq_zero]
+  have h₂ : (n : ℝ) = 5 := by
+    field_simp at h₀
+    ring_nf at h₀
+    norm_cast at h₀
+    have h₃ : n ≠ 0 := by
+      intro h
+      simp_all [Nat.cast_eq_zero]
+    have h₄ : n = 5 := by
+      apply Eq.symm
+      apply Nat.dvd_antisymm
+      · -- Show that 5 divides n
+        norm_cast at h₀
+        omega
+      · -- Show that n divides 5
+        norm_cast at h₀
+        omega
+    norm_cast at h₄
+    linarith
+  norm_cast at h₂
+  <;> simp_all
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.048907995224 / 4.664865732192993 / 30.713773727416992
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_227
+  (x y n : ℕ+)
+  (h₀ : ↑x / (4:ℝ) + y / 6 = (x + y) / n) :
+  n = 5 := by
+  have key : n = 5 := by
+    field_simp [add_comm] at h₀
+    ring_nf at h₀
+    norm_cast at h₀
+    have h₁ : n ≠ 0 := by
+      intro h
+      simp_all
+    have h₂ : n ≤ 12 := by
+      by_contra! h
+      have h₃ : n ≥ 13 := by linarith
+      have h₄ : (n : ℕ) ≥ 13 := by exact_mod_cast h₃
+      have h₅ : (x : ℕ) ≥ 1 := x.prop.le
+      have h₆ : (y : ℕ) ≥ 1 := y.prop.le
+      have h₇ : (x : ℕ) + (y : ℕ) ≥ 2 := by linarith
+      have h₈ : (n : ℕ) ≤ 12 := by
+        nlinarith
+      nlinarith
+    interval_cases n <;> norm_num at h₀ <;>
+    (try { omega }) <;>
+    (try {
+      have h₃ : (x : ℕ) ≥ 1 := x.prop.le
+      have h₄ : (y : ℕ) ≥ 1 := y.prop.le
+      have h₅ : (x : ℕ) + (y : ℕ) ≥ 2 := by linarith
+      ring_nf at h₀
+      norm_cast at h₀
+      omega
+    }) <;>
+    (try {
+      have h₃ : (x : ℕ) ≥ 1 := x.prop.le
+      have h₄ : (y : ℕ) ≥ 1 := y.prop.le
+      have h₅ : (x : ℕ) + (y : ℕ) ≥ 2 := by linarith
+      ring_nf at h₀
+      norm_cast at h₀
+      omega
+    }) <;>
+    omega
+  
+  exact key
+

@@ -1,0 +1,22 @@
+Problem: problem_0385
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.996935129165649
+Lean check time (s): 2.7852625846862793
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_37
+  (x y : ℝ)
+  (h₀ : x + y = 7)
+  (h₁ : 3 * x + y = 45) :
+  x^2 - y^2 = 217 := by
+  have h₂ : x = 7 - y := by linarith
+  rw [h₂] at h₁ ⊢
+  ring_nf at h₁ ⊢
+  nlinarith [sq_nonneg (x - y), sq_nonneg (x + y)]

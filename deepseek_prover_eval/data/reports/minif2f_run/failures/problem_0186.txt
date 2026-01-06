@@ -1,0 +1,346 @@
+Problem: problem_0186
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.230282306671143 / 600.1633884906769 / 611.393670797348
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  norm_num [Nat.factorial] at h₀ h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃
+  have h₄ : a ≤ 524 := by
+    nlinarith
+  have h₅ : b ≤ 524 := by
+    nlinarith
+  have h₆ : c ≤ 146 := by
+    nlinarith
+  have h₇ : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;>
+    interval_cases c <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.74687123298645 / 600.164468050003 / 613.9113392829895
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  have h₄ := h₁
+  have h₅ := h₂
+  have h₆ := h₃
+  simp [mul_comm, mul_assoc, mul_left_comm] at h₀ h₄ h₅ h₆
+  ring_nf at h₀ h₄ h₅ h₆
+  norm_cast at h₀ h₄ h₅ h₆
+  have h₇ : a ≤ 524 := by
+    nlinarith
+  have h₈ : b ≤ 524 := by
+    nlinarith
+  have h₉ : c ≤ 146 := by
+    nlinarith
+  have h₁₀ : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;>
+    interval_cases c <;>
+    omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.729687690734863 / 600.1623649597168 / 621.8920526504517
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  norm_num [Nat.factorial] at h₀
+  have h₄ := h₁
+  have h₅ := h₂
+  have h₆ := h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  norm_cast at h₁ h₂ h₃ ⊢
+  have h₇ : a ≤ 524 := by
+    nlinarith
+  have h₈ : b ≤ 524 := by
+    nlinarith
+  have h₉ : c ≤ 146 := by
+    nlinarith
+  have h₁₀ : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> norm_num at h₁ h₂ h₃ ⊢ <;>
+    (try omega) <;>
+    (try nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith) <;>
+    (try
+      nlinarith)
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.622419595718384 / 600.1613447666168 / 613.7837643623352
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  norm_num [Nat.factorial] at h₀ h₁ h₂ h₃
+  have : a ≤ 524 := by
+    nlinarith
+  have : b ≤ 524 := by
+    nlinarith
+  have : c ≤ 146 := by
+    nlinarith
+  have : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;>
+    interval_cases c <;> norm_num at h₁ h₂ h₃ ⊢ <;>
+    (try omega) <;>
+    (try {
+      nlinarith
+    }) <;>
+    (try {
+      aesop
+    }) <;>
+    (try {
+      linarith
+    })
+  <;>
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.264044523239136 / 600.1385242938995 / 612.4025688171387
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  norm_num [Nat.factorial] at h₀
+  have h₄ := h₁
+  have h₅ := h₂
+  have h₆ := h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  have h₇ : a ≤ 524 := by
+    nlinarith
+  have h₈ : b ≤ 524 := by
+    nlinarith
+  have h₉ : c ≤ 146 := by
+    nlinarith
+  have h₁₀ : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;>
+    interval_cases c <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.10709285736084 / 600.1638209819794 / 614.2709138393402
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  have h₄ := h₁
+  have h₅ := h₂
+  have h₆ := h₃
+  norm_num [Nat.factorial] at h₀ h₁ h₂ h₃
+  have h₇ : 0 < a := by
+    nlinarith
+  have h₈ : 0 < b := by
+    nlinarith
+  have h₉ : 0 < c := by
+    nlinarith
+  have h₁₀ : 0 < d := by
+    nlinarith
+  have h₁₁ : a ≤ 524 := by
+    nlinarith
+  have h₁₂ : b ≤ 146 := by
+    nlinarith
+  have h₁₃ : c ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;>
+    interval_cases c <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.341894626617432 / 600.1326704025269 / 613.4745650291443
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  have h₄ := h₁
+  have h₅ := h₂
+  have h₆ := h₃
+  simp [Nat.factorial] at h₀ h₄ h₅ h₆
+  ring_nf at h₀ h₄ h₅ h₆
+  norm_num at h₀ h₄ h₅ h₆
+  have h₇ : a ≤ 524 := by
+    nlinarith
+  have h₈ : b ≤ 524 := by
+    nlinarith
+  have h₉ : c ≤ 146 := by
+    nlinarith
+  have h₁₀ : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;> interval_cases c <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.233382225036621 / 600.1674182415009 / 615.4008004665375
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p21
+  (a b c d : ℕ)
+  (h₀ : a * b * c * d = 8!)
+  (h₁ : a * b + a + b = 524)
+  (h₂ : b * c + b + c = 146)
+  (h₃ : c * d + c + d = 104) :
+  ↑a - ↑d = (10 : ℤ) := by
+  have h₄ := h₁
+  have h₅ := h₂
+  have h₆ := h₃
+  norm_num [Nat.factorial] at h₀ h₁ h₂ h₃
+  have h₇ : 0 < a := by
+    nlinarith
+  have h₈ : 0 < b := by
+    nlinarith
+  have h₉ : 0 < c := by
+    nlinarith
+  have h₁₀ : 0 < d := by
+    nlinarith
+  have h₁₁ : a ≤ 524 := by
+    nlinarith
+  have h₁₂ : b ≤ 146 := by
+    nlinarith
+  have h₁₃ : c ≤ 104 := by
+    nlinarith
+  have h₁₄ : d ≤ 104 := by
+    nlinarith
+  interval_cases a <;> interval_cases b <;>
+    interval_cases c <;>
+    omega
+

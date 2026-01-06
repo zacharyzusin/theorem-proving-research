@@ -1,0 +1,22 @@
+Problem: problem_0076
+Dataset: minif2f
+Mode: noncot
+First success attempt: 3
+Generation time (s): 7.928418159484863
+Lean check time (s): 4.001270055770874
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2003_p5
+  (A M C : ℕ)
+  (h₀ : A ≤ 9 ∧ M ≤ 9 ∧ C ≤ 9)
+  (h₁ : Nat.ofDigits 10 [0,1,C,M,A] + Nat.ofDigits 10 [2,1,C,M,A] = 123422) :
+  A + M + C = 14 := by
+  have h₂ := h₁
+  simp_all [Nat.ofDigits, List.get]
+  -- Use the fact that the digits are single-digit numbers to simplify the equation.
+  omega

@@ -1,0 +1,33 @@
+Problem: problem_0110
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 19.766833543777466
+Lean check time (s): 7.530420303344727
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_bleqa_apbon2msqrtableqambsqon8b
+  (a b : ℝ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : b ≤ a) :
+  (a + b) / 2 - Real.sqrt (a * b) ≤ (a - b)^2 / (8 * b) := by
+  have h₂ : 0 < b := by linarith
+  have h₃ : 0 < a := by linarith
+  have h₄ : 0 < a * b := by positivity
+  have h₅ : 0 < a * b := by positivity
+  have h₆ : Real.sqrt (a * b) ≥ 0 := Real.sqrt_nonneg _
+  have h₇ : (a - b) ^ 2 ≥ 0 := sq_nonneg _
+  have h₈ : (a + b) / 2 - Real.sqrt (a * b) ≤ (a - b) ^ 2 / (8 * b) := by
+    rw [le_div_iff (by positivity)]
+    nlinarith [sq_nonneg (a - b), sq_nonneg (Real.sqrt (a * b) - (a + b) / 2),
+      Real.sq_sqrt (show 0 ≤ a * b by positivity),
+      sq_nonneg (a - b), sq_nonneg (Real.sqrt (a * b) - (a + b) / 2),
+      sq_nonneg (Real.sqrt (a * b) - (a - b) / 2),
+      sq_nonneg (Real.sqrt (a * b) - (a + b) / 2),
+      mul_self_nonneg (a - b - 2 * Real.sqrt (a * b))]
+  linarith

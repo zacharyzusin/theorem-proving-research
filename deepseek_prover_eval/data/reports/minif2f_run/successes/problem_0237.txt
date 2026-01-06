@@ -1,0 +1,20 @@
+Problem: problem_0237
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 4.226640224456787
+Lean check time (s): 5.0619566440582275
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_142
+  (m b : ℝ)
+  (h₀ : m * 7 + b = -1)
+  (h₁ : m * (-1) + b = 7) :
+  m + b = 5 := by
+  ring_nf at h₀ h₁ ⊢
+  nlinarith [h₀, h₁]

@@ -1,0 +1,268 @@
+Problem: putnam_1979_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 49.33843231201172 / 54.98803424835205 / 104.32646656036377
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  have step1 : ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+    rintro a b ⟨ha, hb⟩
+    have h₀ : 0 < b := by linarith
+    have h₁ : 0 < a := by linarith
+    have h₂ : 0 < b - a := by linarith
+    have h₃ : ∀ᶠ (t : ℝ) in 𝓝[≠] (0 : ℝ), (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ t) = (b - a) ^ t := by
+      filter_upwards [self_mem_nhdsWithin] with t ht
+      have h₄ : t ≠ 0 := by aesop
+      have h₅ : (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ t) = (∫ x in Icc (0 : ℝ) 1, (b - a) ^ t) := by
+        apply integral_congr_ae
+        have h₆ : ∀ x ∈ Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ t = (b - a) ^ t := by
+          intro x hx
+          have h₇ : 0 ≤ x := by exact hx.1
+          have h₈ : x ≤ 1 := by exact hx.2
+          have h₉ : (b * x + a * (1 - x)) = b - a := by
+            nlinarith
+          rw [h₉]
+          <;> simp [← sub_eq_zero]
+          <;> field_simp [h₄]
+          <;> ring
+        filter_upwards [ae_restrict_mem measurableSet_Icc] with x hx using h₆ x hx
+      simp_all [sub_ne_zero]
+      <;> field_simp [h₄] <;> ring
+    have h₄ : Tendsto (fun t : ℝ => (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ t) ^ (1 / t))
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.677513360977173 / 49.6451210975647 / 64.32263445854187
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  intro a b h
+  have h₁ : 0 < a := by linarith
+  have h₂ : 0 < b := by linarith
+  have h₃ : a < b := by linarith
+  simp_all [putnam_1979_b2_solution]
+  <;>
+  field_simp [h₁.ne', h₂.ne', Real.rpow_def_of_pos, Real.exp_ne_zero]
+  <;>
+  ring_nf
+  <;>
+  norm_num
+  <;>
+  apply tendsto_nhds_of_metric.2
+  <;>
+  simp_all [dist_eq_norm]
+  <;>
+  norm_num
+  <;>
+  apply tendsto_const_nhds
+  <;>
+  apply tendsto_id
+  <;>
+  apply tendsto_const_nhds
+  <;>
+  apply tendsto_id
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.808883905410767 / 58.93675136566162 / 68.74563527107239
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  intro a b h
+  have h₁ : 0 < a := h.1
+  have h₂ : a < b := h.2
+  have h₃ : 0 < b := by linarith
+  simp_all [putnam_1979_b2_solution]
+  <;> field_simp [h₁.ne', h₃.ne']
+  <;> ring_nf
+  <;> norm_num
+  <;> apply tendsto_id
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 42.59864044189453 / 34.60977506637573 / 77.20841550827026
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  intro a b h
+  have h₁ : 0 < a := by linarith
+  have h₂ : 0 < b := by linarith
+  have h₃ : a < b := by linarith
+  have h₄ : 0 < b - a := by linarith
+  have h₅ : 0 < (b - a) := by linarith
+  -- We need to show that the limit of the given function as t approaches 0 is (b^(1/(b-a)) / a^(1/(b-a)))^(b-a)
+  have h₆ : ∀ t : ℝ, t ≠ 0 → (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) = (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) := by
+    intro t ht
+    rfl
+  -- We use the given integral expression and simplify it using the properties of the integrand
+  have h₇ : Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 ((b^(1/(b-a)) / a^(1/(b-a)))^(b-a))) := by
+    have h₈ : ∀ t : ℝ, t ≠ 0 → (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) = (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) := by
+      intro t ht
+      rfl
+    have h₉ : Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 ((b^(1/(b-a)) / a^(1/(b-a)))^(b-a))) := by
+      have h₁₀ : ∀ t : ℝ, t ≠ 0 → (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) = (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) := by
+        intro t ht
+        rfl
+      -- Use the given integral expression and simplify it using the properties of the integrand
+      have h₁₁ : Tends
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 46.81807065010071 / 17.227253198623657 / 64.04532384872437
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  intro a b h
+  have h₁ : 0 < a := by linarith
+  have h₂ : 0 < b := by linarith
+  have h₃ : a < b := by linarith
+  have h₄ : 0 < b - a := by linarith
+  have h₅ : 0 < a * b := by positivity
+  -- We need to show that the limit of the integral expression as t approaches 0 is the exponential of the integral of ln(bx + a(1 - x)) from 0 to 1.
+  have h₆ : Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (b / (b - a))) := by
+    -- Use the fact that the integral of (bx + a(1 - x))^t from 0 to 1 approaches 1 as t approaches 0.
+    have h₇ : ∀ᶠ (t : ℝ) in 𝓝[≠] 0, (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) = (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) := by simp
+    have h₈ : Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (b / (b - a))) := by
+      -- Use the fact that the integral of (bx + a(1 - x))^t from 0 to 1 approaches 1 as t approaches 0.
+      have h₉ : ∀ᶠ (t : ℝ) in 𝓝[≠] 0, (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) = (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) := by simp
+      have h₁₀ : Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (b / (b - a))) := by
+        -- Use the fact that the integral of (bx + a(1 - x))^t from 0 to 1 approache
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 59.47398114204407 / 121.89559245109558 / 181.36957359313965
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  have step₁ : ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+    intro a b h
+    have h₁ : 0 < a := by linarith [h.1]
+    have h₂ : a < b := by linarith [h.2]
+    have h₃ : 0 < b := by linarith
+    have h₄ : ∀ x : ℝ, x ∈ Icc 0 1 → 0 < b*x + a*(1 - x) := by
+      intro x hx
+      have h₅ : 0 ≤ x := by exact hx.1
+      have h₆ : x ≤ 1 := by exact hx.2
+      nlinarith [h₁, h₂, h₃, mul_nonneg (le_of_lt h₁) (sub_nonneg.mpr h₅), mul_nonneg (le_of_lt h₃) (sub_nonneg.mpr h₅)]
+    have h₅ : ∫ x in Icc 0 1, (b*x + a*(1 - x))^(0 : ℝ) = 1 := by
+      simp [integral_const, Real.zero_rpow (by linarith : (0 : ℝ) ≠ 0)]
+      <;> norm_num
+      <;> simp_all [Icc, le_of_lt]
+      <;> norm_num
+      <;> linarith
+    have h₆ : Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (b - a)) := by
+      have h₇ : ∀ᶠ (t : ℝ) in 𝓝[≠] (0 : ℝ), (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t) = (b - a) := by
+        filter_upwards [self_mem_nhdsWithin] with t ht
+        have h₈ : t ≠ 0 := by aesop
+        have h₉ : (∫ x in Icc 0 1, (b*x + a*(1 - x))^t) = b - a := by
+          have h₁₀ : ∫ x in Icc 0 1, (b*x + a*(1 - x))^t = ∫ x in Icc 0 1,
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 53.39546012878418 / 109.23420858383179 / 162.62966871261597
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  have step₁ : ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+    intro a b h
+    have h₁ : 0 < a := by linarith [h.1]
+    have h₂ : a < b := by linarith [h.2]
+    have h₃ : 0 < b := by linarith
+    have h₄ : ∀ t : ℝ, t ≠ 0 → (∫ x in Icc (0 : ℝ) 1, (b*x + a*(1 - x))^t)^(1/t) = (b - a) := by
+      intro t ht
+      have h₅ : ∫ x in Icc (0 : ℝ) 1, (b*x + a*(1 - x))^t = ∫ x in Icc (0 : ℝ) 1, (b*x + a*(1 - x))^t := rfl
+      rw [h₅]
+      have h₆ : ∫ x in Icc (0 : ℝ) 1, (b*x + a*(1 - x))^t = (b - a) := by
+        have h₇ : ∫ x in Icc (0 : ℝ) 1, (b*x + a*(1 - x))^t = (b - a) := by
+          have h₈ : ∫ x in Icc (0 : ℝ) 1, (b*x + a*(1 - x))^t = ∫ x in Icc (0 : ℝ) 1, (b*x + a - a*x)^t := by congr <;> funext x <;> ring_nf
+          rw [h₈]
+          have h₉ : ∫ x in Icc (0 : ℝ) 1, (b*x + a - a*x)^t = ∫ x in Icc (0 : ℝ) 1, ((b - a)*x + a)^t := by
+            congr with x
+            ring
+          rw [h₉]
+          have h₁₀ : ∫ x in Icc (0 : ℝ) 1, ((b - a)*x + a)^t = (b - a) := by
+            have h₁₁ : ∀ x : ℝ, x ∈ Icc (0 : ℝ) 1 → ((b - a)*x + a)^t = ((b - a)*x + a)^t := by simp
+            simp_all [intervalIntegral.integral_comp_mul_left, m
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 52.00485062599182 / 88.1079375743866 / 140.11278820037842
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b2
+: ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+  have step₁ : ∀ a b : ℝ, 0 < a ∧ a < b → Tendsto (fun t : ℝ => (∫ x in Icc 0 1, (b*x + a*(1 - x))^t)^(1/t)) (𝓝[≠] 0) (𝓝 (putnam_1979_b2_solution (a, b))) := by
+    intro a b h
+    have h₁ : 0 < a := by linarith [h.1]
+    have h₂ : a < b := by linarith [h.2]
+    have h₃ : 0 < b := by linarith [h₁, h₂]
+    have h₄ : 0 < b - a := by linarith
+    have h₅ : (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ (0 : ℝ)) = 1 := by
+      simp [integral_const, MeasureTheory.integral_mul_left, mul_comm]
+      <;> field_simp <;> ring_nf
+      <;> norm_num
+      <;> simp_all [mul_comm]
+      <;> norm_num
+      <;> simp_all [mul_comm]
+      <;> norm_num
+    have h₆ : Tendsto (fun t : ℝ => (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ t) ^ (1 / t)) (𝓝[≠] 0) (𝓝 (b / (b - a))) := by
+      have h₇ : (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ (0 : ℝ)) = 1 := by
+        simp_all [h₅]
+      have h₈ : Tendsto (fun t : ℝ => (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ t)) (𝓝[≠] 0) (𝓝 (∫ x in Icc (0 : ℝ) 1, (b * x + a * (1 - x)) ^ (0 : ℝ))) := by
+        apply tendsto_integral_filter_of_dominated_convergence
+        · use 2
+          intro x
+          have hx : 0 ≤ x := by
+            exact (Set.mem_Icc.mp (by aesop : x ∈ Icc (0 : ℝ) 1)).1
+          ha
+... [truncated] ...

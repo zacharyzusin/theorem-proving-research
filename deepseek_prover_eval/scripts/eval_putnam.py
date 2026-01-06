@@ -21,6 +21,10 @@ if __name__ == "__main__":
                        help="Generation mode: 'cot' for Chain-of-Thought, 'noncot' for direct proof")
     parser.add_argument("--output-dir", type=str, default=None,
                        help="Directory to save metrics and results (default: data/results/putnam)")
+    parser.add_argument("--num-shards", type=int, default=None,
+                       help="Number of shards for parallel evaluation (use with --shard-id)")
+    parser.add_argument("--shard-id", type=int, default=None,
+                       help="Shard ID (0-indexed, use with --num-shards)")
     verbosity_group = parser.add_mutually_exclusive_group()
     verbosity_group.add_argument(
         "--quiet",
@@ -34,5 +38,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     
-    evaluate_putnam(args.mode, args.output_dir, quiet=args.quiet, verbose=args.verbose)
+    evaluate_putnam(
+        args.mode,
+        args.output_dir,
+        quiet=args.quiet,
+        verbose=args.verbose,
+        num_shards=args.num_shards,
+        shard_id=args.shard_id,
+    )
 

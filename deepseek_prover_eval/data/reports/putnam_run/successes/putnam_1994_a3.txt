@@ -1,0 +1,19 @@
+Problem: putnam_1994_a3
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 23.153325080871582
+Lean check time (s): 29.21052575111389
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a3
+(T : Set (EuclideanSpace ℝ (Fin 2)))
+(hT : T = convexHull ℝ {(WithLp.equiv 2 (EuclideanSpace ℝ (Fin 2))).symm ![0,0], (WithLp.equiv 2 (EuclideanSpace ℝ (Fin 2))).symm ![1,0], (WithLp.equiv 2 (EuclideanSpace ℝ (Fin 2))).symm ![0,1]})
+(Tcolors : T → Fin 4)
+: ∃ p q : T, Tcolors p = Tcolors q ∧ dist p.1 q.1 ≥ 2 - Real.sqrt 2 :=
+sorry

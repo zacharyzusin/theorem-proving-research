@@ -1,0 +1,32 @@
+Problem: problem_0474
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.677275657653809
+Lean check time (s): 3.6129047870635986
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_668
+  (l r :  ZMod 7)
+  (h₀ : l = (2 + 3)⁻¹)
+  (h₁ : r = 2⁻¹ + 3⁻¹) :
+  l - r = 1 := by
+  norm_num [h₀, h₁]
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl

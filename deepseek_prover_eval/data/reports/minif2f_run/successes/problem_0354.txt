@@ -1,0 +1,26 @@
+Problem: problem_0354
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.786056280136108
+Lean check time (s): 3.6417205333709717
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_96
+  (x y z a : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : Real.log x - Real.log y = a)
+  (h₂ : Real.log y - Real.log z = 15)
+  (h₃ : Real.log z - Real.log x = -7) :
+  a = -8 := by
+  have h₄ := Real.log_mul (ne_of_gt h₀.1) (ne_of_gt h₀.2.1)
+  have h₅ := Real.log_mul (ne_of_gt h₀.2.1) (ne_of_gt h₀.2.2)
+  have h₆ := Real.log_mul (ne_of_gt h₀.2.2) (ne_of_gt h₀.1)
+  nlinarith [h₁, h₂, h₃, h₄, h₅, h₆]
+  <;> simp_all
+  <;> nlinarith

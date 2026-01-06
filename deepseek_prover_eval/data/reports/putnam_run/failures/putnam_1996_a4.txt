@@ -1,0 +1,166 @@
+Problem: putnam_1996_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.808849573135376 / 14.170267820358276 / 42.97911739349365
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.610451698303223 / 12.623454332351685 / 35.23390603065491
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.118496894836426 / 12.719493389129639 / 35.837990283966064
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 24.21087098121643 / 12.587605237960815 / 36.798476219177246
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 25.566452264785767 / 12.49129867553711 / 38.057750940322876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.98266077041626 / 13.048454284667969 / 36.03111505508423
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 23.68172860145569 / 12.728310585021973 / 36.41003918647766
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.245838165283203 / 12.752765655517578 / 36.99860382080078
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a4
+(A : Type*)
+[Finite A]
+(S : Set (A × A × A))
+(hSdistinct : ∀ a b c : A, ⟨a, b, c⟩ ∈ S → a ≠ b ∧ b ≠ c ∧ a ≠ c)
+(hS1 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨b, c, a⟩ ∈ S))
+(hS2 : ∀ a b c : A, [a,b,c].Pairwise (· ≠ ·) → (⟨a, b, c⟩ ∈ S ↔ ⟨c, b, a⟩ ∉ S))
+(hS3 : ∀ a b c d : A, [a,b,c,d].Pairwise (· ≠ ·) → ((⟨a, b, c⟩ ∈ S ∧ ⟨c, d, a⟩ ∈ S) ↔ (⟨b,c,d⟩ ∈ S ∧ ⟨d,a,b⟩ ∈ S)))
+: ∃ g : A → ℝ, Injective g ∧ (∀ a b c : A, g a < g b ∧ g b < g c → ⟨a,b,c⟩ ∈ S) :=
+sorry

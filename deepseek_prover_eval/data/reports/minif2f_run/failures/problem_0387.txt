@@ -1,0 +1,277 @@
+Problem: problem_0387
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 26.535144567489624 / 3.4531636238098145 / 29.98830819129944
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : 2008 % 10 = 8 := by norm_num
+    have h₂ : 2 ^ 2008 % 10 = 6 := by
+      -- We use the fact that the pattern of 2^n modulo 10 repeats every 4 exponents: 2, 4, 8, 6.
+      -- Since 2008 modulo 4 is 0, 2^2008 modulo 10 is the same as 2^4 modulo 10, which is 6.
+      norm_num [pow_succ, pow_zero, pow_one, Nat.mul_mod, Nat.pow_mod]
+    have h₃ : (2008 ^ 2 + 2 ^ 2008) % 10 = 0 := by
+      norm_num [Nat.add_mod, Nat.pow_mod, h₁, h₂]
+    omega
+  have h₂ : (k ^ 2 + 2 ^ k) % 10 = 6 := by
+    have h₃ : k % 10 = 0 := h₁
+    have h₄ : k ^ 2 % 10 = 0 := by
+      have h₅ : k % 10 = 0 := h₁
+      simp [h₅, pow_two, Nat.mul_mod]
+    have h₅ : 2 ^ k % 10 = 6 := by
+      have h₆ : k % 4 = 0 := by
+        have h₇ : k % 10 = 0 := h₁
+        have h₈ : k % 4 = 0 := by omega
+        exact h₈
+      have h₇ : 2 ^ k % 10 = 6 := by
+        have h₈ : k % 4 = 0 := h₆
+        have h₉ : 2 ^ k % 10 = 6 := by
+          rw [← Nat.mod_add_div k 4]
+          simp [h₈, pow_add, pow_mul, Nat.pow_mod, Nat.mul_mod, Nat.pow_mod]
+        exact h₉
+      exact h₇
+    omega
+  exact h₂
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.42703866958618 / 3.217407464981079 / 20.64444613456726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : 2008 % 10 = 8 := by norm_num
+    have h₂ : 2^2008 % 10 = 6 := by
+      have h₃ : 2^2008 % 10 = 6 := by
+        rw [show 2^2008 = 2^(4 * 502) by ring]
+        norm_num
+        <;> rfl
+      exact h₃
+    have h₃ : (2008^2 + 2^2008) % 10 = 0 := by
+      norm_num [h₁, h₂, Nat.add_mod, Nat.mul_mod, Nat.pow_mod]
+    omega
+  have h₂ : (k^2 + 2^k) % 10 = 6 := by
+    have h₃ : k % 10 = 0 := h₁
+    have h₄ : k = 10 * (k / 10) := by omega
+    rw [h₄]
+    simp [pow_add, pow_mul, Nat.add_mod, Nat.mul_mod, Nat.pow_mod, h₃]
+    <;> norm_num <;> omega
+  exact h₂
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.471736431121826 / 2.799936532974243 / 17.27167296409607
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : k = 2008^2 + 2^2008 := h₀
+    rw [h₁]
+    norm_num
+    <;> simp [pow_add, pow_mul, Nat.add_mod, Nat.mul_mod, Nat.pow_mod]
+    <;> rfl
+  have h₂ : (k^2 + 2^k) % 10 = 6 := by
+    have h₂ : k % 10 = 0 := h₁
+    have h₃ : k % 10 = 0 := h₁
+    have h₄ : (k^2 + 2^k) % 10 = 6 := by
+      rw [← Nat.mod_add_div k 10]
+      simp [h₃, pow_add, pow_mul, Nat.add_mod, Nat.mul_mod, Nat.pow_mod]
+      <;> norm_num <;>
+      rfl
+    exact h₄
+  exact h₂
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 19.368918418884277 / 4.085724592208862 / 23.45464301109314
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : 2008 % 10 = 8 := by norm_num
+    have h₂ : 2^2008 % 10 = 6 := by
+      have h₃ : 2^2008 % 10 = 6 := by
+        -- We use the fact that the pattern of powers of 2 modulo 10 repeats every 4 exponents: 2, 4, 8, 6.
+        -- Since 2008 modulo 4 is 0, 2^2008 ends with 6.
+        norm_num [pow_succ, pow_zero, Nat.mul_mod, Nat.pow_mod]
+        <;> rfl
+      exact h₃
+    have h₃ : (2008^2 + 2^2008) % 10 = 0 := by
+      norm_num [Nat.add_mod, Nat.pow_mod, Nat.mul_mod, h₁, h₂]
+    omega
+  have h₂ : (k^2 + 2^k) % 10 = 6 := by
+    have h₃ : k % 10 = 0 := h₁
+    have h₄ : k = 10 * (k / 10) := by omega
+    rw [h₄]
+    simp [pow_add, pow_mul, Nat.add_mod, Nat.mul_mod, Nat.pow_mod, h₃]
+    <;> norm_num <;> omega
+  exact h₂
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.795426607131958 / 3.1000611782073975 / 20.895487785339355
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : 2008 % 10 = 8 := by norm_num
+    have h₂ : 2^2008 % 10 = 6 := by
+      -- Use the fact that the last digit of powers of 2 cycles every 4 with 6 at 2008 mod 4
+      have h₃ : 2^2008 % 10 = 6 := by
+        rw [show 2008 = 4 * 502 by norm_num]
+        simp [pow_mul, Nat.mul_mod, Nat.pow_mod]
+      exact h₃
+    have h₃ : (2008^2 + 2^2008) % 10 = 0 := by
+      norm_num [Nat.add_mod, Nat.pow_mod, h₁, h₂]
+    omega
+  have h₂ : (k^2 + 2^k) % 10 = 6 := by
+    have h₃ : k % 10 = 0 := h₁
+    have h₄ : k = 10 * (k / 10) := by omega
+    rw [h₄]
+    simp [pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h₃]
+    <;> norm_num <;> omega
+  exact h₂
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.518356084823608 / 2.871163845062256 / 14.389519929885864
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : k = 2008^2 + 2^2008 := h₀
+    rw [h₁]
+    norm_num
+    <;> rfl
+  have h₂ : (k^2 + 2^k) % 10 = 6 := by
+    have h₂ : k % 10 = 0 := h₁
+    have h₃ : k % 10 = 0 := h₁
+    rw [← Nat.mod_add_div k 10]
+    simp [h₂, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod]
+    <;> norm_num <;> rfl
+  exact h₂
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 26.33485770225525 / 4.639375686645508 / 30.974233388900757
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    have h₁ : 2008 % 10 = 8 := by norm_num
+    have h₂ : 2 ^ 2008 % 10 = 6 := by
+      have h₃ : 2 ^ 2008 % 10 = 6 := by
+        norm_num [pow_succ, pow_zero, pow_one, Nat.mul_mod, Nat.pow_mod]
+      exact h₃
+    have h₄ : (2008 ^ 2 + 2 ^ 2008) % 10 = 0 := by
+      norm_num [Nat.add_mod, Nat.pow_mod, Nat.mul_mod, Nat.mod_eq_of_lt]
+    omega
+  have h₂ : (k ^ 2 + 2 ^ k) % 10 = 6 := by
+    have h₃ : k % 10 = 0 := h₁
+    have h₄ : k ^ 2 % 10 = 0 := by
+      have h₅ : k % 10 = 0 := h₁
+      have h₆ : k ^ 2 % 10 = 0 := by
+        simp [h₅, Nat.pow_mod, Nat.mul_mod, Nat.zero_mod]
+      exact h₆
+    have h₅ : 2 ^ k % 10 = 6 := by
+      have h₆ : ∀ n : ℕ, n ≥ 4 → 2 ^ n % 10 = 6 := by
+        intro n hn
+        induction' hn with n hn ih
+        · norm_num
+        · simp_all [pow_succ, Nat.mul_mod, Nat.pow_mod]
+          <;> omega
+      have h₇ : k ≥ 4 := by
+        have h₈ : 2008 ^ 2 + 2 ^ 2008 ≥ 4 := by
+          norm_num
+          <;> nlinarith [pow_pos (by norm_num : (0 : ℕ) < 2) 2008]
+        omega
+      exact h₆ k h₇
+    omega
+  exact h₂
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.259361028671265 / 2.990102767944336 / 12.2494637966156
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2008_p15
+  (k : ℕ)
+  (h₀ : k = 2008^2 + 2^2008) :
+  (k^2 + 2^k) % 10 = 6 := by
+  have h₁ : k % 10 = 0 := by
+    rw [h₀]
+    norm_num
+    <;> rfl
+  have h₂ : (k^2 + 2^k) % 10 = 6 := by
+    rw [← Nat.mod_add_div k 10]
+    simp [h₁, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+    <;> norm_num <;> rfl
+  exact h₂
+

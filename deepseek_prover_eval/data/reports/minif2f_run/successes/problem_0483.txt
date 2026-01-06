@@ -1,0 +1,25 @@
+Problem: problem_0483
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.589988231658936
+Lean check time (s): 3.148897171020508
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2017_p2
+  (x y : ℝ)
+  (h₀ : x ≠ 0)
+  (h₁ : y ≠ 0)
+  (h₂ : x + y = 4 * (x * y)) :
+  1 / x + 1 / y = 4 := by
+  have h₃ : x + y = 4 * (x * y) := h₂
+  field_simp [h₀, h₁]
+  rw [← sub_eq_zero]
+  ring_nf
+  have h₄ : x + y = 4 * (x * y) := h₂
+  nlinarith [sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1)]

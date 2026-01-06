@@ -1,0 +1,235 @@
+Problem: problem_0122
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 6
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.753543853759766 / 216.90409445762634 / 231.6576383113861
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := by linarith
+  have h₂ : 0 < y := by linarith
+  have h₃ : 0 < z := by linarith
+  have h₄ : 0 < x + y + z := by linarith
+  have h₅ : 0 < x + y := by linarith
+  have h₆ : 0 < y + z := by linarith
+  have h₇ : 0 < z + x := by linarith
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x),
+    sq_nonneg (x - y + z), sq_nonneg (y - z + x), sq_nonneg (z - x + y),
+    sq_nonneg (x + y - z), sq_nonneg (y + z - x), sq_nonneg (z + x - y)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.540724992752075 / 600.1149928569794 / 613.6557178497314
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := h₀.1
+  have h₂ : 0 < y := h₀.2.1
+  have h₃ : 0 < z := h₀.2.2
+  have h₄ : 0 < x + y + z := by linarith
+  have h₅ : 0 < x * y := by positivity
+  have h₆ : 0 < y * z := by positivity
+  have h₇ : 0 < z * x := by positivity
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x),
+    sq_nonneg (x - y + z), sq_nonneg (y - z + x), sq_nonneg (z - x + y)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.387510061264038 / 600.1152901649475 / 611.5028002262115
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := by linarith
+  have h₂ : 0 < y := by linarith
+  have h₃ : 0 < z := by linarith
+  have h₄ : 0 < x + y + z := by linarith
+  have h₅ : 0 < x * y := by positivity
+  have h₆ : 0 < y * z := by positivity
+  have h₇ : 0 < z * x := by positivity
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.185301065444946 / 600.1285407543182 / 612.3138418197632
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := by linarith
+  have h₂ : 0 < y := by linarith
+  have h₃ : 0 < z := by linarith
+  have h₄ : 0 < x * y := by positivity
+  have h₅ : 0 < y * z := by positivity
+  have h₆ : 0 < z * x := by positivity
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x),
+    sq_nonneg (x - y + z), sq_nonneg (y - z + x), sq_nonneg (z - x + y)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.590423107147217 / 600.1400649547577 / 612.7304880619049
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x + y := by linarith
+  have h₂ : 0 < y + z := by linarith
+  have h₃ : 0 < z + x := by linarith
+  have h₄ : 0 < x * y := by nlinarith
+  have h₅ : 0 < y * z := by nlinarith
+  have h₆ : 0 < z * x := by nlinarith
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x),
+    sq_nonneg (x - y + z), sq_nonneg (y - z + x), sq_nonneg (z - x + y)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.495036602020264 / 596.8460454940796 / 608.3410820960999
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := by linarith
+  have h₂ : 0 < y := by linarith
+  have h₃ : 0 < z := by linarith
+  have h₄ : 0 < x + y + z := by linarith
+  have h₅ : 0 < x * y := by positivity
+  have h₆ : 0 < y * z := by positivity
+  have h₇ : 0 < z * x := by positivity
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.742996215820312 / 600.1577205657959 / 613.9007167816162
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := by linarith
+  have h₂ : 0 < y := by linarith
+  have h₃ : 0 < z := by linarith
+  have h₄ : 0 < x * y := by positivity
+  have h₅ : 0 < y * z := by positivity
+  have h₆ : 0 < z * x := by positivity
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x),
+    sq_nonneg (x - y + z), sq_nonneg (y - z + x), sq_nonneg (z - x + y),
+    sq_nonneg (x + y - z), sq_nonneg (y + z - x), sq_nonneg (z + x - y)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.38131833076477 / 600.0658276081085 / 612.4471459388733
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_9onxpypzleqsum2onxpy
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) :
+  9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by
+  have h₁ : 0 < x := by linarith
+  have h₂ : 0 < y := by linarith
+  have h₃ : 0 < z := by linarith
+  have h₄ : 0 < x * y := by positivity
+  have h₅ : 0 < y * z := by positivity
+  have h₆ : 0 < z * x := by positivity
+  field_simp
+  rw [div_le_div_iff (by positivity) (by positivity)]
+  ring_nf
+  nlinarith [sq_nonneg (x - y), sq_nonneg (y - z), sq_nonneg (z - x),
+    sq_nonneg (x - y + z), sq_nonneg (y - z + x), sq_nonneg (z - x + y)]
+

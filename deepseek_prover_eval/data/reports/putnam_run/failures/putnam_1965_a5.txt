@@ -1,0 +1,233 @@
+Problem: putnam_1965_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.616782665252686 / 83.63056421279907 / 106.24734687805176
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    rw [show {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} = Set.Icc (0 : ℕ) (2^(n - 1) - 1) ∩ {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} by
+      ext p
+      simp [Set.mem_setOf_eq, Set.mem_inter_iff]
+      <;> aesop]
+    simp [Finset.card_range, pow_succ]
+    <;> induction n with
+    | zero => aesop
+    | succ n ih =>
+      cases n with
+      | zero =>
+        simp [Finset.card_range, pow_succ]
+      | succ n =>
+        simp_all [Finset.card_range, pow_succ, Nat.succ_eq_add_one]
+        <;> ring_nf
+        <;> omega
+  exact h
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 38.08572173118591 / 70.94910073280334 / 109.03482246398926
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    rw [show {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) by
+      have h₁ : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} = Set.Icc (0 : ℕ) (2^(n - 1) - 1) := by
+        -- We need to show that the set of valid permutations is exactly the set of integers from 0 to 2^(n - 1) - 1
+        ext p
+        simp [Set.mem_Icc, permsOfFinset]
+        <;>
+        constructor <;>
+        intro h <;>
+        simp_all [Finset.mem_Icc, Finset.mem_Ico] <;>
+        (try { omega }) <;>
+        (try {
+          have h₂ := h.2
+          have h₃ := h.1
+          simp_all [Finset.mem_Icc, Finset.mem_Ico]
+          <;>
+          (try { omega }) <;>
+          (try {
+            use 1
+            simp_all [Finset.mem_Icc, Finset.mem_Ico]
+            <;>
+            omega
+          }) <;>
+          (try {
+            use m - 1
+            simp_all [Finset.mem_Icc, Finset.mem_Ico]
+            <;>
+            omega
+          }) <;>
+    
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.570114374160767 / 95.97848439216614 / 111.5485987663269
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h : ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    intro n hn
+    have h1 : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+      rw [Finset.card_eq_sum_ones]
+      simp [permsOfFinset, Finset.filter_eq']
+      <;>
+      rfl
+    exact h1
+  exact h n hn
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.61176109313965 / 101.4023289680481 / 123.01409006118774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2 ^ (n - 1) := by
+    have h₁ : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2 ^ (n - 1) := by
+      rw [Finset.card_eq_sum_ones]
+      simp [permsOfFinset, Finset.Icc, Finset.Ico, Finset.mem_filter, Finset.mem_univ, true_and]
+      <;>
+      rcases n with (_ | _) <;>
+      simp_all [Nat.succ_eq_add_one, Nat.sub_eq_zero_iff_le]
+      <;>
+      induction n with
+      | zero => simp_all
+      | succ n ih =>
+        simp_all [Finset.sum_range_succ, Nat.succ_eq_add_one, pow_succ]
+        <;>
+        omega
+    exact h₁
+  simp_all [putnam_1965_a5_solution]
+  <;>
+  aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.468283653259277 / 106.0037579536438 / 126.47204160690308
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h₁ : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    rw [show {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} = Set.Icc (0 : ℕ) (2 ^ (n - 1) - 1) ∩ {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} by
+      ext p
+      simp [Set.mem_Icc, permsOfFinset]
+      <;>
+      tauto]
+    simp [Set.Icc_eq_empty, permsOfFinset, hn]
+    <;>
+    rfl
+  simp_all [putnam_1965_a5_solution]
+  <;>
+  rfl
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.508820295333862 / 52.98905801773071 / 76.49787831306458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    have h₁ : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+      rw [Finset.card_eq_sum_ones]
+      simp [permsOfFinset, Finset.Icc, Finset.Ico, Nat.succ_le_iff]
+      <;> induction n with
+      | zero => contradiction
+      | succ n ih =>
+        cases n with
+        | zero =>
+          -- Base case: n = 1
+          simp [permsOfFinset, Finset.Icc, Finset.Ico, Nat.succ_le_iff]
+          <;> rfl
+        | succ n =>
+          -- Inductive step: assume the statement holds for n, prove for n + 1
+          simp_all [permsOfFinset, Finset.Icc, Finset.Ico, Nat.succ_le_iff]
+          <;> ring_nf
+          <;> simp_all [Finset.sum_range_succ, Nat.pow_succ]
+          <;> omega
+    exact h₁
+  simp_all [putnam_1965_a5_solution]
+  <;> rfl
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.44904613494873 / 97.79567074775696 / 117.24471688270569
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h₁ : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    rw [show {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} = Set.Icc (0 : ℕ) (2^(n - 1) - 1) ∩ {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1} by
+      ext p
+      simp [Set.mem_inter_iff, permsOfFinset]
+      <;> aesop
+    ]
+    simp [Set.Icc_eq_empty, permsOfFinset, hn]
+    <;> rfl
+  exact h₁
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.748339891433716 / 107.30198979377747 / 121.05032968521118
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a5
+: ∀ n > 0, {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = putnam_1965_a5_solution n := by
+  intro n hn
+  have h₁ : {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) := by
+    rw [show {p ∈ permsOfFinset (Finset.Icc 1 n) | ∀ m ∈ Finset.Icc 2 n, ∃ k ∈ Finset.Ico 1 m, p m = p k + 1 ∨ p m = p k - 1}.card = 2^(n - 1) by
+      rw [← Cardinal.natCast_inj]
+      apply?
+    ]
+  exact h₁

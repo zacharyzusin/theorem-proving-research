@@ -1,0 +1,19 @@
+Problem: putnam_1989_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.328585624694824
+Lean check time (s): 18.66821551322937
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b2 :
+    (∀ (S : Type) [Nonempty S] [Semigroup S] [IsCancelMul S]
+      (h_fin : ∀ a : S, {(a * ·)^[n] a | n : ℕ}.Finite),
+      ∃ e : S, ∀ x, e * x = x ∧ x * e = x ∧ ∃ y, x * y = e ∧ y * x = e) ↔
+    putnam_1989_b2_solution :=
+  sorry

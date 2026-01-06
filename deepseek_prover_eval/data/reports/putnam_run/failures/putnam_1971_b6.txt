@@ -1,0 +1,400 @@
+Problem: putnam_1971_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 89.85191369056702 / 195.8625111579895 / 285.7144248485565
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ := hx
+  have h₂ : ∀ n : ℤ, n > 0 → δ n = sSup {t | Odd t ∧ t ∣ n} := by simp [hδ]
+  have h₃ : ∀ n : ℤ, n > 0 → δ n ≤ n := by
+    intro n hn
+    have h₄ : δ n = sSup {t | Odd t ∧ t ∣ n} := h₂ n hn
+    have h₅ : δ n ≤ n := by
+      rw [h₄]
+      apply csSup_le
+      · use 1
+        constructor
+        · norm_num
+          <;> aesop
+        · aesop
+      · intro t ht
+        have h₆ := ht.2
+        have h₇ := ht.1
+        have h₈ : t ∣ n := by aesop
+        have h₉ : t ≤ n := by
+          exact Int.le_of_dvd (by linarith) h₈
+        aesop
+    exact h₅
+  have h₄ : ∀ n : ℤ, n > 0 → δ n ≥ 1 := by
+    intro n hn
+    have h₅ : δ n = sSup {t | Odd t ∧ t ∣ n} := h₂ n hn
+    have h₆ : δ n ≥ 1 := by
+      rw [h₅]
+      apply csSup_ge
+      · use 1
+        constructor
+        · norm_num
+          <;> aesop
+        · aesop
+      · use 1
+        constructor
+        · norm_num
+          <;> aesop
+        · aesop
+    exact h₆
+  have h₅ : ∀ n : ℤ, n > 0 → |∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3| < 1 := by
+    intro n hn
+    have h₆ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3 < 1 := by
+      have h₇ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2*n/3 + 1 := by
+        have h₈ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2*n/3 + 1 := by
+          
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 89.50294470787048 / 182.55454540252686 / 272.05749011039734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  have step1 : ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+    intro x hx
+    have h₁ : ∀ n : ℤ, n > 0 → δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := by simp_all
+    have h₂ : ∀ n : ℤ, n > 0 → δ n ≤ n := by
+      intro n hn
+      have h₃ : δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := h₁ n hn
+      rw [h₃]
+      apply csSup_le
+      · use 1
+        constructor
+        · norm_num
+          <;> aesop
+        · aesop
+      · intro t ht
+        have h₄ := ht.2
+        have h₅ := ht.1
+        have h₆ : t ∣ n := by aesop
+        have h₇ : t ≤ n := by
+          exact Int.le_of_dvd (by linarith) h₆
+        linarith
+    have h₃ : ∀ n : ℤ, n > 0 → δ n ≥ 1 := by
+      intro n hn
+      have h₄ : δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := h₁ n hn
+      rw [h₄]
+      apply Int.le_of_lt_add_one
+      have h₅ : ∃ t : ℤ, Odd t ∧ t ∣ n := by
+        use 1
+        constructor
+        · norm_num [Int.odd_iff_not_even]
+        · simp_all [Int.emod_eq_of_lt]
+          <;> omega
+      have h₆ := h₅
+      obtain ⟨t, ht₁, ht₂⟩ := h₅
+      have h₇ : sSup {t : ℤ | Odd t ∧ t ∣ n} ≥ 1 := by
+        apply Int.le_of_lt_add_one
+        have h₈ : 1 < sSup {t : ℤ | Odd t ∧ t ∣ n} + 1 := by
+          have h₉ : sSup {t : ℤ | Odd t ∧ t ∣ n} ≥ 1 := by
+            apply Int.l
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 32.946125984191895 / 124.6805305480957 / 157.6266565322876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ : ∀ n : ℤ, n > 0 → δ n = n := by
+    intro n hn
+    simp_all [hδ]
+    have h₂ : n > 0 := by linarith
+    have h₃ : sSup {t : ℤ | Odd t ∧ t ∣ n} = n := by
+      apply le_antisymm
+      · apply sSup_le
+        intro t ht
+        have h₄ : t ∣ n := ht.2
+        have h₅ : t ≤ n := by
+          exact Int.le_of_dvd (by linarith) h₄
+        linarith
+      · apply le_sSup
+        exact ⟨n, ⟨by
+          simp_all [Int.odd_iff_not_even, Int.even_iff]
+          <;> omega, by simp_all [Int.emod_eq_of_lt] <;> omega⟩, by simp_all [Int.emod_eq_of_lt] <;> omega⟩
+    simp_all
+  have h₂ : ∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) = ∑ i ∈ Finset.Icc 1 x, ((i : ℚ) / i) := by
+    apply Finset.sum_congr rfl
+    intro i hi
+    simp_all [h₁]
+    <;> field_simp
+  rw [h₂]
+  have h₃ : ∑ i ∈ Finset.Icc 1 x, ((i : ℚ) / i) = ∑ i ∈ Finset.Icc 1 x, (1 : ℚ) := by
+    apply Finset.sum_congr rfl
+    intro i hi
+    have h₄ : i > 0 := by
+      simp_all [Finset.mem_Icc]
+      <;> linarith
+    field_simp
+  rw [h₃]
+  have h₄ : ∑ i ∈ Finset.Icc 1 x, (1 : ℚ) = x := by
+    simp_all [Finset.sum_const, Finset.card_range]
+    <;> norm_cast
+    <;> simp_all [Finset.Icc_eq_empty_of_lt]
+    <;> linarith
+  rw [h₄]
+  norm_num
+  <;> simp_all [abs_sub_lt_iff]
+  <;> norm_num
+  <;> l
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 64.52097201347351 / 96.03776502609253 / 160.55873703956604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ : ∀ n : ℤ, n > 0 → δ n = sSup {t | Odd t ∧ t ∣ n} := by
+    intro n hn
+    rw [hδ]
+  have h₂ : ∀ n : ℤ, n > 0 → |∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3| < 1 := by
+    intro n hn
+    have h₃ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3 < 1 := by
+      have h₄ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2*n/3 + 1 := by
+        have h₅ : ∀ i ∈ Finset.Icc 1 n, (δ i : ℚ) / i ≤ 2 / 3 := by
+          intro i hi
+          have h₆ : i ≥ 1 := by linarith [Finset.mem_Icc.mp hi]
+          have h₇ : δ i ≤ i := by
+            rw [h₁ i (by linarith [Finset.mem_Icc.mp hi])]
+            apply csSup_le
+            · use 1
+              simp
+              <;> omega
+            · simp_all [Set.Nonempty]
+              <;> use 1
+              <;> simp_all [Nat.odd_iff_not_even, Nat.even_iff]
+              <;> omega
+          have h₈ : (δ i : ℚ) ≤ i := by exact_mod_cast h₇
+          have h₉ : (δ i : ℚ) / i ≤ 2 / 3 := by
+            rw [div_le_iff (by positivity)]
+            nlinarith
+          exact h₉
+        exact calc
+          ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ ∑ i ∈ Finset.Icc 1 n, (2 / 3 : ℚ) := by
+            exact Finset.sum_le_sum h₅
+          _ = (2 / 3 : ℚ) * n := by
+            simp [mul_comm]
+            <;> ring_nf
+           
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.20970892906189 / 103.37267065048218 / 119.58237957954407
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ : ∀ n : ℤ, n > 0 → δ n = sSup {t | Odd t ∧ t ∣ n} := by
+    intro n hn
+    simp_all
+  have h₂ := h₁ 1 (by norm_num)
+  have h₃ := h₁ 2 (by norm_num)
+  have h₄ := h₁ 3 (by norm_num)
+  have h₅ := h₁ 4 (by norm_num)
+  have h₆ := h₁ 5 (by norm_num)
+  have h₇ := h₁ 6 (by norm_num)
+  norm_num [hδ, h₁, Finset.sum_range_succ, Finset.sum_range_one, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub] at *
+  <;>
+  simp_all [abs_lt]
+  <;>
+  norm_num
+  <;>
+  linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 74.69393992424011 / 30.90155029296875 / 105.59549021720886
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ : ∀ n : ℤ, n > 0 → δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := by
+    intro n hn
+    rw [hδ]
+  have h₂ : ∀ n : ℤ, n > 0 → δ n ≤ n := by
+    intro n hn
+    have h₃ : δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := h₁ n hn
+    have h₄ : δ n ≤ n := by
+      rw [h₃]
+      apply csSup_le
+      use 1
+      constructor
+      <;> norm_num
+      <;> aesop
+      <;> norm_num
+      <;> aesop
+    exact h₄
+  have h₃ : ∀ n : ℤ, n > 0 → δ n ≥ 1 := by
+    intro n hn
+    have h₄ : δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := h₁ n hn
+    have h₅ : δ n ≥ 1 := by
+      rw [h₄]
+      apply csSup_ge
+      use 1
+      constructor
+      <;> norm_num
+      <;> aesop
+    exact h₅
+  have h₄ : ∀ n : ℤ, n > 0 → |∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3| < 1 := by
+    intro n hn
+    have h₅ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3 < 1 := by
+      have h₆ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2*n/3 + 1 := by
+        have h₇ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ ∑ i ∈ Finset.Icc 1 n, (i : ℚ)/(i : ℚ) := by
+          apply Finset.sum_le_sum
+          intro i hi
+          have h₈ : δ i ≤ i := h₂ i (by linarith [Finset.mem_Icc.mp hi])
+          have h₉ : (δ i : ℚ) ≤ i := by exact_mod_cast h₈
+          have h₁₀ : (i : ℚ) > 0 := by exact_mod_cast (by linarith [Finset.mem_
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 81.84177780151367 / 26.78264546394348 / 108.62442326545715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ : ∀ n : ℤ, n > 0 → δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := by
+    intro n hn
+    rw [hδ]
+  have h₂ : ∀ n : ℤ, n > 0 → δ n ≤ n := by
+    intro n hn
+    have h₃ : δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := h₁ n hn
+    rw [h₃]
+    apply csSup_le
+    · use 1
+      simp
+      <;> norm_num
+      <;> aesop
+    · intro t ht
+      simp_all [Odd]
+      <;> omega
+  have h₃ : ∀ n : ℤ, n > 0 → δ n ≥ 1 := by
+    intro n hn
+    have h₄ : δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := h₁ n hn
+    rw [h₄]
+    apply Int.le_of_lt_add_one
+    have h₅ : ∃ t : ℤ, t ∈ {t : ℤ | Odd t ∧ t ∣ n} := by
+      use 1
+      constructor
+      · simp [Int.odd_iff_not_even, parity_simps]
+      · simp [Int.emod_one]
+        <;> omega
+    have h₆ := h₅
+    simp_all [Set.nonempty_def]
+    <;> omega
+  have h₄ : ∀ n : ℤ, n > 0 → |∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3| < 1 := by
+    intro n hn
+    have h₅ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3 < 1 := by
+      have h₆ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2*n/3 + 1 := by
+        have h₇ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2*n/3 + 1 := by
+          have h₈ : ∀ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) ≤ 2/3 := by
+            intro i hi
+            have h₉ : i ≥ 1 := by
+              simp_all [Finset.mem_Icc]
+            
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 25.860740423202515 / 20.487449407577515 / 46.34818983078003
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1971_b6
+(δ : ℤ → ℤ)
+(hδ : δ = fun n => sSup {t | Odd t ∧ t ∣ n})
+: ∀ x : ℤ, x > 0 → |∑ i ∈ Finset.Icc 1 x, (δ i)/(i : ℚ) - 2*x/3| < 1 := by
+  intro x hx
+  have h₁ : ∀ n : ℤ, n > 0 → δ n = sSup {t : ℤ | Odd t ∧ t ∣ n} := by
+    intro n hn
+    simp_all [hδ]
+  have h₂ : ∀ n : ℤ, n > 0 → |∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3| < 1 := by
+    intro n hn
+    have h₃ : ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) = ∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) := rfl
+    rw [h₃]
+    have h₄ : ∀ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) = (δ i)/(i : ℚ) := by simp
+    rw [Finset.sum_congr rfl h₄]
+    have h₅ : |∑ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) - 2*n/3| < 1 := by
+      have h₆ : ∀ i ∈ Finset.Icc 1 n, (δ i)/(i : ℚ) = (δ i)/(i : ℚ) := by simp
+      -- The detailed proof of this step would involve analyzing the sum and using properties of odd divisors.
+      -- This is a placeholder for the actual proof.
+      exact by
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [h₁, Finset.sum_Icc_succ_top, Nat.div_eq_of_lt]
+          <;> norm_num
+          <;> linarith
+    exact h₅
+  exact h₂ x hx

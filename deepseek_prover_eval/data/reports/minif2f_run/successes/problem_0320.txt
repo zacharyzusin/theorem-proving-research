@@ -1,0 +1,25 @@
+Problem: problem_0320
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.207478523254395
+Lean check time (s): 105.26953220367432
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_sqrtxymulxmyeqxpy_xpygeq4
+  (x y : ℝ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : y ≤ x)
+  (h₂ : Real.sqrt (x * y) * (x - y) = (x + y)) :
+  x + y ≥ 4 := by
+  have h₃ : 0 < x * y := mul_pos h₀.1 h₀.2
+  have h₄ : 0 ≤ x - y := by linarith
+  have h₅ : 0 ≤ Real.sqrt (x * y) := Real.sqrt_nonneg (x * y)
+  nlinarith [sq_sqrt (show 0 ≤ x * y by linarith), sq_nonneg (Real.sqrt (x * y) - (x - y) / 2),
+    sq_nonneg (x - y - 2 * Real.sqrt (x * y)), sq_nonneg (x + y - 2 * Real.sqrt (x * y)),
+    sq_nonneg (x + y - (x - y))]

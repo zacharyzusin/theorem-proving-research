@@ -1,0 +1,24 @@
+Problem: problem_0019
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.166309356689453
+Lean check time (s): 2.5947299003601074
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_419
+  (a b : ℝ)
+  (h₀ : a = -1)
+  (h₁ : b = 5) :
+  -a - b^2 + 3 * (a * b) = -39 := by
+  subst h₀
+  subst h₁
+  norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith

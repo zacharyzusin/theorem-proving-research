@@ -1,0 +1,19 @@
+Problem: problem_0048
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.390231132507324
+Lean check time (s): 2.942227840423584
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_sqineq_at2malt1
+  (a : ℝ) :
+  a * (2 - a) ≤ 1 := by
+  have h₁ : 0 ≤ (a - 1) ^ 2 := sq_nonneg (a - 1)
+  have h₂ : 0 ≤ (a - 1) ^ 2 := sq_nonneg (a - 1)
+  nlinarith [sq_nonneg (a - 1)]

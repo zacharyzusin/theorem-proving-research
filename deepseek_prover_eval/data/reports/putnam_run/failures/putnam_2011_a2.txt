@@ -1,0 +1,150 @@
+Problem: putnam_2011_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.824949741363525 / 10.592149257659912 / 25.417098999023438
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.702184915542603 / 9.944409370422363 / 25.646594285964966
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.6820650100708 / 9.751789569854736 / 23.433854579925537
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.77827787399292 / 7.817108631134033 / 21.595386505126953
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.209800720214844 / 8.132652997970581 / 23.342453718185425
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.240070104598999 / 8.387755155563354 / 22.627825260162354
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.0432345867157 / 9.668357133865356 / 26.711591720581055
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.983915567398071 / 8.538152933120728 / 22.5220685005188
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_a2
+(a b : ℕ → ℝ)
+(habn : ∀ n : ℕ, a n > 0 ∧ b n > 0)
+(hab1 : a 0 = 1 ∧ b 0 = 1)
+(hb : ∀ n ≥ 1, b n = b (n-1) * a n - 2)
+(hbnd : ∃ B : ℝ, ∀ n : ℕ, |b n| ≤ B)
+: Tendsto (fun n => ∑ i : Fin n, 1/(∏ j : Fin (i + 1), (a j))) atTop (𝓝 putnam_2011_a2_solution) :=
+sorry

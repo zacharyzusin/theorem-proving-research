@@ -1,0 +1,273 @@
+Problem: problem_0311
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.223778486251831 / 4.189456224441528 / 19.41323471069336
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  have h₃ : ∀ n ≥ 3, t n = 1 / 2 := by
+    intro n hn
+    induction' hn with n hn ih
+    · norm_num [h₀, h₁, h₂]
+    · cases n with
+      | zero => contradiction
+      | succ n =>
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [h₂, Nat.succ_eq_add_one]
+          <;> norm_num
+          <;> field_simp
+          <;> ring_nf
+          <;> linarith
+  have h₄ : t 2020 = 1 / 2 := by
+    apply h₃
+    norm_num
+  rw [h₄]
+  norm_cast
+  <;> simp_all
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 7.9049623012542725 / 3.898531913757324 / 11.803494215011597
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  norm_num [h₀, h₁, h₂]
+  <;>
+  rfl
+  <;>
+  norm_num
+  <;>
+  rfl
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.955146074295044 / 5.724246978759766 / 26.67939305305481
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  have h₃ : t 3 = 1 / 2 := by
+    rw [h₂ 3 (by norm_num)]
+    simp [h₀, h₁]
+    <;> norm_num
+  have h₄ : t 4 = 7 / 5 := by
+    rw [h₂ 4 (by norm_num)]
+    simp [h₀, h₁, h₃]
+    <;> norm_num
+  have h₅ : t 5 = 28 / 25 := by
+    rw [h₂ 5 (by norm_num)]
+    simp [h₀, h₁, h₃, h₄]
+    <;> norm_num
+  have h₆ : ∀ n ≥ 3, t n = 1 / 5 := by
+    intro n hn
+    induction' hn with n hn ih
+    · norm_num [h₃, h₄, h₅, h₂]
+    · cases n with
+      | zero => contradiction
+      | succ n =>
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [h₂]
+          <;> field_simp at * <;> ring_nf at * <;>
+            linarith
+  norm_num [h₆]
+  <;> simp_all [h₆]
+  <;> norm_cast
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 57.10424590110779 / 4.0742998123168945 / 61.17854571342468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  have h₃ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2)) := h₂
+  have h₄ : t 3 = (5 * t 2 + 1) / (25 * t 1) := by rw [h₃ 3 (by norm_num)]
+  have h₅ : t 3 = (5 * 21 + 1) / (25 * 20) := by rw [h₄, h₀, h₁]
+  have h₆ : t 3 = 106 / 500 := by norm_num [h₅]
+  have h₇ : t 3 = 53 / 250 := by norm_num [h₆]
+  have h₈ : t 4 = (5 * t 3 + 1) / (25 * t 2) := by rw [h₃ 4 (by norm_num)]
+  have h₉ : t 4 = (5 * (53 / 250) + 1) / (25 * 21) := by rw [h₈, h₁, h₇]
+  have h₁₀ : t 4 = (5 * 53 / 250 + 1) / (25 * 21) := by norm_num [h₉]
+  have h₁₁ : t 4 = (265 / 250 + 1) / 525 := by norm_num [h₁₀]
+  have h₁₂ : t 4 = (265 / 250 + 250 / 250) / 525 := by norm_num [h₁₁]
+  have h₁₃ : t 4 = (515 / 250) / 525 := by norm_num [h₁₂]
+  have h₁₄ : t 4 = 515 / (250 * 525) := by norm_num [h₁₃]
+  have h₁₅ : t 4 = 515 / 131250 := by norm_num [h₁₄]
+  have h₁₆ : t 5 = (5 * t 4 + 1) / (25 * t 3) := by rw [h₃ 5 (by norm_num)]
+  have h₁₇ : t 5 = (5 * (515 / 131250) + 1) / (25 * (53 / 250)) := by rw [h₁₆, h₇, h₁₅]
+  have h₁₈ : t 5 = (5 * 515 / 131250 + 1) / (25 * 53 / 250) := by norm_num [h₁₇]
+  have h₁₉ : t 5 = (2575 / 131250 + 1) / (25 * 53 / 250) := by norm_num [h₁₈]
+  have h₂₀ : t 5 = (2575 / 131250 + 131250 / 131250) / (25 * 53 / 250) := by norm_num [h₁₉]
+  have h₂₁ : 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.81158947944641 / 4.717902421951294 / 22.529491901397705
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  norm_num [h₀, h₁] at h₂ ⊢
+  have h₃ := h₂ 3 (by norm_num)
+  have h₄ := h₂ 4 (by norm_num)
+  have h₅ := h₂ 5 (by norm_num)
+  have h₆ := h₂ 6 (by norm_num)
+  have h₇ := h₂ 7 (by norm_num)
+  have h₈ := h₂ 8 (by norm_num)
+  have h₉ := h₂ 9 (by norm_num)
+  have h₁₀ := h₂ 10 (by norm_num)
+  norm_num [h₀, h₁, h₂] at h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ ⊢
+  <;> simp_all [div_eq_mul_inv]
+  <;> norm_num
+  <;> field_simp at *
+  <;> ring_nf at *
+  <;> norm_cast at *
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 7.978996515274048 / 3.803225040435791 / 11.782221555709839
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  norm_num [h₀, h₁, h₂] at *
+  <;> simp_all [mul_comm]
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 6.921623706817627 / 3.85445237159729 / 10.776076078414917
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  norm_num [h₀, h₁, h₂]
+  <;> rfl
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.320111513137817 / 5.511467456817627 / 29.831578969955444
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeII_2020_p6
+  (t : ℕ → ℚ)
+  (h₀ : t 1 = 20)
+  (h₁ : t 2 = 21)
+  (h₂ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2))) :
+  ↑(t 2020).den + (t 2020).num = 626 := by
+  have h₃ : ∀ n ≥ 3, t n = (5 * t (n - 1) + 1) / (25 * t (n - 2)) := by
+    intro n hn
+    apply h₂
+    <;> omega
+  have h₄ : t 3 = (5 * t 2 + 1) / (25 * t 1) := by
+    rw [h₃] <;> norm_num
+  have h₅ : t 3 = 1 / 5 := by
+    norm_num [h₀, h₁, h₄]
+  have h₆ : t 4 = (5 * t 3 + 1) / (25 * t 2) := by
+    rw [h₃] <;> norm_num
+  have h₇ : t 4 = 1 / 25 := by
+    norm_num [h₁, h₅, h₆]
+  have h₈ : ∀ n ≥ 3, t n = 1 / 5 := by
+    intro n hn
+    induction' hn with n hn
+    · norm_num [h₀, h₁, h₃, h₅, h₆]
+    · cases n with
+      | zero => contradiction
+      | succ n =>
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [h₃, Nat.succ_eq_add_one]
+          <;> field_simp at *
+          <;> ring_nf at *
+          <;> linarith
+  have h₉ : t 2020 = 1 / 5 := by
+    apply h₈
+    linarith
+  norm_num [h₉]
+  <;> rfl
+

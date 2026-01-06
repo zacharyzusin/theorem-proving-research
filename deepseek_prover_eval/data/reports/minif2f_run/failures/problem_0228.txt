@@ -1,0 +1,259 @@
+Problem: problem_0228
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.819969892501831 / 600.1599125862122 / 614.979882478714
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := by linarith
+  have h₅ : 0 < y := by linarith
+  have h₆ : 0 < z := by linarith
+  have h₇ : 0 < x * y := by positivity
+  have h₈ : 0 < x * z := by positivity
+  have h₉ : 0 < y * z := by positivity
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  nlinarith [mul_pos h₄ h₅, mul_pos h₅ h₆, mul_pos h₆ h₄,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₅ h₆) h₄,
+    mul_pos (mul_pos h₆ h₄) h₅]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.355572700500488 / 600.143566608429 / 614.4991393089294
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := by linarith
+  have h₅ : 0 < y := by linarith
+  have h₆ : 0 < z := by linarith
+  have h₇ : 0 < x * y := by positivity
+  have h₈ : 0 < y * z := by positivity
+  have h₉ : 0 < z * x := by positivity
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃
+  nlinarith [mul_pos h₄ h₅, mul_pos h₅ h₆, mul_pos h₆ h₄,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₅ h₆) h₄,
+    mul_pos (mul_pos h₆ h₄) h₅]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.38852596282959 / 600.1437757015228 / 615.5323016643524
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := h₀.1
+  have h₅ : 0 < y := h₀.2.1
+  have h₆ : 0 < z := h₀.2.2
+  have h₇ : 0 < x * y := mul_pos h₄ h₅
+  have h₈ : 0 < x * z := mul_pos h₄ h₆
+  have h₉ : 0 < y * z := mul_pos h₅ h₆
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  nlinarith [mul_pos h₇ h₈, mul_pos h₇ h₉, mul_pos h₈ h₉,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₄ h₆) h₅,
+    mul_pos (mul_pos h₅ h₆) h₄]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.381614208221436 / 600.1140179634094 / 614.4956321716309
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := by linarith
+  have h₅ : 0 < y := by linarith
+  have h₆ : 0 < z := by linarith
+  have h₇ : 0 < x * y := by positivity
+  have h₈ : 0 < x * z := by positivity
+  have h₉ : 0 < y * z := by positivity
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  nlinarith [mul_pos h₄ h₅, mul_pos h₄ h₆, mul_pos h₅ h₆,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₄ h₅) h₆,
+    mul_pos (mul_pos h₄ h₅) h₆]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.660432577133179 / 600.1279463768005 / 615.7883789539337
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := h₀.1
+  have h₅ : 0 < y := h₀.2.1
+  have h₆ : 0 < z := h₀.2.2
+  have h₇ : 0 < x * y := mul_pos h₄ h₅
+  have h₈ : 0 < x * z := mul_pos h₄ h₆
+  have h₉ : 0 < y * z := mul_pos h₅ h₆
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  nlinarith [mul_pos h₇ h₈, mul_pos h₇ h₉, mul_pos h₈ h₉,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₄ h₆) h₅,
+    mul_pos (mul_pos h₅ h₆) h₄]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.002350330352783 / 600.1879308223724 / 614.1902811527252
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := by linarith
+  have h₅ : 0 < y := by linarith
+  have h₆ : 0 < z := by linarith
+  have h₇ : 0 < x * y := by positivity
+  have h₈ : 0 < x * z := by positivity
+  have h₉ : 0 < y * z := by positivity
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃
+  nlinarith [mul_pos h₄ h₅, mul_pos h₄ h₆, mul_pos h₅ h₆,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₄ h₆) h₅,
+    mul_pos (mul_pos h₅ h₆) h₄]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.132085084915161 / 600.1348202228546 / 614.2669053077698
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := by linarith
+  have h₅ : 0 < y := by linarith
+  have h₆ : 0 < z := by linarith
+  have h₇ : 0 < x * y := by positivity
+  have h₈ : 0 < x * z := by positivity
+  have h₉ : 0 < y * z := by positivity
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃ ⊢
+  nlinarith [mul_pos h₄ h₅, mul_pos h₅ h₆, mul_pos h₆ h₄,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₅ h₆) h₄,
+    mul_pos (mul_pos h₆ h₄) h₅]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.010254621505737 / 600.1421332359314 / 612.1523878574371
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p20
+  (x y z : ℝ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x + 1/y = 4)
+  (h₂ : y + 1/z = 1)
+  (h₃ : z + 1/x = 7/3) :
+  x*y*z = 1 := by
+  have h₄ : 0 < x := by linarith
+  have h₅ : 0 < y := by linarith
+  have h₆ : 0 < z := by linarith
+  field_simp at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃
+  nlinarith [mul_pos h₄ h₅, mul_pos h₅ h₆, mul_pos h₆ h₄,
+    mul_pos (mul_pos h₄ h₅) h₆, mul_pos (mul_pos h₅ h₆) h₄,
+    mul_pos (mul_pos h₆ h₄) h₅]
+

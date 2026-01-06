@@ -1,0 +1,34 @@
+Problem: problem_0180
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 14.534019470214844
+Lean check time (s): 3.571481704711914
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_354
+  (a d : ℝ)
+  (h₀ : a + 6 * d = 30)
+  (h₁ : a + 10 * d = 60) :
+  a + 20 * d = 135 := by
+  have h₂ : a + 20 * d = 135 := by
+    -- We use the given equations to solve for d and then substitute back to find a.
+    -- From the first equation, we can express a in terms of d:
+    -- a = 30 - 6d
+    -- Substitute this expression into the second equation:
+    -- (30 - 6d) + 10d = 60
+    -- Simplify to find d:
+    -- 30 + 4d = 60
+    -- 4d = 30
+    -- d = 7.5
+    -- Substitute d back into the expression for a:
+    -- a = 30 - 6 * 7.5 = 30 - 45 = -15
+    -- Finally, calculate a + 20d:
+    -- a + 20d = -15 + 20 * 7.5 = -15 + 150 = 135
+    nlinarith [h₀, h₁]
+  exact h₂

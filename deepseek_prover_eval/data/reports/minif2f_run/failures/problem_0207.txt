@@ -1,0 +1,229 @@
+Problem: problem_0207
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.287428855895996 / 600.1524088382721 / 612.4398376941681
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := mul_nonneg (sq_nonneg (x - 1)) (sq_nonneg (y - 1))
+  have h₅ := mul_nonneg (sq_nonneg (x + 1)) (sq_nonneg (y + 1))
+  have h₆ := mul_nonneg (sq_nonneg (x - y)) (sq_nonneg (x + y))
+  nlinarith [sq_nonneg (x * y - 1), sq_nonneg (x * y + 1), sq_nonneg (x * y - 2),
+    sq_nonneg (x * y + 2)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.027740240097046 / 600.1658606529236 / 615.1936008930206
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun t => x * t) h₀
+  have h₅ := congr_arg (fun t => x * t) h₁
+  have h₆ := congr_arg (fun t => x * t) h₂
+  have h₇ := congr_arg (fun t => x * t) h₃
+  simp at h₄ h₅ h₆ h₇
+  ring_nf at h₀ h₁ h₂ h₃ h₄ h₅ h₆ h₇ ⊢
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.749576091766357 / 600.1532545089722 / 613.9028306007385
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun t => a * x * t) h₀
+  have h₅ := congr_arg (fun t => a * x * t) h₁
+  have h₆ := congr_arg (fun t => a * x * t) h₂
+  have h₇ := congr_arg (fun t => a * x * t) h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.033372163772583 / 600.1594777107239 / 614.1928498744965
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun z => z ^ 2) h₀
+  have h₅ := congr_arg (fun z => z ^ 3) h₀
+  have h₆ := congr_arg (fun z => z ^ 4) h₀
+  have h₇ := congr_arg (fun z => z ^ 5) h₀
+  simp at h₄ h₅ h₆ h₇
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.129899263381958 / 600.1482801437378 / 615.2781794071198
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun t => a * x * t + b * y * t) h₀
+  have h₅ := congr_arg (fun t => a * x * t + b * y * t) h₁
+  have h₆ := congr_arg (fun t => a * x * t + b * y * t) h₂
+  have h₇ := congr_arg (fun t => a * x * t + b * y * t) h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.695682287216187 / 600.1614799499512 / 613.8571622371674
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun t => x * t) h₀
+  have h₅ := congr_arg (fun t => x * t) h₁
+  have h₆ := congr_arg (fun t => x * t) h₂
+  have h₇ := congr_arg (fun t => x * t) h₃
+  simp at h₄ h₅ h₆ h₇
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.926352977752686 / 600.1445300579071 / 614.0708830356598
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun t => x * t) h₀
+  have h₅ := congr_arg (fun t => x * t) h₁
+  have h₆ := congr_arg (fun t => x * t) h₂
+  have h₇ := congr_arg (fun t => x * t) h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.4683678150177 / 600.163051366806 / 615.6314191818237
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p15
+  (a b x y : ℝ)
+  (h₀ : a * x + b * y = 3)
+  (h₁ : a * x^2 + b * y^2 = 7)
+  (h₂ : a * x^3 + b * y^3 = 16)
+  (h₃ : a * x^4 + b * y^4 = 42) :
+  a * x^5 + b * y^5 = 20 := by
+  have h₄ := congr_arg (fun t => a * x * t + b * y * t) h₀
+  have h₅ := congr_arg (fun t => a * x * t + b * y * t) h₁
+  have h₆ := congr_arg (fun t => a * x * t + b * y * t) h₂
+  have h₇ := congr_arg (fun t => a * x * t + b * y * t) h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  nlinarith [sq_nonneg (x - 1), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 1),
+    sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y - 1), sq_nonneg (x * y + 1)]
+

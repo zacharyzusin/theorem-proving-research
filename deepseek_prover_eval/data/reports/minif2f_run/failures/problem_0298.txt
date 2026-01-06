@@ -1,0 +1,224 @@
+Problem: problem_0298
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 7.836311340332031 / 600.1314606666565 / 607.9677720069885
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 1
+  have h₃ := h₁ 0
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.943822860717773 / 600.149662733078 / 610.0934855937958
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 0
+  have h₃ := h₁ 1
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  have h₇ := h₁ (2)
+  have h₈ := h₁ (-2)
+  norm_num at h₂ h₃ h₄ h₅ h₆ h₇ h₈
+  nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.935258865356445 / 600.1699407100677 / 616.1051995754242
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 0
+  have h₃ := h₁ 1
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  have h₇ := h₁ 2
+  have h₈ := h₁ (-2)
+  have h₉ := h₁ 3
+  have h₁₀ := h₁ (-3)
+  have h₁₁ := h₁ 4
+  have h₁₂ := h₁ (-4)
+  have h₁₃ := h₁ 5
+  have h₁₄ := h₁ (-5)
+  have h₁₅ := h₁ 6
+  have h₁₆ := h₁ (-6)
+  norm_num at h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆
+  nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 7.979903936386108 / 600.1451716423035 / 608.1250755786896
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 1
+  have h₃ := h₁ 0
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1 / 3)
+  have h₆ := h₁ (-1 / 3)
+  nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.598435163497925 / 600.1683173179626 / 608.7667524814606
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 1
+  have h₃ := h₁ 0
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  norm_num at h₂ h₃ h₄ h₅ h₆
+  nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.639721870422363 / 600.1542744636536 / 608.7939963340759
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 1
+  have h₃ := h₁ 0
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  norm_num at h₂ h₃ h₄ h₅ h₆
+  nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.8910393714904785 / 600.2517077922821 / 608.1427471637726
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 1
+  have h₃ := h₁ 0
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  nlinarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.060747146606445 / 600.1825060844421 / 609.2432532310486
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_140
+  (a b c : ℝ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c)
+  (h₁ : ∀ x, 24 * x^2 - 19 * x - 35 = (((a * x) - 5) * ((2 * (b * x)) + c))) :
+  a * b - 3 * c = -9 := by
+  have h₂ := h₁ 1
+  have h₃ := h₁ 0
+  have h₄ := h₁ (-1)
+  have h₅ := h₁ (1/3)
+  have h₆ := h₁ (-1/3)
+  have h₇ := h₁ 2
+  have h₈ := h₁ (-2)
+  nlinarith
+

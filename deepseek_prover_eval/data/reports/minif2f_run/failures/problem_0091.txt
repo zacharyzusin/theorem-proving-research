@@ -1,0 +1,368 @@
+Problem: problem_0091
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.346008777618408 / 3.5372772216796875 / 21.883285999298096
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₂ : (2 : ℝ) ^ a = 32 := h₀
+    have h₃ : (2 : ℝ) ^ a = 2 ^ (5 : ℝ) := by norm_num [h₂]
+    have h₄ : a = 5 := by
+      apply_fun (fun x => logb 2 x) at h₃
+      field_simp [logb_pow] at h₃
+      linarith
+    exact h₄
+  have h₃ : b = 3 := by
+    have h₃ : a ^ b = 125 := h₁
+    have h₄ : (5 : ℝ) ^ b = 125 := by simp_all
+    have h₅ : (5 : ℝ) ^ b = 5 ^ (3 : ℝ) := by norm_num [h₄]
+    have h₆ : b = 3 := by
+      apply_fun (fun x => logb 5 x) at h₅
+      field_simp [logb_pow] at h₅
+      linarith
+    exact h₆
+  have h₄ : b ^ a = 243 := by
+    have h₄ : b ^ a = 3 ^ (5 : ℝ) := by simp_all [h₂, h₃]
+    have h₅ : (3 : ℝ) ^ (5 : ℝ) = 243 := by norm_num
+    linarith
+  exact h₄
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.654442071914673 / 4.788392543792725 / 22.442834615707397
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₂ : (2 : ℝ)^a = 32 := h₀
+    have h₃ : a = 5 := by
+      -- We need to solve for a in the equation 2^a = 32
+      -- We know that 2^5 = 32, so a = 5
+      apply_fun (fun x => logb 2 x) at h₂
+      field_simp [logb_pow] at h₂
+      linarith
+    exact h₃
+  have h₃ : b = 3 := by
+    have h₄ : a^b = 125 := h₁
+    have h₅ : (5 : ℝ)^b = 125 := by
+      rw [h₂] at h₄
+      exact h₄
+    have h₆ : b = 3 := by
+      -- We need to solve for b in the equation 5^b = 125
+      -- We know that 5^3 = 125, so b = 3
+      apply_fun (fun x => logb 5 x) at h₅
+      field_simp [logb_pow] at h₅
+      linarith
+    exact h₆
+  rw [h₂, h₃]
+  norm_num
+  <;>
+  simp_all [pow_succ]
+  <;>
+  norm_num
+  <;>
+  linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.643993377685547 / 3.4557716846466064 / 27.099765062332153
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₂ : (2 : ℝ) ^ a = 32 := h₀
+    have h₃ : a = 5 := by
+      -- We need to solve for a in the equation 2^a = 32
+      -- We know that 2^5 = 32, so a must be 5
+      apply_fun fun x => logb 2 x at h₂
+      -- Use the logarithm to find the exponent a
+      field_simp [logb_eq_iff_rpow_eq] at h₂ ⊢
+      -- Simplify the equation to find a = 5
+      <;> norm_num at h₂ ⊢
+      <;> linarith
+    exact_mod_cast h₃
+  have h₃ : b = 3 := by
+    have h₃ : a ^ b = 125 := h₁
+    have h₄ : (5 : ℝ) ^ b = 125 := by
+      rw [h₂] at h₃
+      exact_mod_cast h₃
+    have h₅ : b = 3 := by
+      -- We need to solve for b in the equation 5^b = 125
+      -- We know that 5^3 = 125, so b must be 3
+      apply_fun fun x => logb 5 x at h₄
+      -- Use the logarithm to find the exponent b
+      field_simp [logb_eq_iff_rpow_eq] at h₄ ⊢
+      -- Simplify the equation to find b = 3
+      <;> norm_num at h₄ ⊢
+      <;> linarith
+    exact_mod_cast h₅
+  rw [h₂, h₃]
+  -- We need to find b^a, where a = 5 and b = 3
+  -- b^a = 3^5 = 243
+  norm_num
+  <;> simp [pow_succ]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.06282138824463 / 3.435157299041748 / 20.497978687286377
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₂ : (2 : ℝ) ^ a = 32 := h₀
+    have h₃ : (2 : ℝ) ^ a = 2 ^ (5 : ℝ) := by norm_num [h₂]
+    have h₄ : a = 5 := by
+      apply_fun (fun x => logb 2 x) at h₃
+      field_simp [logb_pow] at h₃
+      linarith
+    exact h₄
+  have h₃ : b = 3 := by
+    have h₃ : a ^ b = 125 := h₁
+    rw [h₂] at h₃
+    norm_num at h₃
+    have h₄ : (5 : ℝ) ^ b = 125 := by simp_all
+    have h₅ : (5 : ℝ) ^ b = 5 ^ (3 : ℝ) := by norm_num [h₄]
+    have h₆ : b = 3 := by
+      apply_fun (fun x => logb 5 x) at h₅
+      field_simp [logb_pow] at h₅
+      linarith
+    exact h₆
+  rw [h₂, h₃]
+  norm_num
+  <;> simp_all
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 23.954450845718384 / 3.448481798171997 / 27.40293264389038
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₃ : (2 : ℝ) ^ a = 32 := h₀
+    have h₄ : (2 : ℝ) ^ a = 2 ^ (5 : ℝ) := by norm_num [h₃]
+    have h₅ : a = 5 := by
+      apply_fun fun x => logb 2 x at h₄
+      field_simp [logb_pow] at h₄
+      norm_num at h₄
+      linarith
+    exact h₅
+  have h₃ : b = logb 5 125 := by
+    have h₄ : a ^ b = 125 := h₁
+    have h₅ : (5 : ℝ) ^ b = 125 := by simp_all [h₂]
+    have h₆ : b = logb 5 125 := by
+      apply_fun fun x => logb 5 x at h₅
+      field_simp [logb_pow] at h₅
+      norm_num at h₅
+      linarith
+    exact h₆
+  have h₄ : b ^ a = 243 := by
+    rw [h₂, h₃]
+    norm_num
+    <;>
+    rw [show (5 : ℝ) = logb 5 5 ^ 1 by norm_num]
+    <;>
+    simp_all [logb_pow, Real.rpow_nat_cast]
+    <;>
+    norm_num
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    rw [show (125 : ℝ) = 5 ^ 3 by norm_num]
+    <;>
+    rw [show (243 : ℝ) = 3 ^ 5 by norm_num]
+    <;>
+    field_simp [logb_pow]
+    <;>
+    norm_num
+    <;>
+    ring_nf
+    <;>
+    norm_num
+  exact h₄
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.272526025772095 / 3.4173524379730225 / 26.689878463745117
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₂₀ : (2 : ℝ) ^ a = 32 := h₀
+    have h₂₁ : a = 5 := by
+      -- We use the fact that 2^5 = 32 to solve for a
+      have h₂₂ : (2 : ℝ) ^ a = 32 := h₂₀
+      have h₂₃ : (2 : ℝ) ^ 5 = 32 := by norm_num
+      have h₂₄ : a = 5 := by
+        -- Use the fact that the functions 2^x and x^5 are one-to-one to solve for a
+        apply_fun (fun x => logb 2 x) at h₂₂ h₂₃
+        simp [logb_pow] at h₂₂ h₂₃
+        norm_num at h₂₂ h₂₃
+        linarith
+      exact h₂₄
+    exact h₂₁
+  have h₃ : b = 3 := by
+    have h₃₀ : a ^ b = 125 := h₁
+    have h₃₁ : a = 5 := h₂
+    have h₃₂ : (5 : ℝ) ^ b = 125 := by rw [h₃₁] at h₃₀; exact h₃₀
+    have h₃₃ : (5 : ℝ) ^ 3 = 125 := by norm_num
+    have h₃₄ : b = 3 := by
+      -- Use the fact that the function 5^x is one-to-one to solve for b
+      apply_fun (fun x => logb 5 x) at h₃₂ h₃₃
+      simp [logb_pow] at h₃₂ h₃₃
+      norm_num at h₃₂ h₃₃
+      linarith
+    exact h₃₄
+  have h₄ : b ^ a = 243 := by
+    rw [h₂, h₃]
+    norm_num
+  exact h₄
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.936310291290283 / 3.450061559677124 / 19.386371850967407
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₂ : (2 : ℝ)^a = 32 := h₀
+    have h₃ : a = 5 := by
+      -- We need to solve for a in 2^a = 32
+      -- We know that 2^5 = 32, so a = 5
+      apply_fun (fun x => logb 2 x) at h₂
+      field_simp [logb_pow] at h₂
+      linarith
+    linarith
+  have h₃ : b = 3 := by
+    have h₃ : a^b = 125 := h₁
+    have h₄ : (5 : ℝ)^b = 125 := by
+      rw [h₂] at h₃
+      exact h₃
+    have h₅ : b = 3 := by
+      -- We need to solve for b in 5^b = 125
+      -- We know that 5^3 = 125, so b = 3
+      apply_fun (fun x => logb 5 x) at h₄
+      field_simp [logb_pow] at h₄
+      linarith
+    linarith
+  rw [h₂, h₃]
+  norm_num
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.1709086894989 / 3.413832426071167 / 21.58474111557007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_756
+  (a b : ℝ)
+  (h₀ : 2^a = (32 : ℝ))
+  (h₁ : a^b = 125) :
+  b^a = 243 := by
+  have h₂ : a = 5 := by
+    have h₃ : (2 : ℝ) ^ a = 32 := h₀
+    have h₄ : a = 5 := by
+      -- We need to solve for a in the equation 2^a = 32
+      -- We know that 2^5 = 32, so a = 5
+      apply_fun fun x => logb 2 x at h₃
+      field_simp [logb_pow] at h₃
+      norm_num at h₃
+      linarith
+    exact h₄
+  have h₃ : b = 3 := by
+    have h₄ : a ^ b = 125 := h₁
+    have h₅ : (5 : ℝ) ^ b = 125 := by
+      rw [h₂] at h₄
+      exact h₄
+    have h₆ : b = 3 := by
+      -- We need to solve for b in the equation 5^b = 125
+      -- We know that 5^3 = 125, so b = 3
+      apply_fun fun x => logb 5 x at h₅
+      field_simp [logb_pow] at h₅
+      norm_num at h₅
+      linarith
+    exact h₆
+  rw [h₂, h₃]
+  norm_num
+  <;> simp_all [pow_succ]
+  <;> norm_num
+  <;> linarith
+

@@ -1,0 +1,25 @@
+Problem: putnam_1977_b6
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 36.785574197769165
+Lean check time (s): 24.647012948989868
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b6
+{G : Type*}
+[Group G]
+(H : Subgroup G)
+(h : ℕ)
+(h_def : h = Nat.card H)
+(a : G)
+(ha : ∀ x : H, (x*a)^3 = 1)
+(P : Set G)
+(hP : P = {g : G | ∃ xs : List H, (xs.length ≥ 1) ∧ g = (List.map (fun h : H => h*a) xs).prod})
+: (Finite P) ∧ (P.ncard ≤ 3*h^2) :=
+sorry

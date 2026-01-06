@@ -1,0 +1,150 @@
+Problem: putnam_2014_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.025137424468994 / 9.389046907424927 / 22.41418433189392
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 22.33149790763855 / 8.841201305389404 / 31.172699213027954
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.478291511535645 / 11.161336183547974 / 31.639627695083618
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 23.614277362823486 / 9.121290922164917 / 32.7355682849884
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.88132643699646 / 11.09861707687378 / 31.97994351387024
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.572206258773804 / 11.34826135635376 / 25.920467615127563
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.44154715538025 / 11.056227684020996 / 31.497774839401245
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.364608526229858 / 10.749751091003418 / 25.114359617233276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a1
+(f : ℝ → ℝ)
+(hf : ∀ x : ℝ, f x = (1 - x + x ^ 2) * Real.exp x)
+(hfdiff : ContDiff ℝ ⊤ f)
+(c : ℕ → ℝ)
+(hc : ∀ k : ℕ, c k = taylorCoeffWithin f k Set.univ 0)
+: ∀ k : ℕ, c k ≠ 0 → ∃ q : ℚ, c k = q ∧ (q.num = 1 ∨ Prime q.num.natAbs) :=
+sorry

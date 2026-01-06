@@ -1,0 +1,341 @@
+Problem: putnam_1965_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 32.3471519947052 / 50.694626331329346 / 83.04177832603455
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = { (3, 4, 5), (15, 20, 25), (35, 12, 37) } := by
+      ext ⟨a, b, c⟩
+      simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨ha, hb, hc, h₁, h₂⟩
+        have h₃ : a > 0 := ha
+        have h₄ : a ≤ b := hb
+        have h₅ : c > 0 := hc
+        have h₆ : a^2 + b^2 = c^2 := h₁
+        have h₇ : a*b/(2 : ℚ) = 2*(a + b + c) := h₂
+        field_simp at h₇
+        norm_cast at h₇
+        ring_nf at h₇
+        have h₈ : a * b = 4 * (a + b + c) := by
+          omega
+        have h₉ : a ≤ 100 := by
+          nlinarith
+        have h₁₀ : b ≤ 200 := by
+          nlinarith
+        have h₁₁ : c ≤ 200 := by
+          nlinarith
+        interval_cases a <;> interval_cases b <;> omega
+      · rintro (⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩) <;>
+        norm_num <;>
+        (try { ring_nf <;> norm_num <;> aesop }) <;>
+        (try {
+          norm_num at *
+          <;>
+          norm_cast at *
+          <;>
+          ring_nf at *
+          <;>
+          omega
+        })
+    rw [h₁]
+  
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 36.49930167198181 / 93.67038917541504 / 130.16969084739685
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = {(3, 4, 5), (15, 20, 25), (35, 12, 37)} := by
+      ext ⟨a, b, c⟩
+      simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨ha, hb, hc, h1, h2⟩
+        have h3 : a > 0 := ha
+        have h4 : a ≤ b := hb
+        have h5 : c > 0 := hc
+        have h6 : a^2 + b^2 = c^2 := h1
+        have h7 : a*b/(2 : ℚ) = 2*(a + b + c) := h2
+        field_simp at h7
+        ring_nf at h7
+        norm_cast at h7
+        have h8 : a * b = 4 * (a + b + c) := by omega
+        have h9 : a ≤ 100 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+        have h10 : b ≤ 200 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+        have h11 : c ≤ 200 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+        interval_cases a <;> interval_cases b <;> omega
+      · rintro (⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩) <;> norm_num <;>
+        (try
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 36.17673993110657 / 88.41980004310608 / 124.59653997421265
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = { (3, 4, 5), (15, 20, 25), (33, 44, 55) } := by
+      ext ⟨a, b, c⟩
+      simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨ha, hb, hc, h1, h2⟩
+        have h3 : a > 0 := ha
+        have h4 : a ≤ b := hb
+        have h5 : c > 0 := hc
+        have h6 : a^2 + b^2 = c^2 := h1
+        have h7 : a*b/(2 : ℚ) = 2*(a + b + c) := h2
+        field_simp at h7
+        norm_cast at h7
+        ring_nf at h7
+        have h8 : a * b = 4 * (a + b + c) := by
+          omega
+        have h9 : a ≤ 100 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+        have h10 : b ≤ 200 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+        have h11 : c ≤ 200 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+        interval_cases a <;> interval_cases b <;> omega
+      · rintro (⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩) <;>
+        norm_
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 44.82835292816162 / 70.18066000938416 / 115.00901293754578
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have step₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+      -- We use a known set of solutions to demonstrate the cardinality.
+      have h₂ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+        -- Use the known set of solutions to demonstrate the cardinality.
+        have h₃ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = {⟨3, 4, 5⟩, ⟨6, 8, 10⟩, ⟨5, 12, 13⟩} := by
+          ext ⟨a, b, c⟩
+          simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+          constructor
+          · rintro ⟨ha, hb, hc, h₁, h₂⟩
+            norm_num at *
+            have h₃ : a ≤ b := by linarith
+            have h₄ : a * b = 4 * (a + b + c) := by
+              field_simp at h₂ ⊢
+              ring_nf at *
+              <;> norm_cast at * <;>
+                (try norm_num at *) <;>
+                  nlinarith
+            have h₅ : a ≤ 13 := by
+              nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+       
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 33.82617664337158 / 60.0689492225647 / 93.89512586593628
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = { (3, 4, 5), (15, 20, 25), (33, 44, 55) } := by
+      ext ⟨a, b, c⟩
+      simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨ha, hb, hc, h1, h2⟩
+        norm_num at h1 h2 ⊢
+        have h3 : a ≤ b := by nlinarith
+        have h4 : a * b = 4 * (a + b + c) := by
+          field_simp at h2
+          ring_nf at h2 ⊢
+          <;> norm_cast at h2 ⊢ <;> ring_nf at h2 ⊢ <;> nlinarith
+        have h5 : a ≤ 55 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+        have h6 : b ≤ 100 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+        have h7 : c ≤ 100 := by
+          nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+        interval_cases a <;> interval_cases b <;> omega
+      · rintro (⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩) <;>
+        norm_num
+        <;>
+        (try { omega }) <;>
+        (try {
+          norm_num
+          <;>
+          ring_nf
+          <;>
+          norm_cas
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 32.3003945350647 / 55.541720390319824 / 87.84211492538452
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₀ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = { (3, 4, 5), (15, 20, 25), (6, 8, 10) } := by
+      ext ⟨a, b, c⟩
+      simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨ha, hb, hc, h₁, h₂⟩
+        have h₃ : a * b = 4 * (a + b + c) := by
+          field_simp at h₂
+          ring_nf at h₂ ⊢
+          <;> norm_cast at h₂ ⊢ <;>
+          ring_nf at h₂ ⊢ <;>
+          norm_cast at h₂ ⊢ <;>
+          omega
+        have h₄ : a ≤ b := by aesop
+        have h₅ : a > 0 := by aesop
+        have h₆ : c > 0 := by aesop
+        have h₇ : a^2 + b^2 = c^2 := by aesop
+        have h₈ : a * b = 4 * (a + b + c) := by aesop
+        have h₉ : a ≤ 30 := by
+          nlinarith
+        have h₁₀ : b ≤ 30 := by
+          nlinarith
+        have h₁₁ : c ≤ 30 := by
+          nlinarith
+        interval_cases a <;> interval_cases b <;> omega
+      · rintro (⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩) <;>
+        norm_num
+        <;>
+        (try decide) <;>
+        (try
+          {
+            norm_num
+            <;>
+            aesop
+         
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.27077317237854 / 45.38087296485901 / 84.65164613723755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have step1 : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+      -- We use a known set of solutions and show that there are exactly three valid triples.
+      have h₂ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = {⟨3, 4, 5⟩, ⟨15, 20, 25⟩, ⟨6, 8, 10⟩} := by
+        ext ⟨a, b, c⟩
+        simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+        constructor
+        · rintro ⟨ha, hb, hc, h1, h2⟩
+          norm_num at *
+          have h₃ : a ≤ b := by linarith
+          have h₄ : a * b = 4 * (a + b + c) := by
+            field_simp at h2
+            ring_nf at h2 ⊢
+            norm_cast at h2 ⊢
+            <;> nlinarith
+          have h₅ : a ≤ 16 := by
+            nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+          have h₆ : b ≤ 40 := by
+            nlinarith [sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (c - a), sq_nonneg (c - b)]
+          interval_cases a <;> interval_cases b <;> norm_num at h1 h4 ⊢ <;>
+            (try omega) <;>
+            (try {
+    
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 31.569063901901245 / 70.84513020515442 / 102.41419410705566
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_b3
+: {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+  have h₁ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)}.ncard = 3 := by
+    have h₂ : {(a, b, c) : ℤ × ℤ × ℤ | a > 0 ∧ a ≤ b ∧ c > 0 ∧ a^2 + b^2 = c^2 ∧ a*b/(2 : ℚ) = 2*(a + b + c)} = { (3, 4, 5), (15, 20, 25), (35, 12, 37) } := by
+      ext ⟨a, b, c⟩
+      simp only [Set.mem_setOf_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
+      constructor
+      · rintro ⟨ha, hb, hc, h1, h2⟩
+        have h3 : a > 0 := ha
+        have h4 : a ≤ b := hb
+        have h5 : c > 0 := hc
+        have h6 : a^2 + b^2 = c^2 := h1
+        have h7 : a * b / (2 : ℚ) = 2 * (a + b + c) := h2
+        norm_cast at h7
+        field_simp at h7
+        ring_nf at h7
+        norm_cast at h7
+        have h8 : a * b = 4 * (a + b + c) := by
+          omega
+        have h9 : a ≤ 100 := by
+          nlinarith
+        have h10 : b ≤ 200 := by
+          nlinarith
+        have h11 : c ≤ 200 := by
+          nlinarith
+        interval_cases a <;> interval_cases b <;> omega
+      · rintro (⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩) <;>
+        norm_num
+        <;>
+        (try norm_num) <;>
+        (try ring_nf) <;>
+        (try omega) <;>
+        (try
+          {
+            field_simp
+            <;>
+            ring_nf
+            <;>
+        
+... [truncated] ...

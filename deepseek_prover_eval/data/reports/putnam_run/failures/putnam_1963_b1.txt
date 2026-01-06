@@ -1,0 +1,343 @@
+Problem: putnam_1963_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.976080417633057 / 43.40682673454285 / 69.3829071521759
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+  have step₁ : ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+    intro a
+    have h : (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+      apply Iff.intro
+      · intro h
+        have h₁ := h
+        rw [dvd_iff_exists_eq_mul_left] at h₁
+        rcases h₁ with ⟨p, hp⟩
+        have h₂ := congr_arg (eval 0) hp
+        simp [eval_add, eval_mul, eval_pow, eval_X, eval_C, eval_sub, eval_one] at h₂
+        have h₃ := congr_arg (eval 1) hp
+        simp [eval_add, eval_mul, eval_pow, eval_X, eval_C, eval_sub, eval_one] at h₃
+        have h₄ := congr_arg (eval (-1)) hp
+        simp [eval_add, eval_mul, eval_pow, eval_X, eval_C, eval_sub, eval_one] at h₄
+        norm_num at h₂ h₃ h₄
+        ring_nf at h₂ h₃ h₄
+        norm_num at h₂ h₃ h₄
+        have h₅ : a = 2 := by
+          omega
+        exact h₅
+      · intro h
+        rw [h]
+        -- We need to show that (X^2 - X + 2) divides (X^13 + X + 90)
+        use X ^ 11 + X ^ 9 + 2 * X ^ 8 + 3 * X ^ 7 + 5 * X ^ 6 + 7 * X ^ 5 + 9 * X ^ 4 + 9 * X ^ 3 + 9 * X ^ 2 + 7 * X + 4
+        ring_nf
+        <;>
+        norm_num
+        <;>
+        aesop
+    exact h
+  
+  exact step₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.85219669342041 / 12.088401317596436 / 24.940598011016846
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = putnam_1963_b1_solution := by
+  intro a
+  constructor
+  · intro h
+    have h1 := h
+    rw [dvd_iff_exists_eq_mul_left] at h1
+    rcases h1 with ⟨p, hp⟩
+    have h2 := congr_arg (fun q => eval 0 q) hp
+    simp at h2
+    have h3 := congr_arg (fun q => eval 1 q) hp
+    simp at h3
+    have h4 := congr_arg (fun q => eval (-1) q) hp
+    simp at h4
+    norm_num at h2 h3 h4
+    ring_nf at h2 h3 h4
+    norm_cast at h2 h3 h4
+    have h5 : a = 2 := by
+      omega
+    exact h5
+  · intro h
+    rw [h]
+    use (X ^ 11 + 1)
+    ring
+    <;> norm_num
+    <;> aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.983391761779785 / 10.948123693466187 / 32.93151545524597
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+  have step : ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+    intro a
+    constructor
+    · intro h
+      have h₁ := h
+      rw [dvd_iff_exists_eq_mul_left] at h₁
+      rcases h₁ with ⟨p, hp⟩
+      have h₂ := congr_arg (fun q => eval 0 q) hp
+      simp [eval_add, eval_mul, eval_pow, eval_X, eval_C, eval_sub, eval_one] at h₂
+      have h₃ := congr_arg (fun q => eval 1 q) hp
+      simp [eval_add, eval_mul, eval_pow, eval_X, eval_C, eval_sub, eval_one] at h₃
+      have h₄ := congr_arg (fun q => eval (-a) q) hp
+      simp [eval_add, eval_mul, eval_pow, eval_X, eval_C, eval_sub, eval_one] at h₄
+      ring_nf at h₂ h₃ h₄
+      norm_num at h₂ h₃ h₄
+      have h₅ : a = 2 := by
+        omega
+      exact h₅
+    · intro h
+      rw [h]
+      use (X ^ 11 + X ^ 10 + 90 * X ^ 8 + 89 * X ^ 7 + 890 * X ^ 6 + 881 * X ^ 5 + 8810 * X ^ 4 + 8721 * X ^ 3 + 87210 * X ^ 2 + 86331 * X + 863310)
+      ring_nf
+      <;> norm_num
+      <;> aesop
+  
+  exact fun a => step a
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.31490421295166 / 10.655540227890015 / 26.970444440841675
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+  intro a
+  constructor
+  · intro h
+    have h₁ := h
+    rw [dvd_iff_exists_eq_mul_left] at h₁
+    rcases h₁ with ⟨p, hp⟩
+    have h₂ := congr_arg (eval 0) hp
+    simp at h₂
+    have h₃ := congr_arg (eval 1) hp
+    simp at h₃
+    have h₄ := congr_arg (eval (-1)) hp
+    simp at h₄
+    norm_num at h₂ h₃ h₄
+    ring_nf at h₂ h₃ h₄
+    norm_num at h₂ h₃ h₄
+    have h₅ : a = 2 := by
+      omega
+    exact h₅
+  · intro h
+    rw [h]
+    norm_num
+    <;>
+    use X ^ 11 + 2 * X ^ 10 + 3 * X ^ 9 + 5 * X ^ 8 + 7 * X ^ 7 + 10 * X ^ 6 + 12 * X ^ 5 + 15 * X ^ 4 + 18 * X ^ 3 + 20 * X ^ 2 + 23 * X + 26
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.824885845184326 / 10.715054750442505 / 26.53994059562683
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = putnam_1963_b1_solution := by
+  intro a
+  constructor
+  · intro h
+    have h₁ := h
+    rw [dvd_iff_exists_eq_mul_left] at h₁
+    rcases h₁ with ⟨p, hp⟩
+    have h₂ := congr_arg (eval 0) hp
+    simp at h₂
+    have h₃ := congr_arg (eval 1) hp
+    simp at h₃
+    have h₄ := congr_arg (eval (-1)) hp
+    simp at h₄
+    norm_num at h₂ h₃ h₄
+    ring_nf at h₂ h₃ h₄
+    norm_cast at h₂ h₃ h₄
+    have h₅ : a = 2 := by
+      omega
+    exact h₅
+  · intro h
+    rw [h]
+    use X ^ 11 + 2 * X ^ 10 + 3 * X ^ 9 + 5 * X ^ 8 + 7 * X ^ 7 + 11 * X ^ 6 + 15 * X ^ 5 + 22 * X ^ 4 + 30 * X ^ 3 + 42 * X ^ 2 + 56 * X + 78
+    ring_nf
+    <;> norm_num
+    <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.91336441040039 / 10.824033975601196 / 28.737398386001587
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = putnam_1963_b1_solution := by
+  intro a
+  constructor
+  · intro h
+    have h1 := h
+    rw [dvd_iff_exists_eq_mul_left] at h1
+    obtain ⟨p, hp⟩ := h1
+    have h2 := congr_arg (eval 0) hp
+    simp at h2
+    have h3 := congr_arg (eval 1) hp
+    simp at h3
+    have h4 := congr_arg (eval (-1)) hp
+    simp at h4
+    norm_num at h2 h3 h4
+    have h5 := congr_arg (eval 2) hp
+    simp at h5
+    norm_num at h5
+    have h6 := congr_arg (eval (-2)) hp
+    simp at h6
+    norm_num at h6
+    have h7 : a = 2 := by
+      omega
+    exact h7
+  · intro h
+    rw [h]
+    norm_num
+    <;>
+    use X ^ 11 + 2 * X ^ 10 + 3 * X ^ 9 + 5 * X ^ 8 + 7 * X ^ 7 + 10 * X ^ 6 + 12 * X ^ 5 + 15 * X ^ 4 + 18 * X ^ 3 + 20 * X ^ 2 + 23 * X + 25
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.53619122505188 / 12.081138610839844 / 32.617329835891724
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = putnam_1963_b1_solution := by
+  intro a
+  constructor
+  · intro h
+    have h1 := h
+    rw [dvd_iff_exists_eq_mul_left] at h1
+    obtain ⟨p, hp⟩ := h1
+    have h2 := congr_arg (fun q => eval 0 q) hp
+    simp at h2
+    have h3 := congr_arg (fun q => eval 1 q) hp
+    simp at h3
+    have h4 := congr_arg (fun q => eval (-1) q) hp
+    simp at h4
+    norm_num at h2 h3 h4
+    have h5 := congr_arg (fun q => eval 2 q) hp
+    simp at h5
+    norm_num at h5
+    have h6 := congr_arg (fun q => eval (-2) q) hp
+    simp at h6
+    norm_num at h6
+    ring_nf at h2 h3 h4 h5 h6
+    norm_cast at h2 h3 h4 h5 h6
+    omega
+  · rintro rfl
+    rw [dvd_iff_exists_eq_mul_left]
+    use X ^ 11 + 2 * X ^ 10 + 3 * X ^ 9 + 5 * X ^ 8 + 7 * X ^ 7 + 11 * X ^ 6 + 15 * X ^ 5 + 22 * X ^ 4 + 30 * X ^ 3 + 42 * X ^ 2 + 56 * X + 78
+    ring_nf
+    <;> simp [mul_add, add_mul, mul_comm, mul_left_comm]
+    <;> ring_nf
+    <;> norm_num
+    <;> linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 27.242305517196655 / 11.588211059570312 / 38.83051657676697
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_b1
+: ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = putnam_1963_b1_solution := by
+  have h₁ : ∀ a : ℤ, (X^2 - X + (C a)) ∣ (X ^ 13 + X + (C 90)) ↔ a = 2 := by
+    intro a
+    constructor
+    · intro h
+      have h₁ := h
+      rw [dvd_iff_isRoot] at h₁
+      simp only [add_assoc, add_left_comm, add_comm] at h₁
+      -- Use the fact that if a polynomial f(x) has a root at x = a, then f(a) = 0
+      have h₂ := h₁
+      simp [C_eq_int_cast, add_comm, add_left_comm, add_assoc] at h₂
+      -- Use the fact that if a polynomial f(x) has a root at x = a, then f(a) = 0
+      have h₃ := h₂ 0
+      have h₄ := h₂ 1
+      have h₅ := h₂ (-1)
+      have h₆ := h₂ 2
+      have h₇ := h₂ (-2)
+      have h₈ := h₂ 3
+      have h₉ := h₂ (-3)
+      have h₁₀ := h₂ 4
+      have h₁₁ := h₂ (-4)
+      have h₁₂ := h₂ 5
+      have h₁₃ := h₂ (-5)
+      have h₁₄ := h₂ 6
+      have h₁₅ := h₂ (-6)
+      have h₁₆ := h₂ 7
+      have h₁₇ := h₂ (-7)
+      have h₁₈ := h₂ 8
+      have h₁₉ := h₂ (-8)
+      have h₂₀ := h₂ 9
+      have h₂₁ := h₂ (-9)
+      have h₂₂ := h₂ 10
+      have h₂₃ := h₂ (-10)
+      norm_num at *
+      <;> omega
+    · intro h
+      rw [h]
+      -- Verify that a = 2 satisfies the condition
+      norm_num [dvd_iff_isRoot, C_eq_int_cast, add_comm, add_left_comm, add_assoc]
+      <;>
+        (try ring_nf) <;>
+        (try norm_num) <;>
+        (try aesop)
+  exact fun a => h₁ a

@@ -1,0 +1,184 @@
+Problem: problem_0257
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 7.037671089172363 / 2.893907070159912 / 9.931578159332275
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero, Nat.add_zero]
+      ring_nf at *
+      <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 5.411816835403442 / 2.719316005706787 / 8.13113284111023
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ihn =>
+    simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero]
+    ring_nf at *
+    <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.250824451446533 / 2.9823436737060547 / 10.233168125152588
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ihn =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.add_sub_assoc, Nat.add_sub_cancel]
+      ring_nf at *
+      <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 7.301284313201904 / 2.9606966972351074 / 10.261981010437012
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero, Nat.add_zero]
+      ring_nf at *
+      <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.059201002120972 / 2.9031710624694824 / 9.962372064590454
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero, Nat.add_zero]
+      ring_nf at *
+      <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 5.258193731307983 / 2.752687931060791 / 8.010881662368774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_one]
+    ring_nf
+    <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 6.888204574584961 / 2.9753880500793457 / 9.863592624664307
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.add_sub_assoc]
+      ring_nf at *
+      <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.2984185218811035 / 3.1827163696289062 / 10.48113489151001
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sum2kp1npqsqm1
+  (n : ℕ) :
+  ∑ k in (Finset.range n), 2 * k + 3 = (n + 1)^2 - 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.succ_eq_add_one, Nat.pow_succ, mul_add, mul_comm, mul_left_comm]
+      ring_nf at *
+      <;> omega
+

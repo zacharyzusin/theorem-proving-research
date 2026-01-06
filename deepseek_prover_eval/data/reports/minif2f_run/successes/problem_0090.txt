@@ -1,0 +1,17 @@
+Problem: problem_0090
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.103970527648926
+Lean check time (s): 2.8798716068267822
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_343 :
+  (∏ k in Finset.range 6, (2 * k + 1)) % 10 = 5 := by
+  simp [Finset.prod_range_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> decide

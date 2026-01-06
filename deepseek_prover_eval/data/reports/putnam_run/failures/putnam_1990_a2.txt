@@ -1,0 +1,150 @@
+Problem: putnam_1990_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.65979838371277 / 10.205879926681519 / 34.86567831039429
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 25.52029824256897 / 13.359445333480835 / 38.879743576049805
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.165794849395752 / 11.358067274093628 / 33.52386212348938
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 24.02592658996582 / 11.615050554275513 / 35.64097714424133
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.90094757080078 / 14.125535488128662 / 42.02648305892944
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.983057260513306 / 14.082543134689331 / 41.06560039520264
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.859681367874146 / 11.577970743179321 / 36.43765211105347
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 26.118964433670044 / 13.960385799407959 / 40.079350233078
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_a2
+  (numform : ℝ → Prop)
+  (hnumform : ∀ x : ℝ, numform x ↔ ∃ n m : ℕ, x = n ^ ((1 : ℝ) / 3) - m ^ ((1 : ℝ) / 3)) :
+  putnam_1990_a2_solution ↔
+  (∃ s : ℕ → ℝ,
+    (∀ i : ℕ, numform (s i)) ∧
+    Tendsto s atTop (𝓝 (Real.sqrt 2))) :=
+sorry

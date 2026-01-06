@@ -1,0 +1,134 @@
+Problem: putnam_1992_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.89711308479309 / 16.673253536224365 / 26.570366621017456
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.896320104598999 / 19.934227228164673 / 32.83054733276367
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.725131511688232 / 14.74519419670105 / 32.47032570838928
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.200525999069214 / 16.841689109802246 / 29.04221510887146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.385241746902466 / 16.17147445678711 / 25.556716203689575
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.632158994674683 / 18.29597520828247 / 29.928134202957153
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.28736686706543 / 11.486923217773438 / 20.774290084838867
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.251133441925049 / 11.835162878036499 / 24.086296319961548
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_b2
+    (Q : ℕ → ℕ → ℕ)
+    (hQ : Q = fun n k ↦ coeff ((1 + X + X ^ 2 + X ^ 3) ^ n) k)
+    (n k : ℕ) :
+    Q n k = ∑ j ∈ Finset.Iic k, choose n j * (if 2 * j ≤ k then choose n (k - 2 * j) else 0) :=
+  sorry

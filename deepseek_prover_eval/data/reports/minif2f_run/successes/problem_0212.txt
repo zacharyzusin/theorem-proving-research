@@ -1,0 +1,33 @@
+Problem: problem_0212
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 16.83012318611145
+Lean check time (s): 4.8639819622039795
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_aoddbdiv4asqpbsqmod8eq1
+  (a : ℤ)
+  (b : ℤ)
+  (h₀ : Odd a)
+  (h₁ : 4 ∣ b)
+  (h₂ : b >= 0) :
+  (a^2 + b^2) % 8 = 1 := by
+  have h₃ : a % 8 = 1 ∨ a % 8 = 3 ∨ a % 8 = 5 ∨ a % 8 = 7 := by
+    cases' h₀ with k hk
+    have : a % 8 = 1 ∨ a % 8 = 3 ∨ a % 8 = 5 ∨ a % 8 = 7 := by
+      have : a % 8 = 1 ∨ a % 8 = 3 ∨ a % 8 = 5 ∨ a % 8 = 7 := by
+        omega
+      exact this
+    exact this
+  have h₄ : b % 8 = 0 ∨ b % 8 = 4 ∨ b % 8 = 2 ∨ b % 8 = 6 := by
+    omega
+  rcases h₃ with (h₃ | h₃ | h₃ | h₃) <;> rcases h₄ with (h₄ | h₄ | h₄ | h₄) <;>
+    simp [h₃, h₄, pow_two, Int.add_emod, Int.mul_emod, Int.emod_emod]
+  <;>
+  omega

@@ -1,0 +1,142 @@
+Problem: putnam_1999_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.993191480636597 / 14.344531297683716 / 36.33772277832031
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 49.620384216308594 / 13.470093011856079 / 63.09047722816467
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.408496618270874 / 14.638225078582764 / 31.046721696853638
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 85.925053358078 / 13.029633522033691 / 98.9546868801117
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 43.01550054550171 / 11.929239511489868 / 54.94474005699158
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.732012271881104 / 12.061572551727295 / 28.7935848236084
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 42.19880557060242 / 13.741444826126099 / 55.940250396728516
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.50407838821411 / 13.649339437484741 / 38.15341782569885
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1999_b3
+(A : Set (ℝ × ℝ))
+(hA : A = {xy | 0 ≤ xy.1 ∧ xy.1 < 1 ∧ 0 ≤ xy.2 ∧ xy.2 < 1})
+(S : ℝ → ℝ → ℝ)
+(hS : S = fun x y => ∑' m : ℕ, ∑' n : ℕ, if (m > 0 ∧ n > 0 ∧ 1/2 ≤ m/n ∧ m/n ≤ 2) then x^m * y^n else 0)
+: Tendsto (fun xy : (ℝ × ℝ) => (1 - xy.1 * xy.2^2) * (1 - xy.1^2 * xy.2) * (S xy.1 xy.2)) (𝓝[A] ⟨1,1⟩) (𝓝 putnam_1999_b3_solution) :=
+sorry

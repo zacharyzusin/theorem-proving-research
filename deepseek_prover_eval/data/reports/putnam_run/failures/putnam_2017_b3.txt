@@ -1,0 +1,308 @@
+Problem: putnam_2017_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.95286750793457 / 15.310651540756226 / 44.263519048690796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  have h₃ := hf 0
+  simp at h₁ h₂ h₃
+  have h₄ : f (2 / 3) = 3 / 2 := h
+  have h₅ : f (1 / 2) = ∑' n : ℕ, (c n) * (1 / 2) ^ n := by simp_all
+  have h₆ : Irrational (f (1 / 2)) := by
+    intro h_contra
+    rcases h_contra with ⟨q, hq⟩
+    have h₇ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₈ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    have h₉ : ∀ n : ℕ, c n = 0 ∨ c n = 1 := by simp_all [hc]
+    have h₁₀ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₁₁ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    -- Use the fact that the coefficients are 0 or 1 to derive a contradiction
+    have h₁₂ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₁₃ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    -- Use the fact that the coefficients are 0 or 1 to derive a contradiction
+    have h₁₄ : Irrational (f (1 / 2)) := by
+      simp_all [Irrational]
+      <;> norm_cast
+      <;> simp_all [hc]
+      <;> linarith
+    exact h₁₄
+  exact h₆
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.706132888793945 / 12.030390977859497 / 22.736523866653442
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  simp_all [tsum_eq_zero_of_not_summable, Nat.div_eq_of_lt]
+  <;> norm_num
+  <;>
+  nlinarith [hc 0, hc 1, hc 2, hc 3, hc 4, hc 5, hc 6, hc 7, hc 8, hc 9]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 29.70667338371277 / 14.446072340011597 / 44.152745723724365
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  have h₃ := hf 0
+  simp at h₁ h₂ h₃
+  have h₄ : f (2 / 3) = 3 / 2 := h
+  have h₅ : f (1 / 2) = ∑' n : ℕ, (c n) * (1 / 2) ^ n := by simp_all
+  have h₆ : Irrational (f (1 / 2)) := by
+    intro h_contra
+    rcases h_contra with ⟨q, hq⟩
+    have h₇ := h₅
+    rw [hq] at h₅
+    have h₈ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₉ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    have h₁₀ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₁₁ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    have h₁₂ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₁₃ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    have h₁₄ : ∑' n : ℕ, (c n) * (1 / 2) ^ n = q := by simp_all
+    have h₁₅ : ∑' n : ℕ, (c n) * (2 / 3) ^ n = 3 / 2 := by simp_all
+    -- Normalize the expressions to find a contradiction
+    norm_num [tsum_eq_single 0] at h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅
+    <;> aesop
+  exact h₆
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.80991005897522 / 12.62763524055481 / 35.43754529953003
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  have h₃ := hf 0
+  simp at h₁ h₂ h₃
+  have h₄ : f (2 / 3) = 3 / 2 := h
+  have h₅ : f (1 / 2) = ∑' n : ℕ, c n * (1 / 2) ^ n := by simp_all
+  have h₆ : Irrational (f (1 / 2)) := by
+    rw [h₅]
+    -- Assume for contradiction that f(1/2) is rational
+    intro h_contra
+    cases' h_contra with q hq
+    have h₇ := hc 0
+    have h₈ := hc 1
+    have h₉ := hc 2
+    have h₁₀ := hc 3
+    have h₁₁ := hc 4
+    have h₁₂ := hc 5
+    have h₁₃ := hc 6
+    have h₁₄ := hc 7
+    have h₁₅ := hc 8
+    have h₁₆ := hc 9
+    simp at h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆
+    norm_num at h₁ h₂ h₃ h₄ h₅
+    <;> norm_num [tsum_eq_single 0] at h₁ h₂ h₃ h₄ h₅
+    <;> simp_all [mul_comm]
+    <;> nlinarith
+  exact h₆
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.528382062911987 / 13.218689203262329 / 22.747071266174316
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  simp_all [tsum_eq_single 0]
+  <;> norm_num
+  <;> rcases hc 0 with (h₃ | h₃) <;> simp_all [pow_zero]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.139197826385498 / 13.746633052825928 / 28.885830879211426
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  simp_all [tsum_eq_single 0]
+  <;> norm_num
+  <;>
+    (try
+      {
+        norm_num at hc
+        have h₃ := hc 0
+        have h₄ := hc 1
+        have h₅ := hc 2
+        have h₆ := hc 3
+        norm_num at h₃ h₄ h₅ h₆
+        <;>
+        (try
+          {
+            simp_all [pow_succ]
+            <;>
+            norm_num
+            <;>
+            linarith
+          })
+      })
+  <;>
+    (try
+      {
+        norm_num
+        <;>
+        linarith
+      })
+  <;>
+    (try
+      {
+        exact irrational_sqrt_two
+      })
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.879615306854248 / 15.09121823310852 / 25.97083353996277
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  simp_all [tsum_eq_single 0]
+  all_goals
+    try
+      norm_num
+    try
+      aesop
+    try
+      simp_all [tsum_eq_single 0]
+    try
+      norm_num
+    try
+      aesop
+    try
+      simp_all [tsum_eq_single 0]
+    try
+      norm_num
+    try
+      aesop
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 25.629610300064087 / 14.345300912857056 / 39.97491121292114
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2017_b3
+(f : ℝ → ℝ)
+(c : ℕ → ℝ)
+(hc : ∀ n, c n = 0 ∨ c n = 1)
+(hf : ∀ x, f x = ∑' n : ℕ, (c n) * x^n)
+: f (2/3) = 3/2 → Irrational (f 1/2) := by
+  intro h
+  have h₁ := hf (2 / 3)
+  have h₂ := hf (1 / 2)
+  have h₃ := hf 0
+  simp at h₁ h₂ h₃
+  have h₄ : f (2 / 3) = 3 / 2 := h
+  have h₅ : f (1 / 2) = ∑' n : ℕ, c n * (1 / 2) ^ n := by simp_all
+  have h₆ : Irrational (f (1 / 2)) := by
+    rw [h₅]
+    -- We use the fact that the series converges very slowly and the properties of irrational numbers.
+    have h₇ : ∀ n : ℕ, c n = 0 ∨ c n = 1 := hc
+    have h₈ : ∑' n : ℕ, c n * (1 / 2) ^ n = ∑' n : ℕ, c n * (1 / 2) ^ n := rfl
+    -- We use the fact that the series converges very slowly and the properties of irrational numbers.
+    have h₉ : Irrational (∑' n : ℕ, c n * (1 / 2) ^ n) := by
+      -- We use the fact that the series converges very slowly and the properties of irrational numbers.
+      exfalso
+      -- We use the fact that the series converges very slowly and the properties of irrational numbers.
+      have h₁₀ : ∑' n : ℕ, c n * (1 / 2) ^ n = ∑' n : ℕ, c n * (1 / 2) ^ n := rfl
+      -- We use the fact that the series converges very slowly and the properties of irrational numbers.
+      simp_all [h₁, h₂, h₃, h₄, h₅, h₇, h₈, h₉]
+      <;> norm_num
+      <;> aesop
+    exact h₉
+  exact h₆

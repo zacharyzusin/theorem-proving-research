@@ -1,0 +1,22 @@
+Problem: problem_0420
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.898344039916992
+Lean check time (s): 2.723205804824829
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_568
+  (a : ℝ) :
+  (a - 1) * (a + 1) * (a + 2) - (a - 2) * (a + 1) = a^3 + a^2 := by
+  simp only [mul_add, mul_sub, add_mul, sub_mul, mul_one, mul_neg, mul_assoc, mul_comm, mul_left_comm]
+  ring
+  <;>
+  norm_num
+  <;>
+  linarith

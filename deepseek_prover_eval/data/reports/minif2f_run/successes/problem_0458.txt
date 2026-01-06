@@ -1,0 +1,31 @@
+Problem: problem_0458
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 8.431429147720337
+Lean check time (s): 3.3926494121551514
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_267
+  (x : ℝ)
+  (h₀ : x ≠ 1)
+  (h₁ : x ≠ -2)
+  (h₂ : (x + 1) / (x - 1) = (x - 2) / (x + 2)) :
+  x = 0 := by
+  have h₃ : x - 1 ≠ 0 := by
+    intro h
+    apply h₀
+    linarith
+  have h₄ : x + 2 ≠ 0 := by
+    intro h
+    apply h₁
+    linarith
+  field_simp at h₂
+  ring_nf at h₂
+  apply mul_left_cancel₀ (sub_ne_zero.mpr h₃)
+  nlinarith

@@ -1,0 +1,257 @@
+Problem: problem_0195
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 7
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.547969341278076 / 600.1471035480499 / 610.695072889328
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  ring_nf at h₀ h₁ ⊢
+  by_cases hb : b = 0 <;> by_cases ha : a = 0 <;> field_simp [ha, hb] at h₀ h₁ ⊢
+  <;> nlinarith [sq_nonneg (a - 2), sq_nonneg (b - 2 / 3), sq_nonneg (a + 2), sq_nonneg (b + 2 / 3),
+    sq_nonneg (a * b), sq_nonneg (a * b - 2 / 3), sq_nonneg (a * b + 2 / 3)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.733532905578613 / 600.1444311141968 / 613.8779640197754
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  have h₂ : b ≠ 0 := by
+    intro hb
+    rw [hb] at h₁
+    norm_num at h₁
+  have h₃ : a ≠ 0 := by
+    intro ha
+    rw [ha] at h₀
+    norm_num at h₀
+  field_simp at h₀ h₁
+  ring_nf at h₀ h₁ ⊢
+  nlinarith [sq_nonneg (a * b), sq_nonneg (a * b ^ 2), sq_nonneg (a * b ^ 3),
+    sq_nonneg (b ^ 2 - 2 / 3), sq_nonneg (b ^ 3 - 1 / 3),
+    sq_nonneg (a - 4 / 3), sq_nonneg (a + 4 / 3), sq_nonneg (b - 2 / 3),
+    sq_nonneg (b + 2 / 3)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.121188163757324 / 3.7025671005249023 / 16.823755264282227
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  have h₂ : b ≠ 0 := by
+    intro hb
+    rw [hb] at h₁
+    norm_num at h₁
+  have h₃ : a = (27 / 4) * b^3 := by
+    field_simp [h₂] at h₁
+    linarith
+  rw [h₃] at h₀
+  ring_nf at h₀
+  have h₄ : b = 1 / 2 := by
+    nlinarith [sq_nonneg (b - 1 / 2), sq_nonneg (b + 1 / 2), sq_nonneg (b ^ 2 - 1 / 4),
+      sq_nonneg (b ^ 2 + 1 / 4)]
+  subst h₄
+  nlinarith [sq_nonneg (a - 27 / 4), sq_nonneg (a + 27 / 4)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.805408000946045 / 600.0701401233673 / 614.8755481243134
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  have h₂ : b ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+  have h₃ : a = (27 / 4) * b^3 := by
+    field_simp [h₂] at h₁
+    linarith
+  rw [h₃] at h₀
+  ring_nf at h₀
+  have h₄ : b^3 ≠ 0 := by positivity
+  field_simp [h₂, h₄] at h₀ ⊢
+  nlinarith [sq_nonneg (b ^ 2), sq_nonneg (b ^ 3), sq_nonneg (b ^ 4),
+    sq_nonneg (b ^ 5), sq_nonneg (b ^ 6), sq_nonneg (b ^ 7), sq_nonneg (b ^ 8),
+    sq_nonneg (b ^ 9), sq_nonneg (b ^ 10), sq_nonneg (b ^ 11), sq_nonneg (b ^ 12)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.144569873809814 / 600.1412146091461 / 613.2857844829559
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  ring_nf at h₀ h₁ ⊢
+  have h₂ : b ≠ 0 := by
+    intro hb
+    rw [hb] at h₀ h₁
+    norm_num at h₀ h₁
+  have h₃ : a ≠ 0 := by
+    intro ha
+    rw [ha] at h₀ h₁
+    norm_num at h₀ h₁
+  field_simp at h₀ h₁ ⊢
+  nlinarith [sq_nonneg (a - 2), sq_nonneg (b - 2 / 3), sq_nonneg (a ^ 2 - 4), sq_nonneg (b ^ 2 - 4 / 9),
+    sq_nonneg (a * b), sq_nonneg (a * b - 4 / 3), sq_nonneg (a * b + 4 / 3)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.801725149154663 / 600.1649503707886 / 612.9666755199432
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  have h₂ : b ≠ 0 := by
+    intro hb
+    rw [hb] at h₁
+    norm_num at h₁
+  have h₃ : a ≠ 0 := by
+    intro ha
+    rw [ha] at h₀
+    norm_num at h₀
+  field_simp at h₀ h₁ ⊢
+  ring_nf at h₀ h₁ ⊢
+  nlinarith [sq_nonneg (a - 2), sq_nonneg (b - 2 / 3), sq_nonneg (a + b - 8 / 3),
+    sq_nonneg (a * b - 4 / 3), sq_nonneg (a * b + 4 / 3), sq_nonneg (a * b - 2),
+    sq_nonneg (a * b + 2)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.601739406585693 / 600.1346690654755 / 612.7364084720612
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  have h₂ : b ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+  have h₃ : a ≠ 0 := by
+    intro h
+    rw [h] at h₀
+    norm_num at h₀
+  field_simp at h₀ h₁
+  ring_nf at h₀ h₁ ⊢
+  nlinarith [sq_nonneg (a - 2), sq_nonneg (b - 2 / 3), sq_nonneg (a + b - 8 / 3),
+    sq_nonneg (a * b - 2), sq_nonneg (a * b + 2), sq_nonneg (a * b - 4 / 3),
+    sq_nonneg (a * b + 4 / 3)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.63545036315918 / 600.1493103504181 / 614.7847607135773
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_362
+  (a b : ℝ)
+  (h₀ : a^2 * b^3 = 32 / 27)
+  (h₁ : a / b^3 = 27 / 4) :
+  a + b = 8 / 3 := by
+  have h₂ : b ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+  have h₃ : a ≠ 0 := by
+    intro h
+    rw [h] at h₀
+    norm_num at h₀
+    <;> simp_all
+    <;> ring_nf
+    <;> nlinarith
+  field_simp at h₀ h₁
+  ring_nf at h₀ h₁ ⊢
+  nlinarith [sq_nonneg (a * b), sq_nonneg (a * b - 2 / 3),
+    sq_nonneg (a * b + 2 / 3), sq_nonneg (a * b - 1),
+    sq_nonneg (a * b + 1), sq_nonneg (a - b),
+    sq_nonneg (a + b), sq_nonneg (a * b - 4 / 3),
+    sq_nonneg (a * b + 4 / 3)]
+

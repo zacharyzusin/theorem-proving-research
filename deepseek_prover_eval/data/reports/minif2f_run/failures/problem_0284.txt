@@ -1,0 +1,281 @@
+Problem: problem_0284
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.93080449104309 / 4.660347938537598 / 21.59115242958069
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_one_or_self_of_dvd h₂ 2
+  have h₉ := Nat.Prime.eq_one_or_self_of_dvd h₃ 2
+  have h₁₀ := Nat.Prime.eq_one_or_self_of_dvd h₀ 2
+  have h₁₁ := Nat.Prime.eq_one_or_self_of_dvd h₁ 2
+  have h₁₂ := Nat.Prime.eq_one_or_self_of_dvd h₂ 3
+  have h₁₃ := Nat.Prime.eq_one_or_self_of_dvd h₃ 3
+  have h₁₄ := Nat.Prime.eq_one_or_self_of_dvd h₀ 3
+  have h₁₅ := Nat.Prime.eq_one_or_self_of_dvd h₁ 3
+  -- Use the above constraints to deduce that a and b must be 2, which is impossible for a prime number.
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.76486039161682 / 5.752788782119751 / 30.517649173736572
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_one_or_self_of_dvd h₂ 2
+  have h₉ := Nat.Prime.eq_one_or_self_of_dvd h₃ 2
+  have h₁₀ := Nat.Prime.eq_one_or_self_of_dvd h₀ 2
+  have h₁₁ := Nat.Prime.eq_one_or_self_of_dvd h₁ 2
+  have h₁₂ := Nat.Prime.eq_one_or_self_of_dvd h₂ 3
+  have h₁₃ := Nat.Prime.eq_one_or_self_of_dvd h₃ 3
+  have h₁₄ := Nat.Prime.eq_one_or_self_of_dvd h₀ 3
+  have h₁₅ := Nat.Prime.eq_one_or_self_of_dvd h₁ 3
+  -- We now consider the possible values of a and b that satisfy the given conditions.
+  -- Since a and b are primes, and a + b and a - b are also primes, we can deduce that a and b must be 5 and 2.
+  -- This is because 5 + 2 = 7, which is prime, and 5 - 2 = 3, which is also prime.
+  -- Substituting a = 5 and b = 2 into the expression a + b + (a - b + (a + b)), we get 5 + 2 + (5 - 2 + (5 + 2)) = 5 + 2 + 5 + 2 + 2 = 16, which is not prime.
+  -- Therefore, the original statement is false, and there are no such a and b that satisfy the given conditions.
+  simp_all [Nat.Prime, Nat.succ_le_iff]
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.24412226676941 / 4.338943004608154 / 14.583065271377563
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_two_or_odd h₀
+  have h₉ := Nat.Prime.eq_two_or_odd h₁
+  have h₁₀ := Nat.Prime.eq_two_or_odd h₂
+  have h₁₁ := Nat.Prime.eq_two_or_odd h₃
+  omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.473692417144775 / 5.731849193572998 / 20.205541610717773
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_two_or_odd h₀
+  have h₉ := Nat.Prime.eq_two_or_odd h₁
+  have h₁₀ := Nat.Prime.eq_two_or_odd h₂
+  have h₁₁ := Nat.Prime.eq_two_or_odd h₃
+  cases' h₈ with h₈ h₈ <;> cases' h₉ with h₉ h₉ <;> cases' h₁₀ with h₁₀ h₁₀ <;> cases' h₁₁ with h₁₁ h₁₁ <;> simp_all [Nat.Prime, Nat.succ_le_iff, Nat.le_of_lt]
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 30.478431463241577 / 6.424759387969971 / 36.90319085121155
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_one_or_self_of_dvd h₂ 2
+  have h₉ := Nat.Prime.eq_one_or_self_of_dvd h₃ 2
+  have h₁₀ := Nat.Prime.eq_one_or_self_of_dvd h₀ 2
+  have h₁₁ := Nat.Prime.eq_one_or_self_of_dvd h₁ 2
+  have h₁₂ := Nat.Prime.eq_one_or_self_of_dvd h₂ 3
+  have h₁₃ := Nat.Prime.eq_one_or_self_of_dvd h₃ 3
+  have h₁₄ := Nat.Prime.eq_one_or_self_of_dvd h₀ 3
+  have h₁₅ := Nat.Prime.eq_one_or_self_of_dvd h₁ 3
+  -- We need to show that the expression is prime. We will use the fact that the sum of two primes and their difference is prime.
+  have h₁₆ : a = 5 := by
+    -- By testing small primes, we find that a = 5 and b = 2 satisfy the conditions.
+    have h₁₆ := h₀.eq_one_or_self_of_dvd 3
+    have h₁₇ := h₁.eq_one_or_self_of_dvd 3
+    have h₁₈ := h₂.eq_one_or_self_of_dvd 3
+    have h₁₉ := h₃.eq_one_or_self_of_dvd 3
+    omega
+  have h₁₇ : b = 2 := by
+    -- By testing small primes, we find that a = 5 and b = 2 satisfy the conditions.
+    have h₁₇ := h₀.eq_one_or_self_of_dvd 2
+    have h₁₈ := h₁.eq_one_or_self_of_dvd 2
+    have h₁₉ := h₂.eq_one_or_self_of_dvd 2
+    have h₂₀ := h₃.eq_one_or_self_of_dvd 2
+    omega
+  -- Substitute a = 5 and b = 2 into the ex
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.172630310058594 / 5.3830695152282715 / 31.555699825286865
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_one_or_self_of_dvd h₂ 2
+  have h₉ := Nat.Prime.eq_one_or_self_of_dvd h₃ 2
+  have h₁₀ := Nat.Prime.eq_one_or_self_of_dvd h₀ 2
+  have h₁₁ := Nat.Prime.eq_one_or_self_of_dvd h₁ 2
+  have h₁₂ := Nat.Prime.eq_one_or_self_of_dvd h₂ 3
+  have h₁₃ := Nat.Prime.eq_one_or_self_of_dvd h₃ 3
+  have h₁₄ := Nat.Prime.eq_one_or_self_of_dvd h₀ 3
+  have h₁₅ := Nat.Prime.eq_one_or_self_of_dvd h₁ 3
+  -- We need to show that the sum is prime. We will use the fact that the sum of two primes is prime.
+  have h₁₆ : a = 2 := by
+    -- We will show that a must be 2.
+    have h₁₆ := h₀.eq_one_or_self_of_dvd 3
+    have h₁₇ := h₁.eq_one_or_self_of_dvd 3
+    omega
+  have h₁₇ : b = 2 := by
+    -- We will show that b must be 2.
+    have h₁₇ := h₁.eq_one_or_self_of_dvd 3
+    have h₁₈ := h₀.eq_one_or_self_of_dvd 3
+    omega
+  -- Since a and b are both 2, the sum is 4, which is not prime.
+  simp_all (config := {decide := true})
+  <;> norm_num
+  <;> try contradiction
+  <;> try linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.251026630401611 / 4.275114297866821 / 14.526140928268433
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := h₀.two_le
+  have h₅ := h₁.two_le
+  have h₆ := h₂.two_le
+  have h₇ := h₃.two_le
+  have h₈ := Nat.Prime.eq_two_or_odd h₀
+  have h₉ := Nat.Prime.eq_two_or_odd h₁
+  have h₁₀ := Nat.Prime.eq_two_or_odd h₂
+  have h₁₁ := Nat.Prime.eq_two_or_odd h₃
+  omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.968142986297607 / 5.414959192276001 / 23.38310217857361
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2002_p11
+  (a b : ℕ)
+  (h₀ : Nat.Prime a)
+  (h₁ : Nat.Prime b)
+  (h₂ : Nat.Prime (a + b))
+  (h₃ : Nat.Prime (a - b)) :
+  Nat.Prime (a + b + (a - b + (a + b))) := by
+  have h₄ := Nat.Prime.ne_one h₀
+  have h₅ := Nat.Prime.ne_one h₁
+  have h₆ := Nat.Prime.ne_one h₂
+  have h₇ := Nat.Prime.ne_one h₃
+  have h₈ := Nat.Prime.eq_one_or_self_of_dvd h₂ 2
+  have h₉ := Nat.Prime.eq_one_or_self_of_dvd h₃ 2
+  have h₁₀ := Nat.Prime.eq_one_or_self_of_dvd h₀ 2
+  have h₁₁ := Nat.Prime.eq_one_or_self_of_dvd h₁ 2
+  have h₁₂ := Nat.Prime.eq_one_or_self_of_dvd h₂ 3
+  have h₁₃ := Nat.Prime.eq_one_or_self_of_dvd h₃ 3
+  have h₁₄ := Nat.Prime.eq_one_or_self_of_dvd h₀ 3
+  have h₁₅ := Nat.Prime.eq_one_or_self_of_dvd h₁ 3
+  norm_num at h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅
+  omega
+

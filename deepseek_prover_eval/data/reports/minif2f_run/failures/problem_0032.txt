@@ -1,0 +1,251 @@
+Problem: problem_0032
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.95036768913269 / 20.430120706558228 / 32.38048839569092
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m ≤ 126 := by
+    have : m ∣ 126 := by
+      have : m ∣ Nat.lcm m n := Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) this
+  have h₃ : n ≤ 126 := by
+    have : n ∣ 126 := by
+      have : n ∣ Nat.lcm m n := Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) this
+  interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ ⊢ <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.45728087425232 / 20.49874234199524 / 32.95602321624756
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m ≤ 126 := by
+    have : m ∣ 126 := by
+      have : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) this
+  have h₃ : n ≤ 126 := by
+    have : n ∣ 126 := by
+      have : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) this
+  interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ ⊢ <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 21.591517448425293 / 17.824806928634644 / 39.41632437705994
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m + n ≥ 60 := by
+    have h₃ : m ≤ 126 := by
+      have h₄ : m ∣ 126 := by
+        have h₅ : m ∣ Nat.lcm m n := by
+          exact Nat.dvd_lcm_left m n
+        simp_all
+      exact Nat.le_of_dvd (by norm_num) h₄
+    have h₄ : n ≤ 126 := by
+      have h₅ : n ∣ 126 := by
+        have h₆ : n ∣ Nat.lcm m n := by
+          exact Nat.dvd_lcm_right m n
+        simp_all
+      exact Nat.le_of_dvd (by norm_num) h₅
+    have h₅ : m + n ≥ 60 := by
+      -- We use the fact that the gcd and lcm of m and n are given to be 6 and 126 respectively.
+      -- This implies that both m and n are multiples of 6, and their product is 756.
+      -- We then use the inequality involving the sum and product of m and n to derive the lower bound.
+      contrapose! h₀
+      have h₆ : m ≤ 126 := by linarith
+      have h₇ : n ≤ 126 := by linarith
+      interval_cases m <;> interval_cases n <;> norm_num [Nat.gcd_eq_right, Nat.gcd_eq_left] at h₀ h₁ ⊢ <;> omega
+    exact h₅
+  exact h₂
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.814335823059082 / 21.05419373512268 / 33.86852955818176
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m ≤ 126 := by
+    have h₂ : m ∣ 126 := by
+      have h₂ : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₂
+  have h₃ : n ≤ 126 := by
+    have h₃ : n ∣ 126 := by
+      have h₃ : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₃
+  interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ ⊢ <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.286191463470459 / 18.36761784553528 / 31.653809309005737
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m ≤ 126 := by
+    have h₂ : m ∣ 126 := by
+      have h₂ : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₂
+  have h₃ : n ≤ 126 := by
+    have h₃ : n ∣ 126 := by
+      have h₃ : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₃
+  interval_cases m <;> interval_cases n <;> norm_num [Nat.gcd_eq_right, Nat.lcm, Nat.gcd_eq_left] at * <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.158823013305664 / 21.165273427963257 / 36.32409644126892
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m + n ≥ 60 := by
+    have h₃ : m ≤ 126 := by
+      have h₄ : m ∣ 126 := by
+        have h₅ : m ∣ Nat.lcm m n := by
+          exact Nat.dvd_lcm_left m n
+        simp_all
+      exact Nat.le_of_dvd (by norm_num) h₄
+    have h₄ : n ≤ 126 := by
+      have h₅ : n ∣ 126 := by
+        have h₆ : n ∣ Nat.lcm m n := by
+          exact Nat.dvd_lcm_right m n
+        simp_all
+      exact Nat.le_of_dvd (by norm_num) h₅
+    have h₅ : m + n ≥ 60 := by
+      interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ ⊢ <;> omega
+    exact h₅
+  exact h₂
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.002012968063354 / 20.66272211074829 / 33.664735078811646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m ≤ 126 := by
+    have h₃ : m ∣ 126 := by
+      have h₄ : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₃
+  have h₃ : n ≤ 126 := by
+    have h₄ : n ∣ 126 := by
+      have h₅ : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₄
+  interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ ⊢ <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.672548532485962 / 20.763502597808838 / 33.4360511302948
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_277
+  (m n : ℕ)
+  (h₀ : Nat.gcd m n = 6)
+  (h₁ : Nat.lcm m n = 126) :
+  60 ≤ m + n := by
+  have h₂ : m ≤ 126 := by
+    have h₂ : m ∣ 126 := by
+      have h₂ : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₂
+  have h₃ : n ≤ 126 := by
+    have h₃ : n ∣ 126 := by
+      have h₃ : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₃
+  interval_cases m <;> interval_cases n <;> norm_num at h₀ h₁ ⊢ <;>
+    omega
+

@@ -1,0 +1,150 @@
+Problem: putnam_1991_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.435325384140015 / 19.01244831085205 / 44.447773694992065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.314177989959717 / 18.74240517616272 / 28.056583166122437
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.082799196243286 / 18.593971252441406 / 38.67677044868469
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.872010469436646 / 18.660900115966797 / 28.532910585403442
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.100119829177856 / 18.378531455993652 / 29.47865128517151
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.997772455215454 / 18.74053168296814 / 28.738304138183594
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.91904902458191 / 18.907849311828613 / 34.82689833641052
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 31.804332494735718 / 19.095722913742065 / 50.90005540847778
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1991_a4 :
+    (∃ (c : ℕ → EuclideanSpace ℝ (Fin 2)) (r : ℕ → ℝ),
+      (¬ ∃ p, MapClusterPt p atTop c) ∧
+      (Summable <| fun i ↦ r i ^ 2) ∧
+      (∀ L : AffineSubspace ℝ (EuclideanSpace ℝ (Fin 2)),
+        Module.finrank ℝ L.direction = 1 → ∃ i, (↑L ∩ closedBall (c i) (r i)).Nonempty)) ↔
+    putnam_1991_a4_solution :=
+  sorry

@@ -1,0 +1,20 @@
+Problem: problem_0485
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.492034912109375
+Lean check time (s): 4.155466794967651
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_202 :
+  (19^19 + 99^99) % 10 = 8 := by
+  norm_num [Nat.pow_mod, Nat.add_mod, Nat.mod_eq_of_lt, show 2 ≤ 10 by norm_num]
+  <;> rfl
+  <;> decide
+  <;> decide
+  <;> decide

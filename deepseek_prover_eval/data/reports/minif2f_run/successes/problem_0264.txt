@@ -1,0 +1,37 @@
+Problem: problem_0264
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.905078887939453
+Lean check time (s): 3.7557613849639893
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1964_p1_2
+  (n : ℕ) :
+  ¬ 7 ∣ (2^n + 1) := by
+  rw [Nat.dvd_iff_mod_eq_zero]
+  rw [← Nat.mod_add_div (2^n) 7]
+  have h : 2^n % 7 = 1 ∨ 2^n % 7 = 2 ∨ 2^n % 7 = 4 := by
+    induction n with
+    | zero => simp
+    | succ n ih =>
+      cases ih with
+      | inl h =>
+        rw [Nat.pow_succ]
+        simp [h, Nat.mul_mod, Nat.add_mod]
+      | inr h =>
+        cases h with
+        | inl h =>
+          rw [Nat.pow_succ]
+          simp [h, Nat.mul_mod, Nat.add_mod]
+        | inr h =>
+          rw [Nat.pow_succ]
+          simp [h, Nat.mul_mod, Nat.add_mod]
+  rcases h with (h | h | h) <;> simp [h, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> omega

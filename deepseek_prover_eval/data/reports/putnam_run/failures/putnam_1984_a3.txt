@@ -1,0 +1,174 @@
+Problem: putnam_1984_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 31.736220121383667 / 15.235433578491211 / 46.97165369987488
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.89460825920105 / 17.465515851974487 / 46.36012411117554
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 44.161834478378296 / 13.069061040878296 / 57.23089551925659
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 26.32732319831848 / 13.211680173873901 / 39.53900337219238
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 34.96102213859558 / 13.04300832748413 / 48.00403046607971
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 33.78847026824951 / 12.781370878219604 / 46.569841146469116
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.38168215751648 / 15.091366529464722 / 35.4730486869812
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 65.76947045326233 / 13.737791299819946 / 79.50726175308228
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a3
+(n : ℕ)
+(a b : ℝ)
+(Mn : ℝ → Matrix (Fin (2 * n)) (Fin (2 * n)) ℝ)
+(polyabn : Fin 3 → ℝ)
+(npos : n > 0)
+(aneb : a ≠ b)
+(hMn : Mn = fun x : ℝ => fun i j : Fin (2 * n) => if i = j then x else if Even (i.1 + j.1) then a else b)
+(hpolyabn : polyabn 0 = a ∧ polyabn 1 = b ∧ polyabn 2 = n)
+: Tendsto (fun x : ℝ => (Mn x).det / (x - a) ^ (2 * n - 2)) (𝓝[≠] a) (𝓝 (MvPolynomial.eval polyabn putnam_1984_a3_solution)) :=
+sorry

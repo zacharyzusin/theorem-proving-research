@@ -1,0 +1,150 @@
+Problem: putnam_1996_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.638452529907227 / 4.36142635345459 / 26.999878883361816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 51.146549463272095 / 4.367907762527466 / 55.51445722579956
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 25.899365425109863 / 4.3551366329193115 / 30.254502058029175
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 31.28955888748169 / 4.366747856140137 / 35.656306743621826
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.690967559814453 / 4.345426797866821 / 26.036394357681274
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.848328828811646 / 4.3375983238220215 / 28.185927152633667
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.44867968559265 / 4.306235074996948 / 23.7549147605896
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 29.482516288757324 / 4.310175895690918 / 33.79269218444824
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a2
+(O1 O2 : EuclideanSpace ℝ (Fin 2))
+(C1 C2 : Set (EuclideanSpace ℝ (Fin 2)))
+(hC1 : C1 = sphere O1 1)
+(hC2 : C2 = sphere O2 3)
+(hO1O2 : dist O1 O2 = 10)
+: {M : EuclideanSpace ℝ (Fin 2) | ∃ X Y, X ∈ C1 ∧ Y ∈ C2 ∧ M = midpoint ℝ X Y} = putnam_1996_a2_solution O1 O2 :=
+sorry

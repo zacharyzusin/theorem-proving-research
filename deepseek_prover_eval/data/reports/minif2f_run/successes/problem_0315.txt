@@ -1,0 +1,21 @@
+Problem: problem_0315
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.04276967048645
+Lean check time (s): 3.375391960144043
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_335
+  (n : ℕ)
+  (h₀ : n % 7 = 5) :
+  (5 * n) % 7 = 4 := by
+  rw [← Nat.mod_add_div n 7]
+  simp [h₀, Nat.mul_mod, Nat.add_mod, Nat.mod_mod, Nat.mul_assoc]
+  <;> norm_num
+  <;> omega

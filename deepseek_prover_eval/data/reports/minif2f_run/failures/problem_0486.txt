@@ -1,0 +1,169 @@
+Problem: problem_0486
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 6.644639253616333 / 2.8284413814544678 / 9.4730806350708
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num at h₁
+  <;>
+  simp_all [Finset.sum_range_succ, Nat.div_eq_of_lt, Nat.succ_div]
+  <;>
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 6.404486894607544 / 2.8635976314544678 / 9.268084526062012
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num at h₁
+  <;>
+  simp_all [Finset.sum_range_succ, Int.emod_eq_of_lt]
+  <;>
+  omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.893953561782837 / 3.1830451488494873 / 11.076998710632324
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num [Finset.sum_range_succ, Int.emod_eq_of_lt] at h₁
+  <;>
+  rcases q with (_ | _ | q) <;>
+  simp_all [Finset.sum_range_succ, Nat.div_eq_of_lt]
+  <;>
+  omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 6.287574529647827 / 2.850493907928467 / 9.138068437576294
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num at h₁
+  simp_all [Finset.sum_range_succ, Nat.div_eq_of_lt, Nat.succ_div]
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 6.301962614059448 / 2.639194965362549 / 8.941157579421997
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num [Finset.sum_Icc_succ_top] at h₁
+  simp_all [Int.emod_eq_of_lt]
+  <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 7.216464996337891 / 2.8431193828582764 / 10.059584379196167
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num [Finset.sum_range_succ, Nat.div_eq_of_lt] at h₁
+  <;>
+  simp_all [Finset.sum_range_succ, Nat.div_eq_of_lt]
+  <;>
+  omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 6.438817024230957 / 2.862894296646118 / 9.301711320877075
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num at h₁
+  <;>
+  simp_all [Finset.sum_range_succ, Int.emod_eq_of_lt]
+  <;>
+  omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 6.338738441467285 / 2.9212803840637207 / 9.260018825531006
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1979_p1
+  (p q : ℕ)
+  (h₀ : 0 < q)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 1319, ((-1:ℤ)^(k + 1) * ((1)/k)) = p/q) :
+  1979 ∣ p := by
+  norm_num at h₁
+  simp_all [Finset.sum_range_succ, Nat.div_eq_of_lt, Nat.succ_div]
+  <;> omega
+

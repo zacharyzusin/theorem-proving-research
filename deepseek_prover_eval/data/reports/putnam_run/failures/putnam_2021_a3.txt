@@ -1,0 +1,182 @@
+Problem: putnam_2021_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.284727334976196 / 8.426839590072632 / 31.711566925048828
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 34.33398652076721 / 8.042765617370605 / 42.37675213813782
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 59.71288704872131 / 7.416435956954956 / 67.12932300567627
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.43283987045288 / 7.685459852218628 / 22.11829972267151
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 42.731674671173096 / 9.540563344955444 / 52.27223801612854
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 49.826945304870605 / 8.486915349960327 / 58.31386065483093
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 27.226524829864502 / 8.098632097244263 / 35.325156927108765
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.372446537017822 / 8.264618635177612 / 30.637065172195435
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a3
+  (N : ℕ)
+  (Nsphere : Set (EuclideanSpace ℝ (Fin 3)))
+  (hNsphere : Nsphere = {p | (p 0) ^ 2 + (p 1) ^ 2 + (p 2) ^ 2 = (N : ℝ)})
+  (intcoords : (EuclideanSpace ℝ (Fin 3)) → Prop)
+  (intcoords_def : ∀ p, intcoords p ↔ ∀ i : Fin 3, p i = round (p i)) :
+  (0 < N ∧ ∃ A B C D : EuclideanSpace ℝ (Fin 3),
+    A ∈ Nsphere ∧ B ∈ Nsphere ∧ C ∈ Nsphere ∧ D ∈ Nsphere ∧
+    intcoords A ∧ intcoords B ∧ intcoords C ∧ intcoords D ∧
+    (∃ s > 0, dist A B = s ∧ dist A C = s ∧ dist A D = s ∧ dist B C = s ∧ dist B D = s ∧ dist C D = s))
+  ↔ N ∈ putnam_2021_a3_solution :=
+sorry

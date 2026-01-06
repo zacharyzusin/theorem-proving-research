@@ -1,0 +1,134 @@
+Problem: putnam_1974_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.388601779937744 / 37.15037202835083 / 48.538973808288574
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.568675518035889 / 59.84009337425232 / 69.40876889228821
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.101433038711548 / 40.49190139770508 / 51.593334436416626
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.027747869491577 / 42.70772886276245 / 53.73547673225403
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.285350799560547 / 62.976338624954224 / 73.26168942451477
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.844165086746216 / 44.970951795578 / 54.81511688232422
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.245558500289917 / 53.141021490097046 / 63.38657999038696
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.265399694442749 / 57.90802717208862 / 68.17342686653137
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b4
+(f : ℝ × ℝ → ℝ)
+(hfcontx : ∀ y : ℝ, Continuous (fun x => f ⟨x, y⟩))
+(hfconty : ∀ x : ℝ, Continuous (fun y => f ⟨x, y⟩))
+: ∃ g : ℕ → (ℝ × ℝ → ℝ), (∀ n : ℕ, Continuous (g n)) ∧ (∀ x y : ℝ, Tendsto (fun n => g n ⟨x, y⟩) atTop (𝓝 (f ⟨x, y⟩))) :=
+sorry

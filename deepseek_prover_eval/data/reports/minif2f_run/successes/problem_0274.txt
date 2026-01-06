@@ -1,0 +1,23 @@
+Problem: problem_0274
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.646653175354004
+Lean check time (s): 2.6889102458953857
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_48
+  (q e : ℂ)
+  (h₀ : q = 9 - 4 * Complex.I)
+  (h₁ : e = -3 - 4 * Complex.I) : q - e = 12 := by
+  simp_all [Complex.ext_iff, sub_eq_add_neg, add_comm]
+  <;> norm_num
+  <;> ring
+  <;> norm_num
+  <;> ring
+  <;> norm_num

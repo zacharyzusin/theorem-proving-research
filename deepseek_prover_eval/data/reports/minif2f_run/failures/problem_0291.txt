@@ -1,0 +1,307 @@
+Problem: problem_0291
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.58572816848755 / 6.6324615478515625 / 29.21818971633911
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  induction' n with n ih
+  · simp_all
+  simp_all [Finset.prod_range_succ, Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul]
+  have h₁ : a n ≥ 1 := by
+    have h₂ : ∏ i in Finset.range n, a i = 1 := by simp_all
+    have h₃ : a n ≥ 1 := by
+      by_contra h
+      have h₄ : a n < 1 := by simp_all
+      have h₅ : ∏ i in Finset.range n, a i < 1 := by
+        calc
+          ∏ i in Finset.range n, a i < ∏ i in Finset.range n, 1 := by
+            exact Finset.prod_lt_prod' (fun i _ => by simp_all) ⟨0, Finset.mem_range.mpr (Nat.zero_lt_succ n), by simp_all⟩
+          _ = 1 := by simp
+      simp_all
+    simp_all
+  have h₂ : ∏ i in Finset.range n, a i = 1 := by simp_all
+  have h₃ : ∑ i in Finset.range n, a i ≥ n := by
+    simp_all [Finset.prod_range_succ, Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul]
+    all_goals
+      nlinarith
+  simp_all [Finset.prod_range_succ, Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul]
+  <;> nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.716867446899414 / 2.8584821224212646 / 18.57534956932068
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  have h₁ : ∀ i ∈ Finset.range n, a i ≥ 1 := by
+    intro i hi
+    have h₂ : ∏ j in Finset.range n, a j = 1 := h₀
+    have h₃ : a i ≥ 1 := by
+      apply le_of_not_lt
+      intro h
+      have h₄ : ∏ j in Finset.range n, a j < 1 := by
+        calc
+          (∏ j in Finset.range n, a j) < 1 := by
+            apply Finset.prod_lt_one (fun i hi => by simp_all [Finset.mem_range])
+            <;> simp_all [Finset.mem_range]
+          _ = 1 := by simp
+      simp_all
+    exact h₃
+  calc
+    Finset.sum (Finset.range n) a ≥ ∑ i in Finset.range n, 1 := by
+      apply Finset.sum_le_sum
+      intro x hx
+      exact h₁ x hx
+    _ = n := by simp
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.143514394760132 / 2.845177412033081 / 17.988691806793213
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  have h₁ : ∀ i ∈ Finset.range n, a i ≥ 1 := by
+    intro i hi
+    have h₂ : ∏ j in Finset.range n, a j = 1 := h₀
+    have h₃ : a i ≥ 1 := by
+      apply le_of_not_lt
+      intro h
+      have h₄ : ∏ j in Finset.range n, a j < 1 := by
+        calc
+          ∏ j in Finset.range n, a j = ∏ j in Finset.range n, a j := rfl
+          _ < 1 := by
+            apply Finset.prod_lt_one (fun j hj => by simp_all [h₀])
+            <;> simp_all [h]
+      simp_all
+    exact h₃
+  calc
+    Finset.sum (Finset.range n) a ≥ ∑ i in Finset.range n, 1 := by
+      exact Finset.sum_le_sum h₁
+    _ = n := by simp
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.172362804412842 / 2.9547994136810303 / 21.127162218093872
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  have h₁ : ∀ i ∈ Finset.range n, a i ≥ 1 := by
+    intro i hi
+    have h₂ : ∏ j in Finset.range n, a j = 1 := h₀
+    have h₃ : a i ≥ 1 := by
+      have h₄ : a i ≠ 0 := by
+        intro h
+        rw [h] at h₂
+        simp_all
+      exact by
+        apply le_of_not_lt
+        intro h
+        have h₅ : ∏ j in Finset.range n, a j < 1 := by
+          calc
+            ∏ j in Finset.range n, a j < ∏ j in Finset.range n, 1 := by
+              apply Finset.prod_lt_prod
+              all_goals aesop
+              <;> aesop
+            _ = 1 := by simp
+        rw [h₅] at h₂
+        simp_all
+    exact h₃
+  exact by
+    calc
+      Finset.sum (Finset.range n) a ≥ Finset.sum (Finset.range n) (fun _ => 1 : ℕ → NNReal) := by
+        exact Finset.sum_le_sum h₁
+      _ = n := by simp [Finset.sum_const, Finset.card_range]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.25122332572937 / 3.7057621479034424 / 18.956985473632812
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  have h₁ : ∀ i ∈ Finset.range n, a i ≥ 1 := by
+    intro i hi
+    have h₂ : ∏ j in Finset.range n, a j = 1 := h₀
+    have h₃ : a i ≥ 1 := by
+      apply le_of_not_lt
+      intro h
+      have h₄ : ∏ j in Finset.range n, a j < 1 := by
+        calc
+          (∏ j in Finset.range n, a j) < ∏ j in Finset.range n, 1 := by
+            apply Finset.prod_lt_prod
+            · simp_all
+            · simp_all
+          _ = 1 := by simp
+      simp_all
+    exact h₃
+  exact
+    calc
+      Finset.sum (Finset.range n) a ≥ ∑ i in Finset.range n, 1 := by
+        apply Finset.sum_le_sum
+        intro i hi
+        exact h₁ i hi
+      _ = n := by simp
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.822822093963623 / 2.54373836517334 / 15.366560459136963
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  have h₁ : ∀ i ∈ Finset.range n, a i ≥ 1 := by
+    intro i hi
+    have h₂ : ∏ j in Finset.range n, a j = 1 := h₀
+    have h₃ : a i ∣ 1 := by
+      rw [← h₂]
+      exact Finset.dvd_prod_of_mem _ hi
+    simp [Nat.dvd_one] at h₃
+    simp_all
+  have h₂ : ∑ i in Finset.range n, a i ≥ n := by
+    calc
+      (∑ i in Finset.range n, a i) ≥ ∑ i in Finset.range n, 1 := by
+        exact Finset.sum_le_sum h₁
+      _ = n := by simp
+  exact h₂
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.873294830322266 / 4.099325895309448 / 23.972620725631714
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  have h₁ : ∀ i ∈ Finset.range n, a i ≥ 1 := by
+    intro i hi
+    have h₂ : ∏ j in Finset.range n, a j = 1 := h₀
+    have h₃ : a i ≥ 1 := by
+      have h₄ : a i ∈ Set.univ := Set.mem_univ (a i)
+      have h₅ : a i ≥ 1 := by
+        apply le_of_not_lt
+        intro h
+        have h₆ : a i < 1 := h
+        have h₇ : ∏ j in Finset.range n, a j < 1 := by
+          calc
+            ∏ j in Finset.range n, a j = ∏ j in Finset.range n, a j := rfl
+            _ < 1 := by
+              apply Finset.prod_lt_one
+              · intro i hi
+                exact zero_le_one
+              · exact ⟨i, hi, by simp_all [Finset.mem_range]⟩
+        rw [h₀] at h₇
+        exact by simp_all
+      exact h₅
+    exact h₃
+  calc
+    Finset.sum (Finset.range n) a ≥ ∑ i in Finset.range n, 1 := by
+      exact Finset.sum_le_sum fun i hi => h₁ i hi
+    _ = n := by simp [Finset.sum_const, Finset.card_range]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.857210636138916 / 4.609246015548706 / 25.466456651687622
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_amgm_prod1toneq1_sum1tongeqn
+  (a : ℕ → NNReal)
+  (n : ℕ)
+  (h₀ : Finset.prod (Finset.range (n)) a = 1) :
+  Finset.sum (Finset.range (n)) a ≥ n := by
+  induction' n with n IH
+  · simp_all
+  · simp_all [Finset.sum_range_succ, Finset.prod_range_succ, Nat.cast_add, Nat.cast_one]
+    have h₁ : a n ≥ 1 := by
+      have h₂ : a n ≥ 1 := by
+        have h₃ : ∏ i in Finset.range n, a i = 1 := by simp_all
+        have h₄ : a n ≥ 1 := by
+          by_contra h
+          have h₅ : a n < 1 := by simp_all
+          have h₆ : ∏ i in Finset.range n, a i < 1 := by
+            calc
+              ∏ i in Finset.range n, a i = ∏ i in Finset.range n, a i := rfl
+              _ < 1 := by
+                apply Finset.prod_lt_one
+                · intro i hi
+                  simp_all
+                  <;> exact zero_lt_one
+                · exact ⟨n, Finset.mem_range.mpr (by linarith), by simp_all⟩
+          simp_all
+        simp_all
+      simp_all
+    have h₂ : a n ≥ 1 := by simp_all
+    have h₃ : (∑ i in Finset.range n, a i) ≥ n := by
+      simpa [h₂] using IH (by simp_all)
+    simp_all [add_comm, add_left_comm, add_assoc]
+    <;> nlinarith
+

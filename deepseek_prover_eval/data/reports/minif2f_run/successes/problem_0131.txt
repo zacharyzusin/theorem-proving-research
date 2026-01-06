@@ -1,0 +1,25 @@
+Problem: problem_0131
+Dataset: minif2f
+Mode: noncot
+First success attempt: 5
+Generation time (s): 11.855349779129028
+Lean check time (s): 4.590178728103638
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p18
+  (f : ℚ → ℝ)
+  (h₀ : ∀x>0, ∀y>0, f (x * y) = f x + f y)
+  (h₁ : ∀p, Nat.Prime p → f p = p) :
+  f (25 / 11) < 0 := by
+  have h₂ := h₀ 5 (by norm_num) 5 (by norm_num)
+  have h₃ := h₁ 5 (by norm_num)
+  have h₄ := h₀ 5 (by norm_num) 11 (by norm_num)
+  have h₅ := h₁ 11 (by norm_num)
+  have h₆ := h₀ (25 / 11) (by norm_num) 11 (by norm_num)
+  norm_num [div_eq_mul_inv] at *
+  nlinarith [h₀ 5 (by norm_num) 11 (by norm_num)]

@@ -1,0 +1,150 @@
+Problem: putnam_2013_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.839560270309448 / 9.286710500717163 / 24.12627077102661
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.68942379951477 / 7.807470083236694 / 21.496893882751465
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.379079580307007 / 7.451159954071045 / 22.83023953437805
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.99549913406372 / 7.829355478286743 / 19.824854612350464
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.680612325668335 / 7.713935613632202 / 22.394547939300537
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.094372749328613 / 8.583710193634033 / 23.678082942962646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 23.44113326072693 / 9.806548357009888 / 33.247681617736816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.120163917541504 / 9.358122825622559 / 23.478286743164062
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b4
+    (μ Var M : C(Icc (0 : ℝ) 1, ℝ) → ℝ)
+    (hμ : ∀ f, μ f = ∫ x, f x)
+    (hVar : ∀ f, Var f = ∫ x, (f x - μ f) ^ 2)
+    (hM : ∀ f : C(Icc (0 : ℝ) 1, ℝ), IsGreatest (range <| abs ∘ f) (M f))
+    (f g : C(Icc (0 : ℝ) 1, ℝ)) :
+    Var (f * g) ≤ 2 * Var f * (M g) ^ 2 + 2 * Var g * (M f) ^ 2 :=
+sorry

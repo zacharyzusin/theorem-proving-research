@@ -1,0 +1,317 @@
+Problem: problem_0437
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.645430326461792 / 5.509788513183594 / 34.155218839645386
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₁ := h₀ i
+  have h₂ := h₀ 0
+  have h₃ := h₀ (Nat.floor (Real.sqrt (p / 3)))
+  have h₄ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+    have h₅ : i ≤ p - 2 := hi
+    have h₆ : p ≥ 2 := by
+      by_contra h
+      have h₇ : p = 0 ∨ p = 1 := by omega
+      cases h₇ with
+      | inl h₇ =>
+        rw [h₇] at h₀
+        have h₈ := h₀ 0
+        have h₉ := h₀ 1
+        norm_num at h₈ h₉
+        <;> simp_all [Nat.Prime]
+      | inr h₇ =>
+        rw [h₇] at h₀
+        have h₈ := h₀ 0
+        have h₉ := h₀ 1
+        norm_num at h₈ h₉
+        <;> simp_all [Nat.Prime]
+    have h₇ : (p : ℝ) ≥ 2 := by exact_mod_cast h₆
+    have h₈ : (p : ℝ) / 3 ≥ 2 / 3 := by linarith
+    have h₉ : Real.sqrt (p / 3) ≥ Real.sqrt (2 / 3) := by
+      apply Real.sqrt_le_sqrt
+      linarith
+    have h₁₀ : Nat.floor (Real.sqrt (p / 3)) ≥ 1 := by
+      have h₁₁ : Real.sqrt (2 / 3) ≥ 0 := by positivity
+      have h₁₂ : Nat.floor (Real.sqrt (p / 3)) ≥ 1 := by
+        apply Nat.succ_le_of_lt
+        apply Nat.floor_pos.mpr
+        norm_num
+        nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 2 / 3 by norm_num)]
+      linarith
+    have h₁₁ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+      omega
+    exact h₁₁
+  exact h₀ i h₄
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 8.986552476882935 / 4.638417720794678 / 13.624970197677612
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₁ := h₀ i
+  have h₂ := h₀ 0
+  have h₃ := h₀ (Nat.floor (Real.sqrt (p / 3)))
+  simp_all [h₀, Nat.Prime]
+  <;>
+  nlinarith [Nat.Prime.two_le (by assumption)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.540531873703003 / 5.383988618850708 / 28.92452049255371
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₁ := h₀ i
+  have h₂ := h₀ 0
+  have h₃ := h₀ 1
+  have h₄ : i ≤ p - 2 := hi
+  have h₅ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+    have h₆ : Nat.floor (Real.sqrt (p / 3)) ≥ i := by
+      apply Nat.le_floor
+      have h₇ : (i : ℝ) ≤ Real.sqrt (p / 3) := by
+        apply Real.le_sqrt_of_sq_le
+        have h₈ : (i : ℝ) ≤ p / 3 := by
+          have h₉ : (i : ℝ) ≤ p - 2 := by exact_mod_cast h₄
+          have h₁₀ : (p : ℝ) ≥ 3 := by
+            by_contra! h₁₁
+            have h₁₂ : p < 3 := by exact_mod_cast h₁₁
+            have h₁₃ : p ≤ 2 := by linarith
+            have h₁₄ : p = 0 ∨ p = 1 ∨ p = 2 := by omega
+            rcases h₁₄ with (rfl | rfl | rfl) <;> simp_all [Nat.Prime]
+            <;> norm_num at h₀ <;> aesop
+          have h₁₅ : (i : ℝ) ≤ p / 3 := by
+            have h₁₆ : (i : ℝ) ≤ p - 2 := by exact_mod_cast h₄
+            nlinarith
+          exact h₁₅
+        nlinarith
+      nlinarith
+    exact_mod_cast h₆
+  simp_all
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.544277906417847 / 4.0776166915893555 / 12.621894598007202
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₁ := h₀ i
+  have h₂ := h₀ 0
+  have h₃ := h₀ (Nat.floor (Real.sqrt (p / 3)))
+  simp_all [h₀]
+  <;>
+  norm_num
+  <;>
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.79278874397278 / 5.954893350601196 / 26.747682094573975
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₁ := h₀ i
+  have h₂ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+    by_cases h : p ≤ 3
+    · have h₃ : p ≤ 3 := h
+      have h₄ : Nat.floor (Real.sqrt (p / 3)) = 0 := by
+        rw [Nat.floor_eq_zero]
+        norm_num
+        have h₅ : (p : ℝ) ≤ 3 := by exact_mod_cast h₃
+        have h₆ : Real.sqrt (p / 3) < 1 := by
+          rw [Real.sqrt_lt'] <;> norm_num <;>
+          nlinarith
+        nlinarith
+      simp_all
+    · have h₃ : p > 3 := by linarith
+      have h₄ : Nat.floor (Real.sqrt (p / 3)) ≥ 1 := by
+        apply Nat.succ_le_iff.mpr
+        apply Nat.floor_pos.mpr
+        have h₅ : (p : ℝ) > 3 := by exact_mod_cast h₃
+        have h₆ : Real.sqrt (p / 3) > 1 := by
+          apply Real.lt_sqrt_of_sq_lt
+          norm_num
+          nlinarith
+        nlinarith
+      have h₅ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+        nlinarith
+      nlinarith
+  exact h₀ i h₂
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.76082420349121 / 5.3567140102386475 / 32.11753821372986
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₁ := h₀ i
+  have h₂ := h₀ 0
+  have h₃ := h₀ 1
+  have h₄ := h₀ (Nat.floor (Real.sqrt (p / 3)))
+  have h₅ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+    have h₆ : i ≤ p - 2 := hi
+    have h₇ : p ≥ 2 := by
+      by_contra h
+      have h₈ : p = 0 ∨ p = 1 := by omega
+      cases h₈ with
+      | inl h₈ =>
+        rw [h₈] at h₀
+        have h₉ := h₀ 0
+        have h₁₀ := h₀ 1
+        have h₁₁ := h₀ 2
+        norm_num at *
+        <;> nlinarith [Nat.Prime.two_le (by simp_all [h₀])]
+      | inr h₈ =>
+        rw [h₈] at h₀
+        have h₉ := h₀ 0
+        have h₁₀ := h₀ 1
+        have h₁₁ := h₀ 2
+        norm_num at *
+        <;> nlinarith [Nat.Prime.two_le (by simp_all [h₀])]
+    have h₈ : Nat.floor (Real.sqrt (p / 3)) ≥ i := by
+      apply Nat.le_floor
+      have h₉ : (i : ℝ) ≤ p / 3 := by
+        have h₁₀ : (i : ℝ) ≤ p - 2 := by exact_mod_cast hi
+        have h₁₁ : (p : ℝ) ≥ 2 := by exact_mod_cast h₇
+        nlinarith
+      nlinarith [Real.sqrt_nonneg (p / 3), Real.mul_self_sqrt (by positivity : (0 : ℝ) ≤ p / 3)]
+    omega
+  exact h₀ i h₅
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 18.48223328590393 / 600.1306991577148 / 618.6129324436188
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₁ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i hi
+  have h₂ : i ≤ p - 2 := hi
+  have h₃ : i ≤ Nat.floor (Real.sqrt (p / 3)) := by
+    have h₄ : Nat.floor (Real.sqrt (p / 3)) ≥ i := by
+      apply Nat.le_floor
+      have h₅ : (i : ℝ) ≤ Real.sqrt (p / 3) := by
+        apply Real.le_sqrt_of_sq_le
+        norm_num
+        have h₆ : (p : ℝ) ≥ 3 * i ^ 2 + 3 * i + 3 := by
+          have h₇ : (p : ℝ) ≥ 3 * i ^ 2 + 3 * i + 3 := by
+            have h₈ : (p : ℝ) ≥ 3 * i ^ 2 + 3 * i + 3 := by
+              have h₉ : (p : ℝ) ≥ 3 * i ^ 2 + 3 * i + 3 := by
+                norm_cast
+                nlinarith [h₀ i, h₀ 0, h₀ 1]
+              linarith
+            linarith
+          linarith
+        nlinarith
+      linarith
+    linarith
+  exact h₁ i h₃
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.499419450759888 / 4.006027698516846 / 12.505447149276733
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1987_p6
+  (p : ℕ)
+  (f : ℕ → ℕ)
+  (h₀ : ∀ x, f x = x^2 + x + p)
+  (h₀ : ∀ k : ℕ, k ≤ Nat.floor (Real.sqrt (p / 3)) → Nat.Prime (f k)) :
+  ∀ i ≤ p - 2, Nat.Prime (f i) := by
+  intro i h₁
+  have h₂ := h₀ i
+  have h₃ := h₀ 0
+  have h₄ := h₀ (Nat.floor (Real.sqrt (p / 3)))
+  simp_all
+  <;>
+  nlinarith [Nat.Prime.pos (by assumption)]
+

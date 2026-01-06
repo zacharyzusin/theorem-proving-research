@@ -1,0 +1,22 @@
+Problem: putnam_1994_a4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 21.279154300689697
+Lean check time (s): 18.668516159057617
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a4
+  (A B : Matrix (Fin 2) (Fin 2) ℤ)
+  (ABinv : Nonempty (Invertible A) ∧
+    Nonempty (Invertible (A + B)) ∧
+    Nonempty (Invertible (A + 2 * B)) ∧
+    Nonempty (Invertible (A + 3 * B)) ∧
+    Nonempty (Invertible (A + 4 * B)))
+  : Nonempty (Invertible (A + 5 * B)) :=
+sorry

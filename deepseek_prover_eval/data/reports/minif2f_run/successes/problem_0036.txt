@@ -1,0 +1,20 @@
+Problem: problem_0036
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.740111827850342
+Lean check time (s): 2.75581693649292
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_176
+  (x : ℝ) :
+  (x + 1)^2 * x = x^3 + 2 * x^2 + x := by
+  ring_nf
+  <;> simp [mul_add, add_mul, mul_comm, mul_left_comm, pow_two, pow_one]
+  <;> ring
+  <;> omega

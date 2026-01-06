@@ -1,0 +1,208 @@
+Problem: problem_0339
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 4
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.155784368515015 / 600.1358363628387 / 611.2916207313538
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;>
+  cases' le_total 0 (x - y) with h' h' <;>
+  simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, sub_nonneg, add_nonpos, sub_nonpos] <;>
+  nlinarith [sq_nonneg (x - 3), sq_nonneg (x + 3), sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x - y - 4), sq_nonneg (x - y + 4), sq_nonneg (x + y - 4), sq_nonneg (x + y + 4)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.513766765594482 / 532.2861175537109 / 542.7998843193054
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;> cases' le_total 0 (x - y) with h₁ h₁ <;>
+    cases' le_total 0 x with h₂ h₂ <;> cases' le_total 0 y with h₃ h₃ <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, add_nonpos, sub_nonneg, sub_nonpos,
+      zero_le_one, le_zero_iff] <;>
+    nlinarith
+  <;> nlinarith
+  <;> nlinarith
+  <;> nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.412877082824707 / 528.7516343593597 / 541.1645114421844
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;>
+  cases' le_total 0 (x - y) with h' h' <;>
+  cases' le_total 0 x with h'' h'' <;>
+  cases' le_total 0 y with h''' h''' <;>
+  simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, add_nonpos, sub_nonneg, sub_nonpos,
+    le_add_iff_nonneg_left, le_add_iff_nonneg_right, le_sub_iff_add_le, sub_le_iff_le_add,
+    add_comm] <;>
+  nlinarith
+  <;>
+  nlinarith
+  <;>
+  nlinarith
+  <;>
+  nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.56322956085205 / 600.1524295806885 / 610.7156591415405
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;>
+    cases' le_total 0 (x - y) with h' h' <;>
+      simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, add_nonpos, sub_nonneg, sub_nonpos,
+        zero_le_one, le_zero_iff] <;>
+        nlinarith [sq_nonneg (x - 3), sq_nonneg (x + 3), sq_nonneg (x - 1), sq_nonneg (x + 1),
+          sq_nonneg (y - 1), sq_nonneg (y + 1)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.929026126861572 / 529.4061777591705 / 540.3352038860321
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;>
+  cases' le_total 0 (x - y) with h' h' <;>
+  cases' le_total 0 x with h'' h'' <;>
+  cases' le_total 0 y with h''' h''' <;>
+  simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, add_nonpos, sub_nonneg, sub_nonpos,
+    and_imp, zero_le_one, le_zero_iff] <;>
+  nlinarith
+  <;>
+  nlinarith
+  <;>
+  nlinarith
+  <;>
+  nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.009427785873413 / 600.1498084068298 / 613.1592361927032
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;>
+    cases' le_total 0 (x - y) with h₁ h₁ <;>
+      simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, sub_nonneg, add_nonpos, sub_nonpos,
+        and_imp, zero_le_one, le_add_iff_nonneg_left, le_add_iff_nonneg_right, le_sub_iff_add_le,
+        sub_le_iff_le_add, add_comm] <;>
+      nlinarith [sq_nonneg (x - 3), sq_nonneg (y - 1), sq_nonneg (x + y - 2), sq_nonneg (x + y + 2),
+        sq_nonneg (x - y - 2), sq_nonneg (x - y + 2)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.952314376831055 / 528.1809594631195 / 539.1332738399506
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;> cases' le_total 0 (x - y) with h₁ h₁ <;>
+    cases' le_total 0 x with h₂ h₂ <;> cases' le_total 0 y with h₃ h₃ <;>
+    simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, sub_nonneg, add_nonpos, sub_nonpos,
+      zero_le_one, le_refl, zero_le_two] <;>
+    nlinarith
+  <;>
+  nlinarith
+  <;>
+  nlinarith
+  <;>
+  nlinarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.203585863113403 / 600.148101568222 / 611.3516874313354
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2011_p18
+  (x y : ℝ)
+  (h₀ : abs (x + y) + abs (x - y) = 2) :
+  x^2 - 6 * x + y^2 ≤ 8 := by
+  cases' le_total 0 (x + y) with h h <;>
+  cases' le_total 0 (x - y) with h' h' <;>
+  cases' le_total 0 x with h'' h'' <;>
+  cases' le_total 0 y with h''' h''' <;>
+  simp_all only [abs_of_nonneg, abs_of_nonpos, add_nonneg, add_nonpos, sub_nonneg, sub_nonpos,
+    zero_le_one, le_zero_iff] <;>
+  nlinarith [sq_nonneg (x - 3), sq_nonneg (y - 1), sq_nonneg (x + 1), sq_nonneg (y + 3)]
+

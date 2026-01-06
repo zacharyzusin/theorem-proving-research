@@ -1,0 +1,30 @@
+Problem: problem_0415
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.034631490707397
+Lean check time (s): 4.763849496841431
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_11
+  (a b : ℝ)
+  (h₀ : a ≠ b)
+  (h₁ : a ≠ 2 * b)
+  (h₂ : (4 * a + 3 * b) / (a - 2 * b) = 5) :
+  (a + 11 * b) / (a - b) = 2 := by
+  have h₃ : a - 2 * b ≠ 0 := by
+    intro h
+    apply h₁
+    linarith
+  have h₄ : a - b ≠ 0 := by
+    intro h
+    apply h₀
+    linarith
+  field_simp [h₃, h₄] at h₂ ⊢
+  ring_nf at h₂ ⊢
+  linarith

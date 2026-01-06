@@ -1,0 +1,17 @@
+Problem: problem_0401
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.666801929473877
+Lean check time (s): 2.4445507526397705
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_101 :
+  (17 * 18) % 4 = 2 := by
+  simp [mul_comm, mul_assoc, mul_left_comm, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt,
+    show 2 < 4 by norm_num, show 1 < 4 by norm_num, show 3 < 4 by norm_num]

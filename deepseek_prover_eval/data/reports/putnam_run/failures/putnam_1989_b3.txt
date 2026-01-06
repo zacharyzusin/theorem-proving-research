@@ -1,0 +1,174 @@
+Problem: putnam_1989_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.136669158935547 / 14.82863187789917 / 35.96530103683472
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 49.43349862098694 / 10.604040145874023 / 60.03753876686096
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 42.83263063430786 / 8.038373708724976 / 50.87100434303284
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 49.10763907432556 / 8.412930011749268 / 57.52056908607483
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 44.406681060791016 / 12.261159420013428 / 56.66784048080444
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 43.77404260635376 / 11.438274145126343 / 55.2123167514801
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.573233366012573 / 8.240432262420654 / 28.813665628433228
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 40.2789192199707 / 7.985408306121826 / 48.26432752609253
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1989_b3
+    (f : ℝ → ℝ)
+    (hfdiff : Differentiable ℝ f)
+    (hfderiv : ∀ x > 0, deriv f x = -3 * f x + 6 * f (2 * x))
+    (hdecay : ∀ x ≥ 0, |f x| ≤ Real.exp (- √x))
+    (μ : ℕ → ℝ)
+    (μ_def : ∀ n, μ n = ∫ x in Set.Ioi 0, x ^ n * f x) :
+    (∀ n, μ n = putnam_1989_b3_solution n (μ 0)) ∧
+    (∃ L, Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 L)) ∧
+    (Tendsto (fun n ↦ (μ n) * 3 ^ n / n !) atTop (𝓝 0) → μ 0 = 0) :=
+  sorry

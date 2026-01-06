@@ -1,0 +1,20 @@
+Problem: putnam_1967_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 17.318331956863403
+Lean check time (s): 44.362414598464966
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_b2
+(p r A B C α β γ : ℝ)
+(prbound : 0 ≤ p ∧ p ≤ 1 ∧ 0 ≤ r ∧ r ≤ 1)
+(id1 : ∀ x y : ℝ, (p * x + (1 - p) * y) ^ 2 = A * x ^ 2 + B * x * y + C * y ^ 2)
+(id2 : ∀ x y : ℝ, (p * x + (1 - p) * y) * (r * x + (1 - r) * y) = α * x ^ 2 + β * x * y + γ * y ^ 2)
+: max (max A B) C ≥ 4 / 9 ∧ max (max α β) γ ≥ 4 / 9 :=
+sorry

@@ -1,0 +1,158 @@
+Problem: putnam_1995_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 19.315290451049805 / 18.42783546447754 / 37.743125915527344
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 32.519585847854614 / 18.306721448898315 / 50.82630729675293
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.201926946640015 / 17.80089545249939 / 30.002822399139404
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 29.67713975906372 / 17.111446857452393 / 46.78858661651611
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.633084535598755 / 18.270137786865234 / 33.90322232246399
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.30496072769165 / 18.584198474884033 / 44.889159202575684
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.639113903045654 / 19.10865044593811 / 33.747764348983765
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.588055610656738 / 18.817354202270508 / 31.405409812927246
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b3
+(n : ℕ)
+(hn : n > 0)
+(digits_set : Set (ℕ → ℕ))
+(hdigits_set : digits_set = {f | f 0 ≠ 0 ∧ (∀ i : Fin (n ^ 2), f i ≤ 9) ∧ (∀ i ≥ n ^ 2, f i = 0)})
+(digits_to_matrix : (ℕ → ℕ) → Matrix (Fin n) (Fin n) ℤ)
+(hdigits_to_matrix : digits_to_matrix = fun f => (fun i j => f (i.1 * n + j.1)))
+: ∑' f : digits_set, (digits_to_matrix f).det = putnam_1995_b3_solution n :=
+sorry

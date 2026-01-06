@@ -1,0 +1,251 @@
+Problem: problem_0262
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 5
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.73624062538147 / 600.1687593460083 / 623.9049999713898
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < Real.sqrt 2 := by positivity
+  have h₃ : 0 < Real.sqrt 2 := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₄ : 0 < Real.sqrt 2 := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₅ : 0 < Real.sqrt 2 := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₆ : 0 < Real.sqrt 2 := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₇ : 0 < Real.sqrt 2 := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  have h₈ : 0 < Real.sqrt 2 := by positivity
+  -- Use the fact that the square root of 2 is positive to simplify the inequality.
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    sq_nonneg (a + b), sq_nonneg (b + c), sq_nonneg (c + a),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2), sq_nonneg (c^2 - a^2),
+    sq_nonneg (a^2 + b^2 + c^2),
+    sq_nonneg (a * b + b * c + c * a),
+    sq_nonneg (a * b - b * c), sq_nonneg (b * c - c * a), sq_nonneg (c * 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.639986991882324 / 600.1468539237976 / 620.7868409156799
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h1 : 0 < Real.sqrt 2 := by positivity
+  have h2 : 0 < 32 := by norm_num
+  have h3 : 0 < (Real.sqrt 2 : ℝ) := by positivity
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    sq_nonneg (a * b - (a^2 - b^2) / 2), sq_nonneg (b * c - (b^2 - c^2) / 2),
+    sq_nonneg (c * a - (c^2 - a^2) / 2),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a^2 + b^2 + c^2), sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2),
+    sq_nonneg (c^2 - a^2),
+    mul_self_nonneg (a * b + (a^2 - b^2) / 2),
+    mul_self_nonneg (b * c + (b^2 - c^2) / 2),
+    mul_self_nonneg (c * a + (c^2 - a^2) / 2),
+    mul_self_nonneg (a * b - (a^2 - b^2) / 2),
+    mul_self_nonneg (b * c - (b^2 - c^2) / 2),
+    mul_self_nonneg (c * a - (c^2 - a^2) / 2)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.156909227371216 / 600.1273286342621 / 617.2842378616333
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    sq_nonneg (a + b), sq_nonneg (b + c), sq_nonneg (c + a),
+    sq_nonneg (a * b - (a^2 - b^2) / 4), sq_nonneg (b * c - (b^2 - c^2) / 4),
+    sq_nonneg (c * a - (c^2 - a^2) / 4),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a^2 + b^2 + c^2),
+    sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2), sq_nonneg (c^2 - a^2),
+    sq_nonneg (a * b + (a^2 - b^2) / 4), sq_nonneg (b * c + (b^2 - c^2) / 4),
+    sq_nonneg (c * a + (c^2 - a^2) / 4)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 18.31977152824402 / 71.34560346603394 / 89.66537499427795
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 < Real.sqrt 2 := by positivity
+  have h₂ : 0 < Real.sqrt 2 := by positivity
+  have h₃ : 0 < Real.sqrt 2 := by positivity
+  have h₄ : (a^2 + b^2 + c^2)^2 ≥ 0 := by positivity
+  have h₅ : (9 * Real.sqrt 2) / 32 ≥ 0 := by positivity
+  -- Use non-linear arithmetic to prove the inequality
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    sq_nonneg (a + b), sq_nonneg (b + c), sq_nonneg (c + a),
+    sq_nonneg (a * b - (a^2 - b^2) / 3), sq_nonneg (b * c - (b^2 - c^2) / 3),
+    sq_nonneg (c * a - (c^2 - a^2) / 3), Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a * b + (a^2 - b^2) / 3), sq_nonneg (b * c + (b^2 - c^2) / 3),
+    sq_nonneg (c * a + (c^2 - a^2) / 3)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.309483766555786 / 600.1609859466553 / 617.4704697132111
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 < Real.sqrt 2 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    sq_nonneg (a + b), sq_nonneg (b + c), sq_nonneg (c + a),
+    sq_nonneg (a * b - (a^2 - b^2) / 3), sq_nonneg (b * c - (b^2 - c^2) / 3),
+    sq_nonneg (c * a - (c^2 - a^2) / 3),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2), sq_nonneg (c^2 - a^2),
+    sq_nonneg (a^2 + b^2 + c^2),
+    sq_nonneg (a * b + (a^2 - b^2) / 3), sq_nonneg (b * c + (b^2 - c^2) / 3),
+    sq_nonneg (c * a + (c^2 - a^2) / 3)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.850185871124268 / 177.53371381759644 / 200.3838996887207
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 < Real.sqrt 2 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < Real.sqrt 2 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  have h₃ : 0 < Real.sqrt 2 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  -- Use the fact that the square root of 2 is positive to help with the inequality.
+  have h₄ : 0 < Real.sqrt 2 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  -- Use the fact that the square root of 2 is positive to help with the inequality.
+  have h₅ : (a^2 + b^2 + c^2)^2 ≥ 0 := by
+    exact sq_nonneg (a^2 + b^2 + c^2)
+  -- Use the fact that the square of any real number is non-negative to help with the inequality.
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a * b - (a^2 - b^2) / 2), sq_nonneg (b * c - (b^2 - c^2) / 2),
+    sq_nonneg (c * a - (c^2 - a^2) / 2),
+    mul_self_nonneg (a * b + (a^2 - b^2) / 2),
+    mul_self_nonneg (b * c + (b^2 - c^2) / 2),
+    mul_self_nonneg (c * a + (c^2 - a^2) / 2)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 18.300569772720337 / 68.49289178848267 / 86.793461561203
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 ≤ Real.sqrt 2 := Real.sqrt_nonneg _
+  have h₂ : 0 ≤ Real.sqrt 2 := Real.sqrt_nonneg _
+  have h₃ : 0 ≤ Real.sqrt 2 := Real.sqrt_nonneg _
+  -- Use the fact that the square root of 2 is non-negative to ensure the inequality holds.
+  have h₄ : 0 ≤ Real.sqrt 2 := Real.sqrt_nonneg _
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a + b), sq_nonneg (b + c), sq_nonneg (c + a),
+    sq_nonneg (a * b - (a^2 - b^2) / 3), sq_nonneg (b * c - (b^2 - c^2) / 3),
+    sq_nonneg (c * a - (c^2 - a^2) / 3),
+    sq_nonneg (a * b + (a^2 - b^2) / 3), sq_nonneg (b * c + (b^2 - c^2) / 3),
+    sq_nonneg (c * a + (c^2 - a^2) / 3)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.94302535057068 / 600.1593475341797 / 623.1023728847504
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2006_p6
+  (a b c : ℝ) :
+  (a * b * (a^2 - b^2)) + (b * c * (b^2 - c^2)) + (c * a * (c^2 - a^2)) ≤ (9 * Real.sqrt 2) / 32 * (a^2 + b^2 + c^2)^2 := by
+  have h₁ : 0 < Real.sqrt 2 := by norm_num [Real.sqrt_pos]
+  have h₂ : 0 < 32 := by norm_num
+  have h₃ : 0 < 9 := by norm_num
+  have h₄ : 0 < (9 * Real.sqrt 2) / 32 := by positivity
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a),
+    sq_nonneg (a + b), sq_nonneg (b + c), sq_nonneg (c + a),
+    sq_nonneg (a * b - (a^2 - b^2) / 4), sq_nonneg (b * c - (b^2 - c^2) / 4),
+    sq_nonneg (c * a - (c^2 - a^2) / 4),
+    Real.sq_sqrt (show 0 ≤ 2 by norm_num),
+    sq_nonneg (a^2 + b^2 + c^2),
+    sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2), sq_nonneg (c^2 - a^2),
+    mul_self_nonneg (a * b + (a^2 - b^2) / 4),
+    mul_self_nonneg (b * c + (b^2 - c^2) / 4),
+    mul_self_nonneg (c * a + (c^2 - a^2) / 4),
+    mul_self_nonneg (a * b - (a^2 - b^2) / 4),
+    mul_self_nonneg (b * c - (b^2 - c^2) / 4),
+    mul_self_nonneg (c * a - (c^2 - a^2) / 4)]
+

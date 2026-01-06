@@ -1,0 +1,198 @@
+Problem: problem_0366
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 7
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.804564476013184 / 600.1419351100922 / 611.9464995861053
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h1 := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 - 2 * x + 1),
+    sq_nonneg (x^2 + 2 * x + 1), sq_nonneg (a * x + 1), sq_nonneg (a * x - 1),
+    sq_nonneg (b * x), sq_nonneg (b * x + 2), sq_nonneg (b * x - 2),
+    sq_nonneg (a - x), sq_nonneg (a + x), sq_nonneg (b - x), sq_nonneg (b + x)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.179311990737915 / 600.1528859138489 / 612.3321979045868
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h1 := hx
+  have h2 := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 - 2 * x + 1),
+    sq_nonneg (x^2 + 2 * x + 1), sq_nonneg (a * x + 1), sq_nonneg (a * x - 1),
+    sq_nonneg (b * x), sq_nonneg (b * x + 2), sq_nonneg (b * x - 2),
+    sq_nonneg (a - x), sq_nonneg (a + x), sq_nonneg (b - x), sq_nonneg (b + x)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.801876783370972 / 241.344895362854 / 252.14677214622498
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h1 := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 - 2 * x + 1), sq_nonneg (x^2 + 2 * x + 1), sq_nonneg (a * x + b * x), sq_nonneg (a * x - b * x), sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (x^2 * a + b * x), sq_nonneg (x^2 * a - b * x)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.257782697677612 / 600.151221036911 / 613.4090037345886
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h1 := hx
+  have h2 := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 + x), sq_nonneg (x^2 - x),
+    sq_nonneg (a * x + 1), sq_nonneg (a * x - 1), sq_nonneg (b * x), sq_nonneg (b * x - 2 * a * x),
+    sq_nonneg (b * x + 2 * a * x), sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - 2 * b),
+    sq_nonneg (a + 2 * b), sq_nonneg (2 * a - b), sq_nonneg (2 * a + b)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.739417314529419 / 600.1593813896179 / 612.8987987041473
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h₁ := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 - 2 * x + 1),
+    sq_nonneg (x^2 + 2 * x + 1), sq_nonneg (a * x + 1), sq_nonneg (a * x - 1),
+    sq_nonneg (b * x), sq_nonneg (b * x + 1), sq_nonneg (b * x - 1), sq_nonneg a,
+    sq_nonneg b, sq_nonneg (a - x), sq_nonneg (a + x), sq_nonneg (b - x), sq_nonneg (b + x)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.03637170791626 / 600.1569535732269 / 613.1933252811432
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h1 := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 + a * x / 2), sq_nonneg (b * x),
+    sq_nonneg (x^2 - a * x / 2), sq_nonneg (b * x - 1), sq_nonneg (b * x + 1), sq_nonneg (x - 1),
+    sq_nonneg (x + 1), sq_nonneg (a * x), sq_nonneg (a * x - 1), sq_nonneg (a * x + 1),
+    sq_nonneg (a * x - 2 * a), sq_nonneg (a * x + 2 * a)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.66951847076416 / 600.1458413600922 / 616.8153598308563
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h₁ := hx
+  have h₂ := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 - 2 * x + 1),
+    sq_nonneg (x^2 + 2 * x + 1), sq_nonneg (a * x + b * x), sq_nonneg (a * x - b * x),
+    sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (x^2 * a + b * x),
+    sq_nonneg (x^2 * a - b * x), sq_nonneg (x * a + b * x), sq_nonneg (x * a - b * x),
+    sq_nonneg (x * a + b * x + 1), sq_nonneg (x * a - b * x + 1),
+    sq_nonneg (x * a + b * x - 1), sq_nonneg (x * a - b * x - 1)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.79001522064209 / 600.0958015918732 / 612.8858168125153
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1973_p3
+  (a b : ℝ)
+  (h₀ : ∃ x, x^4 + a * x^3 + b * x^2 + a * x + 1 = 0) :
+  4 / 5 ≤ a^2 + b^2 := by
+  obtain ⟨x, hx⟩ := h₀
+  have h₁ := hx
+  have h₂ := hx
+  nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (x^2 + 1), sq_nonneg (x^2 + x), sq_nonneg (x^2 - x),
+    sq_nonneg (2 * x), sq_nonneg (2 * x - 1), sq_nonneg (2 * x + 1), sq_nonneg (a * x + b * x),
+    sq_nonneg (a * x - b * x), sq_nonneg (a - b), sq_nonneg (a + b), sq_nonneg (a - 2 * b),
+    sq_nonneg (2 * a - b), sq_nonneg (a + 2 * b), sq_nonneg (2 * a + b)]
+

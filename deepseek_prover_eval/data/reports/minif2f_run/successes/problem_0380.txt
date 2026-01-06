@@ -1,0 +1,20 @@
+Problem: problem_0380
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.550400733947754
+Lean check time (s): 3.7579243183135986
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_198 :
+  (5^2005) % 100 = 25 := by
+  norm_num [Nat.mod_eq_of_lt, show 5^2 ≤ 100 by norm_num, show 100 ≤ 5^4 by norm_num]
+  <;> rfl
+  <;> decide
+  <;> decide
+  <;> decide

@@ -1,0 +1,142 @@
+Problem: putnam_1978_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.08283305168152 / 29.277118682861328 / 52.35995173454285
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.389771223068237 / 45.442357540130615 / 64.83212876319885
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 34.151010513305664 / 28.852609395980835 / 63.0036199092865
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 25.982916355133057 / 40.297168016433716 / 66.28008437156677
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 23.688903331756592 / 52.2739577293396 / 75.96286106109619
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 30.877841472625732 / 56.185200929641724 / 87.06304240226746
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.303828716278076 / 37.302167654037476 / 54.60599637031555
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 38.95983386039734 / 26.358930587768555 / 65.3187644481659
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a3
+    (p : Polynomial ℝ)
+    (hp : p = 2 * (X ^ 6 + 1) + 4 * (X ^ 5 + X) + 3 * (X ^ 4 + X ^ 2) + 5 * X ^ 3)
+    (I : ℕ → ℝ)
+    (hI : I = fun k ↦ ∫ x in Ioi 0, x ^ k / p.eval x) :
+    IsLeast {y | ∃ k ∈ Ioo 0 5, I k = y} putnam_1978_a3_solution :=
+  sorry

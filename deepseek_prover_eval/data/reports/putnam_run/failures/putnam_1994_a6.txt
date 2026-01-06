@@ -1,0 +1,158 @@
+Problem: putnam_1994_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.86115789413452 / 9.923948287963867 / 38.78510618209839
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 27.505592584609985 / 8.000402688980103 / 35.50599527359009
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.293729782104492 / 9.878345966339111 / 30.172075748443604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 29.866241693496704 / 17.3574960231781 / 47.223737716674805
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 28.915293216705322 / 9.22815203666687 / 38.14344525337219
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.27027702331543 / 10.57461929321289 / 30.84489631652832
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 27.73910903930664 / 9.737531185150146 / 37.47664022445679
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 28.189801454544067 / 9.810200452804565 / 38.00000190734863
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a6
+(f : Fin 10 → Equiv.Perm ℤ)
+(mijcomp : ℕ → (ℕ → Fin 10) → ℕ → (ℤ → ℤ))
+(F : Finset (ℤ → ℤ))
+(hf: ∀ n : ℤ, ∃ m : ℕ, ∃ i : ℕ → Fin 10, m ≥ 1 ∧ (mijcomp m i 0) 0 = n)
+(hmijcomp : ∀ m ≥ 1, ∀ (i : ℕ → Fin 10) (j : Fin m), mijcomp m i j = if (j = m - 1) then (f (i j) : ℤ → ℤ) else (f (i j) ∘ mijcomp m i (j + 1)))
+(hF : F = {g : ℤ → ℤ | ∃ e : Fin 10 → Fin 2, g = (f 0)^[e 0] ∘ (f 1)^[e 1] ∘ (f 2)^[e 2] ∘ (f 3)^[e 3] ∘ (f 4)^[e 4] ∘ (f 5)^[e 5] ∘ (f 6)^[e 6] ∘ (f 7)^[e 7] ∘ (f 8)^[e 8] ∘ (f 9)^[e 9]})
+: ∀ A : Finset ℤ, A.Nonempty → {g ∈ F | g '' A = A}.card ≤ 512 :=
+sorry

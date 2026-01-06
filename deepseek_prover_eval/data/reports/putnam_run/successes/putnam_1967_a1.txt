@@ -1,0 +1,21 @@
+Problem: putnam_1967_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.324055194854736
+Lean check time (s): 46.14168071746826
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1967_a1
+(n : ℕ) (hn : n > 0)
+(a : Set.Icc 1 n → ℝ)
+(f : ℝ → ℝ)
+(hf : f = (fun x : ℝ => ∑ i : Set.Icc 1 n, a i * Real.sin (i * x)))
+(flesin : ∀ x : ℝ, abs (f x) ≤ abs (Real.sin x))
+: abs (∑ i : Set.Icc 1 n, i * a i) ≤ 1 :=
+sorry

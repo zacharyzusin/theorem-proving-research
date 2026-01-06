@@ -1,0 +1,166 @@
+Problem: putnam_1982_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.570587396621704 / 13.14128828048706 / 24.711875677108765
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.04892110824585 / 14.4681236743927 / 27.51704478263855
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.718525409698486 / 13.588529348373413 / 25.3070547580719
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.665795803070068 / 14.82565951347351 / 26.49145531654358
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.856484413146973 / 15.853851795196533 / 37.710336208343506
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.516690015792847 / 15.464701414108276 / 26.981391429901123
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.956981420516968 / 16.713327169418335 / 28.670308589935303
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.062615156173706 / 15.41415286064148 / 30.476768016815186
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a6 :
+  (∀ b : ℕ → ℕ,
+    ∀ x : ℕ → ℝ,
+      BijOn b (Ici 1) (Ici 1) →
+      StrictAntiOn (fun n : ℕ => |x n|) (Ici 1) →
+      Tendsto (fun n : ℕ => |b n - (n : ℤ)| * |x n|) atTop (𝓝 0) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x k) atTop (𝓝 1) →
+      Tendsto (fun n : ℕ => ∑ k ∈ Finset.Icc 1 n, x (b k)) atTop (𝓝 1))
+  ↔ putnam_1982_a6_solution :=
+sorry

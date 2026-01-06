@@ -1,0 +1,19 @@
+Problem: problem_0290
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 4.905994415283203
+Lean check time (s): 2.5923354625701904
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_24 :
+  (∑ k in (Finset.Icc 1 9), 11^k) % 100 = 59 := by
+  rfl
+  <;> simp [Finset.sum_Icc_succ_top, Nat.pow_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> rfl

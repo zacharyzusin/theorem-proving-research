@@ -1,0 +1,22 @@
+Problem: problem_0471
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.794184446334839
+Lean check time (s): 3.934094190597534
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_92
+  (n : ℕ)
+  (h₀ : (5 * n) % 17 = 8) :
+  n % 17 = 5 := by
+  have h₁ : 5 * n % 17 = 8 := h₀
+  rw [← Nat.mod_add_div n 17] at h₁ ⊢
+  ring_nf at h₁ ⊢
+  norm_num at h₁ ⊢
+  omega

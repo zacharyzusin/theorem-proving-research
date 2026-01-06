@@ -1,0 +1,158 @@
+Problem: putnam_2006_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 12.23278260231018 / 8.451680660247803 / 20.684463262557983
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.399766683578491 / 7.247300863265991 / 19.647067546844482
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.700822591781616 / 7.922753810882568 / 22.623576402664185
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.62700390815735 / 7.184741735458374 / 24.811745643615723
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.799409866333008 / 11.182045936584473 / 22.98145580291748
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.241419792175293 / 8.604035377502441 / 20.845455169677734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.882795572280884 / 7.603875160217285 / 19.48667073249817
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.834378719329834 / 9.155288696289062 / 23.989667415618896
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2006_a5
+(n : ℕ)
+(theta : ℝ)
+(a : Set.Icc 1 n → ℝ)
+(nodd : Odd n)
+(thetairr : Irrational (theta / Real.pi))
+(ha : ∀ k : Set.Icc 1 n, a k = Real.tan (theta + (k * Real.pi) / n))
+: (∑ k : Set.Icc 1 n, a k) / (∏ k : Set.Icc 1 n, a k) = putnam_2006_a5_solution n :=
+sorry

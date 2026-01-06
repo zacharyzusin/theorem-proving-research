@@ -1,0 +1,278 @@
+Problem: putnam_1982_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.583933353424072 / 12.940583944320679 / 23.52451729774475
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have := @tendsto_integral_compact_interval _ _ (fun t => (arctan (Real.pi * t) - arctan t) / t) _ _
+  -- Use the fact that the integral of the function from 0 to infinity is equal to the limit of the integral from 0 to t as t approaches infinity
+  simp_all [mul_comm]
+  <;> norm_num
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_id
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_id
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_id
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 40.92926049232483 / 14.982845544815063 / 55.91210603713989
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have h₀ : Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 ((Real.pi / 2) * Real.log Real.pi)) := by
+    have h₁ : ∀ t : ℝ, t ≥ 0 → (∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) = (Real.pi / 2) * Real.log (Real.pi) := by
+      intro t ht
+      have h₂ : ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = (Real.pi / 2) * Real.log (Real.pi) := by
+        have h₃ : ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = (Real.pi / 2) * Real.log (Real.pi) := by
+          have h₄ : ∀ x : ℝ, x > 0 → (arctan (Real.pi * x) - arctan x) / x = (Real.pi / 2) * (1 / x) := by
+            intro x hx
+            have h₅ : Real.pi * x > 0 := by positivity
+            have h₆ : x > 0 := by positivity
+            field_simp [Real.arctan_pi_div_two, Real.arctan_eq_arcsin, Real.log_one]
+            <;> ring_nf
+            <;> norm_num
+            <;> field_simp [Real.pi_pos.le]
+            <;> rw [← sub_eq_zero]
+            <;> field_simp [Real.pi_pos.le]
+            <;> ring_nf
+            <;> norm_num
+            <;> field_simp [Real.pi_pos.le]
+            <;> linarith [Real.pi_pos]
+          have h₇ : ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = ∫ x in (0)..t, (Real.pi / 2) * (1 / x) := by
+     
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 33.88798427581787 / 13.779804229736328 / 47.6677885055542
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have h₀ : ∀ t : ℝ, t ≥ 0 → ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = Real.pi / 2 * log Real.pi := by
+    intro t ht
+    have h₁ : ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = Real.pi / 2 * log Real.pi := by
+      have h₂ : ∀ x : ℝ, x ≥ 0 → (arctan (Real.pi * x) - arctan x) / x = Real.pi / 2 * (1 / (1 + x ^ 2)) := by
+        intro x hx
+        have h₃ : arctan (Real.pi * x) - arctan x = Real.pi / 2 * (1 / (1 + x ^ 2)) * x := by
+          rw [eq_comm]
+          field_simp [Real.arctan_eq_arcsin, Real.pi_pos.le]
+          ring_nf
+          <;> norm_num
+          <;> field_simp [Real.pi_ne_zero, Real.pi_pos.le]
+          <;> ring_nf
+          <;> norm_num
+          <;> field_simp [Real.pi_ne_zero, Real.pi_pos.le]
+          <;> linarith [Real.pi_pos]
+        field_simp [hx] at h₃ ⊢
+        linarith
+      simp_all only [mul_one, mul_div_assoc]
+      <;> simp_all [mul_comm]
+      <;> field_simp [Real.pi_ne_zero, Real.pi_pos.le]
+      <;> ring_nf
+      <;> norm_num
+      <;> linarith [Real.pi_pos]
+    simp_all
+  have h₁ : Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 (Real.pi / 2 * log Real.pi)) := by
+    have h₂ : Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.198272705078125 / 14.062382459640503 / 27.260655164718628
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have := @Real.pi_pos
+  -- Use the fact that π is positive to simplify the integral bounds and arctan properties.
+  have := @Real.pi_pos
+  -- Use the fact that π is positive to simplify the integral bounds and arctan properties.
+  have := @Real.pi_pos
+  -- Use the fact that π is positive to simplify the integral bounds and arctan properties.
+  have := @Real.pi_pos
+  -- Use the fact that π is positive to simplify the integral bounds and arctan properties.
+  have := @Real.pi_pos
+  -- Use the fact that π is positive to simplify the integral bounds and arctan properties.
+  simp_all [tendsto_order]
+  <;>
+    norm_num
+  <;>
+    linarith [Real.pi_pos]
+  <;>
+    field_simp
+  <;>
+    linarith [Real.pi_pos]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 36.67130494117737 / 12.622754096984863 / 49.29405903816223
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  apply tendsto_integral_of_dominated_convergence
+  · use 4
+    norm_num
+    <;>
+    (try simp_all [mul_comm])
+    <;>
+    (try norm_num)
+    <;>
+    (try linarith [Real.pi_pos])
+    <;>
+    (try field_simp [mul_comm])
+    <;>
+    (try ring_nf)
+    <;>
+    (try norm_num)
+    <;>
+    (try linarith [Real.pi_pos])
+  -- We need to show that the function is dominated by a constant function.
+  · intro t
+    -- We need to show that the function is bounded by 4.
+    have h₁ : (arctan (Real.pi * t) - arctan t) / t ≤ 4 := by
+      have h₂ : arctan (Real.pi * t) ≤ Real.pi / 2 := by
+        apply arctan_le_pi_div_two
+      have h₃ : arctan t ≥ - (Real.pi / 2) := by
+        apply neg_pi_div_two_le_arctan
+      have h₄ : (arctan (Real.pi * t) - arctan t) ≤ Real.pi := by linarith
+      have h₅ : (arctan (Real.pi * t) - arctan t) / t ≤ 4 := by
+        apply div_le_of_nonneg_of_le_mul <;>
+          nlinarith [Real.pi_pos, Real.pi_le_four]
+      exact h₅
+    have h₆ : (arctan (Real.pi * t) - arctan t) / t ≥ -4 := by
+      have h₇ : arctan (Real.pi * t) ≥ - (Real.pi / 2) := by
+        apply neg_pi_div_two_le_arctan
+      have h₈ : arctan t ≤ Real.pi / 2 := by
+        apply arctan_le_pi_div_two
+      have h₉ : (arctan (Real.pi * t) - arctan t) ≥ -Rea
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.637105941772461 / 14.65467119216919 / 26.29177713394165
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have h₁ := tendsto_arctan_nat_mul_pi_nhds_pi_div_two
+  have h₂ := tendsto_arctan_nhds_pi_div_two
+  have h₃ := tendsto_arctan_nhds_pi_div_two
+  have h₄ := tendsto_arctan_nat_mul_pi_nhds_pi_div_two
+  -- Use the properties of the arctan function and the given tendsto properties to find the limit
+  simp_all [div_eq_mul_inv]
+  <;> linarith [h₁, h₂, h₃, h₄]
+  <;> norm_num
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_id
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 49.89312267303467 / 16.130698204040527 / 66.0238208770752
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have h₁ : Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 ((Real.pi / 2) * Real.log Real.pi)) := by
+    have h₂ : ∀ t : ℝ, t ≥ 0 → (∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) = (Real.pi / 2) * Real.log (Real.pi) := by
+      intro t ht
+      have h₃ : ∀ x : ℝ, x ≥ 0 → (arctan (Real.pi * x) - arctan x) / x = (Real.pi / 2) * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) := by
+        intro x hx
+        field_simp [Real.arctan_sub, Real.arctan_pi_div_two, Real.arctan_le_pi_div_two]
+        <;> ring_nf
+        <;> field_simp [Real.pi_pos.le, mul_comm]
+        <;> ring
+      rw [intervalIntegral.integral_of_le ht]
+      simp_all only [mul_comm]
+      <;>
+      have h₄ : ∫ x in (0)..t, (Real.pi / 2) * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) = (Real.pi / 2) * ∫ x in (0)..t, (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) := by
+        simp [intervalIntegral.integral_mul_left, mul_comm]
+      rw [h₄]
+      have h₅ : ∫ x in (0)..t, (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) = Real.log (Real.pi) := by
+        have h₆ : ∫ x in (0)..t, (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) = Real.log (Real.pi) := by
+          have h₇ : ∫ x in (0)..t, (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) = Real.log (Real.
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 80.07501578330994 / 14.284053802490234 / 94.35906958580017
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1982_a3 :
+  Tendsto (fun t ↦ ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x) atTop (𝓝 putnam_1982_a3_solution) := by
+  unfold putnam_1982_a3_solution
+  have h₀ : ∀ t : ℝ, t ≥ 0 → ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = (Real.pi / 2) * log Real.pi := by
+    intro t ht
+    have h₁ : ∀ x : ℝ, x ≥ 0 → (arctan (Real.pi * x) - arctan x) / x = (Real.pi / 2) * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) := by
+      intro x hx
+      have h₁ : arctan (Real.pi * x) - arctan x = Real.pi / 2 * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) := by
+        rw [sub_eq_iff_eq_add']
+        have h₂ : Real.pi / 2 * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) = arctan (Real.pi * x) - arctan x := by
+          field_simp [Real.arctan_one, Real.pi_pos.le, mul_comm]
+          <;> ring_nf
+          <;> norm_num
+          <;> field_simp [Real.arctan_one, Real.pi_pos.le, mul_comm]
+          <;> ring_nf
+          <;> norm_num
+          <;> linarith [Real.pi_pos]
+        linarith
+      field_simp [h₁]
+    have h₂ : ∫ x in (0)..t, (arctan (Real.pi * x) - arctan x) / x = ∫ x in (0)..t, (Real.pi / 2) * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) := by
+      congr 1
+      funext x
+      rw [h₁ x (by linarith)]
+    rw [h₂]
+    have h₃ : ∫ x in (0)..t, (Real.pi / 2) * (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) = (Real.pi / 2) * ∫ x in (0)..t, (1 / (1 + (Real.pi * x)^2) - 1 / (1 + x^2)) := by
+      si
+... [truncated] ...

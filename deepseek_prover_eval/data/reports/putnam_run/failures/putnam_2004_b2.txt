@@ -1,0 +1,333 @@
+Problem: putnam_2004_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 36.563709020614624 / 15.040274143218994 / 51.60398316383362
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm function is concave and increasing
+  have h₆ : (m + n)! / ((m + n) ^ (m + n) : ℚ) < (m! / (m ^ m : ℚ)) * (n! / (n ^ n : ℚ)) := by
+    have h₇ : (m + n)! < (m + n) ^ (m + n) := by
+      norm_cast
+      exact Nat.factorial_lt (by positivity)
+    have h₈ : (m! : ℚ) / (m ^ m : ℚ) > 0 := by positivity
+    have h₉ : (n! : ℚ) / (n ^ n : ℚ) > 0 := by positivity
+    have h₁₀ : (m! : ℚ) / (m ^ m : ℚ) * ((n! : ℚ) / (n ^ n : ℚ)) > 0 := by positivity
+    have h₁₁ : (m + n)! / ((m + n) ^ (m + n) : ℚ) < (m! / (m ^ m : ℚ)) * (n! / (n ^ n : ℚ)) := by
+      rw [div_lt_iff (by positivity)]
+      have h₁₂ : (m + n)! < (m + n) ^ (m + n) := by
+        norm_cast
+        exact Nat.factorial_lt (by positivity)
+      have h₁₃ : (m! : ℚ) / (m ^ m : ℚ) * ((n! : ℚ) / (n ^ n : ℚ)) > 0 := by positivity
+      have h₁₄ : (m! : ℚ) / (m ^ m : ℚ) * ((n! : ℚ) / (n ^ n : ℚ)) ≥ 1 := by
+        have h₁₅ : (m! : ℚ) / (m ^ m : ℚ) ≥ 1 := by
+          have h₁₆ : (m! : ℚ) ≥ m ^ m := by
+            norm_cast
+            exact Nat.factorial_le (by linarith)
+          rw [ge_iff_le]
+ 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 31.528210639953613 / 14.759197235107422 / 46.287407875061035
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  have h₆ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm function is concave and increasing to prove the inequality
+  have h₇ : (m + n)! / ((m + n) ^ (m + n) : ℚ) < (m! / (m ^ m : ℚ)) * (n! / (n ^ n : ℚ)) := by
+    -- Use the fact that the logarithm function is concave and increasing to prove the inequality
+    have h₇ : (m + n)! < (m + n)^(m + n) := by
+      -- Use the fact that the factorial function grows slower than the power function
+      exact Nat.factorial_lt (by linarith) |>.trans_le (by
+        simp [Nat.pow_succ, Nat.mul_assoc]
+        <;> gcongr <;> linarith)
+    have h₈ : (m + n)! / ((m + n) ^ (m + n) : ℚ) < 1 := by
+      rw [div_lt_iff (by positivity)]
+      norm_cast
+      linarith
+    have h₉ : (m! / (m ^ m : ℚ)) * (n! / (n ^ n : ℚ)) > 1 := by
+      have h₉ : (m! : ℚ) / (m ^ m) ≥ 1 := by
+        have h₁₀ : (m! : ℚ) ≥ m ^ m := by
+          norm_cast
+          exact Nat.factorial_le (by linarith)
+        have h₁₁ : (m ^ m : ℚ) > 0 := by positivity
+        rw [ge_iff_le]
+        rw [le_div_iff h₁₁]
+        linarith
+      have h₁₀ : (n! : ℚ) /
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 31.537965059280396 / 14.173872947692871 / 45.71183800697327
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm function is concave and increasing to prove the inequality
+  have h₆ : (m + n)! < (m + n)^(m + n) := by
+    norm_cast
+    calc
+      (m + n)! < (m + n)^(m + n) := by
+        -- Use the fact that the factorial function grows slower than the exponential function
+        exact Nat.factorial_lt (by positivity) |>.trans_le (by
+          simp [Nat.pow_succ, Nat.mul_le_mul_right]
+          <;> nlinarith)
+      _ = (m + n)^(m + n) := by rfl
+  have h₇ : (m + n)! / ((m + n) ^ (m + n) : ℚ) < 1 := by
+    rw [div_lt_iff (by positivity)]
+    norm_cast
+    linarith
+  have h₈ : (m)! / (m ^ m : ℚ) ≥ 1 := by
+    rw [ge_iff_le]
+    apply (le_div_iff (by positivity)).mpr
+    norm_cast
+    have h₉ : m! ≥ m ^ m := by
+      -- Use the fact that the factorial function grows faster than the power function
+      exact Nat.factorial_le (by
+        linarith) |>.trans (by
+          simp [Nat.pow_succ, Nat.mul_le_mul_right]
+          <;> nlinarith)
+    nlinarith
+  have h₉ : (n)! / (n ^ n : ℚ) ≥ 1 := by
+    rw [ge_iff_le]
+    apply (le_div_iff (by positivity)).mpr
+   
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 87.77595281600952 / 16.1350998878479 / 103.91105270385742
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  have h₆ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm of the product is the sum of the logarithms to simplify the inequality.
+  have h₇ : (m + n : ℚ)! / ((m + n : ℚ) ^ (m + n)) < (m ! / (m ^ m : ℚ)) * (n ! / (n ^ n : ℚ)) := by
+    have h₈ : (m + n : ℚ)! = (m + n : ℚ) * ((m + n - 1 : ℚ))! := by
+      cases m <;> cases n <;> simp_all [Nat.factorial]
+      <;> ring_nf
+      <;> field_simp
+      <;> linarith
+    rw [h₈]
+    have h₉ : (m + n : ℚ) ^ (m + n) = (m + n : ℚ) ^ m * (m + n : ℚ) ^ n := by
+      rw [pow_add]
+    rw [h₉]
+    have h₁₀ : (m + n : ℚ) * ((m + n - 1 : ℚ))! / ((m + n : ℚ) ^ m * (m + n : ℚ) ^ n) < (m ! / (m ^ m : ℚ)) * (n ! / (n ^ n : ℚ)) := by
+      have h₁₁ : (m + n : ℚ) * ((m + n - 1 : ℚ))! / ((m + n : ℚ) ^ m * (m + n : ℚ) ^ n) < 1 := by
+        have h₁₂ : (m + n : ℚ) * ((m + n - 1 : ℚ))! < (m + n : ℚ) ^ m * (m + n : ℚ) ^ n := by
+          have h₁₃ : (m + n : ℚ) * ((m + n - 1 : ℚ))! < (m + n : ℚ) ^ m * (m + n : ℚ) ^ n := by
+            have h₁₄ : (m + n : ℚ) * ((m + n - 1 : ℚ))! < (m + n : ℚ) ^ m * (m + n : ℚ) ^ n := by
+              cal
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 37.75741481781006 / 15.644723892211914 / 53.40213871002197
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : (m + n : ℚ) > 0 := by positivity
+  have h₆ : (m : ℚ) > 0 := by positivity
+  have h₇ : (n : ℚ) > 0 := by positivity
+  have h₈ : (m + n)! > 0 := by positivity
+  have h₉ : m! > 0 := by positivity
+  have h₁₀ : n! > 0 := by positivity
+  -- Use the fact that the logarithm of a product is the sum of the logarithms to compare the logarithms of the terms.
+  have h₁₁ : Real.log ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < Real.log (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+    -- Use the fact that the logarithm function is strictly increasing to compare the terms.
+    field_simp [Real.log_mul, Real.log_div, Real.log_pow, Nat.cast_add, Nat.cast_mul, Nat.cast_pow]
+    -- Use the fact that the logarithm of a product is the sum of the logarithms to compare the logarithms of the terms.
+    <;> norm_cast
+    <;> simp [Nat.factorial_ne_zero, Nat.cast_ne_zero, h₁, h₂, h₃, h₄, h₆, h₇, h₉, h₁₀]
+    <;> norm_num
+    <;> linarith [Real.log_lt_log (by positivity : (0 : ℝ) < m) (by exact_mod_cast Nat.lt_of_succ_le (Nat.succ_le_of_lt h₁)),
+      Real.log_lt_log (by positivity : (0 : ℝ) < n) (by exact_mod_cast Nat.lt_of_su
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.774575233459473 / 15.09384036064148 / 38.86841559410095
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm of a product is the sum of the logarithms.
+  have h₆ : (m + n)! / ((m + n) ^ (m + n) : ℚ) < (m! / (m ^ m : ℚ)) * (n! / (n ^ n : ℚ)) := by
+    have h₇ : (m + n)! / ((m + n) ^ (m + n) : ℚ) = (m + n).choose m * (m! / (m ^ m : ℚ)) * (n! / (n ^ n : ℚ)) := by
+      field_simp [Nat.factorial_ne_zero, Nat.factorial_mul_asc_factorial, Nat.pow_succ, Nat.mul_sub_left_distrib]
+      ring
+      <;> simp_all [Nat.choose, Nat.factorial_succ, Nat.mul_sub_left_distrib]
+      <;> ring
+      <;> field_simp [Nat.factorial_ne_zero, Nat.factorial_mul_asc_factorial, Nat.pow_succ, Nat.mul_sub_left_distrib]
+      <;> ring
+    rw [h₇]
+    norm_num
+    <;>
+    apply lt_of_sub_pos
+    <;>
+    field_simp [Nat.factorial_ne_zero, Nat.factorial_mul_asc_factorial, Nat.pow_succ, Nat.mul_sub_left_distrib]
+    <;>
+    ring_nf
+    <;>
+    positivity
+  exact h₆
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.990168571472168 / 16.135448455810547 / 47.125617027282715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm of a sum is less than the sum of logarithms.
+  have h₆ : (m + n)! < (m + n)^(m + n) := by
+    -- Use the inequality involving factorials and powers.
+    have h₆ : (m + n)! < (m + n)^(m + n) := by
+      calc
+        (m + n)! < (m + n)^(m + n) := by
+          -- Use the fact that the factorial of a sum is less than the power of the sum.
+          exact Nat.factorial_lt (by positivity) |>.trans_le (Nat.le_of_lt (Nat.lt_pow_self (by linarith) (m + n)))
+        _ = (m + n)^(m + n) := by rfl
+    exact h₆
+  -- Use the fact that the logarithm of a sum is less than the sum of logarithms.
+  have h₇ : ((m + n)! : ℚ) / ((m + n) ^ (m + n)) < 1 := by
+    rw [div_lt_iff (by positivity)]
+    norm_cast
+    linarith
+  have h₈ : ((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ)) ≥ 1 := by
+    have h₈ : ((m)! : ℚ) / (m ^ m) ≥ 1 := by
+      have h₈ : ((m)! : ℚ) ≥ m ^ m := by
+        norm_cast
+        exact Nat.factorial_le_pow m
+      rw [ge_iff_le]
+      rw [le_div_iff (by positivity)]
+      nlinarith
+    have h₉ : ((n)! : ℚ) / (n ^ n) ≥ 1 := by
+      have h₉ : ((
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 49.31839394569397 / 15.86423635482788 / 65.18263030052185
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2004_b2
+(m n : ℕ)
+(mnpos : m > 0 ∧ n > 0)
+: ((m + n)! / ((m + n) ^ (m + n) : ℚ)) < (((m)! / (m ^ m : ℚ)) * ((n)! / (n ^ n : ℚ))) := by
+  have h₁ : 0 < m := by linarith
+  have h₂ : 0 < n := by linarith
+  have h₃ : 0 < m + n := by linarith
+  have h₄ : 0 < m * n := by positivity
+  have h₅ : 0 < m * n := by positivity
+  have h₆ : 0 < m * n := by positivity
+  -- Use the fact that the logarithm of a product is the sum of the logarithms to compare the growth rates.
+  have h₇ : Real.log (m + n) = Real.log m + Real.log (1 + n / m) := by
+    field_simp [Real.log_mul, Real.log_mul, h₁.ne', h₂.ne', h₃.ne', h₄.ne', h₅.ne', h₆.ne']
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_mul, h₁.ne', h₂.ne', h₃.ne', h₄.ne', h₅.ne', h₆.ne']
+    <;> linarith
+  have h₈ : Real.log (m + n) = Real.log m + Real.log (1 + n / m) := by
+    field_simp [Real.log_mul, Real.log_mul, h₁.ne', h₂.ne', h₃.ne', h₄.ne', h₅.ne', h₆.ne']
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_mul, h₁.ne', h₂.ne', h₃.ne', h₄.ne', h₅.ne', h₆.ne']
+    <;> linarith
+  -- Use the fact that the logarithm of a product is the sum of the logarithms to compare the growth rates.
+  have h₉ : Real.log (m + n) = Real.log m + Real.log (1 + n / m) := by
+    field_simp [Real.log_mul, Real.log_mul, h₁.ne', h₂.ne', h₃.ne', h₄.ne', h₅.ne', h₆.ne']
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_mul, h₁.ne', h₂.ne', h₃.ne', 
+... [truncated] ...

@@ -1,0 +1,21 @@
+Problem: problem_0395
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.911425352096558
+Lean check time (s): 4.280185222625732
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_nckeqnm1ckpnm1ckm1
+  (n k : ℕ)
+  (h₀ : 0 < n ∧ 0 < k)
+  (h₁ : k ≤ n) :
+  Nat.choose n k = Nat.choose (n - 1) k + Nat.choose (n - 1) (k - 1) := by
+  rcases n with (_ | _ | n) <;> rcases k with (_ | _ | k) <;>
+    simp_all [Nat.choose, Nat.factorial, Nat.sub_eq_zero_iff_le]
+  <;> linarith

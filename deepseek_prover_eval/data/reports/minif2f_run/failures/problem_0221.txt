@@ -1,0 +1,208 @@
+Problem: problem_0221
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 7.3384175300598145 / 4.808584451675415 / 12.14700198173523
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  simp [← mul_pow, ← Real.rpow_mul]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring_nf
+  <;> norm_cast
+  <;> linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 7.618755340576172 / 4.915188312530518 / 12.53394365310669
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  rw [← mul_comm]
+  simp [← Real.rpow_mul, mul_assoc]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring_nf
+  <;> norm_cast
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.22732138633728 / 3.678812265396118 / 12.906133651733398
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  simp [← rpow_mul, mul_comm]
+  <;> norm_cast
+  <;> simp [h₀, h₁, rpow_mul, mul_comm]
+  <;> norm_cast
+  <;> simp [h₀, h₁, rpow_mul, mul_comm]
+  <;> norm_cast
+  <;> simp [h₀, h₁, rpow_mul, mul_comm]
+  <;> norm_cast
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 8.358813524246216 / 3.4455113410949707 / 11.804324865341187
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  rw [← mul_comm]
+  rw [← mul_pow]
+  simp [h₀, h₁, mul_comm, mul_assoc, mul_left_comm]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring
+  <;> norm_cast
+  <;> linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.6253135204315186 / 4.812179327011108 / 12.437492847442627
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  simp [← Real.rpow_mul, ← Real.rpow_mul, mul_comm]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring_nf
+  <;> norm_cast
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.210767030715942 / 3.9075968265533447 / 12.118363857269287
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  rw [← mul_comm]
+  simp [← Real.rpow_mul, mul_assoc]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.454855918884277 / 4.866395711898804 / 13.321251630783081
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  rw [← mul_comm]
+  simp [← Real.rpow_mul, mul_assoc]
+  <;> ring
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring
+  <;> norm_cast
+  <;> field_simp [h₀, h₁]
+  <;> ring
+  <;> norm_cast
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.181152105331421 / 4.872295141220093 / 12.053447246551514
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p6
+  (m n p q : ℝ)
+  (h₀ : p = 2 ^ m)
+  (h₁ : q = 3 ^ n) :
+  p^(2 * n) * (q^m) = 12^(m * n) := by
+  rw [h₀, h₁]
+  rw [← mul_comm]
+  simp [← Real.rpow_mul, ← mul_assoc]
+  <;> ring
+  <;> norm_cast
+  <;> field_simp
+  <;> ring
+  <;> norm_cast
+  <;> linarith
+

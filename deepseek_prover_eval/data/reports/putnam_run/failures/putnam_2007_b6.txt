@@ -1,0 +1,126 @@
+Problem: putnam_2007_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 71.47745513916016 / 8.116644144058228 / 79.59409928321838
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 72.46627521514893 / 7.409642219543457 / 79.87591743469238
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 77.2667510509491 / 7.918181419372559 / 85.18493247032166
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 36.0821807384491 / 7.513073682785034 / 43.59525442123413
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.83475661277771 / 8.363718748092651 / 19.19847536087036
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.570318698883057 / 7.804356098175049 / 18.374674797058105
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.323456048965454 / 8.675848245620728 / 19.99930429458618
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.232544183731079 / 8.083733797073364 / 19.316277980804443
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2007_b6
+(f : ℕ → ℕ)
+(hf : f = fun n ↦ {M : Multiset ℕ | M.sum = (n)! ∧ ∀ m ∈ M, ∃ k ∈ Icc 1 n, m = (k)!}.ncard)
+: (∃ C : ℝ, ∀ n : ℕ, n ≥ 2 → n ^ (n ^ 2 / 2 - C * n) * Real.exp (-(n ^ 2) / 4) ≤ f n ∧ f n ≤ n ^ (n ^ 2 / 2 + C * n) * Real.exp (-(n ^ 2) / 4)) :=
+sorry

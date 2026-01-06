@@ -1,0 +1,24 @@
+Problem: problem_0441
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.4361093044281
+Lean check time (s): 4.6823530197143555
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_manipexpr_apbeq2cceqiacpbceqm2
+  (a b c : ℂ)
+  (h₀ : a + b = 2 * c)
+  (h₁ : c = Complex.I) :
+  a * c + b * c = -2 := by
+  subst h₁
+  have h₂ : a + b = 2 * Complex.I := by simpa using h₀
+  simp [Complex.ext_iff, mul_comm, mul_assoc, mul_left_comm, add_comm, add_left_comm, add_assoc] at h₂ ⊢
+  <;> ring_nf at h₂ ⊢
+  <;> simp_all [Complex.ext_iff, mul_comm, mul_assoc, mul_left_comm, add_comm, add_left_comm, add_assoc]
+  <;> nlinarith

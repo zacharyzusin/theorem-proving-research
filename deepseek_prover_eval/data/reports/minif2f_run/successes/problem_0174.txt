@@ -1,0 +1,24 @@
+Problem: problem_0174
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.196372985839844
+Lean check time (s): 4.718486785888672
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p6
+  (p q : ℕ)
+  (h₀ : Nat.Prime p ∧ Nat.Prime q)
+  (h₁ : 4 ≤ p ∧ p ≤ 18)
+  (h₂ : 4 ≤ q ∧ q ≤ 18) :
+  p * q - (p + q) ≠ 194 := by
+  rcases h₁ with ⟨hp_lower, hp_upper⟩
+  rcases h₂ with ⟨hq_lower, hq_upper⟩
+  interval_cases p <;> interval_cases q <;> norm_num [Nat.Prime] at h₀ <;> omega
+  <;> aesop
+  <;> omega

@@ -1,0 +1,20 @@
+Problem: problem_0383
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.435929298400879
+Lean check time (s): 4.236980199813843
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_37 :
+  Nat.lcm 9999 100001 = 90900909 := by
+  unfold Nat.lcm
+  norm_num
+  <;> rfl
+  <;> norm_num
+  <;> rfl

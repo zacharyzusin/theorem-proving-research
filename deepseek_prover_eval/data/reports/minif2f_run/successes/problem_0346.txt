@@ -1,0 +1,28 @@
+Problem: problem_0346
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.32524847984314
+Lean check time (s): 3.044145107269287
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_43
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x, f x = a * x + b)
+  (h₁ : f 7 = 4)
+  (h₂ : f 6 = 3) :
+  f 3 = 0 := by
+  simp_all only [h₀, mul_add, mul_one, mul_zero, add_zero, zero_add, zero_mul]
+  -- We use the given conditions to solve for the coefficients a and b.
+  -- From f(7) = 4, we have 7a + b = 4.
+  -- From f(6) = 3, we have 6a + b = 3.
+  -- Subtract the second equation from the first to find a = 1.
+  -- Substitute a = 1 into 6a + b = 3 to find b = -3.
+  -- Finally, compute f(3) = 3a + b = 3(1) - 3 = 0.
+  linarith

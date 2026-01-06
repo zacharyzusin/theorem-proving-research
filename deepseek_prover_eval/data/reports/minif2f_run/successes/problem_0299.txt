@@ -1,0 +1,23 @@
+Problem: problem_0299
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.600883960723877
+Lean check time (s): 3.61308217048645
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_455
+  (x : ℝ)
+  (h₀ : 2 * (2 * (2 * (2 * x))) = 48) :
+  x = 3 := by
+  have h₁ : 2 * (2 * (2 * (2 * x))) = 48 := h₀
+  have h₂ : 2 * (2 * (2 * x)) = 24 := by linarith
+  have h₃ : 2 * (2 * x) = 12 := by linarith
+  have h₄ : 2 * x = 6 := by linarith
+  have h₅ : x = 3 := by linarith
+  exact h₅

@@ -1,0 +1,244 @@
+Problem: problem_0152
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 2
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.389002084732056 / 19.042080402374268 / 33.43108248710632
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : m ≤ 112 := by
+    have h₃₁ : m ∣ 112 := by
+      have h₃₁₁ : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₃₁
+  have h₄ : n ≤ 112 := by
+    have h₄₁ : n ∣ 112 := by
+      have h₄₁₁ : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₄₁
+  interval_cases m <;> interval_cases n <;> norm_num [Nat.gcd_eq_right, Nat.gcd_eq_left] at h₁ h₂ <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.598540306091309 / 600.1718642711639 / 612.7704045772552
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : m * n = 8 * 112 := by
+    have h₄ : m * n = Nat.gcd m n * Nat.lcm m n := by
+      simp [Nat.gcd_mul_lcm]
+    rw [h₁, h₂] at h₄
+    linarith
+  have h₄ : m + n ≥ 72 := by
+    contrapose! h₃
+    have h₅ : m ≤ 127 := by
+      nlinarith
+    have h₆ : n ≤ 127 := by
+      nlinarith
+    interval_cases m <;> interval_cases n <;> norm_num [Nat.gcd_eq_right, Nat.gcd_eq_left] at h₁ h₂ <;> omega
+  linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.72730040550232 / 288.0007197856903 / 299.7280201911926
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : m * n = 8 * 112 := by
+    have h₃ := Nat.gcd_mul_lcm m n
+    simp_all
+  have h₄ : m ≤ 112 := by
+    nlinarith [Nat.le_of_dvd (by linarith) (Nat.gcd_dvd_left m n)]
+  have h₅ : n ≤ 112 := by
+    nlinarith [Nat.le_of_dvd (by linarith) (Nat.gcd_dvd_right m n)]
+  interval_cases m <;> interval_cases n <;> norm_num at h₁ h₂ h₃ ⊢ <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.755671501159668 / 21.240201473236084 / 31.995872974395752
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : m ≤ 112 := by
+    have h₃ := Nat.le_of_dvd (Nat.pos_of_ne_zero (by aesop)) (Nat.dvd_of_mod_eq_zero (by omega))
+    omega
+  have h₄ : n ≤ 112 := by
+    have h₄ := Nat.le_of_dvd (Nat.pos_of_ne_zero (by aesop)) (Nat.dvd_of_mod_eq_zero (by omega))
+    omega
+  interval_cases m <;> interval_cases n <;> norm_num at h₁ h₂ ⊢ <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.029560089111328 / 6.25717306137085 / 26.286733150482178
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : 0 < m := by linarith
+  have h₄ : 0 < n := by linarith
+  have h₅ : m * n = 8 * 112 := by
+    have h₅₁ : m * n = Nat.gcd m n * Nat.lcm m n := by
+      simp [Nat.gcd_mul_lcm]
+    rw [h₁, h₂] at h₅₁
+    linarith
+  have h₆ : m + n ≥ 72 := by
+    -- We need to show that m + n ≥ 72
+    -- We know that m * n = 8 * 112 = 896
+    -- We will use the fact that m and n are positive integers and their gcd is 8
+    -- to find possible values for m and n that satisfy the conditions
+    have h₆₁ : m ≤ 112 := by
+      nlinarith [Nat.le_of_dvd h₃ (Nat.dvd_of_mod_eq_zero (Nat.mod_eq_zero_of_dvd (by simp [h₁] : 8 ∣ m)))]
+    have h₆₂ : n ≤ 112 := by
+      nlinarith [Nat.le_of_dvd h₄ (Nat.dvd_of_mod_eq_zero (Nat.mod_eq_zero_of_dvd (by simp [h₁] : 8 ∣ n)))]
+    interval_cases m <;> omega
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.652252435684204 / 18.665571928024292 / 32.317824363708496
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : m ≤ 112 := by
+    have h₃₁ : m ∣ 112 := by
+      have h₃₁₁ : m ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_left m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₃₁
+  have h₄ : n ≤ 112 := by
+    have h₄₁ : n ∣ 112 := by
+      have h₄₁₁ : n ∣ Nat.lcm m n := by
+        exact Nat.dvd_lcm_right m n
+      simp_all
+    exact Nat.le_of_dvd (by norm_num) h₄₁
+  interval_cases m <;> interval_cases n <;> norm_num at h₁ h₂ ⊢ <;>
+    omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.738080739974976 / 19.979352951049805 / 30.71743369102478
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : m ≤ 112 := by
+    have h₃ := Nat.le_of_dvd (Nat.pos_of_ne_zero (by aesop)) (Nat.dvd_of_mod_eq_zero (by omega))
+    omega
+  have h₄ : n ≤ 112 := by
+    have h₄ := Nat.le_of_dvd (Nat.pos_of_ne_zero (by aesop)) (Nat.dvd_of_mod_eq_zero (by omega))
+    omega
+  interval_cases m <;> interval_cases n <;> norm_num at h₁ h₂ ⊢ <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.455479145050049 / 600.141975402832 / 614.5974545478821
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_711
+  (m n : ℕ)
+  (h₀ : 0 < m ∧ 0 < n)
+  (h₁ : Nat.gcd m n = 8)
+  (h₂ : Nat.lcm m n = 112) :
+  72 ≤ m + n := by
+  have h₃ : 0 < m := by linarith
+  have h₄ : 0 < n := by linarith
+  have h₅ : m * n = 8 * 112 := by
+    have h₅₁ : m * n = Nat.gcd m n * Nat.lcm m n := by
+      rw [Nat.gcd_mul_lcm]
+    rw [h₁, h₂] at h₅₁
+    linarith
+  have h₆ : m + n ≥ 72 := by
+    -- Use the fact that the sum of m and n is at least 72
+    contrapose! h₅
+    have h₆₁ : m ≤ 71 := by
+      nlinarith
+    have h₆₂ : n ≤ 71 := by
+      nlinarith
+    interval_cases m <;> interval_cases n <;> norm_num at h₁ h₂ h₅ ⊢ <;> omega
+  linarith
+

@@ -1,0 +1,196 @@
+Problem: putnam_2018_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.369149446487427 / 7.324130296707153 / 17.69327974319458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  simp [putnam_2018_b3_solution, hn, Nat.dvd_iff_mod_eq_zero, Nat.ModEq, Nat.mod_eq_of_lt]
+  <;> induction n with
+  | zero => contradiction
+  | succ n ih =>
+    simp_all [Nat.pow_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+    <;> omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.6010582447052 / 7.323105335235596 / 17.924163579940796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  simp [putnam_2018_b3_solution]
+  <;> norm_num
+  <;> rcases n with (_ | _ | _ | _) <;> norm_num <;>
+    simp [Nat.dvd_iff_mod_eq_zero, Nat.pow_mod, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt] <;>
+    omega
+  <;> aesop
+  <;> omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.538368940353394 / 7.638929843902588 / 16.17729878425598
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  simp [putnam_2018_b3_solution]
+  <;> norm_num
+  <;> aesop
+  <;> omega
+  <;> aesop
+  <;> omega
+  <;> aesop
+  <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 28.429287433624268 / 7.205438613891602 / 35.63472604751587
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  constructor
+  · intro h
+    -- We need to show that n is in the set {2^2, 2^4, 2^16, 2^256}
+    have h₁ : n < 10^100 := h.1
+    have h₂ : ((n : ℤ) ∣ (2^n : ℤ)) := h.2.1
+    have h₃ : ((n - 1 : ℤ) ∣ (2^n - 1 : ℤ)) := h.2.2.1
+    have h₄ : ((n - 2 : ℤ) ∣ (2^n - 2 : ℤ)) := h.2.2.2
+    -- We use the fact that n must divide 2^n, n-1 must divide 2^n - 1, and n-2 must divide 2^n - 2
+    -- We also use the fact that n < 10^100 to narrow down the possible values of n
+    norm_num at h₁
+    norm_num
+    -- We use the fact that n must be one of the values 2^2, 2^4, 2^16, or 2^256
+    -- This is because these are the only values that satisfy the given conditions
+    have h₅ : n ≤ 10^100 := by linarith
+    interval_cases n <;> norm_num [Int.emod_eq_of_lt] at h₂ h₃ h₄ <;> norm_num [Nat.dvd_iff_mod_eq_zero] at h₂ h₃ h₄ <;> simp_all (config := {decide := true})
+    <;> omega
+  · intro h
+    -- We need to show that n satisfies the conditions n < 10^100, n divides 2^n, n-1 divides 2^n - 1, and n-2 divides 2^n - 2
+    have h₁ : n ∈ putnam_2018_b3_solution := h
+    rcases h₁ with (rfl | rfl | rfl | rfl) <;> norm_num [Int.emod_eq_of_lt] <;> norm_num [Nat.dvd_iff_mod_eq_zero] <;> omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.398284912109375 / 6.842256546020508 / 15.240541458129883
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  simp [putnam_2018_b3_solution]
+  <;> norm_num
+  <;> aesop
+  <;> simp_all [Nat.dvd_iff_mod_eq_zero]
+  <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 9.949870347976685 / 7.046170234680176 / 16.99604058265686
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  simp [putnam_2018_b3_solution, hn, Nat.dvd_iff_mod_eq_zero]
+  <;>
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      simp_all [Nat.pow_succ, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+      <;>
+      omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.28918147087097 / 7.243690013885498 / 29.53287148475647
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  constructor
+  · intro h
+    have h₁ := h.2.1
+    have h₂ := h.2.2.1
+    have h₃ := h.2.2.2
+    have h₄ := h.1
+    norm_num at h₁ h₂ h₃
+    have h₅ : n ≤ 100 := by
+      contrapose! h₄
+      have h₆ : n ≥ 101 := by linarith
+      have h₇ : 2 ^ n ≥ 2 ^ 101 := by
+        apply Nat.pow_le_pow_of_le_right
+        linarith
+        linarith
+      have h₈ : n < 10 ^ 100 := by linarith
+      interval_cases n <;> norm_num [Nat.pow_succ] at h₁ h₂ h₃ ⊢ <;> omega
+    interval_cases n <;> norm_num [Nat.pow_succ] at h₁ h₂ h₃ ⊢ <;>
+    (try contradiction) <;>
+    (try decide) <;>
+    (try aesop)
+  · intro h
+    have h₁ : n = 1 ∨ n = 2 ∨ n = 4 ∨ n = 16 ∨ n = 256 := by
+      simp [putnam_2018_b3_solution] at h
+      aesop
+    rcases h₁ with (rfl | rfl | rfl | rfl | rfl) <;>
+    norm_num [Nat.pow_succ] <;>
+    (try decide) <;>
+    (try aesop)
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 8.034992933273315 / 7.093630313873291 / 15.128623247146606
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2018_b3
+  (n : ℕ) (hn : 0 < n) :
+  (n < 10^100 ∧ ((n : ℤ) ∣ (2^n : ℤ) ∧ (n - 1 : ℤ) ∣ (2^n - 1 : ℤ) ∧ (n - 2 : ℤ) ∣ (2^n - 2 : ℤ))) ↔ n ∈ putnam_2018_b3_solution := by
+  simp [putnam_2018_b3_solution, hn, Nat.mod_eq_of_lt]
+  <;> norm_num
+  <;> aesop
+  <;> omega

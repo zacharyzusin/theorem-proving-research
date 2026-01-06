@@ -1,0 +1,282 @@
+Problem: problem_0196
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 8.482444047927856 / 16.6855149269104 / 25.167958974838257
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ : m ∣ 288 := by
+    use n
+    linarith
+  have h₅ : m ≤ 288 := Nat.le_of_dvd (by norm_num) h₄
+  interval_cases m <;> norm_num at h₂ h₃ <;>
+  (try simp_all [even_iff_two_dvd, Nat.dvd_iff_mod_eq_zero]) <;>
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.112583875656128 / 9.456775188446045 / 24.569359064102173
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ : m ≤ 30 := by
+    by_contra! h
+    have h₅ : m * n > 288 := by
+      have h₆ : n ≥ 1 := by
+        cases n
+        · simp_all
+        · simp_all [Nat.mul_le_mul_left]
+          <;> omega
+      nlinarith
+    nlinarith
+  have h₅ : n ≤ 30 := by
+    by_contra! h
+    have h₆ : m * n > 288 := by
+      have h₇ : m ≥ 1 := by
+        cases m
+        · simp_all
+        · simp_all [Nat.mul_le_mul_left]
+          <;> omega
+      nlinarith
+    nlinarith
+  interval_cases m <;> interval_cases n <;> norm_num at h₂ h₃ ⊢ <;> simp_all (config := {decide := true})
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.7114417552948 / 17.45820665359497 / 29.16964840888977
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ : m ∣ 288 := by
+    use n
+    linarith
+  have h₅ : n ∣ 288 := by
+    use m
+    linarith
+  have h₆ : m ≤ 288 := Nat.le_of_dvd (by norm_num) h₄
+  have h₇ : n ≤ 288 := Nat.le_of_dvd (by norm_num) h₅
+  interval_cases m <;> norm_num at h₂ h₃ ⊢ <;>
+    (try simp_all [Nat.even_iff, Nat.odd_iff] <;> omega)
+  <;>
+    (try linarith)
+  <;>
+    (try nlinarith)
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.974005222320557 / 600.2570834159851 / 615.2310886383057
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ : m ≤ 30 := by
+    by_contra! h
+    have h₅ : m * n = 288 := h₃
+    have h₆ : m - n = 2 := h₂
+    have h₇ : m > 30 := by omega
+    have h₈ : n ≤ m := by omega
+    have h₉ : n < m := by omega
+    have h₁₀ : m * n > 30 * n := by nlinarith
+    have h₁₁ : 30 * n ≥ 30 * 1 := by nlinarith
+    nlinarith
+  interval_cases m <;>
+  (try simp_all [even_iff_two_dvd, Nat.dvd_iff_mod_eq_zero] <;> omega) <;>
+  (try {
+    have h₅ : n ≤ 30 := by omega
+    interval_cases n <;> omega
+  }) <;>
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.31085753440857 / 5.349815845489502 / 14.660673379898071
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  rw [even_iff_two_dvd] at h₄ h₅
+  cases' h₄ with k hk
+  cases' h₅ with l hl
+  subst_vars
+  have h₈ : k ≤ 144 := by
+    nlinarith
+  have h₉ : l ≤ 144 := by
+    nlinarith
+  interval_cases k <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.398914337158203 / 17.693740367889404 / 34.09265470504761
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ : m ≤ 30 := by
+    by_contra! h
+    have : m * n = 288 := h₃
+    have : n ≤ 288 := by
+      nlinarith
+    have : m > 30 := by omega
+    nlinarith
+  have h₅ : n ≤ 30 := by
+    by_contra! h
+    have : m * n = 288 := h₃
+    have : m ≤ 288 := by
+      nlinarith
+    have : n > 30 := by omega
+    nlinarith
+  interval_cases m <;> interval_cases n <;> norm_num at h₂ h₃ ⊢ <;> try contradiction
+  <;> try linarith
+  <;> try omega
+  <;> try nlinarith
+  <;> try omega
+  <;> try nlinarith
+  <;> try omega
+  <;> try nlinarith
+  <;> try omega
+  <;> try nlinarith
+  <;> try omega
+  <;> try nlinarith
+  <;> try omega
+  <;> try nlinarith
+  <;> try omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.698288917541504 / 8.747894287109375 / 19.44618320465088
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ : m ≤ 288 := by
+    nlinarith
+  have h₅ : n ≤ 288 := by
+    nlinarith
+  interval_cases m <;> norm_num [Nat.even_iff] at h₀ h₁ h₂ h₃ <;>
+    (try omega) <;>
+    (try
+      {
+        have h₆ : n ≤ 288 := by
+          nlinarith
+        interval_cases n <;> norm_num [Nat.even_iff] at h₀ h₁ h₂ h₃ <;>
+          omega
+      }) <;>
+    omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.419274806976318 / 5.54806661605835 / 14.967341423034668
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_521
+  (m n : ℕ)
+  (h₀ : Even m)
+  (h₁ : Even n)
+  (h₂ : m - n = 2)
+  (h₃ : m * n = 288) :
+  m = 18 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  rw [even_iff_two_dvd] at h₄ h₅
+  cases' h₄ with k hk
+  cases' h₅ with l hl
+  subst_vars
+  have h₈ : k ≤ 144 := by
+    nlinarith
+  have h₉ : l ≤ 144 := by
+    nlinarith
+  interval_cases k <;> omega
+

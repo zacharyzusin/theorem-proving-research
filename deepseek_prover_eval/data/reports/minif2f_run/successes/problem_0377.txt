@@ -1,0 +1,24 @@
+Problem: problem_0377
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.723520517349243
+Lean check time (s): 4.770820617675781
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p11
+  (a b : ℝ)
+  (h₀ : a ≠ 0 ∧ b ≠ 0)
+  (h₁ : a * b = a - b) :
+  a / b + b / a - a * b = 2 := by
+  have h₂ : a ≠ 0 := h₀.1
+  have h₃ : b ≠ 0 := h₀.2
+  field_simp [h₂, h₃]
+  simp_all only [mul_comm, mul_sub, mul_one, mul_div_cancel_left, mul_div_cancel_left]
+  ring
+  <;> linarith

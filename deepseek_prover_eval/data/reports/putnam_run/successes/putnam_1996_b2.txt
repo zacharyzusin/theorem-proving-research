@@ -1,0 +1,20 @@
+Problem: putnam_1996_b2
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 67.4841320514679
+Lean check time (s): 32.10013699531555
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_b2
+(n : ℕ)
+(prododd : ℝ)
+(npos : n > 0)
+(hprododd : prododd = ∏ i ∈ Finset.range (2 * n), if Odd i then i else 1)
+: ((2 * n - 1 : ℝ) / Real.exp 1) ^ ((2 * n - 1 : ℝ) / 2) < prododd ∧ prododd < ((2 * n + 1 : ℝ) / Real.exp 1) ^ ((2 * n + 1 : ℝ) / 2) :=
+sorry

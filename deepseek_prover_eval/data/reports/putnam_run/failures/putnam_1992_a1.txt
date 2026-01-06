@@ -1,0 +1,321 @@
+Problem: putnam_1992_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.299941539764404 / 11.86380386352539 / 28.163745403289795
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  constructor
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_eq_add_neg]
+      <;> ring
+    · constructor
+      · intro n
+        simp [sub_eq_add_neg]
+        <;> ring
+      · simp
+  · rintro ⟨h1, h2, h3⟩
+    funext n
+    have h4 := h1 n
+    have h5 := h2 n
+    have h6 := h2 (n + 2)
+    have h7 := h1 (n + 2)
+    have h8 := h1 (n + 1)
+    have h9 := h2 (n + 1)
+    have h10 := h2 (n + 3)
+    have h11 := h1 (n + 3)
+    have h12 := h1 (n + 4)
+    have h13 := h2 (n + 4)
+    simp at *
+    <;> ring_nf at *
+    <;> omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.527287006378174 / 16.003750801086426 / 33.5310378074646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  apply Iff.intro
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_sub, sub_add, add_comm]
+      <;> ring
+    constructor
+    · intro n
+      simp [sub_sub, sub_add, add_comm]
+      <;> ring
+    · simp
+  · rintro ⟨h1, h2, h3⟩
+    funext n
+    have h4 := h1 n
+    have h5 := h1 (n + 2)
+    have h6 := h2 n
+    have h7 := h2 (n + 2)
+    have h8 := h1 0
+    have h9 := h1 1
+    have h10 := h1 (-1)
+    have h11 := h1 2
+    have h12 := h1 (-2)
+    have h13 := h2 0
+    have h14 := h2 1
+    have h15 := h2 (-1)
+    have h16 := h2 2
+    have h17 := h2 (-2)
+    simp at *
+    <;> omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.149925708770752 / 14.667076826095581 / 29.817002534866333
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  apply Iff.intro
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_eq_add_neg]
+      <;> ring
+    · constructor
+      · intro n
+        simp [sub_eq_add_neg]
+        <;> ring
+      · simp
+  · rintro ⟨h₁, h₂, h₃⟩
+    funext n
+    have h₄ := h₁ n
+    have h₅ := h₂ n
+    have h₆ := h₁ 0
+    have h₇ := h₂ 0
+    have h₈ := h₁ 1
+    have h₉ := h₂ 1
+    have h₁₀ := h₁ (-1)
+    have h₁₁ := h₂ (-1)
+    simp at h₆ h₇ h₈ h₉ h₁₀ h₁₁
+    <;> omega
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.680776357650757 / 12.707901000976562 / 26.38867735862732
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  apply Iff.intro
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_eq_add_neg]
+      <;> ring
+    · constructor
+      · intro n
+        simp [sub_eq_add_neg]
+        <;> ring
+      · simp
+  · rintro ⟨h₁, h₂, h₃⟩
+    funext n
+    have h₄ := h₁ n
+    have h₅ := h₁ (n + 2)
+    have h₆ := h₂ n
+    have h₇ := h₂ (n + 2)
+    simp [sub_eq_add_neg] at h₁ h₂ h₃ h₄ h₅ h₆ h₇ ⊢
+    <;> omega
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 18.074727058410645 / 14.664888143539429 / 32.73961520195007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  constructor
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_eq_add_neg]
+      <;> ring
+    · constructor
+      · intro n
+        simp [sub_eq_add_neg]
+        <;> ring
+      · simp
+  · rintro ⟨h₁, h₂, h₃⟩
+    funext n
+    have h₄ := h₁ n
+    have h₅ := h₁ (n + 2)
+    have h₆ := h₂ n
+    have h₇ := h₂ (n + 2)
+    have h₈ := h₁ 0
+    have h₉ := h₁ 1
+    have h₁₀ := h₁ (-1)
+    have h₁₁ := h₁ 2
+    have h₁₂ := h₁ (-2)
+    have h₁₃ := h₂ 0
+    have h₁₄ := h₂ 1
+    have h₁₅ := h₂ (-1)
+    have h₁₆ := h₂ 2
+    have h₁₇ := h₂ (-2)
+    simp at *
+    <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.536719560623169 / 12.71090054512024 / 28.247620105743408
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  constructor
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_eq_add_neg]
+      <;> ring
+    · constructor
+      · intro n
+        simp [sub_eq_add_neg]
+        <;> ring
+      · simp
+  · rintro ⟨h₁, h₂, h₃⟩
+    funext n
+    have h₄ := h₁ n
+    have h₅ := h₁ (n + 2)
+    have h₆ := h₂ n
+    have h₇ := h₂ (n + 2)
+    have h₈ := h₁ 0
+    have h₉ := h₁ 1
+    have h₁₀ := h₁ (-1)
+    have h₁₁ := h₂ 0
+    have h₁₂ := h₂ 1
+    have h₁₃ := h₂ (-1)
+    simp at *
+    <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.29958438873291 / 13.326409101486206 / 28.625993490219116
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  constructor
+  · intro h
+    subst h
+    constructor
+    · intro n
+      simp [sub_eq_add_neg]
+      <;> ring_nf
+      <;> omega
+    · constructor
+      · intro n
+        simp [sub_eq_add_neg]
+        <;> ring_nf
+        <;> omega
+      · simp
+  · rintro ⟨h1, h2, h3⟩
+    funext n
+    have h4 := h1 n
+    have h5 := h2 n
+    have h6 := h2 (n + 2)
+    have h7 := h1 0
+    have h8 := h1 1
+    have h9 := h1 (-1)
+    have h10 := h1 2
+    have h11 := h1 (-2)
+    simp at h4 h5 h6 h7 h8 h9 h10 h11
+    <;> omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.704018115997314 / 14.593017816543579 / 31.297035932540894
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1992_a1
+  (f : ℤ → ℤ) :
+  (f = fun n ↦ 1 - n) ↔
+  (∀ n : ℤ, f (f n) = n) ∧ (∀ n : ℤ, f (f (n + 2) + 2) = n) ∧ (f 0 = 1) := by
+  apply Iff.intro
+  · rintro rfl
+    constructor
+    · intro n
+      simp [sub_sub, sub_add, add_sub_cancel]
+      <;> ring
+    · constructor
+      · intro n
+        simp [sub_sub, sub_add, add_sub_cancel]
+        <;> ring
+      · simp
+  · rintro ⟨h1, h2, h3⟩
+    funext n
+    have h4 := h1 n
+    have h5 := h1 (n + 2)
+    have h6 := h2 n
+    have h7 := h2 (n + 2)
+    have h8 := h1 0
+    have h9 := h1 1
+    have h10 := h1 (-1)
+    have h11 := h1 2
+    have h12 := h1 (-2)
+    simp at h4 h5 h6 h7 h8 h9 h10 h11 h12
+    have h13 : f n = 1 - n := by
+      omega
+    exact h13

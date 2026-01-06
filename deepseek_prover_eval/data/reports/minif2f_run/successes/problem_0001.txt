@@ -1,0 +1,23 @@
+Problem: problem_0001
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.908761978149414
+Lean check time (s): 6.697559833526611
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_478
+  (b h v : ℝ)
+  (h₀ : 0 < b ∧ 0 < h ∧ 0 < v)
+  (h₁ : v = 1 / 3 * (b * h))
+  (h₂ : b = 30)
+  (h₃ : h = 13 / 2) :
+  v = 65 := by
+  have h₄ : v = 1 / 3 * (30 * (13 / 2)) := by rw [h₁, h₂, h₃]
+  ring_nf at h₄ ⊢
+  <;> linarith

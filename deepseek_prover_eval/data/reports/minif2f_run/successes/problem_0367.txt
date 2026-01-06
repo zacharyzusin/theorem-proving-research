@@ -1,0 +1,24 @@
+Problem: problem_0367
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.402084589004517
+Lean check time (s): 5.168339729309082
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2020_p5
+  (a b : ℕ)
+  (h₀ : (5 : ℚ)/8 * b = 2/3 * a + 7)
+  (h₁ : (b : ℚ) - 5/8 * b = (a - 2/3 * a) + 7) :
+  a = 42 := by
+  ring_nf at h₀ h₁
+  field_simp at h₀ h₁
+  ring_nf at h₀ h₁
+  norm_cast at h₀ h₁
+  ring_nf at h₀ h₁
+  omega

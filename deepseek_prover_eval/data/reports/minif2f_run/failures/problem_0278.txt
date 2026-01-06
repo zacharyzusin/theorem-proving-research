@@ -1,0 +1,405 @@
+Problem: problem_0278
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 84.92201066017151 / 17.33968687057495 / 102.26169753074646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+          have h₁ : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+          have h₂ : n ≤ 44 := by linarith [Finset.mem_Icc.mp hn]
+          nlinarith [Real.pi_pos]
+        , by
+          have h₁ : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+          have h₂ : n ≤ 44 := by linarith [Finset.mem_Icc.mp hn]
+          nlinarith [Real.pi_pos]⟩
+    · exact ⟨1, by
+        norm_num
+        <;>
+        norm_num [Finset.mem_Icc]
+        <;>
+        linarith [Real.pi_pos]⟩
+  
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_pos_of_lt_pi (by
+        have h₁ : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+        have h₂ : n ≤ 44 := by linarith [Finset.mem_Icc.mp hn]
+        have h₃ : (n : ℝ) * Real.pi / 180 > 0 := by positivity
+        have h₄ : (n : ℝ) * Real.pi / 180 < Real.pi := by
+          have : (n : ℝ) ≤ 44 := by exact_mod_cast (by linarith [Finset.mem_Icc.mp hn])
+          rw [div_lt_iff (by positivity)]
+          nlinarith [Real.pi_pos, Real.pi_le_four]
+   
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 46.56310033798218 / 4.556495904922485 / 51.11959624290466
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+        have hn' : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have hn'' : n ≤ 44 := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have hn''' : (n : ℝ) ≤ 44 := by exact_mod_cast hn''
+        have hn'''' : (0 : ℝ) < n := by exact_mod_cast hn'
+        have hn''''' : (0 : ℝ) < n * Real.pi / 180 := by positivity
+        have hn'''''' : n * Real.pi / 180 < Real.pi / 2 := by
+          rw [div_lt_iff] <;> nlinarith [Real.pi_pos, Real.pi_le_four]
+        exact ⟨by linarith [Real.pi_pos], by linarith [Real.pi_pos]⟩
+      , by linarith [Real.pi_pos]⟩
+    · exact ⟨1, by
+        simp only [Finset.mem_Icc]
+        norm_num
+        <;>
+        linarith [Real.pi_pos]⟩
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_mem_Ioo ⟨by
+        have hn' : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have hn'' : n ≤ 44 := by
+          simp only [Finset.mem_Icc] at hn
+        
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 78.23088479042053 / 10.22100567817688 / 88.45189046859741
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+        have hn' : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+        have hn'' : n ≤ 44 := by linarith [Finset.mem_Icc.mp hn]
+        have hn''' : n * Real.pi / 180 > 0 := by positivity
+        linarith
+        , by
+        have hn' : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+        have hn'' : n ≤ 44 := by linarith [Finset.mem_Icc.mp hn]
+        have hn''' : n * Real.pi / 180 ≤ Real.pi / 2 := by
+          rw [div_le_iff] <;> linarith [Real.pi_pos]
+        linarith [Real.pi_pos]
+      ⟩
+    · exact ⟨1, by
+        simp [Finset.mem_Icc]
+        <;> norm_num
+        <;> linarith [Real.pi_pos]
+      ⟩
+  
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_mem_Ioo ⟨by
+        have hn' : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+        have hn'' : n ≤ 44 := by linarith [Finset.mem_Icc.mp hn]
+        have hn''' : n * Real.pi / 180 > 0 := by positivity
+        linarith
+        , by
+        have hn' : 0 < n := by linarith [Finset.mem_Icc.mp hn]
+        ha
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 73.90165209770203 / 6.655167579650879 / 80.5568196773529
+Lean stderr:
+Error in Linarith.normalizeDenominatorsLHS: Expr.rewrite may not produce subgoals.
+Error in Linarith.normalizeDenominatorsLHS: Expr.rewrite may not produce subgoals.
+
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+        have h₁ : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have h₂ : n ≤ 44 := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have h₃ : 0 < n * Real.pi / 180 := by positivity
+        have h₄ : n * Real.pi / 180 < Real.pi / 2 := by
+          have h₅ : (n : ℝ) ≤ 44 := by exact_mod_cast h₂
+          have h₆ : (n : ℝ) * Real.pi / 180 < Real.pi / 2 := by
+            rw [div_lt_iff (by positivity)]
+            nlinarith [Real.pi_pos]
+          exact h₆
+        exact Real.cos_pos_of_mem_Ioo ⟨by linarith [Real.pi_pos], by linarith [Real.pi_pos]⟩
+      , by linarith [Real.pi_pos]⟩
+    · exact ⟨1, by
+        simp only [Finset.mem_Icc]
+        norm_num
+        <;>
+        linarith [Real.pi_pos]⟩
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_mem_Ioo ⟨by
+        have h₁ : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have h₂ : n ≤ 44 := by
+          simp only 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.451090335845947 / 3.7703120708465576 / 31.221402406692505
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+        norm_num [Finset.mem_Icc] at hn ⊢
+        nlinarith, by
+        norm_num [Finset.mem_Icc] at hn ⊢
+        nlinarith⟩
+    · exact ⟨1, by
+        norm_num [Finset.mem_Icc]
+        <;>
+        norm_num
+        <;>
+        linarith⟩
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_mem_Ioo ⟨by
+        norm_num [Finset.mem_Icc] at hn ⊢
+        nlinarith, by
+        norm_num [Finset.mem_Icc] at hn ⊢
+        nlinarith⟩
+    · exact ⟨1, by
+        norm_num [Finset.mem_Icc]
+        <;>
+        norm_num
+        <;>
+        linarith⟩
+  have h₃ : x > 0 := div_pos h₁ h₂
+  have h₄ : Int.floor (100 * x) = 241 := by
+    rw [Int.floor_eq_iff]
+    norm_num
+    constructor
+    · norm_num
+      apply le_of_sub_nonneg
+      field_simp
+      rw [le_div_iff (by positivity)]
+      norm_num
+      nlinarith [Real.pi_pos]
+    · norm_num
+      apply lt_of_sub_pos
+      field_simp
+      rw [← sub_pos]
+      norm_num
+      nlinarith [Real.pi_pos]
+  exact h₄
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 71.41634964942932 / 2.679318904876709 / 74.09566855430603
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+        have h₁ : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have h₂ : n ≤ 44 := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have h₃ : (n : ℝ) * Real.pi / 180 ≥ 0 := by positivity
+        have h₄ : (n : ℝ) * Real.pi / 180 < Real.pi := by
+          have h₅ : (n : ℝ) ≤ 44 := by exact_mod_cast h₂
+          have h₆ : (n : ℝ) * Real.pi / 180 < Real.pi := by
+            rw [div_lt_iff (by positivity)]
+            nlinarith [Real.pi_pos]
+          exact h₆
+        exact by
+          constructor <;>
+            nlinarith [Real.pi_pos, Real.pi_le_four]
+        <;>
+          nlinarith [Real.pi_pos, Real.pi_le_four]
+      <;>
+        nlinarith [Real.pi_pos, Real.pi_le_four]
+      <;>
+        nlinarith [Real.pi_pos, Real.pi_le_four]
+    · exact ⟨1, by
+        simp only [Finset.mem_Icc, Nat.cast_one]
+        constructor <;> norm_num
+        <;> linarith [Real.pi_pos]⟩
+  
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    have h₃ : ∑ n in Finset.Icc (1 : ℕ) 44, Rea
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 83.51717114448547 / 6.0947816371917725 / 89.61195278167725
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+          have : 0 < n := by
+            simp only [Finset.mem_Icc] at hn
+            linarith
+          have : (n : ℝ) * Real.pi / 180 > 0 := by positivity
+          linarith
+        , by
+          have : (n : ℝ) * Real.pi / 180 < Real.pi := by
+            have : (n : ℝ) ≤ 44 := by
+              simp only [Finset.mem_Icc] at hn
+              norm_cast
+              linarith
+            have : (n : ℝ) * Real.pi / 180 ≤ 44 * Real.pi / 180 := by
+              gcongr
+            have : 44 * Real.pi / 180 < Real.pi := by linarith [Real.pi_pos]
+            linarith
+          linarith⟩
+    · exact ⟨1, by
+        simp only [Finset.mem_Icc]
+        norm_num
+        <;>
+        linarith [Real.pi_pos]⟩
+  
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_pos_of_lt_pi (by
+        have : 0 < (n : ℝ) := by
+          simp only [Finset.mem_Icc] at hn
+          norm_cast
+          linarith
+        have : 0 < (n : ℝ) * Real.pi / 180 := by positivity
+        have : (n :
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 70.5016098022461 / 4.604397296905518 / 75.10600709915161
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1997_p11
+  (x : ℝ)
+  (h₀ : x = (∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180)) / (∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180))) :
+  Int.floor (100 * x) = 241 := by
+  have h₁ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.cos (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.cos_pos_of_mem_Ioo ⟨by
+        have hn' : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have hn'' : n ≤ 44 := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have hn''' : (0 : ℝ) < n * Real.pi / 180 := by positivity
+        have hn'''' : (n * Real.pi / 180 : ℝ) < Real.pi := by
+          have hn''''' : (n : ℝ) ≤ 44 := by exact_mod_cast hn''
+          have hn'''''' : (n : ℝ) * Real.pi / 180 < Real.pi := by
+            rw [div_lt_iff (by positivity)]
+            nlinarith [Real.pi_pos]
+          exact hn''''''
+        exact ⟨by linarith [Real.pi_pos], by linarith [Real.pi_pos]⟩⟩
+      <;>
+        simp_all [Real.cos_pos_of_mem_Ioo]
+    · exact ⟨1, by
+        simp only [Finset.mem_Icc]
+        norm_num
+        <;>
+        linarith [Real.pi_pos]⟩
+  have h₂ : ∑ n in Finset.Icc (1 : ℕ) 44, Real.sin (n * Real.pi / 180) > 0 := by
+    apply Finset.sum_pos
+    · intro n hn
+      exact Real.sin_pos_of_mem_Ioo ⟨by
+        have hn' : 0 < n := by
+          simp only [Finset.mem_Icc] at hn
+          linarith
+        have hn'' : n 
+... [truncated] ...

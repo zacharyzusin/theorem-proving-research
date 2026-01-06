@@ -1,0 +1,20 @@
+Problem: putnam_1986_a3
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 17.57985520362854
+Lean check time (s): 9.72956132888794
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1986_a3
+(cot : ℝ → ℝ)
+(fcot : cot = fun θ ↦ cos θ / sin θ)
+(arccot : ℝ → ℝ)
+(harccot : ∀ t : ℝ, t ≥ 0 → arccot t ∈ Set.Ioc 0 (Real.pi / 2) ∧ cot (arccot t) = t)
+: (∑' n : ℕ, arccot (n ^ 2 + n + 1) = putnam_1986_a3_solution) :=
+sorry

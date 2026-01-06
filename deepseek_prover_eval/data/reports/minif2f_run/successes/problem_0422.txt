@@ -1,0 +1,22 @@
+Problem: problem_0422
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.69545865058899
+Lean check time (s): 10.70207667350769
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_690 :
+  IsLeast {a : ℕ | 0 < a ∧ a ≡ 2 [MOD 3] ∧ a ≡ 4 [MOD 5] ∧ a ≡ 6 [MOD 7] ∧ a ≡ 8 [MOD 9]} 314 := by
+  refine' ⟨by decide, fun a ⟨ha₁, ha₂, ha₃, ha₄, ha₅⟩ => _⟩
+  -- We need to show that 314 is the smallest element in the set and that any other element is greater than 314.
+  simp only [Set.mem_setOf_eq, Nat.ModEq, Nat.ModEq] at *
+  -- Simplify the conditions to understand the constraints better.
+  norm_num at *
+  -- Normalize the numbers to ensure they are in the correct form.
+  omega

@@ -1,0 +1,31 @@
+Problem: problem_0308
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.189544439315796
+Lean check time (s): 9.162023067474365
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_69
+  (rows seats : ℕ)
+  (h₀ : rows * seats = 450)
+  (h₁ : (rows + 5) * (seats - 3) = 450) :
+  rows = 25 := by
+  have h₀ : rows ∣ 450 := by
+    use seats
+    linarith
+  have h₁ : seats ∣ 450 := by
+    use rows
+    linarith
+  have h₂ : rows ≤ 450 := by
+    have h₃ : rows ∣ 450 := by assumption
+    exact Nat.le_of_dvd (by norm_num) h₃
+  have h₃ : seats ≤ 450 := by
+    have h₄ : seats ∣ 450 := by assumption
+    exact Nat.le_of_dvd (by norm_num) h₄
+  interval_cases rows <;> omega

@@ -1,0 +1,19 @@
+Problem: putnam_1970_b5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 33.37706398963928
+Lean check time (s): 98.88831901550293
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1970_b5
+(ramp : ℤ → (ℝ → ℝ))
+(ramp_def : ramp = fun (n : ℤ) => (fun (x : ℝ) => if x ≤ -n then (-n : ℝ) else (if -n < x ∧ x ≤ n then x else (n : ℝ))))
+(F : ℝ → ℝ)
+: Continuous F ↔ (∀ n : ℕ, Continuous ((ramp n) ∘ F)) :=
+sorry

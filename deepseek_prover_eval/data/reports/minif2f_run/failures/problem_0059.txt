@@ -1,0 +1,294 @@
+Problem: problem_0059
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 4
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.611068964004517 / 212.7050952911377 / 227.3161642551422
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  rw [eq_comm] at h₁
+  have h₂ : y^2 ≤ 517 := by
+    nlinarith [sq_nonneg (x^2), sq_nonneg (y^2 - 17)]
+  have h₃ : y ≤ 23 := by
+    nlinarith [sq_nonneg (y - 17)]
+  have h₄ : y ≥ -23 := by
+    nlinarith [sq_nonneg (y + 17)]
+  interval_cases y <;>
+  (try omega) <;>
+  (try
+    {
+      have h₅ : x ≤ 13 := by
+        nlinarith [sq_nonneg (x^2), sq_nonneg (x - 4)]
+      have h₆ : x ≥ -13 := by
+        nlinarith [sq_nonneg (x + 4)]
+      interval_cases x <;>
+      norm_num at h₁ ⊢ <;>
+      omega
+    }) <;>
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 23.459744691848755 / 600.1606862545013 / 623.6204309463501
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  have h₂ := h₀
+  ring_nf at h₁ h₂ ⊢
+  have h₃ : x^2 ≤ 588 := by
+    nlinarith [sq_nonneg (x * y), sq_nonneg (x * y - 2), sq_nonneg (x * y - 3),
+      sq_nonneg (x * y - 4), sq_nonneg (x * y - 5), sq_nonneg (x * y - 6),
+      sq_nonneg (x * y - 7), sq_nonneg (x * y - 8), sq_nonneg (x * y - 9),
+      sq_nonneg (x * y - 10)]
+  have h₄ : x^2 ≥ 0 := by nlinarith
+  have h₅ : y^2 ≤ 588 := by
+    nlinarith [sq_nonneg (x * y), sq_nonneg (x * y - 2), sq_nonneg (x * y - 3),
+      sq_nonneg (x * y - 4), sq_nonneg (x * y - 5), sq_nonneg (x * y - 6),
+      sq_nonneg (x * y - 7), sq_nonneg (x * y - 8), sq_nonneg (x * y - 9),
+      sq_nonneg (x * y - 10)]
+  have h₆ : y^2 ≥ 0 := by nlinarith
+  have h₇ : x^2 * y^2 ≤ 588 := by nlinarith
+  have h₈ : x^2 * y^2 ≥ 0 := by nlinarith
+  interval_cases x^2 <;>
+    (try
+      omega) <;>
+    (try
+      nlinarith) <;>
+    (try
+      linarith) <;>
+    (try
+      nlinarith)
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.745663404464722 / 600.1477952003479 / 615.8934586048126
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  have h₂ : y^2 ≤ 517 := by
+    nlinarith [sq_nonneg (x^2), sq_nonneg (x^2 * y^2)]
+  have h₃ : y ≤ 23 := by
+    nlinarith [sq_nonneg (y - 1), sq_nonneg (y + 1)]
+  have h₄ : y ≥ -23 := by
+    nlinarith [sq_nonneg (y - 1), sq_nonneg (y + 1)]
+  interval_cases y <;> norm_num [sq] at h₁ ⊢ <;>
+    (try omega) <;>
+    (try nlinarith) <;>
+    (try
+      nlinarith [sq_nonneg (x^2), sq_nonneg (x^2 * y^2), sq_nonneg (x^2 * y), sq_nonneg (x^2 * y - 1),
+        sq_nonneg (x^2 * y + 1), sq_nonneg (x^2 * y - 2), sq_nonneg (x^2 * y + 2)])
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.901995658874512 / 31.17343831062317 / 44.07543396949768
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  rw [add_comm] at h₁
+  have h₂ := h₁
+  ring_nf at h₁ h₂ ⊢
+  have h₃ : x ^ 2 ≤ 517 := by
+    nlinarith [sq_nonneg (x ^ 2), sq_nonneg (y ^ 2)]
+  have h₄ : y ^ 2 ≤ 517 := by
+    nlinarith [sq_nonneg (x ^ 2), sq_nonneg (y ^ 2)]
+  have h₅ : x ^ 2 ≥ 0 := by nlinarith
+  have h₆ : y ^ 2 ≥ 0 := by nlinarith
+  interval_cases x ^ 2 <;>
+    interval_cases y ^ 2 <;>
+    norm_num at h₁ h₂ ⊢ <;>
+    omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.520209074020386 / 26.063992261886597 / 38.58420133590698
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  have h₂ := h₀
+  ring_nf at h₁ h₂ ⊢
+  have h₃ : y^2 ≤ 517 := by
+    nlinarith
+  have h₄ : y ≤ 23 := by
+    nlinarith
+  have h₅ : y ≥ -23 := by
+    nlinarith
+  interval_cases y <;>
+    (try omega) <;>
+    (try nlinarith) <;>
+    (try
+      {
+        have h₆ : x ≤ 10 := by
+          nlinarith
+        have h₇ : x ≥ -10 := by
+          nlinarith
+        interval_cases x <;>
+          norm_num at h₁ h₂ ⊢ <;>
+          omega
+      }) <;>
+    omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.207183599472046 / 600.1629281044006 / 619.3701117038727
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  rw [← sub_eq_zero] at h₁
+  have h₂ : x^2 ≥ 0 := sq_nonneg x
+  have h₃ : y^2 ≥ 0 := sq_nonneg y
+  have h₄ : x^2 * y^2 ≥ 0 := mul_nonneg h₂ h₃
+  have h₅ : x^2 ≤ 588 := by
+    nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 - 2), sq_nonneg (y^2 - 2)]
+  have h₆ : y^2 ≤ 588 := by
+    nlinarith [sq_nonneg (x^2 - 1), sq_nonneg (y^2 - 1), sq_nonneg (x^2 - 2), sq_nonneg (y^2 - 2)]
+  interval_cases y^2 <;>
+  (try omega) <;>
+  (try
+    {
+      have h₇ : x^2 ≤ 588 := by nlinarith
+      have h₈ : x^2 ≥ 0 := by nlinarith
+      interval_cases x^2 <;>
+      omega
+    }) <;>
+  omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.01691508293152 / 23.50697088241577 / 39.52388596534729
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  have h₂ : y^2 ≤ 517 := by
+    nlinarith [sq_nonneg (y), sq_nonneg (x), sq_nonneg (x * y)]
+  have h₃ : y ≤ 23 := by
+    nlinarith [sq_nonneg (y), sq_nonneg (x), sq_nonneg (x * y)]
+  have h₄ : y ≥ -23 := by
+    nlinarith [sq_nonneg (y), sq_nonneg (x), sq_nonneg (x * y)]
+  interval_cases y <;>
+    (try {
+      have h₅ : x ≤ 19 := by
+        nlinarith [sq_nonneg (x), sq_nonneg (x * y)]
+      have h₆ : x ≥ -19 := by
+        nlinarith [sq_nonneg (x), sq_nonneg (x * y)]
+      interval_cases x <;>
+        norm_num at h₁ ⊢ <;>
+        ring_nf at h₁ ⊢ <;>
+        omega
+    }) <;>
+    omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.68446660041809 / 600.1492872238159 / 617.833753824234
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1987_p5
+  (x y : ℤ)
+  (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517):
+  3 * (x^2 * y^2) = 588 := by
+  have h₁ := h₀
+  rw [eq_comm] at h₁
+  have h₂ : y^2 ≤ 517 := by
+    nlinarith [sq_nonneg (x^2), sq_nonneg (y^2), sq_nonneg (x^2 - y^2)]
+  have h₃ : y ≤ 23 := by
+    nlinarith [sq_nonneg (y - 23), sq_nonneg (y + 23)]
+  have h₄ : y ≥ -23 := by
+    nlinarith [sq_nonneg (y - 23), sq_nonneg (y + 23)]
+  interval_cases y <;> norm_num at h₁ ⊢ <;>
+    (try omega) <;>
+    (try nlinarith) <;>
+    (try
+      {
+        have h₅ : x ≤ 13 := by
+          nlinarith [sq_nonneg (x - 13), sq_nonneg (x + 13)]
+        have h₆ : x ≥ -13 := by
+          nlinarith [sq_nonneg (x - 13), sq_nonneg (x + 13)]
+        interval_cases x <;> norm_num at h₁ ⊢ <;>
+          omega
+      }) <;>
+    omega
+

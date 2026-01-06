@@ -1,0 +1,351 @@
+Problem: putnam_2009_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 58.83416032791138 / 10.834112167358398 / 69.66827249526978
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [Set.mem_setOf_eq, Set.mem_Ioc, exists_prop]
+  constructor
+  -- First direction: if c is in the set, then c is in the interval (1/3, 1]
+  · rintro ⟨s, hs0, hs_mono, n, hn, hc⟩
+    have h₁ : 0 ≤ c := by
+      have h₁ := hc
+      have h₂ : ∀ i, i ∈ Finset.range n → ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ 0 := by
+        intro i hi
+        have h₃ : s i ≤ s (i + 1) := hs_mono (by linarith [Finset.mem_range.mp hi])
+        have h₄ : 0 ≤ s (i + 1) - s i := by linarith
+        have h₅ : 0 ≤ (s (i + 1)) ^ 2 := sq_nonneg (s (i + 1))
+        nlinarith [sq_nonneg (s (i + 1) - s i)]
+      have h₃ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ 0 := by
+        apply Finset.sum_nonneg
+        intro i hi
+        exact h₂ i hi
+      linarith
+    have h₂ : c ≤ 1 := by
+      have h₂ := hc
+      have h₃ : ∀ i, i ∈ Finset.range n → ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ 0 := by
+        intro i hi
+        have h₄ : s i ≤ s (i + 1) := hs_mono (by linarith [Finset.mem_range.mp hi])
+        have h₅ : 0 ≤ s (i + 1) - s i := by linarith
+        have h₆ : 0 ≤ (s (i + 1)) ^ 2 := sq_nonneg (s (i + 1))
+        nlinarith [sq_nonneg (s (i + 1) - s i)]
+      have h₄ : ∑ i ∈ Finset.range 
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 50.784443378448486 / 11.054756879806519 / 61.839200258255005
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [putnam_2009_b2_solution, Set.mem_Ioc, Set.mem_setOf_eq]
+  constructor
+  · rintro ⟨s, hs0, hsm, n, hn1, hc⟩
+    have h1 : s 0 = 0 := hs0
+    have h2 : StrictMono s := hsm
+    have h3 : s n = 1 := hn1
+    have h4 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) = c := hc
+    have h5 : 1 / 3 ≤ c := by
+      have h6 : ∀ i, i ∈ Finset.range n → (s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2 ≥ 0 := by
+        intro i hi
+        have h7 : s i ≥ 0 := by
+          apply le_of_lt
+          have h8 : i < n := Finset.mem_range.mp hi
+          have h9 : s i < s n := h2 (by linarith)
+          linarith [h2 (by linarith : i ≤ n)]
+        have h10 : s (i + 1) > s i := h2 (by linarith [Finset.mem_range.mp hi])
+        nlinarith [sq_nonneg (s (i + 1) - s i)]
+      have h11 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := Finset.sum_nonneg h6
+      nlinarith
+    have h6 : c ≤ 1 := by
+      have h7 : ∀ i, i ∈ Finset.range n → (s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2 ≤ (s (i + 1)) ^ 2 := by
+        intro i hi
+        have h8 : s i ≥ 0 := by
+          apply le_of_lt
+          have h9 : i < n := Finset.mem_range.mp hi
+          have h10 : s i < s n := h2 (by linarith)
+          l
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 80.36041951179504 / 15.571913480758667 / 95.93233299255371
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [Set.mem_setOf_eq, Set.mem_Ioc, exists_prop]
+  constructor
+  · rintro ⟨s, hs0, hsm, n, hn, hc⟩
+    have h1 : s 0 = 0 := hs0
+    have h2 : StrictMono s := hsm
+    have h3 : s n = 1 := hn
+    have h4 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) = c := hc
+    have h5 : 1 / 3 ≤ c := by
+      have h6 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) = c := h4
+      have h7 : ∀ i ∈ Finset.range n, (s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2 ≥ 0 := by
+        intro i hi
+        have h8 : s i < s (i + 1) := h2 (by linarith [Finset.mem_range.mp hi])
+        have h9 : 0 ≤ s i := by
+          have h10 : s 0 = 0 := hs0
+          have h11 : ∀ k, s k ≥ 0 := by
+            intro k
+            induction k with
+            | zero => simp [hs0]
+            | succ k ih =>
+              have h12 : s k < s (k + 1) := h2 (by linarith)
+              nlinarith
+          exact h11 i
+        nlinarith [sq_nonneg (s (i + 1) - s i), sq_nonneg (s i), sq_nonneg (s (i + 1))]
+      have h10 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := Finset.sum_nonneg h7
+      nlinarith
+    have h6 : c ≤ 1 := by
+      have h7 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 85.82264828681946 / 11.12339448928833 / 96.94604277610779
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [Set.mem_setOf_eq, Set.mem_Ioc, exists_prop]
+  constructor
+  · rintro ⟨s, hs0, hs_mono, n, hn1, hc⟩
+    have h₁ : s 0 = 0 := hs0
+    have h₂ : StrictMono s := hs_mono
+    have h₃ : s n = 1 := hn1
+    have h₄ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) = c := hc
+    have h₅ : 1 / 3 ≤ c ∧ c ≤ 1 := by
+      have h₅₁ : 1 / 3 ≤ c := by
+        have h₅₁₁ : ∀ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := by
+          intro i hi
+          have h₅₁₂ : s i ≤ s (i + 1) := by
+            apply h₂.monotone
+            <;> simp_all [Finset.mem_range]
+            <;> linarith
+          have h₅₁₃ : 0 ≤ s (i + 1) := by
+            apply le_of_lt
+            apply h₂
+            <;> simp_all [Finset.mem_range]
+            <;> linarith
+          have h₅₁₄ : 0 ≤ s i := by
+            apply le_of_lt
+            apply h₂
+            <;> simp_all [Finset.mem_range]
+            <;> linarith
+          nlinarith [sq_nonneg (s (i + 1) - s i), sq_nonneg (s (i + 1)), sq_nonneg (s i)]
+        have h₅₁₅ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := by
+          apply Finset.sum_nonneg
+          intro i hi
+          exact h₅₁₁ i hi
+        have h₅₁₆ :
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 62.65490460395813 / 10.999424457550049 / 73.65432906150818
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [Set.mem_setOf_eq, Set.mem_Ioc, exists_prop]
+  constructor
+  · rintro ⟨s, hs0, hs_mono, n, hn, hc⟩
+    have h1 : s 0 = 0 := hs0
+    have h2 : StrictMono s := hs_mono
+    have h3 : s n = 1 := hn
+    have h4 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) = c := hc
+    have h5 : 1 / 3 ≤ c := by
+      have h6 : ∀ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := by
+        intro i hi
+        have h7 : s i ≤ s (i + 1) := by
+          apply h2.monotone
+          simp_all [Finset.mem_range]
+          <;> linarith
+        have h8 : 0 ≤ s (i + 1) := by
+          apply le_of_not_gt
+          intro h9
+          have h10 : s i > s (i + 1) := by linarith
+          have h11 : s i ≥ 0 := by
+            apply le_of_not_gt
+            intro h12
+            have h13 : s i < s (i + 1) := by linarith
+            have h14 : s i < s i := by linarith
+            linarith
+          linarith
+        nlinarith [sq_nonneg (s (i + 1) - s i), sq_nonneg (s (i + 1)), sq_nonneg (s i)]
+      have h15 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := by
+        apply Finset.sum_nonneg
+        intro i hi
+        exact h6 i hi
+      nlinarith
+    have h6 : c ≤ 1 := 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 83.30473399162292 / 8.233595848083496 / 91.53832983970642
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = putnam_2009_b2_solution) := by
+  ext c
+  constructor
+  · intro h
+    rcases h with ⟨s, hs₀, hs_mono, n, hs_n, hc⟩
+    have h₁ : s 0 = 0 := hs₀
+    have h₂ : StrictMono s := hs_mono
+    have h₃ : s n = 1 := hs_n
+    have h₄ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) = c := hc
+    have h₅ : ∀ i, i ∈ Finset.range n → s i ≤ s (i + 1) := by
+      intro i hi
+      apply h₂.monotone
+      <;> simp_all [Finset.mem_range]
+      <;> linarith
+    have h₆ : ∀ i, i ∈ Finset.range n → s i ≥ 0 := by
+      intro i hi
+      induction i with
+      | zero => simp_all
+      | succ i ih =>
+        have : s i ≥ 0 := by
+          apply le_of_not_gt
+          intro h
+          have : s i < s (i + 1) := h₅ i hi
+          linarith [h₂ i (i + 1) (by linarith)]
+        have : s (i + 1) ≥ s i := h₅ i hi
+        linarith
+    have h₇ : c ∈ Ioc (1 / 3) 1 := by
+      have h₈ : c ≥ 1 / 3 := by
+        have h₉ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ 1 / 3 := by
+          have h₁₀ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ 1 / 3 := by
+            have h₁₁ : ∀ i, i ∈ Finset.range n → ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ (1 / 3) * (s (i + 1) - s i) := by
+              intro i hi
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 66.91249561309814 / 13.312793493270874 / 80.22528910636902
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [Set.mem_setOf_eq, Set.mem_Ioc, exists_prop]
+  constructor
+  · rintro ⟨s, hs0, hs_mono, n, hn1, hc⟩
+    have h1 : s 0 = 0 := hs0
+    have h2 : StrictMono s := hs_mono
+    have h3 : s n = 1 := hn1
+    have h4 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) = c := hc
+    have h5 : 1 / 3 ≤ c := by
+      have h6 : ∀ i, i ∈ Finset.range n → ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := by
+        intro i hi
+        have h7 : s i ≤ s (i + 1) := by
+          apply h2.monotone
+          simp_all [Finset.mem_range]
+          <;> linarith
+        have h8 : 0 ≤ s (i + 1) - s i := by linarith
+        have h9 : 0 ≤ (s (i + 1)) ^ 2 := by nlinarith
+        have h10 : 0 ≤ (s (i + 1)) ^ 3 := by nlinarith
+        nlinarith
+      have h11 : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≥ 0 := by
+        apply Finset.sum_nonneg
+        intro i hi
+        exact h6 i hi
+      nlinarith
+    have h6 : c ≤ 1 := by
+      have h7 : ∀ i, i ∈ Finset.range n → ((s (i + 1)) ^ 3 - s i * (s (i + 1)) ^ 2) ≤ (s (i + 1)) ^ 3 := by
+        intro i hi
+        have h8 : s i ≤ s (i + 1) := by
+          apply h2.monotone
+          simp_all [Finset.mem_range]
+          <;> linarith
+        hav
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 86.59648942947388 / 12.578011274337769 / 99.17450070381165
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b2
+: ({c : ℝ | ∃ s : ℕ → ℝ, s 0 = 0 ∧ StrictMono s ∧ (∃ n : ℕ, s n = 1 ∧ ((∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) = c))} = Ioc (1 / 3) 1) := by
+  ext c
+  simp only [Set.mem_setOf_eq, Set.mem_Ioc, exists_prop]
+  constructor
+  · rintro ⟨s, h₀, h₁, n, h₂, h₃⟩
+    have h₄ : ∀ k, s k ≥ k / (n : ℝ) := by
+      intro k
+      induction k with
+      | zero => simp_all
+      | succ k ih =>
+        have h₅ : s k ≥ k / (n : ℝ) := ih
+        have h₆ : s (k + 1) > s k := h₁ k (k + 1) (by linarith)
+        have h₇ : s (k + 1) ≥ (k + 1) / (n : ℝ) := by
+          calc
+            s (k + 1) ≥ s k := by linarith
+            _ ≥ k / (n : ℝ) := h₅
+            _ ≥ (k + 1) / (n : ℝ) := by
+              gcongr
+              <;> norm_num
+              <;> linarith
+        linarith
+    have h₅ : c ≥ 1 / 3 := by
+      have h₆ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) = c := h₃
+      have h₇ : ∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2) ≥ 1 / 3 := by
+        calc
+          (∑ i ∈ Finset.range n, ((s (i + 1)) ^ 3 - (s i) * (s (i + 1)) ^ 2)) ≥ ∑ i ∈ Finset.range n, (i / (n : ℝ) : ℝ) ^ 3 - (i / (n : ℝ)) * (i / (n : ℝ) : ℝ) ^ 2 := by
+            apply Finset.sum_le_sum
+            intro i _
+            have h₈ : s i ≥ i / (n : ℝ) := h₄ i
+            have h₉ : s (i + 1) ≥ (i + 1) / (n : ℝ) := h₄ (i + 1)
+            have h₁₀ : (s (i + 1)
+... [truncated] ...

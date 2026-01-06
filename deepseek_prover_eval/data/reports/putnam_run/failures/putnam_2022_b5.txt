@@ -1,0 +1,166 @@
+Problem: putnam_2022_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.94300889968872 / 7.227471590042114 / 32.170480489730835
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 33.91598439216614 / 8.338124990463257 / 42.254109382629395
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.43383026123047 / 7.650920152664185 / 30.084750413894653
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 24.466342210769653 / 7.17350959777832 / 31.639851808547974
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.485923528671265 / 8.608234643936157 / 31.094158172607422
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.865963220596313 / 7.460139513015747 / 31.32610273361206
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 28.363110542297363 / 7.110934495925903 / 35.47404503822327
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 28.02131962776184 / 7.560743808746338 / 35.58206343650818
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_b5
+(p : ℝ)
+(Xset : (n : ℕ) → Set (Fin n → ℤ))
+(Xprob : (n : ℕ) → (Fin n → ℤ) → ℝ)
+(P : (n : ℕ) → ℤ → (Fin n → ℤ) → ℝ)
+(hXset : ∀ n > 0, Xset n = {X : Fin n → ℤ | ∀ i : Fin n, X i = 1 ∨ X i = -1 ∨ X i = 0})
+(hXprob : ∀ n > 0, ∀ X : Fin n → ℤ, Xprob n X = ∏ i : Fin n, if (X i = 1 ∨ X i = -1) then p else (1 - 2 * p))
+(hP : ∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n b a = ∑' X : {X' ∈ Xset n | (∑ i : Fin n, a i * X' i) = b}, Xprob n X)
+: (0 ≤ p ∧ p ≤ 1 / 2 ∧ (∀ n > 0, ∀ (b : ℤ) (a : Fin n → ℤ), P n 0 a ≥ P n b a)) ↔ p ∈ putnam_2022_b5_solution :=
+sorry

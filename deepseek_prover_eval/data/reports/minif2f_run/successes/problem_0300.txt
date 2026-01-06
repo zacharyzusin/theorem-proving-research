@@ -1,0 +1,19 @@
+Problem: problem_0300
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.5681028366088867
+Lean check time (s): 4.125370264053345
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_45 :
+  (Nat.gcd 6432 132) + 11 = 23 := by
+  norm_num [Nat.gcd_eq_right, Nat.gcd_eq_left]
+  <;> rfl
+  <;> norm_num
+  <;> rfl

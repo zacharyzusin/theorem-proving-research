@@ -1,0 +1,24 @@
+Problem: problem_0476
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.947529554367065
+Lean check time (s): 4.126802444458008
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_84 :
+  Int.floor ((9:ℝ) / 160 * 100) = 5 := by
+  norm_num [Int.floor_eq_iff]
+  <;> norm_num
+  <;> linarith
+  <;> norm_num
+  <;> linarith
+  <;> norm_num
+  <;> linarith
+  <;> norm_num
+  <;> linarith

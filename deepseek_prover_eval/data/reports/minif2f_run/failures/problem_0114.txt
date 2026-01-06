@@ -1,0 +1,244 @@
+Problem: problem_0114
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.06511902809143 / 15.777118921279907 / 31.842237949371338
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : 1 < Nat.gcd (p n) (p (n+1)) := h₁
+  have h₃ : p n = n^2 - n + 41 := by simp [h₀]
+  have h₄ : p (n+1) = (n+1)^2 - (n+1) + 41 := by simp [h₀]
+  have h₅ : Nat.gcd (p n) (p (n+1)) ≠ 0 := by
+    intro h
+    simp_all [Nat.gcd_eq_zero_iff]
+    <;> omega
+  have h₆ : n ≥ 41 := by
+    by_contra! h
+    have h₇ : n ≤ 40 := by linarith
+    interval_cases n <;> simp_all [h₃, h₄, Nat.gcd_eq_right]
+    <;> norm_num
+    <;> try { contradiction }
+    <;> try { linarith }
+  exact h₆
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.02919626235962 / 15.319173574447632 / 30.34836983680725
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : 1 < Nat.gcd (p n) (p (n+1)) := h₁
+  have h₃ : p n = n^2 - n + 41 := h₀ n
+  have h₄ : p (n+1) = (n+1)^2 - (n+1) + 41 := h₀ (n+1)
+  have h₅ : Nat.gcd (p n) (p (n+1)) ≠ 0 := by
+    intro h
+    simp_all [Nat.gcd_eq_zero_iff]
+    <;> omega
+  have h₆ : n ≥ 41 := by
+    by_contra! h
+    have h₇ : n ≤ 40 := by linarith
+    interval_cases n <;> simp_all [h₃, h₄, Nat.gcd_eq_right]
+    <;> norm_num
+    <;> try { contradiction }
+    <;> try { linarith }
+  linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.626614332199097 / 14.78886342048645 / 24.415477752685547
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : n ≥ 41 := by
+    by_contra! h
+    have h₃ : n ≤ 40 := by linarith
+    have h₄ : Nat.gcd (p n) (p (n+1)) ≤ 1 := by
+      interval_cases n <;> simp_all [h₀, Nat.gcd_eq_right]
+      <;> norm_num
+      <;> try contradiction
+      <;> try linarith
+    linarith
+  linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.38157844543457 / 14.267951488494873 / 29.649529933929443
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : 1 < Nat.gcd (p n) (p (n + 1)) := h₁
+  have h₃ : p n = n^2 - n + 41 := by simp [h₀]
+  have h₄ : p (n + 1) = (n + 1)^2 - (n + 1) + 41 := by simp [h₀]
+  have h₅ : Nat.gcd (p n) (p (n + 1)) ≠ 0 := by
+    intro h
+    simp_all [Nat.gcd_eq_zero_iff]
+    <;> aesop
+  have h₆ : 41 ≤ n := by
+    by_contra! h
+    have h₇ : n ≤ 40 := by linarith
+    interval_cases n <;> simp_all [h₃, h₄, Nat.gcd_eq_right]
+    <;> norm_num
+    <;> try contradiction
+    <;> try linarith
+  exact h₆
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.036240339279175 / 14.490800142288208 / 28.527040481567383
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : 1 < Nat.gcd (p n) (p (n+1)) := h₁
+  have h₃ : p n = n^2 - n + 41 := h₀ n
+  have h₄ : p (n+1) = (n+1)^2 - (n+1) + 41 := h₀ (n+1)
+  have h₅ : Nat.gcd (p n) (p (n+1)) > 1 := by linarith
+  have h₆ : n ≥ 41 := by
+    by_contra! h
+    have h₇ : n ≤ 40 := by linarith
+    interval_cases n <;> simp_all [h₀, Nat.gcd_eq_right, Nat.gcd_eq_left]
+    <;> norm_num
+    <;> try contradiction
+    <;> try linarith
+  exact h₆
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.590229034423828 / 14.340802669525146 / 27.931031703948975
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : 1 < Nat.gcd (p n) (p (n+1)) := h₁
+  have h₃ : p n = n^2 - n + 41 := by simp_all
+  have h₄ : p (n+1) = (n+1)^2 - (n+1) + 41 := by simp_all
+  have h₅ : Nat.gcd (p n) (p (n+1)) ≠ 0 := by
+    intro h
+    simp_all
+  have h₆ : n ≥ 41 := by
+    by_contra! h
+    have h₇ : n ≤ 40 := by linarith
+    interval_cases n <;> simp_all [h₃, h₄, Nat.gcd_eq_right]
+    <;> norm_num
+    <;> try contradiction
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.832053184509277 / 14.38800311088562 / 26.220056295394897
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : ∀ x, p x = x^2 - x + 41 := h₀
+  have h₃ : 1 < Nat.gcd (p n) (p (n+1)) := h₁
+  have h₄ : 41 ≤ n := by
+    by_contra h
+    push_neg at h
+    have h₅ : n ≤ 40 := by linarith
+    interval_cases n <;> simp_all [h₂, Nat.gcd_eq_right, Nat.gcd_eq_left]
+    <;> norm_num
+    <;> try contradiction
+    <;> try linarith
+    <;> try nlinarith
+  exact h₄
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.134204149246216 / 3.4471395015716553 / 16.58134365081787
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_618
+  (n : ℕ)
+  (p : ℕ → ℕ)
+  (h₀ : ∀ x, p x = x^2 - x + 41)
+  (h₁ : 1 < Nat.gcd (p n) (p (n+1))) :
+  41 ≤ n := by
+  have h₂ : 1 < Nat.gcd (p n) (p (n+1)) := h₁
+  have h₃ : p n = n^2 - n + 41 := h₀ n
+  have h₄ : p (n+1) = (n+1)^2 - (n+1) + 41 := h₀ (n+1)
+  have h₅ : Nat.gcd (p n) (p (n+1)) > 1 := by linarith
+  have h₆ : n ≥ 41 := by
+    by_contra h
+    push_neg at h
+    have h₇ : n ≤ 40 := by linarith
+    interval_cases n <;> norm_num [h₃, h₄, Nat.gcd_eq_right] at h₅
+  exact h₆
+

@@ -1,0 +1,150 @@
+Problem: putnam_1976_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.629575967788696 / 42.25375056266785 / 60.88332653045654
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.152889251708984 / 43.465821743011475 / 55.61871099472046
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.735578536987305 / 34.96513557434082 / 50.700714111328125
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.937358617782593 / 39.4638352394104 / 53.40119385719299
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.794284343719482 / 40.599802017211914 / 56.3940863609314
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.493516445159912 / 44.150676012039185 / 56.6441924571991
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 23.82408905029297 / 25.49584412574768 / 49.31993317604065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 16.170723915100098 / 66.90927743911743 / 83.08000135421753
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_a4
+(a b c d : ℤ)
+(r : ℝ)
+(P Q: Polynomial ℚ)
+(hP : P = X^3 + (C (a : ℚ))*X^2 + (C (b : ℚ))*X - (C 1) ∧ aeval r P = 0 ∧ Irreducible P)
+(hQ : Q =  X^3 + (C (c : ℚ))*X^2 + (C (d : ℚ))*X + (C 1) ∧ aeval (r + 1) Q = 0)
+: ∃ s : ℝ, aeval s P = 0 ∧ (s = putnam_1976_a4_solution.1 r ∨ s = putnam_1976_a4_solution.2 r) :=
+sorry

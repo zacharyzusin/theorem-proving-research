@@ -1,0 +1,260 @@
+Problem: problem_0027
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 5
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.096455335617065 / 600.1732501983643 / 611.2697055339813
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  norm_num
+  nlinarith [mul_self_nonneg (a - b), mul_self_nonneg (b - c), mul_self_nonneg (c - a),
+    mul_self_nonneg (a - d), mul_self_nonneg (b - d), mul_self_nonneg (c - d)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.992671728134155 / 5.431648254394531 / 16.424319982528687
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  have h₈ : d = 28 / 7 := by linarith
+  simp_all
+  <;> norm_cast
+  <;> field_simp at *
+  <;> ring_nf at *
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.383044242858887 / 600.1102311611176 / 612.4932754039764
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  norm_num at h₄ h₅ h₆ h₇ ⊢
+  have h₈ : d = 28 / 7 := by
+    ring_nf at h₄ h₅ h₆ h₇ ⊢
+    nlinarith
+  rw [h₈]
+  norm_num
+  <;> rfl
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.386768341064453 / 600.1511662006378 / 610.5379345417023
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c), sq_nonneg (a - d), sq_nonneg (b - d), sq_nonneg (c - d)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.245070457458496 / 5.120261192321777 / 20.365331649780273
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₃
+  have h₅ := h₀
+  have h₆ := h₁
+  have h₇ := h₂
+  ring_nf at h₅ h₆ h₇ h₄ ⊢
+  norm_num at h₅ h₆ h₇ h₄ ⊢
+  have h₈ : d = 2 := by
+    linarith
+  have h₉ : d.den = 1 := by
+    norm_cast
+    <;> simp_all [h₈]
+    <;> norm_num
+    <;> rfl
+  have h₁₀ : d.num = 2 := by
+    norm_cast
+    <;> simp_all [h₈]
+    <;> norm_num
+    <;> rfl
+  norm_cast
+  <;> simp_all [h₉, h₁₀]
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.557965278625488 / 600.1617987155914 / 610.7197639942169
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  have h₈ : d = 4 := by
+    nlinarith
+  subst h₈
+  norm_num
+  <;>
+  field_simp [add_comm] at *
+  <;>
+  norm_cast at *
+  <;>
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.12899398803711 / 600.1424844264984 / 611.2714784145355
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  norm_num
+  nlinarith [mul_self_nonneg (a - b), mul_self_nonneg (a - c), mul_self_nonneg (b - c),
+    mul_self_nonneg (a - d), mul_self_nonneg (b - d), mul_self_nonneg (c - d)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.797887086868286 / 4.774663686752319 / 16.572550773620605
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_459
+  (a b c d : ℚ)
+  (h₀ : 3 * a = b + c + d)
+  (h₁ : 4 * b = a + c + d)
+  (h₂ : 2 * c = a + b + d)
+  (h₃ : 8 * a + 10 * b + 6 * c = 24) :
+  ↑d.den + d.num = 28 := by
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ := h₂
+  have h₇ := h₃
+  ring_nf at h₄ h₅ h₆ h₇ ⊢
+  have h₈ : d = 12 := by
+    apply Eq.symm
+    linarith
+  rw [h₈] at h₄ h₅ h₆ h₇
+  norm_cast at h₄ h₅ h₆ h₇
+  <;> simp_all
+  <;> norm_cast
+  <;> linarith
+

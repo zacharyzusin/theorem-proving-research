@@ -1,0 +1,402 @@
+Problem: putnam_1977_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.327269792556763 / 7.990847587585449 / 31.318117380142212
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step : ∀ a b c d : ℝ, (putnam_1977_a2_solution a b c d) ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    constructor
+    · intro h
+      intro ha hb hc hd
+      simp_all [putnam_1977_a2_solution]
+      <;>
+      (try
+        aesop)
+      <;>
+      (try
+        field_simp at * <;>
+        nlinarith)
+    · intro h
+      by_cases ha : a = 0 <;> by_cases hb : b = 0 <;> by_cases hc : c = 0 <;> by_cases hd : d = 0 <;>
+        simp_all [putnam_1977_a2_solution] <;>
+        (try
+          {
+            aesop
+          }) <;>
+        (try
+          {
+            field_simp at * <;>
+            nlinarith [sq_pos_of_ne_zero ha, sq_pos_of_ne_zero hb, sq_pos_of_ne_zero hc, sq_pos_of_ne_zero hd]
+          }) <;>
+        (try
+          {
+            simp_all [add_comm, add_left_comm, add_assoc] <;>
+            ring_nf at * <;>
+            aesop
+          }) <;>
+        (try
+          {
+            aesop
+          }) <;>
+        (try
+          {
+            aesop
+          })
+  exact step
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 27.16864514350891 / 5.348387718200684 / 32.517032861709595
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step₁ : ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    constructor
+    -- Forward direction: Assume the solution holds, prove the implication.
+    intro h
+    simp_all [putnam_1977_a2_solution]
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      by_contra! h₁ <;>
+      simp_all [div_eq_mul_inv] <;>
+      field_simp at * <;>
+      nlinarith)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      aesop)
+    -- Reverse direction: Assume the implication, prove the solution.
+    intro h
+    have h1 := h
+    simp_all [putnam_1977_a2_solution]
+    <;>
+    by_cases h2 : a = 0 <;> by_cases h3 : b = 0 <;> by_cases h4 : c = 0 <;> by_cases h5 : d = 0 <;>
+    simp_all [div_eq_mul_inv] <;>
+    (try
+      aesop) <;>
+    (try
+      field_simp at * <;>
+      ring_nf at * <;>
+      aesop) <;>
+    (try
+      aesop) <;>
+    (try
+      aesop)
+  
+  exact step₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.267188549041748 / 6.1355626583099365 / 36.402751207351685
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step : ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    constructor
+    -- Case 1: Assuming the first equation holds, prove the second equation.
+    intro h
+    simp_all [putnam_1977_a2_solution]
+    <;>
+    by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+    simp_all [div_eq_mul_inv] <;>
+    field_simp at * <;>
+    (try { aesop }) <;>
+    (try {
+      ring_nf at * <;>
+      nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₀), sq_pos_of_ne_zero (sub_ne_zero.mpr h₁), sq_pos_of_ne_zero (sub_ne_zero.mpr h₂), sq_pos_of_ne_zero (sub_ne_zero.mpr h₃)] }) <;>
+    (try {
+      aesop
+    })
+    -- Case 2: Assuming the second equation holds, prove the first equation.
+    intro h
+    simp_all [putnam_1977_a2_solution]
+    <;>
+    by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+    simp_all [div_eq_mul_inv] <;>
+    field_simp at * <;>
+    (try { aesop }) <;>
+    (try {
+      ring_nf at * <;>
+      nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₀), sq_pos_of_ne_zero (sub_ne_zero.mpr h₁), sq_pos_of_ne_zero (sub_ne_zero.mpr h₂), sq_pos_of_ne_
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 31.12364411354065 / 10.807958602905273 / 41.93160271644592
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step : ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    constructor
+    -- Case 1: Assuming the first set of conditions, prove the second set of conditions.
+    · intro h
+      simp_all [putnam_1977_a2_solution]
+      <;>
+      by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+      simp_all [div_eq_mul_inv] <;>
+      field_simp at * <;>
+      (try { aesop }) <;>
+      (try {
+        nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₀), sq_pos_of_ne_zero (sub_ne_zero.mpr h₁), sq_pos_of_ne_zero (sub_ne_zero.mpr h₂), sq_pos_of_ne_zero (sub_ne_zero.mpr h₃)] }) <;>
+      (try { aesop }) <;>
+      (try {
+        nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₀), sq_pos_of_ne_zero (sub_ne_zero.mpr h₁), sq_pos_of_ne_zero (sub_ne_zero.mpr h₂), sq_pos_of_ne_zero (sub_ne_zero.mpr h₃)] })
+    -- Case 2: Assuming the second set of conditions, prove the first set of conditions.
+    · intro h
+      by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+      simp_all [putnam_1977_a2_solution] <;>
+      (try { aesop }) <;>
+      (try {
+        field_s
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 28.445193767547607 / 4.278536558151245 / 32.72373032569885
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step : ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    unfold putnam_1977_a2_solution
+    by_cases ha : a = 0 <;> by_cases hb : b = 0 <;> by_cases hc : c = 0 <;> by_cases hd : d = 0 <;>
+    simp_all [ha, hb, hc, hd]
+    <;> norm_num at * <;>
+    (try
+      {
+        field_simp [ha, hb, hc, hd] at *
+        <;>
+        (try
+          {
+            nlinarith [sq_pos_of_ne_zero ha, sq_pos_of_ne_zero hb, sq_pos_of_ne_zero hc, sq_pos_of_ne_zero hd]
+          }) <;>
+        (try
+          {
+            nlinarith [sq_pos_of_ne_zero ha, sq_pos_of_ne_zero hb, sq_pos_of_ne_zero hc, sq_pos_of_ne_zero hd]
+          }) <;>
+        (try
+          {
+            nlinarith [sq_pos_of_ne_zero ha, sq_pos_of_ne_zero hb, sq_pos_of_ne_zero hc, sq_pos_of_ne_zero hd]
+          }) <;>
+        (try
+          {
+            nlinarith [sq_pos_of_ne_zero ha, sq_pos_of_ne_zero hb, sq_pos_of_ne_zero hc, sq_pos_of_ne_zero hd]
+          })
+      })
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      nlinarith)
+    <;>
+    (try
+      field_simp [ha, hb, hc, hd] at * <;> nlinarith)
+    <;>
+    (try
+      aesop)
+    <;>
+    (try
+      nlinarith)
+  
+  ex
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.43066430091858 / 8.760749816894531 / 31.19141411781311
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step₁ : ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    constructor
+    -- Case 1: Assuming the given conditions, prove the equations
+    · intro h
+      simp_all [putnam_1977_a2_solution]
+      <;>
+      by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+      simp_all [div_eq_mul_inv] <;>
+      field_simp at * <;>
+      (try simp_all) <;>
+      (try nlinarith) <;>
+      (try ring_nf at *) <;>
+      (try aesop)
+    -- Case 2: Prove the given conditions from the equations
+    · intro h
+      by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+      simp_all [putnam_1977_a2_solution, div_eq_mul_inv] <;>
+      field_simp at * <;>
+      (try ring_nf at *) <;>
+      (try aesop) <;>
+      (try simp_all) <;>
+      (try nlinarith)
+  exact step₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.29559326171875 / 4.317586421966553 / 28.613179683685303
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step₁ : ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    intro a b c d
+    unfold putnam_1977_a2_solution
+    by_cases h₀ : a = 0 <;> by_cases h₁ : b = 0 <;> by_cases h₂ : c = 0 <;> by_cases h₃ : d = 0 <;>
+    by_cases h₄ : a ≠ 0 <;> by_cases h₅ : b ≠ 0 <;> by_cases h₆ : c ≠ 0 <;> by_cases h₇ : d ≠ 0 <;>
+    simp_all [h₀, h₁, h₂, h₃, h₄, h₅, h₆, h₇] <;>
+    (try { aesop }) <;>
+    (try { field_simp at * <;> ring_nf at * <;> nlinarith }) <;>
+    (try {
+      by_cases h₈ : a = 0 <;> by_cases h₉ : b = 0 <;> by_cases h₁₀ : c = 0 <;> by_cases h₁₁ : d = 0 <;>
+      simp_all [h₈, h₉, h₁₀, h₁₁] <;>
+      norm_num at * <;>
+      aesop })
+    <;>
+    (try {
+      field_simp at * <;>
+      ring_nf at * <;>
+      aesop })
+  
+  exact fun a b c d ↦ step₁ a b c d
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 27.95786738395691 / 19.88062047958374 / 47.83848786354065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a2 :
+    ∀ a b c d : ℝ, putnam_1977_a2_solution a b c d ↔
+      a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+  have step : ∀ a b c d : ℝ, (d = a ∧ b = -c ∨ d = b ∧ a = -c ∨ d = c ∧ a = -b) ↔ a ≠ 0 → b ≠ 0 → c ≠ 0 → d ≠ 0 → (a + b + c = d ∧ 1 / a + 1 / b + 1 / c = 1 / d) := by
+    rintro a b c d
+    constructor
+    -- Case 1: Assuming the disjunction holds, prove the implication
+    · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;>
+      (try simp_all [ne_eq, add_comm]) <;>
+      (try
+        {
+          intro a b c d ha hb hc hd
+          field_simp at *
+          <;> ring_nf at * <;>
+          (try simp_all) <;>
+          (try nlinarith) <;>
+          (try aesop)
+        }) <;>
+      (try
+        {
+          intro a b c d ha hb hc hd
+          field_simp at *
+          <;> ring_nf at * <;>
+          (try simp_all) <;>
+          (try nlinarith) <;>
+          (try aesop)
+        })
+    -- Case 2: Prove the disjunction from the implication
+    · rintro h
+      by_cases h₁ : a = 0 <;> by_cases h₂ : b = 0 <;> by_cases h₃ : c = 0 <;> by_cases h₄ : d = 0 <;>
+      simp_all [ne_eq, add_comm]
+      <;>
+      (try {
+        exfalso
+        aesop
+      }) <;>
+      (try {
+        aesop
+      }) <;>
+      (try {
+        field_simp at *
+        <;> ring_nf at * <;>
+        (try {
+          aesop
+        }) <;>
+        (try {
+          nlinarith
+   
+... [truncated] ...

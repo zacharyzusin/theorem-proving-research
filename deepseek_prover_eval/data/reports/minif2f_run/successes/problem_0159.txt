@@ -1,0 +1,36 @@
+Problem: problem_0159
+Dataset: minif2f
+Mode: noncot
+First success attempt: 3
+Generation time (s): 9.677448987960815
+Lean check time (s): 4.2980639934539795
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_212 :
+  (16^17 * 17^18 * 18^19) % 10 = 8 := by
+  norm_num [Nat.mod_eq_of_lt, show 10 ∣ 10 by norm_num, show 10 ∣ 10 by norm_num]
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl
+  <;> rfl

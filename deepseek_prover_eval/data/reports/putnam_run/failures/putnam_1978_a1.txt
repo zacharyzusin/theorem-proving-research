@@ -1,0 +1,455 @@
+Problem: putnam_1978_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 30.683504581451416 / 29.702759981155396 / 60.38626456260681
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  have h₁ : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1} := hS
+  have h₂ : T ⊆ S ∧ T.ncard = 20 := hT
+  have h₃ : ∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104 := by
+    rw [Set.ext_iff] at h₁
+    have h₄ := h₁
+    simp only [Set.mem_setOf_eq, Set.mem_setOf_eq] at h₄
+    have h₅ := h₂.2
+    have h₆ := h₂.1
+    have h₇ : ∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104 := by
+      rw [Set.ncard_eq_toFinset_card] at h₅
+      norm_num at h₅
+      -- We use the fact that the number of elements in T is 20 to find two distinct elements that sum to 104.
+      -- We also use the fact that the elements of S are of the form 3j + 1 and the possible values of j are from 0 to 33.
+      -- By analyzing the possible pairs of elements in T, we can show that there must be a pair that sums to 104.
+      -- This is done by considering the distribution of the elements in T and using the Pigeonhole Principle.
+      -- The detailed combinatorial argument ensures that there are enough pairs to satisfy the condition.
+      -- The Lean 4 code provides a formalized version of this argument.
+      obtain ⟨m, hm⟩ := Finset.card_pos.1 (by omega : 0 < (T.toFinset).card)
+      use m
+      simp_all
+      <;>
+        (try omega)
+      <;>
+        (try
+          {
+            ha
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 31.602293968200684 / 46.16032886505127 / 77.76262283325195
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  rw [Set.ext_iff] at hS
+  have h₁ := hS 1
+  have h₂ := hS 4
+  have h₃ := hS 7
+  have h₄ := hS 10
+  have h₅ := hS 13
+  have h₆ := hS 16
+  have h₇ := hS 19
+  have h₈ := hS 22
+  have h₉ := hS 25
+  have h₁₀ := hS 28
+  have h₁₁ := hS 31
+  have h₁₂ := hS 34
+  have h₁₃ := hS 37
+  have h₁₄ := hS 40
+  have h₁₅ := hS 43
+  have h₁₆ := hS 46
+  have h₁₇ := hS 49
+  have h₁₈ := hS 52
+  have h₁₉ := hS 55
+  have h₂₀ := hS 58
+  have h₂₁ := hS 61
+  have h₂₂ := hS 64
+  have h₂₃ := hS 67
+  have h₂₄ := hS 70
+  have h₂₅ := hS 73
+  have h₂₆ := hS 76
+  have h₂₇ := hS 79
+  have h₂₈ := hS 82
+  have h₂₉ := hS 85
+  have h₃₀ := hS 88
+  have h₃₁ := hS 91
+  have h₃₂ := hS 94
+  have h₃₃ := hS 97
+  have h₃₄ := hS 100
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ h₁₈ h₁₉ h₂₀ h₂₁ h₂₂ h₂₃ h₂₄ h₂₅ h₂₆ h₂₇ h₂₈ h₂₉ h₃₀ h₃₁ h₃₂ h₃₃ h₃₄
+  <;>
+  simp_all [Set.mem_setOf_eq]
+  <;>
+  norm_num
+  <;>
+  omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 32.221574544906616 / 41.49590992927551 / 73.71748447418213
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  have h₁ : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1} := hS
+  have h₂ : T ⊆ S ∧ T.ncard = 20 := hT
+  have h₃ : ∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104 := by
+    classical
+    rw [Set.ext_iff] at h₁
+    have h₄ := h₁
+    simp only [Set.mem_setOf_eq, Set.mem_setOf_eq] at h₄
+    have h₅ := h₂.2
+    have h₆ := h₂.1
+    have h₇ : ∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104 := by
+      by_contra! h
+      have h₈ : T ⊆ {k | k ≤ 104 ∧ k ≥ 1} := by
+        intro x hx
+        have h₉ := hx
+        have h₁₀ := h₆ hx
+        have h₁₁ := h₄ x
+        simp_all
+        <;> omega
+      have h₉ : T.ncard ≤ 19 := by
+        have h₁₀ : T ⊆ {k | k ≤ 104 ∧ k ≥ 1} := h₈
+        have h₁₁ : T.ncard ≤ 19 := by
+          have h₁₂ : T ⊆ {k | k ≤ 104 ∧ k ≥ 1} := h₈
+          have h₁₃ : T.ncard ≤ 19 := by
+            have h₁₄ : T ⊆ {k | k ≤ 104 ∧ k ≥ 1} := h₈
+            have h₁₅ : T.ncard ≤ 19 := by
+              apply Set.ncard_le_of_subset
+              <;> simp_all [h₁, h₅]
+              <;> omega
+            exact h₁₅
+          exact h₁₃
+        exact h₁₁
+      have h₁₀ : T.ncard = 20 := h₂.2
+      linarith
+    exact h₇
+  exact h₃
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 33.658838510513306 / 22.342808723449707 / 56.00164723396301
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  rw [Set.ext_iff] at hS
+  have h₁ := hS 1
+  have h₂ := hS 4
+  have h₃ := hS 7
+  have h₄ := hS 10
+  have h₅ := hS 13
+  have h₆ := hS 16
+  have h₇ := hS 19
+  have h₈ := hS 22
+  have h₉ := hS 25
+  have h₁₀ := hS 28
+  have h₁₁ := hS 31
+  have h₁₂ := hS 34
+  have h₁₃ := hS 37
+  have h₁₄ := hS 40
+  have h₁₅ := hS 43
+  have h₁₆ := hS 46
+  have h₁₇ := hS 49
+  have h₁₈ := hS 52
+  have h₁₉ := hS 55
+  have h₂₀ := hS 58
+  have h₂₁ := hS 61
+  have h₂₂ := hS 64
+  have h₂₃ := hS 67
+  have h₂₄ := hS 70
+  have h₂₅ := hS 73
+  have h₂₆ := hS 76
+  have h₂₇ := hS 79
+  have h₂₈ := hS 82
+  have h₂₉ := hS 85
+  have h₃₀ := hS 88
+  have h₃₁ := hS 91
+  have h₃₂ := hS 94
+  have h₃₃ := hS 97
+  have h₃₄ := hS 100
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ h₁₈ h₁₉ h₂₀ h₂₁ h₂₂ h₂₃ h₂₄ h₂₅ h₂₆ h₂₇ h₂₈ h₂₉ h₃₀ h₃₁ h₃₂ h₃₃ h₃₄
+  simp_all [Set.mem_setOf_eq]
+  <;>
+  use 61, by
+    norm_num
+    <;>
+    aesop
+  <;>
+  use 43, by
+    norm_num
+    <;>
+    aesop
+  <;>
+  norm_num
+  <;>
+  aesop
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 41.54260039329529 / 56.4644832611084 / 98.00708365440369
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  rw [hS] at hT
+  have h₁ : T ⊆ {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1} := hT.1
+  have h₂ : T.ncard = 20 := hT.2
+  rw [Set.subset_def] at h₁
+  have h₃ := h₁ 104
+  have h₄ := h₁ 0
+  have h₅ := h₁ 1
+  have h₆ := h₁ 2
+  have h₇ := h₁ 3
+  have h₈ := h₁ 4
+  have h₉ := h₁ 5
+  have h₁₀ := h₁ 6
+  have h₁₁ := h₁ 7
+  have h₁₂ := h₁ 8
+  have h₁₃ := h₁ 9
+  have h₁₄ := h₁ 10
+  have h₁₅ := h₁ 11
+  have h₁₆ := h₁ 12
+  have h₁₇ := h₁ 13
+  have h₁₈ := h₁ 14
+  have h₁₉ := h₁ 15
+  have h₂₀ := h₁ 16
+  have h₂₁ := h₁ 17
+  have h₂₂ := h₁ 18
+  have h₂₃ := h₁ 19
+  have h₂₄ := h₁ 20
+  have h₂₅ := h₁ 21
+  have h₂₆ := h₁ 22
+  have h₂₇ := h₁ 23
+  have h₂₈ := h₁ 24
+  have h₂₉ := h₁ 25
+  have h₃₀ := h₁ 26
+  have h₃₁ := h₁ 27
+  have h₃₂ := h₁ 28
+  have h₃₃ := h₁ 29
+  have h₃₄ := h₁ 30
+  have h₃₅ := h₁ 31
+  have h₃₆ := h₁ 32
+  have h₃₇ := h₁ 33
+  have h₃₈ := h₁ 34
+  have h₃₉ := h₁ 35
+  have h₄₀ := h₁ 36
+  have h₄₁ := h₁ 37
+  have h₄₂ := h₁ 38
+  have h₄₃ := h₁ 39
+  have h₄₄ := h₁ 40
+  have h₄₅ := h₁ 41
+  have h₄₆ := h₁ 42
+  have h₄₇ := h₁ 43
+  have h₄₈ := h₁ 44
+  have h₄₉ := h₁ 45
+  have h₅₀ := h₁ 46
+  have h₅₁ := h₁ 47
+  have h₅₂ := h₁ 48
+  have h₅₃ := h₁ 49
+  have h₅₄ := h₁ 50
+  norm_num at *
+  <;> simp_all [Set.mem_setOf_eq]
+  <;> norm_num
+  <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 26.259502172470093 / 34.14198613166809 / 60.401488304138184
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  rw [hS] at hT
+  have h₁ : T ⊆ {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1} := hT.1
+  have h₂ : T.ncard = 20 := hT.2
+  have h₃ : ∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104 := by
+    classical
+    rw [Set.subset_def] at h₁
+    have h₄ : ∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104 := by
+      by_contra! h
+      have h₅ : T ⊆ {k | k ≤ 102} := by
+        intro k hk
+        by_contra hk'
+        have h₆ := h k hk
+        simp_all [Set.mem_setOf_eq]
+        <;> omega
+      have h₆ : T.ncard ≤ 54 := by
+        have h₇ : T ⊆ {k | k ≤ 102} := h₅
+        have h₈ : T.ncard ≤ ({k | k ≤ 102} : Set ℤ).ncard := Set.ncard_le_ncard h₇
+        have h₉ : ({k | k ≤ 102} : Set ℤ).ncard ≤ 54 := by
+          -- The number of integers from 1 to 102 is 102, but we need to account for the subset condition.
+          norm_num [Set.ncard_eq_toFinset_card]
+          <;> decide
+        linarith
+      have h₇ : T.ncard = 20 := h₂
+      linarith
+    exact h₄
+  exact h₃
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 66.15767908096313 / 73.11448550224304 / 139.27216458320618
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  rw [Set.ext_iff] at hS
+  have h₁ := hS 1
+  have h₂ := hS 4
+  have h₃ := hS 7
+  have h₄ := hS 10
+  have h₅ := hS 13
+  have h₆ := hS 16
+  have h₇ := hS 19
+  have h₈ := hS 22
+  have h₉ := hS 25
+  have h₁₀ := hS 28
+  have h₁₁ := hS 31
+  have h₁₂ := hS 34
+  have h₁₃ := hS 37
+  have h₁₄ := hS 40
+  have h₁₅ := hS 43
+  have h₁₆ := hS 46
+  have h₁₇ := hS 49
+  have h₁₈ := hS 52
+  have h₁₉ := hS 55
+  have h₂₀ := hS 58
+  have h₂₁ := hS 61
+  have h₂₂ := hS 64
+  have h₂₃ := hS 67
+  have h₂₄ := hS 70
+  have h₂₅ := hS 73
+  have h₂₆ := hS 76
+  have h₂₇ := hS 79
+  have h₂₈ := hS 82
+  have h₂₉ := hS 85
+  have h₃₀ := hS 88
+  have h₃₁ := hS 91
+  have h₃₂ := hS 94
+  have h₃₃ := hS 97
+  have h₃₄ := hS 100
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ h₁₈ h₁₉ h₂₀ h₂₁ h₂₂ h₂₃ h₂₄ h₂₅ h₂₆ h₂₇ h₂₈ h₂₉ h₃₀ h₃₁ h₃₂ h₃₃ h₃₄
+  <;> simp_all [Set.mem_setOf_eq]
+  <;> try { omega }
+  <;> try { aesop }
+  <;> try { linarith }
+  <;> try { use 1, by aesop, 103, by aesop }
+  <;> try { use 4, by aesop, 100, by aesop }
+  <;> try { use 7, by aesop, 97, by aesop }
+  <;> try { use 10, by aesop, 94, by aesop }
+  <;> try { use 13, by aesop, 91, by aesop }
+  <;> try { use 16, by aesop, 88, by aesop }
+  <;> try { use 19, by aesop, 85, by aesop }
+  <;>
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 31.331127166748047 / 37.533799171447754 / 68.8649263381958
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a1
+(S T : Set ℤ)
+(hS : S = {k | ∃ j : ℤ, 0 ≤ j ∧ j ≤ 33 ∧ k = 3 * j + 1})
+(hT : T ⊆ S ∧ T.ncard = 20)
+: (∃ m ∈ T, ∃ n ∈ T, m ≠ n ∧ m + n = 104) := by
+  rw [Set.ext_iff] at hS
+  have h₁ := hS 1
+  have h₂ := hS 4
+  have h₃ := hS 7
+  have h₄ := hS 10
+  have h₅ := hS 13
+  have h₆ := hS 16
+  have h₇ := hS 19
+  have h₈ := hS 22
+  have h₉ := hS 25
+  have h₁₀ := hS 28
+  have h₁₁ := hS 31
+  have h₁₂ := hS 34
+  have h₁₃ := hS 37
+  have h₁₄ := hS 40
+  have h₁₅ := hS 43
+  have h₁₆ := hS 46
+  have h₁₇ := hS 49
+  have h₁₈ := hS 52
+  have h₁₉ := hS 55
+  have h₂₀ := hS 58
+  have h₂₁ := hS 61
+  have h₂₂ := hS 64
+  have h₂₃ := hS 67
+  have h₂₄ := hS 70
+  have h₂₅ := hS 73
+  have h₂₆ := hS 76
+  have h₂₇ := hS 79
+  have h₂₈ := hS 82
+  have h₂₉ := hS 85
+  have h₃₀ := hS 88
+  have h₃₁ := hS 91
+  have h₃₂ := hS 94
+  have h₃₃ := hS 97
+  have h₃₄ := hS 100
+  norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ h₁₈ h₁₉ h₂₀ h₂₁ h₂₂ h₂₃ h₂₄ h₂₅ h₂₆ h₂₇ h₂₈ h₂₉ h₃₀ h₃₁ h₃₂ h₃₃ h₃₄
+  <;> simp_all [Set.mem_setOf_eq]
+  <;> norm_num
+  <;> aesop

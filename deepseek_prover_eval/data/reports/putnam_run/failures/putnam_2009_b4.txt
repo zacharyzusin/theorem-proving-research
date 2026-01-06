@@ -1,0 +1,150 @@
+Problem: putnam_2009_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 47.99221897125244 / 9.467697620391846 / 57.45991659164429
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.366206407546997 / 10.678275346755981 / 39.04448175430298
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.837456703186035 / 8.687886238098145 / 27.52534294128418
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 17.39306926727295 / 8.545440435409546 / 25.938509702682495
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.788689136505127 / 9.753895282745361 / 22.54258441925049
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.16269040107727 / 10.646764516830444 / 33.809454917907715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 25.272849321365356 / 8.869743585586548 / 34.142592906951904
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 32.42433047294617 / 11.198225975036621 / 43.62255644798279
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b4
+    (IsBalanced : MvPolynomial (Fin 2) ℝ → Prop)
+    (IsBalanced_def : ∀ P, IsBalanced P ↔ ∀ r > 0,
+      (∫ t in (0 : ℝ)..(2 * π), eval ![r * cos t, r * sin t] P) / (2 * π * r) = 0)
+    (V : Submodule ℝ (MvPolynomial (Fin 2) ℝ))
+    (V_def : ∀ P, P ∈ V ↔ IsBalanced P ∧ P.totalDegree ≤ 2009) :
+    Module.rank ℝ V = putnam_2009_b4_solution :=
+  sorry

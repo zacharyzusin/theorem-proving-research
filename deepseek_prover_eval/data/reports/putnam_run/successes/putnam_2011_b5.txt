@@ -1,0 +1,19 @@
+Problem: putnam_2011_b5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.909457921981812
+Lean check time (s): 12.752487659454346
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b5
+  (a : ℕ → ℝ)
+  (h : ∃ A : ℝ, ∀ n : ℕ, ∫ x : ℝ, ((∑ i : Finset.range n, 1 / (1 + (x - a i) ^ 2)) ^ 2) ≤ A * n) :
+  ∃ B : ℝ, B > 0 ∧
+    ∀ n : ℕ, ∑' i : Finset.range n, ∑' j : Finset.range n, (1 + (a i - a j) ^ 2) ≥ B * n ^ 3 :=
+sorry

@@ -1,0 +1,21 @@
+Problem: problem_0222
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.299967288970947
+Lean check time (s): 4.406641721725464
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_158
+  (a : ℕ)
+  (h₀ : Even a)
+  (h₁ : ∑ k in Finset.range 8, (2 * k + 1) - ∑ k in Finset.range 5, (a + 2 * k) = (4:ℤ)) :
+  a = 8 := by
+  simp_all [Finset.sum_range_succ, even_iff_two_dvd, Int.ofNat_eq_coe]
+  <;> ring_nf at h₁
+  <;> omega

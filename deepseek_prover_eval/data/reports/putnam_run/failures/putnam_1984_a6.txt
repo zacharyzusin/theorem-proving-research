@@ -1,0 +1,182 @@
+Problem: putnam_1984_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.088547468185425 / 34.144211292266846 / 55.23275876045227
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.99431085586548 / 46.910181283950806 / 65.90449213981628
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.7278835773468 / 11.276292324066162 / 36.004175901412964
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.23882246017456 / 21.757107257843018 / 41.99592971801758
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.80429482460022 / 39.37955689430237 / 60.18385171890259
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 31.047305583953857 / 21.37100124359131 / 52.418306827545166
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 19.764128923416138 / 16.706321239471436 / 36.47045016288757
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 60.30478024482727 / 31.17789077758789 / 91.48267102241516
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1984_a6
+    (f : ℕ → ℕ)
+    (hf : ∀ n, some (f n) = (Nat.digits 10 (n !)).find? (fun d ↦ d ≠ 0))
+    (IsPeriodicFrom : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (IsPeriodicFrom_def : ∀ x f p, IsPeriodicFrom x f p ↔ Periodic (f ∘ (· + x)) p)
+    (P : ℕ → (ℕ → ℕ) → ℕ → Prop)
+    (P_def : ∀ x g p, P x g p ↔ if p = 0 then (∀ q > 0, ¬ IsPeriodicFrom x g q) else
+        IsLeast {q | 0 < q ∧ IsPeriodicFrom x g q} p) :
+    ∃ g : ℕ → ℕ,
+      (∀ᵉ (k > 0) (a : Fin k → ℕ) (ha : Injective a), f (∑ i, 5 ^ (a i)) = g (∑ i, a i)) ∧
+      P 1 g putnam_1984_a6_solution :=
+  sorry

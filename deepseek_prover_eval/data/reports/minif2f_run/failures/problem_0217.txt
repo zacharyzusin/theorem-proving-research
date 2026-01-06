@@ -1,0 +1,360 @@
+Problem: problem_0217
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.079843759536743 / 600.1530001163483 / 625.232843875885
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    have h₄₀ : y < 0 := h₀.2
+    have h₄₁ : abs y = 6 := h₁
+    have h₄₂ : y = -6 := by
+      cases' abs_cases y with h₄₃ h₄₃ <;> linarith
+    exact h₄₂
+  have h₅ : x < 0 := h₀.1
+  have h₆ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+  have h₇ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₈ : (x - 8)^2 + (y - 3)^2 = 225 := by
+    have h₈₀ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₈₁ : 0 ≤ (x - 8)^2 + (y - 3)^2 := by
+      apply add_nonneg
+      apply sq_nonneg
+      apply sq_nonneg
+    rw [Real.sqrt_eq_iff_sq_eq] at h₈₀ <;> nlinarith
+  have h₉ : x^2 + y^2 = n := by
+    have h₉₀ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+    have h₉₁ : 0 ≤ x^2 + y^2 := by
+      nlinarith
+    have h₉₂ : 0 ≤ n := by
+      exact_mod_cast NNReal.coe_nonneg n
+    rw [Real.sqrt_inj] at h₉₀ <;> nlinarith
+  have h₁₀ : n = 52 := by
+    nlinarith
+  exact_mod_cast h₁₀
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.024479389190674 / 600.1534566879272 / 628.1779360771179
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    cases' abs_cases y with h₅ h₅ <;> linarith [h₁]
+  have h₅ : x < 0 := h₀.1
+  have h₆ : y < 0 := h₀.2
+  have h₇ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+  have h₈ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₉ : x^2 + y^2 = n := by
+    have h₁₀ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+    have h₁₁ : Real.sqrt (x^2 + y^2) ^ 2 = Real.sqrt n ^ 2 := by rw [h₁₀]
+    have h₁₂ : x^2 + y^2 = n := by
+      rw [Real.sq_sqrt (by positivity), Real.sq_sqrt (by positivity)] at h₁₁
+      linarith
+    exact h₁₂
+  have h₁₀ : (x - 8)^2 + (y - 3)^2 = 225 := by
+    have h₁₁ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₁₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) ^ 2 = 15 ^ 2 := by rw [h₁₁]
+    rw [Real.sq_sqrt (by positivity)] at h₁₂
+    linarith
+  have h₁₁ : x = -8 + 3 := by
+    nlinarith [sq_nonneg (x + 8), sq_nonneg (y + 6)]
+  have h₁₂ : y = -6 := by linarith
+  have h₁₃ : x = -5 := by linarith
+  have h₁₄ : n = 52 := by
+    rw [h₉]
+    nlinarith
+  exact_mod_cast h₁₄
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.821656703948975 / 600.1424458026886 / 618.9641025066376
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    have h₄₀ : y = -6 := by
+      cases' abs_cases y with h₄ h₄ <;> nlinarith
+    simpa using h₄₀
+  have h₅ : x = -11 := by
+    have h₅₀ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₅₁ : (x - 8)^2 + (y - 3)^2 = 225 := by
+      rw [Real.sqrt_eq_iff_sq_eq] at h₅₀ <;> nlinarith [sq_nonneg (x - 8 + (y - 3))]
+    rw [h₄] at h₅₁
+    nlinarith
+  have h₆ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₇ : x^2 + y^2 = n := by
+    rw [Real.sqrt_inj (by nlinarith) (by positivity)] at h₆
+    simp_all
+  rw [h₅, h₄] at h₇
+  norm_num at h₇
+  norm_cast at h₇ ⊢
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 27.401962757110596 / 600.1517724990845 / 627.5537352561951
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    cases' abs_cases y with h₄ h₄ <;>
+    nlinarith [Real.sqrt_nonneg ((x - 8)^2 + (y - 3)^2),
+      Real.sqrt_nonneg (x^2 + y^2), Real.sqrt_nonneg n]
+  have h₅ : x < 0 := by nlinarith
+  have h₆ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := by assumption
+  have h₇ : Real.sqrt (x^2 + y^2) = Real.sqrt n := by assumption
+  have h₈ : (x - 8)^2 + (y - 3)^2 = 225 := by
+    have h₈₁ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := by assumption
+    have h₈₂ : 0 ≤ (x - 8)^2 + (y - 3)^2 := by
+      apply add_nonneg <;> nlinarith [sq_nonneg (x - 8), sq_nonneg (y - 3)]
+    rw [Real.sqrt_eq_iff_sq_eq] at h₈₁ <;> nlinarith
+  have h₉ : x^2 + y^2 = 36 := by
+    have h₉₁ : Real.sqrt (x^2 + y^2) = Real.sqrt n := by assumption
+    have h₉₂ : 0 ≤ x^2 + y^2 := by nlinarith [sq_nonneg x, sq_nonneg y]
+    have h₉₃ : 0 ≤ n := by exact NNReal.coe_nonneg n
+    have h₉₄ : Real.sqrt (x^2 + y^2) = Real.sqrt n := by assumption
+    rw [Real.sqrt_inj] at h₉₄ <;> nlinarith
+  have h₁₀ : n = 52 := by
+    norm_cast at h₈ h₉ ⊢
+    nlinarith
+  exact h₁₀
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 33.45032811164856 / 600.0689990520477 / 633.5193271636963
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    cases' abs_cases y with h₅ h₅ <;> linarith [h₁]
+  have h₅ : x < 0 := h₀.1
+  have h₆ : y < 0 := h₀.2
+  have h₇ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+  have h₈ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₉ : (x - 8)^2 + (y - 3)^2 = 225 := by
+    have h₁₀ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₁₁ : 0 ≤ (x - 8)^2 + (y - 3)^2 := by nlinarith
+    have h₁₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) ^ 2 = (x - 8)^2 + (y - 3)^2 := by
+      rw [Real.sq_sqrt] <;> nlinarith
+    nlinarith
+  have h₁₀ : x^2 + y^2 = 36 := by
+    nlinarith [sq_nonneg (x + 8), sq_nonneg (y + 3)]
+  have h₁₁ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₁₂ : Real.sqrt (x^2 + y^2) ^ 2 = x^2 + y^2 := by
+    rw [Real.sq_sqrt] <;> nlinarith
+  have h₁₃ : Real.sqrt n = Real.sqrt (x^2 + y^2) := by
+    rw [h₁₁]
+  have h₁₄ : n = x^2 + y^2 := by
+    have h₁₅ : Real.sqrt n = Real.sqrt (x^2 + y^2) := h₁₃
+    have h₁₆ : Real.sqrt n ^ 2 = Real.sqrt (x^2 + y^2) ^ 2 := by
+      rw [h₁₅]
+    have h₁₇ : n = x^2 + y^2 := by
+      rw [Real.sq_sqrt, Real.sq_sqrt] at h₁₆ <;> norm_cast at h₁₆ ⊢ <;> nlinarith
+    exact h₁₇
+  have h₁₅ : n = 36 := by
+    nlinarith
+  exact_mod_cast h₁₅
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 31.79689073562622 / 600.1565072536469 / 631.9533979892731
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    cases' abs_cases y with h₄ h₄ <;>
+    nlinarith [Real.sqrt_nonneg ((x - 8)^2 + (y - 3)^2), Real.sqrt_nonneg (x^2 + y^2)]
+  have h₅ : x < 0 := h₀.1
+  have h₆ : y < 0 := h₀.2
+  have h₇ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+  have h₈ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₉ : (x - 8)^2 + (y - 3)^2 = 225 := by
+    have h₉₀ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₉₁ : 0 ≤ (x - 8)^2 + (y - 3)^2 := by
+      apply add_nonneg <;> nlinarith [sq_nonneg (x - 8), sq_nonneg (y - 3)]
+    rw [Real.sqrt_eq_iff_sq_eq] at h₉₀ <;> nlinarith
+  have h₁₀ : x^2 + y^2 = 36 := by
+    nlinarith [sq_nonneg (x + y), sq_nonneg (x - y)]
+  have h₁₁ : n = 52 := by
+    have h₁₁₀ : Real.sqrt n = Real.sqrt (x^2 + y^2) := by rw [h₃]
+    have h₁₁₁ : Real.sqrt n = Real.sqrt 36 := by rw [h₁₁₀, h₁₀]
+    have h₁₁₂ : n = 36 := by
+      have h₁₁₃ : Real.sqrt n = Real.sqrt 36 := h₁₁₁
+      have h₁₁₄ : (Real.sqrt n : ℝ) = Real.sqrt 36 := by exact_mod_cast h₁₁₃
+      have h₁₁₅ : (n : ℝ) = 36 := by
+        rw [Real.sqrt_inj (by positivity) (by positivity)] at h₁₁₄ <;> nlinarith
+      exact_mod_cast h₁₁₅
+    nlinarith
+  exact h₁₁
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.264636993408203 / 600.1638081073761 / 622.4284451007843
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    cases' abs_cases y with h₄ h₄ <;> linarith
+  have h₅ : x < 0 := h₀.1
+  have h₆ : y < 0 := h₀.2
+  have h₇ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+  have h₈ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₉ : (x - 8)^2 + (y - 3)^2 = 225 := by
+    have h₉ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₁₀ : 0 ≤ (x - 8)^2 + (y - 3)^2 := by nlinarith
+    rw [Real.sqrt_eq_iff_sq_eq] at h₉ <;> nlinarith
+  have h₁₀ : x^2 + y^2 = 36 := by
+    nlinarith [sq_nonneg (x + y), sq_nonneg (x - y)]
+  have h₁₁ : Real.sqrt n = Real.sqrt (x^2 + y^2) := by rw [h₈]
+  have h₁₂ : n = x^2 + y^2 := by
+    rw [Real.sqrt_inj (by positivity) (by positivity)] at h₁₁ <;>
+    simp_all [Real.sqrt_inj]
+  rw [h₁₂] at *
+  nlinarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.602689266204834 / 600.1446511745453 / 620.7473404407501
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_288
+  (x y : ℝ)
+  (n : NNReal)
+  (h₀ : x < 0 ∧ y < 0)
+  (h₁ : abs y = 6)
+  (h₂ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15)
+  (h₃ : Real.sqrt (x^2 + y^2) = Real.sqrt n) :
+  n = 52 := by
+  have h₄ : y = -6 := by
+    cases' abs_cases y with hy hy <;>
+    nlinarith [sq_nonneg (x - 8), sq_nonneg (y - 3), Real.sqrt_nonneg ((x - 8)^2 + (y - 3)^2)]
+  have h₅ : x = -11 := by
+    have h₅ : Real.sqrt ((x - 8)^2 + (y - 3)^2) = 15 := h₂
+    have h₆ : (x - 8)^2 + (y - 3)^2 = 225 := by
+      rw [Real.sqrt_eq_iff_sq_eq] at h₅ <;> nlinarith [sq_nonneg (x - 8), sq_nonneg (y - 3)]
+    nlinarith [sq_nonneg (x - 8), sq_nonneg (y - 3)]
+  have h₆ : Real.sqrt (x^2 + y^2) = Real.sqrt n := h₃
+  have h₇ : x^2 + y^2 = n := by
+    rw [Real.sqrt_inj (by nlinarith) (by positivity)] at h₆ <;> nlinarith
+  have h₈ : n = 52 := by
+    nlinarith [sq_nonneg (x), sq_nonneg (y)]
+  exact_mod_cast h₈
+

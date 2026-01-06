@@ -1,0 +1,150 @@
+Problem: putnam_1965_a1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.864304304122925 / 4.284744024276733 / 30.149048328399658
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.703267335891724 / 4.279423713684082 / 19.982691049575806
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.31738519668579 / 4.295746088027954 / 20.613131284713745
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 78.31814980506897 / 4.283149719238281 / 82.60129952430725
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.93742299079895 / 4.267289161682129 / 20.20471215248108
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.355695724487305 / 4.2591516971588135 / 21.614847421646118
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 52.483776569366455 / 4.2297608852386475 / 56.7135374546051
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 67.61113953590393 / 4.250533103942871 / 71.8616726398468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a1
+(A B C X Y : EuclideanSpace ℝ (Fin 2))
+(hABC : ¬Collinear ℝ {A, B, C})
+(hangles : ∠ C A B < ∠ B C A ∧ ∠ B C A < π/2 ∧ π/2 < ∠ A B C)
+(hX : Collinear ℝ {X, B, C} ∧ ∠ X A B = (π - ∠ C A B)/2 ∧ dist A X = dist A B)
+(hY : Collinear ℝ {Y, C, A} ∧ ∠ Y B C = (π - ∠ A B C)/2 ∧ dist B Y = dist A B)
+: ∠ C A B = putnam_1965_a1_solution :=
+sorry

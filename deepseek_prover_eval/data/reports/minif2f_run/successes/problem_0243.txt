@@ -1,0 +1,28 @@
+Problem: problem_0243
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 13.14844012260437
+Lean check time (s): 3.59071683883667
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_582
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : 3∣n) :
+  ((n + 4) + (n + 6) + (n + 8)) % 9 = 0 := by
+  rw [add_assoc]
+  rw [add_comm]
+  rw [add_assoc]
+  norm_num
+  have h₂ : n % 9 = 0 ∨ n % 9 = 3 ∨ n % 9 = 6 ∨ n % 9 = 1 ∨ n % 9 = 4 ∨ n % 9 = 7 ∨ n % 9 = 2 ∨ n % 9 = 5 ∨ n % 9 = 8 := by
+    omega
+  rcases h₂ with (h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂ | h₂) <;>
+    simp [h₂, Nat.add_mod, Nat.mul_mod, Nat.mod_mod, Nat.mod_eq_of_lt, show 9 > 0 by norm_num]
+  <;>
+  omega

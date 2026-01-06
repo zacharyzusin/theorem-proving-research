@@ -1,0 +1,23 @@
+Problem: problem_0269
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.144251823425293
+Lean check time (s): 3.6233279705047607
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2001_p9
+  (f : ℝ → ℝ)
+  (h₀ : ∀ x > 0, ∀ y > 0, f (x * y) = f x / y)
+  (h₁ : f 500 = 3) : f 600 = 5 / 2 := by
+  have h₂ : f 600 = f (500 * (6 / 5)) := by norm_num
+  rw [h₂]
+  have h₃ := h₀ 500 (by norm_num) (6 / 5) (by norm_num)
+  rw [h₁] at h₃
+  norm_num at h₃ ⊢
+  <;> linarith

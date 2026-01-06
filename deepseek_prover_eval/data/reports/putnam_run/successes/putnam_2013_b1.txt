@@ -1,0 +1,20 @@
+Problem: putnam_2013_b1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.533114433288574
+Lean check time (s): 8.336649656295776
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2013_b1
+(c : ℕ → ℤ)
+(hc1 : c 1 = 1)
+(hceven : ∀ n : ℕ, n > 0 → c (2 * n) = c n)
+(hcodd : ∀ n : ℕ, n > 0 → c (2 * n + 1) = (-1) ^ n * c n)
+: (∑ n : Set.Icc 1 2013, c n * c (n.1 + 2)) = putnam_2013_b1_solution :=
+sorry

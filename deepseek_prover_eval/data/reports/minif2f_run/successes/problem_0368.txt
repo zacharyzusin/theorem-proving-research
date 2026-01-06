@@ -1,0 +1,25 @@
+Problem: problem_0368
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.61881685256958
+Lean check time (s): 3.5371556282043457
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sqmod3in01d
+  (a : ℤ) :
+  (a^2) % 3 = 0 ∨ (a^2) % 3 = 1 := by
+  have : a % 3 = 0 ∨ a % 3 = 1 ∨ a % 3 = 2 := by omega
+  rcases this with (h | h | h) <;>
+  simp [h, pow_two, Int.mul_emod, Int.add_emod, Int.emod_emod]
+  <;>
+  omega
+  <;>
+  omega
+  <;>
+  omega

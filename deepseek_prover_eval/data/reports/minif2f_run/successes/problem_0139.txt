@@ -1,0 +1,24 @@
+Problem: problem_0139
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.7054123878479
+Lean check time (s): 4.2527947425842285
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_313
+  (v i z : ℂ)
+  (h₀ : v = i * z)
+  (h₁ : v = 1 + Complex.I)
+  (h₂ : z = 2 - Complex.I) :
+  i = 1/5 + 3/5 * Complex.I := by
+  rw [h₀] at h₁
+  rw [h₂] at h₁
+  field_simp [Complex.ext_iff, mul_comm] at h₁ ⊢
+  constructor <;> ring_nf at h₁ ⊢ <;> norm_num at h₁ ⊢ <;>
+    nlinarith [h₁]

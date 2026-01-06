@@ -1,0 +1,31 @@
+Problem: problem_0033
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.494989156723022
+Lean check time (s): 3.1166532039642334
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_559
+  (x y : ℕ)
+  (h₀ : x % 3 = 2)
+  (h₁ : y % 5 = 4)
+  (h₂ : x % 10 = y % 10) :
+  14 ≤ x := by
+  have h₃ := h₂
+  have h₄ := h₀
+  have h₅ := h₁
+  have h₆ : x % 10 = y % 10 := h₂
+  have h₇ : x ≥ 14 := by
+    by_contra! h
+    have h₈ : x < 14 := by linarith
+    have h₉ : x % 3 = 2 := h₀
+    have h₁₀ : y % 5 = 4 := h₁
+    have h₁₁ : x % 10 = y % 10 := h₂
+    interval_cases x <;> omega
+  exact h₇

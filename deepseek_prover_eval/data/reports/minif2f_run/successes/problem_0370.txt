@@ -1,0 +1,27 @@
+Problem: problem_0370
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.446702003479004
+Lean check time (s): 3.2316675186157227
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12b_2003_p17
+  (x y : ℝ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : Real.log (x * y^3) = 1)
+  (h₂ : Real.log (x^2 * y) = 1) :
+  Real.log (x * y) = 3 / 5 := by
+  have hx : 0 < x := by linarith
+  have hy : 0 < y := by linarith
+  have hxy : 0 < x * y := by positivity
+  field_simp [Real.log_mul, Real.log_pow, mul_assoc] at h₁ h₂ ⊢
+  ring_nf at h₁ h₂ ⊢
+  nlinarith [sq_nonneg (Real.log x - Real.log y),
+    Real.log_mul (ne_of_gt hx) (ne_of_gt hy),
+    Real.log_mul (ne_of_gt hx) (ne_of_gt hy)]

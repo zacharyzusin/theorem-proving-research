@@ -1,0 +1,22 @@
+Problem: problem_0404
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.309723854064941
+Lean check time (s): 4.1236183643341064
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_451
+  (σ : Equiv ℝ ℝ)
+  (h₀ : σ.2 (-15) = 0)
+  (h₁ : σ.2 0 = 3)
+  (h₂ : σ.2 3 = 9)
+  (h₃ : σ.2 9 = 20) :
+  σ.1 (σ.1 9) = 0 := by
+  simp_all [Equiv.symm_apply_eq, Equiv.apply_eq_iff_eq]
+  <;> aesop

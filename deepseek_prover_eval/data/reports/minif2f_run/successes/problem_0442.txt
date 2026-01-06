@@ -1,0 +1,21 @@
+Problem: problem_0442
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.968496561050415
+Lean check time (s): 3.0754125118255615
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_370
+  (n : ℕ)
+  (h₀ : n % 7 = 3) :
+  (2 * n + 1) % 7 = 0 := by
+  rw [← Nat.mod_add_div n 7]
+  simp [h₀, Nat.mul_mod, Nat.add_mod, Nat.mod_mod]
+  <;> norm_num
+  <;> omega

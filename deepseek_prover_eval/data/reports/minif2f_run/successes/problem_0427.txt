@@ -1,0 +1,35 @@
+Problem: problem_0427
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 17.414355993270874
+Lean check time (s): 4.395279884338379
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2010_p10
+  (p q : ℝ)
+  (a : ℕ → ℝ)
+  (h₀ : ∀ n, a (n + 2) - a (n + 1) = a (n + 1) - a n)
+  (h₁ : a 1 = p)
+  (h₂ : a 2 = 9)
+  (h₃ : a 3 = 3 * p - q)
+  (h₄ : a 4 = 3 * p + q) :
+  a 2010 = 8041 := by
+  have h₅ : ∀ n, a (n + 1) = a n + 4 := by
+    intro n
+    induction n <;> simp_all [h₀, sub_eq_iff_eq_add]
+    <;> linarith
+  have h₆ : ∀ n, a n = p + 4 * (n - 1) := by
+    intro n
+    induction n <;> simp_all [h₅, sub_eq_iff_eq_add]
+    <;> linarith
+  have h₇ : a 2010 = 8041 := by
+    have h₈ : a 2010 = p + 4 * (2010 - 1) := by apply h₆
+    rw [h₈]
+    linarith [h₁, h₂, h₃, h₄, h₅ 0, h₅ 1, h₅ 2, h₅ 3]
+  exact h₇

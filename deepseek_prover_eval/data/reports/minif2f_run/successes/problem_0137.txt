@@ -1,0 +1,17 @@
+Problem: problem_0137
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.62357759475708
+Lean check time (s): 3.740647315979004
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_229 :
+  (5^30) % 7 = 1 := by
+  rw [show 5^30 % 7 = 1 by norm_num]
+  <;> rfl

@@ -1,0 +1,246 @@
+Problem: putnam_1965_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 15.649407386779785 / 8.1571524143219 / 23.806559801101685
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h1 : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Nat.choose, Finset.sum_Icc_succ_top]
+        <;> field_simp
+        <;> ring_nf
+        <;> norm_num
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt, Nat.succ_le_iff]
+        <;> field_simp [Nat.factorial_succ, Nat.mul_div_assoc, Nat.mul_div_cancel_left] at *
+        <;> ring_nf at *
+        <;> norm_num at *
+        <;> nlinarith
+  exact h1 n hn
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.592413425445557 / 7.739142656326294 / 22.33155608177185
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h₁ : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Finset.sum_Icc_succ_top, Nat.choose_succ_succ]
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt, Nat.mul_div_cancel_left]
+        <;> field_simp [Nat.factorial_succ, Nat.mul_div_cancel_left] at *
+        <;> ring_nf at *
+        <;> norm_num at *
+        <;> omega
+  exact h₁ n hn
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.52060842514038 / 7.769266605377197 / 22.289875030517578
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h₁ : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Finset.sum_Icc_succ_top, Nat.choose_succ_succ]
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+        <;> field_simp [Nat.factorial_succ, Nat.mul_div_assoc, Nat.mul_div_cancel_left] at *
+        <;> ring_nf at *
+        <;> norm_num at *
+        <;> omega
+  exact h₁ n hn
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.230624198913574 / 6.926783561706543 / 23.157407760620117
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h1 : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num
+        <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt, Nat.zero_lt_one]
+        <;> field_simp
+        <;> ring_nf
+        <;> norm_num
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt, Nat.zero_lt_one, Nat.succ_le_iff]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+        <;> omega
+  exact h1 n hn
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.238919734954834 / 7.916916370391846 / 23.15583610534668
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h₁ : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt, Nat.succ_mul]
+        <;> field_simp [Nat.factorial_succ, Nat.mul_assoc] at *
+        <;> ring_nf at *
+        <;> norm_num at *
+        <;> omega
+  exact h₁ n hn
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.89357018470764 / 8.106910943984985 / 27.000481128692627
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h1 : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+        <;> simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+        <;> field_simp [Nat.choose_succ_succ, Nat.div_eq_of_lt]
+        <;> ring_nf
+        <;> norm_num
+        <;> rfl
+      | succ n =>
+        have h2 := ih (by linarith)
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt]
+        <;> field_simp [Nat.choose_succ_succ, Nat.div_eq_of_lt] at *
+        <;> ring_nf at *
+        <;> norm_num at *
+        <;> omega
+  exact h1 n hn
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.669134140014648 / 6.856546878814697 / 21.525681018829346
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h₁ : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Finset.sum_Icc_succ_top, Nat.choose_one_right, Nat.choose_zero_right]
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.choose_zero_right, Nat.choose_one_right]
+        <;> field_simp [Nat.factorial_succ, Nat.mul_div_cancel_left]
+        <;> ring_nf
+        <;> norm_num
+        <;> omega
+  exact h₁ n hn
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.331977844238281 / 7.308481216430664 / 21.640459060668945
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1965_a2
+: ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+  intro n hn
+  have h₁ : ∀ n > 0, ∑ r ∈ Finset.Icc 0 ((n - 1)/2), ((n - 2*r) * Nat.choose n r / (n : ℚ))^2 = (Nat.choose (2*n - 2) (n - 1))/(n : ℚ) := by
+    intro n hn
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num
+        <;> simp [Nat.choose]
+        <;> field_simp
+        <;> ring
+      | succ n =>
+        simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.div_eq_of_lt, Nat.succ_le_iff]
+        <;> field_simp [Nat.factorial] at *
+        <;> ring_nf at *
+        <;> norm_num
+        <;> omega
+  exact h₁ n hn

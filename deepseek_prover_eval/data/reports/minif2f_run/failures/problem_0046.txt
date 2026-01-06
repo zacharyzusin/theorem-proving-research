@@ -1,0 +1,388 @@
+Problem: problem_0046
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 34.973164319992065 / 18.138733386993408 / 53.111897706985474
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀]
+    constructor
+    · rintro ⟨h₁, h₂, ⟨m, hm⟩⟩
+      -- We need to show that n must be 2016
+      have h₃ : n = 2016 := by
+        -- We know that n is between 2010 and 2019
+        have h₄ : n ≤ 2019 := h₂
+        have h₅ : 2010 ≤ n := h₁
+        -- We need to check which number in this range satisfies the conditions
+        interval_cases n <;> norm_num at hm ⊢
+        -- By checking each number, we find that only 2016 satisfies the conditions
+        all_goals
+          rcases hm with ⟨hm₁, hm₂⟩
+          have h₆ : m ≤ 2019 := by
+            -- Since n is the sum of the divisors of m, and n is between 2010 and 2019, m must be less than or equal to 2019
+            have h₇ : m ≤ 2019 := by
+              by_contra h
+              have h₈ : m ≥ 2020 := by linarith
+              have h₉ : ∑ p in Nat.divisors m, p ≥ 2020 := by
+                have h₁₀ : ∑ p in Nat.divisors m, p ≥ m := by
+                  exact Finset.single_le_sum (fun x _ => Nat.zero_le x) (by aesop)
+                linarith
+              omega
+            linarith
+          interval_cases m <;> norm_num at hm₁ hm₂ ⊢
+          <;> simp_all (config := {decide := true})
+          <;
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 33.102072954177856 / 16.275001287460327 / 49.377074241638184
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have h₁ : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀]
+    constructor
+    · intro h
+      -- We need to show that n must be 2016 if it satisfies the given conditions.
+      have h₁ : n = 2016 := by
+        -- We know n is between 2010 and 2019.
+        have h₂ : n ≤ 2019 := h.2.1
+        have h₃ : 2010 ≤ n := h.1
+        -- We need to find a number m with exactly 4 divisors summing up to n.
+        -- This is a detailed check to see which number in the range [2010, 2019] has exactly 4 divisors and summing up to itself.
+        interval_cases n <;> norm_num at h ⊢ <;>
+          (try simp_all [Nat.divisors]) <;>
+          (try omega) <;>
+          (try {
+            use 64
+            norm_num
+            <;> decide
+          }) <;>
+          (try {
+            use 196
+            norm_num
+            <;> decide
+          }) <;>
+          (try {
+            use 225
+            norm_num
+            <;> decide
+          }) <;>
+          (try {
+            use 256
+            norm_num
+            <;> decide
+          })
+        <;> omega
+      exact h₁
+    · intro h
+      -- If n is 2016, we need to verify the conditions.
+      rw [h]
+      have h₂ : 2010 ≤ 2016 := by norm_num
+      have h₃ : 2016 ≤ 20
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 24.535878658294678 / 5.182028293609619 / 29.717906951904297
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have h₁ : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀, true_and, and_true]
+    constructor
+    · rintro ⟨h₁, h₂, ⟨m, hm⟩⟩
+      -- We need to show that n must be 2016
+      have h₃ : n = 2016 := by
+        -- We know that n is between 2010 and 2019
+        -- We also know that n is the sum of the divisors of some m with exactly 4 divisors
+        -- We will check each possible value of n in this range
+        interval_cases n <;>
+          norm_num at * <;>
+          (try simp_all (config := {decide := true})) <;>
+          (try omega) <;>
+          (try {
+            -- For each n, we will check if it is the sum of the divisors of some m with exactly 4 divisors
+            -- This is a detailed check that is best performed manually
+            use 64
+            norm_num
+            <;>
+            decide
+          }) <;>
+          (try {
+            use 1984
+            norm_num
+            <;>
+            decide
+          }) <;>
+          (try {
+            use 2016
+            norm_num
+            <;>
+            decide
+          }) <;>
+          (try {
+            use 2016
+            norm_num
+            <;>
+            decide
+          })
+      simp_all
+    · rintro rfl
+      -- If n is 2016
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 35.9104950428009 / 6.1129982471466064 / 42.02349328994751
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have h₁ : S = {2016} := by
+    ext n
+    simp only [h₀, Finset.mem_singleton, Nat.cast_inj]
+    constructor
+    · rintro ⟨h₁, h₂, ⟨m, hm⟩⟩
+      -- We need to show that n must be 2016
+      have h₃ : n = 2016 := by
+        -- We know that m has exactly 4 divisors and their sum is n
+        -- We will check each possible value of n from 2010 to 2019
+        interval_cases n <;> norm_num at h₁ h₂ <;>
+          (try { omega }) <;>
+          (try {
+            -- For each n, we will check if there exists a m with exactly 4 divisors and sum of divisors equal to n
+            -- This is a detailed check and we will use known results for m with exactly 4 divisors
+            have h₄ : m ≤ 2019 := by
+              by_contra h
+              have h₅ : m ≥ 2020 := by omega
+              have h₆ : ∑ p in Nat.divisors m, p ≥ 2020 := by
+                have h₇ : ∑ p in Nat.divisors m, p ≥ m := by
+                  exact Finset.single_le_sum (fun x hx => Nat.zero_le x) (Nat.mem_divisors.mpr ⟨by omega, by omega⟩)
+                omega
+              omega
+            interval_cases m <;> norm_num at hm <;>
+              (try { omega }) <;>
+              (try {
+                simp_all (config := {decide := true})
+                <;>
+    
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 31.342063665390015 / 7.4470298290252686 / 38.78909349441528
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have h₁ : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀]
+    constructor
+    · intro h
+      -- We need to show that n must be 2016 if it satisfies the given conditions.
+      have h₁ : n = 2016 := by
+        -- We know n is between 2010 and 2019.
+        have h₂ : n ≤ 2019 := h.2.1
+        have h₃ : 2010 ≤ n := h.1
+        -- We need to find a number m with exactly 4 divisors summing up to n.
+        -- We will check each possible value of n in this range.
+        interval_cases n <;> norm_num at h ⊢ <;>
+          (try simp_all) <;>
+          (try omega) <;>
+          (try {
+            -- For each n, we will check if there exists a suitable m.
+            -- This involves checking the number of divisors and the sum of divisors.
+            -- For brevity, we will use the fact that 2016 is the only number in this range with exactly 4 divisors summing to 2016.
+            use 2016 <;>
+            norm_num <;>
+            decide
+          }) <;>
+          (try {
+            -- If n is not 2016, we will show that no such m exists.
+            omega
+          })
+      exact h₁
+    · intro h
+      -- If n is 2016, we need to verify the conditions.
+      rw [h]
+      norm_num
+      -- We will show that 20
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 49.30345439910889 / 20.50916314125061 / 69.8126175403595
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have h₁ : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀]
+    constructor
+    · rintro ⟨h₁, h₂, ⟨m, hm⟩⟩
+      -- We need to show that n must be 2016
+      have h₃ : n = 2016 := by
+        -- We know that n is between 2010 and 2019
+        have h₄ : n ≤ 2019 := h₂
+        have h₅ : 2010 ≤ n := h₁
+        -- We need to check the possible values of n
+        interval_cases n <;> norm_num at hm ⊢ <;>
+          (try { omega }) <;>
+          (try {
+            -- For each possible value of n, we need to find a suitable m
+            -- and check the conditions
+            have h₆ : m ≤ 2019 := by
+              by_contra h
+              have h₇ : m ≥ 2020 := by omega
+              have h₈ : (Nat.divisors m).card ≠ 4 := by
+                have h₉ : m ≥ 2020 := by omega
+                have h₁₀ : (Nat.divisors m).card ≤ 2 := by
+                  -- Since m is large, its divisors are few
+                  have h₁₁ : m ≥ 2020 := by omega
+                  have h₁₂ : (Nat.divisors m).card ≤ 2 := by
+                    -- The number of divisors of m is at most 2
+                    have h₁₃ : m ≥ 2020 := by omega
+                    have h₁₄ : (Nat.divisors m).card ≤ 2 := by
+                      -- For numbers g
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 47.08957290649414 / 8.51555609703064 / 55.60512900352478
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have h₁ : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀]
+    constructor
+    · rintro ⟨h₁, h₂, ⟨m, hm⟩⟩
+      -- We need to show that n must be 2016
+      have h₃ : n = 2016 := by
+        -- We know that n is between 2010 and 2019
+        have h₄ : n ≤ 2019 := h₂
+        have h₅ : 2010 ≤ n := h₁
+        -- We also know that there exists a number m with exactly 4 divisors summing up to n
+        have h₆ : ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n) := ⟨m, hm⟩
+        -- We use the fact that only 2016 has exactly 4 divisors: 1, 2, 3, 6
+        interval_cases n <;> norm_num at h₅ h₄ ⊢ <;>
+          (try simp_all (config := {decide := true})) <;>
+          (try omega) <;>
+          (try {
+            rcases h₆ with ⟨m, hm₁, hm₂⟩
+            have h₇ : m ≤ 2019 := by
+              have h₈ : ∑ p in (Nat.divisors m), p = n := hm₂
+              have h₉ : n ≤ 2019 := h₄
+              have h₁₀ : m ≤ 2019 := by
+                by_contra h
+                have h₁₁ : m > 2019 := by linarith
+                have h₁₂ : ∑ p in (Nat.divisors m), p > 2019 := by
+                  have h₁₃ : ∑ p in (Nat.divisors m), p ≥ m := by
+                    have h₁₄ : m ∈ (Nat.divisors m) := Nat.mem_divisors.
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.075971364974976 / 13.917462587356567 / 31.993433952331543
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_451
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 2010 ≤ n ∧ n ≤ 2019 ∧ ∃ m, ((Nat.divisors m).card = 4 ∧ ∑ p in (Nat.divisors m), p = n)) :
+  ∑ k in S, k = 2016 := by
+  have : S = {2016} := by
+    ext n
+    simp only [Finset.mem_singleton, h₀, Nat.divisors]
+    constructor
+    · rintro ⟨hn₁, hn₂, ⟨m, hm₁, hm₂⟩⟩
+      -- We need to show that n must be 2016
+      -- Given the conditions, we find that only 2016 satisfies all the constraints
+      interval_cases n <;> norm_num at hn₁ hn₂ <;>
+        (try simp_all (config := {decide := true})) <;>
+        (try
+          {
+            -- We need to show that m must be 2016
+            -- Given the conditions, we find that only 2016 satisfies all the constraints
+            use 2016
+            norm_num
+            <;>
+            aesop
+          }) <;>
+        (try
+          {
+            -- We need to show that no other number satisfies the conditions
+            omega
+          })
+    · rintro rfl
+      -- Verify that 2016 satisfies the conditions
+      norm_num
+      use 2016
+      norm_num
+      <;>
+      decide
+  simp_all
+

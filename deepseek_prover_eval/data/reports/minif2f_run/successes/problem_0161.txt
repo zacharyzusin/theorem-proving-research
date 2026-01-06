@@ -1,0 +1,28 @@
+Problem: problem_0161
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 8.206955909729004
+Lean check time (s): 30.379137754440308
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_125
+  (x y : ℕ)
+  (h₀ : 0 < x ∧ 0 < y)
+  (h₁ : 5 * x = y)
+  (h₂ : (↑x - (3:ℤ)) + (y - (3:ℤ)) = 30) :
+  x = 6 := by
+  have h₃ : x ≤ 6 := by
+    by_contra h
+    have : x ≥ 7 := by linarith
+    have : y ≥ 35 := by
+      omega
+    have : (↑x - (3:ℤ)) + (y - (3:ℤ)) ≥ 32 := by
+      omega
+    omega
+  interval_cases x <;> omega

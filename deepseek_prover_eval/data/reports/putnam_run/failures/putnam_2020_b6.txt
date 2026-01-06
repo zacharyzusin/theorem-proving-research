@@ -1,0 +1,241 @@
+Problem: putnam_2020_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.19308066368103 / 21.533152103424072 / 30.726232767105103
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) := by
+    intro k hk
+    rfl
+  rw [Finset.sum_congr rfl h]
+  exact by
+    -- Use the fact that the sum of a sequence of non-negative terms is non-negative.
+    exact?
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 34.708290338516235 / 9.492249488830566 / 44.2005398273468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+    intro k hk
+    have hk' : k ∈ Finset.Icc 1 n := hk
+    have hk'' : 1 ≤ k ∧ k ≤ n := by simpa using hk'
+    have h : ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+      have h₁ : ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+        have h₂ : (Int.floor (k * (Real.sqrt 2 - 1)) : ℤ) % 2 = 0 ∨ (Int.floor (k * (Real.sqrt 2 - 1)) : ℤ) % 2 = 1 := by omega
+        cases h₂ with
+        | inl h₂ =>
+          rw [← pow_one (-1 : ℝ)]
+          simp [h₂, pow_mul]
+        | inr h₂ =>
+          rw [← pow_one (-1 : ℝ)]
+          simp [h₂, pow_mul]
+      exact_mod_cast h₁
+    exact h
+  have h₂ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+    have h₃ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (1 : ℝ) ∨ ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (-1 : ℝ) := by
+      apply Or.intro_left
+      apply Finset.sum_congr rfl
+      intro k hk
+      simp_all
+    cases h₃ wit
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.755125045776367 / 20.409326791763306 / 29.164451837539673
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) := by simp
+  rw [Finset.sum_congr rfl h₁]
+  exact by
+    -- Use the fact that the sum of the sequence is non-negative
+    exact?
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 31.42794179916382 / 11.4683837890625 / 42.89632558822632
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+    intro k hk
+    have hk' : k ∈ Finset.Icc 1 n := hk
+    have hk'' : 1 ≤ k ∧ k ≤ n := by simpa using hk'
+    have hk''' : k ≥ 1 := by linarith
+    have hk'''' : k ≤ n := by linarith
+    have h₁ : ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+      have h₂ : (Int.floor (k * (Real.sqrt 2 - 1)) : ℤ) % 2 = 0 ∨ (Int.floor (k * (Real.sqrt 2 - 1)) : ℤ) % 2 = 1 := by omega
+      rcases h₂ with (h₂ | h₂) <;> simp [h₂, pow_succ, pow_zero, mul_one, mul_neg, neg_neg, neg_one_sq]
+      <;> norm_cast
+    exact h₁
+  have h₂ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+    have h₃ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (1 : ℝ) ∨ ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (-1 : ℝ) := by
+      apply Or.intro_iff.mpr
+      apply Finset.sum_bij' (fun k _ => k) (fun k _ => k)
+      <;> simp_all [h₁]
+      <;> omega
+    rcases h₃ with (h₃ | h₃) <;> simp_all [Finset.sum_const, npos]
+    <;> nlinarith
+  exact h₂
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 44.886704206466675 / 10.86818790435791 / 55.754892110824585
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+    intro k hk
+    have hk' : k ∈ Finset.Icc 1 n := hk
+    have hk'' : 1 ≤ k ∧ k ≤ n := by simpa using hk'
+    have hk''' : k ≥ 1 := by linarith
+    have hk'''' : k ≤ n := by linarith
+    have h₁ : ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+      have h₂ : ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+        have h₃ : ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = 1 ∨ ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = -1 := by
+          have h₄ : (Int.floor (k * (Real.sqrt 2 - 1)) : ℤ) % 2 = 0 ∨ (Int.floor (k * (Real.sqrt 2 - 1)) : ℤ) % 2 = 1 := by omega
+          rcases h₄ with (h₄ | h₄) <;> simp [h₄, pow_add, pow_mul, zpow_ofNat, zpow_mul, zpow_add₀, zpow_neg, zpow_one]
+        exact_mod_cast h₃
+      exact h₂
+    exact h₁
+  have h₂ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+    have h₃ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+      have h₄ : ∀ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 33.456942081451416 / 9.544901609420776 / 43.00184369087219
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+    intro k hk
+    have hk' : k ∈ Finset.Icc 1 n := hk
+    have hk'' : 1 ≤ k ∧ k ≤ n := by simpa using hk'
+    have h : ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+      have h₁ : ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = 1 ∨ ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = -1 := by
+        have h₂ : (Int.floor (k * (Real.sqrt 2 - 1))) % 2 = 0 ∨ (Int.floor (k * (Real.sqrt 2 - 1))) % 2 = 1 := by omega
+        rcases h₂ with (h₂ | h₂) <;> simp [h₂, pow_add, pow_mul, pow_one, Int.cast_neg, Int.cast_one, Int.cast_zero]
+        <;> norm_num <;> aesop
+      exact_mod_cast h₁
+    exact h
+  have h₂ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+    have h₃ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (1 : ℝ) ∨ ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (-1 : ℝ) := by
+      apply Or.intro_left
+      apply Finset.sum_congr rfl
+      intro x hx
+      simp_all
+    cases h₃ with
+    | inl h₃ =>
+      simp_all [Finset.sum_const]
+    
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.573538064956665 / 10.184446811676025 / 49.75798487663269
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+    intro k hk
+    have hk' : k ∈ Finset.Icc 1 n := hk
+    have hk'' : 1 ≤ k := by simp_all [Finset.mem_Icc]
+    have hk''' : k ≤ n := by simp_all [Finset.mem_Icc]
+    have h : ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = 1 ∨ ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = -1 := by
+      have h₁ : ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = 1 ∨ ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = -1 := by
+        have h₂ : ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = 1 ∨ ((-1 : ℝ) ^ Int.floor (k * (Real.sqrt 2 - 1))) = -1 := by
+          have h₃ : Int.floor (k * (Real.sqrt 2 - 1)) % 2 = 0 ∨ Int.floor (k * (Real.sqrt 2 - 1)) % 2 = 1 := by omega
+          rcases h₃ with (h₃ | h₃) <;> simp [h₃, pow_add, pow_mul, pow_one, pow_two, mul_assoc, mul_comm, mul_left_comm]
+        exact h₂
+      exact_mod_cast h₁
+    exact h
+  have h₂ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+    have h₃ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+      have h₄ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ∑ k ∈ Finset.Icc 1 n, (1 : ℝ) ∨ ∑ 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 19.65896701812744 / 21.48621964454651 / 41.14518666267395
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2020_b6
+(n : ℕ)
+(npos : n > 0)
+: ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+  have h₁ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) := by simp
+  have h₂ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+    have h₃ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) := by simp
+    exact by
+      have h₄ : ∑ k ∈ Finset.Icc 1 n, ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) ≥ 0 := by
+        have h₅ : ∀ k : ℕ, k ∈ Finset.Icc 1 n → ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) = ((-1) ^ Int.floor (k * (Real.sqrt 2 - 1)) : ℝ) := by simp
+        exact by
+          exact?
+      exact h₄
+  exact h₂

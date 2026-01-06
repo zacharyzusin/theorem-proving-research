@@ -1,0 +1,20 @@
+Problem: putnam_1978_a6
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 35.648388147354126
+Lean check time (s): 16.74412512779236
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_a6
+(S : Finset (EuclideanSpace ℝ (Fin 2)))
+(n : ℕ)
+(hn : n = S.card)
+(npos : n > 0)
+: ({pair : Set (EuclideanSpace ℝ (Fin 2)) | ∃ P ∈ S, ∃ Q ∈ S, pair = {P, Q} ∧ dist P Q = 1}.ncard < 2 * (n : ℝ) ^ ((3 : ℝ) / 2)) :=
+sorry

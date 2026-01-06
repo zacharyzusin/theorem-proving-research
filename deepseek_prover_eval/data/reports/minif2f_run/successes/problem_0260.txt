@@ -1,0 +1,29 @@
+Problem: problem_0260
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.477768421173096
+Lean check time (s): 5.76298713684082
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1984_p2
+  (a b : ℕ)
+  (h₀ : 0 < a ∧ 0 < b)
+  (h₁ : ¬ 7 ∣ a)
+  (h₂ : ¬ 7 ∣ b)
+  (h₃ : ¬ 7 ∣ (a + b))
+  (h₄ : (7^7) ∣ ((a + b)^7 - a^7 - b^7)) :
+  19 ≤ a + b := by
+  have h₅ : 19 ≤ a + b := by
+    by_contra! h₅
+    have h₆ : a + b ≤ 18 := by linarith
+    have h₇ : a ≤ 18 := by linarith
+    have h₈ : b ≤ 18 := by linarith
+    interval_cases a <;> interval_cases b <;> norm_num [Nat.dvd_iff_mod_eq_zero] at h₁ h₂ h₃ h₄ <;>
+    omega
+  exact h₅

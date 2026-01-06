@@ -1,0 +1,279 @@
+Problem: problem_0214
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.702242136001587 / 3.5405168533325195 / 17.242758989334106
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ := h₁
+  have h₄ : 0 < m := h₀
+  have h₅ : (m.num : ℝ) / m.den < 90 := h₂
+  field_simp [h₄.ne', h₄.ne'] at h₁ h₂ h₃ h₅ ⊢
+  ring_nf at h₁ h₂ h₃ h₅ ⊢
+  norm_cast at h₁ h₂ h₃ h₅ ⊢
+  <;>
+  rcases m with ⟨n, d, h, c⟩ <;>
+  simp_all [Nat.div_eq_of_lt] <;>
+  nlinarith [Real.pi_pos]
+  <;>
+  linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 50.6990487575531 / 2.426208019256592 / 53.12525677680969
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ := h₁
+  simp [Finset.sum_Icc_succ_top, Finset.sum_range_succ, Real.sin_add, Real.cos_add,
+    Real.sin_sub, Real.cos_sub, mul_add, mul_sub, sub_mul, add_mul, mul_assoc] at h₁
+  norm_num at h₁
+  have h₄ : m.den = 177 - m.num := by
+    have h₅ : (m.num : ℝ) / m.den < 90 := by exact_mod_cast h₂
+    have h₆ : m.den ≠ 0 := by
+      by_contra h
+      simp_all
+    field_simp at h₅
+    have h₇ : m.num < 177 := by
+      by_contra! h₈
+      have h₉ : (m.num : ℝ) ≥ 177 := by exact_mod_cast h₈
+      have h₁₀ : (m.num : ℝ) / m.den ≥ 177 / m.den := by
+        exact div_le_div_of_le_of_nonneg h₉ (by positivity)
+      have h₁₁ : (177 : ℝ) / m.den ≥ 90 := by
+        rw [ge_iff_le]
+        rw [le_div_iff (by positivity)]
+        nlinarith
+      nlinarith
+    have h₈ : m.num < 177 := by exact_mod_cast h₇
+    have h₉ : m.den ≠ 0 := by positivity
+    have h₁₀ : m.den > 0 := by positivity
+    have h₁₁ : m.num < 177 := by exact_mod_cast h₇
+    have h₁₂ : m.den ≤ 177 := by
+      by_contra! h₁₃
+      have h₁₄ : m.den > 177 := by linarith
+      have h₁₅ : (m.num : ℝ) / m.den < 90 := by exact_mod_cast h₂
+      have h₁₆ : (m.num : ℝ) / m.den < 90 := by exact_mod_cast h₂
+      rw [div_lt_iff (by positivity)] at h₁₅
+      
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.851861476898193 / 3.605747938156128 / 21.45760941505432
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ : 0 < m := by positivity
+  have h₄ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180) := h₁
+  have h₅ : (m.num:ℝ) / m.den < 90 := h₂
+  have h₆ : ↑m.den + m.num = 177 := by
+    norm_num at h₁ h₂ ⊢
+    have h₇ : m = 108 := by
+      field_simp [Real.tan_eq_sin_div_cos] at h₁
+      ring_nf at h₁
+      norm_num at h₁
+      have h₈ : m = 108 := by
+        apply Eq.symm
+        field_simp at h₁ ⊢
+        ring_nf at h₁ ⊢
+        norm_num at h₁ ⊢
+        nlinarith [Real.pi_pos]
+      simpa using h₈
+    simp_all
+  exact_mod_cast h₆
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 25.779810667037964 / 2.74090313911438 / 28.520713806152344
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ := h₁
+  have h₄ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180) := h₁
+  have h₅ : 0 < m := h₀
+  have h₆ : (m.num:ℝ) / m.den < 90 := h₂
+  field_simp [h₅.ne', h₅.ne', mul_comm] at h₄
+  norm_cast at h₄
+  ring_nf at h₄
+  norm_num [Finset.sum_Icc_succ_top] at h₄
+  have h₇ : m.den ≤ 177 := by
+    by_contra! h
+    have h₈ : m.den ≥ 178 := by linarith
+    have h₉ : (m.den : ℝ) ≥ 178 := by exact_mod_cast h₈
+    have h₁₀ : (m.num : ℝ) / m.den ≥ 1 := by
+      rw [ge_iff_le]
+      rw [le_div_iff (by positivity)]
+      norm_cast
+      nlinarith
+    nlinarith
+  interval_cases m.den <;> norm_num [mul_comm] at h₄ <;>
+    simp_all [mul_comm] <;>
+    (try omega) <;>
+    (try linarith) <;>
+    (try field_simp [h₅.ne', h₅.ne', mul_comm] at h₄) <;>
+    (try norm_cast at h₄) <;>
+    (try ring_nf at h₄) <;>
+    (try norm_num [Finset.sum_Icc_succ_top] at h₄) <;>
+    (try nlinarith)
+  <;>
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.193669319152832 / 2.444039821624756 / 14.637709140777588
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ := h₁
+  simp [Finset.sum_Icc_succ_top, Finset.sum_range_succ, Real.sin_add, Real.cos_add,
+    mul_add, mul_sub, sub_mul, add_mul, Real.sin_sub, Real.cos_sub] at h₃
+  ring_nf at h₃
+  field_simp [Real.tan_eq_sin_div_cos] at h₃
+  norm_cast at h₃
+  <;> simp_all [Real.sin_pi_div_three, Real.cos_pi_div_three]
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.97636079788208 / 2.740825653076172 / 23.717186450958252
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ : 0 < m := by simpa using h₀
+  have h₄ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180) := by simpa using h₁
+  have h₅ : (m.num : ℝ) / m.den < 90 := by simpa using h₂
+  have h₆ : m.den ≠ 0 := by exact_mod_cast m.den_nz
+  have h₇ : m.num < 90 * m.den := by
+    rw [div_lt_iff (by positivity)] at h₅
+    norm_cast at h₅ ⊢
+    <;> nlinarith
+  have h₈ : ↑m.den + m.num = 177 := by
+    field_simp [h₆] at h₄ h₅ h₇ ⊢
+    ring_nf at h₄ h₅ h₇ ⊢
+    norm_num at h₄ h₅ h₇ ⊢
+    <;>
+    rcases m with ⟨n, d, h, c⟩ <;>
+    simp_all [mul_comm] <;>
+    norm_num <;>
+    ring_nf at h₄ h₅ h₇ ⊢ <;>
+    nlinarith
+  exact_mod_cast h₈
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.159006357192993 / 2.4083964824676514 / 16.567402839660645
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ := h₁
+  have h₄ := h₂
+  simp [Finset.sum_Icc_succ_top, Finset.sum_range_succ, Real.sin_add, Real.cos_add,
+    Real.sin_sub, Real.cos_sub, mul_add, mul_sub, sub_mul, add_mul, mul_assoc] at h₁ h₂ h₃ h₄
+  ring_nf at h₁ h₂ h₃ h₄
+  field_simp [Real.tan_eq_sin_div_cos] at h₁ h₂ h₃ h₄
+  norm_cast at h₁ h₂ h₃ h₄
+  <;> simp_all [Rat.den_pos]
+  <;> nlinarith [Real.pi_pos]
+  <;> linarith [Real.pi_pos]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.335875272750854 / 2.4983227252960205 / 15.834197998046875
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1999_p11
+  (m : ℚ)
+  (h₀ : 0 < m)
+  (h₁ : ∑ k in Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * Real.pi / 180) = Real.tan (m * Real.pi / 180))
+  (h₂ : (m.num:ℝ) / m.den < 90) :
+  ↑m.den + m.num = 177 := by
+  have h₃ := h₁
+  simp [Finset.sum_Icc_succ_top, Finset.sum_range_succ, mul_add, mul_comm, mul_left_comm, mul_assoc] at h₁ h₂ h₃
+  norm_num at h₁ h₂ h₃
+  have h₄ : m.den ≥ 0 := by positivity
+  have h₅ : m.num ≥ 0 := by positivity
+  field_simp [h₀] at h₁ h₂ h₃
+  ring_nf at h₁ h₂ h₃
+  norm_cast at h₁ h₂ h₃
+  <;> simp_all [mul_comm]
+  <;> nlinarith [Real.pi_pos]
+

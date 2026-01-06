@@ -1,0 +1,134 @@
+Problem: putnam_2015_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.409565210342407 / 7.24401068687439 / 20.653575897216797
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.14375376701355 / 7.8993165493011475 / 22.043070316314697
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.50211763381958 / 7.962382793426514 / 23.464500427246094
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.173745393753052 / 7.35101318359375 / 21.5247585773468
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 26.44904851913452 / 7.5792975425720215 / 34.02834606170654
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.398618459701538 / 8.106430053710938 / 29.505048513412476
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 53.05160093307495 / 7.552054166793823 / 60.603655099868774
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 50.10343599319458 / 9.294954061508179 / 59.39839005470276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2015_a2
+(a : ℕ → ℤ)
+(abase : a 0 = 1 ∧ a 1 = 2)
+(arec : ∀ n ≥ 2, a n = 4 * a (n - 1) - a (n - 2))
+: Odd putnam_2015_a2_solution ∧ putnam_2015_a2_solution.Prime ∧ ((putnam_2015_a2_solution : ℤ) ∣ a 2015) :=
+sorry

@@ -1,0 +1,31 @@
+Problem: problem_0143
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.966811895370483
+Lean check time (s): 3.8007149696350098
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_129
+  (a : ℝ)
+  (h₀ : a ≠ 0)
+  (h₁ : 8⁻¹ / 4⁻¹ - a⁻¹ = 1) :
+  a = -2 := by
+  have h₂ : a = -2 := by
+    field_simp at h₁
+    -- Simplify the given equation by eliminating the denominators
+    ring_nf at h₁
+    -- Normalize the equation to a standard form
+    apply Eq.symm
+    -- Prepare to solve for 'a'
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h₀)
+    -- Use the fact that a ≠ 0 to cancel 'a' from both sides
+    ring_nf at h₁ ⊢
+    -- Normalize the equation further
+    nlinarith
+  exact h₂

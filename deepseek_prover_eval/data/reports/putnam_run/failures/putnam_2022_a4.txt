@@ -1,0 +1,230 @@
+Problem: putnam_2022_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.18221426010132 / 12.896490335464478 / 34.078704595565796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 24.94428777694702 / 11.745075702667236 / 36.68936347961426
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 19.993736505508423 / 11.033719062805176 / 31.0274555683136
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.11938714981079 / 12.582369804382324 / 34.701756954193115
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 20.777543544769287 / 12.90061354637146 / 33.67815709114075
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.669716596603394 / 11.677841186523438 / 34.34755778312683
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.268709182739258 / 11.9219810962677 / 32.19069027900696
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 21.78693985939026 / 13.701030254364014 / 35.48797011375427
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2022_a4
+    {Ω : Type*} [MeasureSpace Ω]
+    [IsProbabilityMeasure (ℙ : Measure Ω)]
+    (X : ℕ → Ω → ℝ)
+    (hX : ∀ i, Measurable (X i))
+    (hX' : ∀ i, MeasureTheory.pdf.IsUniform (X i) (Set.Icc 0 1) ℙ)
+    (hX'' : iIndepFun X)
+    (k : Ω → Set ℕ)
+    /-
+    If there is an `l` such that `X_l < X_{l+1}` then this is `Set.Iic l` for the smallest such `l`
+    Otherwise, this is `sSup { (Set.Iic m : Set ℕ) | (m : ℕ) } = Set.univ`
+    -/
+    (hk : ∀ ω, k ω = sSup { s : Set ℕ |
+      ∃ m, s = Set.Iic m ∧ ∀ l ∈ s, X l ω < X (l + 1) ω })
+    (S : Ω → ℝ)
+    (hS : ∀ ω, S ω = ∑' (i : k ω), (X i ω) / (2 ^ (i.val + 1))) :
+    ∫ ω, S ω ∂(ℙ : Measure Ω) = putnam_2022_a4_solution := by
+  sorry

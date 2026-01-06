@@ -1,0 +1,27 @@
+Problem: problem_0286
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.99441385269165
+Lean check time (s): 3.4296557903289795
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_109
+  (v : ℕ → ℕ)
+  (h₀ : ∀ n, v n = 2 * n - 1) :
+  (∑ k in Finset.Icc 1 100, v k) % 7 = 4 := by
+  simp_all only [mul_comm]
+  apply Eq.refl
+  <;> rfl
+  <;> decide
+  <;> simp_all [Finset.sum_Icc_succ_top, mul_add, mul_one, Nat.mul_sub_left_distrib]
+  <;> decide
+  <;> rfl
+  <;> decide
+  <;> rfl
+  <;> decide

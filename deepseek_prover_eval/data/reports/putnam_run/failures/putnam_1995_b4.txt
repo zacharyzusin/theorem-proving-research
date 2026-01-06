@@ -1,0 +1,142 @@
+Problem: putnam_1995_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.10249638557434 / 7.225233554840088 / 25.32772994041443
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.37099266052246 / 9.030889749526978 / 26.40188241004944
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 16.095494985580444 / 9.874839305877686 / 25.97033429145813
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.749627351760864 / 10.262615203857422 / 27.012242555618286
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.854549884796143 / 9.372823238372803 / 25.227373123168945
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 19.948903560638428 / 8.928821325302124 / 28.87772488594055
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.57159423828125 / 8.567307233810425 / 29.138901472091675
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.834936380386353 / 7.877851486206055 / 25.712787866592407
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_b4
+    (contfrac : ℝ)
+    (hcontfrac : contfrac = 2207 - 1 / contfrac)
+    (hcontfrac' : 1 < contfrac) :
+    let ⟨a, b, c, d⟩ := putnam_1995_b4_solution
+    contfrac ^ ((1 : ℝ) / 8) = (a + b * sqrt c) / d :=
+  sorry

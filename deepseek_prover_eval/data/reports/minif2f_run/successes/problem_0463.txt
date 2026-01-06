@@ -1,0 +1,29 @@
+Problem: problem_0463
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 10.002442598342896
+Lean check time (s): 4.494462490081787
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_119
+  (d e : ℝ)
+  (h₀ : 2 * d = 17 * e - 8)
+  (h₁ : 2 * e = d - 9) :
+  e = 2 := by
+  have h₂ : d = 2 * e + 9 := by
+    linarith [h₁]
+  have h₃ : 2 * (2 * e + 9) = 17 * e - 8 := by
+    linarith [h₀, h₂]
+  have h₄ : 4 * e + 18 = 17 * e - 8 := by
+    linarith [h₃]
+  have h₅ : 26 = 13 * e := by
+    linarith [h₄]
+  have h₆ : e = 2 := by
+    linarith [h₅]
+  linarith [h₆]

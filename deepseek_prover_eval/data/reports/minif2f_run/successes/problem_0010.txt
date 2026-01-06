@@ -1,0 +1,26 @@
+Problem: problem_0010
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.663780927658081
+Lean check time (s): 3.267565965652466
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_1124
+  (n : ℕ)
+  (h₀ : n ≤ 9)
+  (h₁ : 18∣374 * 10 + n) :
+  n = 4 := by
+  norm_num at h₁
+  have h₂ := h₁
+  rw [dvd_iff_exists_eq_mul_left] at h₁
+  obtain ⟨k, hk⟩ := h₁
+  norm_num at hk
+  have h₃ : n < 18 := by
+    omega
+  interval_cases n <;> omega

@@ -1,0 +1,331 @@
+Problem: putnam_1969_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.55980157852173 / 7.926968574523926 / 32.486770153045654
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h₁ : (D n).det = (-1)^((n : ℤ) - 1) * ((n : ℤ) - 1) * 2^((n : ℤ) - 2) := by
+    rw [hD]
+    have h₂ : ∀ n : ℕ, n ≥ 2 → (fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|) = fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| := by
+      intro n hn
+      rfl
+    simp_all [Matrix.det_fin_two]
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        norm_num [Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_two]
+        <;> simp_all [abs_sub_comm]
+        <;> norm_num
+        <;> ring_nf
+        <;> norm_cast
+      | succ n =>
+        simp_all [Fin.sum_univ_succ, Matrix.det_fin_two, abs_sub_comm]
+        <;> induction n with
+        | zero =>
+          norm_num [Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_two]
+          <;> simp_all [abs_sub_comm]
+          <;> norm_num
+          <;> ring_nf
+          <;> norm_cast
+        | succ n =>
+          simp_all [Fin.sum_univ_succ, Matrix.det_fin_two, abs_sub_comm]
+          <;> ring_nf
+          <;> norm_cast
+          <;> omega
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.828471183776855 / 7.539677619934082 / 24.368148803710938
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h₁ : n ≥ 2 := hn
+  have h₂ : ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+    intro n hn
+    rw [hD]
+    cases n with
+    | zero => contradiction
+    | succ n =>
+      cases n with
+      | zero => contradiction
+      | succ n =>
+        simp_all [Matrix.det_fin_two, Fin.val_zero, Fin.val_one, abs_sub_comm]
+        <;> ring_nf
+        <;> norm_cast
+        <;> induction n with
+        | zero =>
+          norm_num
+        | succ n ih =>
+          simp_all [Matrix.det_fin_succ, Fin.val_zero, Fin.val_one, abs_sub_comm]
+          <;> ring_nf
+          <;> norm_cast
+          <;> omega
+  exact h₂ n h₁
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 37.02772665023804 / 10.917840957641602 / 47.94556760787964
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h₁ : n ≥ 2 := hn
+  have h₂ : ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+    intro n hn
+    rw [hD]
+    have h₃ : ∀ n, n ≥ 2 → (fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|) n = fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| := by
+      intro n
+      rfl
+    rw [h₃ n hn]
+    -- Use the known result for the determinant of a specific matrix
+    have h₄ : ∀ n, n ≥ 2 → (fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|) = (fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|) := by
+      intro n
+      rfl
+    rw [h₄ n hn]
+    exact by
+      -- Use the known result for the determinant of a specific matrix
+      simp_all [Matrix.det_fin_two, Fin.sum_univ_succ, Fin.sum_univ_zero]
+      <;> induction n with
+      | zero => contradiction
+      | succ n ih =>
+        cases n with
+        | zero =>
+          -- Base case for n = 2
+          norm_num [Matrix.det_fin_two, Fin.sum_univ_succ, Fin.sum_univ_zero]
+          <;> simp_all [abs_of_nonneg, abs_of_nonpos, sub_nonneg, sub_nonpos]
+          <;> norm_num
+          <;> ring_nf
+          <;> norm_cast
+          <;> simp_all [pow_one]
+        | succ n =>
+          -- In
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.60483694076538 / 6.47775411605835 / 22.08259105682373
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h₁ : n ≥ 2 := hn
+  have h₂ : ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ) - 1) * ((n : ℤ) - 1) * 2^((n : ℤ) - 2) := by
+    intro n hn
+    rw [hD]
+    simp_all [Matrix.det_fin_two]
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero => contradiction
+      | succ n =>
+        simp_all [Matrix.det_fin_two, abs_sub_comm]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Nat.succ_eq_add_one, pow_add, mul_assoc, mul_comm, mul_left_comm]
+        <;> norm_num
+        <;> omega
+  exact h₂ n h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 28.696712017059326 / 5.72514271736145 / 34.421854734420776
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  have step : ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+    intro n hn
+    have h₁ : (D n) = fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| := by rw [hD]
+    rw [h₁]
+    have h₂ : (Matrix.of fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|).det = (-1)^((n : ℤ) - 1) * ((n : ℤ) - 1) * 2^((n : ℤ) - 2) := by
+      induction n with
+      | zero => contradiction
+      | succ n ih =>
+        cases n with
+        | zero =>
+          norm_num [Matrix.det_fin_two]
+          <;> simp_all [hD, Matrix.det_fin_two]
+          <;> norm_num [abs_of_nonneg, abs_of_nonpos]
+          <;> ring_nf
+          <;> norm_cast
+          <;> rfl
+        | succ n =>
+          simp_all [Matrix.det_fin_succ, Fin.val_zero, pow_add, mul_assoc]
+          <;> field_simp [mul_assoc] at *
+          <;> ring_nf at *
+          <;> norm_cast at *
+          <;> simp_all [Fin.val_zero, Fin.val_succ, pow_add, mul_assoc]
+          <;> norm_cast
+          <;> cases n with
+          | zero =>
+            norm_num [Matrix.det_fin_two] at *
+            <;> simp_all [abs_of_nonneg, abs_of_nonpos, pow_two, pow_one]
+            <;> ring_nf
+            <;> norm_cast
+            <;> rfl
+       
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.805212020874023 / 4.481870174407959 / 27.287082195281982
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h₁ : n ≥ 2 := hn
+  have h₂ : ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+    intro n hn
+    rw [hD]
+    have h₃ : ∀ n, n ≥ 2 → (fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+      intro n hn
+      induction n with
+      | zero => contradiction
+      | succ n ih =>
+        cases n with
+        | zero => contradiction
+        | succ n =>
+          simp_all [Matrix.det_fin_two, Fin.sum_univ_succ, Fin.val_zero, Fin.val_succ, abs_sub_comm]
+          <;> ring_nf
+          <;> norm_cast
+          <;> simp_all [pow_add, pow_one, mul_assoc, mul_comm, mul_left_comm]
+          <;> field_simp [Nat.factorial]
+          <;> ring_nf
+          <;> norm_cast
+          <;> simp_all [pow_add, pow_one, mul_assoc, mul_comm, mul_left_comm]
+    exact h₃ n hn
+  exact h₂ n h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.282264947891235 / 6.524201154708862 / 27.806466102600098
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h1 : (D n) = fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| := by rw [hD]
+  rw [h1]
+  have h2 : ∀ n, n ≥ 2 → (Matrix.of fun (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)|).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+    intro n hn
+    induction' hn with n hn
+    · norm_num [Matrix.det_fin_two]
+    · cases n with
+      | zero => contradiction
+      | succ n =>
+        cases n with
+        | zero =>
+          norm_num [Matrix.det_fin_two]
+          <;> simp_all [Fin.sum_univ_succ, Fin.sum_univ_one, Matrix.det_fin_two]
+          <;> ring_nf
+          <;> norm_num
+          <;> aesop
+        | succ n =>
+          simp_all [Fin.sum_univ_succ, Matrix.det_fin_succ, pow_succ, Int.ofNat_mul, Int.ofNat_sub]
+          <;> ring_nf
+          <;> norm_cast
+          <;> field_simp [mul_assoc]
+          <;> ring_nf
+          <;> norm_cast
+          <;> omega
+  exact h2 n hn
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.210827827453613 / 6.791385889053345 / 25.002213716506958
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1969_a2
+(D : (n : ℕ) → Matrix (Fin n) (Fin n) ℝ)
+(hD : D = fun (n : ℕ) => λ (i : Fin n) (j : Fin n) => |(i : ℝ) - (j : ℝ)| )
+: ∀ n, n ≥ 2 → (D n).det = (-1)^((n : ℤ)-1) * ((n : ℤ)-1) * 2^((n : ℤ)-2) := by
+  intro n hn
+  have h1 : n ≥ 2 := hn
+  have h2 : n ≥ 1 := by linarith
+  rw [hD]
+  cases n with
+  | zero => contradiction -- n cannot be zero as per the assumption n ≥ 2
+  | succ n =>
+    cases n with
+    | zero => contradiction -- n cannot be one as per the assumption n ≥ 2
+    | succ n =>
+      simp_all [Matrix.det_fin_two, Fin.sum_univ_succ]
+      <;> norm_cast
+      <;> induction n with
+      | zero =>
+        norm_num
+        <;> simp_all [Matrix.det_fin_two, Fin.sum_univ_succ]
+        <;> norm_cast
+        <;> simp_all [Matrix.det_fin_two, Fin.sum_univ_succ]
+        <;> norm_cast
+        <;> linarith
+      | succ n ih =>
+        simp_all [Matrix.det_fin_two, Fin.sum_univ_succ]
+        <;> norm_cast
+        <;> simp_all [Matrix.det_fin_two, Fin.sum_univ_succ]
+        <;> norm_cast
+        <;> linarith

@@ -1,0 +1,23 @@
+Problem: problem_0478
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.1225762367248535
+Lean check time (s): 4.172515869140625
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_181
+  (n : ℝ)
+  (h₀ : n ≠ 3)
+  (h₁ : (n + 5) / (n - 3) = 2) : n = 11 := by
+  have h₂ : n - 3 ≠ 0 := by
+    intro h
+    have : n = 3 := by linarith
+    contradiction
+  field_simp [h₂] at h₁
+  linarith

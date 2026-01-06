@@ -1,0 +1,21 @@
+Problem: putnam_1996_a3
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.7518839836120605
+Lean check time (s): 4.307627439498901
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a3 :
+    (∀ choices : Fin 20 → Set (Fin 6),
+      ∃ (students : Finset (Fin 20)) (courses : Finset (Fin 6)),
+        students.card = 5 ∧
+        courses.card = 2 ∧
+        (↑courses ⊆ ⋂ s ∈ students, choices s ∨ ↑courses ⊆ ⋂ s ∈ students, (choices s)ᶜ))
+    ↔ putnam_1996_a3_solution :=
+  sorry

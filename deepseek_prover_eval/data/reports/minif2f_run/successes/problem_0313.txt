@@ -1,0 +1,28 @@
+Problem: problem_0313
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.479937314987183
+Lean check time (s): 3.731987476348877
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_35
+  (p q : ℝ → ℝ)
+  (h₀ : ∀ x, p x = 2 - x^2)
+  (h₁ : ∀ x, x ≠ 0 -> q x = 6 / x) :
+  p (q 2) = -7 := by
+  have q2 : q 2 = 3 := by
+    have h₂ : q 2 = 6 / 2 := by
+      apply h₁
+      norm_num
+    norm_num at h₂
+    linarith
+  have p3 : p (q 2) = p 3 := by rw [q2]
+  rw [p3]
+  simp_all only [h₀]
+  norm_num

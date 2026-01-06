@@ -1,0 +1,28 @@
+Problem: putnam_1988_b1
+Dataset: putnam
+Mode: noncot
+First success attempt: 3
+Generation time (s): 10.332236766815186
+Lean check time (s): 10.124268770217896
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_b1
+: ∀ a ≥ 2, ∀ b ≥ 2, ∃ x y z : ℤ, x > 0 ∧ y > 0 ∧ z > 0 ∧ a * b = x * y + x * z + y * z + 1 := by
+  intro a ha b hb
+  use a - 1, b - 1, 1
+  have ha' : a - 1 ≥ 1 := by omega
+  have hb' : b - 1 ≥ 1 := by omega
+  have ha'' : a - 1 > 0 := by omega
+  have hb'' : b - 1 > 0 := by omega
+  constructor
+  · exact ha''
+  constructor
+  · exact hb''
+  constructor
+  · linarith
+  nlinarith [mul_self_nonneg (a - 1), mul_self_nonneg (b - 1), mul_self_nonneg (a - b)]

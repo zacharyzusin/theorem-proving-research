@@ -1,0 +1,150 @@
+Problem: putnam_2009_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.579196453094482 / 11.04317855834961 / 27.622375011444092
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.428382158279419 / 8.963159561157227 / 24.391541719436646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.206410884857178 / 7.94637393951416 / 21.152784824371338
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.707030773162842 / 7.675456523895264 / 21.382487297058105
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 45.335105180740356 / 8.022964239120483 / 53.35806941986084
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.272576808929443 / 7.832265377044678 / 21.10484218597412
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 12.344560861587524 / 8.0426344871521 / 20.387195348739624
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.138632774353027 / 7.95685601234436 / 21.095488786697388
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b6
+  (n : ℕ) (npos : n > 0) :
+  (∃ a : ℕ → ℤ,
+    a 0 = 0 ∧ a 2009 = n ∧
+    ∀ i : Icc 1 2009,
+      ((∃ j k : ℕ, j < i ∧ a i = a j + 2 ^ k) ∨
+      ∃ b c : ℕ, b < i ∧ c < i ∧ a b > 0 ∧ a c > 0 ∧ a i = (a b) % (a c))) :=
+sorry

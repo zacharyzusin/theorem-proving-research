@@ -1,0 +1,278 @@
+Problem: problem_0071
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.326092004776001 / 600.3326981067657 / 614.6587901115417
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = n := hx
+  have h₄ : t^3 = n := ht
+  have h₅ : t^3 = x^2 := by rw [h₃, h₄]
+  have h₆ : t ≤ x := by
+    have h₇ : t^3 ≤ x^2 := by linarith
+    have h₈ : t ≤ x := by
+      nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+    exact h₈
+  have h₇ : x ≤ t^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.852222204208374 / 600.1344425678253 / 616.9866647720337
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = n := hx
+  have h₄ : t^3 = n := ht
+  have h₅ : x^2 = t^3 := by rw [h₃, ht]
+  have h₆ : x ≤ t^2 := by
+    nlinarith [sq_nonneg (x - t), sq_nonneg (x + t), sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₇ : t ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x), sq_nonneg (x - t), sq_nonneg (x + t)]
+  nlinarith [sq_nonneg (t - x), sq_nonneg (t + x), sq_nonneg (x - t), sq_nonneg (x + t),
+    sq_nonneg (t^2 - x), sq_nonneg (t^2 + x), sq_nonneg (x^2 - t), sq_nonneg (x^2 + t)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.59812879562378 / 600.1503655910492 / 617.748494386673
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = n := hx
+  have h₄ : t^3 = n := ht
+  have h₅ : t^3 = x^2 := by linarith
+  have h₆ : t ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₇ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₈ : t ≤ x := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₉ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₁₀ : t ≤ x := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 20.73509955406189 / 600.1404316425323 / 620.8755311965942
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = n := hx
+  have h₄ : t^3 = n := ht
+  have h₅ : t^3 = x^2 := by rw [h₃, ht]
+  have h₆ : t ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₇ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₈ : t ≤ x := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₉ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₁₀ : t ≤ x := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₁₁ : t ≥ 0 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₁₂ : x ≥ 8 := by
+    contrapose! h₀
+    have : x ≤ 9 := by
+      nlinarith
+    interval_cases x <;> norm_num at h₃ ht ⊢ <;>
+      nlinarith
+  nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.8786404132843 / 600.1551864147186 / 617.0338268280029
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = n := hx
+  have h₄ : t^3 = n := ht
+  have h₅ : t^3 = x^2 := by rw [h₃, ht]
+  have h₆ : t ≤ x := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₇ : t^2 ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₈ : t^2 ≤ n := by
+    nlinarith
+  have h₉ : t ≥ 0 := by
+    nlinarith [pow_two_nonneg t]
+  have h₁₀ : t ≤ 9 := by
+    nlinarith [pow_two_nonneg t, pow_two_nonneg (t - 10)]
+  interval_cases t <;> norm_num at h₅ h₄ ⊢ <;>
+    nlinarith [pow_two_nonneg x, pow_two_nonneg (x - 10)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.747052431106567 / 600.1580703258514 / 612.905122756958
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x ≥ 0 := by linarith
+  have h₄ : t ≥ 0 := by linarith
+  have h₅ : x ≤ t^2 := by
+    nlinarith [sq_nonneg (x - t), sq_nonneg (x + t)]
+  have h₆ : t ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x)]
+  have h₇ : n ≥ 64 := by
+    nlinarith [sq_nonneg (x - 8), sq_nonneg (x + 8), sq_nonneg (t - 4), sq_nonneg (t + 4)]
+  linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.724726676940918 / 600.1353387832642 / 613.8600654602051
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = t^3 := by linarith
+  have h₄ : x ≤ t^2 := by
+    nlinarith [pow_two_nonneg (x - t), pow_two_nonneg (t - x), pow_two_nonneg (t + x)]
+  have h₅ : t ≤ x^2 := by
+    nlinarith [pow_two_nonneg (t - x), pow_two_nonneg (x - t), pow_two_nonneg (x + t)]
+  nlinarith [pow_two_nonneg (x - t), pow_two_nonneg (t - x), pow_two_nonneg (x + t),
+    pow_two_nonneg (x - 8), pow_two_nonneg (t - 8), pow_two_nonneg (8 - x),
+    pow_two_nonneg (8 - t)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.94444489479065 / 600.1568250656128 / 614.1012699604034
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_5
+  (n : ℕ)
+  (h₀ : 10 ≤ n)
+  (h₁ : ∃ x, x^2 = n)
+  (h₂ : ∃ t, t^3 = n) :
+  64 ≤ n := by
+  obtain ⟨x, hx⟩ := h₁
+  obtain ⟨t, ht⟩ := h₂
+  have h₃ : x^2 = n := hx
+  have h₄ : t^3 = n := ht
+  have h₅ : t^3 = x^2 := by rw [h₃, ht]
+  have h₆ : t ≤ x^2 := by
+    nlinarith [sq_nonneg (t - x), sq_nonneg (t + x), sq_nonneg (x - t), sq_nonneg (x + t)]
+  have h₇ : x ≤ t^2 := by
+    nlinarith [sq_nonneg (x - t), sq_nonneg (x + t), sq_nonneg (t - x), sq_nonneg (t + x)]
+  nlinarith [sq_nonneg (t - x), sq_nonneg (t + x), sq_nonneg (x - t), sq_nonneg (x + t)]
+

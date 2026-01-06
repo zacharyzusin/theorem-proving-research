@@ -1,0 +1,276 @@
+Problem: problem_0061
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 6
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.251256227493286 / 4.408979892730713 / 17.660236120224
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by
+    nlinarith
+  have h₆ : c = 1 - c^2 := by
+    nlinarith
+  have h₇ : a ≠ c := by
+    intro h
+    apply h₄
+    nlinarith
+  have h₈ : (a - c)^2 + (b - d)^2 = 10 := by
+    nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₇), sq_nonneg (a + c), sq_nonneg (a - c), sq_nonneg (b - d)]
+  have h₉ : Real.sqrt ((a - c)^2 + (b - d)^2) = Real.sqrt 10 := by
+    rw [h₈]
+  exact h₉
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.150190830230713 / 4.226428747177124 / 18.376619577407837
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by
+    nlinarith
+  have h₆ : c = 1 - c^2 := by
+    nlinarith
+  have h₇ : a ≠ c := h₄
+  have h₈ : Real.sqrt ((a - c)^2 + (b - d)^2) = Real.sqrt 10 := by
+    rw [show (a - c)^2 + (b - d)^2 = 10 by
+      nlinarith [sq_pos_of_ne_zero (sub_ne_zero.mpr h₇), sq_nonneg (a - c), sq_nonneg (a + c - 1),
+        sq_nonneg (a - c + b - d), sq_nonneg (a + c - b - d)]]
+    <;> simp [h₀, h₂]
+    <;> nlinarith
+  exact h₈
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.936916828155518 / 600.169016122818 / 614.1059329509735
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by linarith [h₁]
+  have h₆ : c = 1 - c^2 := by linarith [h₃]
+  have h₇ : a^2 + c^2 = 1 := by
+    nlinarith [sq_nonneg (a - c), sq_nonneg (a + c)]
+  have h₈ : (a - c)^2 + (b - d)^2 = 10 := by
+    nlinarith [sq_nonneg (a - c), sq_nonneg (a + c), sq_nonneg (a - c + b - d),
+      sq_nonneg (a - c - b + d)]
+  rw [h₈]
+  <;> norm_num
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq]
+  <;> nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.284167766571045 / 600.0853011608124 / 616.3694689273834
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - b := by linarith
+  have h₆ : c = 1 - d := by linarith
+  have h₇ : a = 1 - a^2 := by rw [h₀] at h₁; nlinarith
+  have h₈ : c = 1 - c^2 := by rw [h₂] at h₃; nlinarith
+  have h₉ : a = 1 / 2 := by
+    apply Eq.symm
+    nlinarith [sq_nonneg (a - 1 / 2)]
+  have h₁₀ : c = 1 / 2 := by
+    apply Eq.symm
+    nlinarith [sq_nonneg (c - 1 / 2)]
+  rw [h₉, h₁₀] at *
+  norm_num [Real.sqrt_eq_iff_sq_eq]
+  <;> ring_nf
+  <;> norm_num
+  <;> rw [← Real.sqrt_sq (show (0 : ℝ) ≤ 10 by norm_num)]
+  <;> norm_num
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.412872314453125 / 600.1018710136414 / 613.5147433280945
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by
+    nlinarith
+  have h₆ : c = 1 - c^2 := by
+    nlinarith
+  have h₇ : a = 1 / 2 := by
+    nlinarith [sq_nonneg (a - 1 / 2)]
+  have h₈ : c = 1 / 2 := by
+    nlinarith [sq_nonneg (c - 1 / 2)]
+  simp_all only [h₀, h₂, h₇, h₈, sub_eq_add_neg, neg_sq]
+  norm_num
+  <;> ring_nf
+  <;> norm_num
+  <;> rw [Real.sqrt_eq_iff_sq_eq] <;> norm_num
+  <;> nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.923400640487671 / 600.1574931144714 / 614.0808937549591
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by linarith [h₁]
+  have h₆ : c = 1 - c^2 := by linarith [h₃]
+  have h₇ : a^2 + c^2 = 1 := by
+    nlinarith [sq_nonneg (a - c), sq_nonneg (a + c)]
+  have h₈ : (a - c)^2 + (b - d)^2 = 10 := by
+    nlinarith [sq_nonneg (a - c), sq_nonneg (a + c), sq_nonneg (a + c - 2), sq_nonneg (a + c + 2)]
+  rw [h₈]
+  <;> norm_num
+  <;> field_simp [Real.sqrt_eq_iff_sq_eq]
+  <;> nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 16.113861083984375 / 600.1577353477478 / 616.2715964317322
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by linarith [h₁]
+  have h₆ : c = 1 - c^2 := by linarith [h₃]
+  have h₇ : a^2 + b^2 = 1 := by
+    nlinarith [sq_nonneg (a - 1), sq_nonneg (a + 1)]
+  have h₈ : c^2 + d^2 = 1 := by
+    nlinarith [sq_nonneg (c - 1), sq_nonneg (c + 1)]
+  have h₉ : Real.sqrt ((a - c)^2 + (b - d)^2) = Real.sqrt 10 := by
+    rw [Real.sqrt_inj (by positivity) (by positivity)]
+    nlinarith [sq_nonneg (a - c), sq_nonneg (b - d), sq_nonneg (a + c), sq_nonneg (b + d),
+      sq_nonneg (a * c - b * d), sq_nonneg (a * d - b * c)]
+  exact h₉
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.416213274002075 / 600.1753218173981 / 614.5915350914001
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_487
+  (a b c d : ℝ)
+  (h₀ : b = a^2)
+  (h₁ : a + b = 1)
+  (h₂ : d = c^2)
+  (h₃ : c + d = 1)
+  (h₄ : a ≠ c) :
+  Real.sqrt ((a - c)^2 + (b - d)^2)= Real.sqrt 10 := by
+  have h₅ : a = 1 - a^2 := by linarith [h₁]
+  have h₆ : c = 1 - c^2 := by linarith [h₃]
+  have h₇ : a^2 + c^2 = 1 := by
+    nlinarith [sq_nonneg (a - c), sq_nonneg (a + c)]
+  have h₈ : (a - c)^2 + (b - d)^2 = 10 := by
+    nlinarith [sq_nonneg (a - c), sq_nonneg (a + c), sq_nonneg (a - c + b - d),
+      sq_nonneg (a - c - b + d)]
+  rw [h₈]
+  <;> norm_num
+  <;> field_simp [h₀, h₂]
+  <;> ring_nf
+  <;> norm_num
+  <;> linarith
+

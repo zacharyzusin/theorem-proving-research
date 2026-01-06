@@ -1,0 +1,207 @@
+Problem: problem_0100
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.444710969924927 / 3.2365188598632812 / 13.681229829788208
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  -- Use the formula for the sum of the first n natural numbers and the sum of their cubes.
+  induction' n with n ih
+  · simp
+  -- For the base case, n = 0, both sides are 0.
+  cases n with
+  | zero => simp
+  | succ n =>
+    -- For the inductive step, assume the statement holds for n, and prove it for n + 1.
+    simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ]
+    -- Simplify the expressions using the inductive hypothesis and algebraic identities.
+    ring_nf
+    -- Use the omega tactic to solve the resulting linear arithmetic problem.
+    <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.478984594345093 / 3.7231414318084717 / 13.202126026153564
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  -- Base case: when n = 0, both sides are 0
+  induction' n with n hn
+  · simp
+  -- Inductive step: assume the statement holds for n, prove for n + 1
+  · cases n with
+    | zero => simp
+    | succ n =>
+      -- Simplify the sum expressions using the induction hypothesis and algebraic identities
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ]
+      -- Use the induction hypothesis and algebraic manipulation to complete the proof
+      <;> ring_nf at *
+      <;> nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 8.397433519363403 / 3.6674671173095703 / 12.064900636672974
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  -- Base case: when n = 0, both sides are 0.
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    -- Inductive step: assume the statement holds for n, prove it for n+1.
+    simp_all [Finset.sum_range_succ, pow_two, Nat.mul_add, Nat.add_mul]
+    -- Use the induction hypothesis and algebraic manipulation to prove the next step.
+    <;> ring_nf at ih ⊢
+    <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.089624881744385 / 3.684255838394165 / 13.77388072013855
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  -- Base case: n = 0
+  induction' n with n ih
+  · simp
+  -- Inductive step: assume the statement holds for n, prove for n + 1
+  cases n with
+  | zero =>
+    -- Base case: n = 1
+    simp
+  | succ n =>
+    -- Use the induction hypothesis and algebraic manipulation
+    simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero, Nat.zero_add]
+    -- Simplify the expression using the induction hypothesis and algebraic properties
+    <;> ring_nf
+    <;> nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 7.469850301742554 / 3.7781450748443604 / 11.247995376586914
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    cases n with
+    | zero => simp [Finset.sum_range_succ, Nat.pow_succ]
+    | succ n =>
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero, Nat.zero_add]
+      ring_nf at *
+      <;> nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.622306823730469 / 4.016279935836792 / 16.63858675956726
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  have h₁ : ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+    -- Base case: when n = 0, both sides are 0.
+    induction' n with n ih
+    · simp
+    -- Inductive step: assume the statement holds for n, prove for n + 1.
+    cases n with
+    | zero => simp
+    | succ n =>
+      -- Use the induction hypothesis and algebraic manipulation to prove the next step.
+      simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ]
+      -- Simplify the expression using the induction hypothesis and algebraic properties.
+      ring_nf at ih ⊢
+      -- Use the omega tactic to solve the resulting linear arithmetic problem.
+      <;> omega
+  -- The result follows from the established equality.
+  exact h₁
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 6.2134764194488525 / 3.96205997467041 / 10.175536394119263
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  induction' n with n ih
+  · simp
+  · cases n with
+      | zero => simp
+      | succ n =>
+        simp_all [Finset.sum_range_succ, Nat.succ_eq_add_one, pow_two]
+        ring_nf at *
+        <;> nlinarith [ih]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 6.183992147445679 / 3.862112283706665 / 10.046104431152344
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_sumkexp3eqsumksq
+  (n : ℕ) :
+  ∑ k in Finset.range n, k^3 = (∑ k in Finset.range n, k)^2 := by
+  induction' n with n IH
+  · simp
+  · cases n with
+      | zero => simp
+      | succ n =>
+        simp_all [Finset.sum_range_succ, Nat.pow_succ, Nat.mul_succ, Nat.mul_zero]
+        ring_nf at *
+        <;> nlinarith
+

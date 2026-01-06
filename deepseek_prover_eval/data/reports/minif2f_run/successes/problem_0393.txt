@@ -1,0 +1,21 @@
+Problem: problem_0393
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.826990604400635
+Lean check time (s): 4.334627866744995
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_252 :
+  7! % 23 = 3 := by
+  rw [factorial, Nat.mul_mod, Nat.mul_mod, Nat.mul_mod, Nat.mul_mod, Nat.mul_mod, Nat.mul_mod]
+  <;> norm_num
+  <;> rfl
+  <;> simp [factorial]
+  <;> norm_num
+  <;> rfl

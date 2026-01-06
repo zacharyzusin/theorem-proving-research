@@ -1,0 +1,19 @@
+Problem: problem_0073
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 2.3843512535095215
+Lean check time (s): 3.2622005939483643
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_342 :
+  54 % 6 = 0 := by
+  simp
+  <;> norm_num
+  <;> rfl
+  <;> rfl

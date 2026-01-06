@@ -1,0 +1,352 @@
+Problem: problem_0301
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.152339220046997 / 4.523989677429199 / 18.676328897476196
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    -- We need to show that n = 312.
+    -- We will use the fact that the sum of the floor of log base 2 of k from k = 1 to n is 1994.
+    -- This can be used to find the exact value of n.
+    rcases n with (_ | _ | n) <;> simp_all [Finset.sum_Icc_succ_top, Int.floor_eq_iff, Real.logb_lt_iff_lt_rpow,
+      Real.lt_logb_iff_rpow_lt, Real.logb_le_iff_le_rpow, Real.le_logb_iff_rpow_le]
+    <;> norm_num
+    <;> ring_nf at *
+    <;> omega
+  exact h₂
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 60.10657501220703 / 600.1665642261505 / 660.2731392383575
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra! h
+      have h₅ : n ≥ 313 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+        apply Finset.sum_le_sum_of_subset_of_nonneg
+        · exact Finset.Icc_subset_Icc (by linarith) (by linarith)
+        · intro x hx hx'
+          simp_all [Int.floor_nonneg]
+          <;> positivity
+      have h₇ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+        have h₈ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, 8 := by
+          apply Finset.sum_le_sum
+          intro x hx
+          have h₉ : (x : ℝ) ≥ 1 := by
+            simp_all [Finset.mem_Icc]
+            <;> linarith
+          have h₁₀ : Int.floor (Real.logb 2 x) ≥ 8 := by
+            apply Int.le_floor.mpr
+            norm_num
+            have h₁₁ : Real.logb 2 x ≥ 8 := by
+              have h₁₂ : (2 : ℝ) ^ 8 ≤ x := by
+                norm_num
+                have h₁₃ : (313 : ℝ) ≥ 2 ^ 8 := by norm_num
+                nlinarith
+              calc
+                Real.logb 2 x ≥ Real.
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 71.91361808776855 / 5.391606569290161 / 77.30522465705872
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra! h
+      have h₅ : n ≥ 313 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) > 1994 := by
+        have h₇ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+          apply Finset.sum_le_sum_of_subset_of_nonneg
+          · intro x hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+          · intro x _ hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+        have h₈ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+          have h₉ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, 8 := by
+            apply Finset.sum_le_sum
+            intro x hx
+            have h₁₀ : (x : ℝ) ≥ 1 := by
+              norm_cast
+              simp_all [Finset.mem_Icc]
+              <;> omega
+            have h₁₁ : Real.logb 2 x ≥ 0 := by
+              apply Real.logb_nonneg
+              linarith
+              linarith
+            have h₁₂ : ⌊Real.logb 2 x⌋ ≥ 0 := by
+              exact Int.floor_nonneg.mpr h₁₁
+            have h
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 65.40938997268677 / 4.356785535812378 / 69.76617550849915
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra! h
+      have h₅ : n ≥ 313 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) > 1994 := by
+        have h₇ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+          apply Finset.sum_le_sum_of_subset_of_nonneg
+          · intro x hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+          · intro x _ hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+        have h₈ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+          have h₉ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, 8 := by
+            apply Finset.sum_le_sum
+            intro x hx
+            have h₁₀ : (x : ℝ) ≥ 1 := by
+              simp_all [Finset.mem_Icc]
+              <;> omega
+            have h₁₁ : Int.floor (Real.logb 2 x) ≥ 8 := by
+              apply Int.le_floor.mpr
+              norm_num
+              have h₁₂ : (Real.logb 2 x) ≥ 8 := by
+                have h₁₃ : (2 : ℝ) ^ 8 ≤ x := by
+                  norm_num
+                  ha
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 67.74830508232117 / 4.295068979263306 / 72.04337406158447
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra h
+      have h₅ : n > 312 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) > 1994 := by
+        have h₇ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+          apply Finset.sum_le_sum_of_subset_of_nonneg
+          · intro x hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+          · intro x _ hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+        have h₈ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+          have h₉ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, 8 := by
+            apply Finset.sum_le_sum
+            intro x hx
+            have h₁₀ : x ≥ 1 := by
+              simp_all [Finset.mem_Icc]
+              <;> omega
+            have h₁₁ : Int.floor (Real.logb 2 x) ≥ 8 := by
+              apply Int.le_floor.mpr
+              norm_num
+              have h₁₂ : (8 : ℝ) ≤ Real.logb 2 x := by
+                apply Real.le_logb_iff_rpow_le (by norm_num) (by norm_num; omega) |>.mpr
+          
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 40.329689502716064 / 5.115556240081787 / 45.44524574279785
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra! h
+      have h₅ : n ≥ 313 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+        apply Finset.sum_le_sum_of_subset_of_nonneg
+        · intro x hx
+          simp_all [Finset.mem_Icc]
+          <;> omega
+        · intro x _ hx
+          simp_all [Int.floor_nonneg]
+          <;> exact Int.floor_nonneg.mpr (Real.logb_nonneg (by norm_num) (by norm_num; linarith))
+      have h₇ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+        norm_num at *
+        <;>
+        simp_all [Finset.sum_Icc_succ_top, Int.floor_eq_iff, Real.logb_lt_iff_lt_rpow,
+          Real.lt_logb_iff_rpow_lt, Real.logb_le_iff_le_rpow]
+        <;> norm_num
+        <;>
+        rfl
+        <;>
+        norm_cast
+        <;>
+        linarith
+      linarith
+    have h₅ : n ≥ 312 := by
+      by_contra! h
+      have h₆ : n ≤ 311 := by linarith
+      have h₇ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≤ ∑ k in Finset.Icc 1 311, Int.floor (Real.logb 2 k) := by
+        apply Finset.sum_le_sum_of_subse
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 43.619057416915894 / 3.954101085662842 / 47.573158502578735
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra! h
+      have h₅ : n ≥ 313 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) > 1994 := by
+        have h₇ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+          apply Finset.sum_le_sum_of_subset_of_nonneg
+          · apply Finset.Icc_subset_Icc
+            <;> norm_num <;> linarith
+          · intro x hx hx'
+            simp_all [Int.floor_nonneg]
+            <;> positivity
+        have h₈ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+          norm_num at *
+          <;>
+          (try norm_num) <;>
+          (try simp_all [Finset.sum_Icc_succ_top, Int.floor_eq_iff, Real.logb_lt_iff_lt_rpow, Real.lt_logb_iff_rpow_lt]) <;>
+          (try linarith) <;>
+          (try exact by norm_num) <;>
+          (try exact by linarith) <;>
+          (try exact by
+            norm_num
+            <;>
+            rfl)
+        linarith
+      linarith
+    have h₅ : n ≥ 312 := by
+      by_contra! h
+      have h₆ : n ≤ 311 := by linarith
+      have h₇ : ∑ k in Finset.Icc 1 n, 
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 45.91916847229004 / 5.827443361282349 / 51.74661183357239
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1994_p4
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₀ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994) :
+  n = 312 := by
+  have h₁ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₀
+  have h₂ : n = 312 := by
+    have h₃ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) = 1994 := h₁
+    have h₄ : n ≤ 312 := by
+      by_contra! h
+      have h₅ : n ≥ 313 := by linarith
+      have h₆ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) > 1994 := by
+        have h₇ : ∑ k in Finset.Icc 1 n, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) := by
+          apply Finset.sum_le_sum_of_subset_of_nonneg
+          · intro x hx
+            simp_all [Finset.mem_Icc]
+            <;> omega
+          · intro x _ hx
+            simp_all [Finset.mem_Icc]
+            <;> exact Int.floor_nonneg.mpr (Real.logb_nonneg (by norm_num) (by norm_num; linarith))
+        have h₈ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) > 1994 := by
+          have h₉ : ∑ k in Finset.Icc 1 313, Int.floor (Real.logb 2 k) ≥ ∑ k in Finset.Icc 1 313, 8 := by
+            apply Finset.sum_le_sum
+            intro x hx
+            have h₁₀ : x ≥ 1 := by simp_all [Finset.mem_Icc]
+            have h₁₁ : x ≤ 313 := by simp_all [Finset.mem_Icc]
+            have h₁₂ : (x : ℝ) ≥ 1 := by exact_mod_cast h₁₀
+            have h₁₃ : (x : ℝ) ≤ 313 := by exact_mod_cast h₁₁
+            have h₁₄ : Int.floor (Real.logb 2 x
+... [truncated] ...

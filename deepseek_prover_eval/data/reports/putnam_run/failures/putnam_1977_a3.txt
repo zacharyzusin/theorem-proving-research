@@ -1,0 +1,250 @@
+Problem: putnam_1977_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.67534589767456 / 23.04054045677185 / 32.71588635444641
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf x
+  have h2 := hf (x + 1)
+  have h3 := hf (x - 1)
+  have h4 := hg x
+  have h5 := hg (x + 4)
+  have h6 := hg (x - 4)
+  simp [putnam_1977_a3_solution] at *
+  ring_nf at *
+  linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.073978424072266 / 12.178051710128784 / 24.25203013420105
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf x
+  have h2 := hg x
+  have h3 := hf (x + 4)
+  have h4 := hg (x + 4)
+  have h5 := hf (x - 4)
+  have h6 := hg (x - 4)
+  have h7 := hf (x + 1)
+  have h8 := hg (x + 1)
+  have h9 := hf (x - 1)
+  have h10 := hg (x - 1)
+  simp [putnam_1977_a3_solution] at *
+  ring_nf at *
+  linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.097518920898438 / 12.993602752685547 / 25.091121673583984
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf x
+  have h2 := hg x
+  have h3 := hf (x + 4)
+  have h4 := hg (x + 4)
+  have h5 := hf (x - 4)
+  have h6 := hg (x - 4)
+  have h7 := hf (x + 1)
+  have h8 := hg (x + 1)
+  have h9 := hf (x - 1)
+  have h10 := hg (x - 1)
+  simp [putnam_1977_a3_solution] at *
+  ring_nf at *
+  <;> linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.001282453536987 / 12.758984565734863 / 25.76026701927185
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf x
+  have h2 := hg x
+  have h3 := hf (x + 4)
+  have h4 := hg (x + 4)
+  have h5 := hf (x - 4)
+  have h6 := hg (x - 4)
+  have h7 := hf (x + 1)
+  have h8 := hg (x + 1)
+  have h9 := hf (x - 1)
+  have h10 := hg (x - 1)
+  simp at h1 h2 h3 h4 h5 h6 h7 h8 h9 h10
+  simp [putnam_1977_a3_solution] at *
+  ring_nf at *
+  linarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.910775661468506 / 12.260288715362549 / 25.171064376831055
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf (x - 1)
+  have h2 := hf (x + 1)
+  have h3 := hg x
+  have h4 := hg (x - 4)
+  have h5 := hg (x + 4)
+  have h6 := hf x
+  have h7 := hf (x - 2)
+  have h8 := hf (x + 2)
+  have h9 := hf (x - 3)
+  have h10 := hf (x + 3)
+  have h11 := hf (x - 4)
+  have h12 := hf (x + 4)
+  norm_num [putnam_1977_a3_solution] at *
+  linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.951696634292603 / 15.016114711761475 / 26.967811346054077
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf x
+  have h2 := hg x
+  have h3 := hf (x + 4)
+  have h4 := hg (x + 4)
+  have h5 := hf (x - 4)
+  have h6 := hg (x - 4)
+  have h7 := hf (x + 1)
+  have h8 := hg (x + 1)
+  have h9 := hf (x - 1)
+  have h10 := hg (x - 1)
+  simp [putnam_1977_a3_solution] at *
+  ring_nf at *
+  linarith
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 11.973206281661987 / 14.672580480575562 / 26.64578676223755
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf x
+  have h2 := hg x
+  have h3 := hf (x + 4)
+  have h4 := hg (x + 4)
+  have h5 := hf (x - 4)
+  have h6 := hg (x - 4)
+  have h7 := hf (x + 1)
+  have h8 := hg (x + 1)
+  have h9 := hf (x - 1)
+  have h10 := hg (x - 1)
+  simp [putnam_1977_a3_solution] at *
+  ring_nf at *
+  linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.141173362731934 / 15.498310089111328 / 35.63948345184326
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_a3
+    (f g h : ℝ → ℝ)
+    (hf : ∀ x, f x = (h (x + 1) + h (x - 1)) / 2)
+    (hg : ∀ x, g x = (h (x + 4) + h (x - 4)) / 2) :
+    h = putnam_1977_a3_solution f g := by
+  funext x
+  have h1 := hf (x + 4)
+  have h2 := hf (x - 4)
+  have h3 := hg x
+  have h4 := hg (x + 4)
+  have h5 := hg (x - 4)
+  have h6 := hf x
+  have h7 := hf (x + 1)
+  have h8 := hf (x - 1)
+  have h9 := hf (x + 2)
+  have h10 := hf (x - 2)
+  have h11 := hf (x + 3)
+  have h12 := hf (x - 3)
+  have h13 := hf (x + 5)
+  have h14 := hf (x - 5)
+  have h15 := hg (x + 1)
+  have h16 := hg (x - 1)
+  have h17 := hg (x + 2)
+  have h18 := hg (x - 2)
+  have h19 := hg (x + 3)
+  have h20 := hg (x - 3)
+  have h21 := hg (x + 4)
+  have h22 := hg (x - 4)
+  have h23 := hg (x + 5)
+  have h24 := hg (x - 5)
+  norm_num at *
+  ring_nf at *
+  linarith

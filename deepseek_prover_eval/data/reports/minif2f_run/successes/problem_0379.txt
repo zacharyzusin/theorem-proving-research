@@ -1,0 +1,29 @@
+Problem: problem_0379
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 9.034817695617676
+Lean check time (s): 3.706937789916992
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_2complexrootspoly_xsqp49eqxp7itxpn7i
+  (x : ℂ) :
+  x^2 + 49 = (x + (7 * Complex.I)) * (x + (-7 * Complex.I)) := by
+  ring_nf
+  simp [Complex.ext_iff, pow_two, mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]
+  <;> norm_num
+  <;> ring
+  <;> norm_num
+  <;> simp [Complex.I_sq]
+  <;> ring
+  <;> simp [Complex.I_sq]
+  <;> ring
+  <;> simp [Complex.I_sq]
+  <;> ring
+  <;> simp [Complex.I_sq]
+  <;> ring

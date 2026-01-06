@@ -1,0 +1,21 @@
+Problem: problem_0179
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.564237594604492
+Lean check time (s): 2.4088056087493896
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_143
+  (f g : ℝ → ℝ)
+  (h₀ : ∀ x, f x = x + 1)
+  (h₁ : ∀ x, g x = x^2 + 3) :
+  f (g 2) = 8 := by
+  simp_all only [h₀, h₁, pow_two, mul_one, mul_zero, add_zero, zero_add, mul_neg, mul_one,
+    neg_mul, neg_neg, neg_add_rev]
+  norm_num

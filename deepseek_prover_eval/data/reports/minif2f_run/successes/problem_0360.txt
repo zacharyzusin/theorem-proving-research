@@ -1,0 +1,22 @@
+Problem: problem_0360
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.541881084442139
+Lean check time (s): 3.424661159515381
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p2 :
+  1 + (1 / (1 + (1 / (1 + 1)))) = (5 : ℚ) / 3 := by
+  norm_num [div_eq_mul_inv, mul_assoc]
+  -- Simplify the expression using numerical normalization and properties of division and multiplication.
+  <;> simp_all [div_eq_mul_inv, mul_assoc]
+  -- Further simplify the expression using the properties of division and multiplication.
+  <;> norm_num
+  -- Final numerical normalization to confirm the result.
+  <;> linarith

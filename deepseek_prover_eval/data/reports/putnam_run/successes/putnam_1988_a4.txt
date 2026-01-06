@@ -1,0 +1,21 @@
+Problem: putnam_1988_a4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 11.744890451431274
+Lean check time (s): 19.403205394744873
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1988_a4
+    (p : ℕ → Prop)
+    (hp : ∀ n, p n ↔
+      ∀ color : (EuclideanSpace ℝ (Fin 2)) → Fin n,
+        ∃ p q : EuclideanSpace ℝ (Fin 2),
+          color p = color q ∧ dist p q = 1) :
+    (let (a, b) := putnam_1988_a4_solution; (p 3 ↔ a) ∧ (p 9 ↔ b)) :=
+  sorry

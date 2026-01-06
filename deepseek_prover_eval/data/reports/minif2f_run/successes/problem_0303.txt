@@ -1,0 +1,22 @@
+Problem: problem_0303
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.586917161941528
+Lean check time (s): 5.7477850914001465
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_245
+  (x : ℝ)
+  (h₀ : x ≠ 0) :
+  (4 / x)⁻¹ * ((3 * x^3) / x)^2 * ((1 / (2 * x))⁻¹)^3 = 18 * x^8 := by
+  field_simp [h₀, pow_two, pow_three, mul_assoc, mul_comm, mul_left_comm]
+  ring
+  <;> simp_all
+  <;> ring
+  <;> linarith

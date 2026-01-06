@@ -1,0 +1,195 @@
+Problem: putnam_2009_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 7.999066591262817 / 7.614851474761963 / 15.61391806602478
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  unfold putnam_2009_a4_solution
+  <;>
+  simp_all [Set.mem_setOf_eq]
+  <;>
+  tauto
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 18.332905054092407 / 6.939037322998047 / 25.271942377090454
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  unfold putnam_2009_a4_solution
+  <;>
+  exact ⟨fun h => by
+    have h₁ := h ∅
+    have h₂ := h {0}
+    have h₃ := h {1}
+    have h₄ := h {0, 1}
+    have h₅ := h {0, 1, 2}
+    have h₆ := h {0, 1, -1}
+    have h₇ := h {0, 1, 1/2}
+    have h₈ := h {0, 1, -1/2}
+    norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈
+    <;> simp_all [Set.mem_insert, Set.mem_singleton], fun h => by
+    intro S hS₀ hS₁ hS₂ r
+    have h₁ := hS₁ 0 hS₀
+    have h₂ := hS₁ 1 (by simp_all)
+    have h₃ := hS₂ 0 hS₀
+    have h₄ := hS₂ 1 (by simp_all)
+    aesop⟩
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.813306331634521 / 7.6542017459869385 / 22.46750807762146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  unfold putnam_2009_a4_solution
+  <;>
+  exact ⟨fun h => by
+    have h₁ := h ∅
+    have h₂ := h {0}
+    have h₃ := h {1}
+    have h₄ := h {0, 1}
+    have h₅ := h {0, 1, 2}
+    have h₆ := h {0, 1, -1}
+    have h₇ := h {0, 1, 1 / 2}
+    have h₈ := h {0, 1, -1 / 2}
+    norm_num at h₁ h₂ h₃ h₄ h₅ h₆ h₇ h₈
+    <;> simp_all [Set.mem_insert, Set.mem_singleton], fun h => by
+    have h₁ := h
+    tauto⟩
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 7.927047491073608 / 9.1584951877594 / 17.085542678833008
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  unfold putnam_2009_a4_solution
+  <;>
+  simp_all [Set.mem_setOf_eq]
+  <;>
+  tauto
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.305898189544678 / 8.795995712280273 / 21.10189390182495
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  constructor
+  · intro h
+    exact fun S h₀ h₁ h₂ r => h S h₀ h₁ h₂ r
+  · intro h
+    intro S h₀ h₁ h₂ r
+    have h₃ := h₁ 0
+    have h₄ := h₁ 1
+    have h₅ := h₁ (-1)
+    have h₆ := h₂ 0
+    have h₇ := h₂ 1
+    have h₈ := h₂ (-1)
+    norm_num at h₃ h₄ h₅ h₆ h₇ h₈
+    <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.72474455833435 / 9.296223878860474 / 24.020968437194824
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  unfold putnam_2009_a4_solution
+  <;>
+  exact ⟨fun h => by
+    have h₁ := h ∅
+    have h₂ := h {0}
+    have h₃ := h {1}
+    have h₄ := h {0, 1}
+    have h₅ := h {0, 1, 2}
+    norm_num at h₁ h₂ h₃ h₄ h₅
+    <;> simp_all, fun h => by
+    intro S hS₀ hS₁ hS₂ r
+    have h₁ := hS₁ 0
+    have h₂ := hS₁ 1
+    have h₃ := hS₂ 0
+    have h₄ := hS₂ 1
+    norm_num at h₁ h₂ h₃ h₄
+    <;> aesop⟩
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.143934965133667 / 8.470629453659058 / 16.614564418792725
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  unfold putnam_2009_a4_solution
+  <;>
+  simp_all [Set.mem_setOf_eq]
+  <;>
+  tauto
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.755097389221191 / 9.466636419296265 / 21.221733808517456
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_a4
+: ((∀ S : Set ℚ, 0 ∈ S → (∀ x ∈ S, x + 1 ∈ S ∧ x - 1 ∈ S) → (∀ x ∈ S, x ∉ ({0, 1} : Set ℚ) → 1 / (x * (x - 1)) ∈ S) → ∀ r : ℚ, r ∈ S) ↔ putnam_2009_a4_solution) := by
+  constructor
+  · intro h
+    exact fun S h₀ h₁ h₂ r => h S h₀ h₁ h₂ r
+  · intro h
+    intro S h₀ h₁ h₂ r
+    have h₃ := h₁ 0
+    have h₄ := h₁ 1
+    have h₅ := h₁ (-1)
+    have h₆ := h₂ 0
+    have h₇ := h₂ 1
+    have h₈ := h₂ (-1)
+    simp_all
+    <;> norm_num
+    <;> aesop

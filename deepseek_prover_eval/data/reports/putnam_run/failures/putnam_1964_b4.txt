@@ -1,0 +1,254 @@
+Problem: putnam_1964_b4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 35.135050773620605 / 99.80852460861206 / 134.94357538223267
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 88.81157088279724 / 154.2585425376892 / 243.07011342048645
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 89.58379364013672 / 115.7332808971405 / 205.31707453727722
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 28.96590805053711 / 124.05759000778198 / 153.0234980583191
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 36.00619649887085 / 92.63480997085571 / 128.64100646972656
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 34.790876150131226 / 226.53422737121582 / 261.32510352134705
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.54447317123413 / 186.48962783813477 / 225.0341010093689
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 81.30383706092834 / 221.94645714759827 / 303.2502942085266
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1964_b4
+    {n : ℕ} (hn : 0 < n)
+    -- `C` is a collection of `n` great circles on the sphere, i.e a collection of sets
+    (C : Fin n → Set (EuclideanSpace ℝ (Fin 3)))
+    --together with a collection of `n` normal vectors `v`
+    (v : Fin n → EuclideanSpace ℝ (Fin 3))
+    -- A great circle `C` is the intersection of a plane `{x | x · v = 0}` with `S`
+    (hv : ∀ i, C i = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ⟪v i, x⟫_ℝ = 0 })
+    --all the `v_i`'s are non-zero
+    (hv' : ∀ i, v i ≠ 0)
+    -- The circles in `C` are in general position
+    (hT₂ : ∀ᵉ (x ∈ Metric.sphere 0 1) (y ∈ Metric.sphere 0 1),
+      (Finset.univ.filter (fun i => {x, y} ⊆ (C i))).card ≤ 2)
+    -- The predicate that a set `R ⊆ ℝ³` is a region bounded by the collection of circles
+    (IsRegion : Set (EuclideanSpace ℝ (Fin 3)) → Prop)
+    -- We can determine the points `x` in such a region by looking at the sign of their dot product
+    -- with `n i` for `i : Fin n`
+    (IsRegion_def : ∀ R, IsRegion R ↔ R.Nonempty ∧ ∃ sign : Fin n → SignType, (∀ i, sign i ≠ 0) ∧
+      R = Metric.sphere 0 1 ∩ {x : EuclideanSpace ℝ (Fin 3) | ∀ i, signHom ⟪v i, x⟫_ℝ = sign i}) :
+    {R | IsRegion R}.ncard = putnam_1964_b4_solution n :=
+  sorry

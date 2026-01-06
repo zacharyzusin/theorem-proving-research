@@ -1,0 +1,212 @@
+Problem: problem_0244
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.106950998306274 / 600.050562620163 / 609.1575136184692
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (· + a + b) h₀
+  have h₄ := congr_arg (· + a + c) h₁
+  have h₅ := congr_arg (· + b + c) h₂
+  ring_nf at h₃ h₄ h₅ ⊢
+  nlinarith [sq_nonneg (a + b + c), sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.203845262527466 / 600.1632652282715 / 610.367110490799
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (fun x => x + 4 * a + 2 * b) h₀
+  have h₄ := congr_arg (fun x => x + 4 * b + 2 * a) h₁
+  have h₅ := congr_arg (fun x => x + 4 * c + 2 * a) h₂
+  ring_nf at h₃ h₄ h₅
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.502142429351807 / 600.1354808807373 / 611.6376233100891
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (· + 2 * a + 2 * b + 2 * c) h₀
+  have h₄ := congr_arg (· + 2 * a + 2 * b + 2 * c) h₁
+  have h₅ := congr_arg (· + 2 * a + 2 * b + 2 * c) h₂
+  ring_nf at h₃ h₄ h₅ ⊢
+  nlinarith [sq_nonneg (a - 4), sq_nonneg (b - 4), sq_nonneg (c - 4),
+    sq_nonneg (a + b + c - 3), sq_nonneg (a + b + c + 3)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.062235832214355 / 600.1340577602386 / 610.196293592453
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (fun x => x + 6) h₀
+  have h₄ := congr_arg (fun x => x + 6) h₁
+  have h₅ := congr_arg (fun x => x + 6) h₂
+  ring_nf at h₃ h₄ h₅ ⊢
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c),
+    sq_nonneg (a + b), sq_nonneg (a + c), sq_nonneg (b + c)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.595233917236328 / 600.1109731197357 / 610.706207036972
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (fun x => x + 12) h₀
+  have h₄ := congr_arg (fun x => x + 12) h₁
+  have h₅ := congr_arg (fun x => x + 12) h₂
+  -- Normalize the expressions to simplify the equations
+  ring_nf at h₃ h₄ h₅ ⊢
+  -- Use linear arithmetic to solve for the product abc
+  nlinarith [sq_nonneg (a + b + c), sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.63526964187622 / 600.1444578170776 / 608.7797274589539
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (fun x => x ^ 2) h₀
+  have h₄ := congr_arg (fun x => x ^ 2) h₁
+  have h₅ := congr_arg (fun x => x ^ 2) h₂
+  ring_nf at h₃ h₄ h₅
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a - c), sq_nonneg (b - c)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.79145622253418 / 600.1575078964233 / 610.9489641189575
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := congr_arg (· + 2 * (a + b + c)) h₀
+  have h₄ := congr_arg (· + 2 * (a + b + c)) h₁
+  have h₅ := congr_arg (· + 2 * (a + b + c)) h₂
+  -- Normalize the expressions to simplify the system
+  ring_nf at h₃ h₄ h₅ ⊢
+  -- Use linear arithmetic to solve for the product abc
+  nlinarith [sq_nonneg (a + b + c), sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.008699178695679 / 600.14071393013 / 610.1494131088257
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_338
+  (a b c : ℝ)
+  (h₀ : 3 * a + b + c = -3)
+  (h₁ : a + 3 * b + c = 9)
+  (h₂ : a + b + 3 * c = 19) :
+  a * b * c = -56 := by
+  have h₃ := mul_comm (3 * a + b + c) (a + 3 * b + c)
+  have h₄ := mul_comm (3 * a + b + c) (a + b + 3 * c)
+  have h₅ := mul_comm (a + 3 * b + c) (a + b + 3 * c)
+  ring_nf at h₀ h₁ h₂ h₃ h₄ h₅ ⊢
+  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
+

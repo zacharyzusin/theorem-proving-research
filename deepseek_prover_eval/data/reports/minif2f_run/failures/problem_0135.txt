@@ -1,0 +1,271 @@
+Problem: problem_0135
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.79089093208313 / 12.920366048812866 / 26.711256980895996
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      simp [Finset.sum_range_succ] at h₁ ⊢
+      linarith
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.927201271057129 / 13.676401376724243 / 28.603602647781372
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      have h₅ := h₀ 2
+      simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+      <;> linarith
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.331504106521606 / 5.955618381500244 / 17.28712248802185
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      simp_all
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      simp_all [Nat.succ_eq_add_one]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Finset.sum_range_succ, Finset.sum_range_succ]
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.214372396469116 / 5.74877142906189 / 17.963143825531006
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      have h₅ := h₀ 2
+      simp_all
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      simp_all [Nat.cast_add_one_ne_zero]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Finset.sum_range_succ', Finset.sum_range_zero]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.507150888442993 / 13.516780138015747 / 26.02393102645874
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      have h₅ := h₀ 2
+      simp_all [Finset.sum_range_succ, Nat.mul_succ]
+      <;> linarith
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      simp_all [Finset.sum_range_succ, Nat.mul_succ]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Nat.mul_succ]
+  <;> linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 14.002078533172607 / 13.088930606842041 / 27.09100914001465
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      simp [Finset.sum_range_succ] at h₁ h₃ h₄ ⊢
+      linarith
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.696795463562012 / 13.209210634231567 / 26.90600609779358
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      simp [Finset.sum_range_succ] at h₁ h₃ h₄
+      linarith
+    | succ n ih =>
+      have h₃ := h₀ n
+      simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+      <;> linarith
+  simp_all [Finset.sum_range_succ, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_ofNat]
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.88007640838623 / 6.130371809005737 / 25.010448217391968
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1984_p1
+  (u : ℕ → ℚ)
+  (h₀ : ∀ n, u (n + 1) = u n + 1)
+  (h₁ : ∑ k in Finset.range 98, u k.succ = 137) :
+  ∑ k in Finset.range 49, u (2 * k.succ) = 93 := by
+  have h₂ : ∀ n, u n = n := by
+    intro n
+    induction n with
+    | zero =>
+      have h₃ := h₀ 0
+      have h₄ := h₀ 1
+      have h₅ := h₀ 2
+      have h₆ := h₀ 3
+      have h₇ := h₀ 4
+      have h₈ := h₀ 5
+      have h₉ := h₀ 6
+      have h₁₀ := h₀ 7
+      norm_num at *
+      linarith
+    | succ n ih =>
+      have h₃ := h₀ n
+      have h₄ := h₀ (n + 1)
+      have h₅ := h₀ (n + 2)
+      have h₆ := h₀ (n + 3)
+      have h₇ := h₀ (n + 4)
+      have h₈ := h₀ (n + 5)
+      have h₉ := h₀ (n + 6)
+      have h₁₀ := h₀ (n + 7)
+      norm_num at *
+      linarith
+  simp_all [Finset.sum_range_succ, Finset.sum_range_succ, Finset.sum_range_succ]
+  <;> norm_num
+  <;> linarith
+

@@ -1,0 +1,20 @@
+Problem: putnam_1972_b4
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.038362503051758
+Lean check time (s): 37.455514907836914
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b4
+(n : ℕ)
+(hn : n > 1)
+(vars : ℤ → ℤ → ℤ → (Fin 3 → ℤ))
+(hvars : vars = fun a b c ↦ fun i ↦ ite (i = 0) a (ite (i = 1) b c))
+: ∃ P : MvPolynomial (Fin 3) ℤ, ∀ x : ℤ, x = MvPolynomial.eval (vars (x^n) (x^(n+1)) (x + x^(n+2))) P :=
+sorry

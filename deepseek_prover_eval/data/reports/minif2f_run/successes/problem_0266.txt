@@ -1,0 +1,22 @@
+Problem: problem_0266
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 6.772807598114014
+Lean check time (s): 3.1415669918060303
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_64 :
+  IsLeast {x : ℕ | 30 * x ≡ 42 [MOD 47]} 39 := by
+  refine' ⟨by simp [ModEq, Nat.mod_eq_of_lt], fun a ha => _⟩
+  -- Simplify the set membership condition and use the fact that 39 is the smallest number satisfying the condition.
+  simp [ModEq] at ha
+  -- Normalize the numbers to ensure they are in the correct form for the proof.
+  norm_num at ha
+  -- Use the `omega` tactic to solve the linear congruence and inequalities.
+  omega

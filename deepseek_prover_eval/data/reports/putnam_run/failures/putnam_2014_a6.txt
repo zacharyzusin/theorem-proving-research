@@ -1,0 +1,142 @@
+Problem: putnam_2014_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 39.748589754104614 / 4.304828882217407 / 44.05341863632202
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 35.93129777908325 / 4.308826446533203 / 40.240124225616455
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 60.096171140670776 / 4.276540517807007 / 64.37271165847778
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 46.25172734260559 / 4.284656286239624 / 50.536383628845215
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.155096530914307 / 4.313649892807007 / 33.46874642372131
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 38.356634855270386 / 4.293810129165649 / 42.650444984436035
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 30.62997269630432 / 4.542255401611328 / 35.17222809791565
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 37.42554759979248 / 4.277390480041504 / 41.702938079833984
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a6
+(n : ℕ)
+(kex : ℕ → Prop)
+(npos : n > 0)
+(hkex : ∀ k ≥ 1, kex k = ∃ M N : Fin k → Matrix (Fin n) (Fin n) ℝ, ∀ i j : Fin k, ((∃ p : Fin n, (M i * N j) p p = 0) ↔ i ≠ j))
+: (putnam_2014_a6_solution n ≥ 1 ∧ kex (putnam_2014_a6_solution n)) ∧ (∀ k ≥ 1, kex k → k ≤ putnam_2014_a6_solution n) :=
+sorry

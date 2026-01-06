@@ -1,0 +1,323 @@
+Problem: problem_0106
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 28.600587606430054 / 600.1473250389099 / 628.74791264534
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg (3 - x)
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg (x + 1)
+  have h₅ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₆ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₇ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₈ : (Real.sqrt (3 - x)) ^ 2 > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  have h₉ : 3 - x > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  have h₁₀ : -1 ≤ x := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith), Real.sq_sqrt (show 0 ≤ 3 - x by linarith)]
+  have h₁₁ : x < 1 - Real.sqrt 31 / 8 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith), Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sqrt_nonneg 31, Real.sq_sqrt (show 0 ≤ 31 by norm_num)]
+  exact ⟨h₁₀, h₁₁⟩
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.892338275909424 / 600.0703890323639 / 628.9627273082733
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg (3 - x)
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg (x + 1)
+  have h₅ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₆ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₇ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₈ : (Real.sqrt (3 - x)) ^ 2 > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  have h₉ : 3 - x > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  have h₁₀ : -1 ≤ x := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith), Real.sq_sqrt (show 0 ≤ 3 - x by linarith)]
+  have h₁₁ : x < 1 - Real.sqrt 31 / 8 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      Real.sqrt_nonneg 31, Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      sq_nonneg (Real.sqrt (x + 1) - Real.sqrt (3 - x))]
+  exact ⟨h₁₀, h₁₁⟩
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 31.900378704071045 / 600.1438167095184 / 632.0441954135895
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg (3 - x)
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg (x + 1)
+  have h₅ : Real.sqrt (3 - x) ≥ 0 := by linarith
+  have h₆ : Real.sqrt (x + 1) ≥ 0 := by linarith
+  have h₇ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₈ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₉ : (Real.sqrt (3 - x)) ^ 2 > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  have h₁₀ : 3 - x > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by nlinarith
+  have h₁₁ : x < 1 - Real.sqrt 31 / 8 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      Real.sqrt_nonneg 31, Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      sq_nonneg (Real.sqrt (x + 1) - 1 / 2), sq_nonneg (Real.sqrt (3 - x) - 1 / 2)]
+  have h₁₂ : -1 ≤ x := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      Real.sqrt_nonneg 31, Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      sq_nonneg (Real.sqrt (x + 1) - 1 / 2), sq_nonneg (Real.sqrt (3 - x) - 1 / 2)]
+  exact ⟨h₁₂, h₁₁⟩
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 25.29679274559021 / 600.1534733772278 / 625.450266122818
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg (3 - x)
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg (x + 1)
+  have h₅ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₆ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₇ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₈ : (Real.sqrt (3 - x)) ^ 2 > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  have h₉ : 3 - x > (Real.sqrt (x + 1) + 1 / 2) ^ 2 := by nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+  constructor
+  case left =>
+    nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith), Real.sq_sqrt (show 0 ≤ 3 - x by linarith)]
+  case right =>
+    nlinarith [Real.sq_sqrt (show 0 ≤ x + 1 by linarith), Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sqrt_nonneg 31, Real.sqrt_nonneg 4, Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 4 by norm_num)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.563863039016724 / 600.1607913970947 / 629.7246544361115
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg _
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg _
+  have h₅ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₆ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₇ : 3 - x > 0 := by
+    by_contra h
+    have : 3 - x ≤ 0 := by linarith
+    have : Real.sqrt (3 - x) = 0 := by
+      apply Real.sqrt_eq_zero_of_nonpos
+      linarith
+    nlinarith [Real.sqrt_nonneg (x + 1)]
+  have h₈ : x + 1 ≥ 0 := by linarith
+  have h₉ : Real.sqrt (3 - x) > 0 := Real.sqrt_pos.mpr (by linarith)
+  have h₁₀ : Real.sqrt (x + 1) ≥ 0 := Real.sqrt_nonneg _
+  have h₁₁ : Real.sqrt (3 - x) ≥ 0 := Real.sqrt_nonneg _
+  have h₁₂ : Real.sqrt (x + 1) ≥ 0 := Real.sqrt_nonneg _
+  constructor
+  case left =>
+    nlinarith [sq_sqrt (show 0 ≤ 3 - x by linarith), sq_sqrt (show 0 ≤ x + 1 by linarith),
+      sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1))]
+  case right =>
+    nlinarith [sq_sqrt (show 0 ≤ 3 - x by linarith), sq_sqrt (show 0 ≤ x + 1 by linarith),
+      sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)), Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 29.7392795085907 / 600.1567013263702 / 629.8959808349609
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ 3 - x := h₀
+  have h₄ : 0 ≤ x + 1 := h₁
+  have h₅ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1) := h₂
+  have h₆ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₇ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₈ : x < 1 - Real.sqrt 31 / 8 := by
+    have h₉ : 0 ≤ Real.sqrt 31 := Real.sqrt_nonneg _
+    have h₁₀ : Real.sqrt 31 ≥ 0 := Real.sqrt_nonneg _
+    nlinarith [Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt (3 - x) + Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt 31 / 8 - 1 / 2)]
+  have h₉ : -1 ≤ x := by
+    by_contra! h
+    have h₁₀ : x < -1 := by linarith
+    have h₁₁ : Real.sqrt (3 - x) ≥ 0 := Real.sqrt_nonneg _
+    have h₁₂ : Real.sqrt (x + 1) ≥ 0 := Real.sqrt_nonneg _
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt (3 - x) + Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt 31 / 8 - 1 / 2)]
+  exact ⟨h₉, h₈⟩
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 35.79459619522095 / 600.153710603714 / 635.9483067989349
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg _
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg _
+  have h₅ : Real.sqrt (3 - x) ≥ 0 := Real.sqrt_nonneg _
+  have h₆ : Real.sqrt (x + 1) ≥ 0 := Real.sqrt_nonneg _
+  have h₇ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₈ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₉ : (Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2) := by linarith
+  have h₁₀ : (3 - x) ≥ 0 := by linarith
+  have h₁₁ : (x + 1) ≥ 0 := by linarith
+  have h₁₂ : Real.sqrt (3 - x) > Real.sqrt (x + 1) + 1 / 2 := by linarith
+  have h₁₃ : x < 1 - Real.sqrt 31 / 8 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt (3 - x) + Real.sqrt (x + 1)),
+      Real.sqrt_nonneg 31, Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      sq_nonneg (x - 1 + Real.sqrt 31 / 8),
+      sq_nonneg (x - 1 - Real.sqrt 31 / 8)]
+  have h₁₄ : -1 ≤ x := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt (3 - x) + Real.sqrt (x + 1)),
+  
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 33.801971197128296 / 600.1463167667389 / 633.9482879638672
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1962_p2
+  (x : ℝ)
+  (h₀ : 0 ≤ 3 - x)
+  (h₁ : 0 ≤ x + 1)
+  (h₂ : 1 / 2 < Real.sqrt (3 - x) - Real.sqrt (x + 1)) :
+  -1 ≤ x ∧ x < 1 - Real.sqrt 31 / 8 := by
+  have h₃ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg _
+  have h₄ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg _
+  have h₅ : Real.sqrt (3 - x) - Real.sqrt (x + 1) > 1 / 2 := by linarith
+  have h₆ : Real.sqrt (3 - x) > 1 / 2 + Real.sqrt (x + 1) := by linarith
+  have h₇ : x < 1 - Real.sqrt 31 / 8 := by
+    have h₈ : 0 ≤ 3 - x := by linarith
+    have h₉ : 0 ≤ x + 1 := by linarith
+    have h₁₀ : 0 ≤ Real.sqrt 31 := Real.sqrt_nonneg _
+    have h₁₁ : 0 ≤ Real.sqrt (3 - x) := Real.sqrt_nonneg _
+    have h₁₂ : 0 ≤ Real.sqrt (x + 1) := Real.sqrt_nonneg _
+    nlinarith [Real.sq_sqrt (show 0 ≤ 3 - x by linarith), Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      Real.sq_sqrt (show 0 ≤ 31 by norm_num), sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt (3 - x) + Real.sqrt (x + 1)), sq_nonneg (Real.sqrt 31 / 8 - 1 / 2),
+      Real.sq_sqrt (show 0 ≤ 31 by norm_num), Real.sq_sqrt (show 0 ≤ 31 by norm_num)]
+  have h₈ : -1 ≤ x := by
+    nlinarith [sq_nonneg (Real.sqrt (3 - x) - Real.sqrt (x + 1)),
+      sq_nonneg (Real.sqrt (3 - x) + Real.sqrt (x + 1)),
+      Real.sq_sqrt (show 0 ≤ 3 - x by linarith),
+      Real.sq_sqrt (show 0 ≤ x + 1 by linarith),
+      Real.sq_sqrt (show 0 ≤ 31 by norm_num),
+      sq_nonneg (Real.sqrt 31 / 8 - 1 / 2),
+  
+... [truncated] ...

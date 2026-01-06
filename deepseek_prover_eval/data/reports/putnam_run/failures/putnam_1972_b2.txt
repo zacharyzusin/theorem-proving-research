@@ -1,0 +1,174 @@
+Problem: putnam_1972_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 58.06940317153931 / 101.63572072982788 / 159.7051239013672
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 51.867780447006226 / 65.15673422813416 / 117.02451467514038
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 70.06714725494385 / 87.55056285858154 / 157.6177101135254
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 68.39960932731628 / 113.43585157394409 / 181.83546090126038
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 85.8378496170044 / 43.685505390167236 / 129.52335500717163
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 81.25051164627075 / 61.917888879776 / 143.16840052604675
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 65.4263756275177 / 77.47213435173035 / 142.89850997924805
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 56.4699501991272 / 130.2331142425537 / 186.7030644416809
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b2
+    (s v : ℝ)
+    (hs : s > 0)
+    (hv : v > 0)
+    (valid : ℝ → (ℝ → ℝ) → Prop)
+    (hvalid : ∀ t x, valid t x ↔
+      DifferentiableOn ℝ x (Set.Icc 0 t) ∧ DifferentiableOn ℝ (deriv x) (Set.Icc 0 t) ∧
+      AntitoneOn (deriv (deriv x)) (Set.Icc 0 t) ∧
+      deriv x 0 = 0 ∧ deriv x t = v ∧ x t - x 0 = s)
+    : IsGreatest {t | ∃ x : ℝ → ℝ, valid t x} (putnam_1972_b2_solution s v) :=
+  sorry

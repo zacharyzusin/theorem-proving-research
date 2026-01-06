@@ -1,0 +1,30 @@
+Problem: problem_0169
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 14.459954261779785
+Lean check time (s): 23.046480178833008
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_332
+  (x y : ℝ)
+  (h₀ : (x + y) / 2 = 7)
+  (h₁ : Real.sqrt (x * y) = Real.sqrt 19) :
+  x^2 + y^2 = 158 := by
+  have h₂ : (x + y) / 2 = 7 := h₀
+  have h₃ : Real.sqrt (x * y) = Real.sqrt 19 := h₁
+  have h₄ : x + y = 14 := by linarith
+  have h₅ : x * y = 19 := by
+    have h₆ : Real.sqrt (x * y) = Real.sqrt 19 := h₃
+    have h₇ : 0 ≤ x * y := by
+      apply le_of_lt
+      exact Real.sqrt_pos.mp (Real.sqrt_pos.mp (by norm_num [h₆]))
+    have h₈ : (Real.sqrt (x * y)) ^ 2 = (Real.sqrt 19) ^ 2 := by rw [h₆]
+    rw [Real.sq_sqrt (by positivity), Real.sq_sqrt (by positivity)] at h₈
+    nlinarith
+  nlinarith [sq_nonneg (x - y), sq_nonneg (x + y), sq_nonneg (x * y)]

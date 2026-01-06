@@ -1,0 +1,142 @@
+Problem: putnam_2001_b6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 9.23253583908081 / 9.683361530303955 / 18.915897369384766
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.85533356666565 / 9.032245397567749 / 20.8875789642334
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.196393728256226 / 7.678285360336304 / 16.87467908859253
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.850266695022583 / 8.361377000808716 / 30.2116436958313
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.690736770629883 / 8.806785106658936 / 17.49752187728882
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 8.652901887893677 / 7.7519166469573975 / 16.404818534851074
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.33256435394287 / 7.047596216201782 / 28.380160570144653
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.20522141456604 / 7.778924465179443 / 16.984145879745483
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_b6 :
+  (∀ a : ℤ → ℝ,
+    (∀ n ≥ 1, a n > 0 ∧ a n < a (n + 1)) →
+    (Tendsto (fun n : ℤ => a (n + 1) / (n + 1)) atTop (𝓝 0)) →
+    {n : ℤ | n > 0 ∧ (∀ i ∈ Set.Icc 1 (n - 1), a (n - i) + a (n + i) < 2 * a n)}.Infinite)
+  ↔ putnam_2001_b6_solution :=
+sorry

@@ -1,0 +1,142 @@
+Problem: putnam_2009_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.846705913543701 / 8.134745836257935 / 18.981451749801636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.995824575424194 / 7.90760612487793 / 20.903430700302124
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 49.40997123718262 / 7.354067802429199 / 56.764039039611816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.09466552734375 / 8.476445436477661 / 18.57111096382141
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 19.557861328125 / 7.052258729934692 / 26.610120058059692
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.831249952316284 / 7.719059705734253 / 18.550309658050537
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.12783408164978 / 7.362582683563232 / 17.490416765213013
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.292789936065674 / 7.452903509140015 / 20.74569344520569
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2009_b3
+(mediocre : ℤ → Set ℤ → Prop)
+(hmediocre : ∀ n S, mediocre n S ↔ (S ⊆ Icc 1 n) ∧ ∀ a ∈ S, ∀ b ∈ S, 2 ∣ a + b → (a + b) / 2 ∈ S)
+(A : ℤ → ℤ)
+(hA : A = fun n ↦ ({S : Set ℤ | mediocre n S}.ncard : ℤ))
+: ({n : ℤ | n > 0 ∧ A (n + 2) - 2 * A (n + 1) + A n = 1} = putnam_2009_b3_solution) :=
+sorry

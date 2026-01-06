@@ -1,0 +1,166 @@
+Problem: putnam_2011_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 6.89013671875 / 4.4572672843933105 / 11.34740400314331
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  simp_all [abs_of_pos, Real.sqrt_pos, sub_pos]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 7.729701042175293 / 4.469831943511963 / 12.199532985687256
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  simp_all [abs_lt, sub_eq_add_neg, mul_comm]
+  <;>
+    norm_num
+  <;>
+    linarith [Real.sqrt_nonneg 0, Real.sqrt_nonneg 0]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.32885479927063 / 4.417964696884155 / 11.746819496154785
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  simp_all [abs_lt, sub_eq_add_neg, add_comm]
+  <;>
+    linarith [Real.sqrt_nonneg 0, Real.sqrt_nonneg 0]
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.35497236251831 / 4.621847152709961 / 13.976819515228271
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  norm_num
+  <;>
+  simp_all [abs_of_pos, Real.sqrt_pos, sub_pos, sub_lt_iff_lt_add, add_assoc]
+  <;>
+  norm_num
+  <;>
+  nlinarith [Real.sqrt_nonneg 0, Real.sqrt_nonneg 0, Real.sqrt_nonneg 0, Real.sqrt_nonneg 0]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 8.108491659164429 / 4.595590829849243 / 12.704082489013672
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  simp_all [abs_lt, sub_eq_add_neg, mul_comm]
+  <;>
+  nlinarith [Real.sqrt_nonneg 0, Real.sqrt_nonneg 0, Real.sqrt_nonneg 1, Real.sqrt_nonneg 1]
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 7.6400604248046875 / 4.57227349281311 / 12.212333917617798
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  norm_num
+  <;> simp_all [abs_lt, sub_eq_add_neg, mul_comm]
+  <;> nlinarith [Real.sqrt_nonneg 0, Real.sqrt_nonneg 0]
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.063005208969116 / 4.460796356201172 / 11.523801565170288
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  simp_all [abs_of_pos, Real.sqrt_eq_zero, sub_eq_zero]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.880873441696167 / 4.753506183624268 / 16.634379625320435
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2011_b1
+(h k : ℤ)
+(hkpos : h > 0 ∧ k > 0)
+: ∀ ε > 0, ∃ m n : ℤ, m > 0 ∧ n > 0 ∧ ε < |h * Real.sqrt m - k * Real.sqrt n| ∧ |h * Real.sqrt m - k * Real.sqrt n| < 2 * ε := by
+  intro ε εpos
+  use 0, 0
+  simp_all [abs_of_pos, Real.sqrt_pos, sub_pos]
+  <;>
+    nlinarith [Real.sqrt_nonneg 0, Real.sqrt_nonneg 0, Real.sqrt_nonneg 1, Real.sqrt_nonneg 1,
+      Real.sq_sqrt (show (0 : ℝ) ≤ 0 by norm_num), Real.sq_sqrt (show (0 : ℝ) ≤ 0 by norm_num),
+      Real.sq_sqrt (show (0 : ℝ) ≤ 1 by norm_num), Real.sq_sqrt (show (0 : ℝ) ≤ 1 by norm_num)]

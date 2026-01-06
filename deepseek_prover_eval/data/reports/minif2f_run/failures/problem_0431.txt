@@ -1,0 +1,261 @@
+Problem: problem_0431
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 2
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.952799797058105 / 366.1838402748108 / 380.1366400718689
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := by linarith
+  have hy : 0 < y := by linarith
+  have hz : 0 < z := by linarith
+  field_simp [h₀.1.ne', h₀.2.1.ne', h₀.2.2.ne'] at h₂ h₃ h₄ ⊢
+  ring_nf at h₂ h₃ h₄ ⊢
+  norm_cast at h₂ h₃ h₄ ⊢
+  nlinarith [mul_pos hx hy, mul_pos hx hz, mul_pos hy hz,
+    mul_pos (mul_pos hx hy) hz]
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.625396966934204 / 600.1681342124939 / 615.7935311794281
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := by linarith
+  have hy : 0 < y := by linarith
+  have hz : 0 < z := by linarith
+  field_simp [h₀.1.ne', h₀.2.1.ne', h₀.2.2.ne', hx.ne', hy.ne', hz.ne'] at h₂ h₃ h₄ ⊢
+  ring_nf at h₂ h₃ h₄ ⊢
+  norm_cast at h₂ h₃ h₄ ⊢
+  nlinarith [mul_pos hx hy, mul_pos hy hz, mul_pos hz hx,
+    mul_pos (mul_pos hx hy) (mul_pos hy hz), mul_pos (mul_pos hy hz) (mul_pos hz hx)]
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 20.25327706336975 / 6.157892227172852 / 26.411169290542603
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := (h₀).1
+  have hy : 0 < y := (h₀).2.1
+  have hz : 0 < z := (h₀).2.2
+  field_simp at h₂ h₃ h₄
+  have h₆ : x ≠ 0 := by positivity
+  have h₇ : y ≠ 0 := by positivity
+  have h₈ : z ≠ 0 := by positivity
+  have h₉ : x * y ≠ 0 := mul_ne_zero h₆ h₇
+  have h₁₀ : x * z ≠ 0 := mul_ne_zero h₆ h₈
+  have h₁₁ : y * z ≠ 0 := mul_ne_zero h₇ h₈
+  field_simp at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  norm_cast at h₂ h₃ h₄
+  nlinarith [mul_pos hx hy, mul_pos hx hz, mul_pos hy hz,
+    mul_self_nonneg (x - 1 / 2), mul_self_nonneg (y - 1 / 2),
+    mul_self_nonneg (z - 1 / 2)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 16.825002193450928 / 368.9958996772766 / 385.82090187072754
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := by linarith
+  have hy : 0 < y := by linarith
+  have hz : 0 < z := by linarith
+  field_simp at h₂ h₃ h₄
+  have h₆ : x ≠ 0 := by positivity
+  have h₇ : y ≠ 0 := by positivity
+  have h₈ : z ≠ 0 := by positivity
+  have h₉ : x * y ≠ 0 := by positivity
+  have h₁₀ : x * z ≠ 0 := by positivity
+  have h₁₁ : y * z ≠ 0 := by positivity
+  ring_nf at h₂ h₃ h₄ ⊢
+  norm_cast at h₂ h₃ h₄ ⊢
+  nlinarith [mul_pos hx hy, mul_pos hx hz, mul_pos hy hz,
+    mul_pos (mul_pos hx hy) hz]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.436907052993774 / 373.85801553726196 / 386.29492259025574
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := (h₀).1
+  have hy : 0 < y := (h₀).2.1
+  have hz : 0 < z := (h₀).2.2
+  field_simp at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  norm_cast at h₂ h₃ h₄
+  nlinarith [mul_pos hx hy, mul_pos hx hz, mul_pos hy hz,
+    mul_pos (mul_pos hx hy) hz]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.538314580917358 / 372.60404753685 / 386.14236211776733
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := (h₀).1
+  have hy : 0 < y := (h₀).2.1
+  have hz : 0 < z := (h₀).2.2
+  field_simp at h₂ h₃ h₄
+  ring_nf at h₂ h₃ h₄
+  norm_cast at h₂ h₃ h₄
+  nlinarith [mul_pos hx hy, mul_pos hx hz, mul_pos hy hz,
+    mul_pos (mul_pos hx hy) hz, mul_pos (mul_pos hx hz) hy,
+    mul_pos (mul_pos hy hz) hx]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.269251823425293 / 600.0778977870941 / 613.3471496105194
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := (h₀).1
+  have hy : 0 < y := (h₀).2.1
+  have hz : 0 < z := (h₀).2.2
+  field_simp [h₁.symm, hx.ne', hy.ne', hz.ne'] at h₂ h₃ h₄ ⊢
+  ring_nf at h₂ h₃ h₄ ⊢
+  norm_cast at h₂ h₃ h₄ ⊢
+  nlinarith [mul_pos hx hy, mul_pos hy hz, mul_pos hz hx]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 15.191963195800781 / 367.18955755233765 / 382.3815207481384
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aimeI_2000_p7
+  (x y z : ℝ)
+  (m : ℚ)
+  (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
+  (h₁ : x * y * z = 1)
+  (h₂ : x + 1 / z = 5)
+  (h₃ : y + 1 / x = 29)
+  (h₄ : z + 1 / y = m)
+  (h₅ : 0 < m) :
+  ↑m.den + m.num = 5 := by
+  have hx : 0 < x := h₀.1
+  have hy : 0 < y := h₀.2.1
+  have hz : 0 < z := h₀.2.2
+  have hz' : z ≠ 0 := by linarith
+  have hx' : x ≠ 0 := by linarith
+  have hy' : y ≠ 0 := by linarith
+  field_simp at h₂ h₃ h₄ ⊢
+  ring_nf at h₂ h₃ h₄ ⊢
+  norm_cast at h₂ h₃ h₄ ⊢
+  nlinarith [mul_pos hx hy, mul_pos hx hz, mul_pos hy hz,
+    mul_pos (mul_pos hx hy) hz]
+

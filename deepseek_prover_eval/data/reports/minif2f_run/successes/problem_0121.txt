@@ -1,0 +1,22 @@
+Problem: problem_0121
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.988019704818726
+Lean check time (s): 5.202603340148926
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_99
+  (n : ℕ)
+  (h₀ : (2 * n) % 47 = 15) :
+  n % 47 = 31 := by
+  have h₁ : 2 * n % 47 = 15 := h₀
+  rw [← Nat.mod_add_div (2 * n) 47] at h₁
+  rw [← Nat.mod_add_div n 47]
+  ring_nf at h₁ ⊢
+  omega

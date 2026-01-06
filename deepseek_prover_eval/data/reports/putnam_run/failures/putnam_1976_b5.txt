@@ -1,0 +1,202 @@
+Problem: putnam_1976_b5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.191339015960693 / 21.69686722755432 / 34.888206243515015
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  rw [show ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n by
+    induction n with
+    | zero =>
+      simp [putnam_1976_b5_solution]
+    | succ n ih =>
+      simp_all [putnam_1976_b5_solution, sum_range_succ, add_comm, add_left_comm, add_assoc]
+      <;> ring_nf
+      <;> norm_cast
+      <;> simp_all [Nat.choose_succ_succ, mul_add, mul_comm, mul_left_comm, mul_assoc]
+      <;> ring
+      <;> omega
+  ]
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 9.305656433105469 / 13.301937341690063 / 22.607593774795532
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  rw [show putnam_1976_b5_solution n = ∑ k in Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n by
+    rfl]
+  <;> simp [Finset.sum_range_succ, add_comm, add_left_comm, add_assoc]
+  <;> ring_nf
+  <;> aesop
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 12.81833267211914 / 12.780130863189697 / 25.598463535308838
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  simp [putnam_1976_b5_solution]
+  <;> induction n with
+  | zero =>
+    simp
+  | succ n ih =>
+    simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, pow_succ, mul_add, add_mul]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, pow_succ, mul_add, add_mul]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Finset.sum_range_succ, Nat.choose_succ_succ, pow_succ, mul_add, add_mul]
+    <;> ring_nf
+    <;> norm_cast
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 11.369060277938843 / 9.54122519493103 / 20.910285472869873
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  simp [putnam_1976_b5_solution]
+  <;> induction n with
+  | zero =>
+    simp
+  | succ n ih =>
+    simp_all [Finset.sum_range_succ', Nat.choose_succ_succ, mul_add, mul_comm, mul_left_comm, mul_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Finset.sum_range_succ', Nat.choose_succ_succ, mul_add, mul_comm, mul_left_comm, mul_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> linarith
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.305088996887207 / 13.39887285232544 / 24.703961849212646
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  simp [putnam_1976_b5_solution, sum_range_reflect, mul_comm]
+  <;> induction n with
+  | zero =>
+    -- Base case: n = 0
+    simp
+  | succ n ih =>
+    -- Inductive step: assume the statement holds for n, prove for n + 1
+    simp_all [Finset.sum_range_succ, add_comm, add_left_comm, add_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Nat.choose_succ_succ, mul_add, mul_comm, mul_left_comm, mul_assoc]
+    <;> omega
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.97622537612915 / 13.754157543182373 / 24.730382919311523
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  unfold putnam_1976_b5_solution
+  simp [sum_range_reflect, mul_comm]
+  <;> induction n with
+  | zero =>
+    simp
+  | succ n ih =>
+    simp_all [Finset.sum_range_succ', add_comm, add_left_comm, add_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Nat.choose_succ_succ, mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> omega
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.445257663726807 / 14.218961477279663 / 23.66421914100647
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  simp [putnam_1976_b5_solution]
+  <;> induction n with
+  | zero =>
+    simp
+  | succ n ih =>
+    simp_all [Finset.sum_range_succ, add_comm, add_left_comm, add_assoc]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Nat.choose_succ_succ, pow_add, mul_assoc]
+    <;> ring
+    <;> omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.621100187301636 / 14.08452820777893 / 24.705628395080566
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1976_b5
+: ∀ n : ℕ, ∑ k ∈ Finset.range (n + 1), C ((-(1 : ℤ))^k * Nat.choose n k) * (X - (C (k : ℤ)))^n = putnam_1976_b5_solution n := by
+  intro n
+  unfold putnam_1976_b5_solution
+  simp [sum_range_reflect, mul_comm]
+  <;> induction n with
+  | zero =>
+    simp
+  | succ n ih =>
+    simp_all [Finset.sum_range_succ, add_comm, add_left_comm, add_assoc, mul_comm, mul_assoc, mul_left_comm]
+    <;> ring_nf
+    <;> norm_cast
+    <;> simp_all [Nat.factorial]
+    <;> ring_nf
+    <;> norm_cast
+    <;> linarith

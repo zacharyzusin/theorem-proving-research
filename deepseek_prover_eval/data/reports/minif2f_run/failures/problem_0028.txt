@@ -1,0 +1,179 @@
+Problem: problem_0028
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.791917085647583 / 12.26656436920166 / 24.058481454849243
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4 ^ (n + 1)) 12]
+  rw [← Nat.mod_add_div n 4]
+  simp [pow_add, pow_mul, Nat.pow_mod, Nat.mul_mod, Nat.add_mod]
+  ring_nf
+  have h : n % 4 = 0 ∨ n % 4 = 1 ∨ n % 4 = 2 ∨ n % 4 = 3 := by omega
+  rcases h with (h | h | h | h) <;> simp [h, pow_add, pow_mul, Nat.pow_mod, Nat.mul_mod, Nat.add_mod]
+  <;> omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.821997165679932 / 4.747026681900024 / 16.569023847579956
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4 ^ (n + 1)) 12, ← Nat.mod_add_div (4 ^ n) 12]
+  simp [pow_add, pow_one, Nat.mul_mod, Nat.pow_mod, Nat.add_mod] at *
+  have h : 4 ^ n % 12 = 4 ^ n % 12 := rfl
+  have h2 : n % 2 = 0 ∨ n % 2 = 1 := by omega
+  rcases h2 with (h2 | h2) <;> simp [h2, pow_add, pow_one, Nat.mul_mod, Nat.pow_mod, Nat.add_mod] at *
+  <;> omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 10.936015129089355 / 8.03453016281128 / 18.970545291900635
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4^(n+1)) 12]
+  rw [← Nat.mod_add_div n 3]
+  simp [pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+  have : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by omega
+  rcases this with (h | h | h) <;> simp [h, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+  <;> omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.996867895126343 / 10.03795337677002 / 21.034821271896362
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4^(n+1)) 12]
+  rw [← Nat.mod_add_div n 3]
+  simp [pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+  ring_nf
+  have h : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by omega
+  rcases h with (h | h | h) <;> simp [h, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+  <;> omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 10.063485145568848 / 3.650904417037964 / 13.714389562606812
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4 ^ (n + 1)) 12, ← Nat.mod_add_div (4 ^ n) 12]
+  simp [pow_add, pow_one, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> induction n with
+  | zero => simp
+  | succ n ih =>
+    simp [pow_add, pow_one, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_eq_of_lt] at ih ⊢
+    <;> omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.512918710708618 / 10.540086269378662 / 21.05300498008728
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4^(n+1)) 12]
+  rw [← Nat.mod_add_div n 3]
+  simp [pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod]
+  ring_nf
+  have h : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by omega
+  rcases h with (h | h | h) <;> simp [h, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod]
+  <;> omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.903346538543701 / 11.479084730148315 / 22.382431268692017
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4 ^ (n + 1)) 12]
+  rw [← Nat.mod_add_div n 3]
+  simp [pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+  ring_nf
+  have : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by omega
+  rcases this with (h | h | h) <;> simp [h, pow_succ, Nat.mul_mod, Nat.pow_mod, Nat.add_mod, Nat.mod_mod]
+  <;> omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 10.302155494689941 / 9.136741876602173 / 19.438897371292114
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_12dvd4expnp1p20
+  (n : ℕ) :
+  12 ∣ 4^(n+1) + 20 := by
+  apply Nat.dvd_of_mod_eq_zero
+  rw [← Nat.mod_add_div (4 ^ (n + 1)) 12]
+  rw [← Nat.mod_add_div n 3]
+  simp [pow_add, pow_mul, Nat.add_mod, Nat.mul_mod, Nat.pow_mod]
+  have h : n % 3 = 0 ∨ n % 3 = 1 ∨ n % 3 = 2 := by omega
+  rcases h with (h | h | h) <;> simp [h, pow_add, pow_mul, Nat.add_mod, Nat.mul_mod, Nat.pow_mod]
+  <;> omega
+

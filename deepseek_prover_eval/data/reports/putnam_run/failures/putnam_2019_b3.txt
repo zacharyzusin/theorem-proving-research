@@ -1,0 +1,182 @@
+Problem: putnam_2019_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 20.274478673934937 / 8.219563007354736 / 28.494041681289673
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.93857455253601 / 8.013078451156616 / 22.951653003692627
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.34375500679016 / 9.898012161254883 / 28.241767168045044
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.692525863647461 / 8.891841173171997 / 24.584367036819458
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.142513036727905 / 8.278250455856323 / 25.42076349258423
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 37.79936599731445 / 7.288313150405884 / 45.08767914772034
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.230658769607544 / 6.997936010360718 / 21.22859477996826
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.87377142906189 / 9.392406225204468 / 24.266177654266357
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2019_b3
+(n : ℕ)
+(hn : n > 0)
+(Q : Matrix (Fin n) (Fin n) ℝ)
+(hQ0 : ∀ i j : Fin n, i ≠ j → dotProduct (Q i) (Q j) = 0 ∧ dotProduct (Qᵀ i) (Qᵀ j) = 0)
+(hQ1 : ∀ i : Fin n, dotProduct (Q i) (Q i) = 1 ∧ dotProduct (Qᵀ i) (Qᵀ i) = 1)
+(u : Matrix (Fin n) (Fin 1) ℝ)
+(hu : uᵀ*u = 1)
+(P : Matrix (Fin n) (Fin n) ℝ)
+(hP : P = 1 - 2 * (u * uᵀ))
+: (Q - 1).det ≠ 0 → (P * Q - 1).det = 0 :=
+sorry

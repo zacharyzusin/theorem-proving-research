@@ -1,0 +1,21 @@
+Problem: problem_0462
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.195576429367065
+Lean check time (s): 4.3842949867248535
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem algebra_manipexpr_2erprsqpesqeqnrpnesq
+  (e r : ℂ) :
+  2 * (e * r) + (e^2 + r^2) = (-r + (-e))^2 := by
+  ring_nf
+  <;> simp [sq, mul_add, mul_comm, mul_left_comm]
+  <;> ring
+  <;> simp [sq, mul_add, mul_comm, mul_left_comm]
+  <;> ring

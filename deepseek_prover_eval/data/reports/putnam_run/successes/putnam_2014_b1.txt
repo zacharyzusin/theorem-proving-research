@@ -1,0 +1,20 @@
+Problem: putnam_2014_b1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 14.05828070640564
+Lean check time (s): 13.480212688446045
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_b1
+(overexpansion : ℕ → List ℕ → Prop)
+(hoverexpansion : overexpansion = fun N d ↦ N = ∑ i : Fin d.length, (d.get i) * 10 ^ i.1 ∧ d.getLastI ≠ 0 ∧ ∀ a ∈ d, a ∈ Finset.range 11)
+(S : Set ℕ)
+(hS : ∀ N : ℕ, N ∈ S ↔ N > 0 ∧ ∃! d : List ℕ, overexpansion N d)
+: (S = putnam_2014_b1_solution) :=
+sorry

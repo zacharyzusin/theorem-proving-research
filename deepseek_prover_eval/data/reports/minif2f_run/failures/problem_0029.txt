@@ -1,0 +1,368 @@
+Problem: problem_0029
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 29.48962163925171 / 600.1426529884338 / 629.6322746276855
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 ≤ x := by linarith
+  have h₅ : x = (a + Real.sqrt b) / 2 := by simp_all
+  have h₆ : 2 * x ^ 2 = 4 * x + 9 := by linarith
+  have h₇ : 2 * ((a + Real.sqrt b) / 2) ^ 2 = 4 * ((a + Real.sqrt b) / 2) + 9 := by
+    rw [h₅] at h₆
+    exact h₆
+  have h₈ : 0 ≤ Real.sqrt b := Real.sqrt_nonneg b
+  field_simp at h₇
+  ring_nf at h₇
+  have h₉ : (a : ℝ) + Real.sqrt b = 5 * 2 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ (b : ℝ) by norm_cast; linarith)]
+  have h₁₀ : (a : ℝ) + Real.sqrt b = 10 := by linarith
+  have h₁₁ : a = 5 := by
+    have h₁₂ : (a : ℝ) = 5 := by
+      nlinarith [Real.sq_sqrt (show 0 ≤ (b : ℝ) by norm_cast; linarith)]
+    exact_mod_cast h₁₂
+  have h₁₃ : b = 25 := by
+    have h₁₄ : Real.sqrt b = 5 := by nlinarith
+    have h₁₅ : (Real.sqrt b : ℝ) ^ 2 = b := Real.sq_sqrt (by positivity)
+    have h₁₆ : (5 : ℝ) ^ 2 = b := by nlinarith
+    have h₁₇ : (b : ℝ) = 25 := by nlinarith
+    exact_mod_cast h₁₇
+  have h₁₈ : c = 2 := by linarith
+  simp_all
+  <;> nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 37.70181083679199 / 600.177845954895 / 637.879656791687
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith
+  have h₅ : c = 2 := by linarith
+  have h₆ : x = (a + Real.sqrt b) / 2 := by simp_all
+  have h₇ : 2 * x ^ 2 = 4 * x + 9 := by linarith
+  have h₈ : x = 3 ∨ x = -3 / 2 := by
+    apply or_iff_not_imp_left.mpr
+    intro h
+    apply mul_left_cancel₀ (sub_ne_zero_of_ne h)
+    nlinarith [sq_nonneg (x - 3), sq_nonneg (x + 3 / 2)]
+  cases h₈ with
+  | inl h₈ =>
+    have h₉ : x = 3 := by linarith
+    rw [h₉] at h₆
+    have h₁₀ : (a : ℝ) + Real.sqrt b = 6 := by linarith
+    have h₁₁ : a = 3 := by
+      have h₁₂ : (a : ℝ) = 3 := by
+        have h₁₃ : Real.sqrt b ≥ 0 := Real.sqrt_nonneg b
+        nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ b by linarith)]
+      exact_mod_cast h₁₂
+    have h₁₂ : b = 9 := by
+      have h₁₃ : Real.sqrt b = 3 := by nlinarith
+      have h₁₄ : (Real.sqrt b : ℝ) ^ 2 = b := Real.sq_sqrt (show (0 : ℝ) ≤ b by linarith)
+      nlinarith
+    simp_all
+    <;> linarith
+  | inr h₈ =>
+    have h₉ : x = -3 / 2 := by linarith
+    rw [h₉] at h₆
+    have h₁₀ : (a : ℝ) + Real.sqrt b = -3 := by linarith
+    have h₁₁ : a = 0 := by
+      have h₁₂ : (a : ℝ) = 0 := by
+        have h₁₃ : Real.sqrt b ≥ 0 := Real.sqrt_nonneg b
+        nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ b by linarith)]
+      exact_mo
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 29.313718557357788 / 600.1836771965027 / 629.4973957538605
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith
+  have h₅ : c = 2 := by linarith
+  have h₆ : x = (a + Real.sqrt b) / 2 := by simp_all
+  have h₇ : 2 * x^2 = 4 * x + 9 := by linarith
+  have h₈ : x = (a + Real.sqrt b) / 2 := by linarith
+  have h₉ : 2 * ((a + Real.sqrt b) / 2)^2 = 4 * ((a + Real.sqrt b) / 2) + 9 := by
+    rw [h₈] at h₇
+    linarith
+  have h₁₀ : (a + Real.sqrt b) ^ 2 = 2 * (a + Real.sqrt b) * 2 + 36 := by
+    field_simp at h₉ ⊢
+    nlinarith
+  have h₁₁ : Real.sqrt b ≥ 0 := Real.sqrt_nonneg b
+  have h₁₂ : (Real.sqrt b) ^ 2 = b := Real.sq_sqrt (by positivity)
+  have h₁₃ : (a : ℝ) ≥ 0 := by
+    nlinarith
+  have h₁₄ : (a : ℝ) ^ 2 ≥ 0 := by
+    nlinarith
+  have h₁₅ : (b : ℝ) ≥ 0 := by
+    nlinarith
+  have h₁₆ : (b : ℝ) ^ 2 ≥ 0 := by
+    nlinarith
+  have h₁₇ : a = 5 := by
+    nlinarith [sq_nonneg (a - 5), sq_nonneg (Real.sqrt b - 4)]
+  have h₁₈ : b = 16 := by
+    nlinarith [sq_nonneg (a - 5), sq_nonneg (Real.sqrt b - 4)]
+  have h₁₉ : c = 2 := by linarith
+  norm_cast at *
+  <;> simp_all [h₁₇, h₁₈, h₁₉]
+  <;> nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 25.18488121032715 / 600.1837811470032 / 625.3686623573303
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith [h₀.1, h₀.2.1, h₀.2.2.1]
+  have h₅ : c = 2 := h₃
+  have h₆ : x = (a + Real.sqrt b) / 2 := by simp_all
+  have h₇ : 2 * x ^ 2 = 4 * x + 9 := h₁
+  rw [h₆] at h₇
+  have h₈ : 0 ≤ Real.sqrt b := Real.sqrt_nonneg b
+  field_simp at h₇
+  ring_nf at h₇
+  have h₉ : (a : ℝ) ^ 2 + 2 * a * Real.sqrt b + b = 4 * a + 4 * Real.sqrt b + 9 := by
+    nlinarith [sq_sqrt (by positivity : (0 : ℝ) ≤ b)]
+  have h₁₀ : (a : ℝ) ^ 2 + 2 * a * Real.sqrt b + b = 4 * a + 4 * Real.sqrt b + 9 := by
+    nlinarith [sq_sqrt (by positivity : (0 : ℝ) ≤ b)]
+  have h₁₁ : a = 5 := by
+    nlinarith [sq_nonneg (a - 5), sq_nonneg (Real.sqrt b - 3), Real.sq_sqrt (show (0 : ℝ) ≤ b by positivity)]
+  have h₁₂ : b = 9 := by
+    nlinarith [sq_nonneg (Real.sqrt b - 3), Real.sq_sqrt (show (0 : ℝ) ≤ b by positivity)]
+  have h₁₃ : a + b + c = 26 := by
+    simp_all
+    <;> linarith
+  exact h₁₃
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.822848320007324 / 600.148866891861 / 614.9717152118683
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith
+  have h₅ : c = 2 := h₃
+  rw [h₅] at h₂
+  have h₆ : x = (a + Real.sqrt b) / 2 := h₂
+  rw [h₆] at h₁
+  ring_nf at h₁
+  have h₇ : 0 ≤ Real.sqrt b := Real.sqrt_nonneg b
+  have h₈ : (a : ℝ) ≥ 0 := by exact_mod_cast Nat.zero_le a
+  have h₉ : (b : ℝ) ≥ 0 := by exact_mod_cast Nat.zero_le b
+  nlinarith [sq_sqrt (by nlinarith : (0 : ℝ) ≤ b),
+    sq_nonneg (x - 1), sq_nonneg (x - 3 / 2)]
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 46.29682660102844 / 600.1593291759491 / 646.4561557769775
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith
+  have h₅ : c = 2 := by linarith
+  have h₆ : x = (a + Real.sqrt b) / 2 := by simp_all
+  have h₇ : 2 * x ^ 2 = 4 * x + 9 := by linarith
+  have h₈ : x = 3 ∨ x = -3 / 2 := by
+    apply or_iff_not_imp_left.mpr
+    intro h
+    apply mul_left_cancel₀ (sub_ne_zero.mpr h)
+    nlinarith [sq_nonneg (x - 3), sq_nonneg (x + 3 / 2)]
+  cases h₈ with
+  | inl h₈ =>
+    have h₉ : x = 3 := by linarith
+    have h₁₀ : (a + Real.sqrt b) / 2 = 3 := by linarith
+    have h₁₁ : a + Real.sqrt b = 6 := by linarith
+    have h₁₂ : Real.sqrt b = 6 - a := by linarith
+    have h₁₃ : b = (6 - a) ^ 2 := by
+      have h₁₄ : 0 ≤ b := by
+        apply le_of_lt
+        exact Nat.pos_of_ne_zero (by intro h; simp_all)
+      have h₁₅ : Real.sqrt b = 6 - a := by linarith
+      have h₁₆ : (Real.sqrt b) ^ 2 = (6 - a) ^ 2 := by rw [h₁₅]
+      rw [Real.sq_sqrt (by positivity)] at h₁₆
+      norm_cast at h₁₆ ⊢
+      <;> linarith
+    have h₁₇ : a ≤ 6 := by
+      nlinarith [sq_nonneg (a - 6)]
+    interval_cases a <;> norm_num at h₁₃ ⊢ <;>
+      (try simp_all) <;>
+      (try nlinarith) <;>
+      (try linarith) <;>
+      (try nlinarith [Real.sqrt_nonneg b, Real.sq_sqrt (by positivity : (0 : ℝ) ≤ b)])
+  | inr h₈ =>
+    have h₉ : x = -3 / 2 :=
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.266166925430298 / 600.1480247974396 / 617.4141917228699
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith
+  have h₅ : c = 2 := by linarith
+  rw [h₅] at h₂
+  have h₆ : x = (a + Real.sqrt b) / 2 := by linarith
+  rw [h₆] at h₁
+  have h₇ : 2 * ((a + Real.sqrt b) / 2) ^ 2 = 4 * ((a + Real.sqrt b) / 2) + 9 := by linarith
+  ring_nf at h₇
+  have h₈ : Real.sqrt b ≥ 0 := Real.sqrt_nonneg b
+  have h₉ : (a : ℝ) ≥ 0 := by exact_mod_cast Nat.zero_le a
+  nlinarith [sq_nonneg (a + Real.sqrt b), sq_nonneg (a - Real.sqrt b), Real.sq_sqrt (by positivity : (0 : ℝ) ≤ b),
+    Real.sqrt_nonneg b, sq_nonneg (Real.sqrt b - 3), sq_nonneg (Real.sqrt b + 3)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 24.73386001586914 / 600.1709923744202 / 624.9048523902893
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_320
+  (x : ℝ)
+  (a b c : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 ≤ x)
+  (h₁ : 2 * x^2 = 4 * x + 9)
+  (h₂ : x = (a + Real.sqrt b) / c)
+  (h₃ : c = 2) :
+  a + b + c = 26 := by
+  have h₄ : 0 < c := by linarith
+  have h₅ : c = 2 := h₃
+  have h₆ : x = (a + Real.sqrt b) / 2 := by simp_all
+  have h₇ : 2 * x ^ 2 = 4 * x + 9 := h₁
+  rw [h₆] at h₇
+  have h₈ : 2 * ((a + Real.sqrt b) / 2) ^ 2 = 4 * ((a + Real.sqrt b) / 2) + 9 := by linarith
+  ring_nf at h₈
+  have h₉ : 0 ≤ Real.sqrt b := Real.sqrt_nonneg b
+  have h₁₀ : (a : ℝ) + Real.sqrt b = 5 := by
+    nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ b by linarith)]
+  have h₁₁ : a = 5 := by
+    have h₁₂ : (a : ℝ) = 5 := by
+      nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ b by linarith)]
+    exact_mod_cast h₁₂
+  have h₁₃ : b = 16 := by
+    have h₁₄ : Real.sqrt b = 4 := by nlinarith
+    have h₁₅ : (Real.sqrt b : ℝ) ^ 2 = 4 ^ 2 := by nlinarith
+    have h₁₆ : (b : ℝ) = 16 := by
+      nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ b by linarith)]
+    exact_mod_cast h₁₆
+  simp_all
+  <;> norm_num
+  <;> linarith
+

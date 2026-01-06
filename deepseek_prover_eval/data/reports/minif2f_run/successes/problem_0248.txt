@@ -1,0 +1,21 @@
+Problem: problem_0248
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.5194008350372314
+Lean check time (s): 3.6174817085266113
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_182
+  (y : ℂ) :
+  7 * (3 * y + 2) = 21 * y + 14 := by
+  simp [mul_add, add_mul, mul_comm, mul_left_comm, mul_assoc]
+  <;> ring
+  <;> norm_num
+  <;> rfl
+  <;> rfl

@@ -1,0 +1,26 @@
+Problem: problem_0283
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.451003313064575
+Lean check time (s): 5.642344236373901
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_422
+  (x : ℝ)
+  (σ : Equiv ℝ ℝ)
+  (h₀ : ∀ x, σ.1 x = 5 * x - 12)
+  (h₁ : σ.1 (x + 1) = σ.2 x) :
+  x = 47 / 24 := by
+  have h₂ := h₀ (x + 1)
+  have h₃ := h₀ x
+  have h₄ := h₀ 0
+  have h₅ := h₀ 1
+  simp_all [Equiv.eq_symm_apply]
+  ring_nf at *
+  nlinarith

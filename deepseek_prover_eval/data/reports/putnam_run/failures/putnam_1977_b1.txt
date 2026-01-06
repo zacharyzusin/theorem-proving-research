@@ -1,0 +1,274 @@
+Problem: putnam_1977_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.658828020095825 / 44.59764623641968 / 61.2564742565155
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  have h : ∀ n : ℤ, n ≥ 2 → ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = (n - 1) / n * (n ^ 2 + n + 1) / (n ^ 2 - n + 1) := by
+    intro n hn
+    have h₁ : (n : ℝ) ≥ 2 := by exact_mod_cast hn
+    field_simp [h₁, sq, sub_eq_zero, add_eq_zero_iff_eq_neg, neg_neg]
+    <;> ring_nf
+    <;> field_simp [h₁, sq, sub_eq_zero, add_eq_zero_iff_eq_neg, neg_neg]
+    <;> ring_nf
+    <;> field_simp [h₁, sq, sub_eq_zero, add_eq_zero_iff_eq_neg, neg_neg]
+    <;> linarith
+  simp_all [h]
+  <;> norm_num
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_id
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 11.912028074264526 / 62.68573570251465 / 74.59776377677917
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  norm_num
+  <;>
+  apply tendsto_const_nhds.congr' _
+  <;>
+  filter_upwards [eventually_gt_atTop 1] with N hN
+  <;>
+  induction N with
+  | zero => simp_all [Finset.prod_range_succ]
+  | succ N ih =>
+    simp_all [Finset.prod_Icc_succ_top, Nat.cast_add, Nat.cast_one, Nat.cast_mul, Nat.cast_sub]
+    <;>
+    field_simp
+    <;>
+    ring_nf
+    <;>
+    norm_num
+    <;>
+    linarith
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.51956582069397 / 60.59626317024231 / 76.11582899093628
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  norm_num
+  have h : ∀ n : ℤ, n ≥ 2 → ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = 1 - 2 / (n ^ 3 + 1) := by
+    intro n hn
+    have h₁ : (n : ℝ) ^ 3 ≥ 2 ^ 3 := by
+      norm_cast
+      exact pow_le_pow_of_le_left (by linarith) hn 3
+    field_simp
+    <;> ring_nf
+    <;> field_simp
+    <;> linarith
+  simp_all [h]
+  <;>
+    simp_all [tendsto_const_nhds]
+  <;>
+    norm_num
+  <;>
+    apply tendsto_const_nhds
+  <;>
+    apply tendsto_const_nhds
+  <;>
+    apply tendsto_const_nhds
+  <;>
+    apply tendsto_const_nhds
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.771941900253296 / 39.75382685661316 / 53.525768756866455
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  have h : ∀ n : ℤ, n ≥ 2 → ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = (n - 1) / n * (n ^ 2 + n + 1) / (n ^ 2 - 1) := by
+    intro n hn
+    have h₁ : (n : ℝ) ≥ 2 := by exact_mod_cast hn
+    field_simp [sq, sub_eq_zero, add_eq_zero_iff_eq_neg]
+    <;> ring_nf
+    <;> field_simp [sq, sub_eq_zero, add_eq_zero_iff_eq_neg]
+    <;> ring_nf
+    <;> nlinarith
+  simp_all [h]
+  <;> norm_num
+  <;> apply tendsto_const_nhds
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 15.714349269866943 / 27.677607536315918 / 43.39195680618286
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  have h : ∀ n : ℤ, n ≥ 2 → ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = 1 - 2 / (n ^ 3 + 1) := by
+    intro n hn
+    have h₁ : (n : ℝ) ^ 3 ≥ 2 ^ 3 := by
+      norm_cast
+      exact pow_le_pow_of_le_left (by linarith) hn 3
+    field_simp [add_comm]
+    <;> ring_nf
+    <;> field_simp [add_comm]
+    <;> nlinarith
+  simp_all [tendsto_const_nhds]
+  <;> norm_num
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 16.7921142578125 / 35.719338178634644 / 52.511452436447144
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  have h₁ : putnam_1977_b1_solution = 2 / 3 := by
+    norm_num [putnam_1977_b1_solution]
+    <;>
+    rfl
+  rw [h₁]
+  have h₂ : ∀ N : ℤ, ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = 2 / 3 := by
+    intro N
+    induction N with
+    | ofNat N =>
+      induction N with
+      | zero => norm_num
+      | succ N ih =>
+        simp_all [Finset.prod_Icc_succ_top, mul_comm]
+        <;>
+        field_simp
+        <;>
+        ring_nf
+        <;>
+        nlinarith
+    | negSucc N =>
+      simp_all [Finset.prod_Icc_succ_top, mul_comm]
+      <;>
+      field_simp
+      <;>
+      ring_nf
+      <;>
+      nlinarith
+  simp_all
+  <;>
+  norm_num
+  <;>
+  aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 20.634872436523438 / 44.36370849609375 / 64.99858093261719
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  have h : ∀ n : ℤ, n ≥ 2 → ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = (n - 1) / n * (n ^ 2 + n + 1) / (n ^ 2 - n + 1):= by
+    intro n hn
+    have h1 : (n : ℝ) ≥ 2 := by exact_mod_cast hn
+    field_simp [h1, sub_eq_zero, add_eq_zero_iff_eq_neg]
+    ring_nf
+    <;>
+    nlinarith [sq_nonneg (n - 1), sq_nonneg (n + 1), sq_nonneg (n ^ 2 - 1), sq_nonneg (n ^ 2 + 1)]
+  simp_all [h]
+  <;>
+  norm_num
+  <;>
+  apply tendsto_const_nhds.congr' _
+  <;>
+  filter_upwards [eventually_ge_atTop 2] with n hn
+  <;>
+  induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero => norm_num
+    | succ n =>
+      simp_all [Finset.prod_Icc_succ_top, mul_assoc, mul_comm, mul_left_comm]
+      <;>
+      field_simp
+      <;>
+      ring_nf
+      <;>
+      norm_num
+      <;>
+      nlinarith
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 18.796050786972046 / 44.11826229095459 / 62.914313077926636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1977_b1
+: Tendsto (fun N ↦ ∏ n ∈ Finset.Icc (2 : ℤ) N, ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1)) atTop (𝓝 putnam_1977_b1_solution) := by
+  unfold putnam_1977_b1_solution
+  have h : ∀ n : ℤ, n ≥ 2 → ((n : ℝ) ^ 3 - 1) / (n ^ 3 + 1) = 1 - 2 / (n ^ 3 + 1) := by
+    intro n hn
+    have h1 : (n : ℝ) ^ 3 ≥ 2 ^ 3 := by
+      norm_cast
+      exact pow_le_pow_of_le_left (by linarith) hn 3
+    field_simp [sub_eq_add_neg, add_comm]
+    <;> ring_nf
+    <;> field_simp [sub_eq_add_neg, add_comm]
+    <;> nlinarith
+  simp_all [tendsto_const_nhds]
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds
+  <;> apply tendsto_const_nhds

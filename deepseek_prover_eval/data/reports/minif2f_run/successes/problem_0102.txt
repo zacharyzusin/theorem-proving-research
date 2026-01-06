@@ -1,0 +1,26 @@
+Problem: problem_0102
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.096453189849854
+Lean check time (s): 2.9973583221435547
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_263
+  (y : ℝ)
+  (h₀ : 0 ≤ 19 + 3 * y)
+  (h₁ : Real.sqrt (19 + 3 * y) = 7) :
+  y = 10 := by
+  have h₂ : 0 ≤ 19 + 3 * y := by assumption
+  have h₃ : Real.sqrt (19 + 3 * y) = 7 := by assumption
+  have h₄ : 0 ≤ 7 := by norm_num
+  have h₅ : 0 ≤ 19 + 3 * y := by linarith
+  have h₆ : (Real.sqrt (19 + 3 * y)) ^ 2 = 7 ^ 2 := by
+    rw [h₃]
+  rw [Real.sq_sqrt (by linarith)] at h₆
+  nlinarith

@@ -1,0 +1,390 @@
+Problem: problem_0156
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 22.326278686523438 / 14.116436243057251 / 36.44271492958069
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  have : i ≤ 671 := by
+    by_contra! h
+    have : i * m * o = 2001 := h₁
+    have : i > 671 := by linarith
+    have : m > 0 := by
+      by_contra! h'
+      simp_all
+    have : o > 0 := by
+      by_contra! h'
+      simp_all
+    nlinarith [mul_pos (by linarith : (0 : ℕ) < i) (by linarith : (0 : ℕ) < m)]
+  have : m ≤ 671 := by
+    by_contra! h
+    have : i * m * o = 2001 := h₁
+    have : m > 671 := by linarith
+    have : i > 0 := by
+      by_contra! h'
+      simp_all
+    have : o > 0 := by
+      by_contra! h'
+      simp_all
+    nlinarith [mul_pos (by linarith : (0 : ℕ) < i) (by linarith : (0 : ℕ) < o)]
+  have : o ≤ 671 := by
+    by_contra! h
+    have : i * m * o = 2001 := h₁
+    have : o > 671 := by linarith
+    have : i > 0 := by
+      by_contra! h'
+      simp_all
+    have : m > 0 := by
+      by_contra! h'
+      simp_all
+    nlinarith [mul_pos (by linarith : (0 : ℕ) < i) (by linarith : (0 : ℕ) < m)]
+  linarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 27.95271873474121 / 19.868457794189453 / 47.821176528930664
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  rcases h₀ with ⟨h₀₁, h₀₂, h₀₃⟩
+  have h₂ : i ≤ 67 := by
+    by_contra h
+    push_neg at h
+    have h₃ : i ≥ 68 := by linarith
+    have h₄ : m * o ≤ 29 := by
+      nlinarith [mul_le_mul_of_nonneg_right h₃ (Nat.zero_le m),
+        mul_le_mul_of_nonneg_right h₃ (Nat.zero_le o)]
+    have h₅ : m ≤ 29 := by
+      nlinarith
+    have h₆ : o ≤ 29 := by
+      nlinarith
+    interval_cases m <;> interval_cases o <;> norm_num at h₁ <;> omega
+  have h₃ : m ≤ 67 := by
+    by_contra h
+    push_neg at h
+    have h₄ : m ≥ 68 := by linarith
+    have h₅ : i * o ≤ 29 := by
+      nlinarith [mul_le_mul_of_nonneg_right h₄ (Nat.zero_le i),
+        mul_le_mul_of_nonneg_right h₄ (Nat.zero_le o)]
+    have h₆ : i ≤ 29 := by
+      nlinarith
+    have h₇ : o ≤ 29 := by
+      nlinarith
+    interval_cases i <;> interval_cases o <;> norm_num at h₁ <;> omega
+  have h₄ : o ≤ 67 := by
+    by_contra h
+    push_neg at h
+    have h₅ : o ≥ 68 := by linarith
+    have h₆ : i * m ≤ 29 := by
+      nlinarith [mul_le_mul_of_nonneg_right h₅ (Nat.zero_le i),
+        mul_le_mul_of_nonneg_right h₅ (Nat.zero_le m)]
+    have h₇ : i ≤ 29 := by
+      nlinarith
+    have h₈ : m ≤ 29 := by
+      nlinarith
+    interval_cases i <;> interval_cases m <;> norm_num at h₁ <;> omega
+  nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.897080421447754 / 600.1704058647156 / 618.0674862861633
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  have : i ≤ 2001 := by
+    have : i ∣ 2001 := by
+      use m * o
+      linarith
+    exact Nat.le_of_dvd (by norm_num) this
+  have : m ≤ 2001 := by
+    have : m ∣ 2001 := by
+      use i * o
+      linarith
+    exact Nat.le_of_dvd (by norm_num) this
+  have : o ≤ 2001 := by
+    have : o ∣ 2001 := by
+      use i * m
+      linarith
+    exact Nat.le_of_dvd (by norm_num) this
+  -- We use the fact that the sum of the variables is bounded by the sum of their possible values.
+  have : i + m + o ≤ 671 := by
+    cases' le_total i m with h h <;> cases' le_total m o with h' h' <;>
+      cases' le_total o i with h'' h'' <;>
+        simp_all [Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+    <;> nlinarith [Nat.mul_le_mul_left i h, Nat.mul_le_mul_left m h', Nat.mul_le_mul_left o h]
+  exact this
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.895210027694702 / 17.68630313873291 / 40.58151316642761
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  have h₂ : 0 < i := by
+    by_contra h
+    simp_all [Nat.mul_eq_zero]
+    <;> omega
+  have h₃ : 0 < m := by
+    by_contra h
+    simp_all [Nat.mul_eq_zero]
+    <;> omega
+  have h₄ : 0 < o := by
+    by_contra h
+    simp_all [Nat.mul_eq_zero]
+    <;> omega
+  have h₅ : i ≤ 671 := by
+    have h₅₀ : i ∣ 2001 := by
+      use m * o
+      linarith
+    have h₅₁ : i ≤ 2001 := by
+      exact Nat.le_of_dvd (by linarith) h₅₀
+    interval_cases i <;> norm_num at h₁ ⊢ <;> omega
+  have h₆ : m ≤ 671 := by
+    have h₆₀ : m ∣ 2001 := by
+      use i * o
+      linarith
+    have h₆₁ : m ≤ 2001 := by
+      exact Nat.le_of_dvd (by linarith) h₆₀
+    interval_cases m <;> norm_num at h₁ ⊢ <;> omega
+  have h₇ : o ≤ 671 := by
+    have h₇₀ : o ∣ 2001 := by
+      use i * m
+      linarith
+    have h₇₁ : o ≤ 2001 := by
+      exact Nat.le_of_dvd (by linarith) h₇₀
+    interval_cases o <;> norm_num at h₁ ⊢ <;> omega
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 32.98144006729126 / 19.237995624542236 / 52.219435691833496
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  have h₂ : i ≤ 67 := by
+    by_contra! h
+    have h₃ : i ≥ 68 := by linarith
+    have h₄ : m * o ≤ 29 := by
+      nlinarith [mul_le_mul_of_nonneg_right h₃ (Nat.zero_le m),
+        mul_le_mul_of_nonneg_right h₃ (Nat.zero_le o)]
+    have h₅ : m ≤ 29 := by
+      nlinarith [Nat.mul_le_mul_left m h₃, Nat.mul_le_mul_left o h₃]
+    have h₆ : o ≤ 29 := by
+      nlinarith [Nat.mul_le_mul_left m h₃, Nat.mul_le_mul_left o h₃]
+    interval_cases m <;> interval_cases o <;> norm_num at h₁ <;> omega
+  have h₃ : m ≤ 67 := by
+    by_contra! h
+    have h₄ : m ≥ 68 := by linarith
+    have h₅ : i * o ≤ 29 := by
+      nlinarith [mul_le_mul_of_nonneg_right h₄ (Nat.zero_le i),
+        mul_le_mul_of_nonneg_right h₄ (Nat.zero_le o)]
+    have h₆ : i ≤ 29 := by
+      nlinarith [Nat.mul_le_mul_left i h₄, Nat.mul_le_mul_left o h₄]
+    have h₇ : o ≤ 29 := by
+      nlinarith [Nat.mul_le_mul_left i h₄, Nat.mul_le_mul_left o h₄]
+    interval_cases i <;> interval_cases o <;> norm_num at h₁ <;> omega
+  have h₄ : o ≤ 67 := by
+    by_contra! h
+    have h₅ : o ≥ 68 := by linarith
+    have h₆ : i * m ≤ 29 := by
+      nlinarith [mul_le_mul_of_nonneg_right h₅ (Nat.zero_le i),
+        mul_le_mul_of_nonneg_right h₅ (Nat.zero_le m)]
+    have h₇ : i ≤ 29 := by
+      nlinarith [Nat.mul_le_mul_left i h₅, Nat.mul_le_mul_left m h₅]
+    have h₈ : m ≤ 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 23.70528268814087 / 18.022276163101196 / 41.727558851242065
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  have h₂ : 0 < i := by
+    by_contra! h
+    simp_all [Nat.mul_eq_zero, Nat.mul_assoc]
+    <;> omega
+  have h₃ : 0 < m := by
+    by_contra! h
+    simp_all [Nat.mul_eq_zero, Nat.mul_assoc]
+    <;> omega
+  have h₄ : 0 < o := by
+    by_contra! h
+    simp_all [Nat.mul_eq_zero, Nat.mul_assoc]
+    <;> omega
+  have h₅ : i ≤ 671 := by
+    have h₅₁ : i ∣ 2001 := by
+      use m * o
+      linarith
+    have h₅₂ : i ≤ 2001 := by
+      exact Nat.le_of_dvd (by norm_num) h₅₁
+    interval_cases i <;> norm_num at h₁ ⊢ <;> omega
+  have h₆ : m ≤ 671 := by
+    have h₆₁ : m ∣ 2001 := by
+      use i * o
+      linarith
+    have h₆₂ : m ≤ 2001 := by
+      exact Nat.le_of_dvd (by norm_num) h₆₁
+    interval_cases m <;> norm_num at h₁ ⊢ <;> omega
+  have h₇ : o ≤ 671 := by
+    have h₇₁ : o ∣ 2001 := by
+      use i * m
+      linarith
+    have h₇₂ : o ≤ 2001 := by
+      exact Nat.le_of_dvd (by norm_num) h₇₁
+    interval_cases o <;> norm_num at h₁ ⊢ <;> omega
+  omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 22.98470401763916 / 17.693671941757202 / 40.67837595939636
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  have h₂ : 0 < i := by
+    by_contra h
+    simp_all [Nat.mul_eq_zero]
+    <;> omega
+  have h₃ : 0 < m := by
+    by_contra h
+    simp_all [Nat.mul_eq_zero]
+    <;> omega
+  have h₄ : 0 < o := by
+    by_contra h
+    simp_all [Nat.mul_eq_zero]
+    <;> omega
+  have h₅ : i ≤ 671 := by
+    have h₅ : i ∣ 2001 := by
+      use m * o
+      linarith
+    have h₆ : i ≤ 2001 := by
+      exact Nat.le_of_dvd (by norm_num) h₅
+    interval_cases i <;> norm_num [Nat.mul_div_cancel_left] at h₁ <;> omega
+  have h₆ : m ≤ 671 := by
+    have h₅ : m ∣ 2001 := by
+      use i * o
+      linarith
+    have h₆ : m ≤ 2001 := by
+      exact Nat.le_of_dvd (by norm_num) h₅
+    interval_cases m <;> norm_num [Nat.mul_div_cancel_left] at h₁ <;> omega
+  have h₇ : o ≤ 671 := by
+    have h₅ : o ∣ 2001 := by
+      use i * m
+      linarith
+    have h₆ : o ≤ 2001 := by
+      exact Nat.le_of_dvd (by norm_num) h₅
+    interval_cases o <;> norm_num [Nat.mul_div_cancel_left] at h₁ <;> omega
+  omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 30.870997667312622 / 268.59091353416443 / 299.46191120147705
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12_2000_p1
+  (i m o : ℕ)
+  (h₀ : i ≠ m ∧ m ≠ o ∧ o ≠ i)
+  (h₁ : i*m*o = 2001) :
+  i+m+o ≤ 671 := by
+  rcases h₀ with ⟨h₀₁, h₀₂, h₀₃⟩
+  have h₂ : i ≤ 67 := by
+    by_contra! h
+    have h₃ : i > 67 := by linarith
+    have h₄ : m * o ≤ 293 := by
+      nlinarith [mul_le_mul_of_nonneg_right (by omega : 67 ≤ i) (by omega : 0 ≤ m),
+        mul_le_mul_of_nonneg_right (by omega : 67 ≤ i) (by omega : 0 ≤ o)]
+    nlinarith [mul_le_mul_of_nonneg_right (by omega : 67 ≤ i) (by omega : 0 ≤ m),
+      mul_le_mul_of_nonneg_right (by omega : 67 ≤ i) (by omega : 0 ≤ o)]
+  have h₃ : m ≤ 67 := by
+    by_contra! h
+    have h₄ : m > 67 := by linarith
+    have h₅ : i * o ≤ 293 := by
+      nlinarith [mul_le_mul_of_nonneg_right (by omega : 67 ≤ m) (by omega : 0 ≤ i),
+        mul_le_mul_of_nonneg_right (by omega : 67 ≤ m) (by omega : 0 ≤ o)]
+    nlinarith [mul_le_mul_of_nonneg_right (by omega : 67 ≤ m) (by omega : 0 ≤ i),
+      mul_le_mul_of_nonneg_right (by omega : 67 ≤ m) (by omega : 0 ≤ o)]
+  have h₄ : o ≤ 67 := by
+    by_contra! h
+    have h₅ : o > 67 := by linarith
+    have h₆ : i * m ≤ 293 := by
+      nlinarith [mul_le_mul_of_nonneg_right (by omega : 67 ≤ o) (by omega : 0 ≤ i),
+        mul_le_mul_of_nonneg_right (by omega : 67 ≤ o) (by omega : 0 ≤ m)]
+    nlinarith [mul_le_mul_of_nonneg_right (by omega : 67 ≤ o) (by omega : 0 ≤ i),
+      mul_le_mul_of_nonneg_right (by omega : 67 ≤ o) (by omega : 0 ≤ m)]
+  nlinarith
+

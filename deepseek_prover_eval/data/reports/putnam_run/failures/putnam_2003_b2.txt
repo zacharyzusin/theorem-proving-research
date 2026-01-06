@@ -1,0 +1,158 @@
+Problem: putnam_2003_b2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.878645181655884 / 8.928255081176758 / 27.80690026283264
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 21.24999165534973 / 8.36100172996521 / 29.61099338531494
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 22.111554384231567 / 8.64564323425293 / 30.757197618484497
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.612790822982788 / 7.767709016799927 / 30.380499839782715
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 21.872387170791626 / 8.716871738433838 / 30.589258909225464
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 33.170942544937134 / 7.4034435749053955 / 40.57438611984253
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 34.00410199165344 / 8.99706220626831 / 43.00116419792175
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 21.287446975708008 / 9.634235143661499 / 30.921682119369507
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2003_b2
+  (n : ℕ)
+  (hn : n > 0)
+  (seq : ℕ → ℕ → ℚ)
+  (hinit : ∀ j ∈ Icc 1 n, seq 0 j = 1 / j)
+  (havg : ∀ᵉ (k ∈ Icc 1 (n - 1)) (j ∈ Icc 1 (n - k)),
+    seq k j = (seq (k - 1) j + seq (k - 1) (j + 1)) / 2) :
+  (seq (n - 1) 1 < 2 / n) :=
+sorry

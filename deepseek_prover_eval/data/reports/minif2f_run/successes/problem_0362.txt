@@ -1,0 +1,27 @@
+Problem: problem_0362
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 7.308358192443848
+Lean check time (s): 3.0627009868621826
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2013_p8
+  (x y : ℝ)
+  (h₀ : x ≠ 0)
+  (h₁ : y ≠ 0)
+  (h₂ : x ≠ y)
+  (h₃ : x + 2 / x = y + 2 / y) :
+  x * y = 2 := by
+  have h₄ : x * y = 2 := by
+    have h₄ : x * y = 2 := by
+      field_simp at h₃
+      apply mul_left_cancel₀ (sub_ne_zero.mpr h₂)
+      linarith
+    exact h₄
+  exact h₄

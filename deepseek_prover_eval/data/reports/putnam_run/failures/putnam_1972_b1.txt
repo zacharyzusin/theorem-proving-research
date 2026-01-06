@@ -1,0 +1,142 @@
+Problem: putnam_1972_b1
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.939594745635986 / 230.35110712051392 / 244.2907018661499
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.990232944488525 / 141.60736227035522 / 159.59759521484375
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.211920022964478 / 101.92254900932312 / 117.1344690322876
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.625744342803955 / 142.9969038963318 / 157.62264823913574
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.37513279914856 / 167.49372124671936 / 181.86885404586792
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.603712797164917 / 115.8571138381958 / 129.46082663536072
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 15.73228907585144 / 127.55348563194275 / 143.2857747077942
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.501540184020996 / 128.32006812095642 / 142.82160830497742
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_b1
+(S : ℝ → ℝ)
+(hS : S = fun (x : ℝ) => ∑' n : ℕ, x^n * (x - 1)^(2*n) / (Nat.factorial n))
+(p : ℕ → ℝ)
+(hp : ∃ a : ℝ, a > 0 ∧ ∀ x ∈ ball 0 a, ∑' n : ℕ, (p n)*x^n = S x)
+: ¬∃ n : ℕ, p n = 0 ∧ p (n + 1) = 0 ∧ p (n + 2) = 0 :=
+sorry

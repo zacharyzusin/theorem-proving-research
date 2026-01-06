@@ -1,0 +1,20 @@
+Problem: problem_0035
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.843753337860107
+Lean check time (s): 2.731152296066284
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_24
+  (x : ℝ)
+  (h₀ : x / 50 = 40) :
+  x = 2000 := by
+  rw [eq_comm] at h₀ -- Swap the sides of the equation to make it more convenient for manipulation.
+  field_simp at h₀ ⊢ -- Simplify the fraction by eliminating the denominator.
+  linarith

@@ -1,0 +1,37 @@
+Problem: problem_0409
+Dataset: minif2f
+Mode: noncot
+First success attempt: 1
+Generation time (s): 16.09670901298523
+Lean check time (s): 9.39081859588623
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_77
+  (a b : ℝ)
+  (f : ℝ → ℝ)
+  (h₀ : a ≠ 0 ∧ b ≠ 0)
+  (h₁ : a ≠ b)
+  (h₂ : ∀ x, f x = x^2 + a * x + b)
+  (h₃ : f a = 0)
+  (h₄ : f b = 0) :
+  a = 1 ∧ b = -2 := by
+  have h₅ : a = 1 := by
+    have h₅₁ : a = 1 := by
+      apply mul_left_cancel₀ (sub_ne_zero.mpr h₁)
+      simp_all only [sub_eq_iff_eq_add, add_right_inj, add_left_inj, mul_one, mul_zero,
+        zero_add, add_zero]
+      nlinarith
+    exact h₅₁
+  have h₆ : b = -2 := by
+    have h₆₁ : b = -2 := by
+      apply mul_left_cancel₀ (sub_ne_zero.mpr h₁)
+      simp_all only [sub_eq_iff_eq_add, add_right_inj, add_left_inj, mul_one, mul_zero,
+        zero_add, add_zero]
+      nlinarith
+    exact h₆₁
+  exact ⟨h₅, h₆⟩

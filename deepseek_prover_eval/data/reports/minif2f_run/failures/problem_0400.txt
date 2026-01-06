@@ -1,0 +1,229 @@
+Problem: problem_0400
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 3
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.117023706436157 / 143.9468069076538 / 160.06383061408997
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := by exact Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₄ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) - (52 - 6 * Real.sqrt 43) ^ (3 / 2) = 828 := by
+    norm_num [pow_two, pow_three, mul_assoc]
+    <;>
+    nlinarith [sq_nonneg (6 * Real.sqrt 43), Real.sq_sqrt (show 0 ≤ 43 by norm_num),
+      sq_nonneg (52 - 6 * Real.sqrt 43), sq_nonneg (52 + 6 * Real.sqrt 43),
+      mul_self_nonneg (52 - 6 * Real.sqrt 43), mul_self_nonneg (52 + 6 * Real.sqrt 43)]
+  exact h₄
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.913764476776123 / 600.1557111740112 / 617.0694756507874
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43]
+  have h₄ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) - (52 - 6 * Real.sqrt 43) ^ (3 / 2) = 828 := by
+    norm_num [pow_two, pow_three, mul_assoc, mul_comm, mul_left_comm]
+    <;>
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43,
+      sq_nonneg (52 + 6 * Real.sqrt 43), sq_nonneg (52 - 6 * Real.sqrt 43),
+      sq_nonneg (Real.sqrt 43 - 6), sq_nonneg (Real.sqrt 43 + 6)]
+  exact h₄
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.287832498550415 / 600.1458930969238 / 615.4337255954742
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by positivity
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43]
+  have h₄ : (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+    norm_num [pow_two, pow_three, mul_assoc, mul_comm, mul_left_comm]
+    <;>
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43,
+      sq_nonneg (52 + 6 * Real.sqrt 43), sq_nonneg (52 - 6 * Real.sqrt 43),
+      sq_nonneg (Real.sqrt 43 - 6), sq_nonneg (Real.sqrt 43 + 6)]
+  exact h₄
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.633204936981201 / 71.84856629371643 / 87.48177123069763
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₄ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) - (52 - 6 * Real.sqrt 43) ^ (3 / 2) = 828 := by
+    norm_num [pow_two, pow_three, mul_assoc]
+    <;> ring_nf
+    <;> norm_num [pow_two, pow_three, mul_assoc]
+    <;> nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sq_sqrt (show 0 ≤ 43 by norm_num),
+      sq_nonneg (Real.sqrt 43 - 6), sq_nonneg (Real.sqrt 43 + 6)]
+  exact h₄
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.918061256408691 / 71.59590315818787 / 86.51396441459656
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := by
+    apply Real.sqrt_pos_of_pos
+    norm_num
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₄ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) - (52 - 6 * Real.sqrt 43) ^ (3 / 2) = 828 := by
+    norm_num [pow_two, pow_three, mul_assoc, mul_comm, mul_left_comm]
+    <;>
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sq_sqrt (show 0 ≤ 43 by norm_num),
+      sq_nonneg (Real.sqrt 43 - 6), sq_nonneg (Real.sqrt 43 + 6)]
+  exact h₄
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 17.66482901573181 / 600.1481981277466 / 617.8130271434784
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := Real.sqrt_pos.mpr (by norm_num)
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43]
+  have h₄ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) - (52 - 6 * Real.sqrt 43) ^ (3 / 2) = 828 := by
+    norm_num [pow_one, pow_two, pow_three, mul_assoc, mul_comm, mul_left_comm]
+    <;>
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43,
+      Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sqrt_nonneg 43,
+      sq_nonneg (Real.sqrt 43 - 6), sq_nonneg (Real.sqrt 43 + 6),
+      sq_nonneg (52 - 6 * Real.sqrt 43), sq_nonneg (52 + 6 * Real.sqrt 43)]
+  exact h₄
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 34.98594355583191 / 214.59079003334045 / 249.57673358917236
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₀ : 0 < Real.sqrt 43 := by
+    exact Real.sqrt_pos.mpr (by norm_num)
+  have h₁ : 0 < 52 + 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₂ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num),
+      sq_nonneg (6 * Real.sqrt 43 - 52)]
+  have h₃ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) = (52 + 6 * Real.sqrt 43) * (52 + 6 * Real.sqrt 43) ^ (1 / 2) := by
+    ring_nf
+    <;> simp [pow_add, pow_one, mul_assoc]
+    <;> norm_num
+  have h₄ : (52 - 6 * Real.sqrt 43) ^ (3 / 2) = (52 - 6 * Real.sqrt 43) * (52 - 6 * Real.sqrt 43) ^ (1 / 2) := by
+    ring_nf
+    <;> simp [pow_add, pow_one, mul_assoc]
+    <;> norm_num
+  rw [h₃, h₄]
+  have h₅ : Real.sqrt (52 + 6 * Real.sqrt 43) = Real.sqrt (52 + 6 * Real.sqrt 43) := by rfl
+  have h₆ : Real.sqrt (52 - 6 * Real.sqrt 43) = Real.sqrt (52 - 6 * Real.sqrt 43) := by rfl
+  have h₇ : (52 + 6 * Real.sqrt 43) ^ (1 / 2) = Real.sqrt (52 + 6 * Real.sqrt 43) := by
+    simp [Real.sqrt_eq_rpow]
+  have h₈ : (52 - 6 * Real.sqrt 43) ^ (1 / 2) = Real.sqrt (52 - 6 * Real.sqrt 43) := by
+    simp [Real.sqrt_eq_rpow]
+  rw [h₇, h₈]
+  have h₉ : Real.sqrt (52 + 6 * Real.sqrt 43) * (52 + 6 * Real.sqrt 43) - Real.sqrt (52 - 6 * Real.sqrt 43) * (52 - 6 * Real.sqrt 43) = 828 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 14.547968626022339 / 3.4277591705322266 / 17.975727796554565
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1990_p2 :
+  (52 + 6 * Real.sqrt 43)^(3 / 2) - (52 - 6 * Real.sqrt 43)^(3 / 2) = 828 := by
+  have h₁ : 0 < Real.sqrt 43 := by
+    apply Real.sqrt_pos_of_pos
+    norm_num
+  have h₂ : 0 < 52 + 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₃ : 0 < 52 - 6 * Real.sqrt 43 := by
+    nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  have h₄ : (52 + 6 * Real.sqrt 43) ^ (3 / 2) - (52 - 6 * Real.sqrt 43) ^ (3 / 2) = 828 := by
+    ring_nf
+    <;> norm_num
+    <;> nlinarith [Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sq_sqrt (show 0 ≤ 43 by norm_num),
+      Real.sq_sqrt (show 0 ≤ 43 by norm_num), Real.sq_sqrt (show 0 ≤ 43 by norm_num)]
+  exact h₄
+

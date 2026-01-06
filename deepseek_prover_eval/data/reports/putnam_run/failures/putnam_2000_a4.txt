@@ -1,0 +1,210 @@
+Problem: putnam_2000_a4
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 60.26114892959595 / 7.630580425262451 / 67.8917293548584
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)
+  have h₁ : ∀ B : ℝ, (∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) = (∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) := by
+    intro B
+    rfl
+  have h₂ : Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 (∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2))) := by
+    have h₃ : ∀ B : ℝ, B ≥ 1 → (∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) = (∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)) + (∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2)) := by
+      intro B hB
+      rw [← intervalIntegral.integral_add_adjacent_intervals]
+      <;> simp_all [Real.sin_zero, Real.sin_pi, Real.sin_le_one, Real.sin_le_one, Real.sin_le_one, Real.sin_le_one]
+      <;> norm_num
+      <;> linarith
+    have h₄ : Tendsto (fun B : ℝ => ∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 0) := by
+      have h₅ : ∀ B : ℝ, B ≥ 1 → (∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2)) = (∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2)) := by
+        intro B hB
+        rfl
+      have h₆ : Tendsto (fun B : ℝ => ∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 0) := by
+        have h₇ : ∀ B : ℝ, B ≥ 1 → |∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2)| ≤ ∫ x in Set.Ioo 1 B, 1 := by
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 16.51559591293335 / 8.906633138656616 / 25.422229051589966
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 ∞, Real.sin x * Real.sin (x ^ 2)
+  apply tendsto_integral_of_dominated_convergence (fun x => 1 : ℝ → ℝ) (by positivity) _ _ _
+  · intro B
+    apply Set.EqOn.mono _ (Set.Icc_subset_Ioo (by norm_num) (by linarith [Real.pi_pos]))
+    simp [Real.sin_zero, Real.sin_pi]
+  · exact eventually_of_forall fun x => by
+      simp_all [Real.sin_le_one, Real.cos_le_one, mul_comm]
+      <;>
+      nlinarith [Real.sin_le_one x, Real.cos_le_one x, sq_nonneg (Real.sin x), sq_nonneg (Real.cos x)]
+  · exact tendsto_const_nhds
+  · refine' Filter.eventually_of_forall fun B => _
+    simp [Real.sin_le_one, Real.cos_le_one, mul_comm]
+    <;>
+    nlinarith [Real.sin_le_one B, Real.cos_le_one B, sq_nonneg (Real.sin B), sq_nonneg (Real.cos B)]
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 15.94596266746521 / 7.655823469161987 / 23.601786136627197
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)
+  apply tendsto_const_nhds.congr' _
+  filter_upwards [eventually_ge_atTop 1] with B hB
+  rw [← sub_eq_zero]
+  have h₁ : ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) = ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2) + ∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2) := by
+    rw [← intervalIntegral.integral_union] <;> simp_all [Real.sin_zero, Real.sin_pi_div_two, Real.sin_pi, Real.sin_two_pi]
+    <;>
+    linarith
+  rw [h₁]
+  simp [sub_eq_add_neg]
+  <;>
+  simp_all [Real.sin_zero, Real.sin_pi_div_two, Real.sin_pi, Real.sin_two_pi]
+  <;>
+  linarith
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.06544828414917 / 7.670597314834595 / 20.736045598983765
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)
+  apply tendsto_const_nhds.congr' _
+  filter_upwards [eventually_ge_atTop 1] with B hB
+  have h₁ : ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) = ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2) + ∫ x in Set.Ioo 1 B, Real.sin x * Real.sin (x ^ 2) := by
+    rw [← integral_union] <;> simp_all [Set.Ioo_eq_empty_iff] <;>
+    linarith [Real.pi_pos]
+  simp_all
+  <;>
+  norm_num
+  <;>
+  linarith [Real.pi_pos]
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 14.074597835540771 / 8.142314672470093 / 22.216912508010864
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)
+  have h₁ : ∀ B : ℝ, ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) = ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) := by
+    intro B
+    rfl
+  rw [show (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) = fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) by
+    funext B
+    rfl]
+  apply tendsto_const_nhds.congr' _
+  filter_upwards [eventually_gt_atTop 0] with B hB
+  simp_all [h₁]
+  <;> norm_num
+  <;> linarith
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 24.836195945739746 / 8.591507196426392 / 33.42770314216614
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 ∞, Real.sin x * Real.sin (x ^ 2)
+  apply tendsto_integral_of_dominated_convergence (fun x => 1 : ℝ → ℝ) _ _ _
+  · exact fun x => by
+      -- We need to show that the function 1 is integrable.
+      -- This is a placeholder for the actual proof, as the integral converges.
+      norm_num
+      <;> simp_all [Real.sin_le_one, Real.sin_le_one, mul_comm]
+      <;> norm_num
+      <;> linarith [Real.sin_le_one x, Real.sin_le_one (x ^ 2)]
+  · exact fun B => by
+      -- We need to show that the function 1 is integrable.
+      -- This is a placeholder for the actual proof, as the integral converges.
+      norm_num
+      <;> simp_all [Real.sin_le_one, Real.sin_le_one, mul_comm]
+      <;> norm_num
+      <;> linarith [Real.sin_le_one B, Real.sin_le_one (B ^ 2)]
+  · exact fun B => by
+      -- We need to show that the function 1 is integrable.
+      -- This is a placeholder for the actual proof, as the integral converges.
+      norm_num
+      <;> simp_all [Real.sin_le_one, Real.sin_le_one, mul_comm]
+      <;> norm_num
+      <;> linarith [Real.sin_le_one B, Real.sin_le_one (B ^ 2)]
+  · exact fun x => by
+      -- We need to show that the function 1 is integrable.
+      -- This is a placeholder for the actual proof, as the integral converges.
+      norm_num
+      <;> simp
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.995622158050537 / 7.513507604598999 / 16.509129762649536
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)
+  have h₁ : ∀ B : ℝ, ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) = ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) := by simp
+  rw [tendsto_congr' (fun B => by simp [h₁])]
+  apply tendsto_const_nhds
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.084165096282959 / 8.531453132629395 / 17.615618228912354
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2000_a4
+: ∃ y : ℝ, Tendsto (fun B : ℝ => ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2)) atTop (𝓝 y) := by
+  use ∫ x in Set.Ioo 0 1, Real.sin x * Real.sin (x ^ 2)
+  have h₁ : ∀ B : ℝ, ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) = ∫ x in Set.Ioo 0 B, Real.sin x * Real.sin (x ^ 2) := by
+    intro B
+    rfl
+  rw [tendsto_congr' (fun B => h₁ B)]
+  apply tendsto_const_nhds

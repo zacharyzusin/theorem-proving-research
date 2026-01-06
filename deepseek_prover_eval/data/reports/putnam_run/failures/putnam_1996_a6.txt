@@ -1,0 +1,444 @@
+Problem: putnam_1996_a6
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.286931276321411 / 12.267915725708008 / 25.55484700202942
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  simp only [putnam_1996_a6_solution, Set.mem_setOf_eq]
+  constructor
+  · rintro ⟨hf, h⟩
+    by_cases hc : c ≤ 1 / 4
+    · exact ⟨by aesop, by aesop⟩
+    · exact ⟨by aesop, by aesop, by aesop, by aesop⟩
+  · rintro (⟨hc, h⟩ | ⟨hc, h⟩) <;>
+    (try aesop) <;>
+    (try simp_all [hc]) <;>
+    (try aesop) <;>
+    (try
+      exact ⟨by aesop, by aesop⟩) <;>
+    (try
+      exact ⟨by aesop, by aesop⟩)
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 20.509027004241943 / 14.326472282409668 / 34.83549928665161
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  simp [putnam_1996_a6_solution, Set.mem_setOf_eq, Set.mem_setOf_eq]
+  <;>
+  constructor
+  <;>
+  intro h
+  <;>
+  (try simp_all)
+  <;>
+  (try
+    (
+      have h₁ := h.2 0
+      have h₂ := h.2 (-1)
+      have h₃ := h.2 1
+      have h₄ := h.2 (-2)
+      have h₅ := h.2 (Real.sqrt 3)
+      have h₆ := h.2 (-Real.sqrt 3)
+      norm_num [sq] at *
+      <;>
+      nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+    )
+  )
+  <;>
+  (try
+    (
+      have h₁ := h.1
+      have h₂ := h.2
+      have h₃ := h.2 0
+      have h₄ := h.2 (-1)
+      have h₅ := h.2 1
+      have h₆ := h.2 (-2)
+      have h₇ := h.2 (Real.sqrt 3)
+      have h₈ := h.2 (-Real.sqrt 3)
+      norm_num [sq] at *
+      <;>
+      nlinarith [Real.sqrt_nonneg 3, Real.sq_sqrt (show (0 : ℝ) ≤ 3 by norm_num)]
+    )
+  )
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 28.528025150299072 / 16.59184432029724 / 45.11986947059631
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  simp [putnam_1996_a6_solution, Set.mem_setOf_eq, Set.mem_setOf_eq]
+  <;>
+  constructor
+  <;>
+  intro h
+  <;>
+  (try cases' h with h₁ h₂)
+  <;>
+  (try constructor)
+  <;>
+  (try simp_all)
+  <;>
+  (try aesop)
+  <;>
+  (try
+    (
+      have h₃ := h₂ 0
+      have h₄ := h₂ 1
+      have h₅ := h₂ (-1)
+      have h₆ := h₂ c
+      have h₇ := h₂ (-c)
+      have h₈ := h₂ (c + 1)
+      have h₉ := h₂ (-c + 1)
+      have h₁₀ := h₂ (c - 1)
+      have h₁₁ := h₂ (-c - 1)
+      norm_num at *
+      <;>
+      nlinarith
+    )
+  )
+  <;>
+  (try
+    (
+      have h₃ := h₂ 0
+      have h₄ := h₂ 1
+      have h₅ := h₂ (-1)
+      have h₆ := h₂ c
+      have h₇ := h₂ (-c)
+      have h₈ := h₂ (c + 1)
+      have h₉ := h₂ (-c + 1)
+      have h₁₀ := h₂ (c - 1)
+      have h₁₁ := h₂ (-c - 1)
+      norm_num at *
+      <;>
+      nlinarith
+    )
+  )
+  <;>
+  (try
+    (
+      have h₃ := h₂ 0
+      have h₄ := h₂ 1
+      have h₅ := h₂ (-1)
+      have h₆ := h₂ c
+      have h₇ := h₂ (-c)
+      have h₈ := h₂ (c + 1)
+      have h₉ := h₂ (-c + 1)
+      have h₁₀ := h₂ (c - 1)
+      have h₁₁ := h₂ (-c - 1)
+      norm_num at *
+      <;>
+      nlinarith
+    )
+  )
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 32.667126417160034 / 13.777655124664307 / 46.44478154182434
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  simp [putnam_1996_a6_solution, cgt0]
+  <;>
+  constructor
+  <;>
+  intro h
+  <;>
+  (try cases' h with h_cont h_eq)
+  <;>
+  (try continuity)
+  <;>
+  (try simp_all [Set.mem_setOf_eq])
+  <;>
+  (try aesop)
+  <;>
+  (try
+    (intro x;
+     have h1 := h_eq 0;
+     have h2 := h_eq 1;
+     have h3 := h_eq (-1);
+     have h4 := h_eq (x);
+     have h5 := h_eq (-x);
+     have h6 := h_eq (x + 1);
+     have h7 := h_eq (x - 1);
+     have h8 := h_eq (x ^ 2 + c);
+     have h9 := h_eq ((-x) ^ 2 + c);
+     have h10 := h_eq (x ^ 2 - 1 + c);
+     have h11 := h_eq (x ^ 2 + 1 + c);
+     ring_nf at *;
+     nlinarith [sq_nonneg x, sq_nonneg (x - 1), sq_nonneg (x + 1), sq_nonneg (x ^ 2 + c), sq_nonneg ((-x) ^ 2 + c), sq_nonneg (x ^ 2 - 1 + c), sq_nonneg (x ^ 2 + 1 + c)])
+  )
+  <;>
+  (try
+    (intro x;
+     have h1 := h_eq 0;
+     have h2 := h_eq 1;
+     have h3 := h_eq (-1);
+     have h4 := h_eq (x);
+     have h5 := h_eq (-x);
+     have h6 := h_eq (x + 1);
+     have h7 := h_eq (x - 1);
+     have h8 := h_eq (x ^ 2 + c);
+     have h9 := h_eq ((-x) ^ 2 + c);
+     have h10 := h_eq (x ^ 2 - 1 + c);
+     have h11 := h_eq (x ^ 2 + 1 + c);
+     ring_nf at *;
+     nlinarith [sq_nonneg x, sq_nonneg (x - 1), sq_nonneg (x + 1), sq_nonneg (x ^ 2 + c), sq_nonneg ((-x) ^ 2 + c), sq_nonneg (x ^ 2 -
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 13.341169834136963 / 12.180161237716675 / 25.521331071853638
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  unfold putnam_1996_a6_solution
+  constructor
+  · rintro ⟨hf, hf'⟩
+    by_cases h : c ≤ 1 / 4
+    · -- Case 1: c ≤ 1/4
+      simp_all [h]
+      <;> use c
+      <;> simp_all [hf]
+      <;> aesop
+    · -- Case 2: c > 1/4
+      simp_all [h]
+      <;> aesop
+  · rintro h
+    by_cases h₁ : c ≤ 1 / 4
+    · -- Case 1: c ≤ 1/4
+      simp_all [h₁]
+      <;> aesop
+    · -- Case 2: c > 1/4
+      simp_all [h₁]
+      <;> aesop
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 12.23892879486084 / 12.496586799621582 / 24.735515594482422
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  simp only [putnam_1996_a6_solution, Set.mem_setOf_eq, Set.mem_setOf_eq]
+  constructor
+  · rintro ⟨hf, hf'⟩
+    by_cases h : c ≤ 1 / 4
+    · -- Case 1: c ≤ 1/4
+      exact ⟨by aesop, by aesop⟩
+    · -- Case 2: c > 1/4
+      exact ⟨by aesop, by aesop, by aesop, by aesop⟩
+  · rintro ⟨h₁, h₂, h₃, h₄⟩
+    refine' ⟨_, _⟩
+    · aesop
+    · aesop
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 34.18273210525513 / 14.365744829177856 / 48.54847693443298
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  simp [putnam_1996_a6_solution, Set.mem_setOf_eq, Set.mem_setOf_eq]
+  <;>
+  constructor
+  <;>
+  intro h
+  <;>
+  (try simp_all [continuous_const])
+  <;>
+  (try
+    (
+      have h1 := h.2 0
+      have h2 := h.2 1
+      have h3 := h.2 (-1)
+      have h4 := h.2 c
+      have h5 := h.2 (-c)
+      simp at h1 h2 h3 h4 h5
+      norm_num at h1 h2 h3 h4 h5
+      linarith
+    ))
+  <;>
+  (try
+    (
+      have h1 := h.2 0
+      have h2 := h.2 1
+      have h3 := h.2 (-1)
+      have h4 := h.2 c
+      have h5 := h.2 (-c)
+      simp at h1 h2 h3 h4 h5
+      norm_num at h1 h2 h3 h4 h5
+      linarith
+    ))
+  <;>
+  (try
+    (
+      have h1 := h.2 0
+      have h2 := h.2 1
+      have h3 := h.2 (-1)
+      have h4 := h.2 c
+      have h5 := h.2 (-c)
+      simp at h1 h2 h3 h4 h5
+      norm_num at h1 h2 h3 h4 h5
+      linarith
+    ))
+  <;>
+  (try
+    (
+      have h1 := h.2 0
+      have h2 := h.2 1
+      have h3 := h.2 (-1)
+      have h4 := h.2 c
+      have h5 := h.2 (-c)
+      simp at h1 h2 h3 h4 h5
+      norm_num at h1 h2 h3 h4 h5
+      linarith
+    ))
+  <;>
+  (try
+    (
+      have h1 := h.2 0
+      have h2 := h.2 1
+      have h3 := h.2 (-1)
+      have h4 := h.2 c
+      have h5 := h.2 (-c)
+      simp at h1 h2 h3 h4 h5
+      norm_num at h1 h2 h3 h4 h5
+      linarith
+    ))
+  <;>
+  (t
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 33.480998277664185 / 14.436941385269165 / 47.91793966293335
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1996_a6
+(c : ℝ)
+(f : ℝ → ℝ)
+(cgt0 : c > 0)
+: (Continuous f ∧ ∀ x : ℝ, f x = f (x ^ 2 + c)) ↔ f ∈ putnam_1996_a6_solution c := by
+  unfold putnam_1996_a6_solution
+  constructor
+  · rintro ⟨hf, h⟩
+    by_cases hc : c ≤ 1 / 4
+    · -- Case 1: c ≤ 1/4
+      simp_all [hc]
+      <;>
+      use c
+      <;>
+      aesop
+    · -- Case 2: c > 1/4
+      simp_all [hc]
+      <;>
+      (try aesop)
+      <;>
+      (try
+        {
+          have h₁ : c > 1 / 4 := by linarith
+          have h₂ : ContinuousOn f (Set.Icc 0 c) := by
+            apply Continuous.continuousOn
+            exact hf
+          have h₃ : f 0 = f c := by
+            have h₄ := h 0
+            have h₅ := h c
+            have h₆ := h (-c)
+            have h₇ := h (c + 1)
+            have h₈ := h (-c + 1)
+            simp at h₄ h₅ h₆ h₇ h₈
+            nlinarith
+          have h₄ : ∀ x > 0, f x = f (x ^ 2 + c) := by
+            intro x hx
+            exact h x
+          have h₅ : ∀ x < 0, f x = f (-x) := by
+            intro x hx
+            have h₆ := h x
+            have h₇ := h (-x)
+            have h₈ := h (x ^ 2 + c)
+            have h₉ := h (-x ^ 2 + c)
+            simp at h₆ h₇ h₈ h₉
+            nlinarith
+          exact ⟨h₂, h₃, h₄, h₅⟩
+        })
+  · rintro h
+    by_cases hc : c ≤ 1 / 4
+    · -- Case 1: c ≤ 1/4
+      simp_all [hc]
+      <;>
+      aesop
+    · -- Case 2: c > 1/4
+      simp_all [hc]
+      <;>
+      (try aesop)
+ 
+... [truncated] ...

@@ -1,0 +1,150 @@
+Problem: putnam_1994_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 23.043445348739624 / 8.912333250045776 / 31.9557785987854
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 29.143514394760132 / 7.793780326843262 / 36.937294721603394
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.088075876235962 / 7.9672229290008545 / 26.055298805236816
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 29.12435531616211 / 7.614094972610474 / 36.73845028877258
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 34.27498435974121 / 10.584127187728882 / 44.85911154747009
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 25.3610897064209 / 8.031262397766113 / 33.39235210418701
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 47.86804723739624 / 10.205958604812622 / 58.07400584220886
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.502719402313232 / 8.672552585601807 / 31.17527198791504
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1994_a5
+  (r : ℕ → ℝ)
+  (S : Set ℝ)
+  (rpos : ∀ n, r n > 0)
+  (rlim : Tendsto r atTop (𝓝 0))
+  (hS : S = {x | ∃ i : Fin 1994 → ℕ, (∀ j k : Fin 1994, j < k → i j < i k) ∧ (x = ∑ j : Fin 1994, r (i j))}) :
+  ∀ a b : ℝ, a < b → (∃ c d : ℝ, a ≤ c ∧ c < d ∧ d ≤ b ∧ (Set.Ioo c d) ∩ S = ∅) :=
+sorry

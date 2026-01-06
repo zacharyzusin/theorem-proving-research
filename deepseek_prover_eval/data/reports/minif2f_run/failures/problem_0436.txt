@@ -1,0 +1,220 @@
+Problem: problem_0436
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 11.609805345535278 / 600.0643496513367 / 611.674154996872
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (a + 6), sq_nonneg (a + 2 - 2), sq_nonneg (a + 2 + 2)]
+  have h₆ : c = -6 + 6 := by
+    nlinarith [sq_nonneg (c + 2), sq_nonneg (c + 6), sq_nonneg (c + 2 - 2), sq_nonneg (c + 2 + 2)]
+  nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.862348794937134 / 600.1303889751434 / 610.9927377700806
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (c + 2), sq_nonneg (a + 6), sq_nonneg (c + 6)]
+  have h₆ : c = 0 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (c + 2), sq_nonneg (a + 6), sq_nonneg (c + 6)]
+  nlinarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 9.591186046600342 / 600.1398093700409 / 609.7309954166412
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (a + 6)]
+  have h₆ : c = -6 + 6 := by
+    nlinarith [sq_nonneg (c + 2), sq_nonneg (c + 6)]
+  nlinarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 9.11397099494934 / 600.1360213756561 / 609.2499923706055
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  ring_nf at h₀ h₁ h₂ h₃
+  nlinarith [sq_nonneg (a + 2), sq_nonneg (c + 2), sq_nonneg (a - c),
+    sq_nonneg (a + 2 - c), sq_nonneg (c + 2 - a)]
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 9.507234811782837 / 600.1159915924072 / 609.6232264041901
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (a + 6)]
+  have h₆ : c = -6 + 6 := by
+    nlinarith [sq_nonneg (c + 2), sq_nonneg (c + 6)]
+  linarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.022836208343506 / 600.0462818145752 / 611.0691180229187
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (c + 2), sq_nonneg (a + 6), sq_nonneg (c + 6)]
+  have h₆ : c = 0 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (c + 2), sq_nonneg (a + 6), sq_nonneg (c + 6)]
+  nlinarith
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 9.520981073379517 / 600.1347467899323 / 609.6557278633118
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith [sq_nonneg (a + 2), sq_nonneg (a + 6)]
+  have h₆ : c = -6 + 6 := by
+    nlinarith [sq_nonneg (c + 2), sq_nonneg (c + 6)]
+  nlinarith
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 7.612086296081543 / 600.1313803195953 / 607.7434666156769
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_421
+  (a b c d : ℝ)
+  (h₀ : b = a^2 + 4 * a + 6)
+  (h₁ : b = 1 / 2 * a^2 + a + 6)
+  (h₂ : d = c^2 + 4 * c + 6)
+  (h₃ : d = 1 / 2 * c^2 + c + 6)
+  (h₄ : a < c) :
+  c - a = 6 := by
+  have h₅ : a = -6 := by
+    nlinarith
+  have h₆ : c = 0 := by
+    nlinarith
+  nlinarith
+

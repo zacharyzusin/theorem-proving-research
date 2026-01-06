@@ -1,0 +1,24 @@
+Problem: problem_0421
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.573978662490845
+Lean check time (s): 3.513371467590332
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_616
+  (f g : ℝ → ℝ)
+  (h₀ : ∀ x, f x = x^3 + 2 * x + 1)
+  (h₁ : ∀ x, g x = x - 1) :
+  f (g 1) = 1 := by
+  simp_all only [h₀, h₁, sub_eq_add_neg, neg_add_rev, neg_neg, add_assoc, add_left_comm,
+    add_right_comm]
+  -- Simplify the expression using the definitions of f and g
+  <;> ring_nf
+  -- Normalize the expression to simplify further
+  <;> norm_num

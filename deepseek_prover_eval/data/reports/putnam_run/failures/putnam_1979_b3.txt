@@ -1,0 +1,166 @@
+Problem: putnam_1979_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 26.37456750869751 / 42.19449806213379 / 68.5690655708313
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.971718311309814 / 62.402631759643555 / 76.37435007095337
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.791833639144897 / 43.02241373062134 / 57.814247369766235
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.462656259536743 / 57.58164644241333 / 73.04430270195007
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.562845945358276 / 102.87546014785767 / 115.43830609321594
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 18.394875526428223 / 142.19652032852173 / 160.59139585494995
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 8.677729606628418 / 60.845375537872314 / 69.52310514450073
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.172149658203125 / 63.076873779296875 / 72.2490234375
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1979_b3
+(F : Type*) [Field F] [Fintype F]
+(n : ℕ)
+(hn : n = Fintype.card F)
+(nodd : Odd n)
+(b c : F)
+(p : Polynomial F)
+(hp : p = X ^ 2 + (C b) * X + (C c) ∧ Irreducible p)
+: ({d : F | Irreducible (p + (C d))}.ncard = putnam_1979_b3_solution n) :=
+sorry

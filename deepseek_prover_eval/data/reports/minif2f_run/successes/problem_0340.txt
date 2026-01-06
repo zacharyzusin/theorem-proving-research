@@ -1,0 +1,23 @@
+Problem: problem_0340
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.703656435012817
+Lean check time (s): 2.681084632873535
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_15
+  (s : ℕ → ℕ → ℕ)
+  (h₀ : ∀ a b, 0 < a ∧ 0 < b → s a b = a^(b:ℕ) + b^(a:ℕ)) :
+  s 2 6 = 100 := by
+  have h₁ : 0 < 2 ∧ 0 < 6 := by norm_num
+  have h₂ : s 2 6 = 2^6 + 6^2 := by
+    rw [h₀ _ _ h₁]
+    <;> norm_num
+  rw [h₂]
+  <;> norm_num

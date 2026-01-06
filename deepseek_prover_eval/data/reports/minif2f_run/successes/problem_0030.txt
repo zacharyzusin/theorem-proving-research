@@ -1,0 +1,23 @@
+Problem: problem_0030
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.374232530593872
+Lean check time (s): 3.983992576599121
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_137
+  (x : ℕ)
+  (h₀ : ↑x + (4:ℝ) / (100:ℝ) * ↑x = 598) :
+  x = 575 := by
+  norm_num at h₀
+  ring_nf at h₀
+  field_simp at h₀
+  norm_cast at h₀
+  ring_nf at h₀
+  omega

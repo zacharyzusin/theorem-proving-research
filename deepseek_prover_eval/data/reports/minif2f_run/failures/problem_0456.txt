@@ -1,0 +1,193 @@
+Problem: problem_0456
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 6.4667274951934814 / 3.766878128051758 / 10.23360562324524
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with k hk IH
+  · norm_num
+    decide
+  · cases k with
+    | zero => contradiction
+    | succ k' =>
+      cases k' with
+      | zero => contradiction
+      | succ k'' =>
+        simp_all [Nat.factorial, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+        all_goals nlinarith
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 6.7044713497161865 / 4.279723167419434 / 10.98419451713562
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with n h₀ IH
+  -- Base case: n = 4
+  all_goals simp_all [Nat.factorial, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+  all_goals
+    nlinarith [Nat.factorial_le (by linarith : n ≤ n), Nat.factorial_succ n]
+  <;> linarith
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 7.233442068099976 / 4.345585346221924 / 11.5790274143219
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with n hn IH
+  -- Base case: n = 4
+  all_goals simp_all [Nat.factorial_succ, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+  all_goals
+    nlinarith [Nat.factorial_pos n, Nat.factorial_pos (n + 1), Nat.factorial_pos (n + 2),
+      Nat.factorial_pos (n + 3)]
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 5.852175235748291 / 4.075510740280151 / 9.927685976028442
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with n h₀ IH
+  all_goals
+    simp_all [Nat.factorial, Nat.succ_le_iff, Nat.mul_le_mul_right]
+  all_goals
+    nlinarith [Nat.factorial_le (by linarith : n ≤ n)]
+  <;> nlinarith
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 11.00145411491394 / 3.730393886566162 / 14.731848001480103
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with n h₀ IH
+  · norm_num [Nat.factorial] -- Base case: n = 4
+  cases n with
+  | zero => contradiction -- n cannot be zero since h₀ : 4 ≤ n
+  | succ n =>
+    cases n with
+    | zero => contradiction -- n cannot be one since h₀ : 4 ≤ n
+    | succ n =>
+      cases n with
+      | zero => contradiction -- n cannot be two since h₀ : 4 ≤ n
+      | succ n =>
+        cases n with
+        | zero => contradiction -- n cannot be three since h₀ : 4 ≤ n
+        | succ n =>
+          simp_all [Nat.factorial, Nat.succ_le_iff, Nat.mul_le_mul_left]
+          all_goals
+            nlinarith
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 5.590212106704712 / 3.730092763900757 / 9.320304870605469
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with k hk hk_ind
+  -- Base case: n = 4
+  all_goals
+    norm_num
+    simp_all [Nat.factorial]
+    nlinarith
+  <;>
+  nlinarith [Nat.factorial_le (by linarith : k ≤ k)]
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 6.785048246383667 / 3.8585731983184814 / 10.643621444702148
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with n hn IH
+  · simp [Nat.factorial]
+  · cases n with
+    | zero => contradiction
+    | succ n =>
+      simp_all [Nat.factorial, Nat.succ_le_iff, Nat.mul_le_mul_right]
+      nlinarith [Nat.mul_le_mul_right (n + 1) (Nat.le_add_left 1 n)]
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 5.026125907897949 / 3.7838947772979736 / 8.810020685195923
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_ineq_nsqlefactn
+  (n : ℕ)
+  (h₀ : 4 ≤ n) :
+  n^2 ≤ n! := by
+  induction' h₀ with k hk hk'
+  all_goals
+    simp_all [Nat.factorial, Nat.succ_le_iff, Nat.mul_le_mul_left]
+  all_goals
+    nlinarith
+  <;> nlinarith
+

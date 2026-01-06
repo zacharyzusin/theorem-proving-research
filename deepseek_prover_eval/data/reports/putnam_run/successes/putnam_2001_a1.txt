@@ -1,0 +1,29 @@
+Problem: putnam_2001_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 1
+Generation time (s): 8.632192850112915
+Lean check time (s): 13.52829909324646
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2001_a1
+(S : Type*)
+[Mul S]
+(hS : ∀ a b : S, (a * b) * a = b)
+: ∀ a b : S, a * (b * a) = b := by
+  intro a b
+  have h₁ := hS a b
+  have h₂ := hS b a
+  have h₃ := hS (a * b) a
+  have h₄ := hS a (b * a)
+  have h₅ := hS (b * a) b
+  have h₆ := hS b (a * b)
+  simp_all [mul_assoc]
+  <;> simp_all [mul_assoc]
+  <;> simp_all [mul_assoc]
+  <;> simp_all [mul_assoc]

@@ -1,0 +1,20 @@
+Problem: putnam_1980_a6
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 82.63974905014038
+Lean check time (s): 17.10645079612732
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1980_a6
+    (C : Set (ℝ → ℝ))
+    (hC : C = {f : ℝ → ℝ | ContDiffOn ℝ 1 f (Set.Icc 0 1) ∧ f 0 = 0 ∧ f 1 = 1}) :
+    IsGreatest
+      {(u : ℝ) | ∀ f ∈ C, u ≤ (∫ x in Set.Ioo 0 1, |deriv f x - f x|)}
+      putnam_1980_a6_solution :=
+  sorry

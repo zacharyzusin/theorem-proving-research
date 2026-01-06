@@ -1,0 +1,26 @@
+Problem: problem_0448
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 8.9866201877594
+Lean check time (s): 16.159561157226562
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_326
+  (n : ℕ)
+  (h₀ : (↑n - 1) * ↑n * (↑n + 1) = (720 : ℤ)) :
+  (n + 1) = 10 := by
+  norm_num at h₀
+  norm_num
+  have h₁ : n ≤ 20 := by
+    by_contra! h
+    have : n ≥ 21 := by linarith
+    have : (n : ℤ) ≥ 21 := by exact_mod_cast this
+    nlinarith [sq_nonneg (n : ℤ), sq_nonneg (n - 1 : ℤ), sq_nonneg (n + 1 : ℤ)]
+  interval_cases n <;> norm_num at h₀ ⊢
+  <;> omega

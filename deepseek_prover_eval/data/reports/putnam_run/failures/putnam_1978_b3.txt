@@ -1,0 +1,174 @@
+Problem: putnam_1978_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.967772960662842 / 4.344980239868164 / 22.312753200531006
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 17.91982412338257 / 4.346478223800659 / 22.266302347183228
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.866785526275635 / 4.340615510940552 / 22.207401037216187
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 42.170576333999634 / 4.32222056388855 / 46.492796897888184
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.5199933052063 / 4.342967748641968 / 26.862961053848267
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 20.4699923992157 / 4.3587806224823 / 24.828773021697998
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.8943350315094 / 4.363755702972412 / 22.25809073448181
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 22.444129705429077 / 4.3295087814331055 / 26.773638486862183
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1978_b3
+(P : ℕ+ → Polynomial ℝ)
+(hP1 : P 1 = 1 + X)
+(hP2 : P 2 = 1 + 2 * X)
+(hPodd : ∀ n, P (2 * n + 1) = P (2 * n) + C ((n : ℝ) + 1) * X * P (2 * n - 1))
+(hPeven : ∀ n, P (2 * n + 2) = P (2 * n + 1) + C ((n : ℝ) + 1) * X * P (2 * n))
+(a : ℕ+ → ℝ)
+(haroot : ∀ n, (P n).eval (a n) = 0)
+(haub : ∀ n, ∀ x, (P n).eval x = 0 → x ≤ a n)
+: (StrictMono a ∧ Tendsto a atTop (𝓝 0)) :=
+sorry

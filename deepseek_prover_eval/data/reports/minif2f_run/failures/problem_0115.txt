@@ -1,0 +1,193 @@
+Problem: problem_0115
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 13.5357666015625 / 254.935400724411 / 268.4711673259735
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.mod_eq_of_lt]
+    <;> omega
+  rw [h₁]
+  norm_num
+  rfl
+  <;> decide
+  <;> simp_all [Finset.card_filter]
+  <;> norm_num
+  <;> rfl
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.25082802772522 / 267.4945878982544 / 282.7454159259796
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.mod_eq_of_lt]
+    <;> omega
+  rw [h₁]
+  rfl
+  <;> decide
+  <;> simp_all
+  <;> norm_num
+  <;> rfl
+  <;> decide
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.370839595794678 / 254.05045533180237 / 265.42129492759705
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.digits_zero]
+    <;> omega
+  rw [h₁]
+  rfl
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 12.74807333946228 / 254.45748281478882 / 267.2055561542511
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n : ℕ => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.mod_eq_of_lt]
+    <;> omega
+  rw [h₁]
+  rfl
+  <;> decide
+  <;> norm_num
+  <;> decide
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 12.79253339767456 / 277.95786452293396 / 290.7503979206085
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.digits_zero]
+    <;> omega
+  rw [h₁]
+  norm_num
+  rfl
+  <;> decide
+  <;> decide
+  <;> decide
+  <;> decide
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 11.680189609527588 / 245.4665915966034 / 257.146781206131
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n : ℕ => n ≥ 1000 ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.mod_eq_of_lt]
+    <;> omega
+  rw [h₁]
+  rfl
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 10.940768003463745 / 244.12805032730103 / 255.06881833076477
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.digits_zero]
+    <;> omega
+  rw [h₁]
+  rfl
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.14324164390564 / 246.44630908966064 / 257.5895507335663
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p4
+  (S : Finset ℕ)
+  (h₀ : ∀ (n : ℕ), n ∈ S ↔ 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ (d : ℕ), d ∈ Nat.digits 10 n → Even d) ∧ 5 ∣ n) :
+  S.card = 100 := by
+  have h₁ : S = Finset.filter (fun n => 1000 ≤ n ∧ n ≤ 9999 ∧ (∀ d ∈ Nat.digits 10 n, Even d) ∧ 5 ∣ n) (Finset.Icc 1000 9999) := by
+    ext n
+    simp [h₀, Nat.digits_zero]
+    <;> omega
+  rw [h₁]
+  norm_num
+  rfl
+

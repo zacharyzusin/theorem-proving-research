@@ -1,0 +1,134 @@
+Problem: putnam_1975_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 47.307140588760376 / 101.73256468772888 / 149.03970527648926
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 49.12623453140259 / 134.7414526939392 / 183.8676872253418
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 62.7869758605957 / 105.87945199012756 / 168.66642785072327
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 46.631025314331055 / 115.97332787513733 / 162.60435318946838
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 57.602698802948 / 89.32535219192505 / 146.92805099487305
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 47.06447649002075 / 113.92987728118896 / 160.99435377120972
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 56.377042055130005 / 110.28607869148254 / 166.66312074661255
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 23.99068307876587 / 172.56817936897278 / 196.55886244773865
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1975_b3
+: ∀ k : ℕ, k > 0 → (∀ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k →
+(esymm a k)/(esymm a 1)^k ≤ putnam_1975_b3_solution k) ∧
+∀ M : ℝ, M < putnam_1975_b3_solution k → (∃ a : Multiset ℝ, (∀ i ∈ a, i > 0) ∧ card a ≥ k ∧
+(esymm a k)/(esymm a 1)^k > M) :=
+sorry

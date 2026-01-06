@@ -1,0 +1,20 @@
+Problem: problem_0398
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.583041429519653
+Lean check time (s): 4.278780937194824
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_190 :
+  ((3 : ℝ) / 8 + 7 / 8) / (4 / 5) = 25 / 16 := by
+  norm_num [div_eq_mul_inv, mul_assoc]
+  <;> field_simp
+  <;> ring
+  <;> norm_num
+  <;> linarith

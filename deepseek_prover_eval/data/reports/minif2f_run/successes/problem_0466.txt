@@ -1,0 +1,26 @@
+Problem: problem_0466
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 5.373629570007324
+Lean check time (s): 2.658250331878662
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_2dvd4expn
+  (n : ℕ)
+  (h₀ : n ≠ 0) :
+  2 ∣ 4^n := by
+  induction n with
+  | zero => contradiction
+  | succ n ih =>
+    cases n with
+    | zero =>
+      norm_num
+    | succ n =>
+      simp_all [Nat.pow_succ, Nat.mul_mod, Nat.dvd_iff_mod_eq_zero]
+      <;> omega

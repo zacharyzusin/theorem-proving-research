@@ -1,0 +1,134 @@
+Problem: putnam_1995_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.16068410873413 / 19.4829204082489 / 29.643604516983032
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 10.324366569519043 / 10.614364624023438 / 20.93873119354248
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 11.77432107925415 / 12.231626749038696 / 24.005947828292847
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 10.03160548210144 / 19.6036319732666 / 29.635237455368042
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.011977910995483 / 32.049118757247925 / 59.06109666824341
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 10.344862222671509 / 15.77180290222168 / 26.11666512489319
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 14.578858852386475 / 11.17511534690857 / 25.753974199295044
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 12.197882652282715 / 17.772923469543457 / 29.970806121826172
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1995_a2
+(habconv : (ℝ × ℝ) → Prop)
+(habconv_def : habconv = fun ⟨a,b⟩ =>
+∃ limit : ℝ, Tendsto (fun t : ℝ => ∫ x in (Set.Icc b t), (sqrt (sqrt (x + a) - sqrt x) - sqrt (sqrt x - sqrt (x - b)))) atTop (𝓝 limit))
+: ∀ ab : ℝ × ℝ, ab.1 > 0 ∧ ab.2 > 0 → (habconv ab ↔ ab ∈ putnam_1995_a2_solution) :=
+sorry

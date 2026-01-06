@@ -274,13 +274,22 @@ def build_prompt(theorem_src: str, mode: str) -> str:
 # Evaluate Putnam Bench
 ###########################################################
 
-def evaluate_putnam(mode: str, output_dir: str = None, quiet: bool = False, verbose: bool = False):
+def evaluate_putnam(
+    mode: str,
+    output_dir: str = None,
+    quiet: bool = False,
+    verbose: bool = False,
+    num_shards: int | None = None,
+    shard_id: int | None = None,
+):
     """
     Evaluate model on PutnamBench dataset.
     
     Args:
         mode: "cot" or "noncot"
         output_dir: Directory to save metrics and results (default: data/results/putnam)
+        num_shards: Optional number of shards for parallel evaluation
+        shard_id: Optional shard ID (0-indexed, must be < num_shards)
     """
     setup_signal_handlers()
     
@@ -355,6 +364,18 @@ def evaluate_putnam(mode: str, output_dir: str = None, quiet: bool = False, verb
     # All Lean source files in the PutnamBench Lean project
     putnam_src_glob = str(Path(PUTNAM_DIR) / "lean4" / "src" / "putnam_*.lean")
     files = sorted(glob.glob(putnam_src_glob))
+
+    # Handle sharding if enabled
+    if (num_shards is None) ^ (shard_id is None):
+        raise ValueError("Use --num-shards and --shard-id together (or neither).")
+    if num_shards is not None and shard_id is not None:
+        if num_shards <= 0:
+            raise ValueError("--num-shards must be > 0")
+        if shard_id < 0 or shard_id >= num_shards:
+            raise ValueError("--shard-id must satisfy 0 <= shard-id < num-shards")
+        files = [f for i, f in enumerate(files) if (i % num_shards) == shard_id]
+        if not quiet:
+            print(f"Sharding enabled: shard {shard_id}/{num_shards} → {len(files)} problems")
 
     # Optional: Filter to specific problems for testing
     # Uncomment and modify as needed:
@@ -645,6 +666,10 @@ if __name__ == "__main__":
     parser.add_argument("--mode", choices=["cot", "noncot"], default="noncot")
     parser.add_argument("--output-dir", type=str, default=None,
                        help="Directory to save metrics and results (default: data/results/putnam)")
+    parser.add_argument("--num-shards", type=int, default=None,
+                       help="Number of shards for parallel evaluation (use with --shard-id)")
+    parser.add_argument("--shard-id", type=int, default=None,
+                       help="Shard ID (0-indexed, use with --num-shards)")
     verbosity_group = parser.add_mutually_exclusive_group()
     verbosity_group.add_argument(
         "--quiet",
@@ -658,4 +683,11 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    evaluate_putnam(args.mode, args.output_dir, quiet=args.quiet, verbose=args.verbose)
+    evaluate_putnam(
+        args.mode,
+        args.output_dir,
+        quiet=args.quiet,
+        verbose=args.verbose,
+        num_shards=args.num_shards,
+        shard_id=args.shard_id,
+    )

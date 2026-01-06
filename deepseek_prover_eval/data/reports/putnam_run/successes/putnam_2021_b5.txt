@@ -1,0 +1,20 @@
+Problem: putnam_2021_b5
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 12.135735273361206
+Lean check time (s): 4.452269554138184
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_b5
+(n : ℕ)
+(npos : n ≥ 1)
+(veryodd : Matrix (Fin n) (Fin n) ℤ → Prop)
+(hveryodd : ∀ A, veryodd A ↔ ∀ m ∈ Set.Icc 1 n, ∀ reind : Fin m → Fin n, Function.Injective reind → Odd (A.submatrix reind reind).det)
+: ∀ A, veryodd A → (∀ k ≥ 1, veryodd (A ^ k)) :=
+sorry

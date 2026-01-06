@@ -1,0 +1,19 @@
+Problem: problem_0459
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 3.839155435562134
+Lean check time (s): 4.21259331703186
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_961 :
+  2003 % 11 = 1 := by
+  norm_num
+  <;> simp [Nat.mod_eq_of_lt, Nat.lt_of_le_of_lt, Nat.le_of_lt_succ]
+  <;> norm_num
+  <;> omega

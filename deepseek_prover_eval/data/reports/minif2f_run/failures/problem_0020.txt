@@ -1,0 +1,359 @@
+Problem: problem_0020
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 2
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 25.499810695648193 / 3.715810775756836 / 29.21562147140503
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2 ^ 4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2 ^ 2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2 ^ 4) n = (1 / 4 : ℝ) * Real.logb 2 n := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  have h₆ : Real.logb (2 ^ 2) n = (1 / 2 : ℝ) * Real.logb 2 n := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : Real.logb 2 n ≠ 0 := by
+    intro h
+    rw [h] at h₁
+    norm_num at h₁
+  field_simp at h₁
+  have h₈ : Real.logb 2 n = 4 * Real.logb 2 n := by linarith
+  have h₉ : Real.logb 2 n = 0 := by linarith
+  have h₁₀ : n = 1 := by
+    rw [← Real.exp_log (by positivity : (n : ℝ) > 0)]
+    simp_all [Real.logb_eq_iff_rpow_eq]
+    <;> norm_num
+    <;> linarith
+  simp_all
+  <;> norm_num
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 49.30010724067688 / 12.303619861602783 / 61.60372710227966
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2^4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2^2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2^4) n = Real.logb 2 n / 4 := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  have h₆ : Real.logb (2^2) n = Real.logb 2 n / 2 := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : Real.logb 2 (Real.logb 2 n / 4) = Real.logb 4 (Real.logb 2 n / 2) := by
+    linarith
+  have h₈ : Real.logb 4 (Real.logb 2 n / 2) = Real.logb (2^2) (Real.logb 2 n / 2) := by
+    norm_num [Real.logb]
+  rw [h₈] at h₇
+  have h₉ : Real.logb (2^2) (Real.logb 2 n / 2) = Real.logb 2 (Real.logb 2 n / 2) / 2 := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₉] at h₇
+  have h₁₀ : Real.logb 2 (Real.logb 2 n / 4) = Real.logb 2 (Real.logb 2 n) / 4 := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₁₀] at h₇
+  have h₁₁ : Real.logb 2 (Real.logb 2 n) / 4 = Real.logb 2 (Real.logb 2 n) / 4 := by rfl
+  rw [h₁₁] at h₇
+  have h₁₂ : Real.logb 2 (Real.logb 2 n) / 4 = Real.logb 2 (Real.logb 2 n) / 4 := by rfl
+  rw [h₁₂] at h₇
+  have h₁₃ : Real.logb 2 (Real.logb 2 n) / 4 = Real.logb 2 (Real.logb 2 n) / 4 := by rfl
+  rw [h₁₃] at h₇
+  field_simp at h₇
+  have h₁₄ : 
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 23.96319580078125 / 4.040771007537842 / 28.003966808319092
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2 ^ 4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2 ^ 2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2 ^ 4) n = (1 / 4 : ℝ) * Real.logb 2 n := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  have h₆ : Real.logb (2 ^ 2) n = (1 / 2 : ℝ) * Real.logb 2 n := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : (1 / 4 : ℝ) * Real.logb 2 n = (1 / 2 : ℝ) * Real.logb 2 n := by linarith
+  have h₈ : Real.logb 2 n = 0 := by
+    field_simp at h₇
+    <;> linarith
+  have h₉ : n = 1 := by
+    rw [Real.logb_eq_iff_rpow_eq] at h₈ <;> simp_all
+    <;> norm_num
+    <;> linarith
+  simp_all
+  <;> norm_num
+  <;> linarith
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 41.58802270889282 / 6.408342599868774 / 47.9963653087616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2 ^ 4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2 ^ 2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2 ^ 4) n = (1 / 4) * Real.logb 2 n := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  have h₆ : Real.logb (2 ^ 2) n = (1 / 2) * Real.logb 2 n := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : Real.logb 2 ( (1 / 4) * Real.logb 2 n ) = Real.logb 4 ( (1 / 2) * Real.logb 2 n ) := by
+    simp_all [Real.logb]
+  have h₈ : Real.logb 4 ( (1 / 2) * Real.logb 2 n ) = Real.logb (2 ^ 2) ( (1 / 2) * Real.logb 2 n ) := by
+    norm_num
+  rw [h₈] at h₇
+  have h₉ : Real.logb (2 ^ 2) ( (1 / 2) * Real.logb 2 n ) = (1 / 2) * Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₉] at h₇
+  have h₁₀ : Real.logb 2 ( (1 / 4) * Real.logb 2 n ) = (1 / 2) * Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by
+    simp [Real.logb, Real.log_rpow]
+    <;> ring
+  have h₁₁ : Real.logb 2 ( (1 / 4) * Real.logb 2 n ) = (1 / 2) * Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by
+    linarith
+  have h₁₂ : Real.logb 2 n = 4 * Real.logb 2 n := by
+    field_simp at h₁₁ ⊢
+    <;> ring_nf at h₁₁ ⊢
+    <;> nlinarith
+  have h₁₃ : Real.l
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 27.192505598068237 / 4.142671585083008 / 31.335177183151245
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2^4) n := by norm_num
+  rw [h₃] at h₁
+  have h₄ : Real.logb (2^4) n = Real.logb 2 n / 4 := by
+    simp [Real.logb, Real.log_rpow, mul_comm]
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_rpow, mul_comm]
+    <;> ring_nf
+  rw [h₄] at h₁
+  have h₅ : Real.logb 4 n = Real.logb (2^2) n := by norm_num
+  rw [h₅] at h₁
+  have h₆ : Real.logb (2^2) n = Real.logb 2 n / 2 := by
+    simp [Real.logb, Real.log_rpow, mul_comm]
+    <;> ring_nf
+    <;> field_simp [Real.log_mul, Real.log_rpow, mul_comm]
+    <;> ring_nf
+  rw [h₆] at h₁
+  have h₇ : Real.logb 2 n / 4 = Real.logb 2 n / 2 := by linarith
+  have h₈ : Real.logb 2 n = 0 := by
+    field_simp at h₇ ⊢
+    <;> ring_nf at h₇ ⊢
+    <;> nlinarith
+  have h₉ : n = 1 := by
+    rw [Real.logb_eq_iff_rpow_eq] at h₈ <;> norm_num at h₈ <;>
+    aesop
+  simp_all
+  <;> norm_num
+  <;> aesop
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 75.77853989601135 / 600.2065932750702 / 675.9851331710815
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2 ^ 4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2 ^ 2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2 ^ 4) n = (1 / 4) * Real.logb 2 n := by
+    field_simp [Real.logb, Real.log_rpow]
+    <;> ring
+  have h₆ : Real.logb (2 ^ 2) n = (1 / 2) * Real.logb 2 n := by
+    field_simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : Real.logb 2 ( (1 / 4) * Real.logb 2 n ) = Real.logb 4 ( (1 / 2) * Real.logb 2 n ) := h₁
+  have h₈ : Real.logb 4 ( (1 / 2) * Real.logb 2 n ) = Real.logb (2 ^ 2) ( (1 / 2) * Real.logb 2 n ) := by norm_num
+  rw [h₈] at h₇
+  have h₉ : Real.logb (2 ^ 2) ( (1 / 2) * Real.logb 2 n ) = (1 / 2) * Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by
+    field_simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₉] at h₇
+  have h₁₀ : Real.logb 2 ( (1 / 4) * Real.logb 2 n ) = (1 / 2) * Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by
+    field_simp [Real.logb, Real.log_rpow]
+    <;> ring
+  rw [h₁₀] at h₇
+  have h₁₁ : Real.logb 2 ( (1 / 2) * Real.logb 2 n ) = Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by rfl
+  have h₁₂ : (1 / 4) * Real.logb 2 n = (1 / 2) * Real.logb 2 ( (1 / 2) * Real.logb 2 n ) := by
+    linarith
+  have h₁₃ : Real.logb 2 n > 0 := by
+ 
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 27.932185649871826 / 11.038841724395752 / 38.97102737426758
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2 ^ 4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2 ^ 2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2 ^ 4) n = Real.logb 2 n / 4 := by
+    simp [Real.logb, Real.log_rpow, mul_comm]
+    <;> field_simp [Real.log_mul, Real.log_rpow, mul_comm]
+    <;> ring
+  have h₆ : Real.logb (2 ^ 2) n = Real.logb 2 n / 2 := by
+    simp [Real.logb, Real.log_rpow, mul_comm]
+    <;> field_simp [Real.log_mul, Real.log_rpow, mul_comm]
+    <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : Real.logb 2 n / 4 = Real.logb 4 n := by linarith
+  have h₈ : Real.logb 4 n = Real.logb 2 n / 2 := by linarith
+  have h₉ : Real.logb 2 n / 4 = Real.logb 2 n / 2 := by linarith
+  have h₁₀ : Real.logb 2 n = 0 := by
+    field_simp at h₉ ⊢
+    <;> ring_nf at h₉ ⊢
+    <;> nlinarith
+  have h₁₁ : n = 1 := by
+    rw [Real.logb_eq_iff_rpow_eq] at h₁₀ <;> norm_num at h₁₀ <;>
+    aesop
+  simp_all
+  <;> aesop
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 56.48584985733032 / 600.1534717082977 / 656.639321565628
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2020_p10
+  (n : ℕ)
+  (h₀ : 0 < n)
+  (h₁ : Real.logb 2 (Real.logb 16 n) = Real.logb 4 (Real.logb 4 n)) :
+  (Nat.digits 10 n).sum = 13 := by
+  have h₂ : 0 < n := h₀
+  have h₃ : Real.logb 16 n = Real.logb (2 ^ 4) n := by norm_num
+  have h₄ : Real.logb 4 n = Real.logb (2 ^ 2) n := by norm_num
+  rw [h₃, h₄] at h₁
+  have h₅ : Real.logb (2 ^ 4) n = Real.logb 2 n / 4 := by
+    field_simp [Real.logb, Real.log_rpow] <;> ring
+  have h₆ : Real.logb (2 ^ 2) n = Real.logb 2 n / 2 := by
+    field_simp [Real.logb, Real.log_rpow] <;> ring
+  rw [h₅, h₆] at h₁
+  have h₇ : Real.logb 2 (Real.logb 2 n / 4) = Real.logb 4 (Real.logb 2 n / 2) := by linarith
+  have h₈ : Real.logb 4 (Real.logb 2 n / 2) = Real.logb (2 ^ 2) (Real.logb 2 n / 2) := by norm_num
+  rw [h₈] at h₇
+  have h₉ : Real.logb (2 ^ 2) (Real.logb 2 n / 2) = (Real.logb 2 (Real.logb 2 n / 2)) / 2 := by
+    field_simp [Real.logb, Real.log_rpow] <;> ring
+  rw [h₉] at h₇
+  have h₁₀ : Real.logb 2 (Real.logb 2 n / 4) = (Real.logb 2 (Real.logb 2 n)) / 4 := by
+    field_simp [Real.logb, Real.log_rpow] <;> ring
+  rw [h₁₀] at h₇
+  have h₁₁ : (Real.logb 2 (Real.logb 2 n)) / 4 = (Real.logb 2 (Real.logb 2 n)) / 2 := by linarith
+  have h₁₂ : Real.logb 2 n ≠ 0 := by
+    intro h
+    have : n = 1 := by
+      rw [Real.logb_eq_zero] at h
+      aesop
+    simp_all
+  field_simp [h₁₂] at h₇
+  norm_num at h₇
+  have h₁₃ : n ≠ 0 := by aesop
+  have h₁₄ : n < 10000 := by
+    by_contra! 
+... [truncated] ...

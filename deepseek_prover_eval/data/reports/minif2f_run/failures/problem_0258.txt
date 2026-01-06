@@ -1,0 +1,301 @@
+Problem: problem_0258
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 87.06015515327454 / 2.6365082263946533 / 89.69666337966919
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₁
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₂
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₄
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- We need to show that the floor of 100r is 743.
+      -- This involves showing that 743 ≤ 100r < 744.
+      have h₇ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₅
+      have h₈ : r ≥ 7.43 := by
+        -- We need to show that r ≥ 7.43.
+        -- This is derived from the sum of floors.
+        norm_num [Finset.sum_Icc_succ_top] at h₇
+        norm_num at h₇
+        have h₉ : ∀ k ∈ Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≥ 7 := by
+          intro k hk
+          have h₁₀ : k ≤ 91 := by
+            simp_all [Finset.mem_Icc]
+            <;> omega
+          have h₁₁ : k ≥ 19 := by
+            simp_all [Finset.mem_Icc]
+            <;> omega
+          have h₁₂ : (k : ℝ) ≥ 19 := by
+            norm_num
+            <;> linarith
+          have h₁₃ : (k : ℝ) ≤ 91 := by
+            norm_num
+            <;> l
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 86.48218250274658 / 7.266488075256348 / 93.74867057800293
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₁
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₂
+    have h₅ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors of (r + k / 100) for k from 19 to 91 is 546
+      -- to find the floor of 100 * r
+      have h₆ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₄
+      have h₇ : Int.floor (100 * r) = 743 := by
+        -- Use the fact that the sum of the floors of (r + k / 100) for k from 19 to 91 is 546
+        -- to find the floor of 100 * r
+        have h₈ : r ≥ 7.43 := by
+          norm_num at h₆ ⊢
+          have h₉ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₆
+          have h₁₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≥ 546 := by linarith
+          have h₁₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≥ 546 := by linarith
+          have h₁₂ : r ≥ 7.43 := by
+            norm_num at h₉ ⊢
+            have h₁₃ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₉
+            have h₁₄ : ∑ k in Finset.Icc (1
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 50.870277404785156 / 3.111889362335205 / 53.98216676712036
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₁
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₂
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₄
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors of (r + k / 100) is 546 to find the floor of 100r
+      have h₇ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₅
+      have h₈ : Int.floor (100 * r) = 743 := by
+        -- Use the fact that the sum of the floors of (r + k / 100) is 546 to find the floor of 100r
+        have h₉ : r ≥ 7.43 := by
+          -- Show that r is at least 7.43
+          norm_num at h₇ ⊢
+          have h₁₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₇
+          have h₁₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₁₀
+          have h₁₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₁₁
+          norm_num [Finset.sum_Icc_succ_top] at h₁₂
+          contrapose! h₁₂
+          norm_num at h₁₂
+          have h₁₃ : r < 7.43 := by
+            norm
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 67.23918676376343 / 4.251845359802246 / 71.49103212356567
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simp_all
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simp_all
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors is 546 to find the floor of 100r
+      have h₇ : r ≥ 7.43 := by
+        norm_num at h₅ ⊢
+        have h₈ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₅
+        have h₉ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simp_all
+        have h₁₀ : r ≥ 7.43 := by
+          by_contra h
+          have h₁₁ : r < 7.43 := by linarith
+          have h₁₂ : r < 7.43 := by linarith
+          have h₁₃ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) < 546 := by
+            have h₁₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) < 546 := by
+              norm_num at h₁₁
+              have h₁₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) < 546 := by
+                norm_num [Finset.sum_Icc_succ_top] at h₈ ⊢
+                norm_num at 
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 24.89043378829956 / 2.7220590114593506 / 27.61249279975891
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₁
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₂
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₄
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors is 546 to find the floor of 100r
+      have h₇ : Int.floor (100 * r) = 743 := by
+        -- Use the fact that the sum of the floors is 546 to find the floor of 100r
+        apply Int.floor_eq_iff.mpr
+        constructor
+        -- Show that 743 ≤ 100r
+        all_goals norm_num
+        all_goals
+          simp_all [Finset.sum_Icc_succ_top, Nat.cast_add, Nat.cast_mul, Nat.cast_sub]
+          <;> norm_num at *
+          <;> nlinarith [Int.floor_le (r + 19 / 100), Int.lt_floor_add_one (r + 19 / 100)]
+      exact h₇
+    exact h₆
+  exact h₃
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 87.30026912689209 / 4.772809267044067 / 92.07307839393616
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by simpa using h₁
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₂
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₄
+    -- We need to show that the floor of 100r is 743
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors is 546 to find the floor of 100r
+      have h₇ : r ≥ 7.43 := by
+        -- Use the fact that the sum of the floors is 546 to find the lower bound for r
+        norm_num at h₅ ⊢
+        have h₈ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₅
+        have h₉ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≥ 546 := by linarith
+        have h₁₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≥ 546 := by linarith
+        have h₁₁ : r ≥ 7.43 := by
+          norm_num at h₈ ⊢
+          have h₁₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₈
+          have h₁₃ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≥ 546 := by linarith
+          have h₁₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (I
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 39.974257946014404 / 2.5072667598724365 / 42.48152470588684
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by rw [h₁]
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₁
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by rw [h₄]
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors is 546 to find the floor of 100r
+      norm_num [Finset.sum_Icc_succ_top] at h₁ h₂ h₄ h₅
+      have h₇ : r ≥ 7.43 := by
+        norm_num at h₁ h₂ h₄ h₅ ⊢
+        contrapose! h₁
+        have h₈ : r < 7.43 := by linarith
+        have h₉ : ∀ k ∈ Finset.Icc 19 91, Int.floor (r + k / 100) ≤ 7 := by
+          intro k hk
+          rw [Finset.mem_Icc] at hk
+          have h₁₀ : (k : ℝ) ≥ 19 := by exact_mod_cast hk.1
+          have h₁₁ : (k : ℝ) ≤ 91 := by exact_mod_cast hk.2
+          have h₁₂ : r + k / 100 < 7.43 + 91 / 100 := by linarith
+          have h₁₃ : Int.floor (r + k / 100) ≤ 7 := by
+            apply Int.le_of_lt_add_one
+            simp_all [Int.floor_lt]
+            <;> norm_num
+            <;> linarith
+          exact h₁₃
+        have h₁₄ : ∑ k in Finset.Icc 19 91, (Int.floor (r + k / 100)) ≤ 7 *
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 86.86186194419861 / 2.739107847213745 / 89.60096979141235
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem aime_1991_p6
+  (r : ℝ)
+  (h₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546) :
+  Int.floor (100 * r) = 743 := by
+  have h₁ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₀
+  have h₂ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by rw [h₁]
+  have h₃ : Int.floor (100 * r) = 743 := by
+    have h₄ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₁
+    have h₅ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by rw [h₄]
+    have h₆ : Int.floor (100 * r) = 743 := by
+      -- Use the fact that the sum of the floors of (r + k/100) for k from 19 to 91 is 546
+      -- to find the floor of 100r.
+      have h₇ : r ≥ 7.43 := by
+        norm_num at h₁ ⊢
+        have h₈ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := h₁
+        have h₉ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by rw [h₈]
+        have h₁₀ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) = 546 := by rw [h₉]
+        norm_num [Finset.sum_Icc_succ_top] at h₁₀
+        have h₁₁ : r ≥ 7.43 := by
+          by_contra! h
+          have h₁₂ : r < 7.43 := by linarith
+          have h₁₃ : ∑ k in Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) < 546 := by
+            norm_num [Finset.sum_Icc_succ_top] at h₁₀ ⊢
+            have h₁₄ : ∀ k ∈ Finset.Icc (19 : ℕ) 91, (Int.floor (r + k / 100)) ≤ 7 := by
+              
+... [truncated] ...

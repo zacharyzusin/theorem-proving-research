@@ -1,0 +1,331 @@
+Problem: putnam_1974_b3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 24.021374940872192 / 24.38365888595581 / 48.405033826828
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    obtain ⟨a, ha'⟩ := h
+    have h₂ := ha
+    rw [ha'] at h₂
+    have h₃ : Real.cos (Real.pi * (a : ℝ)) = 1 / 3 := h₂
+    have h₄ : Real.cos (Real.pi * (a : ℝ)) = Real.cos (Real.pi * a) := by norm_cast
+    rw [h₄] at h₃
+    have h₅ : Real.cos (Real.pi * a) = 1 / 3 := h₃
+    have h₆ : Real.cos (Real.pi * a) = 1 / 3 := h₅
+    have h₇ : Real.cos (Real.pi * a) = 1 / 3 := h₆
+    -- Use the fact that cos(n * pi) = 1 or -1 for integer n
+    have h₈ : Real.cos (Real.pi * a) = 1 ∨ Real.cos (Real.pi * a) = -1 := by
+      rw [Real.cos_eq_one_iff]
+      <;>
+      (try
+        {
+          norm_num
+          <;>
+          field_simp at h₇ ⊢
+          <;>
+          ring_nf at h₇ ⊢
+          <;>
+          norm_cast at h₇ ⊢
+          <;>
+          simp_all [mul_assoc]
+          <;>
+          omega
+        })
+      <;>
+      (try
+        {
+          aesop
+        })
+    cases h₈ with
+    | inl h₈ =>
+      norm_num at h₈
+      <;>
+      norm_num [Real.cos_pi_div_two] at h₇
+      <;>
+      linarith
+    | inr h₈ =>
+      norm_num at h₈
+      <;>
+      norm_num [Real.cos_pi_div_two] at h₇
+      <;>
+      linarith
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 34.152312994003296 / 14.869878768920898 / 49.022191762924194
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    cases' h with q hq
+    have h₂ := ha
+    rw [show Real.cos (Real.pi * α) = Real.cos (Real.pi * (↑q : ℝ)) by rw [hq]] at h₂
+    have h₃ : Real.cos (Real.pi * (↑q : ℝ)) = (1 : ℝ) / 3 := by simpa using h₂
+    have h₄ : Real.cos (Real.pi * (↑q : ℝ)) = Real.cos (Real.pi * ↑q) := by simp
+    rw [h₄] at h₃
+    have h₅ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₃
+    have h₆ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₅
+    have h₇ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₆
+    have h₈ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₇
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₉ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₈
+    have h₁₀ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₉
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₁ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₁₀
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₂ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₁₁
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₃ : Real.cos (Real.pi * ↑q) = (1 : ℝ) / 3 := by simpa using h₁₂
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₄ : Real.cos (Real.pi * 
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 85.1747088432312 / 35.80987882614136 / 120.98458766937256
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    obtain ⟨a, ha⟩ := h
+    have h₂ := ha
+    simp [ha, mul_comm] at h₂
+    have h₃ := ha
+    simp [ha, mul_comm] at h₃
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+    have h₄ : Real.cos (Real.pi * α) = 1 / 3 := ha
+    have h₅ : Real.cos (Real.pi * a) = 1 / 3 := by simp_all
+    have h₆ : Real.cos (Real.pi * a) = 1 / 3 := by simp_all
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+    have h₇ : Real.cos (Real.pi * a) = 1 / 3 := by simp_all
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+    have h₈ : Irrational α := by
+      -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+      exact by
+        -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+        exact by
+          -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+          exact (show Irrational α by
+            -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+            simp_all [Real.cos_pi_div_two, Real.cos_pi_div_two]
+            <;>
+            -- Use the fact that cos(πα) = 1/3 to derive a contradiction if α is rational
+            exact (show Irrational α by
+              -- Use the f
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.366191387176514 / 34.40083360671997 / 55.767024993896484
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    cases' h with a ha
+    have h₂ := ha
+    simp_all [mul_comm]
+    have h₃ := Real.cos_pi_div_two
+    have h₄ := Real.cos_pi_div_two
+    have h₅ := Real.cos_pi_div_two
+    have h₆ := Real.cos_pi_div_two
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction
+    have h₇ : Real.cos (Real.pi * α) = 1 / 3 := by assumption
+    have h₈ : Real.cos (Real.pi * α) = Real.cos (Real.pi * a) := by simp_all [mul_comm]
+    have h₉ : Real.cos (Real.pi * a) = 1 / 3 := by simp_all [mul_comm]
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction
+    have h₁₀ : Real.cos (Real.pi * a) = 1 / 3 := by simp_all [mul_comm]
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction
+    have h₁₁ : Real.cos (Real.pi * a) = 1 / 3 := by simp_all [mul_comm]
+    -- Use the fact that cos(πα) = 1/3 to derive a contradiction
+    norm_num [Real.cos_pi_div_two] at h₇ h₈ h₉ h₁₀ h₁₁
+    <;> ring_nf at * <;> field_simp at * <;> nlinarith [Real.cos_le_one (Real.pi * a), Real.cos_le_one (Real.pi * α)]
+  exact h₁
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.462159395217896 / 41.642112016677856 / 71.10427141189575
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    obtain ⟨q, hq⟩ := h
+    have h₂ := ha
+    rw [hq] at h₂
+    have h₃ := Real.cos_pi_mul_int (q : ℤ)
+    norm_num at h₂ h₃
+    have h₄ : (Real.cos (Real.pi * (q : ℝ)) : ℝ) = (1 : ℝ) / 3 := by simpa [hq] using h₂
+    have h₅ : (Real.cos (Real.pi * (q : ℝ)) : ℝ) = (1 : ℝ) / 3 := by simpa [hq] using h₂
+    have h₆ : (Real.cos (Real.pi * (q : ℝ)) : ℝ) = (1 : ℝ) / 3 := by simpa [hq] using h₂
+    field_simp at h₄ h₅ h₆
+    ring_nf at h₄ h₅ h₆
+    norm_num at h₄ h₅ h₆
+    <;> norm_num [Real.cos_eq_zero_iff] at h₄ h₅ h₆ <;>
+    (try omega) <;>
+    (try
+      {
+        have h₇ : (q : ℤ) % 3 = 0 ∨ (q : ℤ) % 3 = 1 ∨ (q : ℤ) % 3 = 2 := by omega
+        rcases h₇ with (h₇ | h₇ | h₇) <;>
+        simp [h₇, pow_succ, Int.mul_emod, Int.add_emod, Int.sub_emod] at h₄ h₅ h₆ <;>
+        norm_num at h₄ h₅ h₆ <;>
+        omega
+      }) <;>
+    (try
+      {
+        have h₇ : (q : ℤ) % 4 = 0 ∨ (q : ℤ) % 4 = 1 ∨ (q : ℤ) % 4 = 2 ∨ (q : ℤ) % 4 = 3 := by omega
+        rcases h₇ with (h₇ | h₇ | h₇ | h₇) <;>
+        simp [h₇, pow_succ, Int.mul_emod, Int.add_emod, Int.sub_emod] at h₄ h₅ h₆ <;>
+        norm_num at h₄ h₅ h₆ <;>
+        omega
+      })
+  exact h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 21.847546100616455 / 33.36551022529602 / 55.213056325912476
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    obtain ⟨a, ha'⟩ := h
+    have h₂ : Real.cos (Real.pi * α) = (1 : ℝ) / 3 := ha
+    have h₃ : Real.cos (Real.pi * α) = Real.cos (Real.pi * (a : ℝ)) := by rw [ha']
+    rw [h₃] at h₂
+    have h₄ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₂
+    have h₅ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₄
+    have h₆ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₅
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₇ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₆
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₈ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₇
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₉ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₈
+    -- Normalize the expression to find a contradiction
+    norm_num [Real.cos_pi_mul_int] at h₉
+    <;> field_simp at h₉
+    <;> ring_nf at h₉
+    <;> norm_num at h₉
+    <;> linarith
+  exact h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 7.421947002410889 / 55.572922229766846 / 62.994869232177734
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    obtain ⟨a, ha'⟩ := h
+    have h₂ := ha
+    rw [ha'] at h₂
+    have h₃ := Real.cos_pi_mul_int a
+    simp at h₃
+    norm_num at h₂ h₃
+    <;> ring_nf at h₂ h₃
+    <;> nlinarith [Real.cos_sq_add_sin_sq a]
+  exact h₁
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 38.795819997787476 / 29.414541006088257 / 68.21036100387573
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1974_b3
+(α : ℝ)
+(ha : Real.cos (Real.pi * α) = (1 : ℝ)/3)
+: Irrational α := by
+  have h₁ : Irrational α := by
+    intro h
+    obtain ⟨a, ha'⟩ := h
+    have h₂ := ha
+    rw [ha'] at h₂
+    have h₃ : Real.cos (Real.pi * (a : ℝ)) = (1 : ℝ) / 3 := h₂
+    have h₄ : Real.cos (Real.pi * (a : ℝ)) = Real.cos (Real.pi * a) := by rfl
+    rw [h₄] at h₃
+    have h₅ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := h₃
+    have h₆ : Real.cos (Real.pi * a) = Real.cos (Real.pi * a) := rfl
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₇ : Real.cos (Real.pi * a) = Real.cos (Real.pi * a) := rfl
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₈ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    have h₉ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₀ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₁ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₂ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₃ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    -- Use the fact that cos(nπ) = (-1)^n for integer n
+    have h₁₄ : Real.cos (Real.pi * a) = (1 : ℝ) / 3 := by linarith
+    -- Us
+... [truncated] ...

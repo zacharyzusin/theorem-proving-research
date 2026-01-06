@@ -1,0 +1,312 @@
+Problem: problem_0157
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 1
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 66.05564141273499 / 600.172120809555 / 666.22776222229
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, true_and, and_true]
+    constructor
+    · intro h
+      have h₁ : 0 ≤ x := h.1
+      have h₂ : x ≤ Real.pi := h.2.1
+      have h₃ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₄ : x = 0 ∨ x = Real.pi := by
+        have h₅ : Real.cos x ≤ 1 := Real.cos_le_one x
+        have h₆ : Real.sin x ≤ 1 := Real.sin_le_one x
+        have h₇ : Real.cos x ≥ -1 := Real.neg_one_le_cos x
+        have h₈ : Real.sin x ≥ -1 := Real.neg_one_le_sin x
+        have h₉ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₃
+        have h₁₀ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by rw [h₃]
+        have h₁₁ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by rw [h₃]
+        have h₁₂ : x = 0 ∨ x = Real.pi := by
+          apply or_iff_not_imp_left.mpr
+          intro h₁₃
+          have h₁₄ : x ≠ 0 := h₁₃
+          have h₁₅ : Real.sin x ≠ 0 := by
+            intro h₁₆
+            have h₁₇ : x = 0 := by
+              rw [← Real.sin_zero] at h₁₆
+              have h₁₈ : Real.sin x = Real.sin 0 := by rw [h₁₆]
+     
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 68.27416968345642 / 8.506374597549438 / 76.78054428100586
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, true_and, and_true]
+    constructor
+    · intro h
+      have h₂ : 0 ≤ x := h.1
+      have h₃ : x ≤ Real.pi := h.2.1
+      have h₄ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₅ : x = 0 ∨ x = Real.pi := by
+        have h₆ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₇ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₈ : Real.cos x = 0 ∨ Real.cos x = 1 ∨ Real.cos x = -1 := by
+          apply or_iff_not_imp_left.mpr
+          intro h₉
+          apply or_iff_not_imp_left.mpr
+          intro h₁₀
+          apply eq_of_sub_eq_zero
+          apply mul_left_cancel₀ (sub_ne_zero.mpr h₉)
+          apply mul_left_cancel₀ (sub_ne_zero.mpr h₁₀)
+          have h₁₁ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+          have h₁₂ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+          simp [Real.sin_sub, Real.cos_sub, Real.sin_add, Real.cos_add, Real.sin_pi_div_two, Real.cos_pi_div_two,
+            Real.sin_pi, Real.cos_pi, R
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 56.24784255027771 / 6.5828163623809814 / 62.83065891265869
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, true_and]
+    constructor
+    · intro h
+      have h₂ : 0 ≤ x := h.1
+      have h₃ : x ≤ Real.pi := h.2.1
+      have h₄ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₅ : x = 0 ∨ x = Real.pi := by
+        have h₆ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₇ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₈ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₉ : x = 0 ∨ x = Real.pi := by
+          rw [← sub_eq_zero] at h₆
+          have h₁₀ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := by linarith
+          have h₁₁ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+          have h₁₂ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+          have h₁₃ : x = 0 ∨ x = Real.pi := by
+            apply or_iff_not_imp_left.mpr
+            intro h₁₄
+            apply mul_left_cancel₀ (sub_ne_zero.mpr h₁₄)
+            have h₁₅ :
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 33.028111696243286 / 4.808704614639282 / 37.83681631088257
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [Finset.mem_insert, Finset.mem_singleton, h₀, true_and]
+    constructor
+    · intro h
+      have h₂ : 0 ≤ x := by linarith [h.1]
+      have h₃ : x ≤ Real.pi := by linarith [h.2.1]
+      have h₄ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₅ : 0 ≤ x := by linarith [h.1]
+      have h₆ : x ≤ Real.pi := by linarith [h.2.1]
+      have h₇ : x = 0 ∨ x = Real.pi := by
+        apply or_iff_not_imp_left.mpr
+        intro h₈
+        apply mul_left_cancel₀ (sub_ne_zero.mpr h₈)
+        have h₉ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+        have h₁₀ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+        simp [Real.sin_sub_sin, Real.cos_sub_cos, mul_assoc] at h₉ h₁₀ ⊢
+        <;> ring_nf at h₉ h₁₀ ⊢ <;>
+        simp_all [Real.sin_pi_div_two, Real.cos_pi_div_two, Real.sin_pi, Real.cos_pi]
+        <;>
+        nlinarith [Real.sin_sq_add_cos_sq x, Real.sin_le_one x, Real.neg_one_le_sin x, Real.cos_le_one x, Real.neg_one_le_cos x]
+      cases h₇ with
+      | inl h₇ =>
+        simp_all
+      | inr h₇ =>
+        simp_all
+    · rintro (rfl | rfl) <;>
+      simp
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 65.22945213317871 / 4.923106908798218 / 70.15255904197693
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and, and_true]
+    constructor
+    · intro h
+      have h₁ : 0 ≤ x := h.1
+      have h₂ : x ≤ Real.pi := h.2.1
+      have h₃ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₄ : 0 ≤ x := h₁
+      have h₅ : x ≤ Real.pi := h₂
+      have h₆ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₃
+      have h₇ : x = 0 ∨ x = Real.pi := by
+        have h₇ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₃
+        have h₈ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₃
+        have h₉ : Real.cos x = 0 ∨ Real.cos x = 1 := by
+          rw [← sub_eq_zero]
+          have h₁₀ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := by linarith
+          have h₁₁ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := by linarith
+          have h₁₂ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+          have h₁₃ : Real.cos x = 0 ∨ Real.cos x = 1 := by
+            rw [Real.sin_pi_div_two, Real.cos_pi_di
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 54.395798206329346 / 6.478838205337524 / 60.87463641166687
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+    constructor
+    · intro h
+      have h₁ : 0 ≤ x := h.1
+      have h₂ : x ≤ Real.pi := h.2.1
+      have h₃ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₄ : x = 0 ∨ x = Real.pi := by
+        have h₅ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₃
+        have h₆ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+        have h₇ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+        have h₈ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+        have h₉ : x = 0 ∨ x = Real.pi := by
+          rw [← sub_eq_zero] at h₅
+          have h₁₀ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := by linarith
+          have h₁₁ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := by linarith
+          have h₁₂ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+          have h₁₃ : x = 0 ∨ x = Real.pi := by
+            ap
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 84.63987326622009 / 7.99320912361145 / 92.63308238983154
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+    constructor
+    · intro h
+      have h₂ : 0 ≤ x := h.1
+      have h₃ : x ≤ Real.pi := h.2.1
+      have h₄ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h.2.2
+      have h₅ : x = 0 ∨ x = Real.pi := by
+        have h₆ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₇ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₆
+        have h₈ : Real.cos x = 0 ∨ Real.cos x = 1 ∨ Real.cos x = -1 := by
+          have h₉ : Real.cos x = 0 ∨ Real.cos x = 1 ∨ Real.cos x = -1 := by
+            apply or_iff_not_imp_left.mpr
+            intro h₁₀
+            apply or_iff_not_imp_left.mpr
+            intro h₁₁
+            apply eq_of_sub_eq_zero
+            apply mul_left_cancel₀ (sub_ne_zero.mpr h₁₀)
+            apply mul_left_cancel₀ (sub_ne_zero.mpr h₁₁)
+            have h₁₂ : Real.cos x = 0 ∨ Real.cos x = 1 ∨ Real.cos x = -1 := by
+              have h₁₃ : Real.cos x = 0 ∨ Real.cos x = 1 ∨ Real.cos x = -1 := by
+                rw [← mul_right_inj' (two_ne_zero' ℝ)]
+                have h₁₄ : Real.cos x * 2 = 0 ∨ Real.cos x
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 60.17028450965881 / 6.261974096298218 / 66.43225860595703
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2021_p19
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x)) :
+  S.card = 2 := by
+  have h₁ : S = {0, Real.pi} := by
+    ext x
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and]
+    constructor
+    · intro h
+      have h₂ : 0 ≤ x ∧ x ≤ Real.pi ∧ Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h
+      have h₃ : x = 0 ∨ x = Real.pi := by
+        have h₄ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₂.2.2
+        have h₅ : 0 ≤ x := h₂.1
+        have h₆ : x ≤ Real.pi := h₂.2.1
+        have h₇ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₄
+        have h₈ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₇
+        have h₉ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := h₈
+        have h₁₀ : x = 0 ∨ x = Real.pi := by
+          rw [← sub_eq_zero] at h₉
+          have h₁₁ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := by linarith
+          have h₁₂ : Real.sin (Real.pi / 2 * Real.cos x) - Real.cos (Real.pi / 2 * Real.sin x) = 0 := h₁₁
+          have h₁₃ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos (Real.pi / 2 * Real.sin x) := by linarith
+          have h₁₄ : Real.sin (Real.pi / 2 * Real.cos x) = Real.cos
+... [truncated] ...

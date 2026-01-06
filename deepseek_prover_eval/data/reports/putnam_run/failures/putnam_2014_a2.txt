@@ -1,0 +1,349 @@
+Problem: putnam_2014_a2
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 17.56614351272583 / 21.93776559829712 / 39.50390911102295
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h₁ : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- For n = 1, we need to compute the determinant of the 1x1 matrix A.
+        -- Since A is a 1x1 matrix with entry 1, the determinant is 1.
+        -- This matches the given solution.
+        simp_all [Matrix.det_fin_one, putnam_2014_a2_solution]
+        <;> norm_num
+        <;> simp_all [hA]
+        <;> norm_num
+      | succ n =>
+        -- For n > 1, we use the fact that the determinant of A is 0.
+        -- This is because the matrix A has a row of zeros, making its determinant 0.
+        simp_all [Matrix.det_fin_succ, putnam_2014_a2_solution]
+        <;> norm_num
+        <;> simp_all [hA]
+        <;> norm_num
+        <;> linarith
+  exact h₁
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 35.61604428291321 / 29.29894471168518 / 64.91498899459839
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h₁ : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- For n = 1, we need to compute the determinant of a 1x1 matrix.
+        have h₁ := hA 0 0
+        have h₂ := hA 0 1
+        have h₃ := hA 1 0
+        have h₄ := hA 1 1
+        simp [Matrix.det_fin_one] at *
+        norm_num at *
+        <;> simp_all [putnam_2014_a2_solution]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_one]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_one]
+      | succ n =>
+        -- For n > 1, we use the induction hypothesis and properties of determinants.
+        simp_all [Matrix.det_succ_row_zero, Fin.sum_univ_succ, putnam_2014_a2_solution]
+        <;> field_simp [hA] at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_succ, Fin.sum_univ_succ, putnam_2014_a2_solution]
+        <;> field_simp [hA] at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_succ, Fin.sum_univ_succ, putnam_2014_a2_solution]
+        <;> field_simp [hA] at *
+        <;> norm_cast at *
+        <
+... [truncated] ...
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 28.148624897003174 / 29.411874532699585 / 57.56049942970276
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h₁ : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1) := hA
+  have h₂ : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction -- n > 0, so n ≠ 0
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- For n = 1, we need to compute the determinant of a 1x1 matrix
+        simp_all [Matrix.det_fin_one, putnam_2014_a2_solution]
+        <;> norm_num
+      | succ n =>
+        -- For n > 1, we use the induction hypothesis and properties of determinants
+        simp_all [Matrix.det_succ_row_zero, putnam_2014_a2_solution]
+        <;> field_simp [Fin.sum_univ_succ, Fin.factorial_succ, Nat.factorial_succ]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Fin.sum_univ_succ, Fin.factorial_succ, Nat.factorial_succ]
+        <;> field_simp [Fin.sum_univ_succ, Fin.factorial_succ, Nat.factorial_succ]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Fin.sum_univ_succ, Fin.factorial_succ, Nat.factorial_succ]
+        <;> field_simp [Fin.sum_univ_succ, Fin.factorial_succ, Nat.factorial_succ]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Fin.sum_univ_succ, Fin.factorial_succ, Nat.factorial_succ]
+        <;> field_simp [Fin.sum_univ_succ, Fin
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 22.468904495239258 / 29.101754426956177 / 51.570658922195435
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h1 : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction -- n > 0, so n = 0 is impossible
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- For n = 1, we need to compute the determinant of the 1x1 matrix A
+        have h2 := hA 0 0
+        have h3 := hA 0 1
+        have h4 := hA 1 0
+        have h5 := hA 1 1
+        simp [Matrix.det_fin_one] at *
+        norm_num at *
+        <;> simp_all [putnam_2014_a2_solution]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_one]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+      | succ n =>
+        -- For n > 1, we use the induction hypothesis and properties of determinants
+        simp_all [Matrix.det_succ_row_zero, putnam_2014_a2_solution]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_one]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+  exact h1
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 16.767160415649414 / 29.414981365203857 / 46.18214178085327
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h₁ : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- For n = 1, we need to compute the determinant of a 1x1 matrix
+        simp_all [Matrix.det_fin_one, putnam_2014_a2_solution]
+        <;> norm_num
+      | succ n =>
+        -- For n > 1, we use the induction hypothesis and the structure of the matrix
+        simp_all [Matrix.det_succ_row_zero, Fin.sum_univ_succ, putnam_2014_a2_solution]
+        <;> field_simp [hA]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Fin.val_zero, Fin.val_succ, Nat.succ_eq_add_one]
+        <;> field_simp [hA]
+        <;> linarith
+  exact h₁
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 22.039520502090454 / 29.98313045501709 / 52.022650957107544
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h₁ : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- Base case: n = 1
+        have h₁ := hA 0 0
+        have h₂ := hA 0 1
+        have h₃ := hA 1 0
+        have h₄ := hA 1 1
+        simp [Matrix.det_fin_one] at *
+        norm_num at *
+        <;> simp_all [putnam_2014_a2_solution]
+        <;> field_simp at *
+        <;> ring_nf at *
+        <;> norm_cast at *
+        <;> simp_all [Matrix.det_fin_one]
+      | succ n =>
+        -- Inductive step
+        simp_all [Matrix.det_succ_row_zero, Fin.sum_univ_succ, putnam_2014_a2_solution]
+        <;> field_simp [hA]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Matrix.det_fin_succ]
+        <;> field_simp [hA]
+        <;> ring_nf
+        <;> norm_cast
+        <;> simp_all [Matrix.det_fin_succ]
+        <;> field_simp [hA]
+        <;> ring_nf
+        <;> norm_cast
+  exact h₁
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 18.06610107421875 / 29.310049772262573 / 47.37615084648132
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h₁ : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- For n = 1, we need to compute the determinant of a 1x1 matrix
+        simp_all [Matrix.det_fin_one, putnam_2014_a2_solution]
+        <;> norm_num
+        <;> ext i j
+        <;> fin_cases i <;> fin_cases j <;> simp [hA, min_eq_left, min_eq_right]
+        <;> norm_num
+        <;> rfl
+      | succ n =>
+        -- For n > 1, we use the induction hypothesis and properties of determinants
+        simp_all [Matrix.det_succ_row_zero, putnam_2014_a2_solution]
+        <;> norm_num
+        <;> ext i j
+        <;> fin_cases i <;> fin_cases j <;> simp [hA, min_eq_left, min_eq_right]
+        <;> norm_num
+        <;> rfl
+  exact h₁
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.388657093048096 / 29.079046726226807 / 46.4677038192749
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2014_a2
+(n : ℕ)
+(A : Matrix (Fin n) (Fin n) ℝ)
+(npos : n > 0)
+(hA : ∀ i j : Fin n, A i j = 1 / min (i.1 + 1 : ℚ) (j.1 + 1))
+: A.det = putnam_2014_a2_solution n := by
+  have h1 : A.det = putnam_2014_a2_solution n := by
+    induction n with
+    | zero => contradiction -- n > 0, so n ≠ 0
+    | succ n ih =>
+      cases n with
+      | zero =>
+        -- Base case: n = 1
+        have h₁ := hA 0 0
+        have h₂ := hA 0 1
+        have h₃ := hA 1 0
+        have h₄ := hA 1 1
+        simp [Matrix.det_fin_two] at *
+        norm_num at *
+        <;> simp_all [putnam_2014_a2_solution]
+        <;> norm_num
+        <;> field_simp at *
+        <;> linarith
+      | succ n =>
+        -- Inductive step
+        simp_all [Matrix.det_succ_row_zero, putnam_2014_a2_solution]
+        <;> field_simp at *
+        <;> norm_cast at *
+        <;> linarith
+  
+  exact h1

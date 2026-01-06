@@ -1,0 +1,24 @@
+Problem: problem_0371
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.485880613327026
+Lean check time (s): 3.28505539894104
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_536 :
+  ↑3! * ((2 : ℝ)^3 + Real.sqrt 9) / 2 = (33 : ℝ) := by
+  have h₁ : Real.sqrt 9 = 3 := by
+    rw [Real.sqrt_eq_iff_mul_self_eq] <;> norm_num
+  simp_all [factorial]
+  <;> ring_nf
+  <;> norm_num
+  <;> field_simp
+  <;> ring_nf
+  <;> norm_num
+  <;> nlinarith [Real.sq_sqrt (show (0 : ℝ) ≤ 9 by norm_num)]

@@ -1,0 +1,195 @@
+Problem: problem_0165
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 14.517345666885376 / 4.21536111831665 / 18.732706785202026
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  have h : ∀ n : ℕ, 11 ∣ (10^n - (-1 : ℤ)^n) := by
+    intro n
+    apply Int.dvd_of_emod_eq_zero
+    have h₁ : (10^n - (-1 : ℤ)^n) % 11 = 0 := by
+      induction n with
+      | zero => simp
+      | succ n ih =>
+        simp [pow_succ, Int.mul_emod, Int.sub_emod, Int.emod_emod] at ih ⊢
+        have : (-1 : ℤ) ^ (n + 1) = if n % 2 = 0 then 1 else -1 := by
+          split_ifs with h
+          · simp [h, pow_add, pow_mul, pow_one, Int.mul_emod, Int.emod_emod]
+          · simp [h, pow_add, pow_mul, pow_one, Int.mul_emod, Int.emod_emod]
+        simp [this, Int.emod_emod] at ih ⊢
+        <;> omega
+    exact h₁
+  exact h n
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 12.232123374938965 / 3.534017562866211 / 15.766140937805176
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  apply Int.dvd_of_emod_eq_zero
+  have h : (10^n - (-1 : ℤ)^n) % 11 = 0 := by
+    induction n with
+    | zero => norm_num
+    | succ n ih =>
+      simp [pow_succ, Int.mul_emod, Int.sub_emod, Int.emod_emod] at ih ⊢
+      have : (-1 : ℤ) ^ (n + 1) = if n % 2 = 0 then 1 else -1 := by
+        split_ifs <;> simp [*, pow_add, pow_mul, Int.mul_emod, Int.pow_succ] at * <;>
+        omega
+      rcases Nat.mod_two_eq_zero_or_one n with (h | h) <;> simp [h, Int.sub_emod, Int.mul_emod] at ih ⊢ <;>
+      omega
+  exact h
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 19.1955406665802 / 4.204870223999023 / 23.400410890579224
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  induction' n with n hn
+  · norm_num -- Base case: when n = 0, 10^0 - (-1)^0 = 1 - 1 = 0, which is divisible by 11.
+  · cases' n with n
+    · norm_num -- Base case: when n = 1, 10^1 - (-1)^1 = 10 - (-1) = 11, which is divisible by 11.
+    · simp_all [pow_add, pow_mul, Int.emod_eq_of_lt]
+      -- Inductive step: Assume 11 divides 10^n - (-1)^n, i.e., 10^n - (-1)^n = 11k for some integer k.
+      -- We need to show that 11 divides 10^(n+1) - (-1)^(n+1).
+      -- 10^(n+1) - (-1)^(n+1) = 10 * 10^n - (-1) * (-1)^n = 10 * 10^n + (-1)^n.
+      -- Using the induction hypothesis, 10^n - (-1)^n = 11k, so 10^n = 11k + (-1)^n.
+      -- Substituting, we get 10^(n+1) - (-1)^(n+1) = 10 * (11k + (-1)^n) + (-1)^n = 110k + 9(-1)^n.
+      -- This simplifies to 11(10k + 9 * (-1)^n / 11), which is divisible by 11.
+      omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 4.3978071212768555 / 4.097158908843994 / 8.49496603012085
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  induction n with
+  | zero =>
+    norm_num
+  | succ n ih =>
+    simp only [pow_succ, Int.emod_eq_of_lt] at ih ⊢
+    omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 6.356170415878296 / 3.960092782974243 / 10.316263198852539
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  induction n with
+  | zero =>
+    norm_num
+  | succ n ih =>
+    simp only [pow_succ, Int.emod_eq_of_lt] at ih ⊢
+    -- Use the fact that 10^n - (-1)^n is divisible by 11 to show the same for 10^(n+1) - (-1)^(n+1)
+    omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 4.356281757354736 / 4.119968891143799 / 8.476250648498535
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  induction n with
+  | zero =>
+    norm_num
+  | succ n ih =>
+    simp [pow_succ, Int.emod_eq_of_lt] at ih ⊢
+    omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 4.645420789718628 / 4.158746004104614 / 8.804166793823242
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  induction' n with n ih
+  · norm_num
+  · cases' n with n
+    · norm_num
+    · simp [pow_succ, Int.emod_eq_of_lt] at ih ⊢
+      omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 11.211539506912231 / 4.620538234710693 / 15.832077741622925
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem induction_11div10tonmn1ton
+  (n : ℕ) :
+  11 ∣ (10^n - (-1 : ℤ)^n) := by
+  induction n with
+  | zero => norm_num
+  | succ n ih =>
+    cases' Nat.even_or_odd n with h h
+    · -- Case: n is even
+      simp_all [pow_add, pow_mul, Int.emod_eq_of_lt, Int.emod_eq_of_lt, Int.emod_eq_of_lt,
+        Int.emod_eq_of_lt, Nat.even_iff, Nat.odd_iff]
+      <;> omega
+    · -- Case: n is odd
+      simp_all [pow_add, pow_mul, Int.emod_eq_of_lt, Int.emod_eq_of_lt, Int.emod_eq_of_lt,
+        Int.emod_eq_of_lt, Nat.even_iff, Nat.odd_iff]
+      <;> omega
+

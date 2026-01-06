@@ -1,0 +1,174 @@
+Problem: putnam_1963_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 18.4460711479187 / 26.343368768692017 / 44.78943991661072
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 13.89383864402771 / 22.384524822235107 / 36.27836346626282
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 17.641584634780884 / 14.963195562362671 / 32.604780197143555
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 14.149191617965698 / 13.65779423713684 / 27.80698585510254
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 17.46018385887146 / 17.5728976726532 / 35.03308153152466
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.875352621078491 / 15.949727535247803 / 29.825080156326294
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 17.406640768051147 / 14.343381643295288 / 31.750022411346436
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 17.418413162231445 / 13.017128229141235 / 30.43554139137268
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1963_a3
+    (P : ℕ → (ℝ → ℝ) → (ℝ → ℝ))
+    (hP : P 0 = id ∧ ∀ i y, P (i + 1) y = P i (fun x ↦ x * deriv y x - i * y x))
+    (n : ℕ)
+    (hn : 0 < n)
+    (f y : ℝ → ℝ)
+    (hf : ContinuousOn f (Ici 1))
+    (hy : ContDiffOn ℝ n y (Ici 1)) :
+    (∀ i < n, deriv^[i] y 1 = 0) ∧ (Ici 1).EqOn (P n y) f ↔
+    ∀ x ≥ 1, y x = ∫ t in (1 : ℝ)..x, putnam_1963_a3_solution f n x t :=
+  sorry

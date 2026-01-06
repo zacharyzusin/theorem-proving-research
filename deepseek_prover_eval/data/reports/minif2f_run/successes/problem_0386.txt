@@ -1,0 +1,21 @@
+Problem: problem_0386
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.849771022796631
+Lean check time (s): 2.5522632598876953
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_458
+  (n : ℕ)
+  (h₀ : n % 8 = 7) :
+  n % 4 = 3 := by
+  have h₁ := h₀
+  rw [← Nat.mod_add_div n 8]
+  simp [h₁, Nat.mul_mod, Nat.add_mod, Nat.mod_eq_of_lt]
+  <;> omega

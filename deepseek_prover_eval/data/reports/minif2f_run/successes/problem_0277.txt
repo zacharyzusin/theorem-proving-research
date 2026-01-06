@@ -1,0 +1,24 @@
+Problem: problem_0277
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 7.19408392906189
+Lean check time (s): 3.6774237155914307
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem amc12a_2009_p5
+  (x : ℝ)
+  (h₀ : x^3 - (x + 1) * (x - 1) * x = 5) :
+  x^3 = 125 := by
+  have h₁ : x^3 - (x^2 - 1) * x = 5 := by linarith
+  have h₂ : x^3 - x^3 + x = 5 := by linarith
+  have h₃ : x = 5 := by linarith
+  have h₄ : x^3 = 125 := by
+    rw [h₃]
+    norm_num
+  exact h₄

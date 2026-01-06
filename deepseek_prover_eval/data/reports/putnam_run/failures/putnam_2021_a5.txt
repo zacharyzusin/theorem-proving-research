@@ -1,0 +1,324 @@
+Problem: putnam_2021_a5
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 10.379679203033447 / 7.780779838562012 / 18.16045904159546
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all [putnam_2021_a5_solution]
+  <;>
+  norm_num
+  <;>
+  apply Iff.intro
+  <;>
+  intro h
+  <;>
+  simp_all [Finset.sum_eq_zero]
+  <;>
+  norm_num
+  <;>
+  omega
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 15.540895462036133 / 7.558784246444702 / 23.099679708480835
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all only [putnam_2021_a5_solution, Set.mem_setOf_eq, Nat.dvd_iff_mod_eq_zero]
+  have h₁ : A = Finset.filter (fun n => Nat.gcd n 2021 = 1) (Finset.Icc 1 2021) := by
+    ext n
+    simp [hA]
+    <;> aesop
+  rw [h₁] at hS ⊢
+  simp_all [Finset.sum_filter, Finset.sum_range_succ, Nat.pow_mod, Nat.gcd_eq_right]
+  <;>
+  rcases j with (_ | _ | j) <;>
+  simp [Nat.pow_mod, Nat.gcd_eq_right, Nat.mod_eq_of_lt] at * <;>
+  omega
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 30.85912799835205 / 7.987039804458618 / 38.84616780281067
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all [putnam_2021_a5_solution]
+  <;>
+  apply Iff.intro
+  <;>
+  intro h
+  <;>
+  norm_num at h
+  <;>
+  norm_num [hA, hS] at h ⊢
+  <;>
+  (try decide)
+  <;>
+  (try omega)
+  <;>
+  (try
+    {
+      have h₁ : S j % 2021 = 0 := by omega
+      have h₂ : j ≤ 6 := by
+        contrapose! h₁
+        have h₃ : S j % 2021 ≠ 0 := by
+          -- We use the fact that the sum of powers of n modulo 2021 is non-zero for j > 6
+          -- This is a detailed check that is not shown here
+          rcases j with (_ | _ | _ | _ | _ | _ | _ | j) <;>
+            norm_num [hS, hA, Finset.sum_range_succ, Nat.gcd_eq_right, Nat.gcd_eq_left] at h₁ ⊢ <;>
+            omega
+        omega
+      interval_cases j <;> norm_num [hS, hA, Finset.sum_range_succ, Nat.gcd_eq_right, Nat.gcd_eq_left] at h ⊢ <;>
+        omega
+    })
+  <;>
+  (try
+    {
+      have h₁ : j ≤ 6 := by
+        contrapose! h
+        have h₂ : S j % 2021 ≠ 0 := by
+          -- We use the fact that the sum of powers of n modulo 2021 is non-zero for j > 6
+          -- This is a detailed check that is not shown here
+          rcases j with (_ | _ | _ | _ | _ | _ | _ | j) <;>
+            norm_num [hS, hA, Finset.sum_range_succ, Nat.gcd_eq_right, Nat.gcd_eq
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 15.784757137298584 / 8.293924808502197 / 24.07868194580078
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all only [putnam_2021_a5_solution, Set.mem_setOf_eq, Nat.dvd_iff_mod_eq_zero]
+  have h₁ : A = Finset.filter (fun n => Nat.gcd n 2021 = 1) (Finset.Icc 1 2021) := by
+    ext n
+    simp [hA]
+    <;> aesop
+  rw [h₁] at hS ⊢
+  simp_all [Finset.sum_filter, Finset.sum_range_succ, Nat.pow_mod, Nat.gcd_eq_right]
+  <;> norm_num
+  <;> rfl
+  <;> simp_all [Finset.sum_range_succ, Nat.pow_mod, Nat.gcd_eq_right]
+  <;> norm_num
+  <;> rfl
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 23.14198660850525 / 8.63640022277832 / 31.77838683128357
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp only [putnam_2021_a5_solution, Set.mem_setOf_eq]
+  apply Iff.intro
+  · intro h
+    have h₁ : S j % 2021 = 0 := by
+      exact Nat.mod_eq_zero_of_dvd h
+    have h₂ : j ≠ 0 := by
+      intro hj
+      rw [hj] at h₁
+      have h₃ : S 0 = ∑ n ∈ A, 1 := by
+        simp_all [hS, Finset.sum_const]
+      simp_all [hA, Finset.sum_filter, Finset.sum_range_succ, Nat.gcd_eq_right]
+      <;> omega
+    exact by
+      cases j with
+      | zero => contradiction
+      | succ j' =>
+        simp_all [Nat.mod_eq_of_lt]
+        <;> omega
+  · intro h
+    have h₁ : j ≠ 0 := by
+      intro hj
+      simp_all [putnam_2021_a5_solution]
+      <;> omega
+    have h₂ : S j % 2021 = 0 := by
+      simp_all [hS, Finset.sum_const, Nat.mod_eq_zero_of_dvd]
+      <;>
+      rcases j with (_ | _) <;>
+      simp_all [Finset.sum_filter, Finset.sum_range_succ, Nat.gcd_eq_right]
+      <;>
+      omega
+    exact Nat.dvd_of_mod_eq_zero h₂
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 46.89809060096741 / 7.298931360244751 / 54.19702196121216
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all only [putnam_2021_a5_solution, Set.mem_setOf_eq, Nat.dvd_iff_mod_eq_zero]
+  have h₁ : A = Finset.filter (fun n => Nat.gcd n 2021 = 1) (Finset.Icc 1 2021) := by
+    ext n
+    simp [hA]
+    <;> aesop
+  rw [h₁]
+  have h₂ : ∀ j : ℕ, S j = ∑ n ∈ Finset.filter (fun n => Nat.gcd n 2021 = 1) (Finset.Icc 1 2021), n ^ j := by
+    intro j
+    simp [hS]
+  have h₃ : 2021 ∣ S j ↔ j ∈ {j : ℕ | ¬(42 ∣ j) ∧ ¬(46 ∣ j)} := by
+    constructor
+    · intro h
+      have h₄ : S j % 2021 = 0 := by omega
+      have h₅ : j % 42 ≠ 0 := by
+        intro h₅
+        have h₆ : 42 ∣ j := by omega
+        have h₇ : S j % 2021 = 0 := by omega
+        have h₈ : 42 ∣ S j := by
+          omega
+        have h₉ : 42 ∣ 2021 := by
+          norm_num
+        have h₁₀ : 42 ∣ 2021 := by
+          norm_num
+        omega
+      have h₆ : j % 46 ≠ 0 := by
+        intro h₆
+        have h₇ : 46 ∣ j := by omega
+        have h₈ : S j % 2021 = 0 := by omega
+        have h₉ : 46 ∣ S j := by
+          omega
+        have h₁₀ : 46 ∣ 2021 := by
+          norm_num
+        omega
+      exact ⟨h₅, h₆⟩
+    · intro h
+      have h₄ : j % 42 ≠ 0 := h.1
+      have h₅ : j % 46 ≠ 0 := h.2
+      have h₆ : S j % 2021 = 0 := by
+        have h₇ : S
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 21.277411699295044 / 7.659384250640869 / 28.936795949935913
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all only [putnam_2021_a5_solution, Set.mem_setOf_eq, Set.mem_setOf_eq]
+  constructor
+  -- Forward direction: If 2021 divides S(j), then j is in the solution set.
+  intro h
+  -- Use properties of Euler's totient function and modular arithmetic to show j must be in the solution set.
+  have h₁ : j ≡ 1 [MOD 2021] := by
+    -- Use the fact that 2021 is a prime number and the properties of the sum S(j).
+    rw [Nat.ModEq]
+    norm_num
+    <;>
+    exact?
+  simp_all [Nat.ModEq, Nat.mod_eq_of_lt]
+  <;>
+  omega
+  -- Reverse direction: If j is in the solution set, then 2021 divides S(j).
+  intro h
+  -- Use properties of Euler's totient function and modular arithmetic to show 2021 divides S(j).
+  have h₁ : j ≡ 1 [MOD 2021] := by
+    -- Use the fact that 2021 is a prime number and the properties of the sum S(j).
+    rw [Nat.ModEq]
+    norm_num
+    <;>
+    exact?
+  simp_all [Nat.ModEq, Nat.mod_eq_of_lt]
+  <;>
+  omega
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 9.651630640029907 / 7.756274223327637 / 17.407904863357544
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a5
+  (j : ℕ)
+  (A : Finset ℕ)
+  (S : ℕ → ℕ)
+  (hA : A = {n | 1 ≤ n ∧ n ≤ 2021 ∧ Nat.gcd n 2021 = 1})
+  (hS : ∀ j' : ℕ, S j' = ∑ n ∈ A, n ^ j') :
+  (2021 ∣ S j) ↔ j ∈ putnam_2021_a5_solution := by
+  simp_all [putnam_2021_a5_solution, Nat.dvd_iff_mod_eq_zero]
+  <;>
+  rfl
+  <;>
+  norm_num
+  <;>
+  apply Eq.refl
+  <;>
+  rfl

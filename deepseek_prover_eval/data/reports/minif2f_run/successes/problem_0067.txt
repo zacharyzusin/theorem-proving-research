@@ -1,0 +1,31 @@
+Problem: problem_0067
+Dataset: minif2f
+Mode: noncot
+First success attempt: 2
+Generation time (s): 11.288077116012573
+Lean check time (s): 4.042268991470337
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_215
+  (S : Finset ℝ)
+  (h₀ : ∀ (x : ℝ), x ∈ S ↔ (x + 3)^2 = 121) :
+  ∑ k in S, k = -6 := by
+  have h₁ : S = {-14, 8} := by
+    ext x
+    simp only [h₀, Finset.mem_insert, Finset.mem_singleton, true_and, eq_self_iff_true, and_true]
+    constructor
+    · intro h
+      apply or_iff_not_imp_left.mpr
+      intro hx
+      apply mul_left_cancel₀ (sub_ne_zero.mpr hx)
+      nlinarith
+    · rintro (rfl | rfl) <;> norm_num
+  rw [h₁]
+  norm_num
+  <;> rfl
+  <;> rfl

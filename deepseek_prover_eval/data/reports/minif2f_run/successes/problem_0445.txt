@@ -1,0 +1,30 @@
+Problem: problem_0445
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 10.05466365814209
+Lean check time (s): 4.5362818241119385
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_algebra_89
+  (b : ℝ)
+  (h₀ : b ≠ 0) :
+  (7 * b^3)^2 * (4 * b^2)^(-(3 : ℤ)) = 49/64 := by
+  norm_cast
+  field_simp [h₀, pow_mul, mul_pow, zpow_ofNat, zpow_neg, zpow_mul]
+  ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, pow_mul, mul_pow]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, pow_mul, mul_pow]
+  <;> ring_nf
+  <;> norm_cast
+  <;> field_simp [h₀, pow_mul, mul_pow]
+  <;> ring_nf
+  <;> norm_cast

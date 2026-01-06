@@ -1,0 +1,288 @@
+Problem: problem_0334
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 33.98674440383911 / 4.569078207015991 / 38.5558226108551
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₃]
+    have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₅]
+      have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₁₀ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                cases n with
+                | zero => simp_all
+                | succ n =>
+                  rw [show ∑ k in Finset.Icc 1 (n + 1), (k * Nat.choose (n + 1) k) = (n + 1) * 2^n by
+                    rw [Nat.sum_Icc_choose]
+                    <;> simp [Nat.choose_succ_succ, pow_succ, mul_add, mul_comm, mul_left_comm]
+... [truncated] ...
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 29.25056004524231 / 4.265536069869995 / 33.516096115112305
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₄]
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+          have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            cases n with
+            | zero => simp_all
+            | succ n =>
+              rw [show ∑ k in Finset.Icc 1 (n + 1), (k * Nat.choose (n + 1) k) = ∑ k in Finset.Icc 1 (n + 1), (k * Nat.choose (n + 1) k) by rfl]
+              rw [Nat.sum_Icc_choose]
+              <;> simp [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, pow_succ, mul_add, mul_comm, mul_left_comm]
+              <;> ring
+              <;> omega
+          exact h₈
+        exact h₆
+      exact h₅
+    exact h₃
+  exact h₁
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 32.2709219455719 / 4.261647701263428 / 36.53256964683533
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₃]
+    have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₅]
+      have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₁₀ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                cases n with
+                | zero => contradiction
+                | succ n =>
+                  rw [show ∑ k in Finset.Icc 1 (n + 1), (k * Nat.choose (n + 1) k) = (n + 1) * 2^n by
+                    rw [Nat.sum_Icc_choose]
+                    <;> simp [Nat.choose_succ_succ, pow_succ]]
+                  <;> simp 
+... [truncated] ...
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 35.16578483581543 / 4.200230598449707 / 39.36601543426514
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₄]
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+        rw [h₆]
+        have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₈ : ∀ n : ℕ, ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            intro n
+            have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+            rw [h₉]
+            have h₁₀ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₁₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                induction' n with n ih
+                · simp
+                · cases n with
+                  | zero => simp [Finset.sum_Icc_succ_top]
+    
+... [truncated] ...
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 29.691660165786743 / 3.705745220184326 / 33.39740538597107
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₄]
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                cases n with
+                | zero => contradiction
+                | succ n =>
+                  clear h₀
+                  induction' n with n ih
+                  all_goals simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, mul_add, mul_one, Nat.pow_succ]
+                  all_goals ring_nf at *
+                  all_goals simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, mul_add, mul_one, Nat.pow_succ]
+                 
+... [truncated] ...
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 31.395963430404663 / 3.440497875213623 / 34.836461305618286
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₄]
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                cases n with
+                | zero => simp_all
+                | succ n =>
+                  rw [show ∑ k in Finset.Icc 1 (n + 1), (k * Nat.choose (n + 1) k) = (n + 1) * 2^n by
+                    rw [Nat.sum_Icc_choose]
+                    <;> simp [Nat.choose_succ_succ, Nat.pow_succ]]
+                  <;> simp [Nat.mul_comm, Nat.mul_assoc, Nat.mul_left_comm]
+                  <;> ring
+                  <;> simp [Nat.mul_comm, Nat.mul
+... [truncated] ...
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 38.38951015472412 / 3.4281868934631348 / 41.817697048187256
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₄]
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+        rw [h₆]
+        have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₁₀ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                cases n with
+                | zero => simp_all
+                | succ n =>
+                  rw [show ∑ k in Finset.Icc 1 (n + 1), (k * Nat.choose (n + 1) k) = (n + 1) * 2^n by
+                    rw [Finset.sum_Icc_succ_top (by norm_num : 1 ≤ n + 1)]
+                    simp [Nat.choose_succ_succ, mul_add,
+... [truncated] ...
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 32.86938142776489 / 3.6449100971221924 / 36.514291524887085
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem numbertheory_sumkmulnckeqnmul2pownm1
+  (n : ℕ)
+  (h₀ : 0 < n) :
+  ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+  have h₁ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+    have h₂ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+    rw [h₂]
+    have h₃ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+      have h₄ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+      rw [h₄]
+      have h₅ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+        have h₆ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) := rfl
+        rw [h₆]
+        have h₇ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+          have h₈ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+            have h₉ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+              have h₁₀ : ∑ k in Finset.Icc 1 n, (k * Nat.choose n k) = n * 2^(n - 1) := by
+                cases n with
+                | zero => contradiction
+                | succ n =>
+                  clear h₀
+                  induction' n with n ih
+                  all_goals simp_all [Finset.sum_Icc_succ_top, Nat.choose_succ_succ, Nat.pow_succ, Nat.mul_sub_left_distrib]
+                  all_goals ring_nf
+... [truncated] ...

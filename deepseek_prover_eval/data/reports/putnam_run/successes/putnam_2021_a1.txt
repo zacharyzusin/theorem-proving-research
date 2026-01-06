@@ -1,0 +1,20 @@
+Problem: putnam_2021_a1
+Dataset: putnam
+Mode: noncot
+First success attempt: 0
+Generation time (s): 30.280210494995117
+Lean check time (s): 8.118028163909912
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_2021_a1
+    (P : List (ℤ × ℤ) → Prop)
+    (P_def : ∀ l, P l ↔ l.Chain' fun p q ↦ (p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2 = 25) :
+    IsLeast
+      {k | ∃ l, P ((0, 0) :: l) ∧ l.getLast! = (2021, 2021) ∧ l.length = k}
+      putnam_2021_a1_solution :=
+  sorry

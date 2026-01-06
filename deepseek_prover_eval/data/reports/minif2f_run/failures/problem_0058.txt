@@ -1,0 +1,236 @@
+Problem: problem_0058
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 16.021003007888794 / 4.404224157333374 / 20.425227165222168
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 1
+  have h₇ := h₀ 2 2
+  have h₈ := h₀ 3 3
+  have h₉ := h₀ 1981 1
+  have h₁₀ := h₀ 1981 2
+  have h₁₁ := h₀ 1981 3
+  have h₁₂ := h₀ 1981 9999
+  simp at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 14.608927249908447 / 3.705456495285034 / 18.31438374519348
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 1
+  have h₇ := h₀ 1 3
+  have h₈ := h₀ 3 1
+  have h₉ := h₀ 2 2
+  have h₁₀ := h₀ 1 9998
+  have h₁₁ := h₀ 9998 1
+  simp at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁
+  omega
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 14.452630758285522 / 4.40002965927124 / 18.852660417556763
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 3
+  have h₇ := h₀ 3 3
+  have h₈ := h₀ 1982 1
+  have h₉ := h₀ 1982 2
+  have h₁₀ := h₀ 1982 3
+  have h₁₁ := h₀ 1982 9999
+  simp at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁
+  omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 13.202768087387085 / 3.562023639678955 / 16.76479172706604
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 3
+  have h₇ := h₀ 3 3
+  have h₈ := h₀ 1981 1
+  have h₉ := h₀ 1980 1
+  have h₁₀ := h₀ 1979 1
+  simp at h₄ h₅ h₆ h₇ h₈ h₉
+  omega
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.188706398010254 / 4.558971643447876 / 26.74767804145813
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 1
+  have h₇ := h₀ 2 2
+  have h₈ := h₀ 3 1
+  have h₉ := h₀ 3 2
+  have h₁₀ := h₀ 3 3
+  have h₁₁ := h₀ 1982 1982
+  have h₁₂ := h₀ 1982 0
+  have h₁₃ := h₀ 0 1982
+  have h₁₄ := h₀ 0 0
+  have h₁₅ := h₀ 1982 1
+  have h₁₆ := h₀ 1 9999
+  have h₁₇ := h₀ 9999 1
+  have h₁₈ := h₀ 9999 9999
+  simp at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁ h₁₂ h₁₃ h₁₄ h₁₅ h₁₆ h₁₇ h₁₈
+  omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 15.993592023849487 / 4.305359840393066 / 20.298951864242554
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 1
+  have h₇ := h₀ 1 3
+  have h₈ := h₀ 3 1
+  have h₉ := h₀ 2 2
+  have h₁₀ := h₀ 1 9998
+  have h₁₁ := h₀ 9998 1
+  simp at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁
+  norm_num at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀ h₁₁
+  omega
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 13.767818450927734 / 3.3860929012298584 / 17.153911352157593
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 3
+  have h₇ := h₀ 3 3
+  have h₈ := h₀ 1982 1982
+  have h₉ := h₀ 0 1982
+  have h₁₀ := h₀ 1982 0
+  simp at h₄ h₅ h₆ h₇ h₈ h₉ h₁₀
+  omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 13.38920259475708 / 3.4581918716430664 / 16.847394466400146
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_1982_p1
+  (f : ℕ → ℕ)
+  (h₀ : ∀ m n, (0 < m ∧ 0 < n) → f (m + n) - f m - f n = 0 ∨ f (m + n) - f m - f n = 1)
+  (h₁ : f 2 = 0)
+  (h₂ : 0 < f 3)
+  (h₃ : f 9999 = 3333) :
+  f 1982 = 660 := by
+  have h₄ := h₀ 1 1
+  have h₅ := h₀ 1 2
+  have h₆ := h₀ 2 3
+  have h₇ := h₀ 3 3
+  have h₈ := h₀ 1981 1
+  have h₉ := h₀ 1980 1
+  have h₁₀ := h₀ 1979 1
+  simp at h₄ h₅ h₆ h₇ h₈ h₉
+  omega
+

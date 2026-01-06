@@ -1,0 +1,20 @@
+Problem: problem_0045
+Dataset: minif2f
+Mode: noncot
+First success attempt: 0
+Generation time (s): 4.20555567741394
+Lean check time (s): 3.607320547103882
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem mathd_numbertheory_328 :
+  (5^999999) % 7 = 6 := by
+  norm_num [Nat.mod_eq_of_lt, show 5 < 7 by norm_num, show 0 < 7 by norm_num]
+  <;> rfl
+  <;> decide
+  <;> decide
+  <;> decide

@@ -1,0 +1,142 @@
+Problem: putnam_1972_a3
+Dataset: putnam
+Mode: noncot
+Attempts: 8
+Timeout attempts: 0
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 70.83046555519104 / 4.281721591949463 / 75.1121871471405
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 19.526829481124878 / 4.283092260360718 / 23.809921741485596
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 13.49372410774231 / 4.256602764129639 / 17.75032687187195
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 55.32007956504822 / 4.262967348098755 / 59.58304691314697
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 22.043410778045654 / 4.258246898651123 / 26.301657676696777
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 13.966898202896118 / 4.2503862380981445 / 18.217284440994263
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 59.88922357559204 / 4.266588926315308 / 64.15581250190735
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 55.80588436126709 / 4.2577574253082275 / 60.06364178657532
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1972_a3
+    (climit_exists : (ℕ → ℝ) → Prop)
+    (supercontinuous : (ℝ → ℝ) → Prop)
+    (hclimit_exists : ∀ x, climit_exists x ↔ ∃ C : ℝ, Tendsto (fun n => (∑ i ∈ Finset.range n, (x i))/(n : ℝ)) atTop (𝓝 C))
+    (hsupercontinuous : ∀ f, supercontinuous f ↔ ∀ (x : ℕ → ℝ), (∀ i : ℕ, x i ∈ Icc 0 1) → climit_exists x → climit_exists (fun i => f (x i))) :
+    {f | supercontinuous f} = putnam_1972_a3_solution :=
+  sorry

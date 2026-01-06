@@ -1,0 +1,26 @@
+Problem: putnam_1990_b3
+Dataset: putnam
+Mode: noncot
+First success attempt: 2
+Generation time (s): 10.465368509292603
+Lean check time (s): 21.920316457748413
+
+==== Final Lean Code ====
+import Mathlib
+
+open Real Nat Topology MeasureTheory
+open scoped BigOperators
+
+theorem putnam_1990_b3
+(S : Set (Matrix (Fin 2) (Fin 2) ℕ))
+(hS : ∀ A ∈ S, ∀ i j : Fin 2, (∃ x : ℤ, A i j = x ^ 2) ∧ A i j ≤ 200)
+: (S.encard > 50387) → (∃ A ∈ S, ∃ B ∈ S, A ≠ B ∧ A * B = B * A) := by
+  intro h
+  have h₁ := hS
+  have h₂ := h
+  -- Use the fact that the number of possible matrices is limited by the constraints on the entries.
+  -- This is a combinatorial argument to show that if S has more than 50387 elements, then it must contain duplicates or non-commuting pairs.
+  apply?
+  <;> simp_all [hS, h]
+  <;> norm_num
+  <;> aesop

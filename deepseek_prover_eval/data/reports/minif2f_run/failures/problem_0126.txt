@@ -1,0 +1,332 @@
+Problem: problem_0126
+Dataset: minif2f
+Mode: noncot
+Attempts: 8
+Timeout attempts: 8
+Successful attempts: 0
+
+--- Attempt 0 ---
+Success: False
+Times (gen/lean/total): 21.73083996772766 / 600.1456000804901 / 621.8764400482178
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * b + c * d > 1 := by
+    nlinarith [mul_pos h₅ h₆, mul_pos h₇ h₈]
+  intro h₁₀
+  have h₁₁ := h₁₀.eq_one_or_self_of_dvd 2
+  have h₁₂ : 2 ∣ a * b + c * d := by
+    have h₁₃ : a * b + c * d ≠ 0 := by nlinarith
+    have h₁₄ : 2 ∣ a * b + c * d := by
+      rw [Nat.dvd_iff_mod_eq_zero]
+      have h₁₅ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+      have h₁₆ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+      rcases h₁₅ with (h₁₅ | h₁₅) <;> rcases h₁₆ with (h₁₆ | h₁₆) <;> simp [h₁₅, h₁₆, Nat.add_mod, Nat.mul_mod] at * <;> omega
+    exact h₁₄
+  omega
+
+
+--- Attempt 1 ---
+Success: False
+Times (gen/lean/total): 28.386398792266846 / 600.1245377063751 / 628.510936498642
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  rcases h₀ with ⟨ha, hb, hc, hd⟩
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := h₄
+  have h₁₀ : a * b + c * d = a * b + c * d := rfl
+  have h₁₁ : a * b + c * d > 1 := by
+    nlinarith [mul_pos ha hb, mul_pos hc hd]
+  have h₁₂ : ¬ Nat.Prime (a * b + c * d) := by
+    intro h
+    have h₁₃ := h.eq_one_or_self_of_dvd 2
+    have h₁₄ : 2 ∣ a * b + c * d := by
+      have h₁₅ : a * b + c * d > 1 := by nlinarith [mul_pos ha hb, mul_pos hc hd]
+      have h₁₆ : a * b + c * d ≠ 0 := by linarith
+      have h₁₇ : a * b + c * d ≠ 1 := by linarith
+      have h₁₈ : 2 ∣ a * b + c * d := by
+        apply Nat.dvd_of_mod_eq_zero
+        have h₁₉ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+        have h₂₀ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+        rcases h₁₉ with (h₁₉ | h₁₉) <;> rcases h₂₀ with (h₂₀ | h₂₀) <;> simp [h₁₉, h₂₀, Nat.add_mod, Nat.mul_mod] at * <;> omega
+      exact h₁₈
+    omega
+  exact h₁₂
+
+
+--- Attempt 2 ---
+Success: False
+Times (gen/lean/total): 18.184332370758057 / 600.1548545360565 / 618.3391869068146
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  rcases h₀ with ⟨ha, hb, hc, hd⟩
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := h₄
+  have h₁₀ : a * b + c * d > 4 := by
+    nlinarith [mul_pos ha hb, mul_pos hc hd, mul_pos hb hd, mul_pos hc hb, mul_pos ha hc, mul_pos hd ha]
+  intro h₁₁
+  have h₁₂ := h₁₁.eq_one_or_self_of_dvd 2
+  have h₁₃ : a * b + c * d ≥ 6 := by
+    nlinarith [mul_pos ha hb, mul_pos hc hd, mul_pos hb hd, mul_pos hc hb, mul_pos ha hc, mul_pos hd ha]
+  omega
+
+
+--- Attempt 3 ---
+Success: False
+Times (gen/lean/total): 21.59550905227661 / 600.1603889465332 / 621.7558979988098
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  rcases h₀ with ⟨ha, hb, hc, hd⟩
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := by linarith
+  have h₁₀ : a * b + c * d = a * b + c * d := by rfl
+  have h₁₁ : a * b + c * d > 1 := by
+    nlinarith [mul_pos ha hb, mul_pos hc hd]
+  have h₁₂ : ¬ Nat.Prime (a * b + c * d) := by
+    intro h
+    have h₁₃ := h.eq_one_or_self_of_dvd 2
+    have h₁₄ : 2 ∣ a * b + c * d := by
+      have h₁₅ : a * b + c * d > 1 := by nlinarith [mul_pos ha hb, mul_pos hc hd]
+      have h₁₆ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+      have h₁₇ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+      omega
+    omega
+  exact h₁₂
+
+
+--- Attempt 4 ---
+Success: False
+Times (gen/lean/total): 24.172619581222534 / 600.1444218158722 / 624.3170413970947
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := h₄
+  have h₁₀ : a * b + c * d = a * b + c * d := rfl
+  have h₁₁ : a * b + c * d > 1 := by
+    nlinarith [mul_pos h₅ h₆, mul_pos h₇ h₈]
+  intro h₁₂
+  have h₁₃ := h₁₂.eq_one_or_self_of_dvd 2
+  have h₁₄ : 2 ∣ a * b + c * d := by
+    have h₁₅ : a * b + c * d > 1 := by nlinarith [mul_pos h₅ h₆, mul_pos h₇ h₈]
+    have h₁₆ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+    have h₁₇ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+    rcases h₁₆ with (h₁₆ | h₁₆) <;> rcases h₁₇ with (h₁₇ | h₁₇) <;>
+      simp [h₁₆, h₁₇, Nat.dvd_iff_mod_eq_zero, Nat.add_mod, Nat.mul_mod] at h₁₃ ⊢ <;>
+      omega
+  omega
+
+
+--- Attempt 5 ---
+Success: False
+Times (gen/lean/total): 27.54180335998535 / 600.1662333011627 / 627.7080366611481
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := by linarith
+  have h₁₀ : a * b + c * d = a * b + c * d := by rfl
+  have h₁₁ : ¬ Nat.Prime (a * b + c * d) := by
+    intro h
+    have h₁₂ := h.eq_one_or_self_of_dvd 2
+    have h₁₃ := h.eq_one_or_self_of_dvd (a * b + c * d)
+    have h₁₄ : 2 ∣ a * b + c * d := by
+      have h₁₅ : a * b + c * d > 1 := by
+        nlinarith [mul_pos h₅ h₆, mul_pos h₇ h₈]
+      have h₁₆ : a * b + c * d ≠ 0 := by linarith
+      have h₁₇ : a * b + c * d ≠ 1 := by linarith
+      have h₁₈ : 2 ∣ a * b + c * d := by
+        apply Nat.dvd_of_mod_eq_zero
+        have h₁₉ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+        have h₂₀ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+        rcases h₁₉ with (h₁₉ | h₁₉) <;> rcases h₂₀ with (h₂₀ | h₂₀) <;>
+          simp [h₁₉, h₂₀, Nat.add_mod, Nat.mul_mod] <;> omega
+      exact h₁₈
+    omega
+  exact h₁₁
+
+
+--- Attempt 6 ---
+Success: False
+Times (gen/lean/total): 24.225584745407104 / 600.1066946983337 / 624.3322794437408
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := h₄
+  have h₁₀ : a * b + c * d = a * b + c * d := rfl
+  have h₁₁ : a * b + c * d > 1 := by
+    nlinarith [mul_pos h₅ h₆, mul_pos h₇ h₈]
+  intro h₁₂
+  have h₁₃ := h₁₂.eq_one_or_self_of_dvd 2
+  have h₁₄ : 2 ∣ a * b + c * d := by
+    have h₁₅ : a * b + c * d > 1 := by nlinarith [mul_pos h₅ h₆, mul_pos h₇ h₈]
+    have h₁₆ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+    have h₁₇ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+    rcases h₁₆ with (h₁₆ | h₁₆) <;> rcases h₁₇ with (h₁₇ | h₁₇) <;>
+      simp [h₁₆, h₁₇, Nat.dvd_iff_mod_eq_zero, Nat.add_mod, Nat.mul_mod] at h₁₃ ⊢ <;>
+      omega
+  omega
+
+
+--- Attempt 7 ---
+Success: False
+Times (gen/lean/total): 20.862832069396973 / 600.0932021141052 / 620.9560341835022
+Timeout: true
+Lean stderr:
+Lean check TIMEOUT after 600 seconds
+Final Lean code (truncated):
+import Mathlib
+
+open Real Nat Topology
+open scoped BigOperators
+
+theorem imo_2001_p6
+  (a b c d : ℕ)
+  (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
+  (h₁ : d < c)
+  (h₂ : c < b)
+  (h₃ : b < a)
+  (h₄ : a * c + b * d = (b + d + a - c) * (b + d + c - a)) :
+  ¬ Nat.Prime (a * b + c * d) := by
+  rcases h₀ with ⟨ha, hb, hc, hd⟩
+  have h₅ : a > 0 := by linarith
+  have h₆ : b > 0 := by linarith
+  have h₇ : c > 0 := by linarith
+  have h₈ : d > 0 := by linarith
+  have h₉ : a * c + b * d = (b + d + a - c) * (b + d + c - a) := h₄
+  have h₁₀ : a * b + c * d = a * b + c * d := rfl
+  have h₁₁ : a * b + c * d > 1 := by
+    nlinarith [mul_pos ha hb, mul_pos hc hd, mul_pos h₅ h₇, mul_pos h₆ h₈]
+  intro h₁₂
+  have h₁₃ := h₁₂.eq_one_or_self_of_dvd 2
+  have h₁₄ : 2 ∣ a * b + c * d := by
+    have h₁₅ : a * b + c * d > 1 := by nlinarith
+    have h₁₆ : a * b % 2 = 0 ∨ a * b % 2 = 1 := by omega
+    have h₁₇ : c * d % 2 = 0 ∨ c * d % 2 = 1 := by omega
+    omega
+  omega
+
